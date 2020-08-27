@@ -1,0 +1,90 @@
+body {
+    padding-top: 2rem;
+    color: #333;
+    font-family: "Noto Sans"
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 0 2rem;
+}
+
+h1 {
+    margin: 0;
+    margin-bottom: 1em;
+
+}
+
+.type {
+    color: #800000
+}
+
+.meth {
+    color: #005580;
+}
+
+.sep {
+    margin-right: 1ex;
+}
+
+.in, .par, .two_dots {
+    color: #404040
+}
+
+.two_dots.mid {
+    margin-left: .5ex;
+    margin-right: .5ex;
+}
+
+h3 {
+    font-weight: 400
+}
+
+.property, .method {
+    word-break: break-word;
+    text-indent: -2rem;
+    margin-left: 2rem;
+    line-height: 1.5;
+    font-family: "Roboto Mono"
+}
+
+
+.property:not(:last-child), .method:not(:last-child) {
+    margin-bottom: 0em;
+}
+
+h2 {
+    display: inline;
+}
+
+summary {
+    margin-left: -2rem;
+    margin-right: -2rem;
+    background: #efefef;
+    padding: .5rem;
+    cursor: pointer;
+}
+
+details[open] {
+    padding-bottom: 2rem;
+}
+
+details {
+    margin-bottom: 1.5rem;
+    border: 1px solid #eee;
+    padding: 2rem;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+footer {
+    background: #333;
+    color: #eee;
+    padding: 3rem;
+}
+
+.bi {
+    display: inline-block;
+    vertical-align: text-bottom;
+}
