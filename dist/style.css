@@ -4,7 +4,7 @@ body {
     font-family: "Noto Sans"
 }
 
-.method,.operator, .property {
+.method, .operator, .property {
     word-break: keep-all;
 }
 
@@ -52,8 +52,11 @@ h3 {
 }
 
 
-.property:not(:last-child), .method:not(:last-child) {
-    margin-bottom: 0em;
+.property:not(:last-child),
+.method:not(:last-child),
+.operator:not(:last-child) {
+    margin-bottom: 0.5em;
+    border-bottom: 2px dotted lightgray;
 }
 
 h2 {
@@ -78,6 +81,11 @@ details {
     padding: 2rem;
     padding-bottom: 0;
     padding-top: 0;
+}
+
+.description {
+    font-family: "Noto Sans";
+    text-indent: 0;
 }
 
 footer {
