@@ -8,7 +8,8 @@ const THE_OBJ =
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "milisegundos", "type": 1, "is_ptr": false}],
+            "description": "Detiene la ejecución el tiempo indicado por el parámetro milisegundos."
         }, {
             "name": "KillScript",
             "returns": 0,

@@ -1,13 +1,17 @@
 function renderType(type, isPtr, classes) {
-    return `<span class="type ${classes[type]}">${classes[type]}${isPtr ? '<span class="ptr">*</span>' : ''}</span>`;
+    return `<span class="type ${classes[type]}">${classes[type]}${isPtr ? '<span class="ptr">*</span>': ''}</span>`;
 }
 
 function addReturn(func, classes) {
-    return `<span class="return"><span class="two_dots"> : </span>${renderType(func.returns, func.returns_ptr, classes)}</span>`;
+    return `<span class="return"><span class="two_dots">: </span>${renderType(func.returns, func.returns_ptr, classes)}</span>`;
 }
 
 function renderParam(param, classes) {
     return `<span class="param"><span class="name">${param.name}</span><span class="two_dots mid">:</span>${renderType(param.type, param.is_ptr, classes)}</span>`
+}
+
+function renderDescription(func) {
+    return `<p class="description">${func.description || ""}</p>`;
 }
 
 function renderFunction(func, classes) {
@@ -21,6 +25,7 @@ function renderFunction(func, classes) {
                             <span class="op">${func.name}</span>
                             ${renderType(param1.type, param1.is_ptr, classes)}
                             ${addReturn(func, classes)}
+                            ${renderDescription(func)}
                         </div>`.replace(/\n\s*/g, '');
             } else {
                 const param0 = func.params[0];
@@ -28,6 +33,7 @@ function renderFunction(func, classes) {
                             <span class="op">${func.name}</span>
                             ${renderType(param0.type, param0.is_ptr, classes)}
                             ${addReturn(func, classes)}
+                            ${renderDescription(func)}
                         </div>`.replace(/\n\s*/g, '');
             }
         case 'property':
@@ -36,6 +42,7 @@ function renderFunction(func, classes) {
                         <span class="in">::</span>
                         <span class="prop">${func.name}</span>
                         ${addReturn(func, classes)}
+                        ${renderDescription(func)}
                     </div>`.replace(/\n\s*/g, '')
         case 'method':
             if (func.of != null) {
@@ -47,6 +54,7 @@ function renderFunction(func, classes) {
                             ${func.params.map(p => renderParam(p, classes)).join('<span class="sep">,</span>')}
                             <span class="par close">)</span>
                             ${addReturn(func, classes)}
+                            ${renderDescription(func)}
                         </div>`.replace(/\n\s*/g, '')
             } else {
                 return `<div class="method">
@@ -55,6 +63,7 @@ function renderFunction(func, classes) {
                             ${func.params.map(p => renderParam(p, classes)).join('<span class="sep">,</span>')}
                             <span class="par close">)</span>
                             ${addReturn(func, classes)}
+                            ${renderDescription(func)}
                         </div>`.replace(/\n\s*/g, '')
             }
     }

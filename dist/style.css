@@ -4,6 +4,10 @@ body {
     font-family: "Noto Sans"
 }
 
+.method,.operator, .property {
+    word-break: keep-all;
+}
+
 .container {
     max-width: 800px;
     margin: auto;
@@ -33,7 +37,6 @@ h1 {
 }
 
 .two_dots.mid {
-    margin-left: .5ex;
     margin-right: .5ex;
 }
 
@@ -42,7 +45,6 @@ h3 {
 }
 
 .property, .method {
-    word-break: break-word;
     text-indent: -2rem;
     margin-left: 2rem;
     line-height: 1.5;
