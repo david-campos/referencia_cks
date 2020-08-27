@@ -591,17 +591,17 @@ const THE_OBJ =
             "returns": 6,
             "returns_ptr": false,
             "of": 6,
-            "of_ptr": false,
+            "of_ptr": true,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": true}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "SetLen",
             "returns": 0,
             "returns_ptr": false,
             "of": 6,
-            "of_ptr": false,
+            "of_ptr": true,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": true}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "Len",
             "returns": 1,
@@ -615,9 +615,9 @@ const THE_OBJ =
             "returns": 0,
             "returns_ptr": false,
             "of": 6,
-            "of_ptr": false,
+            "of_ptr": true,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": true}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "InRect",
             "returns": 2,
@@ -625,15 +625,15 @@ const THE_OBJ =
             "of": 6,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "number", "type": 7, "is_ptr": false}]
         }, {
             "name": "IntoRect",
             "returns": 0,
             "returns_ptr": false,
             "of": 6,
-            "of_ptr": false,
+            "of_ptr": true,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": true}]
+            "params": [{"name": "number", "type": 7, "is_ptr": false}]
         }, {
             "name": "Dist",
             "returns": 1,
@@ -791,9 +791,9 @@ const THE_OBJ =
             "returns": 0,
             "returns_ptr": false,
             "of": 7,
-            "of_ptr": false,
+            "of_ptr": true,
             "type": "method",
-            "params": [{"name": "number", "type": 7, "is_ptr": true}, {
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
@@ -867,9 +867,9 @@ const THE_OBJ =
             "returns": 0,
             "returns_ptr": false,
             "of": 8,
-            "of_ptr": false,
+            "of_ptr": true,
             "type": "method",
-            "params": [{"name": "number", "type": 8, "is_ptr": true}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "size",
             "returns": 1,
@@ -883,9 +883,9 @@ const THE_OBJ =
             "returns": 1,
             "returns_ptr": false,
             "of": 8,
-            "of_ptr": false,
+            "of_ptr": true,
             "type": "method",
-            "params": [{"name": "number", "type": 8, "is_ptr": true}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "=",
             "returns": 0,
@@ -907,9 +907,9 @@ const THE_OBJ =
             "returns": 0,
             "returns_ptr": false,
             "of": 9,
-            "of_ptr": false,
+            "of_ptr": true,
             "type": "method",
-            "params": [{"name": "number", "type": 9, "is_ptr": true}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "size",
             "returns": 1,
@@ -923,9 +923,9 @@ const THE_OBJ =
             "returns": 1,
             "returns_ptr": false,
             "of": 9,
-            "of_ptr": false,
+            "of_ptr": true,
             "type": "method",
-            "params": [{"name": "number", "type": 9, "is_ptr": true}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "=",
             "returns": 0,
@@ -955,17 +955,17 @@ const THE_OBJ =
             "returns": 0,
             "returns_ptr": false,
             "of": 10,
-            "of_ptr": false,
+            "of_ptr": true,
             "type": "method",
-            "params": [{"name": "number", "type": 10, "is_ptr": true}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "exists",
             "returns": 2,
             "returns_ptr": false,
             "of": 10,
-            "of_ptr": false,
+            "of_ptr": true,
             "type": "method",
-            "params": [{"name": "number", "type": 10, "is_ptr": true}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "DumpStack",
             "returns": 0,
@@ -1341,7 +1341,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "IsSentry",
             "returns": 2,
@@ -1421,7 +1421,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "SetMaxHealth",
             "returns": 0,
@@ -1429,7 +1429,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "SetStamina",
             "returns": 0,
@@ -1437,7 +1437,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "SetMaxStamina",
             "returns": 0,
@@ -1445,7 +1445,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "SetSight",
             "returns": 0,
@@ -1453,7 +1453,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "GetStaminaDecTime",
             "returns": 1,
@@ -1477,7 +1477,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "ClearCommands",
             "returns": 0,
@@ -1501,7 +1501,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "AddCommand",
             "returns": 0,
@@ -1509,11 +1509,11 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 2, "is_ptr": false}, {
                 "name": "number",
-                "type": 2,
+                "type": 5,
                 "is_ptr": false
-            }, {"name": "number", "type": 5, "is_ptr": false}]
+            }, {"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "AddCommand",
             "returns": 0,
@@ -1521,11 +1521,11 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 2, "is_ptr": false}, {
                 "name": "number",
-                "type": 2,
+                "type": 5,
                 "is_ptr": false
-            }, {"name": "number", "type": 5, "is_ptr": false}]
+            }, {"name": "number", "type": 11, "is_ptr": false}]
         }, {
             "name": "SneakCommand",
             "returns": 0,
@@ -1533,7 +1533,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "SetCommand",
             "returns": 0,
@@ -1541,7 +1541,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "SetCommand",
             "returns": 0,
@@ -1549,7 +1549,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "SetCommand",
             "returns": 0,
@@ -1557,7 +1557,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 11, "is_ptr": false}]
         }, {
             "name": "ExecDefaultCmd",
             "returns": 0,
@@ -1565,11 +1565,11 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 6, "is_ptr": false}, {
                 "name": "number",
-                "type": 6,
+                "type": 11,
                 "is_ptr": false
-            }, {"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
+            }, {"name": "number", "type": 2, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "ExecCmd",
             "returns": 0,
@@ -1577,11 +1577,11 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 5, "is_ptr": false}, {
                 "name": "number",
-                "type": 5,
+                "type": 6,
                 "is_ptr": false
-            }, {"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 11, "is_ptr": false}]
+            }, {"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "CmdDisable",
             "returns": 0,
@@ -1589,7 +1589,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "CmdEnable",
             "returns": 0,
@@ -1597,7 +1597,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "IsValid",
             "returns": 2,
@@ -1621,7 +1621,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "DistTo",
             "returns": 1,
@@ -1677,7 +1677,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "IsVisible",
             "returns": 2,
@@ -1693,7 +1693,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "CanSee",
             "returns": 2,
@@ -1733,7 +1733,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "Damage",
             "returns": 2,
@@ -1741,7 +1741,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "Heal",
             "returns": 0,
@@ -1749,7 +1749,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "HealStamina",
             "returns": 0,
@@ -1757,7 +1757,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "SetPos",
             "returns": 0,
@@ -1765,7 +1765,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "SetPosSimple",
             "returns": 0,
@@ -1773,7 +1773,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "SetBlind",
             "returns": 0,
@@ -1781,7 +1781,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "Face",
             "returns": 0,
@@ -1789,7 +1789,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "GetDir",
             "returns": 6,
@@ -1813,7 +1813,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "cmddelay",
             "returns": 1,
@@ -1829,7 +1829,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "AddToGroup",
             "returns": 0,
@@ -1837,7 +1837,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "RemoveFromGroup",
             "returns": 0,
@@ -1845,7 +1845,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "RemoveFromAllGroups",
             "returns": 0,
@@ -1861,7 +1861,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "Select",
             "returns": 0,
@@ -1869,7 +1869,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "Deselect",
             "returns": 0,
@@ -1877,7 +1877,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "Deselect",
             "returns": 0,
@@ -1901,7 +1901,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "GetAnimTime",
             "returns": 1,
@@ -1909,7 +1909,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "StartAnim",
             "returns": 0,
@@ -1917,7 +1917,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "StartDelayedAnim",
             "returns": 0,
@@ -1925,11 +1925,11 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
                 "name": "number",
-                "type": 1,
+                "type": 6,
                 "is_ptr": false
-            }, {"name": "number", "type": 6, "is_ptr": false}]
+            }, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "TimeToActionMoment",
             "returns": 1,
@@ -1961,7 +1961,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "AddItem",
             "returns": 2,
@@ -1969,7 +1969,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "GiveItem",
             "returns": 2,
@@ -1977,7 +1977,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 12, "is_ptr": false}]
+            "params": [{"name": "number", "type": 12, "is_ptr": false}, {"name": "number", "type": 11, "is_ptr": false}]
         }, {
             "name": "OpenItemHolder",
             "returns": 2,
@@ -1985,7 +1985,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 21, "is_ptr": false}]
         }, {
             "name": "PutItem",
             "returns": 2,
@@ -1993,7 +1993,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 12, "is_ptr": false}]
+            "params": [{"name": "number", "type": 12, "is_ptr": false}, {"name": "number", "type": 21, "is_ptr": false}]
         }, {
             "name": "DropItem",
             "returns": 2,
@@ -2001,7 +2001,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 12, "is_ptr": false}]
+            "params": [{"name": "number", "type": 12, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "FindItem",
             "returns": 12,
@@ -2009,7 +2009,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "RemoveItem",
             "returns": 0,
@@ -2017,7 +2017,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "RemoveItem",
             "returns": 0,
@@ -2025,7 +2025,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "RemoveAllItems",
             "returns": 0,
@@ -2041,7 +2041,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 12, "is_ptr": false}]
+            "params": [{"name": "number", "type": 12, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "GetItem",
             "returns": 12,
@@ -2049,7 +2049,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "RemoveItemsOfType",
             "returns": 1,
@@ -2057,7 +2057,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "GetItemIndex",
             "returns": 1,
@@ -2065,7 +2065,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 12, "is_ptr": false}]
         }, {
             "name": "items_count",
             "returns": 1,
@@ -2105,7 +2105,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "pr",
             "returns": 0,
@@ -2113,7 +2113,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "pr",
             "returns": 0,
@@ -2121,7 +2121,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "pr",
             "returns": 0,
@@ -2145,7 +2145,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "class",
             "returns": 5,
@@ -2169,7 +2169,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "cmdparam",
             "returns": 5,
@@ -2405,7 +2405,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "GetCmdEnable",
             "returns": 2,
@@ -2445,7 +2445,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "ShowFloatText",
             "returns": 0,
@@ -2453,7 +2453,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "Group",
             "returns": 27,
@@ -2733,7 +2733,7 @@ const THE_OBJ =
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "Damage",
             "returns": 1,
@@ -2741,7 +2741,7 @@ const THE_OBJ =
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "Heal",
             "returns": 0,
@@ -2749,7 +2749,7 @@ const THE_OBJ =
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "HealStamina",
             "returns": 0,
@@ -2757,7 +2757,7 @@ const THE_OBJ =
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "AddDefCmd",
             "returns": 0,
@@ -2765,11 +2765,11 @@ const THE_OBJ =
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 6, "is_ptr": false}, {
                 "name": "number",
-                "type": 6,
+                "type": 11,
                 "is_ptr": false
-            }, {"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
+            }, {"name": "number", "type": 2, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "IsValid",
             "returns": 2,
@@ -2809,7 +2809,7 @@ const THE_OBJ =
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}]
+            "params": [{"name": "number", "type": 11, "is_ptr": false}]
         }, {
             "name": "ClearCommands",
             "returns": 0,
@@ -2833,7 +2833,7 @@ const THE_OBJ =
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "AddCommand",
             "returns": 0,
@@ -2841,11 +2841,11 @@ const THE_OBJ =
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 2, "is_ptr": false}, {
                 "name": "number",
-                "type": 2,
+                "type": 5,
                 "is_ptr": false
-            }, {"name": "number", "type": 5, "is_ptr": false}]
+            }, {"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "AddCommand",
             "returns": 0,
@@ -2853,11 +2853,11 @@ const THE_OBJ =
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 2, "is_ptr": false}, {
                 "name": "number",
-                "type": 2,
+                "type": 5,
                 "is_ptr": false
-            }, {"name": "number", "type": 5, "is_ptr": false}]
+            }, {"name": "number", "type": 11, "is_ptr": false}]
         }, {
             "name": "AddCommandOffset",
             "returns": 0,
@@ -2865,11 +2865,11 @@ const THE_OBJ =
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 2, "is_ptr": false}, {
                 "name": "number",
-                "type": 2,
+                "type": 5,
                 "is_ptr": false
-            }, {"name": "number", "type": 5, "is_ptr": false}]
+            }, {"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "SetCommand",
             "returns": 0,
@@ -2877,7 +2877,7 @@ const THE_OBJ =
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "SetCommand",
             "returns": 0,
@@ -2885,7 +2885,7 @@ const THE_OBJ =
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "SetCommand",
             "returns": 0,
@@ -2893,7 +2893,7 @@ const THE_OBJ =
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 11, "is_ptr": false}]
         }, {
             "name": "SetCommandOffset",
             "returns": 0,
@@ -2901,7 +2901,7 @@ const THE_OBJ =
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "GetObjList",
             "returns": 26,
@@ -2957,7 +2957,7 @@ const THE_OBJ =
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "NearestObj",
             "returns": 11,
@@ -2965,7 +2965,7 @@ const THE_OBJ =
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}]
+            "params": [{"name": "number", "type": 11, "is_ptr": false}]
         }, {
             "name": "AddToGroup",
             "returns": 0,
@@ -2973,7 +2973,7 @@ const THE_OBJ =
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "RemoveFromGroup",
             "returns": 0,
@@ -2981,7 +2981,7 @@ const THE_OBJ =
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "RemoveFromAllGroups",
             "returns": 0,
@@ -2997,7 +2997,7 @@ const THE_OBJ =
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "SetFood",
             "returns": 0,
@@ -3005,7 +3005,7 @@ const THE_OBJ =
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "InHolder",
             "returns": 1,
@@ -3013,7 +3013,7 @@ const THE_OBJ =
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "AddToHolder",
             "returns": 0,
@@ -3021,7 +3021,7 @@ const THE_OBJ =
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "GetAverageDirection",
             "returns": 6,
@@ -3037,7 +3037,7 @@ const THE_OBJ =
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "SetMessengerStatus",
             "returns": 0,
@@ -3045,7 +3045,7 @@ const THE_OBJ =
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "SetFeeding",
             "returns": 0,
@@ -3053,7 +3053,7 @@ const THE_OBJ =
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "GetNamedObj",
             "returns": 29,
@@ -3113,7 +3113,7 @@ const THE_OBJ =
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 14, "is_ptr": false}]
+            "params": [{"name": "number", "type": 11, "is_ptr": false}]
         }, {
             "name": "GetEnterPoint",
             "returns": 6,
@@ -3121,7 +3121,7 @@ const THE_OBJ =
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 14, "is_ptr": false}]
+            "params": [{"name": "number", "type": 13, "is_ptr": false}]
         }, {
             "name": "GetExitPoint",
             "returns": 6,
@@ -3129,7 +3129,7 @@ const THE_OBJ =
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 14, "is_ptr": false}, {"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "GetExitPoint",
             "returns": 6,
@@ -3137,7 +3137,7 @@ const THE_OBJ =
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 14, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "GetPoint",
             "returns": 6,
@@ -3145,7 +3145,7 @@ const THE_OBJ =
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 14, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "settlement",
             "returns": 28,
@@ -3209,7 +3209,7 @@ const THE_OBJ =
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 14, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "GlobalSpellStart",
             "returns": 0,
@@ -3217,7 +3217,7 @@ const THE_OBJ =
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 14, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
@@ -3237,7 +3237,7 @@ const THE_OBJ =
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 14, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "WindOfWisdom",
             "returns": 0,
@@ -3245,7 +3245,7 @@ const THE_OBJ =
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 14, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "Starvation",
             "returns": 0,
@@ -3261,7 +3261,7 @@ const THE_OBJ =
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 14, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "DivineSacrifice",
             "returns": 0,
@@ -3341,7 +3341,7 @@ const THE_OBJ =
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 14, "is_ptr": false}]
+            "params": [{"name": "number", "type": 11, "is_ptr": false}]
         }, {
             "name": "GetUITarget",
             "returns": 11,
@@ -3373,7 +3373,7 @@ const THE_OBJ =
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 14, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "GetResearchHack",
             "returns": 2,
@@ -3417,7 +3417,7 @@ const THE_OBJ =
             "of": 20,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 20, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "GetCatapultAttackPoint",
             "returns": 6,
@@ -3433,7 +3433,7 @@ const THE_OBJ =
             "of": 20,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 20, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "Attack",
             "returns": 0,
@@ -3441,7 +3441,7 @@ const THE_OBJ =
             "of": 20,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 20, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "BestTarget",
             "returns": 11,
@@ -3457,7 +3457,7 @@ const THE_OBJ =
             "of": 20,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 20, "is_ptr": false}]
+            "params": [{"name": "number", "type": 11, "is_ptr": false}]
         }, {
             "name": "InRange",
             "returns": 2,
@@ -3465,7 +3465,7 @@ const THE_OBJ =
             "of": 20,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 20, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "AttackWait",
             "returns": 1,
@@ -3497,7 +3497,7 @@ const THE_OBJ =
             "of": 20,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 20, "is_ptr": false}]
+            "params": [{"name": "number", "type": 11, "is_ptr": false}]
         }, {
             "name": "ClearTarget",
             "returns": 0,
@@ -3601,7 +3601,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "SetUser",
             "returns": 0,
@@ -3609,7 +3609,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "SetFood",
             "returns": 0,
@@ -3617,7 +3617,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "feeds",
             "returns": 2,
@@ -3633,7 +3633,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "Goto",
             "returns": 2,
@@ -3641,15 +3641,15 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}, {
-                "name": "number",
-                "type": 6,
-                "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 6, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 2, "is_ptr": false}]
+            }, {"name": "number", "type": 1, "is_ptr": false}, {
+                "name": "number",
+                "type": 2,
+                "is_ptr": false
+            }, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "GotoEnter",
             "returns": 2,
@@ -3657,15 +3657,15 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}, {
-                "name": "number",
-                "type": 6,
-                "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 6, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 2, "is_ptr": false}]
+            }, {"name": "number", "type": 1, "is_ptr": false}, {
+                "name": "number",
+                "type": 2,
+                "is_ptr": false
+            }, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "Goto",
             "returns": 2,
@@ -3673,15 +3673,15 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}, {
-                "name": "number",
-                "type": 11,
-                "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 11, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 2, "is_ptr": false}]
+            }, {"name": "number", "type": 1, "is_ptr": false}, {
+                "name": "number",
+                "type": 2,
+                "is_ptr": false
+            }, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "GotoAttack",
             "returns": 2,
@@ -3689,11 +3689,11 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 11, "is_ptr": false}, {
                 "name": "number",
-                "type": 11,
+                "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
+            }, {"name": "number", "type": 2, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "GotoStraight",
             "returns": 0,
@@ -3701,7 +3701,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "Stop",
             "returns": 2,
@@ -3709,7 +3709,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "HasPath",
             "returns": 2,
@@ -3773,7 +3773,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "EnterHolder",
             "returns": 0,
@@ -3781,7 +3781,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 11, "is_ptr": false}]
         }, {
             "name": "GetUnitsInSameHolder",
             "returns": 26,
@@ -3797,7 +3797,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 11, "is_ptr": false}]
         }, {
             "name": "BestTrainingTarget",
             "returns": 11,
@@ -3837,7 +3837,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 11, "is_ptr": false}]
         }, {
             "name": "AttackEveryone",
             "returns": 2,
@@ -3845,7 +3845,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 11, "is_ptr": false}]
         }, {
             "name": "TimeWithoutAttack",
             "returns": 1,
@@ -3893,7 +3893,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "BestTargetInSquadSightExclusive",
             "returns": 11,
@@ -3901,7 +3901,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "BestTargetInSquadSight_PreferUndiseased",
             "returns": 11,
@@ -3925,7 +3925,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "IsEnemyInSquadSight",
             "returns": 2,
@@ -3949,7 +3949,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 11, "is_ptr": false}]
         }, {
             "name": "hero",
             "returns": 15,
@@ -3965,7 +3965,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 15, "is_ptr": false}]
         }, {
             "name": "DetachFrom",
             "returns": 0,
@@ -3973,7 +3973,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 15, "is_ptr": false}]
         }, {
             "name": "Idle",
             "returns": 0,
@@ -3981,7 +3981,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "Taunt",
             "returns": 0,
@@ -3989,7 +3989,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "SetExperience",
             "returns": 0,
@@ -3997,7 +3997,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "SetLevel",
             "returns": 0,
@@ -4005,7 +4005,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "IncKills",
             "returns": 0,
@@ -4013,7 +4013,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "FormAcceptMove",
             "returns": 0,
@@ -4029,7 +4029,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "PathTo",
             "returns": 1,
@@ -4037,9 +4037,9 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 6, "is_ptr": false}, {
                 "name": "number",
-                "type": 6,
+                "type": 1,
                 "is_ptr": false
             }, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
@@ -4049,9 +4049,9 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 11, "is_ptr": false}, {
                 "name": "number",
-                "type": 11,
+                "type": 1,
                 "is_ptr": false
             }, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
@@ -4061,7 +4061,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "GetParty",
             "returns": 2,
@@ -4101,7 +4101,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "HasFreedom",
             "returns": 2,
@@ -4117,7 +4117,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "PathLeft",
             "returns": 1,
@@ -4173,7 +4173,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "GetCommanded",
             "returns": 2,
@@ -4189,7 +4189,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "GetEntering",
             "returns": 2,
@@ -4205,7 +4205,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "SetWalkAnim",
             "returns": 0,
@@ -4253,7 +4253,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "SetMinimapFlag",
             "returns": 0,
@@ -4261,7 +4261,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "SetNoAIFlag",
             "returns": 0,
@@ -4269,7 +4269,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "PathDestFound",
             "returns": 6,
@@ -4333,7 +4333,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 14, "is_ptr": false}]
         }, {
             "name": "HasSpecial",
             "returns": 2,
@@ -4341,7 +4341,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "SetSpecial",
             "returns": 0,
@@ -4349,7 +4349,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "SpecialName",
             "returns": 5,
@@ -4357,7 +4357,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "GetParryMode",
             "returns": 1,
@@ -4373,7 +4373,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "Curse",
             "returns": 0,
@@ -4437,7 +4437,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "ExpFromLevel",
             "returns": 1,
@@ -4461,7 +4461,7 @@ const THE_OBJ =
             "of": 15,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 15, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "FormSetupAndMoveTo",
             "returns": 0,
@@ -4469,11 +4469,11 @@ const THE_OBJ =
             "of": 15,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 15, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 6, "is_ptr": false}, {
                 "name": "number",
-                "type": 6,
+                "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "FormSetupAndMoveTo",
             "returns": 0,
@@ -4481,11 +4481,11 @@ const THE_OBJ =
             "of": 15,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 15, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 11, "is_ptr": false}, {
                 "name": "number",
-                "type": 11,
+                "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "TimePastLastAttack",
             "returns": 1,
@@ -4557,7 +4557,7 @@ const THE_OBJ =
             "of": 15,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 15, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "formation",
             "returns": 5,
@@ -4597,7 +4597,7 @@ const THE_OBJ =
             "of": 15,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 15, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "GetFinalPartyOrientation",
             "returns": 6,
@@ -4629,7 +4629,7 @@ const THE_OBJ =
             "of": 15,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 15, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "GetSkill",
             "returns": 1,
@@ -4637,7 +4637,7 @@ const THE_OBJ =
             "of": 15,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 15, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "UseSkill",
             "returns": 2,
@@ -4645,7 +4645,7 @@ const THE_OBJ =
             "of": 15,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 15, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "HeroSkillName",
             "returns": 5,
@@ -4669,7 +4669,7 @@ const THE_OBJ =
             "of": 15,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 15, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "autocast",
             "returns": 2,
@@ -4685,7 +4685,7 @@ const THE_OBJ =
             "of": 15,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 15, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "FindUnitToHeal",
             "returns": 13,
@@ -4733,7 +4733,7 @@ const THE_OBJ =
             "of": 16,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 16, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "FindUnitBelowILevel",
             "returns": 13,
@@ -4741,7 +4741,7 @@ const THE_OBJ =
             "of": 16,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 16, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "SetStonehenge",
             "returns": 0,
@@ -4749,7 +4749,7 @@ const THE_OBJ =
             "of": 16,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 16, "is_ptr": false}]
+            "params": [{"name": "number", "type": 14, "is_ptr": false}]
         }, {
             "name": "GetJupiterAngerTarget",
             "returns": 13,
@@ -4765,7 +4765,7 @@ const THE_OBJ =
             "of": 16,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 16, "is_ptr": false}]
+            "params": [{"name": "number", "type": 13, "is_ptr": false}]
         }, {
             "name": "SetSummoningDeath",
             "returns": 0,
@@ -4773,7 +4773,7 @@ const THE_OBJ =
             "of": 16,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 16, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "IsSummoningDeath",
             "returns": 2,
@@ -4941,7 +4941,7 @@ const THE_OBJ =
             "of": 19,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 19, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "SetGold",
             "returns": 0,
@@ -4949,7 +4949,7 @@ const THE_OBJ =
             "of": 19,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 19, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "LoadFood",
             "returns": 0,
@@ -4957,7 +4957,7 @@ const THE_OBJ =
             "of": 19,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 19, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "LoadGold",
             "returns": 0,
@@ -4965,7 +4965,7 @@ const THE_OBJ =
             "of": 19,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 19, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "loyalty",
             "returns": 1,
@@ -4981,7 +4981,7 @@ const THE_OBJ =
             "of": 19,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 19, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "DecreaseLoyalty",
             "returns": 0,
@@ -4989,7 +4989,7 @@ const THE_OBJ =
             "of": 19,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 19, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "StartCapture",
             "returns": 0,
@@ -5061,7 +5061,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 13, "is_ptr": false}]
         }, {
             "name": "AddUnit",
             "returns": 2,
@@ -5069,7 +5069,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 13, "is_ptr": false}]
         }, {
             "name": "IsFull",
             "returns": 2,
@@ -5085,7 +5085,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 26, "is_ptr": false}]
         }, {
             "name": "Units",
             "returns": 26,
@@ -5157,7 +5157,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "DecreaseLoyalty",
             "returns": 0,
@@ -5165,7 +5165,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "gold",
             "returns": 1,
@@ -5205,7 +5205,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "SetFood",
             "returns": 0,
@@ -5213,7 +5213,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "SetPopulation",
             "returns": 0,
@@ -5221,7 +5221,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "AddToPopulation",
             "returns": 0,
@@ -5229,7 +5229,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "AddToMaxPopulation",
             "returns": 0,
@@ -5237,7 +5237,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "player",
             "returns": 1,
@@ -5253,7 +5253,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "IsValid",
             "returns": 2,
@@ -5277,7 +5277,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "GetCentralBuilding",
             "returns": 14,
@@ -5309,7 +5309,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "SetGoldProduction",
             "returns": 0,
@@ -5317,7 +5317,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "Buildings",
             "returns": 26,
@@ -5333,7 +5333,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "FirstBldClass",
             "returns": 5,
@@ -5349,7 +5349,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 13, "is_ptr": false}]
         }, {
             "name": "AllowCapture",
             "returns": 0,
@@ -5357,7 +5357,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "ObjectsAround",
             "returns": 26,
@@ -5365,7 +5365,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "GetEnterExit",
             "returns": 6,
@@ -5453,7 +5453,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "IsCity",
             "returns": 2,
@@ -5477,7 +5477,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "GoldSpent",
             "returns": 0,
@@ -5485,7 +5485,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "GetSentry",
             "returns": 1,
@@ -5525,7 +5525,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "GetMaxSentries",
             "returns": 1,
@@ -5541,7 +5541,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "EvalSentries",
             "returns": 1,
@@ -5557,7 +5557,7 @@ const THE_OBJ =
             "of": 21,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 21, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "count",
             "returns": 1,
@@ -5573,7 +5573,7 @@ const THE_OBJ =
             "of": 21,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 21, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "RemoveItem",
             "returns": 0,
@@ -5581,7 +5581,7 @@ const THE_OBJ =
             "of": 21,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 21, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "RemoveAll",
             "returns": 0,
@@ -5597,7 +5597,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "CreateMuleGold",
             "returns": 19,
@@ -5605,7 +5605,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "CreateBoatFood",
             "returns": 19,
@@ -5613,7 +5613,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "CreateBoatGold",
             "returns": 19,
@@ -5621,7 +5621,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "CreateShip",
             "returns": 24,
@@ -5629,7 +5629,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "SendMule",
             "returns": 0,
@@ -5669,7 +5669,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 19, "is_ptr": false}]
         }, {
             "name": "supplied",
             "returns": 28,
@@ -5709,7 +5709,7 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}]
+            "params": [{"name": "number", "type": 11, "is_ptr": false}]
         }, {
             "name": "Add",
             "returns": 0,
@@ -5717,7 +5717,7 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}]
+            "params": [{"name": "number", "type": 11, "is_ptr": false}]
         }, {
             "name": "Remove",
             "returns": 0,
@@ -5725,7 +5725,7 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}]
+            "params": [{"name": "number", "type": 11, "is_ptr": false}]
         }, {
             "name": "ClearDead",
             "returns": 0,
@@ -5765,7 +5765,7 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "RemoveFromGroup",
             "returns": 0,
@@ -5773,7 +5773,7 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "RemoveFromAllGroups",
             "returns": 0,
@@ -5805,7 +5805,7 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "AddCommand",
             "returns": 0,
@@ -5813,11 +5813,11 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 2, "is_ptr": false}, {
                 "name": "number",
-                "type": 2,
+                "type": 5,
                 "is_ptr": false
-            }, {"name": "number", "type": 5, "is_ptr": false}]
+            }, {"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "AddCommand",
             "returns": 0,
@@ -5825,11 +5825,11 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 2, "is_ptr": false}, {
                 "name": "number",
-                "type": 2,
+                "type": 5,
                 "is_ptr": false
-            }, {"name": "number", "type": 5, "is_ptr": false}]
+            }, {"name": "number", "type": 11, "is_ptr": false}]
         }, {
             "name": "AddCommandOffset",
             "returns": 0,
@@ -5837,11 +5837,11 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 2, "is_ptr": false}, {
                 "name": "number",
-                "type": 2,
+                "type": 5,
                 "is_ptr": false
-            }, {"name": "number", "type": 5, "is_ptr": false}]
+            }, {"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "ExecDefaultCmd",
             "returns": 0,
@@ -5849,11 +5849,11 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 6, "is_ptr": false}, {
                 "name": "number",
-                "type": 6,
+                "type": 11,
                 "is_ptr": false
-            }, {"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
+            }, {"name": "number", "type": 2, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "ExecCmd",
             "returns": 0,
@@ -5861,11 +5861,11 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 5, "is_ptr": false}, {
                 "name": "number",
-                "type": 5,
+                "type": 6,
                 "is_ptr": false
-            }, {"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 11, "is_ptr": false}]
+            }, {"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "SetCommand",
             "returns": 0,
@@ -5873,7 +5873,7 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "SetCommand",
             "returns": 0,
@@ -5881,7 +5881,7 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "SetCommand",
             "returns": 0,
@@ -5889,7 +5889,7 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 11, "is_ptr": false}]
         }, {
             "name": "SetCommandOffset",
             "returns": 0,
@@ -5897,7 +5897,7 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "GetCanExecCmd",
             "returns": 26,
@@ -5905,7 +5905,7 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "FilterClosest",
             "returns": 26,
@@ -5913,7 +5913,7 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "Face",
             "returns": 0,
@@ -5921,7 +5921,7 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "SetFood",
             "returns": 0,
@@ -5929,7 +5929,7 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "SetPlayer",
             "returns": 0,
@@ -5937,7 +5937,7 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "InHolder",
             "returns": 1,
@@ -5945,7 +5945,7 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "AddToHolder",
             "returns": 0,
@@ -5953,7 +5953,7 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "SetVisible",
             "returns": 0,
@@ -5961,7 +5961,7 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "ObjPlayer",
             "returns": 26,
@@ -5969,7 +5969,7 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "ObjEnemy",
             "returns": 26,
@@ -5977,7 +5977,7 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "ObjAlly",
             "returns": 26,
@@ -5985,7 +5985,7 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "ObjClass",
             "returns": 26,
@@ -5993,7 +5993,7 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "ObjSpecial",
             "returns": 0,
@@ -6001,7 +6001,7 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "ObjInjured",
             "returns": 26,
@@ -6025,7 +6025,7 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "FindAlly",
             "returns": 11,
@@ -6033,7 +6033,7 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "FindEnemy",
             "returns": 11,
@@ -6041,15 +6041,15 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "Init",
             "returns": 0,
             "returns_ptr": false,
             "of": 30,
-            "of_ptr": false,
+            "of_ptr": true,
             "type": "method",
-            "params": [{"name": "number", "type": 30, "is_ptr": true}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "SetActor",
             "returns": 0,
@@ -6057,7 +6057,7 @@ const THE_OBJ =
             "of": 30,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 30, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 13, "is_ptr": false}]
         }, {
             "name": "SetDefActor",
             "returns": 0,
@@ -6065,7 +6065,7 @@ const THE_OBJ =
             "of": 30,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 30, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "ActorPresent",
             "returns": 2,
@@ -6597,7 +6597,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "IRun",
             "returns": 1,
@@ -7245,7 +7245,7 @@ const THE_OBJ =
             "of": 23,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 23, "is_ptr": false}, {"name": "number", "type": 16, "is_ptr": false}]
+            "params": [{"name": "number", "type": 16, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "RemoveDruid",
             "returns": 0,
@@ -7253,7 +7253,7 @@ const THE_OBJ =
             "of": 23,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 23, "is_ptr": false}]
+            "params": [{"name": "number", "type": 16, "is_ptr": false}]
         }, {
             "name": "Consume",
             "returns": 1,
@@ -7261,11 +7261,11 @@ const THE_OBJ =
             "of": 23,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 23, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "IsEmpty",
             "returns": 2,
@@ -7281,7 +7281,7 @@ const THE_OBJ =
             "of": 23,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 23, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "IsInvisibility",
             "returns": 2,
@@ -7529,7 +7529,7 @@ const THE_OBJ =
             "of": 31,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 31, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "OpenNow",
             "returns": 0,
@@ -7577,7 +7577,7 @@ const THE_OBJ =
             "of": 32,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 32, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "ShowBuildAnimation",
             "returns": 0,
@@ -7585,7 +7585,7 @@ const THE_OBJ =
             "of": 24,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 24, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "NotifyBoardUnit",
             "returns": 0,
@@ -7593,7 +7593,7 @@ const THE_OBJ =
             "of": 24,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 24, "is_ptr": false}]
+            "params": [{"name": "number", "type": 13, "is_ptr": false}]
         }, {
             "name": "AreUnitsToBoard",
             "returns": 2,
@@ -7617,7 +7617,7 @@ const THE_OBJ =
             "of": 24,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 24, "is_ptr": false}]
+            "params": [{"name": "number", "type": 13, "is_ptr": false}]
         }, {
             "name": "NotifyBoardUnitCancel",
             "returns": 0,
@@ -7625,7 +7625,7 @@ const THE_OBJ =
             "of": 24,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 24, "is_ptr": false}]
+            "params": [{"name": "number", "type": 13, "is_ptr": false}]
         }, {
             "name": "NotifyShipBoardingCancel",
             "returns": 0,
@@ -7641,7 +7641,7 @@ const THE_OBJ =
             "of": 24,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 24, "is_ptr": false}]
+            "params": [{"name": "number", "type": 26, "is_ptr": false}]
         }, {
             "name": "UnboardAllUnits",
             "returns": 0,
@@ -7761,7 +7761,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
@@ -7777,7 +7777,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
@@ -7857,7 +7857,7 @@ const THE_OBJ =
             "of": 12,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 12, "is_ptr": false}]
+            "params": [{"name": "number", "type": 11, "is_ptr": false}]
         }, {
             "name": "Use",
             "returns": 0,
@@ -7865,7 +7865,7 @@ const THE_OBJ =
             "of": 12,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 12, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "SetCustomData",
             "returns": 0,
@@ -7873,7 +7873,7 @@ const THE_OBJ =
             "of": 12,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 12, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "GetThis",
             "returns": 12,
@@ -7889,11 +7889,11 @@ const THE_OBJ =
             "of": 25,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 25, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
                 "name": "number",
-                "type": 1,
+                "type": 6,
                 "is_ptr": false
-            }, {"name": "number", "type": 6, "is_ptr": false}]
+            }, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "IsInAir",
             "returns": 2,
@@ -7925,7 +7925,7 @@ const THE_OBJ =
             "of": 25,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 25, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "PickLandingPoint",
             "returns": 6,
@@ -7933,7 +7933,7 @@ const THE_OBJ =
             "of": 25,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 25, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "FindNearBird",
             "returns": 25,
@@ -7947,9 +7947,9 @@ const THE_OBJ =
             "returns": 0,
             "returns_ptr": false,
             "of": 25,
-            "of_ptr": true,
+            "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 25, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": true}]
         }, {
             "name": "GetTerrainHeight",
             "returns": 1,
@@ -7997,7 +7997,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "dir",
             "returns": 6,
@@ -8077,7 +8077,7 @@ const THE_OBJ =
             "of": 33,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 33, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "StateTime",
             "returns": 1,
@@ -8141,7 +8141,7 @@ const THE_OBJ =
             "of": 33,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 33, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
@@ -8153,7 +8153,7 @@ const THE_OBJ =
             "of": 33,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 33, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
@@ -8165,11 +8165,11 @@ const THE_OBJ =
             "of": 33,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 33, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "SetCmd",
             "returns": 0,
@@ -8177,15 +8177,15 @@ const THE_OBJ =
             "of": 33,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 33, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
             }, {"name": "number", "type": 1, "is_ptr": false}, {
                 "name": "number",
-                "type": 1,
+                "type": 5,
                 "is_ptr": false
-            }, {"name": "number", "type": 5, "is_ptr": false}]
+            }, {"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "SetCmd",
             "returns": 0,
@@ -8193,15 +8193,15 @@ const THE_OBJ =
             "of": 33,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 33, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
             }, {"name": "number", "type": 1, "is_ptr": false}, {
                 "name": "number",
-                "type": 1,
+                "type": 5,
                 "is_ptr": false
-            }, {"name": "number", "type": 5, "is_ptr": false}]
+            }, {"name": "number", "type": 11, "is_ptr": false}]
         }, {
             "name": "Siege",
             "returns": 0,
@@ -8209,9 +8209,9 @@ const THE_OBJ =
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 26, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 11, "is_ptr": false}, {
                 "name": "number",
-                "type": 11,
+                "type": 1,
                 "is_ptr": false
             }, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
@@ -8221,9 +8221,9 @@ const THE_OBJ =
             "of": 33,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 33, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 11, "is_ptr": false}, {
                 "name": "number",
-                "type": 11,
+                "type": 1,
                 "is_ptr": false
             }, {"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
@@ -8233,7 +8233,7 @@ const THE_OBJ =
             "of": 33,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 33, "is_ptr": false}, {"name": "number", "type": 34, "is_ptr": false}]
+            "params": [{"name": "number", "type": 34, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "AIDest",
             "returns": 34,
@@ -8273,7 +8273,7 @@ const THE_OBJ =
             "of": 33,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 33, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "SetFlags",
             "returns": 0,
@@ -8281,7 +8281,7 @@ const THE_OBJ =
             "of": 33,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 33, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "Lock",
             "returns": 0,
@@ -8361,7 +8361,7 @@ const THE_OBJ =
             "of": 33,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 33, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "EvalAttach",
             "returns": 1,
@@ -8369,7 +8369,7 @@ const THE_OBJ =
             "of": 33,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 33, "is_ptr": false}, {"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 13, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "Count",
             "returns": 1,
@@ -8377,7 +8377,7 @@ const THE_OBJ =
             "of": 33,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 33, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "HasFreedom",
             "returns": 2,
@@ -8473,7 +8473,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}]
+            "params": [{"name": "number", "type": 13, "is_ptr": false}]
         }, {
             "name": "settlement",
             "returns": 28,
@@ -8487,9 +8487,9 @@ const THE_OBJ =
             "returns": 0,
             "returns_ptr": false,
             "of": 34,
-            "of_ptr": true,
+            "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}]
+            "params": [{"name": "number", "type": 35, "is_ptr": true}]
         }, {
             "name": "GetSquads",
             "returns": 0,
@@ -8497,7 +8497,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}, {"name": "number", "type": 35, "is_ptr": true}]
+            "params": [{"name": "number", "type": 35, "is_ptr": true}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "GetSquads",
             "returns": 0,
@@ -8505,10 +8505,10 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 35, "is_ptr": true}, {
                 "name": "number",
-                "type": 35,
-                "is_ptr": true
+                "type": 1,
+                "is_ptr": false
             }, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "GetSquads",
@@ -8517,10 +8517,10 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 35, "is_ptr": true}, {
                 "name": "number",
-                "type": 35,
-                "is_ptr": true
+                "type": 1,
+                "is_ptr": false
             }, {"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "Eval",
@@ -8529,7 +8529,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "Eval",
             "returns": 1,
@@ -8537,7 +8537,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "Eval",
             "returns": 1,
@@ -8545,7 +8545,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
@@ -8555,13 +8555,13 @@ const THE_OBJ =
             "returns": 0,
             "returns_ptr": false,
             "of": 34,
-            "of_ptr": true,
+            "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {
+            }, {"name": "number", "type": 1, "is_ptr": true}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": true
@@ -8573,27 +8573,27 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {
+            }, {"name": "number", "type": 1, "is_ptr": true}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": true
-            }, {"name": "number", "type": 1, "is_ptr": true}, {"name": "number", "type": 1, "is_ptr": true}]
+            }, {"name": "number", "type": 1, "is_ptr": true}, {"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "Count",
             "returns": 0,
             "returns_ptr": false,
             "of": 34,
-            "of_ptr": true,
+            "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {
+            }, {"name": "number", "type": 1, "is_ptr": true}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": true
@@ -8605,7 +8605,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "GetLAIKA",
             "returns": 1,
@@ -8613,7 +8613,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "CalcPriority",
             "returns": 1,
@@ -8621,7 +8621,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "SetPriority",
             "returns": 0,
@@ -8629,7 +8629,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "Prioritized",
             "returns": 2,
@@ -8637,7 +8637,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "Explored",
             "returns": 2,
@@ -8645,7 +8645,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "Explore",
             "returns": 0,
@@ -8653,7 +8653,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "CanExplore",
             "returns": 2,
@@ -8661,7 +8661,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "Revealed",
             "returns": 2,
@@ -8669,7 +8669,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "LastSeen",
             "returns": 1,
@@ -8677,7 +8677,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "NoAttack",
             "returns": 2,
@@ -8685,7 +8685,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "SetNoAttack",
             "returns": 0,
@@ -8693,7 +8693,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "NoRecruit",
             "returns": 2,
@@ -8701,7 +8701,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "SetNoRecruit",
             "returns": 0,
@@ -8709,18 +8709,18 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "GetDistToPlayers",
             "returns": 0,
             "returns_ptr": false,
             "of": 34,
-            "of_ptr": true,
+            "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
-                "is_ptr": false
+                "is_ptr": true
             }, {"name": "number", "type": 1, "is_ptr": true}, {"name": "number", "type": 1, "is_ptr": true}]
         }, {
             "name": "GetDistToArmies",
@@ -8729,7 +8729,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "Count",
             "returns": 1,
@@ -8737,11 +8737,11 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "MinNeed",
             "returns": 1,
@@ -8749,7 +8749,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
@@ -8761,7 +8761,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
@@ -8771,13 +8771,13 @@ const THE_OBJ =
             "returns": 1,
             "returns_ptr": false,
             "of": 34,
-            "of_ptr": true,
+            "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": true}]
         }, {
             "name": "GetStrat",
             "returns": 1,
@@ -8785,7 +8785,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "StratRunning",
             "returns": 1,
@@ -8793,7 +8793,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "RunStrat",
             "returns": 0,
@@ -8801,7 +8801,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "AllEnemiesInHolder",
             "returns": 2,
@@ -8809,7 +8809,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "MilitaryPresence",
             "returns": 2,
@@ -8817,7 +8817,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "Neighbors",
             "returns": 1,
@@ -8833,7 +8833,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "SetNoAttack",
             "returns": 0,
@@ -9015,9 +9015,9 @@ const THE_OBJ =
             "returns": 0,
             "returns_ptr": false,
             "of": 35,
-            "of_ptr": false,
+            "of_ptr": true,
             "type": "method",
-            "params": [{"name": "number", "type": 35, "is_ptr": true}]
+            "params": [{"name": "number", "type": 33, "is_ptr": false}]
         }, {
             "name": "Select",
             "returns": 0,
@@ -9025,7 +9025,7 @@ const THE_OBJ =
             "of": 35,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 35, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "Train",
             "returns": 1,
@@ -9033,7 +9033,7 @@ const THE_OBJ =
             "of": 35,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 35, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
@@ -9041,7 +9041,7 @@ const THE_OBJ =
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "number", "type": 11, "is_ptr": false}]
         }, {
             "name": "NumTowers",
             "returns": 1,
@@ -9089,7 +9089,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "BestGate",
             "returns": 31,
@@ -9097,7 +9097,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "OpenAllGates",
             "returns": 0,
@@ -9177,7 +9177,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "IsEnemy",
             "returns": 2,
@@ -9185,7 +9185,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "IsOwn",
             "returns": 2,
@@ -9193,7 +9193,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "IsIndependent",
             "returns": 2,
@@ -9217,7 +9217,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "MaxPopulation",
             "returns": 1,
@@ -9233,7 +9233,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "BestToSupply",
             "returns": 28,
@@ -9381,7 +9381,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "GetGaikaCenter",
             "returns": 6,
@@ -9405,7 +9405,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "FindResearchLab",
             "returns": 14,
@@ -9413,7 +9413,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "IsBarrack",
             "returns": 2,
@@ -9565,7 +9565,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "CanAfford",
             "returns": 2,
@@ -9573,7 +9573,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "CanAfford",
             "returns": 2,
@@ -9581,7 +9581,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "MaxAffordCount",
             "returns": 1,
@@ -9589,7 +9589,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "CanResearch",
             "returns": 2,
@@ -9597,7 +9597,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "Research",
             "returns": 0,
@@ -9605,7 +9605,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "Reserve",
             "returns": 1,
@@ -9629,7 +9629,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "GoldSpentOnArmy",
             "returns": 1,
@@ -9645,7 +9645,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "GoldSpentOnTech",
             "returns": 1,
@@ -9661,7 +9661,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "CheckTechBudget",
             "returns": 2,
@@ -9669,7 +9669,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "WaterLsa",
             "returns": 1,
@@ -10077,7 +10077,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "RunEconomyScript",
             "returns": 0,
@@ -10085,7 +10085,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "EconomyScript",
             "returns": 1,
@@ -10101,7 +10101,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "RunTacticScript",
             "returns": 0,
@@ -10109,7 +10109,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "TacticScript",
             "returns": 1,
@@ -10141,7 +10141,7 @@ const THE_OBJ =
             "of": 31,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 31, "is_ptr": false}]
+            "params": [{"name": "number", "type": 33, "is_ptr": false}]
         }, {
             "name": "Outside",
             "returns": 2,
@@ -10149,7 +10149,7 @@ const THE_OBJ =
             "of": 31,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 31, "is_ptr": false}]
+            "params": [{"name": "number", "type": 33, "is_ptr": false}]
         }, {
             "name": "UpgradeBestBarrack",
             "returns": 2,
@@ -10157,7 +10157,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "RepairAll",
             "returns": 0,
@@ -10277,7 +10277,7 @@ const THE_OBJ =
             "of": 33,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 33, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "HasItem",
             "returns": 2,
@@ -10285,7 +10285,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "UseItem",
             "returns": 2,
@@ -10293,7 +10293,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "FindTeleport",
             "returns": 11,
@@ -10313,11 +10313,11 @@ const THE_OBJ =
             "of": 33,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 33, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 11, "is_ptr": false}, {
                 "name": "number",
-                "type": 11,
+                "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            }, {"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "InvadeThroughGate",
             "returns": 0,
@@ -10325,7 +10325,7 @@ const THE_OBJ =
             "of": 33,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 33, "is_ptr": false}, {"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "Eval",
             "returns": 0,
@@ -10357,7 +10357,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
@@ -10365,7 +10365,7 @@ const THE_OBJ =
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "BestProtPos",
             "returns": 11,
@@ -10373,7 +10373,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
@@ -10435,9 +10435,9 @@ const THE_OBJ =
             "returns": 0,
             "returns_ptr": false,
             "of": 15,
-            "of_ptr": true,
+            "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 15, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": true}]
+            "params": [{"name": "number", "type": 1, "is_ptr": true}, {"name": "number", "type": 1, "is_ptr": true}]
         }, {
             "name": "SetNoAIFlag",
             "returns": 0,
@@ -10453,11 +10453,11 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}, {
+            "params": [{"name": "number", "type": 5, "is_ptr": false}, {
                 "name": "number",
-                "type": 5,
+                "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "TSRecruitArmy",
             "returns": 26,
@@ -10465,7 +10465,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "TSGetAllBarracks",
             "returns": 26,
@@ -10513,7 +10513,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "ArenaUTech",
             "returns": 5,
@@ -10545,7 +10545,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "TSTempleRecruit",
             "returns": 26,
@@ -10553,7 +10553,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "BestTemple",
             "returns": 14,
@@ -10583,9 +10583,9 @@ const THE_OBJ =
             "returns": 0,
             "returns_ptr": false,
             "of": 15,
-            "of_ptr": true,
+            "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 15, "is_ptr": false}, {"name": "number", "type": 8, "is_ptr": true}]
+            "params": [{"name": "number", "type": 8, "is_ptr": true}, {"name": "number", "type": 8, "is_ptr": true}]
         }, {
             "name": "SelSquad",
             "returns": 0,
@@ -10957,7 +10957,7 @@ const THE_OBJ =
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "AIRun",
             "returns": 0,
@@ -10965,7 +10965,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "AIRun",
             "returns": 0,
@@ -10973,7 +10973,7 @@ const THE_OBJ =
             "of": 33,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 33, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}]
         }, {
             "name": "AppendFile",
             "returns": 0,
@@ -12845,7 +12845,7 @@ const THE_OBJ =
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "MagicActionEnd",
             "returns": 0,
@@ -12869,7 +12869,7 @@ const THE_OBJ =
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 14, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "GetDefendersMax",
             "returns": 1,
@@ -12877,7 +12877,7 @@ const THE_OBJ =
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 14, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "GetDefendersOut",
             "returns": 1,
@@ -12885,7 +12885,7 @@ const THE_OBJ =
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 14, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "GetStartLevel",
             "returns": 1,
@@ -12893,7 +12893,7 @@ const THE_OBJ =
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 14, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "GetEndLevel",
             "returns": 1,
@@ -12901,7 +12901,7 @@ const THE_OBJ =
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 14, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "GetOutpostFood",
             "returns": 1,
@@ -12965,7 +12965,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "GetControlFlag",
             "returns": 2,
@@ -12973,7 +12973,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "ControlledNeighbors",
             "returns": 1,
@@ -12981,7 +12981,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "SetFreedom",
             "returns": 0,
@@ -12989,7 +12989,7 @@ const THE_OBJ =
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "EndGame",
             "returns": 0,
@@ -13041,7 +13041,7 @@ const THE_OBJ =
             "of": 34,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 34, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "SetUseCount",
             "returns": 0,
@@ -13057,7 +13057,7 @@ const THE_OBJ =
             "of": 12,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 12, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "WaitForMapChange",
             "returns": 0,

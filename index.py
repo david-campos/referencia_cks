@@ -54,7 +54,7 @@ class Func:
         if '::' in self.name:
             self.of = find_or_add_class(self.name[:self.name.index('::')])
             self.name = self.name[self.name.index('::') + 2:]
-            first_param = self.params.pop()
+            first_param = self.params.pop(0)
             self.of_ptr = first_param.is_ptr
         else:
             self.of = None
