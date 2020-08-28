@@ -32,32 +32,132 @@ const THE_OBJ =
                 "description": "Un punto en dos dimensiones (ejes x e y), algunos métodos permiten manipularlo como un vector.",
                 "description_en": "A point in 2 dimensions (axis x and y), some methods allow to use it as a vector."
             },
-            {"name": "rect"},
-            {"name": "IntArray"},
-            {"name": "StrArray"},
-            {"name": "StrMap"},
-            {"name": "Obj"},
-            {"name": "Item"},
-            {"name": "Unit"},
-            {"name": "Building"},
-            {"name": "Hero"},
-            {"name": "Druid"},
-            {"name": "Ghost"},
-            {"name": "Tower"},
-            {"name": "Wagon"},
-            {"name": "Catapult"},
-            {"name": "ItemHolder"},
+            {
+                "name": "rect",
+                "description": "Un rectángulo en dos dimensiones alineado con los ejes, definido por los valores en los que se sitúan sus cuatro lados.",
+                "description_en": "An axis-aligned rectangle in 2 dimensions, defined by the values in which their four sides reside."
+            },
+            {
+                "name": "IntArray",
+                "description": "Una lista ordenada de números enteros (int), accesibles mediante el operador <pre>[]</pre>.",
+                "description_en": "A sorted list of integer numbers (int), accessible through the <pre>[]</pre> operator."
+            },
+            {
+                "name": "StrArray",
+                "description": "Una lista ordenada de cadenas de texto (str), accesibles mediante el operador <pre>[]</pre>.",
+                "description_en": "A sorted list of text strings (str), accessible through the <pre>[]</pre> operator."
+            },
+            {
+                "name": "StrMap",
+                "description": "Un diccionario (es decir, un conjunto de pares clave-valor) en el que tanto las claves como los valores son cadenas de texto (str).",
+                "description_en": "A dictionary (i.e., a set of key-value pairs) in which both keys and values are of type string (str)."
+            },
+            {
+                "name": "Obj",
+                "description": "Un objeto. Esta es la clase base para todo tipo de objetos interactuables en CKS (unidades, catapultas, edificios...).",
+                "description_en": "An object. It is the base class for all kind of interactable objects in CKS (units, catapults, item holders, buildings...)"
+            },
+            {
+                "name": "Item",
+                "description": "Un ítem, como los que pueden portar algunos Obj en sus <i>item slots</i>. Algunos pueden ser usados.",
+                "description_en": "An item, like the ones some Obj can carry in their <i>item slots</i>. Some of them can be used."
+            },
+            {
+                "name": "Unit",
+                "description": "Esta clase corresponde a cualquier unidad del juego.",
+                "description_en": "This class corresponds to any unit in the game."
+            },
+            {
+                "name": "Building",
+                "description": "Esta clase corresponde a cualquier edificio del juego (como un foro o una herrería, por ejemplo).",
+                "description_en": "This class corresponds to any building in the game (like a town hall or a blacksmith, for example)."
+            },
+            {
+                "name": "Hero",
+                "description": "Héroes del juego, se caracterizan por poseer habilidades especiales y la capacidad de tener unidades asociadas (su <i>army</i>).",
+                "description_en": "Heroes in the game, they are characterised by possessing special skills and the ability to have attached units (their <i>army</i>)."
+            },
+            {
+                "name": "Druid",
+                "description": "Cualquier unidad de tipo druida del juego, como las sacerdotisas íberas.",
+                "description_en": "Any unit of druid type from the game, like Iberian priestesses."
+            },
+            {
+                "name": "Ghost",
+                "description": "Espíritus, usualmente invocados por la muerte de un(a) druida.",
+                "description_en": "Spirits, usually invoked by the death of a druid (after \"summoning death\")."
+            },
+            {
+                "name": "Tower",
+                "description": "Las torres que forman las murallas que rodean los asentamientos.",
+                "description_en": "The towers which form the walls surrounding the settlements."
+            },
+            {
+                "name": "Wagon",
+                "description": "Mula. Las mulas transportan recursos entre asentamientos y pueden ser capturadas.",
+                "description_en": "Wagons transport resources between settlements and can be captured by other players."
+            },
+            {
+                "name": "Catapult",
+                "description": "Las catapultas de las diferentes civilizaciones del juego. Tardan un tiempo en montarse y pueden atacar a cualquier punto y rotar, pero no moverse.",
+                "description_en": "The catapults from the different civilisations in the game. They take a time to be built and can attack any point or rotate, but they cannot move."
+            },
+            {
+                "name": "ItemHolder",
+                "description": "Soporte / receptáculo de ítems. Tiene una serie de slots en los que puede guardar ítems que otras unidades pueden recoger (como los tocones, las fuentes, etc).",
+                "description_en": "They possess a number of slots in which they can save items the units can pick up (like stumps, fountains...)."
+            },
             {"name": "Barrack"},
-            {"name": "Sacrifice"},
-            {"name": "Ship"},
-            {"name": "Flying"},
-            {"name": "ObjList"},
-            {"name": "Query"},
-            {"name": "Settlement"},
-            {"name": "NamedObj"},
-            {"name": "Conversation"},
-            {"name": "Gate"},
-            {"name": "Teleport"},
+            {
+                "name": "Sacrifice",
+                "description": "Altar de sacrificios. Bajo el control de un grupo de druidas puede lanzar hechizos que afectan a todos los jugadores de la partida.",
+                "description_en": "Sacrifice altar. With the help of a group of druids it is able to cast <i>mist actions</i> which affect every player in the game."
+            },
+            {
+                "name": "Ship",
+                "description": "Barco. Los barcos pueden transportar unidades en su interior.",
+                "description_en": "Ships can transport units inside them."
+            },
+            {
+                "name": "Flying",
+                "description": "Objeto volador del juego, como es el caso de las águilas y otros pájaros.",
+                "description_en": "Flying objects of the game, as it is the case of eagles and other birds."
+            },
+            {
+                "name": "ObjList",
+                "description": "Lista ordenada de objetos (<a href=\"#Obj\" class=\"type\">Obj</a>).",
+                "description_en": "Sorted list of objects (<a href=\"#Obj\" class=\"type\">Obj</a>)."
+            },
+            {
+                "name": "Query",
+                "description": "Una consulta para obtener objetos (<a href=\"#Obj\" class=\"type\">Obj</a>). Varios métodos devuelven diferentes tipos de consultas. Un ejemplo de consulta sería \"objetos de clase cUnit del jugador 2\".",
+                "description_en": "A query for a set of objects (<a href=\"#Obj\" class=\"type\">Obj</a>). Several methods return different kinds of queries. An example of query would be \"objects of the cUnit class belonging to player 2\".",
+            },
+            {
+                "name": "Settlement",
+                "description": "Un asentamiento. Los asentamientos tienen una población, almacenan recursos y pueden albergar unidades.",
+                "description_en": "Settlements in the game. They have a population, can store resources and keep units."
+            },
+            {
+                "name": "NamedObj",
+                "description": "Un objeto (<a href=\"#Obj\" class=\"type\">Obj</a>) identificado por su nombre.",
+                "description_en": "An object (<a href=\"#Obj\" class=\"type\">Obj</a>) identified by name."
+            },
+            {
+                "name": "Conversation",
+                "description": "Conversaciones del juego en las que una serie de actores van hablando por turnos, lo cual se muestra mediante un cuadro de diálogo para el jugador.",
+                "description_en": "Conversations in the game, in which a set of actors speaks by turns, shown to the player through dialogue boxes."
+            },
+            {
+                "name": "Gate",
+                "description": "Puerta de un asentamiento",
+                "description_en": "Settlement gate"
+            },
+            {
+                "name": "Teleport",
+                "description": "Las unidades se teleportan entre los objetos de esta clase.",
+                "description_en": "Units get teleported between objects of this class."
+            },
             {"name": "Squad"},
             {"name": "GAIKA"},
             {"name": "SquadList"}
