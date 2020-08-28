@@ -20,13 +20,16 @@ header {
 }
 
 .group-by {
-    background: #999;
-    color: #eee;
     margin: 1rem 0;
-    padding-top: .5rem;
-    padding-bottom: .5rem;
     position: sticky;
     top: 0;
+}
+
+.group-by .container {
+    background: #999;
+    color: #eee;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
 }
 
 h1 {
