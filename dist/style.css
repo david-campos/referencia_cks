@@ -14,14 +14,23 @@ body {
     padding: 0 2rem;
 }
 
-h1 {
-    margin: 0;
-    margin-bottom: 1em;
+header {
+    display: flex;
+    align-items: center;
+}
 
+h1 {
+    margin-bottom: 1em;
+    flex: 1;
+}
+
+h3 {
+    margin-top: 3rem;
 }
 
 .type {
-    color: #800000
+    color: #800000;
+    text-decoration: none;
 }
 
 .meth {

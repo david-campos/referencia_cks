@@ -1,6 +1,6 @@
 const THE_OBJ =
     {
-        "classes": ["void", "int", "bool", "float", "pstr", "str", "point", "rect", "IntArray", "StrArray", "StrMap", "Obj", "Item", "Unit", "Building", "Hero", "Druid", "Ghost", "Tower", "Wagon", "Catapult", "ItemHolder", "Barrack", "Sacrifice", "Ship", "Flying", "ObjList", "Query", "Settlement", "NamedObj", "Conversation", "Gate", "Teleport", "Squad", "GAIKA", "SquadList"],
+        "classes": [{"name": "void"}, {"name": "int"}, {"name": "bool"}, {"name": "float"}, {"name": "pstr"}, {"name": "str"}, {"name": "point"}, {"name": "rect"}, {"name": "IntArray"}, {"name": "StrArray"}, {"name": "StrMap"}, {"name": "Obj"}, {"name": "Item"}, {"name": "Unit"}, {"name": "Building"}, {"name": "Hero"}, {"name": "Druid"}, {"name": "Ghost"}, {"name": "Tower"}, {"name": "Wagon"}, {"name": "Catapult"}, {"name": "ItemHolder"}, {"name": "Barrack"}, {"name": "Sacrifice"}, {"name": "Ship"}, {"name": "Flying"}, {"name": "ObjList"}, {"name": "Query"}, {"name": "Settlement"}, {"name": "NamedObj"}, {"name": "Conversation"}, {"name": "Gate"}, {"name": "Teleport"}, {"name": "Squad"}, {"name": "GAIKA"}, {"name": "SquadList"}],
         "funcs": [{
             "name": "Sleep",
             "returns": 0,
@@ -8,8 +8,9 @@ const THE_OBJ =
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "milisegundos", "type": 1, "is_ptr": false}],
-            "description": "Detiene la ejecución el tiempo indicado por el parámetro milisegundos."
+            "params": [{"name": "milisegundos", "name_en": "milliseconds", "type": 1, "is_ptr": false}],
+            "description": "Detiene la ejecución el tiempo indicado por el parámetro milisegundos.",
+            "description_en": "It pauses the execution of the script for the time indicated by the \"milliseconds\" parameter"
         }, {
             "name": "KillScript",
             "returns": 0,

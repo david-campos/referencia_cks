@@ -125,4 +125,4 @@ for func in tree.getroot():
 
 print('Writing to JSON...')
 with open('data.json', 'w') as outfile:
-    json.dump({'classes': classes_array, 'funcs': list(map(lambda x: x.serialize(), funcs))}, outfile)
+    json.dump({'classes': list(map(lambda c: {"name": c}, classes_array)), 'funcs': list(map(lambda x: x.serialize(), funcs))}, outfile)

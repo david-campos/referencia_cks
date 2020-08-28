@@ -1,5 +1,14 @@
+let lang = '';
+
+const TRANSLATE_TEXTS = {
+    'no-desc-': 'Sin descripción todavía.',
+    'no-desc-en': 'No description yet.',
+    'no-class-': "Sin clase",
+    'no-class-en': "No class"
+}
+
 function renderType(type, isPtr, classes) {
-    return `<span class="type ${classes[type]}">${classes[type]}${isPtr ? '<span class="ptr">*</span>': ''}</span>`;
+    return `<a href="#${classes[type].name}" class="type ${classes[type].name}">${classes[type].name}${isPtr ? '<span class="ptr">*</span>' : ''}</a>`;
 }
 
 function addReturn(func, classes) {
@@ -7,11 +16,12 @@ function addReturn(func, classes) {
 }
 
 function renderParam(param, classes) {
-    return `<span class="param"><span class="name">${param.name}</span><span class="two_dots mid">:</span>${renderType(param.type, param.is_ptr, classes)}</span>`
+    return `<span class="param"><span class="name">${param['name_' + lang] || param.name}</span><span class="two_dots mid">:</span>${renderType(param.type, param.is_ptr, classes)}</span>`
 }
 
 function renderDescription(func) {
-    return `<p class="description">${func.description || ""}</p>`;
+    return `<p class="description">${func['description_' + lang] || func.description
+    || `<span class=\"to-fill\">${TRANSLATE_TEXTS['no-desc-' + lang]}</span>`}</p>`;
 }
 
 function renderFunction(func, classes) {
@@ -76,34 +86,69 @@ const TYPES_ORDER = {
 };
 
 const TRANSLATE_TYPES = {
-    'operator': 'Operadores',
-    'property': 'Propiedades',
-    'method': 'Métodos'
+    'operator-': 'Operadores',
+    'operator-en': 'Operators',
+    'property-': 'Propiedades',
+    'property-en': 'Properties',
+    'method-': 'Métodos',
+    'method-en': 'Methods'
 };
 
 THE_OBJ.funcs.sort((a, b) => {
     if (a.of === b.of) {
         if (a.type === b.type) return a.name.localeCompare(b.name);
         else return TYPES_ORDER[a.type] - TYPES_ORDER[b.type];
-    }else if (a.of === null) return 1;
+    } else if (a.of === null) return 1;
     else if (b.of === null) return -1;
     else return a.of - b.of;
 });
-let html = "";
-let last_of = null;
-let last_type;
-for (const func of THE_OBJ.funcs) {
-    if (func.of !== last_of) {
-        html += `</details><details class="class" open><summary><h2>${func.of != null ? THE_OBJ.classes[func.of] : 'No class'}</h2></summary>`;
-        last_of = func.of;
-        last_type = null;
+
+function render() {
+    let html = "";
+    let last_of = null;
+    let last_type;
+    let copy_classes = THE_OBJ.classes.slice();
+    for (const func of THE_OBJ.funcs) {
+        if (func.of !== last_of) {
+            if (html !== "") {
+                html += '</details>';
+            }
+            html += `<details class="class" ${
+                func.of != null ? `id="${THE_OBJ.classes[func.of].name}"` : ""
+            } open><summary><h2>${
+                func.of != null ? THE_OBJ.classes[func.of].name : TRANSLATE_TEXTS['no-class-' + lang]
+            }</h2></summary>`;
+            if (func.of != null) {
+                const theClass = THE_OBJ.classes[func.of];
+                copy_classes.splice(copy_classes.indexOf(theClass), 1);
+                html += `<p>${theClass['description_' + lang] || theClass.description
+                || `<span class=\"to-fill\">${TRANSLATE_TEXTS['no-desc-' + lang]}</span>`}</p>`;
+            }
+            last_of = func.of;
+            last_type = null;
+        }
+        if (func.type !== last_type) {
+            html += `<h3>${TRANSLATE_TYPES[func.type + '-' + lang]}</h3>`
+            last_type = func.type;
+        }
+        html += renderFunction(func, THE_OBJ.classes);
     }
-    if (func.type !== last_type) {
-        html += `<h3>${TRANSLATE_TYPES[func.type]}</h3>`
-        last_type = func.type;
+    for (const missing of copy_classes) {
+        html += `</details><details class="class" id="${missing.name}" open><summary><h2>${
+            missing.name
+        }</h2></summary>`;
+        html += `<p>${missing['description_' + lang] || missing.description
+        || `<span class=\"to-fill\">${TRANSLATE_TEXTS['no-desc-' + lang]}</span>`}</p>`;
     }
-    html += renderFunction(func, THE_OBJ.classes);
+    html += "</details>";
+    document.getElementById('main').innerHTML = html;
 }
-html += "</div>"
-console.log(html);
-document.getElementById('main').innerHTML = html;
+
+window.onload = function () {
+    const lang_select = document.getElementById('lang_select');
+    lang_select.addEventListener('change', () => {
+        lang = lang_select.value;
+        render();
+    });
+    render();
+}
