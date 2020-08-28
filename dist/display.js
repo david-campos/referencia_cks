@@ -122,8 +122,8 @@ function renderFunction(func, classes) {
 }
 
 const TYPES_ORDER = {
-    'operator': 0,
-    'property': 1,
+    'operator': 1,
+    'property': 0,
     'method': 2
 };
 
