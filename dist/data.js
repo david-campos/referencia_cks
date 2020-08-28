@@ -130,8 +130,8 @@ const THE_OBJ =
             },
             {
                 "name": "Query",
-                "description": "Una consulta para obtener objetos (<a href=\"#Obj\" class=\"type\">Obj</a>). Varios métodos devuelven diferentes tipos de consultas. Un ejemplo de consulta sería \"objetos de clase cUnit del jugador 2\".",
-                "description_en": "A query for a set of objects (<a href=\"#Obj\" class=\"type\">Obj</a>). Several methods return different kinds of queries. An example of query would be \"objects of the cUnit class belonging to player 2\".",
+                "description": "Una consulta para obtener objetos (<a href=\"#Obj\" class=\"type\">Obj</a>). Varios métodos devuelven diferentes tipos de consultas. Un ejemplo de consulta sería <a href='#ClassPlayerObjs:str_int'>\"objetos de clase cUnit del jugador 2\"</a>.",
+                "description_en": "A query for a set of objects (<a href=\"#Obj\" class=\"type\">Obj</a>). Several methods return different kinds of queries. An example of query would be  <a href='#ClassPlayerObjs:str_int'>\"objects of the cUnit class belonging to player 2\"</a>.",
             },
             {
                 "name": "Settlement",
@@ -140,8 +140,8 @@ const THE_OBJ =
             },
             {
                 "name": "NamedObj",
-                "description": "Un objeto (<a href=\"#Obj\" class=\"type\">Obj</a>) identificado por su nombre.",
-                "description_en": "An object (<a href=\"#Obj\" class=\"type\">Obj</a>) identified by name."
+                "description": "Un objeto (<a href=\"#Obj\" class=\"type\">Obj</a>) identificado por su nombre (ver <a href='#GetNamedObj:str'>GetNamedObj</a>).",
+                "description_en": "An object (<a href=\"#Obj\" class=\"type\">Obj</a>) identified by name (see <a href='#GetNamedObj:str'>GetNamedObj</a>)."
             },
             {
                 "name": "Conversation",
