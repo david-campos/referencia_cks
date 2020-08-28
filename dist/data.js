@@ -403,7 +403,9 @@ const THE_OBJ =
             "of": 3,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 3, "is_ptr": false}, {"name": "number", "type": 3, "is_ptr": false}]
+            "params": [{"name": "number", "type": 3, "is_ptr": false}, {"name": "number", "type": 3, "is_ptr": false}],
+            "description": "Devuelve un <tt>float</tt> que es la suma de los dos valores <tt>float</tt> dados.",
+            "description_en": "Returns an <tt>float</tt> value which is the sum of the two given <tt>float</tt> values."
         }, {
             "name": "-",
             "returns": 3,
@@ -411,7 +413,9 @@ const THE_OBJ =
             "of": 3,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 3, "is_ptr": false}, {"name": "number", "type": 3, "is_ptr": false}]
+            "params": [{"name": "number", "type": 3, "is_ptr": false}, {"name": "number", "type": 3, "is_ptr": false}],
+            "description": "Devuelve un <tt>float</tt> que es la resta de los dos valores <tt>float</tt> dados.",
+            "description_en": "Returns an <tt>float</tt> value which is the difference between the two given <tt>float</tt> values."
         }, {
             "name": "-",
             "returns": 3,
@@ -419,7 +423,9 @@ const THE_OBJ =
             "of": 3,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 3, "is_ptr": false}]
+            "params": [{"name": "number", "type": 3, "is_ptr": false}],
+            "description": "Devuelve el valor <tt>float</tt> dado pero con signo opuesto (multiplicado por -1).",
+            "description_en": "Returns the given <tt>float</tt> value but with the opposite sign (multiplied by -1)."
         }, {
             "name": "=",
             "returns": 0,
@@ -427,7 +433,9 @@ const THE_OBJ =
             "of": 3,
             "of_ptr": true,
             "type": "operator",
-            "params": [{"name": "number", "type": 3, "is_ptr": true}, {"name": "number", "type": 3, "is_ptr": false}]
+            "params": [{"name": "number", "type": 3, "is_ptr": true}, {"name": "number", "type": 3, "is_ptr": false}],
+            "description": "Asigna el valor <tt>float</tt> dado a la referencia a <tt>float</tt> indicada (a la izquierda del operador). Ejemplo: <pre>float a; // Declaramos a, ahora es una referencia a float<br>a = 5.32; // Guardamos 5.32 en la variable a</pre>",
+            "description_en": "Saves the given <tt>float</tt> value into the given <tt>float</tt> reference (at the left of the operator). Example: <pre>float a; // Declare a so it is a reference to an float<br>a = 5.32; // Save 5.32 into the variable a</pre>"
         }, {
             "name": "*",
             "returns": 3,
@@ -435,7 +443,9 @@ const THE_OBJ =
             "of": 3,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 3, "is_ptr": false}, {"name": "number", "type": 3, "is_ptr": false}]
+            "params": [{"name": "number", "type": 3, "is_ptr": false}, {"name": "number", "type": 3, "is_ptr": false}],
+            "description": "Devuelve un valor <tt>float</tt> correspondiente al producto de los dos valores <tt>float</tt> dados.",
+            "description_en": "Returns an <tt>float</tt> value which is the product of the two given <tt>float</tt> values."
         }, {
             "name": "/",
             "returns": 3,
@@ -443,7 +453,9 @@ const THE_OBJ =
             "of": 3,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 3, "is_ptr": false}, {"name": "number", "type": 3, "is_ptr": false}]
+            "params": [{"name": "number", "type": 3, "is_ptr": false}, {"name": "number", "type": 3, "is_ptr": false}],
+            "description": "Devuelve un <tt>float</tt> que es la división exacta de los dos valores <tt>float</tt> dados.",
+            "description_en": "Returns an <tt>float</tt> value which is the exact division of the two given <tt>float</tt> values."
         }, {
             "name": "==",
             "returns": 2,
@@ -451,7 +463,9 @@ const THE_OBJ =
             "of": 3,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 3, "is_ptr": false}, {"name": "number", "type": 3, "is_ptr": false}]
+            "params": [{"name": "number", "type": 3, "is_ptr": false}, {"name": "number", "type": 3, "is_ptr": false}],
+            "description": "Devuelve <tt>true</tt> si ambos valores son iguales, o <tt>false</tt> si no lo son. ¡Ten cuidado con los problemas de precisión de los valores con coma flotante! Un ordenador no puede representar decimales con infinita precisión, por lo que dos operaciones que deberían dar el mismo resultado pueden dar resultados muy parecidos pero no exactamente iguales. Para comparar <tt>float</tt>s, obtén el valor absoluto de su resta y comprueba si es menor que un valor muy pequeño, por ejemplo: <tt>abs(a - b) < 0.0001</tt>.",
+            "description_en": "Returns <tt>true</tt> if both values are the same, or <tt>false</tt> if they are not. Be careful with the precision problems on floating-point values! A computer cannot represent decimals with infinite precision, so two operations that should give the same theoretical result might give results which are very close but not fully equal. To compare <tt>float</tt> values, get the absolute value of their subtraction and check the value stays bellow a threshold, for example: <tt>abs(a - b) < 0.0001</tt>."
         }, {
             "name": "!=",
             "returns": 2,
@@ -459,7 +473,9 @@ const THE_OBJ =
             "of": 3,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 3, "is_ptr": false}, {"name": "number", "type": 3, "is_ptr": false}]
+            "params": [{"name": "number", "type": 3, "is_ptr": false}, {"name": "number", "type": 3, "is_ptr": false}],
+            "description": "Devuelve <tt>true</tt> si los valores son diferentes, o <tt>false</tt> si no lo son. Ver anotación en <a href='#float::-e--e-:float_float'>==</a> sobre la precisión de los valores con coma flotante.",
+            "description_en": "Returns <tt>true</tt> if the values are different, or <tt>false</tt> if they are not. See notes in <a href='#float::-e--e-:float_float'>==</a> about the precision of floating-point values."
         }, {
             "name": "\\l",
             "returns": 2,
@@ -467,7 +483,9 @@ const THE_OBJ =
             "of": 3,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 3, "is_ptr": false}, {"name": "number", "type": 3, "is_ptr": false}]
+            "params": [{"name": "number", "type": 3, "is_ptr": false}, {"name": "number", "type": 3, "is_ptr": false}],
+            "description": "Devuelve <tt>true</tt> si el primer valor es menor que el segundo, o <tt>false</tt> si no lo es.",
+            "description_en": "Returns <tt>true</tt> if the first integer value is lower than the second, or <tt>false</tt> if it is not."
         }, {
             "name": "\\g",
             "returns": 2,
@@ -475,7 +493,9 @@ const THE_OBJ =
             "of": 3,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 3, "is_ptr": false}, {"name": "number", "type": 3, "is_ptr": false}]
+            "params": [{"name": "number", "type": 3, "is_ptr": false}, {"name": "number", "type": 3, "is_ptr": false}],
+            "description": "Devuelve <tt>true</tt> si el primer valor es mayor que el segundo, o <tt>false</tt> si no lo es.",
+            "description_en": "Returns <tt>true</tt> if the first integer value is greater than the second, or <tt>false</tt> if it is not."
         }, {
             "name": "sqrt",
             "returns": 3,
@@ -483,7 +503,9 @@ const THE_OBJ =
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 3, "is_ptr": false}]
+            "params": [{"name": "number", "type": 3, "is_ptr": false}],
+            "description": "Devuelve la raíz cuadrada.",
+            "description_en": "Returns the square root."
         }, {
             "name": "Int",
             "returns": 1,
@@ -491,7 +513,9 @@ const THE_OBJ =
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 3, "is_ptr": false}]
+            "params": [{"name": "number", "type": 3, "is_ptr": false}],
+            "description": "Convierte un valor en coma flotante a entero.",
+            "description_en": "Casts a floating-point value to an integer."
         }, {
             "name": "Write",
             "returns": 0,
