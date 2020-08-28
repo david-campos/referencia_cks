@@ -1,10 +1,17 @@
 let lang = '';
+let groupBy = 'of';
 
 const TRANSLATE_TEXTS = {
     'no-desc-': 'Sin descripción todavía.',
     'no-desc-en': 'No description yet.',
     'no-class-': "Sin clase",
-    'no-class-en': "No class"
+    'no-class-en': "No class",
+    "group-by-": "Agrupar por:",
+    "group-by-en": "Group by:",
+    "gb-class-": "clase",
+    "gb-class-en": "class",
+    "gb-return-": "tipo de retorno",
+    "gb-return-en": "return type"
 }
 
 function escapeHtmlAndNameCorrection(unsafe) {
@@ -103,37 +110,39 @@ const TRANSLATE_TYPES = {
     'method-en': 'Methods'
 };
 
-THE_OBJ.funcs.sort((a, b) => {
-    if (a.of === b.of) {
-        if (a.type === b.type) return a.name.localeCompare(b.name);
-        else return TYPES_ORDER[a.type] - TYPES_ORDER[b.type];
-    } else if (a.of === null) return 1;
-    else if (b.of === null) return -1;
-    else return a.of - b.of;
-});
+function sortFuncs() {
+    THE_OBJ.funcs.sort((a, b) => {
+        if (a[groupBy] === b[groupBy]) {
+            if (a.type === b.type) return a.name.localeCompare(b.name);
+            else return TYPES_ORDER[a.type] - TYPES_ORDER[b.type];
+        } else if (a[groupBy] === null) return 1;
+        else if (b[groupBy] === null) return -1;
+        else return a[groupBy] - b[groupBy];
+    });
+}
 
 function render() {
     let html = "";
-    let last_of = null;
+    let last_group = null;
     let last_type;
     let copy_classes = THE_OBJ.classes.slice();
     for (const func of THE_OBJ.funcs) {
-        if (func.of !== last_of) {
+        if (func[groupBy] !== last_group) {
             if (html !== "") {
                 html += '</details>';
             }
             html += `<details class="class" ${
-                func.of != null ? `id="${THE_OBJ.classes[func.of].name}"` : ""
+                func[groupBy] != null ? `id="${THE_OBJ.classes[func[groupBy]].name}"` : ""
             } open><summary><h2>${
-                func.of != null ? THE_OBJ.classes[func.of].name : TRANSLATE_TEXTS['no-class-' + lang]
+                func[groupBy] != null ? THE_OBJ.classes[func[groupBy]].name : TRANSLATE_TEXTS['no-class-' + lang]
             }</h2></summary>`;
-            if (func.of != null) {
-                const theClass = THE_OBJ.classes[func.of];
+            if (func[groupBy] != null) {
+                const theClass = THE_OBJ.classes[func[groupBy]];
                 copy_classes.splice(copy_classes.indexOf(theClass), 1);
                 html += `<p>${theClass['description_' + lang] || theClass.description
                 || `<span class=\"to-fill\">${TRANSLATE_TEXTS['no-desc-' + lang]}</span>`}</p>`;
             }
-            last_of = func.of;
+            last_group = func[groupBy];
             last_type = null;
         }
         if (func.type !== last_type) {
@@ -155,9 +164,24 @@ function render() {
 
 window.onload = function () {
     const lang_select = document.getElementById('lang_select');
+    const groupByLabel = document.getElementById('group-by-label');
+    const groupBySelect = document.getElementById('group-by-select');
+    function updateSelectText() {
+        groupByLabel.innerText = TRANSLATE_TEXTS['group-by-' + lang];
+        groupBySelect.options.item(0).innerText = TRANSLATE_TEXTS['gb-class-' + lang];
+        groupBySelect.options.item(1).innerText = TRANSLATE_TEXTS['gb-return-' + lang];
+    }
     lang_select.addEventListener('change', () => {
         lang = lang_select.value;
+        updateSelectText();
         render();
     });
+    groupBySelect.addEventListener('change', () => {
+        groupBy = groupBySelect.value;
+        sortFuncs();
+        render();
+    });
+    updateSelectText();
+    sortFuncs();
     render();
 }
