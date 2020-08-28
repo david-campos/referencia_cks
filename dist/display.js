@@ -40,13 +40,39 @@ function renderDescription(func) {
     || `<span class=\"to-fill\">${TRANSLATE_TEXTS['no-desc-' + lang]}</span>`}</p>`;
 }
 
+function typeForIdentifier(type, isPtr, classes) {
+    return `${isPtr ? 'ptr.' : ''}${classes[type].name}`;
+}
+
+function correctNameForIdentifier(name) {
+    return name
+        .replace(/-/g, '-m-')
+        .replace(/\+/g, '-p-')
+        .replace(/=/g, '-e-')
+        .replace(/\*/g, '-a-')
+        .replace(/!/g, '-x-')
+        .replace(/\^/g, '-h-')
+        .replace(/\[/g, '-c-')
+        .replace(/\|/g, '-b-')
+        .replace(/\//g, '-s-')
+        .replace(/\\/g, '-bs-');
+}
+
+function uniqueIdentifierForFunc(func, classes) {
+    return (func.of ? `${typeForIdentifier(func.of, func.of_ptr, classes)}::` : '')
+        + correctNameForIdentifier(func.name)
+        + (func.params.length > 0
+            ? ':' + func.params.map(p => typeForIdentifier(p.type, p.is_ptr, classes)).join('_')
+            : '');
+}
+
 function renderFunction(func, classes) {
     switch (func.type) {
         case 'operator':
             if (func.params.length === 2) {
                 const param0 = func.params[0];
                 const param1 = func.params[1];
-                return `<div class="binary operator">
+                return `<div class="binary operator" id="${uniqueIdentifierForFunc(func, classes)}">
                             ${renderType(param0.type, param0.is_ptr, classes)}
                             <span class="op">${escapeHtmlAndNameCorrection(func.name)}</span>
                             ${renderType(param1.type, param1.is_ptr, classes)}
@@ -55,7 +81,7 @@ function renderFunction(func, classes) {
                         </div>`.replace(/\n\s*/g, '');
             } else {
                 const param0 = func.params[0];
-                return `<div class="unary operator">
+                return `<div class="unary operator" id="${uniqueIdentifierForFunc(func, classes)}">
                             <span class="op">${escapeHtmlAndNameCorrection(func.name)}</span>
                             ${renderType(param0.type, param0.is_ptr, classes)}
                             ${addReturn(func, classes)}
@@ -63,7 +89,7 @@ function renderFunction(func, classes) {
                         </div>`.replace(/\n\s*/g, '');
             }
         case 'property':
-            return `<div class="property">
+            return `<div class="property" id="${uniqueIdentifierForFunc(func, classes)}">
                         ${renderType(func.of, func.of_ptr, classes)}
                         <span class="in">::</span>
                         <span class="prop">${escapeHtmlAndNameCorrection(func.name)}</span>
@@ -72,7 +98,7 @@ function renderFunction(func, classes) {
                     </div>`.replace(/\n\s*/g, '')
         case 'method':
             if (func.of != null) {
-                return `<div class="method">
+                return `<div class="method" id="${uniqueIdentifierForFunc(func, classes)}">
                             ${renderType(func.of, func.of_ptr, classes)}
                             <span class="in">::</span>
                             <span class="meth">${escapeHtmlAndNameCorrection(func.name)}</span>
@@ -83,7 +109,7 @@ function renderFunction(func, classes) {
                             ${renderDescription(func)}
                         </div>`.replace(/\n\s*/g, '')
             } else {
-                return `<div class="method">
+                return `<div class="method" id="${uniqueIdentifierForFunc(func, classes)}">
                             <span class="meth">${escapeHtmlAndNameCorrection(func.name)}</span>
                             <span class="par open">(</span>
                             ${func.params.map(p => renderParam(p, classes)).join('<span class="sep">,</span>')}
@@ -122,6 +148,7 @@ function sortFuncs() {
 }
 
 function render() {
+    const t0 = performance.now();
     let html = "";
     let last_group = null;
     let last_type;
@@ -160,17 +187,21 @@ function render() {
     }
     html += "</details>";
     document.getElementById('main').innerHTML = html;
+    const t1 = performance.now();
+    console.log("Rendered in", (t1 - t0), "ms.");
 }
 
 window.onload = function () {
     const lang_select = document.getElementById('lang_select');
     const groupByLabel = document.getElementById('group-by-label');
     const groupBySelect = document.getElementById('group-by-select');
+
     function updateSelectText() {
         groupByLabel.innerText = TRANSLATE_TEXTS['group-by-' + lang];
         groupBySelect.options.item(0).innerText = TRANSLATE_TEXTS['gb-class-' + lang];
         groupBySelect.options.item(1).innerText = TRANSLATE_TEXTS['gb-return-' + lang];
     }
+
     lang_select.addEventListener('change', () => {
         lang = lang_select.value;
         updateSelectText();
