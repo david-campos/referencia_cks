@@ -1,6 +1,67 @@
 const THE_OBJ =
     {
-        "classes": [{"name": "void"}, {"name": "int"}, {"name": "bool"}, {"name": "float"}, {"name": "pstr"}, {"name": "str"}, {"name": "point"}, {"name": "rect"}, {"name": "IntArray"}, {"name": "StrArray"}, {"name": "StrMap"}, {"name": "Obj"}, {"name": "Item"}, {"name": "Unit"}, {"name": "Building"}, {"name": "Hero"}, {"name": "Druid"}, {"name": "Ghost"}, {"name": "Tower"}, {"name": "Wagon"}, {"name": "Catapult"}, {"name": "ItemHolder"}, {"name": "Barrack"}, {"name": "Sacrifice"}, {"name": "Ship"}, {"name": "Flying"}, {"name": "ObjList"}, {"name": "Query"}, {"name": "Settlement"}, {"name": "NamedObj"}, {"name": "Conversation"}, {"name": "Gate"}, {"name": "Teleport"}, {"name": "Squad"}, {"name": "GAIKA"}, {"name": "SquadList"}],
+        "classes": [
+            {
+                "name": "void",
+                "description": "Este pseudo-tipo indica que la función no devuelve nada.",
+                "description_en": "This pseudo-type indicates the function returns nothing."
+            },
+            {
+                "name": "int",
+                "description": "Un número entero. Por ejemplo <strong>-2</strong>.",
+                "description_en": "Integer number. For example <strong>-2</strong>."
+            },
+            {
+                "name": "bool",
+                "description": "Un valor de verdad, es decir: verdadero (<strong>true</strong>) o falso (<strong>false</strong>).",
+                "description_en": "A value of truth, i.e.: <strong>true</strong> or <strong>false</strong>."
+            },
+            {
+                "name": "float",
+                "description": "Un número de coma flotante. Es el único tipo de números decimales soportados por CKS y los decimales se indican tras un punto cuando escritos en su forma literal. Por ejemplo <strong>3.5</strong>.",
+                "description_en": "A floating point number. It is the only type of decimal numbers supported by CKS. The decimal part must be indicated after a dot (.) when written as literals. For example <strong>3.5</strong>."
+            },
+            {"name": "pstr"},
+            {
+                "name": "str",
+                "description": "Una cadena de texto. Cuando se escriben de forma literal se deben indicar rodeadas por dobles comillas (\"), por ejemplo: \"Esta es una cadena de texto!\".",
+                "description_en": "A text string. When written as a literal they must be surrounded by double quotes (\"), for example: \"This is is a text string!\"."
+            },
+            {
+                "name": "point",
+                "description": "Un punto en dos dimensiones (ejes x e y), algunos métodos permiten manipularlo como un vector.",
+                "description_en": "A point in 2 dimensions (axis x and y), some methods allow to use it as a vector."
+            },
+            {"name": "rect"},
+            {"name": "IntArray"},
+            {"name": "StrArray"},
+            {"name": "StrMap"},
+            {"name": "Obj"},
+            {"name": "Item"},
+            {"name": "Unit"},
+            {"name": "Building"},
+            {"name": "Hero"},
+            {"name": "Druid"},
+            {"name": "Ghost"},
+            {"name": "Tower"},
+            {"name": "Wagon"},
+            {"name": "Catapult"},
+            {"name": "ItemHolder"},
+            {"name": "Barrack"},
+            {"name": "Sacrifice"},
+            {"name": "Ship"},
+            {"name": "Flying"},
+            {"name": "ObjList"},
+            {"name": "Query"},
+            {"name": "Settlement"},
+            {"name": "NamedObj"},
+            {"name": "Conversation"},
+            {"name": "Gate"},
+            {"name": "Teleport"},
+            {"name": "Squad"},
+            {"name": "GAIKA"},
+            {"name": "SquadList"}
+        ],
         "funcs": [{
             "name": "Sleep",
             "returns": 0,
