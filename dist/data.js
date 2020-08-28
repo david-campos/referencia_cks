@@ -39,13 +39,13 @@ const THE_OBJ =
             },
             {
                 "name": "IntArray",
-                "description": "Una lista ordenada de números enteros (int), accesibles mediante el operador <pre>[]</pre>.",
-                "description_en": "A sorted list of integer numbers (int), accessible through the <pre>[]</pre> operator."
+                "description": "Una lista ordenada de números enteros (int), accesibles mediante el operador <tt>[]</tt>.",
+                "description_en": "A sorted list of integer numbers (int), accessible through the <tt>[]</tt> operator."
             },
             {
                 "name": "StrArray",
-                "description": "Una lista ordenada de cadenas de texto (str), accesibles mediante el operador <pre>[]</pre>.",
-                "description_en": "A sorted list of text strings (str), accessible through the <pre>[]</pre> operator."
+                "description": "Una lista ordenada de cadenas de texto (str), accesibles mediante el operador <tt>[]</tt>.",
+                "description_en": "A sorted list of text strings (str), accessible through the <tt>[]</tt> operator."
             },
             {
                 "name": "StrMap",
