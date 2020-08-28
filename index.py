@@ -59,12 +59,17 @@ class Func:
         else:
             self.of = None
             self.of_ptr = False
-        if not str.isalnum(self.name[0]) and self.name[0] != '_':
+        first_letter = self.name[0]
+        if first_letter == '_':
+            first_letter = self.name[1]
+        if not str.isalnum(first_letter):
             self.type = 'operator'
             if len(self.params) > 2 or len(self.params) == 0:
                 print("OPERATOR WITH", len(self.params), "PARAMS in", self.name)
                 exit(1)
-        elif str.isupper(self.name[0]) or len(self.params) > 0 or self.of is None:
+            self.of = self.params[0].type
+            self.of_ptr = self.params[0].is_ptr
+        elif str.isupper(first_letter) or len(self.params) > 0 or self.of is None:
             self.type = 'method'
         else:
             self.type = 'property'

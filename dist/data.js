@@ -184,23 +184,23 @@ const THE_OBJ =
             "name": "+=",
             "returns": 1,
             "returns_ptr": false,
-            "of": null,
-            "of_ptr": false,
+            "of": 1,
+            "of_ptr": true,
             "type": "operator",
             "params": [{"name": "number", "type": 1, "is_ptr": true}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "-=",
             "returns": 1,
             "returns_ptr": false,
-            "of": null,
-            "of_ptr": false,
+            "of": 1,
+            "of_ptr": true,
             "type": "operator",
             "params": [{"name": "number", "type": 1, "is_ptr": true}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "\\a",
             "returns": 1,
             "returns_ptr": false,
-            "of": null,
+            "of": 1,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
@@ -208,7 +208,7 @@ const THE_OBJ =
             "name": "|",
             "returns": 1,
             "returns_ptr": false,
-            "of": null,
+            "of": 1,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
@@ -216,7 +216,7 @@ const THE_OBJ =
             "name": "+",
             "returns": 1,
             "returns_ptr": false,
-            "of": null,
+            "of": 1,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
@@ -224,7 +224,7 @@ const THE_OBJ =
             "name": "-",
             "returns": 1,
             "returns_ptr": false,
-            "of": null,
+            "of": 1,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
@@ -232,7 +232,7 @@ const THE_OBJ =
             "name": "-",
             "returns": 1,
             "returns_ptr": false,
-            "of": null,
+            "of": 1,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 1, "is_ptr": false}]
@@ -240,15 +240,15 @@ const THE_OBJ =
             "name": "=",
             "returns": 0,
             "returns_ptr": false,
-            "of": null,
-            "of_ptr": false,
+            "of": 1,
+            "of_ptr": true,
             "type": "operator",
             "params": [{"name": "number", "type": 1, "is_ptr": true}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "name": "*",
             "returns": 1,
             "returns_ptr": false,
-            "of": null,
+            "of": 1,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
@@ -256,7 +256,7 @@ const THE_OBJ =
             "name": "/",
             "returns": 1,
             "returns_ptr": false,
-            "of": null,
+            "of": 1,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
@@ -264,7 +264,7 @@ const THE_OBJ =
             "name": "%",
             "returns": 1,
             "returns_ptr": false,
-            "of": null,
+            "of": 1,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
@@ -272,7 +272,7 @@ const THE_OBJ =
             "name": "==",
             "returns": 2,
             "returns_ptr": false,
-            "of": null,
+            "of": 1,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
@@ -280,7 +280,7 @@ const THE_OBJ =
             "name": "!=",
             "returns": 2,
             "returns_ptr": false,
-            "of": null,
+            "of": 1,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
@@ -288,7 +288,7 @@ const THE_OBJ =
             "name": "\\l",
             "returns": 2,
             "returns_ptr": false,
-            "of": null,
+            "of": 1,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
@@ -296,7 +296,7 @@ const THE_OBJ =
             "name": "\\g",
             "returns": 2,
             "returns_ptr": false,
-            "of": null,
+            "of": 1,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
@@ -304,7 +304,7 @@ const THE_OBJ =
             "name": "\\l=",
             "returns": 2,
             "returns_ptr": false,
-            "of": null,
+            "of": 1,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
@@ -312,7 +312,7 @@ const THE_OBJ =
             "name": "\\g=",
             "returns": 2,
             "returns_ptr": false,
-            "of": null,
+            "of": 1,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
@@ -364,7 +364,7 @@ const THE_OBJ =
             "name": "+",
             "returns": 3,
             "returns_ptr": false,
-            "of": null,
+            "of": 3,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 3, "is_ptr": false}, {"name": "number", "type": 3, "is_ptr": false}]
@@ -372,7 +372,7 @@ const THE_OBJ =
             "name": "-",
             "returns": 3,
             "returns_ptr": false,
-            "of": null,
+            "of": 3,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 3, "is_ptr": false}, {"name": "number", "type": 3, "is_ptr": false}]
@@ -380,7 +380,7 @@ const THE_OBJ =
             "name": "-",
             "returns": 3,
             "returns_ptr": false,
-            "of": null,
+            "of": 3,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 3, "is_ptr": false}]
@@ -388,15 +388,15 @@ const THE_OBJ =
             "name": "=",
             "returns": 0,
             "returns_ptr": false,
-            "of": null,
-            "of_ptr": false,
+            "of": 3,
+            "of_ptr": true,
             "type": "operator",
             "params": [{"name": "number", "type": 3, "is_ptr": true}, {"name": "number", "type": 3, "is_ptr": false}]
         }, {
             "name": "*",
             "returns": 3,
             "returns_ptr": false,
-            "of": null,
+            "of": 3,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 3, "is_ptr": false}, {"name": "number", "type": 3, "is_ptr": false}]
@@ -404,7 +404,7 @@ const THE_OBJ =
             "name": "/",
             "returns": 3,
             "returns_ptr": false,
-            "of": null,
+            "of": 3,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 3, "is_ptr": false}, {"name": "number", "type": 3, "is_ptr": false}]
@@ -412,7 +412,7 @@ const THE_OBJ =
             "name": "==",
             "returns": 2,
             "returns_ptr": false,
-            "of": null,
+            "of": 3,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 3, "is_ptr": false}, {"name": "number", "type": 3, "is_ptr": false}]
@@ -420,7 +420,7 @@ const THE_OBJ =
             "name": "!=",
             "returns": 2,
             "returns_ptr": false,
-            "of": null,
+            "of": 3,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 3, "is_ptr": false}, {"name": "number", "type": 3, "is_ptr": false}]
@@ -428,7 +428,7 @@ const THE_OBJ =
             "name": "\\l",
             "returns": 2,
             "returns_ptr": false,
-            "of": null,
+            "of": 3,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 3, "is_ptr": false}, {"name": "number", "type": 3, "is_ptr": false}]
@@ -436,7 +436,7 @@ const THE_OBJ =
             "name": "\\g",
             "returns": 2,
             "returns_ptr": false,
-            "of": null,
+            "of": 3,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 3, "is_ptr": false}, {"name": "number", "type": 3, "is_ptr": false}]
@@ -496,15 +496,15 @@ const THE_OBJ =
             "name": "=",
             "returns": 0,
             "returns_ptr": false,
-            "of": null,
-            "of_ptr": false,
+            "of": 2,
+            "of_ptr": true,
             "type": "operator",
             "params": [{"name": "number", "type": 2, "is_ptr": true}, {"name": "number", "type": 2, "is_ptr": false}]
         }, {
             "name": "!",
             "returns": 2,
             "returns_ptr": false,
-            "of": null,
+            "of": 2,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 2, "is_ptr": false}]
@@ -512,7 +512,7 @@ const THE_OBJ =
             "name": "\\a\\a",
             "returns": 2,
             "returns_ptr": false,
-            "of": null,
+            "of": 2,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 2, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
@@ -520,7 +520,7 @@ const THE_OBJ =
             "name": "||",
             "returns": 2,
             "returns_ptr": false,
-            "of": null,
+            "of": 2,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 2, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
@@ -528,7 +528,7 @@ const THE_OBJ =
             "name": "^",
             "returns": 2,
             "returns_ptr": false,
-            "of": null,
+            "of": 2,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 2, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
@@ -552,16 +552,16 @@ const THE_OBJ =
             "name": "=",
             "returns": 0,
             "returns_ptr": false,
-            "of": null,
-            "of_ptr": false,
+            "of": 4,
+            "of_ptr": true,
             "type": "operator",
             "params": [{"name": "number", "type": 4, "is_ptr": true}, {"name": "number", "type": 4, "is_ptr": false}]
         }, {
             "name": "=",
             "returns": 0,
             "returns_ptr": false,
-            "of": null,
-            "of_ptr": false,
+            "of": 5,
+            "of_ptr": true,
             "type": "operator",
             "params": [{"name": "number", "type": 5, "is_ptr": true}, {"name": "number", "type": 5, "is_ptr": false}]
         }, {
@@ -616,7 +616,7 @@ const THE_OBJ =
             "name": "+",
             "returns": 5,
             "returns_ptr": false,
-            "of": null,
+            "of": 5,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
@@ -676,7 +676,7 @@ const THE_OBJ =
             "name": "==",
             "returns": 2,
             "returns_ptr": false,
-            "of": null,
+            "of": 5,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
@@ -684,7 +684,7 @@ const THE_OBJ =
             "name": "!=",
             "returns": 2,
             "returns_ptr": false,
-            "of": null,
+            "of": 5,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
@@ -808,7 +808,7 @@ const THE_OBJ =
             "name": "+",
             "returns": 6,
             "returns_ptr": false,
-            "of": null,
+            "of": 6,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
@@ -816,7 +816,7 @@ const THE_OBJ =
             "name": "-",
             "returns": 6,
             "returns_ptr": false,
-            "of": null,
+            "of": 6,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
@@ -824,7 +824,7 @@ const THE_OBJ =
             "name": "*",
             "returns": 6,
             "returns_ptr": false,
-            "of": null,
+            "of": 6,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
@@ -832,7 +832,7 @@ const THE_OBJ =
             "name": "/",
             "returns": 6,
             "returns_ptr": false,
-            "of": null,
+            "of": 6,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
@@ -848,15 +848,15 @@ const THE_OBJ =
             "name": "=",
             "returns": 0,
             "returns_ptr": false,
-            "of": null,
-            "of_ptr": false,
+            "of": 6,
+            "of_ptr": true,
             "type": "operator",
             "params": [{"name": "number", "type": 6, "is_ptr": true}, {"name": "number", "type": 6, "is_ptr": false}]
         }, {
             "name": "==",
             "returns": 2,
             "returns_ptr": false,
-            "of": null,
+            "of": 6,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
@@ -864,7 +864,7 @@ const THE_OBJ =
             "name": "!=",
             "returns": 2,
             "returns_ptr": false,
-            "of": null,
+            "of": 6,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
@@ -988,15 +988,15 @@ const THE_OBJ =
             "name": "=",
             "returns": 0,
             "returns_ptr": false,
-            "of": null,
-            "of_ptr": false,
+            "of": 7,
+            "of_ptr": true,
             "type": "operator",
             "params": [{"name": "number", "type": 7, "is_ptr": true}, {"name": "number", "type": 7, "is_ptr": false}]
         }, {
             "name": "==",
             "returns": 2,
             "returns_ptr": false,
-            "of": null,
+            "of": 7,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 7, "is_ptr": false}, {"name": "number", "type": 7, "is_ptr": false}]
@@ -1004,7 +1004,7 @@ const THE_OBJ =
             "name": "!=",
             "returns": 2,
             "returns_ptr": false,
-            "of": null,
+            "of": 7,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 7, "is_ptr": false}, {"name": "number", "type": 7, "is_ptr": false}]
@@ -1012,16 +1012,16 @@ const THE_OBJ =
             "name": "=",
             "returns": 0,
             "returns_ptr": false,
-            "of": null,
-            "of_ptr": false,
+            "of": 8,
+            "of_ptr": true,
             "type": "operator",
             "params": [{"name": "number", "type": 8, "is_ptr": true}, {"name": "number", "type": 8, "is_ptr": true}]
         }, {
             "name": "[",
             "returns": 1,
             "returns_ptr": true,
-            "of": null,
-            "of_ptr": false,
+            "of": 8,
+            "of_ptr": true,
             "type": "operator",
             "params": [{"name": "number", "type": 8, "is_ptr": true}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
@@ -1052,16 +1052,16 @@ const THE_OBJ =
             "name": "=",
             "returns": 0,
             "returns_ptr": false,
-            "of": null,
-            "of_ptr": false,
+            "of": 9,
+            "of_ptr": true,
             "type": "operator",
             "params": [{"name": "number", "type": 9, "is_ptr": true}, {"name": "number", "type": 9, "is_ptr": true}]
         }, {
             "name": "[",
             "returns": 5,
             "returns_ptr": true,
-            "of": null,
-            "of_ptr": false,
+            "of": 9,
+            "of_ptr": true,
             "type": "operator",
             "params": [{"name": "number", "type": 9, "is_ptr": true}, {"name": "number", "type": 1, "is_ptr": false}]
         }, {
@@ -1092,16 +1092,16 @@ const THE_OBJ =
             "name": "=",
             "returns": 0,
             "returns_ptr": false,
-            "of": null,
-            "of_ptr": false,
+            "of": 10,
+            "of_ptr": true,
             "type": "operator",
             "params": [{"name": "number", "type": 10, "is_ptr": true}, {"name": "number", "type": 10, "is_ptr": true}]
         }, {
             "name": "[",
             "returns": 5,
             "returns_ptr": true,
-            "of": null,
-            "of_ptr": false,
+            "of": 10,
+            "of_ptr": true,
             "type": "operator",
             "params": [{"name": "number", "type": 10, "is_ptr": true}, {"name": "number", "type": 5, "is_ptr": false}]
         }, {
@@ -1164,23 +1164,23 @@ const THE_OBJ =
             "name": "=",
             "returns": 0,
             "returns_ptr": false,
-            "of": null,
-            "of_ptr": false,
+            "of": 11,
+            "of_ptr": true,
             "type": "operator",
             "params": [{"name": "number", "type": 11, "is_ptr": true}, {"name": "number", "type": 11, "is_ptr": false}]
         }, {
             "name": "=",
             "returns": 0,
             "returns_ptr": false,
-            "of": null,
-            "of_ptr": false,
+            "of": 12,
+            "of_ptr": true,
             "type": "operator",
             "params": [{"name": "number", "type": 12, "is_ptr": true}, {"name": "number", "type": 12, "is_ptr": false}]
         }, {
             "name": "==",
             "returns": 2,
             "returns_ptr": false,
-            "of": null,
+            "of": 11,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 11, "is_ptr": false}]
@@ -1188,7 +1188,7 @@ const THE_OBJ =
             "name": "!=",
             "returns": 2,
             "returns_ptr": false,
-            "of": null,
+            "of": 11,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 11, "is_ptr": false}]
@@ -2442,7 +2442,7 @@ const THE_OBJ =
             "returns_ptr": false,
             "of": 11,
             "of_ptr": false,
-            "type": "property",
+            "type": "method",
             "params": []
         }, {
             "name": "_GetSelection",
@@ -2944,8 +2944,8 @@ const THE_OBJ =
             "name": "=",
             "returns": 0,
             "returns_ptr": false,
-            "of": null,
-            "of_ptr": false,
+            "of": 27,
+            "of_ptr": true,
             "type": "operator",
             "params": [{"name": "number", "type": 27, "is_ptr": true}, {"name": "number", "type": 27, "is_ptr": false}]
         }, {
@@ -4246,7 +4246,7 @@ const THE_OBJ =
             "returns_ptr": false,
             "of": 13,
             "of_ptr": false,
-            "type": "property",
+            "type": "method",
             "params": []
         }, {
             "name": "max_train_1_level",
@@ -5172,7 +5172,7 @@ const THE_OBJ =
             "name": "==",
             "returns": 2,
             "returns_ptr": false,
-            "of": null,
+            "of": 28,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 28, "is_ptr": false}, {"name": "number", "type": 28, "is_ptr": false}]
@@ -5180,8 +5180,8 @@ const THE_OBJ =
             "name": "=",
             "returns": 0,
             "returns_ptr": false,
-            "of": null,
-            "of_ptr": false,
+            "of": 28,
+            "of_ptr": true,
             "type": "operator",
             "params": [{"name": "number", "type": 28, "is_ptr": true}, {"name": "number", "type": 28, "is_ptr": false}]
         }, {
@@ -5844,8 +5844,8 @@ const THE_OBJ =
             "name": "=",
             "returns": 0,
             "returns_ptr": false,
-            "of": null,
-            "of_ptr": false,
+            "of": 26,
+            "of_ptr": true,
             "type": "operator",
             "params": [{"name": "number", "type": 26, "is_ptr": true}, {"name": "number", "type": 26, "is_ptr": false}]
         }, {
@@ -5860,7 +5860,7 @@ const THE_OBJ =
             "name": "[",
             "returns": 11,
             "returns_ptr": false,
-            "of": null,
+            "of": 26,
             "of_ptr": false,
             "type": "operator",
             "params": [{"name": "number", "type": 26, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
@@ -12078,7 +12078,7 @@ const THE_OBJ =
             "returns_ptr": false,
             "of": 15,
             "of_ptr": false,
-            "type": "property",
+            "type": "method",
             "params": []
         }, {
             "name": "gdb",
