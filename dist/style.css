@@ -91,9 +91,7 @@ details[open] {
 details {
     margin-bottom: 1.5rem;
     border: 1px solid #eee;
-    padding: 2rem;
-    padding-bottom: 0;
-    padding-top: 0;
+    padding: 0 2rem;
 }
 
 .description {
@@ -110,4 +108,11 @@ footer {
 .bi {
     display: inline-block;
     vertical-align: text-bottom;
+}
+
+@media print {
+    details {
+        border: none;
+        padding: 0;
+    }
 }
