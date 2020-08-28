@@ -19,6 +19,17 @@ header {
     align-items: center;
 }
 
+pre {
+    font-family: "Roboto Mono";
+    padding-left: 1em;
+    color: #000080;
+}
+
+tt {
+    font-family: "Roboto Mono";
+    color: #000080;
+}
+
 .group-by {
     margin: 1rem 0;
 }

@@ -187,7 +187,9 @@ const THE_OBJ =
             "of": 1,
             "of_ptr": true,
             "type": "operator",
-            "params": [{"name": "number", "type": 1, "is_ptr": true}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": true}, {"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Añade la cantidad del <tt>int</tt> situado a la derecha del operador a la referencia a <tt>int</tt> situada a la izquierda, y retorna también el entero resultante. Ejemplo: <pre>int a;  // Declaramos a<br>a = 5;  // Guardamos 5 en la variable a<br>a += 2; // Ahora a contiene 7</pre>",
+            "description_en": "Add the value of the <tt>int</tt> at the right of the operator onto the reference to <tt>int</tt> at the left, and also return the resulting integer value. Example: <pre>int a;  // We declare a<br>a = 5;  // We save 5 in the variable a<br>a += 2; // Now a contains 7</pre>"
         }, {
             "name": "-=",
             "returns": 1,
@@ -195,7 +197,9 @@ const THE_OBJ =
             "of": 1,
             "of_ptr": true,
             "type": "operator",
-            "params": [{"name": "number", "type": 1, "is_ptr": true}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": true}, {"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Substrae la cantidad del <tt>int</tt> situado a la derecha del operador de la referencia a <tt>int</tt> situada a la izquierda, y retorna también el entero resultante. Ejemplo: <pre>int a;  // Declaramos a<br>a = 5;  // Guardamos 5 en la variable a<br>a -= 2; // Ahora a contiene 3</pre>",
+            "description_en": "Substract the value of the <tt>int</tt> at the right of the operator from the reference to <tt>int</tt> at the left, and also return the resulting integer value. Example: <pre>int a;  // We declare a<br>a = 5;  // We save 5 in the variable a<br>a -= 2; // Now a contains 3</pre>"
         }, {
             "name": "\\a",
             "returns": 1,
@@ -203,7 +207,9 @@ const THE_OBJ =
             "of": 1,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Devuelve el resultado una operación AND binaria entre los dos valores enteros.",
+            "description_en": "Returns the result of a binary AND operation among both values."
         }, {
             "name": "|",
             "returns": 1,
@@ -211,7 +217,9 @@ const THE_OBJ =
             "of": 1,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Devuelve el resultado una operación OR binaria entre los dos valores enteros.",
+            "description_en": "Returns the result of a binary OR operation among both values."
         }, {
             "name": "+",
             "returns": 1,
@@ -219,7 +227,9 @@ const THE_OBJ =
             "of": 1,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Devuelve un <tt>int</tt> que es la suma de los dos valores <tt>int</tt> dados.",
+            "description_en": "Returns an <tt>int</tt> value which is the sum of the two given <tt>int</tt> values."
         }, {
             "name": "-",
             "returns": 1,
@@ -227,7 +237,9 @@ const THE_OBJ =
             "of": 1,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Devuelve un <tt>int</tt> que es la resta de los dos valores <tt>int</tt> dados.",
+            "description_en": "Returns an <tt>int</tt> value which is the difference between the two given <tt>int</tt> values."
         }, {
             "name": "-",
             "returns": 1,
@@ -235,7 +247,9 @@ const THE_OBJ =
             "of": 1,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Devuelve el valor <tt>int</tt> dado pero con signo opuesto (multiplicado por -1).",
+            "description_en": "Returns the given <tt>int</tt> value but with the opposite sign (multiplied by -1)."
         }, {
             "name": "=",
             "returns": 0,
@@ -243,7 +257,9 @@ const THE_OBJ =
             "of": 1,
             "of_ptr": true,
             "type": "operator",
-            "params": [{"name": "number", "type": 1, "is_ptr": true}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": true}, {"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Asigna el valor <tt>int</tt> dado a la referencia a <tt>int</tt> indicada (a la izquierda del operador). Ejemplo: <pre>int a; // Declaramos a, ahora es una referencia a int<br>a = 5; // Guardamos 5 en la variable a</pre>",
+            "description_en": "Saves the given <tt>int</tt> value into the given <tt>int</tt> reference (at the left of the operator). Example: <pre>int a; // Declare a so it is a reference to an int<br>a = 5; // Save 5 into the variable a</pre>"
         }, {
             "name": "*",
             "returns": 1,
@@ -251,7 +267,9 @@ const THE_OBJ =
             "of": 1,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Devuelve un <tt>int</tt> que es el producto de los dos valores <tt>int</tt> dados.",
+            "description_en": "Returns an <tt>int</tt> value which is the product of the two given <tt>int</tt> values."
         }, {
             "name": "/",
             "returns": 1,
@@ -259,7 +277,9 @@ const THE_OBJ =
             "of": 1,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Devuelve un <tt>int</tt> que es la división entera de los dos valores <tt>int</tt> dados.",
+            "description_en": "Returns an <tt>int</tt> value which is the integer division of the two given <tt>int</tt> values."
         }, {
             "name": "%",
             "returns": 1,
@@ -267,7 +287,9 @@ const THE_OBJ =
             "of": 1,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Devuelve el módulo de la división.",
+            "description_en": "Returns the remainder of the division."
         }, {
             "name": "==",
             "returns": 2,
@@ -275,7 +297,9 @@ const THE_OBJ =
             "of": 1,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Devuelve <tt>true</tt> si ambos enteros son iguales, o <tt>false</tt> si no lo son.",
+            "description_en": "Returns <tt>true</tt> if both integer values are the same, or <tt>false</tt> if they are not."
         }, {
             "name": "!=",
             "returns": 2,
@@ -283,7 +307,9 @@ const THE_OBJ =
             "of": 1,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Devuelve <tt>true</tt> si ambos enteros son distintos, o <tt>false</tt> si no lo son.",
+            "description_en": "Returns <tt>true</tt> if both integer values are not the same, or <tt>false</tt> if they are."
         }, {
             "name": "\\l",
             "returns": 2,
@@ -291,7 +317,9 @@ const THE_OBJ =
             "of": 1,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Devuelve <tt>true</tt> si el primer valor es menor que el segundo, o <tt>false</tt> si no lo es.",
+            "description_en": "Returns <tt>true</tt> if the first integer value is lower than the second, or <tt>false</tt> if it is not."
         }, {
             "name": "\\g",
             "returns": 2,
@@ -299,7 +327,9 @@ const THE_OBJ =
             "of": 1,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Devuelve <tt>true</tt> si el primer valor es mayor que el segundo, o <tt>false</tt> si no lo es.",
+            "description_en": "Returns <tt>true</tt> if the first integer value is greater than the second, or <tt>false</tt> if it is not."
         }, {
             "name": "\\l=",
             "returns": 2,
@@ -307,7 +337,9 @@ const THE_OBJ =
             "of": 1,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Devuelve <tt>true</tt> si el primer valor es menor o igual que el segundo, o <tt>false</tt> si no lo es.",
+            "description_en": "Returns <tt>true</tt> if the first integer value is lower than or equal to the second, or <tt>false</tt> if it is not."
         }, {
             "name": "\\g=",
             "returns": 2,
@@ -315,7 +347,9 @@ const THE_OBJ =
             "of": 1,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Devuelve <tt>true</tt> si el primer valor es mayor o igual que el segundo, o <tt>false</tt> si no lo es.",
+            "description_en": "Returns <tt>true</tt> if the first integer value is greater than or equal to the second, or <tt>false</tt> if it is not."
         }, {
             "name": "abs",
             "returns": 1,
@@ -323,7 +357,9 @@ const THE_OBJ =
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Devuelve el valor absoluto del entero indicado (el mismo valor pero con signo positivo).",
+            "description_en": "Returns the absolute value of the given integer (same value but positive sign)."
         }, {
             "name": "Write",
             "returns": 0,
