@@ -7,6 +7,15 @@ const TRANSLATE_TEXTS = {
     'no-class-en': "No class"
 }
 
+function escapeHtmlAndNameCorrection(unsafe) {
+    return unsafe
+        .replace(/&|\\a/g, "&amp;")
+        .replace(/<|\\l/g, "&lt;")
+        .replace(/>|\\g/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
 function renderType(type, isPtr, classes) {
     return `<a href="#${classes[type].name}" class="type ${classes[type].name}">${classes[type].name}${isPtr ? '<span class="ptr">*</span>' : ''}</a>`;
 }
@@ -16,7 +25,7 @@ function addReturn(func, classes) {
 }
 
 function renderParam(param, classes) {
-    return `<span class="param"><span class="name">${param['name_' + lang] || param.name}</span><span class="two_dots mid">:</span>${renderType(param.type, param.is_ptr, classes)}</span>`
+    return `<span class="param"><span class="name">${escapeHtmlAndNameCorrection(param['name_' + lang] || param.name)}</span><span class="two_dots mid">:</span>${renderType(param.type, param.is_ptr, classes)}</span>`
 }
 
 function renderDescription(func) {
@@ -32,7 +41,7 @@ function renderFunction(func, classes) {
                 const param1 = func.params[1];
                 return `<div class="binary operator">
                             ${renderType(param0.type, param0.is_ptr, classes)}
-                            <span class="op">${func.name}</span>
+                            <span class="op">${escapeHtmlAndNameCorrection(func.name)}</span>
                             ${renderType(param1.type, param1.is_ptr, classes)}
                             ${addReturn(func, classes)}
                             ${renderDescription(func)}
@@ -40,7 +49,7 @@ function renderFunction(func, classes) {
             } else {
                 const param0 = func.params[0];
                 return `<div class="unary operator">
-                            <span class="op">${func.name}</span>
+                            <span class="op">${escapeHtmlAndNameCorrection(func.name)}</span>
                             ${renderType(param0.type, param0.is_ptr, classes)}
                             ${addReturn(func, classes)}
                             ${renderDescription(func)}
@@ -50,7 +59,7 @@ function renderFunction(func, classes) {
             return `<div class="property">
                         ${renderType(func.of, func.of_ptr, classes)}
                         <span class="in">::</span>
-                        <span class="prop">${func.name}</span>
+                        <span class="prop">${escapeHtmlAndNameCorrection(func.name)}</span>
                         ${addReturn(func, classes)}
                         ${renderDescription(func)}
                     </div>`.replace(/\n\s*/g, '')
@@ -59,7 +68,7 @@ function renderFunction(func, classes) {
                 return `<div class="method">
                             ${renderType(func.of, func.of_ptr, classes)}
                             <span class="in">::</span>
-                            <span class="meth">${func.name}</span>
+                            <span class="meth">${escapeHtmlAndNameCorrection(func.name)}</span>
                             <span class="par open">(</span>
                             ${func.params.map(p => renderParam(p, classes)).join('<span class="sep">,</span>')}
                             <span class="par close">)</span>
@@ -68,7 +77,7 @@ function renderFunction(func, classes) {
                         </div>`.replace(/\n\s*/g, '')
             } else {
                 return `<div class="method">
-                            <span class="meth">${func.name}</span>
+                            <span class="meth">${escapeHtmlAndNameCorrection(func.name)}</span>
                             <span class="par open">(</span>
                             ${func.params.map(p => renderParam(p, classes)).join('<span class="sep">,</span>')}
                             <span class="par close">)</span>

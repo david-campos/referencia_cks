@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: auto;
     padding: 0 2rem;
 }
@@ -33,12 +33,16 @@ h3 {
     text-decoration: none;
 }
 
-.meth {
+.meth, .prop, .op {
     color: #005580;
 }
 
 .sep {
     margin-right: 1ex;
+}
+
+.op {
+    margin: 0 1ex;
 }
 
 .in, .par, .two_dots {
