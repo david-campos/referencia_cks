@@ -375,7 +375,14 @@ const THE_OBJ =
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "numero_a", "name_en": "number_a", "type": 1, "is_ptr": false}, {
+                "name": "numero_b",
+                "name_en": "number_b",
+                "type": 1,
+                "is_ptr": false
+            }],
+            "description": "Devuelve el valor mínimo entre los dos valores dados.",
+            "description_en": "Returns the minimum value among the two given values."
         }, {
             "name": "MAX",
             "returns": 1,
@@ -383,7 +390,14 @@ const THE_OBJ =
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "numero_a", "name_en": "number_a", "type": 1, "is_ptr": false}, {
+                "name": "numero_b",
+                "name_en": "number_b",
+                "type": 1,
+                "is_ptr": false
+            }],
+            "description": "Devuelve el valor máximo entre los dos valores dados.",
+            "description_en": "Returns the maximum value among the two given values."
         }, {
             "name": "CLAMP",
             "returns": 1,
@@ -531,7 +545,14 @@ const THE_OBJ =
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 3, "is_ptr": false}, {"name": "number", "type": 3, "is_ptr": false}]
+            "params": [{"name": "numero_a", "name_en": "number_a", "type": 3, "is_ptr": false}, {
+                "name": "numero_b",
+                "name_en": "number_b",
+                "type": 3,
+                "is_ptr": false
+            }],
+            "description": "Devuelve el valor mínimo entre los dos valores dados.",
+            "description_en": "Of the two given values, this function returns the minimum."
         }, {
             "name": "MAX",
             "returns": 3,
@@ -539,7 +560,14 @@ const THE_OBJ =
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 3, "is_ptr": false}, {"name": "number", "type": 3, "is_ptr": false}]
+            "params": [{"name": "numero_a", "name_en": "number_a", "type": 3, "is_ptr": false}, {
+                "name": "numero_b",
+                "name_en": "number_b",
+                "type": 3,
+                "is_ptr": false
+            }],
+            "description": "Devuelve el valor máximo entre los dos valores dados.",
+            "description_en": "Of the two given values, this function returns the maximum."
         }, {
             "name": "CLAMP",
             "returns": 3,
