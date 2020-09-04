@@ -24,13 +24,13 @@ const THE_OBJ =
             {"name": "pstr"},
             {
                 "name": "str",
-                "description": "Una cadena de texto. Cuando se escriben de forma literal se deben indicar rodeadas por dobles comillas (\"), por ejemplo: \"Esta es una cadena de texto!\".",
-                "description_en": "A text string. When written as a literal they must be surrounded by double quotes (\"), for example: \"This is is a text string!\"."
+                "description": "Una cadena de texto.<br>Cuando se escriben de forma literal se deben indicar rodeadas por dobles comillas (\"), por ejemplo: <tt>\"Esta es una cadena de texto!\"</tt>. En el caso de querer utilizar dobles comillas dentro de un literal de este tipo ha de escaparse usando la barra invertida (\\). Por ejemplo: <tt>\"Este str contiene \\\" sin problemas\"</tt>.",
+                "description_en": "A text string.<br>When written as a literal they must be surrounded by double quotes (\"), for example: <tt>\"This is is a text string!\"</tt>. If you want to use double quotes inside a literal of this type, you will need to escape it using a back-slash (\\). For example: <tt>\"This str contains \\\" without any problems\"</tt>."
             },
             {
                 "name": "point",
-                "description": "Un punto en dos dimensiones (ejes x e y), algunos métodos permiten manipularlo como un vector.",
-                "description_en": "A point in 2 dimensions (axis x and y), some methods allow to use it as a vector."
+                "description": "Un punto en dos dimensiones (ejes x e y), algunos métodos permiten manipularlo como un vector (interpretándolo como el vector que va del origen <i>(0, 0)</i> hasta el punto). La función <a href='#Point:int_int'>Point</a> permite crear una instancia.",
+                "description_en": "A point in 2 dimensions (axis x and y), some methods allow to use it as a vector (interpreting it as the vector which goes from the origin <i>(0, 0)</i> to the point). The function <a href='#Point:int_int'>Point</a> allows to create an instance."
             },
             {
                 "name": "rect",
@@ -587,7 +587,9 @@ const THE_OBJ =
             "of": 2,
             "of_ptr": true,
             "type": "operator",
-            "params": [{"name": "number", "type": 2, "is_ptr": true}, {"name": "number", "type": 2, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": true}, {"name": "number", "type": 2, "is_ptr": false}],
+            "description": "Asigna el <a href='#bool'>valor de verdad</a> dado a la derecha, a la referencia a la izquierda del operador.",
+            "description_en": "Assigns the <a href='#bool'>boolean value</a> at the right to the reference at the left."
         }, {
             "name": "!",
             "returns": 2,
@@ -595,7 +597,9 @@ const THE_OBJ =
             "of": 2,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 2, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}],
+            "description": "Niega el valor de verdad. Es decir, si es <tt>true</tt> devolverá <tt>false</tt>, y si es <tt>false</tt> devolverá <tt>true</tt>.",
+            "description_en": "Negates the boolean value. Therefore, if it is <tt>true</tt> the operator returns <tt>false</tt>, and if it is <tt>false</tt> it returns <tt>true</tt>."
         }, {
             "name": "\\a\\a",
             "returns": 2,
@@ -603,7 +607,9 @@ const THE_OBJ =
             "of": 2,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 2, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}],
+            "description": "Realiza la operación lógica <i>AND</i> (intersección / multiplicación lógica) entre los valores. El valor resultante será <tt>true</tt>, si y solo si ambos argumentos son <tt>true</tt>.",
+            "description_en": "Performs a logical <i>AND</i> operation (logical intersection / multiplication). The returned value will be <tt>true</tt> if and only if both arguments are <tt>true</tt>."
         }, {
             "name": "||",
             "returns": 2,
@@ -611,7 +617,9 @@ const THE_OBJ =
             "of": 2,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 2, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
+            "params": [{"name": "number", "type": 2, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}],
+            "description": "Realiza la operación lógica <i>OR</i> (unión / suma lógica) entre los valores. El valor resultante será <tt>true</tt> si cualquier uno de los argumentos es <tt>true</tt>.",
+            "description_en": "Performs a logical <i>OR</i> operation (logical union / addition). The returned value will be <tt>true</tt> if any of the arguments is <tt>true</tt>."
         }, {
             "name": "^",
             "returns": 2,
@@ -651,7 +659,9 @@ const THE_OBJ =
             "of": 5,
             "of_ptr": true,
             "type": "operator",
-            "params": [{"name": "number", "type": 5, "is_ptr": true}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": true}, {"name": "number", "type": 5, "is_ptr": false}],
+            "description": "Asigna la cadena de texto a la derecha del operador a la referencia indicada a la izquierda.",
+            "description_en": "Assigns the text string at the right of the operator to the reference indicated at the left."
         }, {
             "name": "StrCmp",
             "returns": 1,
@@ -659,7 +669,9 @@ const THE_OBJ =
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "a", "type": 5, "is_ptr": false}, {"name": "b", "type": 5, "is_ptr": false}],
+            "description": "Compara las dos cadenas de texto hasta encontrar el primer carácter diferente. Luego devuelve un valor estrictamente menor que 0 si el primer carácter distinto es menor en <tt>a</tt> que en <tt>b</tt>, exactamente 0 si ambas cadenas son iguales o un valor mayor que 0 si el primer carácter distinto es mayor en <tt>a</tt> que en <tt>b</tt>. Por ejemplo:<br><tt>StrCmp(\"Casa\", \"Cara\")</tt> devolverá un <a href='#int'>int</a> estrictamente mayor que <tt>0</tt>, porque <i>s</i> es mayor que <i>r</i>. Sin embargo, <tt>StrCmp(\"Casa\", \"Cava\")</tt> devolverá un valor menor que <tt>0</tt>, y <tt>StrCmp(\"Casa\", \"Casa\")</tt> devolverá exactamente cero.",
+            "description_en": "Compares the two strings until it finds the first different character. Then, it returns a value strictly lower than zero if the first character is lower in <tt>a</tt> than in <tt>b</tt>, exactly zero if both strings are equal or a value bigger than zero if the first different character is bigger in <tt>a</tt> than in <tt>b</tt>. For example:<br><tt>StrCmp(\"Light\", \"Line\")</tt> will return a value lower than zero, because <i>g</i> is lower than <i>n</i>. However, <tt>StrCmp(\"Line\", \"Light\")</tt> will return a value greater than zero, and <tt>StrCmp(\"Caesar\", \"Caesar\")</tt> will return exactly zero."
         }, {
             "name": "StrCat",
             "returns": 0,
@@ -667,7 +679,13 @@ const THE_OBJ =
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": true}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "destino", "name_en": "target", "type": 5, "is_ptr": true}, {
+                "name": "extra",
+                "type": 5,
+                "is_ptr": false
+            }],
+            "description": "Guarda en la referencia <tt>destino</tt> el resultado de concatenar el valor de <tt>extra</tt> al final de <tt>destino</tt>. Por ejemplo: <pre>str miCadena = \"Hola \"; // Note el espacio extra al final<br>StrCat(miCadena, \"Cesar\"); // Ahora miCadena contiene \"Hola Cesar\"</pre> <strong>Cuidado: ¡Esta función no retorna ningún valor!</strong> (para eso consulta <a href='#str::-p-:str_str'>el operador suma de str</a>).",
+            "description_en": "Saves into <tt>target</tt> the result of appending the value of <tt>extra</tt> at the end. For example: <pre>str myStr = \"Hi \"; // Notice the extra space at the end<br>StrCat(myStr, \"Caesar\"); // Now myStr contains \"Hi Caesar\"</pre> <strong>Warning: This function does not return any value!</strong> (to do this you may check <a href='#str::-p-:str_str'>the sum operation over str</a>)."
         }, {
             "name": "ParseStr",
             "returns": 5,
@@ -675,7 +693,7 @@ const THE_OBJ =
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": true}]
+            "params": [{"name": "string", "type": 5, "is_ptr": false}, {"name": "reference", "type": 5, "is_ptr": true}]
         }, {
             "name": "StrStr",
             "returns": 2,
@@ -683,7 +701,14 @@ const THE_OBJ =
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "pajar", "name_en": "haystack", "type": 5, "is_ptr": false}, {
+                "name": "aguja",
+                "name_en": "needle",
+                "type": 5,
+                "is_ptr": false
+            }],
+            "description": "Devuelve <tt>true</tt> si el <tt>pajar</tt> contiene la <tt>aguja</tt>, es decir, si <tt>aguja</tt> es una subcadena de <tt>pajar</tt>.",
+            "description_en": "Returns <tt>true</tt> if it finds <tt>needle</tt> inside <tt>haystack</tt>, i.e. if the string in <tt>needle</tt> is a substring of that in <tt>haystack</tt>."
         }, {
             "name": "GetFromStr",
             "returns": 5,
@@ -707,7 +732,9 @@ const THE_OBJ =
             "of": 5,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}],
+            "description": "Devuelve el resultado de concatenar ambas cadenas.",
+            "description_en": "Returns the concatenation of both strings."
         }, {
             "name": "FindChrPos",
             "returns": 1,
@@ -715,7 +742,14 @@ const THE_OBJ =
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "cadena", "name_en": "string", "type": 5, "is_ptr": false}, {
+                "name": "caracter",
+                "name_en": "character",
+                "type": 1,
+                "is_ptr": false
+            }],
+            "description": "Devuelve la posición (empezando en 0) en la que aparece por primera vez el carácter con el valor <a href='https://ascii.cl/es/'>ASCII</a> indicado por <tt>caracter</tt> en la cadena <tt>cadena</tt>.<br>Relacionado: <a href='#GetChr:str_int'>GetChr</a>.",
+            "description_en": "Returns the position (starting by 0) of the first appearance of the character with the <a href='https://ascii.cl/'>ASCII</a> value indicated by <tt>character</tt> in the string <tt>string</tt>.<br>Related: <a href='#GetChr:str_int'>GetChr</a>."
         }, {
             "name": "GetChr",
             "returns": 1,
@@ -723,7 +757,13 @@ const THE_OBJ =
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "cadena", "name_en": "string", "type": 5, "is_ptr": false}, {
+                "name": "n",
+                "type": 1,
+                "is_ptr": false
+            }],
+            "description": "Devuelve el valor <a href='https://ascii.cl/es/'>ASCII</a> del n-ésimo carácter (comenzando en 0) de la cadena <tt>cadena</tt>.<br>Relacionado: <a href='#FindChrPos:str_int'>FindChrPos</a>.",
+            "description_en": "Returns the <a href='https://ascii.cl/'>ASCII</a> value of the n-th character (starting by 0) of the string <tt>string</tt>.<br>Related: <a href='#FindChrPos:str_int'>FindChrPos</a>."
         }, {
             "name": "IsNull",
             "returns": 2,
@@ -747,11 +787,11 @@ const THE_OBJ =
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "texto", "name_en": "text", "type": 5, "is_ptr": false}, {
+                "name": "n0",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "n1", "type": 1, "is_ptr": false}]
         }, {
             "name": "Str2Int",
             "returns": 1,
@@ -759,7 +799,9 @@ const THE_OBJ =
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}],
+            "description": "Convierte la cadena indicada a <a href='#int'>int</a>, interpretándola como un número entero en base 10.",
+            "description_en": "It converts the passed string to an <a href='#int'>int</a>, interpreting it as a whole number in base 10."
         }, {
             "name": "==",
             "returns": 2,
@@ -767,7 +809,9 @@ const THE_OBJ =
             "of": 5,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "a", "type": 5, "is_ptr": false}, {"name": "b", "type": 5, "is_ptr": false}],
+            "description": "Devuelve <tt>true</tt> si ambas cadenas son iguales, o <tt>false</tt> si no lo son.",
+            "description_en": "Returns <tt>true</tt> if both strings are equal, or <tt>false</tt> otherwise."
         }, {
             "name": "!=",
             "returns": 2,
@@ -775,7 +819,9 @@ const THE_OBJ =
             "of": 5,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "a", "type": 5, "is_ptr": false}, {"name": "b", "type": 5, "is_ptr": false}],
+            "description": "Devuelve <tt>true</tt> si las cadenas son distintas, o <tt>false</tt> si no lo son.",
+            "description_en": "Returns <tt>true</tt> if the strings are different, or <tt>false</tt> otherwise."
         }, {
             "name": "IsFlagSet",
             "returns": 2,
@@ -803,7 +849,9 @@ const THE_OBJ =
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "x", "type": 1, "is_ptr": false}, {"name": "y", "type": 1, "is_ptr": false}],
+            "description": "Crea un <a href='#point'>punto</a> con las coordenadas <i>x</i> e <i>y</i> dadas.",
+            "description_en": "Creates a <a href='#point'>point</a> with the given <i>x</i> and <i>y</i> coordinates."
         }, {
             "name": "x",
             "returns": 1,
@@ -811,7 +859,9 @@ const THE_OBJ =
             "of": 6,
             "of_ptr": true,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Referencia al valor del punto en el eje <i>x</i> (coordenada <i>x</i> del punto). Ver <a href='#ptr.int::-e-:ptr.int_int'>operador de asignación de int</a>.",
+            "description_en": "Value of the point in the <i>x</i> axis (<i>x</i> coordinate of the point). See <a href='#ptr.int::-e-:ptr.int_int'>assignation operator for int</a>."
         }, {
             "name": "y",
             "returns": 1,
@@ -819,7 +869,9 @@ const THE_OBJ =
             "of": 6,
             "of_ptr": true,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Referencia al valor del punto en el eje <i>y</i> (coordenada <i>y</i> del punto). Ver <a href='#ptr.int::-e-:ptr.int_int'>operador de asignación de int</a>.",
+            "description_en": "Value of the point in the <i>y</i> axis (<i>y</i> coordinate of the point). See <a href='#ptr.int::-e-:ptr.int_int'>assignation operator for int</a>."
         }, {
             "name": "x",
             "returns": 1,
@@ -827,7 +879,9 @@ const THE_OBJ =
             "of": 6,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Valor del punto en el eje <i>x</i> (coordenada <i>x</i> del punto).",
+            "description_en": "Value of the point in the <i>x</i> axis (<i>x</i> coordinate of the point)."
         }, {
             "name": "y",
             "returns": 1,
@@ -835,7 +889,9 @@ const THE_OBJ =
             "of": 6,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Valor del punto en el eje <i>y</i> (coordenada <i>y</i> del punto).",
+            "description_en": "Value of the point in the <i>y</i> axis (<i>y</i> coordinate of the point)."
         }, {
             "name": "Set",
             "returns": 6,
@@ -843,7 +899,9 @@ const THE_OBJ =
             "of": 6,
             "of_ptr": true,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "x", "type": 1, "is_ptr": false}, {"name": "y", "type": 1, "is_ptr": false}],
+            "description": "Asigna las coordenadas <i>x</i> e <i>y</i> indicadas al punto referenciado.",
+            "description_en": "Assigns the indicated coordinates <i>x</i> and <i>y</i> to the referenced point."
         }, {
             "name": "SetLen",
             "returns": 0,
@@ -851,7 +909,9 @@ const THE_OBJ =
             "of": 6,
             "of_ptr": true,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "longitud", "name_en": "length", "type": 1, "is_ptr": false}],
+            "description": "Interpretando el punto como un vector, modifica los valores de <i>x</i> e <i>y</i> para que la longitud del vector sea lo más próxima posible a <tt>longitud</tt>. Por ejemplo: <pre>point miVector = Point(30, 40); // Tenemos un vector con coordenadas 30, 40<br>miVector.SetLen(5); // Ahora las coordenadas de miVector son 3, 4</pre>Relacionado: usa el método <a href='#point::Len'>point::Len</a> para obtener la longitud de un vector.",
+            "description_en": "Interpreting the point as a vector, this method modifies the <i>x</i> and <i>y</i> properties for the length of this vector to be as close as possible to <tt>length</tt>. For example: <pre>point myVector = Point(30, 40); // We have a vector with coordinates 30, 40<br>myVector.SetLen(5); // Now the coordinates of myVector are 3, 4</pre>Related: use <a href='#point::Len'>point::Len</a> to obtain the length of a vector."
         }, {
             "name": "Len",
             "returns": 1,
@@ -859,7 +919,10 @@ const THE_OBJ =
             "of": 6,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve la distancia cartesiana (aproximada) del origen (0, 0) hasta el punto, o lo que es lo mismo, devuelve la longitud del <a href='#point'>point</a> si lo interpretamos como vector. Por ejemplo: <tt>Point(3, 4).Len()</tt> devolvería 5.",
+            "description_en": "Returns the (approximated) Cartesian distance from the origin (0, 0) to the point, i.e. the length of the <a href='#point'>point</a> if interpreted as a vector. For example: <tt>Point(3, 4).Len()</tt> returns 5."
+
         }, {
             "name": "Rot",
             "returns": 0,
@@ -867,7 +930,9 @@ const THE_OBJ =
             "of": 6,
             "of_ptr": true,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "grados", "name_en": "degrees", "type": 1, "is_ptr": false}],
+            "description": "Rota el punto tantos grados como se indique alrededor del origen (0, 0) en sentido antihorario. Por ejemplo: <pre>point miPunto = Point(10, 0);<br>miPunto.Rot(90); // Ahora miPunto tiene coordenadas 0, 10 (ha rotado 90 grados)</pre>",
+            "description_en": "Rotates the point the indicated degrees around the origin (0, 0) in anticlockwise direction. For example: <pre>point myPoint = Point(10, 0);<br>myPoint.Rot(90); // Now myPoint has coordinates 0, 10 (it has rotated 90 degrees)</pre>"
         }, {
             "name": "InRect",
             "returns": 2,
@@ -875,7 +940,9 @@ const THE_OBJ =
             "of": 6,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 7, "is_ptr": false}]
+            "params": [{"name": "r", "name_en": "r", "type": 7, "is_ptr": false}],
+            "description_en": "Returns <tt>true</tt> if the point is inside the rectangle <tt>r</tt>, or <tt>false</tt> otherwise.",
+            "description": "Devuelve <tt>true</tt> si el punto está dentro del rectángulo <tt>r</tt>, o <tt>false</tt> si no lo está."
         }, {
             "name": "IntoRect",
             "returns": 0,
@@ -891,7 +958,9 @@ const THE_OBJ =
             "of": 6,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "otro", "name_en": "other", "type": 6, "is_ptr": false}],
+            "description": "Devuelve la distancia cartesiana del punto a <tt>otro</tt>. Es equivalente a <a href='#point::-m-:point_point'>restar el punto al otro</a> y luego <a href='#point::Len'>obtener la longitud</a> del vector resultante.",
+            "description_en": "Returns the Cartesian distance from the point to <tt>other</tt>. It is equivalent to <a href='#point::-m-:point_point'>substracting the point from other</a> and then <a href='#point::Len'>obtaining the length</a> of the resulting vector.",
         }, {
             "name": "+",
             "returns": 6,
@@ -899,7 +968,9 @@ const THE_OBJ =
             "of": 6,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}],
+            "description": "Interpretando uno como punto y el otro como vector, desplaza el punto según el vector dado. Formalmente, si las coordenadas de un punto son <i>(a, b)</i> y las del otro <i>(c, d)</i>, devuelve un punto con coordenadas <i>(a+c, b+d)</i>.",
+            "description_en": "Interpreting one as a point and the other as a vector, moves the point by the given vector. Formally, if the coordinates of a point are <i>(a, b)</i> and the other <i>(c, d)</i>, returns a point with coordinates <i>(a+c, b+d)</i>."
         }, {
             "name": "-",
             "returns": 6,
@@ -907,7 +978,9 @@ const THE_OBJ =
             "of": 6,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}],
+            "description": "Devuelve el vector que va del punto indicado a la izquierda al punto indicado a la derecha del operador. Formalmente, si las coordenadas de un punto son <i>(a, b)</i> y las del otro <i>(c, d)</i>, devuelve un punto con coordenadas <i>(a-c, b-d)</i>.",
+            "description_en": "Returns the vector which goes from the point indicated at the left to the point indicated at the right of the operator. Formally, if the coordinates of a point are <i>(a, b)</i> and the other <i>(c, d)</i>, returns a point with coordinates <i>(a+c, b+d)</i>."
         }, {
             "name": "*",
             "returns": 6,
@@ -915,7 +988,9 @@ const THE_OBJ =
             "of": 6,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Interpretándolo como vector, lo prolonga multiplicando su longitud por el entero indicado. Formalmente, si las coordenadas del punto son <i>(a, b)</i> y llamamos al entero <i>c</i>, retorna el punto de coordenadas <i>(a*c, b*c)</i>.",
+            "description_en": "Interpreting it as a vector, elongates the vector multiplying its length by the given integer. Formally, if the coordinates of the point are <i>(a, b)</i> and we call the integer <i>c</i>, this operator returns a point with coordinates <i>(a*c, b*c)</i>."
         }, {
             "name": "/",
             "returns": 6,
@@ -923,7 +998,9 @@ const THE_OBJ =
             "of": 6,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Interpretándolo como vector, lo acorta dividiendo su longitud por el entero indicado. Formalmente, si las coordenadas del punto son <i>(a, b)</i> y llamamos al entero <i>c</i>, retorna el punto de coordenadas <i>(a/c, b/c)</i>.",
+            "description_en": "Interpreting it as a vector, shortens the vector dividing its length by the given integer. Formally, if the coordinates of the point are <i>(a, b)</i> and we call the integer <i>c</i>, this operator returns a point with coordinates <i>(a/c, b/c)</i>."
         }, {
             "name": "Dist",
             "returns": 1,
@@ -931,7 +1008,9 @@ const THE_OBJ =
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "a", "type": 6, "is_ptr": false}, {"name": "b", "type": 6, "is_ptr": false}],
+            "description": "Devuelve la distancia cartesiana de <tt>a</tt> a <tt>b</tt> (ver <a href='#point::Dist:point'>point::Dist</a>).",
+            "description_en": "Returns the Cartesian distance from <tt>a</tt> to <tt>b</tt> (see <a href='#point::Dist:point'>point::Dist</a>)."
         }, {
             "name": "=",
             "returns": 0,
@@ -939,7 +1018,9 @@ const THE_OBJ =
             "of": 6,
             "of_ptr": true,
             "type": "operator",
-            "params": [{"name": "number", "type": 6, "is_ptr": true}, {"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": true}, {"name": "number", "type": 6, "is_ptr": false}],
+            "description_en": "Assigns a point to a point reference (see example in <a href='#ptr.int::-e-:ptr.int_int'>the integer assignation operator</a>).",
+            "description": "Asigna un punto a una referencia a un punto (ver ejemplo en <a href='#ptr.int::-e-:ptr.int_int'>el operador de asignación para enteros</a>)."
         }, {
             "name": "==",
             "returns": 2,
@@ -947,7 +1028,9 @@ const THE_OBJ =
             "of": 6,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}],
+            "description": "Devuelve <tt>true</tt> si y solo si las coordenadas de ambos puntos coinciden, en caso contrario devuelve <tt>false</tt>.",
+            "description_en": "Returns <tt>true</tt> if and only if the coordinates of both points match, otherwise it returns <tt>false</tt>."
         }, {
             "name": "!=",
             "returns": 2,
@@ -955,7 +1038,9 @@ const THE_OBJ =
             "of": 6,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}],
+            "description": "Devuelve <tt>true</tt> si y solo si las coordenadas de ambos puntos son distintas, en caso contrario devuelve <tt>false</tt>.",
+            "description_en": "Returns <tt>true</tt> if and only if both points are different, otherwise it returns <tt>false</tt>."
         }, {
             "name": "left",
             "returns": 1,

@@ -119,6 +119,7 @@ details {
 .description {
     font-family: "Noto Sans";
     text-indent: 0;
+    margin: 1rem 0;
 }
 
 footer {

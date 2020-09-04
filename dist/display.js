@@ -36,8 +36,8 @@ function renderParam(param, classes) {
 }
 
 function renderDescription(func) {
-    return `<p class="description">${func['description_' + lang] || func.description
-    || `<span class=\"to-fill\">${TRANSLATE_TEXTS['no-desc-' + lang]}</span>`}</p>`;
+    return `<div class="description">${func['description_' + lang] || func.description
+    || `<span class=\"to-fill\">${TRANSLATE_TEXTS['no-desc-' + lang]}</span>`}</div>`;
 }
 
 function typeForIdentifier(type, isPtr, classes) {
