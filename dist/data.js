@@ -39,13 +39,13 @@ const THE_OBJ =
             },
             {
                 "name": "IntArray",
-                "description": "Una lista ordenada de números enteros (int), accesibles mediante el operador <tt>[]</tt>.",
-                "description_en": "A sorted list of integer numbers (int), accessible through the <tt>[]</tt> operator."
+                "description": "Una lista ordenada y de tamaño fijo de números enteros (<a class='type' href='#int'>int</a>), accesibles mediante el operador <a href='#ptr.IntArray::-c-:ptr.IntArray_int'><tt>[]</tt></a>.",
+                "description_en": "A sorted, fixed-size list of integer numbers (<a class='type' href='#int'>int</a>), accessible through the <a href='#ptr.IntArray::-c-:ptr.IntArray_int'><tt>[]</tt></a> operator."
             },
             {
                 "name": "StrArray",
-                "description": "Una lista ordenada de cadenas de texto (str), accesibles mediante el operador <tt>[]</tt>.",
-                "description_en": "A sorted list of text strings (str), accessible through the <tt>[]</tt> operator."
+                "description": "Una lista ordenada y de tamaño fijo de cadenas de texto (<a class='type' href='#str'>str</a>), accesibles mediante el operador <a href='#ptr.StrArray::-c-:ptr.StrArray_int'><tt>[]</tt></a>.",
+                "description_en": "A sorted, fixed-size list of text strings (<a class='type' href='#str'>str</a>), accessible through the <a href='#ptr.StrArray::-c-:ptr.StrArray_int'><tt>[]</tt></a> operator."
             },
             {
                 "name": "StrMap",
@@ -1048,7 +1048,9 @@ const THE_OBJ =
             "of": 7,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Valor de la coordenada en <i>x</i> en la que se sitúa el lado izquierdo del rectángulo.",
+            "description_en": "Value of the <i>x</i> coordinate in which the left side of the rectangle is placed."
         }, {
             "name": "top",
             "returns": 1,
@@ -1056,7 +1058,9 @@ const THE_OBJ =
             "of": 7,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Valor de la coordenada en <i>y</i> en la que se sitúa el lado superior del rectángulo.",
+            "description_en": "Value of the <i>y</i> coordinate in which the top side of the rectangle is placed."
         }, {
             "name": "right",
             "returns": 1,
@@ -1064,7 +1068,9 @@ const THE_OBJ =
             "of": 7,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Valor de la coordenada en <i>x</i> en la que se sitúa el lado derecho del rectángulo.",
+            "description_en": "Value of the <i>x</i> coordinate in which the right side of the rectangle is placed."
         }, {
             "name": "bottom",
             "returns": 1,
@@ -1072,7 +1078,9 @@ const THE_OBJ =
             "of": 7,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Valor de la coordenada en <i>y</i> en la que se sitúa el lado inferior del rectángulo.",
+            "description_en": "Value of the <i>y</i> coordinate in which the bottom side of the rectangle is placed."
         }, {
             "name": "width",
             "returns": 1,
@@ -1080,7 +1088,9 @@ const THE_OBJ =
             "of": 7,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Ancho del rectángulo.",
+            "description_en": "Width of the rectangle."
         }, {
             "name": "height",
             "returns": 1,
@@ -1088,7 +1098,9 @@ const THE_OBJ =
             "of": 7,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Alto del rectángulo.",
+            "description_en": "Height of the rectangle."
         }, {
             "name": "left",
             "returns": 1,
@@ -1096,7 +1108,9 @@ const THE_OBJ =
             "of": 7,
             "of_ptr": true,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Referencia para modificar la coordenada en <i>x</i> en la que se sitúa el lado izquierdo del rectángulo.",
+            "description_en": "Reference to modify the <i>x</i> coordinate in which the left side of the rectangle is placed."
         }, {
             "name": "top",
             "returns": 1,
@@ -1104,7 +1118,9 @@ const THE_OBJ =
             "of": 7,
             "of_ptr": true,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Referencia para modificar la coordenada en <i>y</i> en la que se sitúa el lado superior del rectángulo.",
+            "description_en": "Reference to modify the <i>y</i> coordinate in which the top side of the rectangle is placed."
         }, {
             "name": "right",
             "returns": 1,
@@ -1112,7 +1128,9 @@ const THE_OBJ =
             "of": 7,
             "of_ptr": true,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Referencia para modificar la coordenada en <i>x</i> en la que se sitúa el lado derecho del rectángulo.",
+            "description_en": "Reference to modify the <i>x</i> coordinate in which the right side of the rectangle is placed."
         }, {
             "name": "bottom",
             "returns": 1,
@@ -1120,7 +1138,9 @@ const THE_OBJ =
             "of": 7,
             "of_ptr": true,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Referencia para modificar la coordenada en <i>y</i> en la que se sitúa el lado inferior del rectángulo.",
+            "description_en": "Reference to modify the <i>y</i> coordinate in which the bottom side of the rectangle is placed."
         }, {
             "name": "Set",
             "returns": 0,
@@ -1140,7 +1160,9 @@ const THE_OBJ =
             "of": 7,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve un punto con las coordenadas del centro del rectángulo.",
+            "description_en": "Returns a point with the coordinates of the center of the rectangle."
         }, {
             "name": "IntersectRects",
             "returns": 7,
@@ -1148,7 +1170,9 @@ const THE_OBJ =
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 7, "is_ptr": false}, {"name": "number", "type": 7, "is_ptr": false}]
+            "params": [{"name": "rect_a", "type": 7, "is_ptr": false}, {"name": "rect_b", "type": 7, "is_ptr": false}],
+            "description": "Devuelve la intersección de ambos rectángulos, es decir, el rectángulo correspondiente a la superposición de ambos rectángulos.",
+            "description_en": "Returns the intersection of both rectangles, i.e., the rectangle formed where both rectangles overlap."
         }, {
             "name": "AddRects",
             "returns": 7,
@@ -1156,7 +1180,7 @@ const THE_OBJ =
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 7, "is_ptr": false}, {"name": "number", "type": 7, "is_ptr": false}]
+            "params": [{"name": "rect_a", "type": 7, "is_ptr": false}, {"name": "rect_b", "type": 7, "is_ptr": false}]
         }, {
             "name": "=",
             "returns": 0,
@@ -1164,7 +1188,9 @@ const THE_OBJ =
             "of": 7,
             "of_ptr": true,
             "type": "operator",
-            "params": [{"name": "number", "type": 7, "is_ptr": true}, {"name": "number", "type": 7, "is_ptr": false}]
+            "params": [{"name": "number", "type": 7, "is_ptr": true}, {"name": "number", "type": 7, "is_ptr": false}],
+            "description_en": "Assigns a rectangle to a rectangle reference (see example in <a href='#ptr.int::-e-:ptr.int_int'>the integer assignation operator</a>).",
+            "description": "Asigna un rectángulo a una referencia a un rectángulo (ver ejemplo en <a href='#ptr.int::-e-:ptr.int_int'>el operador de asignación para enteros</a>)."
         }, {
             "name": "==",
             "returns": 2,
@@ -1172,7 +1198,9 @@ const THE_OBJ =
             "of": 7,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 7, "is_ptr": false}, {"name": "number", "type": 7, "is_ptr": false}]
+            "params": [{"name": "number", "type": 7, "is_ptr": false}, {"name": "number", "type": 7, "is_ptr": false}],
+            "description": "Devuelve <tt>true</tt> si y solo si las coordenadas de ambos rectángulos para sus cuatro lados coinciden, en caso contrario devuelve <tt>false</tt>.",
+            "description_en": "Returns <tt>true</tt> if and only if the coordinates of the four sides of both rectangles match, otherwise it returns <tt>false</tt>."
         }, {
             "name": "!=",
             "returns": 2,
@@ -1180,7 +1208,9 @@ const THE_OBJ =
             "of": 7,
             "of_ptr": false,
             "type": "operator",
-            "params": [{"name": "number", "type": 7, "is_ptr": false}, {"name": "number", "type": 7, "is_ptr": false}]
+            "params": [{"name": "number", "type": 7, "is_ptr": false}, {"name": "number", "type": 7, "is_ptr": false}],
+            "description": "Devuelve <tt>true</tt> si y solo si las coordenadas de ambos rectángulos para alguno de los lados son distintas, en caso contrario devuelve <tt>false</tt>.",
+            "description_en": "Returns <tt>true</tt> if and only if the rectangles are different, otherwise it returns <tt>false</tt>."
         }, {
             "name": "=",
             "returns": 0,
@@ -1188,7 +1218,9 @@ const THE_OBJ =
             "of": 8,
             "of_ptr": true,
             "type": "operator",
-            "params": [{"name": "number", "type": 8, "is_ptr": true}, {"name": "number", "type": 8, "is_ptr": true}]
+            "params": [{"name": "number", "type": 8, "is_ptr": true}, {"name": "number", "type": 8, "is_ptr": true}],
+            "description": "Asigna un <a class='type' href='#IntArray'>IntArray</a> a una referencia a <a class='type' href='#IntArray'>IntArray</a> (ver ejemplo en <a href='#ptr.int::-e-:ptr.int_int'>el operador de asignación para enteros</a>).",
+            "description_en": "Assigns a <a class='type' href='#IntArray'>IntArray</a> to a reference to <a class='type' href='#IntArray'>IntArray</a> (see example in <a href='#ptr.int::-e-:ptr.int_int'>the integer assignation operator</a>)."
         }, {
             "name": "[",
             "returns": 1,
@@ -1196,7 +1228,9 @@ const THE_OBJ =
             "of": 8,
             "of_ptr": true,
             "type": "operator",
-            "params": [{"name": "number", "type": 8, "is_ptr": true}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 8, "is_ptr": true}, {"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Obtiene el entero en la posición indicada. Las posiciones comienzan en 0 (siendo 0 el primer elemento, 1 el segundo, etc). Por ejemplo, para acceder al cuarto elemento de <tt>miArray</tt> podemos poner: <tt>miArray[3]</tt>. Nótese que el último elemento tiene índice <tt>miArray.size - 1</tt>. Nótese también que el operador devuelve una referencia, por lo que el valor puede ser modificado, por ejemplo, con el <a href='#ptr.int::-e-:ptr.int_int'>el operador de asignación para enteros</a>.",
+            "description_en": "Obtains the integer in the indicated index. The indices are 0-based (being 0 the first element, 1 the second, etc). For example, to retrieve the fourth element in <tt>myArray</tt> we can write: <tt>myArray[3]</tt>. Notice that the last element has index <tt>myArray.size - 1</tt>. Notice also that the operator returns a reference, so it can be modified (for example, with the <a href='#ptr.int::-e-:ptr.int_int'>integer assignment operator</a>)."
         }, {
             "name": "resize",
             "returns": 0,
@@ -1204,7 +1238,9 @@ const THE_OBJ =
             "of": 8,
             "of_ptr": true,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "n", "type": 1, "is_ptr": false}],
+            "description": "Redimensiona el array a <tt>n</tt> elementos (see <a href='#ptr.IntArray::size'>IntArray::size</a>).",
+            "description_en": "Resizes the array to <tt>n</tt> elements (see <a href='#ptr.IntArray::size'>IntArray:size</a>)."
         }, {
             "name": "size",
             "returns": 1,
@@ -1212,7 +1248,9 @@ const THE_OBJ =
             "of": 8,
             "of_ptr": true,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Número de elementos contenidos en el array. Nótese que, al comenzar los índices por 0, el último elemento tiene índice <tt>miArray.size - 1</tt>. Para cambiar el tamaño consultar <a href='#ptr.IntArray::resize:int'>IntArray::resize</a>.",
+            "description_en": "Number of elements contained by the array. Notice that, since indices start in 0, the last element has index <tt>myArray.size - 1</tt>. To change the size of the array check <a href='#ptr.IntArray::resize:int'>IntArray::resize</a>."
         }, {
             "name": "find",
             "returns": 1,
@@ -1220,7 +1258,9 @@ const THE_OBJ =
             "of": 8,
             "of_ptr": true,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Retorna el índice de la primera aparición del entero dado en el <a href='#IntArray'>IntArray</a>.",
+            "description_en": "Returns the lowest position at which the given integer can be found inside the array."
         }, {
             "name": "=",
             "returns": 0,
@@ -1228,7 +1268,9 @@ const THE_OBJ =
             "of": 9,
             "of_ptr": true,
             "type": "operator",
-            "params": [{"name": "number", "type": 9, "is_ptr": true}, {"name": "number", "type": 9, "is_ptr": true}]
+            "params": [{"name": "number", "type": 9, "is_ptr": true}, {"name": "number", "type": 9, "is_ptr": true}],
+            "description": "Asigna un <a class='type' href='#StrArray'>StrArray</a> a una referencia a <a class='type' href='#StrArray'>StrArray</a> (ver ejemplo en <a href='#ptr.int::-e-:ptr.int_int'>el operador de asignación para enteros</a>).",
+            "description_en": "Assigns a <a class='type' href='#StrArray'>StrArray</a> to a reference to <a class='type' href='#StrArray'>StrArray</a> (see example in <a href='#ptr.int::-e-:ptr.int_int'>the integer assignation operator</a>)."
         }, {
             "name": "[",
             "returns": 5,
@@ -1236,7 +1278,9 @@ const THE_OBJ =
             "of": 9,
             "of_ptr": true,
             "type": "operator",
-            "params": [{"name": "number", "type": 9, "is_ptr": true}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 10, "is_ptr": true}, {"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Obtiene el <a class='type' href='#str'>str</a> en la posición indicada. Las posiciones comienzan en 0 (siendo 0 el primer elemento, 1 el segundo, etc). Por ejemplo, para acceder al cuarto elemento de <tt>miArray</tt> podemos poner: <tt>miArray[3]</tt>. Nótese que el último elemento tiene índice <tt>miArray.size - 1</tt>. Nótese también que el operador devuelve una referencia, por lo que el valor puede ser modificado, por ejemplo, con el <a href='#ptr.str::-e-:ptr.str_str'>el operador de asignación para cadenas</a>.",
+            "description_en": "Obtains the <a class='type' href='#str'>str</a> in the indicated index. The indices are 0-based (being 0 the first element, 1 the second, etc). For example, to retrieve the fourth element in <tt>myArray</tt> we can write: <tt>myArray[3]</tt>. Notice that the last element has index <tt>myArray.size - 1</tt>. Notice also that the operator returns a reference, so it can be modified (for example, with the <a href='#ptr.str::-e-:ptr.str_str'>string assignment operator</a>)."
         }, {
             "name": "resize",
             "returns": 0,
@@ -1244,7 +1288,9 @@ const THE_OBJ =
             "of": 9,
             "of_ptr": true,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Redimensiona el array a <tt>n</tt> elementos (see <a href='#ptr.StrArray::size'>StrArray::size</a>).",
+            "description_en": "Resizes the array to <tt>n</tt> elements (see <a href='#ptr.StrArray::size'>StrArray:size</a>)."
         }, {
             "name": "size",
             "returns": 1,
@@ -1252,7 +1298,9 @@ const THE_OBJ =
             "of": 9,
             "of_ptr": true,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Número de elementos contenidos en el array. Nótese que, al comenzar los índices por 0, el último elemento tiene índice <tt>miArray.size - 1</tt>. Para cambiar el tamaño consultar <a href='#ptr.StrArray::resize:int'>StrArray::resize</a>.",
+            "description_en": "Number of elements contained by the array. Notice that, since indices start in 0, the last element has index <tt>myArray.size - 1</tt>. To change the size of the array check <a href='#ptr.StrArray::resize:int'>StrArray::resize</a>."
         }, {
             "name": "find",
             "returns": 1,
@@ -1260,7 +1308,9 @@ const THE_OBJ =
             "of": 9,
             "of_ptr": true,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "cadena", "name_en": "string", "type": 5, "is_ptr": false}],
+            "description": "Retorna el índice de la primera aparición del <a class='type' href='#str'>str</a> dado en el <a class='type' href='#StrArray'>StrArray</a>.",
+            "description_en": "Returns the lowest position at which the given <a class='type' href='#str'>str</a> can be found inside the array."
         }, {
             "name": "=",
             "returns": 0,

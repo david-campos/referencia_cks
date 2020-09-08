@@ -23,11 +23,13 @@ pre {
     font-family: "Roboto Mono";
     padding-left: 1em;
     color: #000080;
+    background-color: #eee;
 }
 
 tt {
     font-family: "Roboto Mono";
     color: #000080;
+    background-color: #eee;
 }
 
 .group-by {
