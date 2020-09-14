@@ -170,6 +170,14 @@ const THE_OBJ = (function () {
         return `Assigns the given <a class='type' href='#${THE_CLASSES[classIdx].name}'>${THE_CLASSES[classIdx].name}</a> to a reference to <a class='type' href='#${THE_CLASSES[classIdx].name}'>${THE_CLASSES[classIdx].name}</a> (see example in <a href='#ptr.int::-e-:ptr.int_int'>the integer assignment operator</a>).`;
     }
 
+    function defaultCast(fromIdx, toIdx) {
+        return `Devuelve el <a class='type' href='#${THE_CLASSES[fromIdx].name}'>${THE_CLASSES[fromIdx].name}</a> como <a class='type' href='#${THE_CLASSES[toIdx].name}'>${THE_CLASSES[toIdx].name}</a>, suponiendo que, en efecto, es una instancia este tipo.`;
+    }
+
+    function defaultCastEn(fromIdx, toIdx) {
+        return `Returns this <a class='type' href='#${THE_CLASSES[fromIdx].name}'>${THE_CLASSES[fromIdx].name}</a> as <a class='type' href='#${THE_CLASSES[toIdx].name}'>${THE_CLASSES[toIdx].name}</a>, assuming it is, indeed, an instance of this type.`;
+    }
+
     return {
             "classes": THE_CLASSES,
             "funcs": [{
@@ -1492,7 +1500,7 @@ const THE_OBJ = (function () {
                 "of": 9,
                 "of_ptr": true,
                 "type": "operator",
-                "params": [{"name": "number", "type": 10, "is_ptr": true}, {
+                "params": [{"name": "number", "type": 9, "is_ptr": true}, {
                     "name": "number",
                     "type": 1,
                     "is_ptr": false
@@ -1656,7 +1664,9 @@ const THE_OBJ = (function () {
                     "name": "number",
                     "type": 11,
                     "is_ptr": false
-                }]
+                }],
+                "description": "Devuelve <tt>true</tt> si ambos objetos son el mismo, <tt>false</tt> si no lo son.",
+                "description_en": "Returns <tt>true</tt> if both objects are the same, <tt>false</tt> if they are not."
             }, {
                 "name": "!=",
                 "returns": 2,
@@ -1668,7 +1678,9 @@ const THE_OBJ = (function () {
                     "name": "number",
                     "type": 11,
                     "is_ptr": false
-                }]
+                }],
+                "description": "Devuelve <tt>true</tt> si ambos objetos son distintos (no son el mismo objeto), <tt>false</tt> si no lo son.",
+                "description_en": "Returns <tt>true</tt> if both objects are different (they are not the same object), <tt>false</tt> if they are not."
             }, {
                 "name": "Clear",
                 "returns": 0,
@@ -1684,7 +1696,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "method",
-                "params": []
+                "params": [],
+                "description": defaultCast(11, 13),
+                "description_en": defaultCastEn(11, 13)
             }, {
                 "name": "AsBuilding",
                 "returns": 14,
@@ -1692,7 +1706,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "method",
-                "params": []
+                "params": [],
+                "description": defaultCast(11, 14),
+                "description_en": defaultCastEn(11, 14)
             }, {
                 "name": "AsHero",
                 "returns": 15,
@@ -1700,7 +1716,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "method",
-                "params": []
+                "params": [],
+                "description": defaultCast(11, 15),
+                "description_en": defaultCastEn(11, 15)
             }, {
                 "name": "AsDruid",
                 "returns": 16,
@@ -1708,7 +1726,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "method",
-                "params": []
+                "params": [],
+                "description": defaultCast(11, 16),
+                "description_en": defaultCastEn(11, 16)
             }, {
                 "name": "AsGhost",
                 "returns": 17,
@@ -1716,7 +1736,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "method",
-                "params": []
+                "params": [],
+                "description": defaultCast(11, 17),
+                "description_en": defaultCastEn(11, 17)
             }, {
                 "name": "AsTower",
                 "returns": 18,
@@ -1724,7 +1746,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "method",
-                "params": []
+                "params": [],
+                "description": defaultCast(11, 18),
+                "description_en": defaultCastEn(11, 18)
             }, {
                 "name": "AsWagon",
                 "returns": 19,
@@ -1732,7 +1756,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "method",
-                "params": []
+                "params": [],
+                "description": defaultCast(11, 19),
+                "description_en": defaultCastEn(11, 19)
             }, {
                 "name": "AsCatapult",
                 "returns": 20,
@@ -1740,7 +1766,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "method",
-                "params": []
+                "params": [],
+                "description": defaultCast(11, 20),
+                "description_en": defaultCastEn(11, 20)
             }, {
                 "name": "AsItemHolder",
                 "returns": 21,
@@ -1748,7 +1776,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "method",
-                "params": []
+                "params": [],
+                "description": defaultCast(11, 21),
+                "description_en": defaultCastEn(11, 21)
             }, {
                 "name": "AsBarrack",
                 "returns": 22,
@@ -1756,7 +1786,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "method",
-                "params": []
+                "params": [],
+                "description": defaultCast(11, 22),
+                "description_en": defaultCastEn(11, 22)
             }, {
                 "name": "AsSacrifice",
                 "returns": 23,
@@ -1764,7 +1796,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "method",
-                "params": []
+                "params": [],
+                "description": defaultCast(11, 23),
+                "description_en": defaultCastEn(11, 23)
             }, {
                 "name": "AsShip",
                 "returns": 24,
@@ -1772,7 +1806,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "method",
-                "params": []
+                "params": [],
+                "description": defaultCast(11, 24),
+                "description_en": defaultCastEn(11, 24)
             }, {
                 "name": "AsFlying",
                 "returns": 25,
@@ -1780,7 +1816,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "method",
-                "params": []
+                "params": [],
+                "description": defaultCast(11, 25),
+                "description_en": defaultCastEn(11, 25)
             }, {
                 "name": "GetClassRace",
                 "returns": 1,
@@ -1868,7 +1906,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "property",
-                "params": []
+                "params": [],
+                "description": "Puntos de salud actuales del objeto. Para algunos objetos, como las <a class='type' href='#Unit'>unidades</a>, perder toda la salud significa su muerte, pero para otros no. Para <a class='type' href='#Building'>edificios</a>, por ejemplo, simplemente significa perder su funcionalidad hasta que son reparados. Utiliza <a href='#Obj::SetHealth:int'>SetHealth</a> para cambiarlo.",
+                "description_en": "Current health of the object. For some objects, like <a class='type' href='#Unit'>units</a>, to loose all health means death, but not for others. For <a class='type' href='#Building'>buildings</a>, for example, it simply means to stop functioning until they are repaired. Use <a href='#Obj::SetHealth:int'>SetHealth</a> to set it."
             }, {
                 "name": "stamina",
                 "returns": 1,
@@ -1876,7 +1916,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "property",
-                "params": []
+                "params": [],
+                "description": "Energía actual del objeto. Las <a class='type' href='#Unit'>unidades</a> gastan energía para usar <a href='#Unit::SetSpecial:int_bool'>habilidades especiales</a>.<br>Relacionado: <a href='#Obj::maxstamina'>Obj::maxstamina</a>, <a href='#Obj::GetStaminaDecTime'>Obj::GetStaminaDecTime</a>, <a href='#Obj::HealStamina:int'>Obj::HealStamina</a>, <a href='#Obj::SetStamina:int'>Obj::SetStamina</a>, <a href='#Query::HealStamina:int'>Query::HealStamina</a>, <a href='#GetCmdStaminaCost:str'>GetCmdStaminaCost</a> y <a href='#SelAvgStamina'>SelAvgStamina</a>.",
+                "description_en": "Current stamina of the object. <a class='type' href='#Unit'>Units</a> spend stamina to use <a href='#Unit::SetSpecial:int_bool'>special skills</a>.<br>Related: <a href='#Obj::maxstamina'>Obj::maxstamina</a>, <a href='#Obj::GetStaminaDecTime'>Obj::GetStaminaDecTime</a>, <a href='#Obj::HealStamina:int'>Obj::HealStamina</a>, <a href='#Obj::SetStamina:int'>Obj::SetStamina</a>, <a href='#Query::HealStamina:int'>Query::HealStamina</a>, <a href='#GetCmdStaminaCost:str'>GetCmdStaminaCost</a> and <a href='#SelAvgStamina'>SelAvgStamina</a>."
             }, {
                 "name": "maxhealth",
                 "returns": 1,
@@ -2060,7 +2102,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "method",
-                "params": [{"name": "number", "type": 1, "is_ptr": false}]
+                "params": [{"name": "salud", "name_en": "health", "type": 1, "is_ptr": false}],
+                "description": "Modifica la <a href='#Obj::health'>salud</a> actual del objeto.",
+                "description_en": "Modifies the current <a href='#Obj::health'>health</a> of the object."
             }, {
                 "name": "SetMaxHealth",
                 "returns": 0,

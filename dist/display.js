@@ -66,6 +66,10 @@ function uniqueIdentifierForFunc(func, classes) {
             : '');
 }
 
+function renderLinkThis(func, classes) {
+    return `<a class="linkThis" href="#${uniqueIdentifierForFunc(func, classes)}"><span class="material-icons">link</span></a>`;
+}
+
 function renderFunction(func, classes) {
     switch (func.type) {
         case 'operator':
@@ -73,49 +77,64 @@ function renderFunction(func, classes) {
                 const param0 = func.params[0];
                 const param1 = func.params[1];
                 return `<div class="binary operator" id="${uniqueIdentifierForFunc(func, classes)}">
-                            ${renderType(param0.type, param0.is_ptr, classes)}
-                            <span class="op">${escapeHtmlAndNameCorrection(func.name)}</span>
-                            ${renderType(param1.type, param1.is_ptr, classes)}
-                            ${addReturn(func, classes)}
+                            <span class="name">
+                                ${renderType(param0.type, param0.is_ptr, classes)}
+                                <span class="op">${escapeHtmlAndNameCorrection(func.name)}</span>
+                                ${renderType(param1.type, param1.is_ptr, classes)}
+                                ${addReturn(func, classes)}
+                            </span>
                             ${renderDescription(func)}
+                            ${renderLinkThis(func, classes)}
                         </div>`.replace(/\n\s*/g, '');
             } else {
                 const param0 = func.params[0];
                 return `<div class="unary operator" id="${uniqueIdentifierForFunc(func, classes)}">
-                            <span class="op">${escapeHtmlAndNameCorrection(func.name)}</span>
-                            ${renderType(param0.type, param0.is_ptr, classes)}
-                            ${addReturn(func, classes)}
+                            <span class="name">
+                                <span class="op">${escapeHtmlAndNameCorrection(func.name)}</span>
+                                ${renderType(param0.type, param0.is_ptr, classes)}
+                                ${addReturn(func, classes)}
+                            </span>
                             ${renderDescription(func)}
+                            ${renderLinkThis(func, classes)}
                         </div>`.replace(/\n\s*/g, '');
             }
         case 'property':
             return `<div class="property" id="${uniqueIdentifierForFunc(func, classes)}">
-                        ${renderType(func.of, func.of_ptr, classes)}
-                        <span class="in">::</span>
-                        <span class="prop">${escapeHtmlAndNameCorrection(func.name)}</span>
-                        ${addReturn(func, classes)}
+                        <span class="name">
+                            ${renderType(func.of, func.of_ptr, classes)}
+                            <span class="in">::</span>
+                            <span class="prop">${escapeHtmlAndNameCorrection(func.name)}</span>
+                            ${addReturn(func, classes)}
+                        </span>
                         ${renderDescription(func)}
+                        ${renderLinkThis(func, classes)}
                     </div>`.replace(/\n\s*/g, '')
         case 'method':
             if (func.of != null) {
                 return `<div class="method" id="${uniqueIdentifierForFunc(func, classes)}">
-                            ${renderType(func.of, func.of_ptr, classes)}
-                            <span class="in">::</span>
-                            <span class="meth">${escapeHtmlAndNameCorrection(func.name)}</span>
-                            <span class="par open">(</span>
-                            ${func.params.map(p => renderParam(p, classes)).join('<span class="sep">,</span>')}
-                            <span class="par close">)</span>
-                            ${addReturn(func, classes)}
+                            <span class="name">
+                                ${renderType(func.of, func.of_ptr, classes)}
+                                <span class="in">::</span>
+                                <span class="meth">${escapeHtmlAndNameCorrection(func.name)}</span>
+                                <span class="par open">(</span>
+                                ${func.params.map(p => renderParam(p, classes)).join('<span class="sep">,</span>')}
+                                <span class="par close">)</span>
+                                ${addReturn(func, classes)}
+                            </span>
                             ${renderDescription(func)}
+                            ${renderLinkThis(func, classes)}
                         </div>`.replace(/\n\s*/g, '')
             } else {
                 return `<div class="method" id="${uniqueIdentifierForFunc(func, classes)}">
-                            <span class="meth">${escapeHtmlAndNameCorrection(func.name)}</span>
-                            <span class="par open">(</span>
-                            ${func.params.map(p => renderParam(p, classes)).join('<span class="sep">,</span>')}
-                            <span class="par close">)</span>
-                            ${addReturn(func, classes)}
+                            <span class="name">
+                                <span class="meth">${escapeHtmlAndNameCorrection(func.name)}</span>
+                                <span class="par open">(</span>
+                                ${func.params.map(p => renderParam(p, classes)).join('<span class="sep">,</span>')}
+                                <span class="par close">)</span>
+                                ${addReturn(func, classes)}
+                            </span>
                             ${renderDescription(func)}
+                            ${renderLinkThis(func, classes)}
                         </div>`.replace(/\n\s*/g, '')
             }
     }
@@ -145,6 +164,24 @@ function sortFuncs() {
         else if (b[groupBy] === null) return -1;
         else return a[groupBy] - b[groupBy];
     });
+}
+
+function addTooltip(event) {
+    const link = event.target;
+    const referred = document.getElementById(link.getAttribute('href').slice(1));
+    if (referred) {
+        let text = referred.classList.contains("class") ? referred.querySelector('p:first-of-type').innerText : referred.querySelector('.description').innerText;
+        let index = -1;
+        if (text.length > 100) {
+            text = text.slice(0, 100);
+            const indexNL = text.indexOf('\n');
+            const indexDot = text.indexOf('.');
+            index = indexDot > 0 ? indexDot : indexNL;
+            text = `${index >= 0 ? text.slice(0, index) : text}...`;
+        }
+        link.innerHTML += `<span class="tooltiptext">${text}</span>`;
+    }
+    link.removeEventListener('pointerenter', addTooltip);
 }
 
 function render() {
@@ -186,7 +223,11 @@ function render() {
         || `<span class=\"to-fill\">${TRANSLATE_TEXTS['no-desc-' + lang]}</span>`}</p>`;
     }
     html += "</details>";
-    document.getElementById('main').innerHTML = html;
+    const main = document.getElementById('main');
+    main.innerHTML = html;
+    for (const link of main.querySelectorAll('a:not(.linkThis)')) {
+        link.addEventListener('pointerenter', addTooltip);
+    }
     const t1 = performance.now();
     console.log("Rendered in", (t1 - t0), "ms.");
 }
@@ -215,4 +256,9 @@ window.onload = function () {
     updateSelectText();
     sortFuncs();
     render();
+    // For links with hash to work after first render
+    if (location.hash) {
+        const elem = document.getElementById(location.hash.slice(1));
+        if (elem) setTimeout(elem.scrollIntoView.bind(elem));
+    }
 }

@@ -4,6 +4,55 @@ body {
     font-family: "Noto Sans"
 }
 
+a {
+    color: #303070;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    position: relative;
+}
+
+/* Tooltip text */
+a .tooltiptext {
+    visibility: hidden;
+    width: 180px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    border-radius: 6px;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -90px;
+
+    text-indent: 0;
+
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+a .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+a:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
 .method, .operator, .property {
     word-break: keep-all;
 }
@@ -52,7 +101,31 @@ h3 {
     margin-top: 3rem;
 }
 
-.type {
+.title {
+    display: flex;
+}
+
+.title > .name {
+    flex: 1;
+}
+
+.linkThis {
+    cursor: pointer;
+    border: none;
+    color: #999;
+    display: block;
+    position: absolute;
+    padding: 4px;
+    height: 20px;
+    right: 0;
+    bottom: 0;
+}
+
+.linkThis > .material-icons {
+    margin-left: 3em;
+}
+
+.type, .type:visited {
     color: #800000;
     text-decoration: none;
 }
@@ -81,11 +154,13 @@ h3 {
     font-weight: 400
 }
 
-.property, .method {
+.property, .method, .operator {
     text-indent: -2rem;
     margin-left: 2rem;
     line-height: 1.5;
-    font-family: "Roboto Mono"
+    font-family: "Roboto Mono";
+    position: relative;
+    padding-bottom: 24px;
 }
 
 
@@ -133,6 +208,13 @@ footer {
 .bi {
     display: inline-block;
     vertical-align: text-bottom;
+}
+
+#to-copy {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: -100%;
 }
 
 @media print {
