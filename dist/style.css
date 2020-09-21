@@ -81,15 +81,23 @@ tt {
     background-color: #eee;
 }
 
-.group-by {
+.settings {
     margin: 1rem 0;
 }
 
-.group-by .container {
+.settings .container {
     background: #999;
     color: #eee;
     padding-top: .5rem;
     padding-bottom: .5rem;
+}
+
+.settings .container .group-by {
+    display: inline-block;
+}
+
+.settings .container .search {
+    float: right;
 }
 
 h1 {
@@ -169,6 +177,10 @@ h3 {
 .operator:not(:last-child) {
     margin-bottom: 0.5em;
     border-bottom: 2px dotted lightgray;
+}
+
+.invisible {
+    display: none;
 }
 
 h2 {

@@ -1,5 +1,7 @@
 let lang = '';
 let groupBy = 'of';
+const filters = [];
+const funcsById = new Map();
 
 const TRANSLATE_TEXTS = {
     'no-desc-': 'Sin descripción todavía.',
@@ -11,7 +13,11 @@ const TRANSLATE_TEXTS = {
     "gb-class-": "clase",
     "gb-class-en": "class",
     "gb-return-": "tipo de retorno",
-    "gb-return-en": "return type"
+    "gb-return-en": "return type",
+    "search-": "Filtrar por nombre...",
+    "search-en": "Filter by name...",
+    "related-": "Relacionado:",
+    "related-en": "Related:"
 }
 
 function escapeHtmlAndNameCorrection(unsafe) {
@@ -35,9 +41,18 @@ function renderParam(param, classes) {
     return `<span class="param"><span class="name">${escapeHtmlAndNameCorrection(param['name_' + lang] || param.name)}</span><span class="two_dots mid">:</span>${renderType(param.type, param.is_ptr, classes)}</span>`
 }
 
+function renderRelated(relatedList) {
+    if (!relatedList || relatedList.length === 0) return '';
+    return `<br><br>${TRANSLATE_TEXTS['related-' + lang]}<br>${relatedList.map(elementId => {
+        const element = funcsById.get(elementId);
+        const of = element.of ? THE_OBJ.classes[element.of].name + "::" : '';
+        return `<a href="#${elementId}">${of}${escapeHtmlAndNameCorrection(element.name)}</a>`
+    }).join(', ')}`;
+}
+
 function renderDescription(func) {
     return `<div class="description">${func['description_' + lang] || func.description
-    || `<span class=\"to-fill\">${TRANSLATE_TEXTS['no-desc-' + lang]}</span>`}</div>`;
+    || `<span class=\"to-fill\">${TRANSLATE_TEXTS['no-desc-' + lang]}</span>`}${renderRelated(func.related)}</div>`;
 }
 
 function typeForIdentifier(type, isPtr, classes) {
@@ -67,7 +82,7 @@ function uniqueIdentifierForFunc(func, classes) {
 }
 
 function renderLinkThis(func, classes) {
-    return `<a class="linkThis" href="#${uniqueIdentifierForFunc(func, classes)}"><span class="material-icons">link</span></a>`;
+    return `<a class="linkThis" href="#${func.id}"><span class="material-icons">link</span></a>`;
 }
 
 function renderFunction(func, classes) {
@@ -76,7 +91,7 @@ function renderFunction(func, classes) {
             if (func.params.length === 2) {
                 const param0 = func.params[0];
                 const param1 = func.params[1];
-                return `<div class="binary operator" id="${uniqueIdentifierForFunc(func, classes)}">
+                return `<div class="binary operator" id="${func.id}">
                             <span class="name">
                                 ${renderType(param0.type, param0.is_ptr, classes)}
                                 <span class="op">${escapeHtmlAndNameCorrection(func.name)}</span>
@@ -88,7 +103,7 @@ function renderFunction(func, classes) {
                         </div>`.replace(/\n\s*/g, '');
             } else {
                 const param0 = func.params[0];
-                return `<div class="unary operator" id="${uniqueIdentifierForFunc(func, classes)}">
+                return `<div class="unary operator" id="${func.id}">
                             <span class="name">
                                 <span class="op">${escapeHtmlAndNameCorrection(func.name)}</span>
                                 ${renderType(param0.type, param0.is_ptr, classes)}
@@ -99,7 +114,7 @@ function renderFunction(func, classes) {
                         </div>`.replace(/\n\s*/g, '');
             }
         case 'property':
-            return `<div class="property" id="${uniqueIdentifierForFunc(func, classes)}">
+            return `<div class="property" id="${func.id}">
                         <span class="name">
                             ${renderType(func.of, func.of_ptr, classes)}
                             <span class="in">::</span>
@@ -111,7 +126,7 @@ function renderFunction(func, classes) {
                     </div>`.replace(/\n\s*/g, '')
         case 'method':
             if (func.of != null) {
-                return `<div class="method" id="${uniqueIdentifierForFunc(func, classes)}">
+                return `<div class="method" id="${func.id}">
                             <span class="name">
                                 ${renderType(func.of, func.of_ptr, classes)}
                                 <span class="in">::</span>
@@ -125,7 +140,7 @@ function renderFunction(func, classes) {
                             ${renderLinkThis(func, classes)}
                         </div>`.replace(/\n\s*/g, '')
             } else {
-                return `<div class="method" id="${uniqueIdentifierForFunc(func, classes)}">
+                return `<div class="method" id="${func.id}">
                             <span class="name">
                                 <span class="meth">${escapeHtmlAndNameCorrection(func.name)}</span>
                                 <span class="par open">(</span>
@@ -191,6 +206,7 @@ function render() {
     let last_type;
     let copy_classes = THE_OBJ.classes.slice();
     for (const func of THE_OBJ.funcs) {
+        if (!filters.reduce((p, c) => p && c(func), true)) continue;
         if (func[groupBy] !== last_group) {
             if (html !== "") {
                 html += '</details>';
@@ -215,12 +231,15 @@ function render() {
         }
         html += renderFunction(func, THE_OBJ.classes);
     }
-    for (const missing of copy_classes) {
-        html += `</details><details class="class" id="${missing.name}" open><summary><h2>${
-            missing.name
-        }</h2></summary>`;
-        html += `<p>${missing['description_' + lang] || missing.description
-        || `<span class=\"to-fill\">${TRANSLATE_TEXTS['no-desc-' + lang]}</span>`}</p>`;
+    // Avoid printing remaining classes if there is any filtering
+    if (filters.length === 0) {
+        for (const missing of copy_classes) {
+            html += `</details><details class="class" id="${missing.name}" open><summary><h2>${
+                missing.name
+            }</h2></summary>`;
+            html += `<p>${missing['description_' + lang] || missing.description
+            || `<span class=\"to-fill\">${TRANSLATE_TEXTS['no-desc-' + lang]}</span>`}</p>`;
+        }
     }
     html += "</details>";
     const main = document.getElementById('main');
@@ -232,15 +251,26 @@ function render() {
     console.log("Rendered in", (t1 - t0), "ms.");
 }
 
+function nameFilter(text) {
+    const lower = text.toLocaleLowerCase();
+    return func => func.name.toLocaleLowerCase().includes(lower);
+}
+
+function filterToIds() {
+    return THE_OBJ.funcs.filter(func => filters.reduce((p, c) => p && c(func), true)).map(f => f.id);
+}
+
 window.onload = function () {
     const lang_select = document.getElementById('lang_select');
     const groupByLabel = document.getElementById('group-by-label');
     const groupBySelect = document.getElementById('group-by-select');
+    const searchInput = document.getElementById('search');
 
     function updateSelectText() {
         groupByLabel.innerText = TRANSLATE_TEXTS['group-by-' + lang];
         groupBySelect.options.item(0).innerText = TRANSLATE_TEXTS['gb-class-' + lang];
         groupBySelect.options.item(1).innerText = TRANSLATE_TEXTS['gb-return-' + lang];
+        searchInput.setAttribute('placeholder', TRANSLATE_TEXTS['search-' + lang]);
     }
 
     lang_select.addEventListener('change', () => {
@@ -252,6 +282,19 @@ window.onload = function () {
         groupBy = groupBySelect.value;
         sortFuncs();
         render();
+    });
+    searchInput.addEventListener('input', () => {
+        if (searchInput.value) {
+            filters.splice(0, filters.length, nameFilter(searchInput.value));
+        } else {
+            filters.splice(0, filters.length);
+        }
+        render();
+    });
+
+    THE_OBJ.funcs.forEach(f => {
+        f.id = uniqueIdentifierForFunc(f, THE_OBJ.classes);
+        funcsById.set(f.id, f);
     });
     updateSelectText();
     sortFuncs();

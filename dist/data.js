@@ -1907,8 +1907,9 @@ const THE_OBJ = (function () {
                 "of_ptr": false,
                 "type": "property",
                 "params": [],
-                "description": "Puntos de salud actuales del objeto. Para algunos objetos, como las <a class='type' href='#Unit'>unidades</a>, perder toda la salud significa su muerte, pero para otros no. Para <a class='type' href='#Building'>edificios</a>, por ejemplo, simplemente significa perder su funcionalidad hasta que son reparados. Utiliza <a href='#Obj::SetHealth:int'>SetHealth</a> para cambiarlo.",
-                "description_en": "Current health of the object. For some objects, like <a class='type' href='#Unit'>units</a>, to loose all health means death, but not for others. For <a class='type' href='#Building'>buildings</a>, for example, it simply means to stop functioning until they are repaired. Use <a href='#Obj::SetHealth:int'>SetHealth</a> to set it."
+                "description": "Puntos de salud actuales del objeto. Para algunos objetos, como las <a class='type' href='#Unit'>unidades</a>, perder toda la salud significa su muerte, pero para otros no. Para <a class='type' href='#Building'>edificios</a>, por ejemplo, simplemente significa perder su funcionalidad hasta que son reparados.",
+                "description_en": "Current health of the object. For some objects, like <a class='type' href='#Unit'>units</a>, to loose all health means death, but not for others. For <a class='type' href='#Building'>buildings</a>, for example, it simply means to stop functioning until they are repaired.",
+                "related": ["Obj::maxhealth", "Obj::Heal:int", "Obj::SetHealth:int", "Druid::FindUnitToHeal", "Query::Heal:int", "Settlement::health", "Squad::health", "SelHealth", "SelMaxHealth", "WaitHealthBetween:Query_int_int_int"]
             }, {
                 "name": "stamina",
                 "returns": 1,
@@ -1917,8 +1918,9 @@ const THE_OBJ = (function () {
                 "of_ptr": false,
                 "type": "property",
                 "params": [],
-                "description": "Energía actual del objeto. Las <a class='type' href='#Unit'>unidades</a> gastan energía para usar <a href='#Unit::SetSpecial:int_bool'>habilidades especiales</a>.<br>Relacionado: <a href='#Obj::maxstamina'>Obj::maxstamina</a>, <a href='#Obj::GetStaminaDecTime'>Obj::GetStaminaDecTime</a>, <a href='#Obj::HealStamina:int'>Obj::HealStamina</a>, <a href='#Obj::SetStamina:int'>Obj::SetStamina</a>, <a href='#Query::HealStamina:int'>Query::HealStamina</a>, <a href='#GetCmdStaminaCost:str'>GetCmdStaminaCost</a> y <a href='#SelAvgStamina'>SelAvgStamina</a>.",
-                "description_en": "Current stamina of the object. <a class='type' href='#Unit'>Units</a> spend stamina to use <a href='#Unit::SetSpecial:int_bool'>special skills</a>.<br>Related: <a href='#Obj::maxstamina'>Obj::maxstamina</a>, <a href='#Obj::GetStaminaDecTime'>Obj::GetStaminaDecTime</a>, <a href='#Obj::HealStamina:int'>Obj::HealStamina</a>, <a href='#Obj::SetStamina:int'>Obj::SetStamina</a>, <a href='#Query::HealStamina:int'>Query::HealStamina</a>, <a href='#GetCmdStaminaCost:str'>GetCmdStaminaCost</a> and <a href='#SelAvgStamina'>SelAvgStamina</a>."
+                "description": "Energía actual del objeto. Las <a class='type' href='#Unit'>unidades</a> gastan energía para usar <a href='#Unit::SetSpecial:int_bool'>habilidades especiales</a>.",
+                "description_en": "Current stamina of the object. <a class='type' href='#Unit'>Units</a> spend stamina to use <a href='#Unit::SetSpecial:int_bool'>special skills</a>.",
+                "related": ["Obj::maxstamina", "Obj::GetStaminaDecTime", "Obj::HealStamina:int", "Obj::SetStamina:int", "Query::HealStamina:int", "GetCmdStaminaCost:str", "SelAvgStamina"]
             }, {
                 "name": "maxhealth",
                 "returns": 1,
@@ -1926,7 +1928,10 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "property",
-                "params": []
+                "params": [],
+                "description": "Máxima salud del objeto.",
+                "description_en": "Maximum health of the object.",
+                "related": ["Obj::health", "Obj::SetMaxHealth:int", "Settlement::max_health", "Squad::maxhealth", "SelMaxHealth"]
             }, {
                 "name": "maxstamina",
                 "returns": 1,
@@ -1934,7 +1939,10 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "property",
-                "params": []
+                "params": [],
+                "description": "Máxima energía del objeto.",
+                "description_en": "Maximum stamina of the object.",
+                "related": ["Obj::stamina", "Obj::SetMaxStamina:int", "Unit::maxstamina", "ObjList::ObjFullStamina", "Settlement::max_stamina"]
             }, {
                 "name": "sight",
                 "returns": 1,
@@ -1942,7 +1950,10 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "property",
-                "params": []
+                "params": [],
+                "description": "Distancia de visión del objeto (radio de su círculo de visión).",
+                "description_en": "Sight distance for the object (radius of its vision circle).",
+                "related": ["Obj::SetSight:int", "Unit::EnemiesInSight", "Unit::IsEnemyInSquadSight", "ObjsInSight:Obj_str", "VisibleObjsInSight:Obj_str", "Unit::BestNoIndependentTargetInSquadSight", "Unit::BestTargetInSquadSight", "Unit::BestTargetInSquadSight:str", "Unit::BestTargetInSquadSight_PreferUndiseased", "Unit::BestTargetInSquadSightExclusive:str", "Unit::BestTargetInSquadSightMisZeroDamage"]
             }, {
                 "name": "pos",
                 "returns": 6,
@@ -1950,7 +1961,10 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "property",
-                "params": []
+                "params": [],
+                "description": "Posición del objeto en el mundo.",
+                "description_en": "Position of the object in the world.",
+                "related": ["Obj::SetPos:point", "Obj::SetPosSimple:point", "Unit::BestTargetForPos", "Squad::pos"]
             }, {
                 "name": "posRH",
                 "returns": 6,
@@ -2014,7 +2028,10 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "property",
-                "params": []
+                "params": [],
+                "description": "Nombre del objeto",
+                "description_en": "Name of the object",
+                "related": ["Obj::SetName:str", "Item::name", "Settlement::name", "GetNamedObj:str", "SpawnNamed:str"]
             }, {
                 "name": "IsHeirOf",
                 "returns": 2,
@@ -2030,7 +2047,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "method",
-                "params": []
+                "params": [],
+                "description": "Indica si el objeto es un centinela de las murallas.",
+                "description_en": "Indicates whether the object is a sentry of the walls."
             }, {
                 "name": "IsGate",
                 "returns": 2,
@@ -2038,7 +2057,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "method",
-                "params": []
+                "params": [],
+                "description": "Indica si el objeto es un <a class='type' href='#Gate'>Gate</a>.",
+                "description_en": "Indicates whether the object is a <a class='type' href='#Gate'>Gate</a>."
             }, {
                 "name": "IsRam",
                 "returns": 2,
@@ -2046,7 +2067,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "method",
-                "params": []
+                "params": [],
+                "description": "Indica si el objeto es un ariete.",
+                "description_en": "Indicates whether the object is a battering ram."
             }, {
                 "name": "IsRanged",
                 "returns": 2,
@@ -2054,7 +2077,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "method",
-                "params": []
+                "params": [],
+                "description": "Indica si el objeto es del tipo de ataque a distancia.",
+                "description_en": "Indicates whether the object is a ranged one (attacks in a range)."
             }, {
                 "name": "IsMilitary",
                 "returns": 2,
@@ -2062,7 +2087,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "method",
-                "params": []
+                "params": [],
+                "description": "Indica si el objeto es militar.",
+                "description_en": "Indicates whether the object is a military one."
             }, {
                 "name": "IsReligious",
                 "returns": 2,
@@ -2070,7 +2097,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "method",
-                "params": []
+                "params": [],
+                "description": "Indica si el objeto es de tipo religioso (como los <a class='type' href='#Druid'>druidas</a>, por ejemplo).",
+                "description_en": "Indicates whether the object is a religious one (like <a class='type' href='#Druid'>druids</a>, for example)"
             }, {
                 "name": "IsPeaceful",
                 "returns": 2,
@@ -2078,7 +2107,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "method",
-                "params": []
+                "params": [],
+                "description": "Indica si el objeto es pacífico.",
+                "description_en": "Indicates whether the object is a peaceful one."
             }, {
                 "name": "IsPeasant",
                 "returns": 2,
@@ -2086,7 +2117,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "method",
-                "params": []
+                "params": [],
+                "description": "Indica si el objeto es un campesino/a.",
+                "description_en": "Indicates whether the object is a peasant."
             }, {
                 "name": "IsPeasantAmbient",
                 "returns": 2,
@@ -2112,7 +2145,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "method",
-                "params": [{"name": "number", "type": 1, "is_ptr": false}]
+                "params": [{"name": "salud_maxima", "name_en": "max_health", "type": 1, "is_ptr": false}],
+                "description": "Modifica la <a href='#Obj::maxhealth'>salud máxima</a> del objeto.",
+                "description_en": "Modifies the <a href='#Obj::maxhealth'>maximum health</a> of the object."
             }, {
                 "name": "SetStamina",
                 "returns": 0,
@@ -2120,7 +2155,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "method",
-                "params": [{"name": "number", "type": 1, "is_ptr": false}]
+                "params": [{"name": "number", "type": 1, "is_ptr": false}],
+                "description": "Modifica la <a href='#Obj::stamina'>energía</a> del objeto.",
+                "description_en": "Modifies the <a href='#Obj::stamina'>stamina</a> of the object."
             }, {
                 "name": "SetMaxStamina",
                 "returns": 0,
@@ -2128,7 +2165,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "method",
-                "params": [{"name": "number", "type": 1, "is_ptr": false}]
+                "params": [{"name": "number", "type": 1, "is_ptr": false}],
+                "description": "Modifica la <a href='#Obj::maxstamina'>energía máxima</a> del objeto.",
+                "description_en": "Modifies the <a href='#Obj::maxstamina'>maximum stamina</a> of the object."
             }, {
                 "name": "SetSight",
                 "returns": 0,
@@ -2136,7 +2175,9 @@ const THE_OBJ = (function () {
                 "of": 11,
                 "of_ptr": false,
                 "type": "method",
-                "params": [{"name": "number", "type": 1, "is_ptr": false}]
+                "params": [{"name": "number", "type": 1, "is_ptr": false}],
+                "description": "Modifica el <a href='#Obj::sight'>radio de visión</a> del objeto.",
+                "description_en": "Modifies the <a href='#Obj::sight'>sight radius</a> of the object."
             }, {
                 "name": "GetStaminaDecTime",
                 "returns": 1,
