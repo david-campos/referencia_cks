@@ -177,7 +177,7 @@ function addTooltip(event) {
             const indexNL = text.indexOf('\n');
             const indexDot = text.indexOf('.');
             index = indexDot > 0 ? indexDot : indexNL;
-            text = `${index >= 0 ? text.slice(0, index) : text}...`;
+            text = `${index >= 0 ? text.slice(0, index) : text}&hellip;`;
         }
         link.innerHTML += `<span class="tooltiptext">${text}</span>`;
     }
