@@ -1,4 +1,4 @@
-let lang = '';
+let lang = location.search === '?en' ? 'en' : '';
 let groupBy = 'of';
 const filters = [];
 const funcsById = new Map();
@@ -43,16 +43,16 @@ function renderParam(param, classes) {
 
 function renderRelated(relatedList) {
     if (!relatedList || relatedList.length === 0) return '';
-    return `<br><br>${TRANSLATE_TEXTS['related-' + lang]}<br>${relatedList.map(elementId => {
+    return `<div class="related">${TRANSLATE_TEXTS['related-' + lang]} ${relatedList.map(elementId => {
         const element = funcsById.get(elementId);
         const of = element.of ? THE_OBJ.classes[element.of].name + "::" : '';
         return `<a href="#${elementId}">${of}${escapeHtmlAndNameCorrection(element.name)}</a>`
-    }).join(', ')}`;
+    }).join(', ')}</div>`;
 }
 
 function renderDescription(func) {
     return `<div class="description">${func['description_' + lang] || func.description
-    || `<span class=\"to-fill\">${TRANSLATE_TEXTS['no-desc-' + lang]}</span>`}${renderRelated(func.related)}</div>`;
+    || `<span class=\"to-fill\">${TRANSLATE_TEXTS['no-desc-' + lang]}</span>`}</div>${renderRelated(func.related)}`;
 }
 
 function typeForIdentifier(type, isPtr, classes) {
@@ -91,8 +91,9 @@ function renderFunction(func, classes) {
             if (func.params.length === 2) {
                 const param0 = func.params[0];
                 const param1 = func.params[1];
-                return `<div class="binary operator" id="${func.id}">
+                return `<div class="binary operator${func.dangerous ? ' dangerous' : ''}" id="${func.id}">
                             <span class="name">
+                                ${func.dangerous ? '<span class="material-icons">error</span>' : ''}
                                 ${renderType(param0.type, param0.is_ptr, classes)}
                                 <span class="op">${escapeHtmlAndNameCorrection(func.name)}</span>
                                 ${renderType(param1.type, param1.is_ptr, classes)}
@@ -103,8 +104,9 @@ function renderFunction(func, classes) {
                         </div>`.replace(/\n\s*/g, '');
             } else {
                 const param0 = func.params[0];
-                return `<div class="unary operator" id="${func.id}">
+                return `<div class="unary operator${func.dangerous ? ' dangerous' : ''}" id="${func.id}">
                             <span class="name">
+                                ${func.dangerous ? '<span class="material-icons">error</span>' : ''}
                                 <span class="op">${escapeHtmlAndNameCorrection(func.name)}</span>
                                 ${renderType(param0.type, param0.is_ptr, classes)}
                                 ${addReturn(func, classes)}
@@ -114,8 +116,9 @@ function renderFunction(func, classes) {
                         </div>`.replace(/\n\s*/g, '');
             }
         case 'property':
-            return `<div class="property" id="${func.id}">
+            return `<div class="property${func.dangerous ? ' dangerous' : ''}" id="${func.id}">
                         <span class="name">
+                            ${func.dangerous ? '<span class="material-icons">error</span>' : ''}
                             ${renderType(func.of, func.of_ptr, classes)}
                             <span class="in">::</span>
                             <span class="prop">${escapeHtmlAndNameCorrection(func.name)}</span>
@@ -126,8 +129,9 @@ function renderFunction(func, classes) {
                     </div>`.replace(/\n\s*/g, '')
         case 'method':
             if (func.of != null) {
-                return `<div class="method" id="${func.id}">
+                return `<div class="method${func.dangerous ? ' dangerous' : ''}" id="${func.id}">
                             <span class="name">
+                                ${func.dangerous ? '<span class="material-icons">error</span>' : ''}
                                 ${renderType(func.of, func.of_ptr, classes)}
                                 <span class="in">::</span>
                                 <span class="meth">${escapeHtmlAndNameCorrection(func.name)}</span>
@@ -140,8 +144,9 @@ function renderFunction(func, classes) {
                             ${renderLinkThis(func, classes)}
                         </div>`.replace(/\n\s*/g, '')
             } else {
-                return `<div class="method" id="${func.id}">
+                return `<div class="method${func.dangerous ? ' dangerous' : ''}" id="${func.id}">
                             <span class="name">
+                                ${func.dangerous ? '<span class="material-icons">error</span>' : ''}
                                 <span class="meth">${escapeHtmlAndNameCorrection(func.name)}</span>
                                 <span class="par open">(</span>
                                 ${func.params.map(p => renderParam(p, classes)).join('<span class="sep">,</span>')}
@@ -190,11 +195,16 @@ function addTooltip(event) {
         if (text.length > 100) {
             text = text.slice(0, 100);
             const indexNL = text.indexOf('\n');
-            const indexDot = text.indexOf('.');
+            const indexDot = text.indexOf('.') + 1;
             index = indexDot > 0 ? indexDot : indexNL;
-            text = `${index >= 0 ? text.slice(0, index) : text}&hellip;`;
+            const ellip = index > 0 && text[index-1] === '.' ? ' [&hellip;]' : '&hellip;'
+            text = `${index >= 0 ? text.slice(0, index) : text}${ellip}`;
         }
-        link.innerHTML += `<span class="tooltiptext">${text}</span>`;
+        const isDangerous = referred.classList.contains("dangerous");
+        if (isDangerous) {
+            text = `<span class="material-icons">error</span> ${text}`;
+        }
+        link.innerHTML += `<span class="tooltiptext${isDangerous ? ' dangerous' : ''}">${text}</span>`;
     }
     link.removeEventListener('pointerenter', addTooltip);
 }
@@ -273,8 +283,10 @@ window.onload = function () {
         searchInput.setAttribute('placeholder', TRANSLATE_TEXTS['search-' + lang]);
     }
 
+    lang_select.value = lang;
     lang_select.addEventListener('change', () => {
         lang = lang_select.value;
+        location.replace((lang === 'en' ? '' : '?en') + location.hash);
         updateSelectText();
         render();
     });

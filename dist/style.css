@@ -21,6 +21,7 @@ a .tooltiptext {
     text-align: center;
     padding: 5px;
     border-radius: 6px;
+    font-style: normal;
 
     /* Position the tooltip text */
     position: absolute;
@@ -48,6 +49,14 @@ a .tooltiptext::after {
     border-color: #555 transparent transparent transparent;
 }
 
+a .tooltiptext.dangerous {
+    color: #ff5252;
+    background-color: #6c3333;
+}
+a .tooltiptext.dangerous::after {
+    border-color: #6c3333 transparent transparent transparent;
+}
+
 /* Show the tooltip text when you mouse over the tooltip container */
 a:hover .tooltiptext {
     visibility: visible;
@@ -56,6 +65,15 @@ a:hover .tooltiptext {
 
 .method, .operator, .property {
     word-break: keep-all;
+}
+
+.method.dangerous, .operator.dangerous, .property.dangerous {
+    color: #bb0000;
+    background-color: #ffe9e9;
+    text-indent: 0;
+    margin-left: 0;
+    padding-left: .2em;
+    padding-right: .2em;
 }
 
 .container {
@@ -206,10 +224,70 @@ details {
     padding: 0 2rem;
 }
 
-.description {
+.description, .related {
     font-family: "Noto Sans";
     text-indent: 0;
     margin: 1rem 0;
+}
+
+.related {
+    color: #555;
+    font-style: italic;
+}
+
+.related a {
+    color: #505090;
+}
+
+.description p {
+    margin-bottom: 0;
+}
+
+.description table {
+    border-spacing: 0;
+    margin: 0 auto;
+}
+
+.description table > thead > tr {
+    background-color: #ccc;
+}
+
+.description table > tbody > tr:nth-child(even) {
+    background-color: #dddddd;
+}
+.description table > tbody > tr:nth-child(odd) {
+    background-color: #f0f0f0;
+}
+.description table td, .description table th {
+    padding: 0 .5rem;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+.description table.c-0 td:nth-child(1) {
+    text-align: center;
+}
+.description table.c-1 td:nth-child(2) {
+    text-align: center;
+}
+.description table.c-2 td:nth-child(3) {
+    text-align: center;
+}
+.description table.c-3 td:nth-child(4) {
+    text-align: center;
+}
+.description table.tt tbody {
+    font-family: "Roboto Mono";
+}
+
+.description .material-icons,
+.name .material-icons,
+.tooltiptext .material-icons {
+    position: relative;
+    top: .2ex;
+}
+
+.name .material-icons {
+    margin-right: .2em;
 }
 
 footer {

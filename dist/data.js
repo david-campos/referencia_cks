@@ -1,4 +1,6 @@
+// noinspection HtmlUnknownAnchorTarget
 const THE_OBJ = (function () {
+    // noinspection HtmlUnknownAnchorTarget
     const THE_CLASSES = [
         {
             "name": "void",
@@ -33,8 +35,8 @@ const THE_OBJ = (function () {
         },
         {
             "name": "rect",
-            "description": "Un rectángulo en dos dimensiones alineado con los ejes, definido por los valores en los que se sitúan sus cuatro lados. Utiliza <a href='ptr.rect::Set:int_int_int_int'>rect::Set</a> para fijar los lados.",
-            "description_en": "An axis-aligned rectangle in 2 dimensions, defined by the values in which their four sides reside. Use <a href='ptr.rect::Set:int_int_int_int'>rect::Set</a> to select the sides."
+            "description": "Un rectángulo en dos dimensiones alineado con los ejes, definido por los valores en los que se sitúan sus cuatro lados. Utiliza <a href='#ptr.rect::Set:int_int_int_int'>rect::Set</a> para fijar los lados.",
+            "description_en": "An axis-aligned rectangle in 2 dimensions, defined by the values in which their four sides reside. Use <a href='#ptr.rect::Set:int_int_int_int'>rect::Set</a> to select the sides."
         },
         {
             "name": "IntArray",
@@ -171,13 +173,14 @@ const THE_OBJ = (function () {
     }
 
     function defaultCast(fromIdx, toIdx) {
-        return `Devuelve el <a class='type' href='#${THE_CLASSES[fromIdx].name}'>${THE_CLASSES[fromIdx].name}</a> como <a class='type' href='#${THE_CLASSES[toIdx].name}'>${THE_CLASSES[toIdx].name}</a>, suponiendo que, en efecto, es una instancia este tipo.`;
+        return `Devuelve el <a class='type' href='#${THE_CLASSES[fromIdx].name}'>${THE_CLASSES[fromIdx].name}</a> como <a class='type' href='#${THE_CLASSES[toIdx].name}'>${THE_CLASSES[toIdx].name}</a>, suponiendo que, en efecto, es una instancia este tipo. Si no lo es, devuelve el equivalente a un <a href='#Obj::IsValid'>objeto inválido / nulo</a>`;
     }
 
     function defaultCastEn(fromIdx, toIdx) {
-        return `Returns this <a class='type' href='#${THE_CLASSES[fromIdx].name}'>${THE_CLASSES[fromIdx].name}</a> as <a class='type' href='#${THE_CLASSES[toIdx].name}'>${THE_CLASSES[toIdx].name}</a>, assuming it is, indeed, an instance of this type.`;
+        return `Returns this <a class='type' href='#${THE_CLASSES[fromIdx].name}'>${THE_CLASSES[fromIdx].name}</a> as <a class='type' href='#${THE_CLASSES[toIdx].name}'>${THE_CLASSES[toIdx].name}</a>, assuming it is, indeed, an instance of this type. If it is not, it returns the equivalent to a <a href='#Obj::IsValid'>null / invalid object</a>`;
     }
 
+    // noinspection HtmlUnknownAnchorTarget
     return {
         "classes": THE_CLASSES,
         "funcs": [{
@@ -1326,7 +1329,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "rect_a", "type": 7, "is_ptr": false}, {"name": "rect_b", "type": 7, "is_ptr": false}]
+            "params": [{"name": "rect_a", "type": 7, "is_ptr": false}, {"name": "rect_b", "type": 7, "is_ptr": false}],
+            "description": "<p>Devuelve la \"suma\" de ambos rectángulos, es decir, el rectángulo de área mínima que contiene a ambos rectángulos. Este rectángulo es aquel cuyos lados <a href='#rect::left'>left</a> y <a href='#rect::top'>top</a> son, cada uno, los mínimos de ambos rectángulos, y cuyos lados <a href='#rect::right'>right</a> y <a href='#rect::bottom'>bottom</a> son, cada uno, los máximos de ambos rectángulos.</p><p><tt>r = AddRects(a, b)</tt> es, pues, equivalente a <tt>r.Set(MIN(a.left, b.left), MIN(a.top, b.top), MAX(a.right, b.right), MAX(a.bottom, b.bottom))</tt></p>",
+            "description_en": "Returns the \"sum\" of both rectangles, i.e., the rectangle of minimum area that overlaps both rectangles. This rectangle is that one with the minimum values for <a href='#rect::left'>left</a> and <a href='#rect::top'>top</a> among the rectangles, and the maximum for <a href='#rect::right'>right</a> and <a href='#rect::bottom'>bottom</a>.</p><p><tt>r = AddRects(a, b)</tt> is, therefore, equivalent to <tt>r.Set(MIN(a.left, b.left), MIN(a.top, b.top), MAX(a.right, b.right), MAX(a.bottom, b.bottom))</tt></p>",
+            "related": ["ptr.rect::Set:int_int_int_int", "rect::left", "rect::top", "rect::right", "rect::bottom"]
         }, {
             "id": "ptr.rect::-e-:ptr.rect_rect",
             "name": "=",
@@ -1380,8 +1386,9 @@ const THE_OBJ = (function () {
             "of_ptr": true,
             "type": "operator",
             "params": [{"name": "number", "type": 8, "is_ptr": true}, {"name": "number", "type": 1, "is_ptr": false}],
-            "description": "Obtiene el entero en la posición indicada. Las posiciones comienzan en 0 (siendo 0 el primer elemento, 1 el segundo, etc). Por ejemplo, para acceder al cuarto elemento de <tt>miArray</tt> podemos poner: <tt>miArray[3]</tt>. Nótese que el último elemento tiene índice <tt>miArray.size - 1</tt>. Nótese también que el operador devuelve una referencia, por lo que el valor puede ser modificado, por ejemplo, con el <a href='#ptr.int::-e-:ptr.int_int'>el operador de asignación para enteros</a>.",
-            "description_en": "Obtains the integer in the indicated index. The indices are 0-based (being 0 the first element, 1 the second, etc). For example, to retrieve the fourth element in <tt>myArray</tt> we can write: <tt>myArray[3]</tt>. Notice that the last element has index <tt>myArray.size - 1</tt>. Notice also that the operator returns a reference, so it can be modified (for example, with the <a href='#ptr.int::-e-:ptr.int_int'>integer assignment operator</a>)."
+            "description": "<p>Obtiene el entero en la posición indicada.</p> <p>Las posiciones comienzan en 0 (siendo 0 el primer elemento, 1 el segundo, etc). Por ejemplo, para acceder al cuarto elemento de <tt>miArray</tt> podemos poner: <tt>miArray[3]</tt>. Nótese que el último elemento tiene índice <tt>miArray.size - 1</tt>. </p><p>Nótese también que el operador devuelve una referencia, por lo que el valor puede ser modificado, por ejemplo, con el <a href='#ptr.int::-e-:ptr.int_int'>el operador de asignación para enteros</a>. Modificar el valor de un índice no existente redimensiona el array para incluir ese índice.</p><p>Si el array no contiene el índice dado, el valor retornado es <tt>0</tt>.</p>",
+            "description_en": "<p>Obtains the integer in the indicated index.</p><p>The indices are 0-based (being 0 the first element, 1 the second, etc). For example, to retrieve the fourth element in <tt>myArray</tt> we can write: <tt>myArray[3]</tt>. Notice that the last element has index <tt>myArray.size - 1</tt>.</p><p>Notice also that the operator returns a reference, so it can be modified (for example, with the <a href='#ptr.int::-e-:ptr.int_int'>integer assignment operator</a>). Modifying the value of a non-existent index resizes the array to include the given index.</p><p>If the array does not contain the given index, the returned value is <tt>0</tt>.</p>",
+            "related": ["ptr.IntArray::size"]
         }, {
             "id": "ptr.IntArray::resize:int",
             "name": "resize",
@@ -1391,8 +1398,8 @@ const THE_OBJ = (function () {
             "of_ptr": true,
             "type": "method",
             "params": [{"name": "n", "type": 1, "is_ptr": false}],
-            "description": "Redimensiona el array a <tt>n</tt> elementos (see <a href='#ptr.IntArray::size'>IntArray::size</a>).",
-            "description_en": "Resizes the array to <tt>n</tt> elements (see <a href='#ptr.IntArray::size'>IntArray:size</a>)."
+            "description": "Redimensiona el array a <tt>n</tt> elementos (see <a href='#ptr.IntArray::size'>IntArray::size</a>). Nótese que esto tiene el mismo efecto que asignar un valor al elemento en la posición <tt>n-1</tt>.",
+            "description_en": "Resizes the array to <tt>n</tt> elements (see <a href='#ptr.IntArray::size'>IntArray:size</a>). Notice this has the same effect as assigning a value to the element at the position <tt>n-1</tt>."
         }, {
             "id": "ptr.IntArray::size",
             "name": "size",
@@ -1413,8 +1420,8 @@ const THE_OBJ = (function () {
             "of_ptr": true,
             "type": "method",
             "params": [{"name": "number", "type": 1, "is_ptr": false}],
-            "description": "Retorna el índice de la primera aparición del entero dado en el <a href='#IntArray'>IntArray</a>.",
-            "description_en": "Returns the lowest position at which the given integer can be found inside the array."
+            "description": "Retorna el índice <strong>más uno</strong> de la primera aparición del entero dado en el <a href='#IntArray'>IntArray</a> (así que si el elemento está en la primera posición, el valor retornado es 1). Si el elemento no se encuentra en el array, devuelve -1.",
+            "description_en": "Returns the lowest index at which the given integer can be found inside the array <strong>adding 1</strong> (so if the element is in the first position, the value returned is 1). If the element is not in the array, it returns -1."
         }, {
             "id": "ptr.StrArray::-e-:ptr.StrArray_ptr.StrArray",
             "name": "=",
@@ -1468,8 +1475,8 @@ const THE_OBJ = (function () {
             "of_ptr": true,
             "type": "method",
             "params": [{"name": "cadena", "name_en": "string", "type": 5, "is_ptr": false}],
-            "description": "Retorna el índice de la primera aparición del <a class='type' href='#str'>str</a> dado en el <a class='type' href='#StrArray'>StrArray</a>.",
-            "description_en": "Returns the lowest position at which the given <a class='type' href='#str'>str</a> can be found inside the array."
+            "description": "Retorna el índice <strong>más uno</strong> de la primera aparición del <a class='type' href='#str'>str</a> dado en el <a class='type' href='#StrArray'>StrArray</a>. Ver <a href='#ptr.IntArray::find:int'>IntArray::find</a>.",
+            "description_en": "Returns the lowest index at which the given <a class='type' href='#str'>str</a> can be found inside the array <strong>adding one</strong>. See <a href='#ptr.IntArray::find:int'>IntArray::find</a>."
         }, {
             "id": "ptr.StrMap::-e-:ptr.StrMap_ptr.StrMap",
             "name": "=",
@@ -1512,8 +1519,9 @@ const THE_OBJ = (function () {
             "of_ptr": true,
             "type": "method",
             "params": [{"name": "clave", "name_en": "key", "type": 5, "is_ptr": false}],
-            "description": "Elimina el elemento con la clave dada del diccionario.",
-            "description_en": "Removes the element with the given key from the map."
+            "description": "Este método crashea el juego cuando la clave existe en el diccionario.",
+            "description_en": "This method crashes the game when the key exists in the map.",
+            "dangerous": true
         }, {
             "id": "ptr.StrMap::exists:str",
             "name": "exists",
@@ -1533,7 +1541,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Imprime el contenido actual del stack de ejecución a la consola. Esta función es para gente con conocimientos de programación.",
+            "description_en": "Prints to the shell the current content of the execution stack. This function is for people with advanced programming knowledge."
         }, {
             "id": "DumpCode:int",
             "name": "DumpCode",
@@ -1553,7 +1563,8 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [],
             "description": "Obtiene las dimensiones del mapa actual. El ancho estará contenido en <a href='#point::x'>point::x</a> y el alto en <a href='#point::y'>point::y</a>.",
-            "description_en": "Gets the dimensions of the current map. The width is contained in the <a href='#point::x'>point::x</a> property and the height is contained in <a href='#point::y'>point::y</a>."
+            "description_en": "Gets the dimensions of the current map. The width is contained in the <a href='#point::x'>point::x</a> property and the height is contained in <a href='#point::y'>point::y</a>.",
+            "related": ["GetMapRect"]
         }, {
             "id": "_RandomTerrain2:str",
             "name": "_RandomTerrain2",
@@ -1562,7 +1573,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "config_file", "type": 5, "is_ptr": false}],
+            "description": "Esta función crashea el juego si no logra abrir el archivo de configuración. Genera el terreno aleatoriamente a partir de la configuración que lee del archivo indicado.",
+            "description_en": "This function crashes the game if the configuration file cannot be open. Generates a random terrain using the configuration in the given file.",
+            "dangerous": true
         }, {
             "id": "ptr.Obj::-e-:ptr.Obj_Obj",
             "name": "=",
@@ -1623,7 +1637,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": true,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Limpia la referencia a objeto dada, de forma que ya no referencia un objeto. Si se compara, por ejemplo, con el operador <a href='#Obj::-e--e-:Obj_Obj'>==</a> con una referencia a un objeto recién creada (sin asignar), dará <tt>true</tt>. Este tipo de objetos / referencias a objeto también son <a href='#Obj::IsValid'>inválidas</a>.",
+            "description_en": "Clears the reference to object given, so it does not reference the current object anymore. If compared, for example, using the operator <a href='#Obj::-e--e-:Obj_Obj'>==</a> with a just-created reference to an object (before assigning anything to it), it will return <tt>true</tt>. This kind of objects or references to objects are also <a href='#Obj::IsValid'>invalid</a>.",
+            "related": ["Obj::IsValid"]
         }, {
             "id": "Obj::AsUnit",
             "name": "AsUnit",
@@ -1633,8 +1650,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description": "Devuelve el <a class='type' href='#Obj'>Obj</a> como <a class='type' href='#Unit'>Unit</a>, suponiendo que, en efecto, es una instancia este tipo.",
-            "description_en": "Returns this <a class='type' href='#Obj'>Obj</a> as <a class='type' href='#Unit'>Unit</a>, assuming it is, indeed, an instance of this type."
+            "description": defaultCast(11, 13),
+            "description_en": defaultCastEn(11, 13)
         }, {
             "id": "Obj::AsBuilding",
             "name": "AsBuilding",
@@ -1644,8 +1661,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description": "Devuelve el <a class='type' href='#Obj'>Obj</a> como <a class='type' href='#Building'>Building</a>, suponiendo que, en efecto, es una instancia este tipo.",
-            "description_en": "Returns this <a class='type' href='#Obj'>Obj</a> as <a class='type' href='#Building'>Building</a>, assuming it is, indeed, an instance of this type."
+            "description": defaultCast(11, 14),
+            "description_en": defaultCastEn(11, 14)
         }, {
             "id": "Obj::AsHero",
             "name": "AsHero",
@@ -1655,8 +1672,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description": "Devuelve el <a class='type' href='#Obj'>Obj</a> como <a class='type' href='#Hero'>Hero</a>, suponiendo que, en efecto, es una instancia este tipo.",
-            "description_en": "Returns this <a class='type' href='#Obj'>Obj</a> as <a class='type' href='#Hero'>Hero</a>, assuming it is, indeed, an instance of this type."
+            "description": defaultCast(11, 15),
+            "description_en": defaultCastEn(11, 15)
         }, {
             "id": "Obj::AsDruid",
             "name": "AsDruid",
@@ -1666,8 +1683,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description": "Devuelve el <a class='type' href='#Obj'>Obj</a> como <a class='type' href='#Druid'>Druid</a>, suponiendo que, en efecto, es una instancia este tipo.",
-            "description_en": "Returns this <a class='type' href='#Obj'>Obj</a> as <a class='type' href='#Druid'>Druid</a>, assuming it is, indeed, an instance of this type."
+            "description": defaultCast(11, 16),
+            "description_en": defaultCastEn(11, 16)
         }, {
             "id": "Obj::AsGhost",
             "name": "AsGhost",
@@ -1677,8 +1694,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description": "Devuelve el <a class='type' href='#Obj'>Obj</a> como <a class='type' href='#Ghost'>Ghost</a>, suponiendo que, en efecto, es una instancia este tipo.",
-            "description_en": "Returns this <a class='type' href='#Obj'>Obj</a> as <a class='type' href='#Ghost'>Ghost</a>, assuming it is, indeed, an instance of this type."
+            "description": defaultCast(11, 17),
+            "description_en": defaultCastEn(11, 17)
         }, {
             "id": "Obj::AsTower",
             "name": "AsTower",
@@ -1688,8 +1705,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description": "Devuelve el <a class='type' href='#Obj'>Obj</a> como <a class='type' href='#Tower'>Tower</a>, suponiendo que, en efecto, es una instancia este tipo.",
-            "description_en": "Returns this <a class='type' href='#Obj'>Obj</a> as <a class='type' href='#Tower'>Tower</a>, assuming it is, indeed, an instance of this type."
+            "description": defaultCast(11, 18),
+            "description_en": defaultCastEn(11, 18)
         }, {
             "id": "Obj::AsWagon",
             "name": "AsWagon",
@@ -1699,8 +1716,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description": "Devuelve el <a class='type' href='#Obj'>Obj</a> como <a class='type' href='#Wagon'>Wagon</a>, suponiendo que, en efecto, es una instancia este tipo.",
-            "description_en": "Returns this <a class='type' href='#Obj'>Obj</a> as <a class='type' href='#Wagon'>Wagon</a>, assuming it is, indeed, an instance of this type."
+            "description": defaultCast(11, 19),
+            "description_en": defaultCastEn(11, 19)
         }, {
             "id": "Obj::AsCatapult",
             "name": "AsCatapult",
@@ -1710,8 +1727,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description": "Devuelve el <a class='type' href='#Obj'>Obj</a> como <a class='type' href='#Catapult'>Catapult</a>, suponiendo que, en efecto, es una instancia este tipo.",
-            "description_en": "Returns this <a class='type' href='#Obj'>Obj</a> as <a class='type' href='#Catapult'>Catapult</a>, assuming it is, indeed, an instance of this type."
+            "description": defaultCast(11, 20),
+            "description_en": defaultCastEn(11, 20)
         }, {
             "id": "Obj::AsItemHolder",
             "name": "AsItemHolder",
@@ -1721,8 +1738,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description": "Devuelve el <a class='type' href='#Obj'>Obj</a> como <a class='type' href='#ItemHolder'>ItemHolder</a>, suponiendo que, en efecto, es una instancia este tipo.",
-            "description_en": "Returns this <a class='type' href='#Obj'>Obj</a> as <a class='type' href='#ItemHolder'>ItemHolder</a>, assuming it is, indeed, an instance of this type."
+            "description": defaultCast(11, 21),
+            "description_en": defaultCastEn(11, 21)
         }, {
             "id": "Obj::AsBarrack",
             "name": "AsBarrack",
@@ -1732,8 +1749,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description": "Devuelve el <a class='type' href='#Obj'>Obj</a> como <a class='type' href='#Barrack'>Barrack</a>, suponiendo que, en efecto, es una instancia este tipo.",
-            "description_en": "Returns this <a class='type' href='#Obj'>Obj</a> as <a class='type' href='#Barrack'>Barrack</a>, assuming it is, indeed, an instance of this type."
+            "description": defaultCast(11, 22),
+            "description_en": defaultCastEn(11, 22)
         }, {
             "id": "Obj::AsSacrifice",
             "name": "AsSacrifice",
@@ -1743,8 +1760,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description": "Devuelve el <a class='type' href='#Obj'>Obj</a> como <a class='type' href='#Sacrifice'>Sacrifice</a>, suponiendo que, en efecto, es una instancia este tipo.",
-            "description_en": "Returns this <a class='type' href='#Obj'>Obj</a> as <a class='type' href='#Sacrifice'>Sacrifice</a>, assuming it is, indeed, an instance of this type."
+            "description": defaultCast(11, 23),
+            "description_en": defaultCastEn(11, 23)
         }, {
             "id": "Obj::AsShip",
             "name": "AsShip",
@@ -1754,8 +1771,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description": "Devuelve el <a class='type' href='#Obj'>Obj</a> como <a class='type' href='#Ship'>Ship</a>, suponiendo que, en efecto, es una instancia este tipo.",
-            "description_en": "Returns this <a class='type' href='#Obj'>Obj</a> as <a class='type' href='#Ship'>Ship</a>, assuming it is, indeed, an instance of this type."
+            "description": defaultCast(11, 24),
+            "description_en": defaultCastEn(11, 24)
         }, {
             "id": "Obj::AsFlying",
             "name": "AsFlying",
@@ -1765,8 +1782,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description": "Devuelve el <a class='type' href='#Obj'>Obj</a> como <a class='type' href='#Flying'>Flying</a>, suponiendo que, en efecto, es una instancia este tipo.",
-            "description_en": "Returns this <a class='type' href='#Obj'>Obj</a> as <a class='type' href='#Flying'>Flying</a>, assuming it is, indeed, an instance of this type."
+            "description": defaultCast(11, 25),
+            "description_en": defaultCastEn(11, 25)
         }, {
             "id": "GetClassRace:str",
             "name": "GetClassRace",
@@ -1775,7 +1792,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
+            "description": "Dada una <a href='#Obj::class'>clase de objeto</a>, devuelve la <a href='#Obj::race'>raza</a> a la que pertenece.",
+            "description_en": "Given an <a href='#Obj::class'>object class</a>, returns the <a href='#Obj::race'>race</a> it belongs to.",
+            "related": ["Obj::class", "Obj::race", "Obj::raceStr", "Obj::raceStrPref", "Obj::raceStrPrefLow", "GetPlayerRace:int", "GetRaceStr:int", "GetRaceStrPref:int", "GetRaceStrPrefLow:int", "SetPlayerSettRace:int_int", "SetSettRace:str_int"]
         }, {
             "id": "Obj::race",
             "name": "race",
@@ -1784,7 +1804,28 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Raza del objeto (galo, íbero, cartaginés, etc). Cada raza tiene asociado un nombre y un prefijo. Estas son las posibles razas: <table class='tt c-0 c-1 c-2'><thead><tr><th>race</th><th>raceStr</th><th>raceStrPref (prefijo)</th><th>Descripción</th></tr></thead>" +
+                "<tbody><tr><td>-1</td><td></td><td></td><td>Raza de los objetos que no tienen raza asociada.</td></tr>" +
+                "<tr><td>0</td><td>Gaul</td><td>G</td><td>Galos</td></tr>" +
+                "<tr><td>1</td><td>RepublicanRome</td><td>R</td><td>Romanos republicanos</td></tr>" +
+                "<tr><td>2</td><td>Carthage</td><td>C</td><td>Cartagineses</td></tr>" +
+                "<tr><td>3</td><td>Iberia</td><td>I</td><td>Íberos</td></tr>" +
+                "<tr><td>4</td><td>ImperialRome</td><td>M</td><td>Romanos imperiales</td></tr>" +
+                "<tr><td>5</td><td>Britain</td><td>B</td><td>Britanos</td></tr>" +
+                "<tr><td>6</td><td>Egypt</td><td>E</td><td>Egipcios</td></tr>" +
+                "<tr><td>7</td><td>Germany</td><td>T</td><td>Germanos</td></tr></tbody></table>",
+            "description_en": "Race of the object (Gaul, German, British, etc). Each race has a name and a prefix associated. These are the available races: <table class='tt c-0 c-1 c-2'><thead><tr><th>race</th><th>raceStr</th><th>raceStrPref (prefix)</th></tr></thead>" +
+                "<tbody><tr><td>-1</td><td colspan='2'>Objects with no associated race return this value.</td></tr>" +
+                "<tr><td>0</td><td>Gaul</td><td>G</td></tr>" +
+                "<tr><td>1</td><td>RepublicanRome</td><td>R</td></tr>" +
+                "<tr><td>2</td><td>Carthage</td><td>C</td></tr>" +
+                "<tr><td>3</td><td>Iberia</td><td>I</td></tr>" +
+                "<tr><td>4</td><td>ImperialRome</td><td>M</td></tr>" +
+                "<tr><td>5</td><td>Britain</td><td>B</td></tr>" +
+                "<tr><td>6</td><td>Egypt</td><td>E</td></tr>" +
+                "<tr><td>7</td><td>Germany</td><td>T</td></tr></tbody></table>",
+            "related": ["Obj::race", "Obj::raceStr", "Obj::raceStrPref", "Obj::raceStrPrefLow", "GetClassRace:str", "GetPlayerRace:int", "GetRaceStr:int", "GetRaceStrPref:int", "GetRaceStrPrefLow:int", "SetPlayerSettRace:int_int", "SetSettRace:str_int"]
         }, {
             "id": "Obj::raceStr",
             "name": "raceStr",
@@ -1793,7 +1834,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Nombre de la <a href='#Obj::race'>raza del objeto.</a>",
+            "description_en": "Name of the <a href='#Obj::race'>race of the object.</a>",
+            "related": ["Obj::race", "Obj::raceStrPref", "Obj::raceStrPrefLow", "GetClassRace:str", "GetPlayerRace:int", "GetRaceStr:int", "GetRaceStrPref:int", "GetRaceStrPrefLow:int", "SetPlayerSettRace:int_int", "SetSettRace:str_int"]
         }, {
             "id": "Obj::raceStrPref",
             "name": "raceStrPref",
@@ -1802,7 +1846,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Prefijo de la <a href='#Obj::race'>raza del objeto.</a>",
+            "description_en": "Prefix of the <a href='#Obj::race'>race of the object.</a>",
+            "related": ["Obj::race", "Obj::raceStr", "Obj::raceStrPrefLow", "GetClassRace:str", "GetPlayerRace:int", "GetRaceStr:int", "GetRaceStrPref:int", "GetRaceStrPrefLow:int", "SetPlayerSettRace:int_int", "SetSettRace:str_int"]
         }, {
             "id": "Obj::raceStrPrefLow",
             "name": "raceStrPrefLow",
@@ -1811,7 +1858,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Prefijo de la <a href='#Obj::race'>raza del objeto</a> en minúsculas.",
+            "description_en": "Prefix of the <a href='#Obj::race'>race of the object</a> in lower case.",
+            "related": ["Obj::race", "Obj::raceStr", "Obj::raceStrPref", "GetClassRace:str", "GetPlayerRace:int", "GetRaceStr:int", "GetRaceStrPref:int", "GetRaceStrPrefLow:int", "SetPlayerSettRace:int_int", "SetSettRace:str_int"]
         }, {
             "id": "GetRaceStr:int",
             "name": "GetRaceStr",
@@ -1820,7 +1870,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "numero_de_raza", "name_en": "race_number", "type": 1, "is_ptr": false}],
+            "description": "Devuelve el nombre de la <a href='#Obj::race'>raza</a> dada.",
+            "description_en": "Returns the name of the given <a href='#Obj::race'>race</a>.",
+            "related": ["Obj::race", "Obj::raceStr", "Obj::raceStrPref", "Obj::raceStrPrefLow", "GetPlayerRace:int", "GetRaceStr:int", "GetRaceStrPref:int", "GetRaceStrPrefLow:int", "SetPlayerSettRace:int_int", "SetSettRace:str_int"]
         }, {
             "id": "GetRaceStrPref:int",
             "name": "GetRaceStrPref",
@@ -1829,7 +1882,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "description": "Devuelve el prefijo de la <a href='#Obj::race'>raza</a> dada.",
+            "description_en": "Returns the prefix of the given <a href='#Obj::race'>race</a>.",
+            "params": [{"name": "number", "type": 1, "is_ptr": false}],
+            "related": ["Obj::class", "Obj::race", "Obj::raceStr", "Obj::raceStrPref", "Obj::raceStrPrefLow", "GetClassRace:str", "GetPlayerRace:int", "GetRaceStr:int", "GetRaceStrPrefLow:int", "SetPlayerSettRace:int_int", "SetSettRace:str_int"]
         }, {
             "id": "GetRaceStrPrefLow:int",
             "name": "GetRaceStrPrefLow",
@@ -1838,7 +1894,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Devuelve el prefijo de la <a href='#Obj::race'>raza</a> dada en minúsculas.",
+            "description_en": "Returns the prefix of the given <a href='#Obj::race'>race</a> in lower case.",
+            "related": ["Obj::class", "Obj::race", "Obj::raceStr", "Obj::raceStrPref", "Obj::raceStrPrefLow", "GetClassRace:str", "GetPlayerRace:int", "GetRaceStr:int", "GetRaceStrPref:int", "SetPlayerSettRace:int_int", "SetSettRace:str_int"]
         }, {
             "id": "Obj::armor_slash",
             "name": "armor_slash",
@@ -1847,7 +1906,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Defensa del objeto frente a ataques oblicuos.",
+            "description_en": "Defense of the object against slash attacks.",
+            "related": ["Obj::armor_pierce", "SelAvgArmor"]
         }, {
             "id": "Obj::armor_pierce",
             "name": "armor_pierce",
@@ -1856,7 +1918,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Defensa del objeto frente a ataques de penetración.",
+            "description_en": "Defense of the object against pierce attacks.",
+            "related": ["Obj::armor_slash", "SelAvgArmor"]
         }, {
             "id": "Obj::health",
             "name": "health",
@@ -1926,9 +1991,9 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "property",
             "params": [],
-            "description": "Posición del objeto en el mundo.",
-            "description_en": "Position of the object in the world.",
-            "related": ["Obj::SetPos:point", "Obj::SetPosSimple:point", "Unit::BestTargetForPos", "Squad::pos"]
+            "description": "Posición del objeto en el mundo. Cuando el objeto está dentro de un edificio, esta propiedad devuelve <tt>(-1, -1)</tt>. Para obtener la posición del edificio en caso de que el objeto esté dentro de uno utiliza <a href='#Obj::posRH'>Obj::posRH</a>.",
+            "description_en": "Position of the object in the world. When the object is inside a building, this property returns <tt>(-1, -1)</tt>. To obtain the position of the building in case of the object being inside one use <a href='#Obj::posRH'>Obj::posRH</a>.",
+            "related": ["Obj::posRH", "Obj::SetPos:point", "Obj::SetPosSimple:point", "Unit::BestTargetForPos", "Squad::pos"]
         }, {
             "id": "Obj::posRH",
             "name": "posRH",
@@ -1937,7 +2002,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Posición del objeto, o posición del contenedor en caso de que el objeto esté dentro de algo.",
+            "description_en": "Position of the object, or position of the holder in case the object is inside one.",
+            "related": ["Obj::pos", "Unit::InHolder", "Obj::SetPos:point", "Obj::SetPosSimple:point"]
         }, {
             "id": "Obj::damage",
             "name": "damage",
@@ -1964,7 +2032,8 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "0 -> cuerpo a cuerpo; 1 -> distancia; 2 -> catapulta; 3 -> pacífico"
         }, {
             "id": "Obj::range",
             "name": "range",
@@ -1973,7 +2042,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Rango máximo de ataque del objeto.",
+            "description_en": "Maximum range of attack of the object.",
+            "related": ["Obj::min_range", "Obj::IsRanged", "Unit::BestTargetInRange:point_int", "Unit::InRange:Obj", "Catapult::InRange:point", "EnemyInRange:point_int_Obj", "ObjsInRange:Obj_str_int"]
         }, {
             "id": "Obj::min_range",
             "name": "min_range",
@@ -1982,7 +2054,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Rango mínimo de ataque del objeto.",
+            "description_en": "Minimum range of attack of the object.",
+            "related": ["Obj::range", "Obj::IsRanged", "Unit::BestTargetInRange:point_int", "Unit::InRange:Obj", "Catapult::InRange:point", "EnemyInRange:point_int_Obj", "ObjsInRange:Obj_str_int"]
         }, {
             "id": "Obj::radius",
             "name": "radius",
@@ -1991,7 +2066,9 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Radio del círculo que ocupa el objeto (visible en el editor al seleccionarlo).",
+            "description_en": "Radius of the circle the object occupies (visible in the editor when selected)."
         }, {
             "id": "Obj::name",
             "name": "name",
@@ -2012,7 +2089,7 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}]
         }, {
             "id": "Obj::IsSentry",
             "name": "IsSentry",
