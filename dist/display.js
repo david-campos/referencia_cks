@@ -293,9 +293,9 @@ window.onload = function () {
     });
 
     THE_OBJ.funcs.forEach(f => {
-        f.id = uniqueIdentifierForFunc(f, THE_OBJ.classes);
         funcsById.set(f.id, f);
     });
+
     updateSelectText();
     sortFuncs();
     render();

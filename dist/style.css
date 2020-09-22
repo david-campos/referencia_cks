@@ -8,6 +8,7 @@ a {
     color: #303070;
     text-decoration: underline;
     text-decoration-style: dotted;
+    text-decoration-skip-ink: none;
     position: relative;
 }
 
