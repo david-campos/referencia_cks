@@ -188,19 +188,25 @@ function sortFuncs() {
 
 function addTooltip(event) {
     const link = event.target;
-    const referred = document.getElementById(link.getAttribute('href').slice(1));
+    const reference = link.getAttribute('href').slice(1);
+    const referred = THE_OBJ.funcs.find(f => f.id === reference)
+        || THE_OBJ.classes.find(c => c.name === reference)
+        || null;
     if (referred) {
-        let text = referred.classList.contains("class") ? referred.querySelector('p:first-of-type').innerText : referred.querySelector('.description').innerText;
-        let index = -1;
+        const html = referred["description_" + lang] || referred.description
+            || TRANSLATE_TEXTS["no-desc-" + lang];
+        const elem = document.createElement("div");
+        elem.innerHTML = html;
+        let text = elem.innerText;
         if (text.length > 100) {
             text = text.slice(0, 100);
             const indexNL = text.indexOf('\n');
             const indexDot = text.indexOf('.') + 1;
             index = indexDot > 0 ? indexDot : indexNL;
-            const ellip = index > 0 && text[index-1] === '.' ? ' [&hellip;]' : '&hellip;'
+            const ellip = index > 0 && text[index - 1] === '.' ? ' [&hellip;]' : '&hellip;'
             text = `${index >= 0 ? text.slice(0, index) : text}${ellip}`;
         }
-        const isDangerous = referred.classList.contains("dangerous");
+        const isDangerous = referred.dangerous;
         if (isDangerous) {
             text = `<span class="material-icons">error</span> ${text}`;
         }
@@ -275,6 +281,7 @@ window.onload = function () {
     const groupByLabel = document.getElementById('group-by-label');
     const groupBySelect = document.getElementById('group-by-select');
     const searchInput = document.getElementById('search');
+    let searchTimeout; // To debounce search
 
     function updateSelectText() {
         groupByLabel.innerText = TRANSLATE_TEXTS['group-by-' + lang];
@@ -296,12 +303,15 @@ window.onload = function () {
         render();
     });
     searchInput.addEventListener('input', () => {
-        if (searchInput.value) {
-            filters.splice(0, filters.length, nameFilter(searchInput.value));
-        } else {
-            filters.splice(0, filters.length);
-        }
-        render();
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+            if (searchInput.value) {
+                filters.splice(0, filters.length, nameFilter(searchInput.value));
+            } else {
+                filters.splice(0, filters.length);
+            }
+            render();
+        }, 300);
     });
 
     THE_OBJ.funcs.forEach(f => {

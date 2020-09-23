@@ -2014,7 +2014,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Puntos de daño infligidos por el objeto cuando ataca. Parece ser siempre el mismo valor que <a href='#Obj::attack'>attack</a> para todos los objetos.",
+            "description_en": "Damage points caused by this object when it attacks. Seems to be the same value as <a href='#Obj::attack'>attack</a> for every object.",
+            "related": ["Obj::attack", "Obj::damage_type", "Obj::Damage:int", "Query::Damage:int", "SelAvgDamage", "Obj::CanAttack:Obj", "Unit::Attack:Obj", "Building::Attack:Obj", "Catapult::Attack:point", "AttackArea:Query_str"]
         }, {
             "id": "Obj::attack",
             "name": "attack",
@@ -2023,7 +2026,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Puntos de daño infligidos por el objeto cuando ataca. Parece ser siempre el mismo valor que <a href='#Obj::damage'>damage</a> para todos los objetos.",
+            "description_en": "Damage points caused by this object when it attacks. Seems to be the same value as <a href='#Obj::damage'>damage</a> for every object.",
+            "related": ["Obj::damage", "Obj::damage_type", "Obj::Damage:int", "Query::Damage:int", "SelAvgDamage", "Obj::CanAttack:Obj", "Unit::Attack:Obj", "Building::Attack:Obj", "Catapult::Attack:point", "AttackArea:Query_str"]
         }, {
             "id": "Obj::damage_type",
             "name": "damage_type",
@@ -2033,7 +2039,9 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "property",
             "params": [],
-            "description": "0 -> cuerpo a cuerpo; 1 -> distancia; 2 -> catapulta; 3 -> pacífico"
+            "description": "Tipo de ataque del objeto (cuerpo a cuerpo, distancia, catapultas o pacífico). Los valores son: <table><tbody><tr><td>0</td><td>Ataque cuerpo a cuerpo</td></tr><tr><td>1</td><td>Ataque a distancia</td></tr><tr><td>2</td><td>Ataque de catapultas y arietes</td></tr><tr><td>3</td><td>Sin ataque</td></tr></tbody></table>",
+            "description_en": "Attack type of the object (melee, ranged, catapults or peaceful). The values are: <table><tbody><tr><td>0</td><td>Melee attack</td></tr><tr><td>1</td><td>Ranged attack</td></tr><tr><td>2</td><td>Attack of catapults and rams</td></tr><tr><td>3</td><td>No attack</td></tr></tbody></table>",
+            "related": ["Obj::damage", "Obj::attack"]
         }, {
             "id": "Obj::range",
             "name": "range",
@@ -2068,7 +2076,8 @@ const THE_OBJ = (function () {
             "type": "property",
             "params": [],
             "description": "Radio del círculo que ocupa el objeto (visible en el editor al seleccionarlo).",
-            "description_en": "Radius of the circle the object occupies (visible in the editor when selected)."
+            "description_en": "Radius of the circle the object occupies (visible in the editor when selected).",
+            "related": ["Hero::FormRadius"]
         }, {
             "id": "Obj::name",
             "name": "name",
@@ -2078,8 +2087,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "property",
             "params": [],
-            "description": "Nombre del objeto",
-            "description_en": "Name of the object",
+            "description": "Nombre de script del objeto. Este no es el nombre visible durante el juego, sino el usado en los scripts y que puedes ver en el editor.",
+            "description_en": "Scripting name of the object. This is not the displayed name during the game, but rather the one used in scripts which you can see in the editor.",
             "related": ["Obj::SetName:str", "Item::name", "Settlement::name", "GetNamedObj:str", "SpawnNamed:str"]
         }, {
             "id": "Obj::IsHeirOf:str",
@@ -2089,7 +2098,9 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}]
+            "params": [{"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
+            "description": "Devuelve <tt>true</tt> si el objeto hereda de la clase dada. Por ejemplo, una instancia de <tt>BHero1</tt> hereda de <tt>Hero</tt> y <tt>Unit</tt>, pero no de <tt>Building</tt>.",
+            "description_en": "Returns <tt>true</tt> if the object inherits from the given class. For example, an instance of <tt>BHero1</tt> inherits from <tt>Hero</tt> and <tt>Unit</tt>, but not from <tt>Building</tt>."
         }, {
             "id": "Obj::IsSentry",
             "name": "IsSentry",
@@ -2186,7 +2197,9 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Indica si el objeto es un campesino/a ambiental. Estos campesinos se mueven por los asentamientos aleatoriamente y no pueden ser seleccionados.",
+            "description_en": "Indicates whether the object is a decorative peasant. These peasants move randomly around the settlements and cannot be selected."
         }, {
             "id": "Obj::SetHealth:int",
             "name": "SetHealth",
@@ -2197,7 +2210,8 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [{"name": "salud", "name_en": "health", "type": 1, "is_ptr": false}],
             "description": "Modifica la <a href='#Obj::health'>salud</a> actual del objeto.",
-            "description_en": "Modifies the current <a href='#Obj::health'>health</a> of the object."
+            "description_en": "Modifies the current <a href='#Obj::health'>health</a> of the object.",
+            "related": ["Obj::health", "Obj::Heal:int", "Druid::FindUnitToHeal", "Query::Heal:int", "Settlement::health", "Squad::health", "SelHealth", "SelMaxHealth", "WaitHealthBetween:Query_int_int_int"]
         }, {
             "id": "Obj::SetMaxHealth:int",
             "name": "SetMaxHealth",
@@ -2208,7 +2222,8 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [{"name": "salud_maxima", "name_en": "max_health", "type": 1, "is_ptr": false}],
             "description": "Modifica la <a href='#Obj::maxhealth'>salud máxima</a> del objeto.",
-            "description_en": "Modifies the <a href='#Obj::maxhealth'>maximum health</a> of the object."
+            "description_en": "Modifies the <a href='#Obj::maxhealth'>maximum health</a> of the object.",
+            "related": ["Obj::maxhealth", "Obj::health", "Obj::Heal:int", "Obj::SetHealth:int"]
         }, {
             "id": "Obj::SetStamina:int",
             "name": "SetStamina",
@@ -2219,7 +2234,8 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [{"name": "number", "type": 1, "is_ptr": false}],
             "description": "Modifica la <a href='#Obj::stamina'>energía</a> del objeto.",
-            "description_en": "Modifies the <a href='#Obj::stamina'>stamina</a> of the object."
+            "description_en": "Modifies the <a href='#Obj::stamina'>stamina</a> of the object.",
+            "related": ["Obj::stamina"]
         }, {
             "id": "Obj::SetMaxStamina:int",
             "name": "SetMaxStamina",
@@ -2230,7 +2246,8 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [{"name": "number", "type": 1, "is_ptr": false}],
             "description": "Modifica la <a href='#Obj::maxstamina'>energía máxima</a> del objeto.",
-            "description_en": "Modifies the <a href='#Obj::maxstamina'>maximum stamina</a> of the object."
+            "description_en": "Modifies the <a href='#Obj::maxstamina'>maximum stamina</a> of the object.",
+            "related": ["Obj::maxstamina"]
         }, {
             "id": "Obj::SetSight:int",
             "name": "SetSight",
@@ -2241,7 +2258,8 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [{"name": "number", "type": 1, "is_ptr": false}],
             "description": "Modifica el <a href='#Obj::sight'>radio de visión</a> del objeto.",
-            "description_en": "Modifies the <a href='#Obj::sight'>sight radius</a> of the object."
+            "description_en": "Modifies the <a href='#Obj::sight'>sight radius</a> of the object.",
+            "related": ["Obj::sight"]
         }, {
             "id": "Obj::GetStaminaDecTime",
             "name": "GetStaminaDecTime",
@@ -2250,7 +2268,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Obtiene el tiempo de decaimiento de la energía del objeto. Algunos objetos, como los espíritus, pierden energía progresivamente; este método retorna cada cuanto tiempo el objeto pierde 1 de energía (en milésimas de segundo) o 0 si no decae.",
+            "description_en": "Obtains the time for the decaying of the stamina of the object. Some objects, like the spirits, lose stamina progressively over time; this method returns each how much time the object loses one stamina point (in milliseconds) or 0 if its stamina does not decay.",
+            "related": ["Obj::stamina"]
         }, {
             "id": "Obj::CmdCount",
             "name": "CmdCount",
@@ -2259,7 +2280,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve el número actual de comandos en la cola de comandos del objeto.",
+            "description_en": "Returns the current number of commands in the command queue of the object.",
+            "related": ["Obj::command", "Obj::CmdCount:str", "Obj::CmdDisable:str", "Obj::CmdEnable:str", "Obj::ExecCmd:str_point_Obj_bool", "Obj::ExecDefaultCmd:point_Obj_bool_bool", "Obj::GetCmdEnable", "Obj::SetCmdEnable:bool", "Obj::AddCommand:bool_str", "Obj::ClearCommands", "Obj::KillCommand", "Obj::SetCommand:str", "ObjList::AddCommand:bool_str", "ObjList::AddCommandOffset:bool_str_point", "ObjList::ClearCommands", "ObjList::KillCommand", "ObjList::SetCommand:str", "ObjList::SetCommandOffset:str_point", "Query::AddCommand:bool_str", "Query::AddCommandOffset:bool_str_point", "Query::ClearCommands", "Query::KillCommand", "Query::SetCommand:str", "Query::SetCommandOffset:str_point", "ObjList::ExecCmd:str_point_Obj_bool", "ObjList::ExecDefaultCmd:point_Obj_bool_bool", "ObjList::GetCanExecCmd:str", "Query::AddDefCmd:point_Obj_bool_bool", "Squad::ClrCmd:int_int_int", "Squad::SetCmd:int_int_int_str", "AIExecCmd:Obj_str"]
         }, {
             "id": "Obj::CmdCount:str",
             "name": "CmdCount",
@@ -2268,7 +2292,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}],
+            "description": "Devuelve el número de veces que el comando dado aparece en la cola de comandos actual del objeto.",
+            "description_en": "Returns the number of times the given command appears in the current command queue of the object.",
+            "related": ["Obj::command", "Obj::CmdCount", "Obj::CmdDisable:str", "Obj::CmdEnable:str", "Obj::ExecCmd:str_point_Obj_bool", "Obj::ExecDefaultCmd:point_Obj_bool_bool", "Obj::GetCmdEnable", "Obj::SetCmdEnable:bool", "Obj::AddCommand:bool_str", "Obj::ClearCommands", "Obj::KillCommand", "Obj::SetCommand:str", "ObjList::AddCommand:bool_str", "ObjList::AddCommandOffset:bool_str_point", "ObjList::ClearCommands", "ObjList::KillCommand", "ObjList::SetCommand:str", "ObjList::SetCommandOffset:str_point", "Query::AddCommand:bool_str", "Query::AddCommandOffset:bool_str_point", "Query::ClearCommands", "Query::KillCommand", "Query::SetCommand:str", "Query::SetCommandOffset:str_point", "ObjList::ExecCmd:str_point_Obj_bool", "ObjList::ExecDefaultCmd:point_Obj_bool_bool", "ObjList::GetCanExecCmd:str", "Query::AddDefCmd:point_Obj_bool_bool", "Squad::ClrCmd:int_int_int", "Squad::SetCmd:int_int_int_str", "AIExecCmd:Obj_str"]
         }, {
             "id": "Obj::ClearCommands",
             "name": "ClearCommands",
@@ -2277,7 +2304,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Elimina todos los comandos en la cola de comandos del objeto.",
+            "description_en": "Removes all the commands from the queue of commands of the object.",
+            "related": ["Obj::command", "Obj::CmdCount", "Obj::CmdDisable:str", "Obj::CmdEnable:str", "Obj::ExecCmd:str_point_Obj_bool", "Obj::ExecDefaultCmd:point_Obj_bool_bool", "Obj::GetCmdEnable", "Obj::SetCmdEnable:bool", "Obj::AddCommand:bool_str", "Obj::KillCommand", "Obj::SetCommand:str", "ObjList::AddCommand:bool_str", "ObjList::AddCommandOffset:bool_str_point", "ObjList::ClearCommands", "ObjList::KillCommand", "ObjList::SetCommand:str", "ObjList::SetCommandOffset:str_point", "Query::AddCommand:bool_str", "Query::AddCommandOffset:bool_str_point", "Query::ClearCommands", "Query::KillCommand", "Query::SetCommand:str", "Query::SetCommandOffset:str_point", "ObjList::ExecCmd:str_point_Obj_bool", "ObjList::ExecDefaultCmd:point_Obj_bool_bool", "ObjList::GetCanExecCmd:str", "Query::AddDefCmd:point_Obj_bool_bool", "Squad::ClrCmd:int_int_int", "Squad::SetCmd:int_int_int_str", "AIExecCmd:Obj_str"]
         }, {
             "id": "Obj::KillCommand",
             "name": "KillCommand",
@@ -2286,7 +2316,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Detiene la ejecución del comando actual del objeto, pasando al siguiente comando en la cola si lo hubiese.",
+            "description_en": "Stops the execution of the current command, starting the next command in the queue of commands of the object if there is any.",
+            "related": ["Obj::command", "Obj::CmdCount", "Obj::CmdDisable:str", "Obj::CmdEnable:str", "Obj::ExecCmd:str_point_Obj_bool", "Obj::ExecDefaultCmd:point_Obj_bool_bool", "Obj::GetCmdEnable", "Obj::SetCmdEnable:bool", "Obj::AddCommand:bool_str", "Obj::ClearCommands", "Obj::SetCommand:str", "ObjList::AddCommand:bool_str", "ObjList::AddCommandOffset:bool_str_point", "ObjList::ClearCommands", "ObjList::KillCommand", "ObjList::SetCommand:str", "ObjList::SetCommandOffset:str_point", "Query::AddCommand:bool_str", "Query::AddCommandOffset:bool_str_point", "Query::ClearCommands", "Query::KillCommand", "Query::SetCommand:str", "Query::SetCommandOffset:str_point", "ObjList::ExecCmd:str_point_Obj_bool", "ObjList::ExecDefaultCmd:point_Obj_bool_bool", "ObjList::GetCanExecCmd:str", "Query::AddDefCmd:point_Obj_bool_bool", "Squad::ClrCmd:int_int_int", "Squad::SetCmd:int_int_int_str", "AIExecCmd:Obj_str"]
         }, {
             "id": "Obj::AddCommand:bool_str",
             "name": "AddCommand",
@@ -2909,7 +2942,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "indice", "name_en": "index", "type": 1, "is_ptr": false}],
+            "description": "Obtiene el <a href='#Item'>Item</a> portado por el objeto en el índice indicado. Los índices de los ítems para este método comienzan en 1 (en lugar de en 0).",
+            "description_en": "Gets the <a href='#Item'>Item</a> held by the object at the given index. The indices start by 1 (rather than 0).",
+            "related": ["Obj::free_item_slots", "Obj::item_count", "Obj::items_count", "Obj::max_items", "Obj::AddItem:str", "Obj::AsItemHolder", "Obj::DropItem:Item_point", "Obj::ExchangeItem:Item_str", "Obj::FindItem:str", "Obj::GetItemIndex:Item", "Obj::GiveItem:Item_Obj", "Obj::HasItem:str", "Obj::OpenItemHolder:ItemHolder", "Obj::PutItem:Item_ItemHolder", "Obj::RemoveAllItems", "Obj::RemoveItem:int", "Obj::RemoveItem:str", "Obj::RemoveItemsOfType:str", "Obj::UseItem:str", "Squad::TakeNearbyItems:int", "GetItem:str"]
         }, {
             "id": "Obj::RemoveItemsOfType:str",
             "name": "RemoveItemsOfType",
@@ -9373,7 +9409,10 @@ const THE_OBJ = (function () {
             "of": 12,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Cadena de texto que identifica el objeto, parece ser la misma que <a href='#Item::name'>Item::name</a>.",
+            "description_en": "Text string which identifies the object, seems to be the same as <a href='#Item::name'>Item::name</a>.",
+            "related": ["Item::name"]
         }, {
             "id": "Item::name",
             "name": "name",
@@ -9382,7 +9421,10 @@ const THE_OBJ = (function () {
             "of": 12,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Cadena de texto que identifica el objeto, parece ser la misma que <a href='#Item::id'>Item::id</a>. Nótese que este es el que aparece en el editor como <i>nombre de script</i>, si se desea obtener el nombre visible utilizar <a href='#Item::display_name'>Item::display_name</a>.",
+        "description_en": "Text string which identifies the object, seems to be the same as <a href='#Item::id'>Item::id</a>. Notice this is the name showing up in the editor as <i>script name</i>; if you wish to obtain the visible name, you should use <a href='#Item::display_name'>Item::display_name</a>.",
+        "related": ["Item::id", "Item::display_name"]
         }, {
             "id": "Item::display_name",
             "name": "display_name",
@@ -9391,7 +9433,9 @@ const THE_OBJ = (function () {
             "of": 12,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Nombre a mostrar del ítem, devuelve el nombre traducido para los objetos originales del juego.",
+            "description_en": "Name of the item to display to the player, it returns the translated value for the original objects of the game."
         }, {
             "id": "Item::Use",
             "name": "Use",
