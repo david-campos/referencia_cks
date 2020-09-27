@@ -3,7 +3,7 @@ La parte necesaria para usar a modo de consulta es únicamente el contenido de l
 abrir el archivo `dist/dump_try.html` con cualquier explorador (Chrome, Firefox, etc).
 
 # Cómo colaborar
-*(English bellow)*
+*(English below)*
 
 En la carpeta `dist/` se encuentra el archivo `data.js` generado a partir
 de `dump_try.xml` usando el código python.
