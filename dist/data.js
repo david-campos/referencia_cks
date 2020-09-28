@@ -2106,8 +2106,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
-            "description": "Devuelve <tt>true</tt> si el objeto hereda de la clase dada. Por ejemplo, una instancia de <tt>BHero1</tt> hereda de <tt>Hero</tt> y <tt>Unit</tt>, pero no de <tt>Building</tt>. <a href='class_list.html'>Aquí</a> puedes encontrar una lista con la jerarquía completa de todas las clases del juego.",
-            "description_en": "Returns <tt>true</tt> if the object inherits from the given class. For example, an instance of <tt>BHero1</tt> inherits from <tt>Hero</tt> and <tt>Unit</tt>, but not from <tt>Building</tt>. You can find the complete hierarchy of classes in the game <a href='class_list.html'>here</a>.",
+            "description": "Devuelve <tt>true</tt> si el objeto hereda de la clase dada. Por ejemplo, una instancia de <tt>BHero1</tt> hereda de <tt>Hero</tt> y <tt>Unit</tt>, pero no de <tt>Building</tt>. <a href='class_list.htm'>Aquí</a> puedes encontrar una lista con la jerarquía completa de todas las clases del juego.",
+            "description_en": "Returns <tt>true</tt> if the object inherits from the given class. For example, an instance of <tt>BHero1</tt> inherits from <tt>Hero</tt> and <tt>Unit</tt>, but not from <tt>Building</tt>. You can find the complete hierarchy of classes in the game <a href='class_list.htm'>here</a>.",
             "related": ["Obj::class"]
         }, {
             "id": "Obj::IsSentry",
