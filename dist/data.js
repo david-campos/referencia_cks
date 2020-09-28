@@ -2106,8 +2106,9 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
-            "description": "Devuelve <tt>true</tt> si el objeto hereda de la clase dada. Por ejemplo, una instancia de <tt>BHero1</tt> hereda de <tt>Hero</tt> y <tt>Unit</tt>, pero no de <tt>Building</tt>.",
-            "description_en": "Returns <tt>true</tt> if the object inherits from the given class. For example, an instance of <tt>BHero1</tt> inherits from <tt>Hero</tt> and <tt>Unit</tt>, but not from <tt>Building</tt>."
+            "description": "Devuelve <tt>true</tt> si el objeto hereda de la clase dada. Por ejemplo, una instancia de <tt>BHero1</tt> hereda de <tt>Hero</tt> y <tt>Unit</tt>, pero no de <tt>Building</tt>. <a href='class_list.html'>Aquí</a> puedes encontrar una lista con la jerarquía completa de todas las clases del juego.",
+            "description_en": "Returns <tt>true</tt> if the object inherits from the given class. For example, an instance of <tt>BHero1</tt> inherits from <tt>Hero</tt> and <tt>Unit</tt>, but not from <tt>Building</tt>. You can find the complete hierarchy of classes in the game <a href='class_list.html'>here</a>.",
+            "related": ["Obj::class"]
         }, {
             "id": "Obj::IsSentry",
             "name": "IsSentry",
@@ -2335,7 +2336,9 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 2, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "principio", "name_en": "beginning", "type": 2, "is_ptr": false}, {"name": "comando", "name_en": "command", "type": 5, "is_ptr": false}],
+            "description": "Añade el comando indicado a la cola de comandos del objeto. Si <tt>principio</tt> es <tt>true</tt> se añadirá al principio de la cola (sin reemplazar al comando actual), si es <tt>false</tt> se añadirá al final de la cola.",
+            "description_en": "Adds the given command at the end of the command queue of the object. If <tt>beginning</tt> is <tt>true</tt>, then it will be added at the beginning of the queue, if it is <tt>false</tt>, the command will be added at the end of the queue."
         }, {
             "id": "Obj::AddCommand:bool_str_point",
             "name": "AddCommand",
