@@ -772,7 +772,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "string", "type": 5, "is_ptr": false}, {"name": "reference", "type": 5, "is_ptr": true}]
+            "params": [{"name": "cadena", "name_en": "string", "type": 5, "is_ptr": false}, {
+                "name": "resto_out",
+                "name_en": "rest_out",
+                "type": 5,
+                "is_ptr": true
+            }],
+            "description": "Retorna el contenido de la cadena <tt>cadena</tt> hasta la primera coma (<tt>,</tt>), descarta la coma y guarda el resto en <tt>resto_out</tt>. Esta función es útil para dividir cadenas de parámetros separados por comas, por ejemplo: <pre>str params, siguiente;<br>StrArray parsed;<br><br>params = \"param1, param2, param3\";<br><br>siguiente = ParseStr(params, params);<br>while(siguiente != \"\") {<br>&nbsp;&nbsp;&nbsp;&nbsp;parsed[parsed.size] = siguiente;<br>&nbsp;&nbsp;&nbsp;&nbsp;siguiente = ParseStr(params, params);<br>}<br>// Ahora parsed contiene \"param1\", \"param2\" y \"param3\" en los índices 0, 1 y 2, respectivamente</pre>",
+            "description_en": "Returns the content of the string <tt>string</tt> up until the first comma (<tt>,</tt>), discards the comma and saves the rest into <tt>rest_out</tt>. This function is useful to divide strings of comma-separated parameters, for example: <pre>str params, next;<br>StrArray parsed;<br><br>params = \"param1, param2, param3\";<br><br>next = ParseStr(params, params);<br>while(next != \"\") {<br>&nbsp;&nbsp;&nbsp;&nbsp;parsed[parsed.size] = next;<br>&nbsp;&nbsp;&nbsp;&nbsp;next = ParseStr(params, params);<br>}<br>// Now parsed contains \"param1\", \"param2\" and \"param3\" in the indices 0, 1 and 2, respectively</pre>"
         }, {
             "id": "StrStr:str_str",
             "name": "StrStr",
@@ -2305,8 +2312,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description": "Elimina todos los comandos en la cola de comandos del objeto.",
-            "description_en": "Removes all the commands from the queue of commands of the object.",
+            "description": "Elimina todos los comandos en la cola de comandos del objeto, deteniendo también el comando actual.",
+            "description_en": "Removes all the commands from the queue of commands of the object, stopping the current command as well.",
             "related": ["Obj::command", "Obj::CmdCount", "Obj::CmdDisable:str", "Obj::CmdEnable:str", "Obj::ExecCmd:str_point_Obj_bool", "Obj::ExecDefaultCmd:point_Obj_bool_bool", "Obj::GetCmdEnable", "Obj::SetCmdEnable:bool", "Obj::AddCommand:bool_str", "Obj::KillCommand", "Obj::SetCommand:str", "ObjList::AddCommand:bool_str", "ObjList::AddCommandOffset:bool_str_point", "ObjList::ClearCommands", "ObjList::KillCommand", "ObjList::SetCommand:str", "ObjList::SetCommandOffset:str_point", "Query::AddCommand:bool_str", "Query::AddCommandOffset:bool_str_point", "Query::ClearCommands", "Query::KillCommand", "Query::SetCommand:str", "Query::SetCommandOffset:str_point", "ObjList::ExecCmd:str_point_Obj_bool", "ObjList::ExecDefaultCmd:point_Obj_bool_bool", "ObjList::GetCanExecCmd:str", "Query::AddDefCmd:point_Obj_bool_bool", "Squad::ClrCmd:int_int_int", "Squad::SetCmd:int_int_int_str", "AIExecCmd:Obj_str"]
         }, {
             "id": "Obj::KillCommand",
@@ -9423,8 +9430,8 @@ const THE_OBJ = (function () {
             "type": "property",
             "params": [],
             "description": "Cadena de texto que identifica el objeto, parece ser la misma que <a href='#Item::id'>Item::id</a>. Nótese que este es el que aparece en el editor como <i>nombre de script</i>, si se desea obtener el nombre visible utilizar <a href='#Item::display_name'>Item::display_name</a>.",
-        "description_en": "Text string which identifies the object, seems to be the same as <a href='#Item::id'>Item::id</a>. Notice this is the name showing up in the editor as <i>script name</i>; if you wish to obtain the visible name, you should use <a href='#Item::display_name'>Item::display_name</a>.",
-        "related": ["Item::id", "Item::display_name"]
+            "description_en": "Text string which identifies the object, seems to be the same as <a href='#Item::id'>Item::id</a>. Notice this is the name showing up in the editor as <i>script name</i>; if you wish to obtain the visible name, you should use <a href='#Item::display_name'>Item::display_name</a>.",
+            "related": ["Item::id", "Item::display_name"]
         }, {
             "id": "Item::display_name",
             "name": "display_name",

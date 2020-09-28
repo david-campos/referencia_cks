@@ -1,0 +1,1459 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="scdoc.xsl"?>
+
+<doc>
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    TYPES    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    TYPES    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    TYPES    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    type    bool    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+<type name="bool">
+
+		<description>
+			This is the bool type. Operations that can be done with variables of that type : "!,&amp;&amp;,||,^".
+		</description>
+</type>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    type    bool    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    type    int    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+<type name="int">
+
+		<description>
+			This is 32-bit int. Operations that can be done with variables of that type : "+=,-=,+,-,=,*,/,%,==,!=,&lt;,&gt;,&lt;=,&gt;=".
+		</description>
+</type>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    type    int    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    type    str    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+<type name="str">
+
+		<description>
+			This is string.
+		</description>
+</type>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    type    str    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    type    TPoint    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+<type name="TPoint">
+
+	<prop name="x" type="int">
+		<description>
+			Holds the x value.
+		</description>
+	</prop>
+
+	<prop name="y" type="int">
+		<description>
+			Holds the y value.
+		</description>
+	</prop>
+
+	<func name="Set" returns="void">
+	  <param name="x" type="int"/>
+	  <param name="y" type="int"/>
+		<description>
+			Sets the x and y property of the point with the given x and y.
+		</description>
+	</func>
+
+	<func name="SetLen" returns="void">
+	  <param name="length" type="int"/>
+		<description>
+			Sets the length of the vector, by changing the x and y properties of the point.???????????????
+		</description>
+	</func>
+
+	<func name="Len" returns="int">
+		<description>
+			Returns the length of the vector.
+		</description>
+	</func>
+
+	<func name="Rot" returns="void">
+	  <param name="degree" type="int"/>
+		<description>
+			Rotates the vector with the given degree.
+		</description>
+	</func>
+
+	<func name="+" returns="TPoint">
+	  <param name="pointA" type="TPoint"/>
+	  <param name="pointB" type="TPoint"/>
+		<description>
+			Returns the sum of pointA and pointB.
+		</description>
+	</func>
+
+	<func name="-" returns="TPoint">
+	  <param name="pointA" type="TPoint"/>
+	  <param name="pointB" type="TPoint"/>
+		<description>
+			Returns the difference of pointA and pointB.
+		</description>
+	</func>
+
+	<func name="*" returns="TPoint">
+	  <param name="vector" type="TPoint"/>
+	  <param name="number" type="int"/>
+		<description>
+			Returns the multiplication of vector by number.
+		</description>
+	</func>
+
+	<func name="/" returns="TPoint">
+	  <param name="vector" type="TPoint"/>
+	  <param name="number" type="int"/>
+		<description>
+			Returns the division of vector by number.
+		</description>
+	</func>
+
+	<func name="=" returns="void">
+	  <param name="pointA" type="TPoint" ptr="1"/>
+	  <param name="pointB" type="TPoint"/>
+		<description>
+			Equals pointA to pointB.
+		</description>
+	</func>
+
+	<func name="==" returns="bool">
+	  <param name="pointA" type="TPoint"/>
+	  <param name="pointB" type="TPoint"/>
+		<description>
+			Returns TRUE if pointA is equal to pointB, otherwise returns FALSE.
+		</description>
+	</func>
+
+	<func name="!=" returns="bool">
+	  <param name="pointA" type="TPoint"/>
+	  <param name="pointB" type="TPoint"/>
+		<description>
+			Returns TRUE if pointA is not equal to pointB, otherwise returns FALSE.
+		</description>
+	</func>
+
+		<description>
+			This is a generic 2D point and vector type.
+		</description>
+</type>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    type    TPoint    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    type    TRect    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+<type name="TRect">
+
+	<prop name="left" type="int" ptr="1">
+		<description>
+			Specifies the x-coordinate of the upper-left corner of a rectangle. The left margin belongs to the area enclosed by the the rectangle.
+		</description>
+	</prop>
+
+	<prop name="top" type="int" ptr="1">
+		<description>
+			Specifies the y-coordinate of the upper-left corner of a rectangle. The top margin belongs to the area enclosed by the the rectangle.
+		</description>
+	</prop>
+
+	<prop name="right" type="int" ptr="1">
+		<description>
+			Specifies the x-coordinate of the lower-right corner of a rectangle. The right margin belongs to the area enclosed by the the rectangle.
+		</description>
+	</prop>
+
+	<prop name="bottom" type="int" ptr="1">
+		<description>
+			Specifies the y-coordinate of the lower-right corner of a rectangle. The bottom margin belongs to the area enclosed by the the rectangle.
+		</description>
+	</prop>
+
+	<func name="Set" returns="void">
+	  <param name="left" type="int"/>
+	  <param name="top" type="int"/>
+	  <param name="right" type="int"/>
+	  <param name="bottom" type="int"/>
+		<description>
+			Sets the left, top, right and bottom property of the rectangle with the given left, top, right and bottom value.
+		</description>
+	</func>
+
+		<description>
+			This is a generic type that defines the coordinates of the upper-left and lower-right corners of a rectangle and methods related with it.
+		</description>
+</type>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    type    TRect    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    type    Obj    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+<type name="Obj">
+
+	<prop name="defense_slash" type="int" ptr="1">
+		<description>
+			Holds the defense against melee attacks.
+		</description>
+	</prop>
+
+	<prop name="defense_pierce" type="int" ptr="1">
+		<description>
+			Holds the defense against ranged attacks.
+		</description>
+	</prop>
+
+	<prop name="health" type="int" ptr="1">
+		<description>
+			Holds the current health.
+		</description>
+	</prop>
+
+	<prop name="maxhealth" type="int" ptr="1">
+		<description>
+			Holds the maximum health, that the object can have.
+		</description>
+	</prop>
+
+	<prop name="sight" type="int" ptr="1">
+		<description>
+			Holds the range in which the object sees enemies.
+		</description>
+	</prop>
+
+	<prop name="pos" type="TPoint" ptr="1">
+		<description>
+			Holds the current position of the object.
+		</description>
+	</prop>
+
+	<prop name="attack" type="int" ptr="1">
+		<description>
+			Holds the attack of the object.
+		</description>
+	</prop>
+
+	<prop name="damage_type" type="int" ptr="1">
+		<description>
+			Holds 1 for objects that have slash damage; 2 for objects that have piercing attack; 3 for object that have siege damaga.
+		</description>
+	</prop>
+
+	<prop name="range" type="int" ptr="1">
+		<description>
+			If the distance to another object(usually an enemy) is greater than the range, the enemy cann't be attacked. The distance is measured on the line, that links the centers of the two objects. At that the radiuses of the objects are subtracted. The range depends on the type of attack the unit can perform. The range is greater than the min_range.
+		</description>
+	</prop>
+
+	<prop name="min_range" type="int" ptr="1">
+		<description>
+			If the distance to another object(usually an enemy) is less than the min_range, the enemy cann't be attacked. The distance is measured on the line, that links the centers of the two objects. At that the radiuses of the objects are subtracted. The min_range is greater than the radius or equal to it but not less.
+		</description>
+	</prop>
+
+	<prop name="radius" type="int">
+		<description>
+			This is the radius of the object. Every object / especially the units / takes place on the map determined by the surface of a circle with that radius and a center - the position of the object on the map / x, y coordinates /.
+		</description>
+	</prop>
+
+	<prop name="player" type="int">
+		<description>
+			Holds the number of the player that controls the object.
+		</description>
+	</prop>
+
+	<prop name="class" type="str">
+		<description>
+			Holds the name of the class from the XML class hierarchy of the object.
+		</description>
+	</prop>
+
+	<prop name="script" type="str">
+		<description>
+			Holds the name of the currently executed method (from the XML class hierarchy).
+		</description>
+	</prop>
+
+	<func name="AsUnit" returns="Unit">
+		<description>
+			if the object is an Unit returns a handle to the Unit; otherwise returns empty reference. Use IsEmpty(Obj handle) to make a difference between these cases.
+		</description>
+	</func>
+
+	<func name="AsBuilding" returns="Building">
+		<description>
+			if the object is a Building returns a handle to the Building; otherwise returns empty reference. Use IsEmpty(Obj handle) to make a difference between these cases.
+		</description>
+	</func>
+
+	<func name="AsHero" returns="Hero">
+		<description>
+			if the object is a Hero returns a handle to the Hero; otherwise returns empty reference. Use IsEmpty(Obj handle) to make a difference between these cases.
+		</description>
+	</func>
+
+	<func name="AsTower" returns="Tower">
+		<description>
+			if the object is a Tower returns a handle to the Tower; otherwise returns empty reference. Use IsEmpty(Obj handle) to make a difference between these cases.
+		</description>
+	</func>
+
+	<func name="AsWagon" returns="Wagon">
+		<description>
+			if the object is an Wagon returns a handle to the Wagon; otherwise returns empty reference. Use IsEmpty(Obj handle) to make a difference between these cases.
+		</description>
+	</func>
+
+	<func name="AsSettlement" returns="Settlement">
+		<description>
+			if the object is a Settlement returns a handle to the Settlement; otherwise returns empty reference. Use IsEmpty(Obj handle) to make a difference between these cases.
+		</description>
+	</func>
+
+	<func name="ClearCommands" returns="void">
+		<description>
+			Clears all commands in the queue, except the currently executed.
+		</description>
+	</func>
+
+	<func name="KillCommand" returns="void">
+		<description>
+			Stops the execution of the current command and clears it from the queue.
+		</description>
+	</func>
+
+	<func name="AddCommand" returns="void">
+	  <param name="beginning" type="bool"/>
+	  <param name="commandName" type="str"/>
+		<description>
+			Adds a command, that does not require parameters, to the queue of the object. If beginning is TRUE the command is added to the head of the queue; otherwise the command is added to its tail.
+		</description>
+	</func>
+
+	<func name="AddCommand" returns="void">
+	  <param name="beginning" type="bool"/>
+	  <param name="commandName" type="str"/>
+	  <param name="pointParameter" type="TPoint"/>
+		<description>
+			Adds a command, that requires a point as parameter - pointParameter, to the queue of the object. If beginning is TRUE the command is added to the head of the queue; otherwise the command is added to its tail.
+		</description>
+	</func>
+
+	<func name="AddCommand" returns="void">
+	  <param name="beginning" type="bool"/>
+	  <param name="commandName" type="str"/>
+	  <param name="objectParameter" type="Obj"/>
+		<description>
+			Adds a command, that requires an object as parameter - objectParameter, to the queue of the object. If beginning is TRUE the command is added to the head of the queue; otherwise the command is added to its tail.
+		</description>
+	</func>
+
+	<func name="DistTo" returns="int">
+	  <param name="farPoint" type="TPoint"/>
+		<description>
+			Returns the distance to the farPoint.
+		</description>
+	</func>
+
+	<func name="DistTo" returns="int">
+	  <param name="farObject" type="Obj"/>
+		<description>
+			Returns the distance to the farObject.
+		</description>
+	</func>
+
+	<func name="IsEnemy" returns="bool">
+	  <param name="unknownObj" type="Obj"/>
+		<description>
+			Returns TRUE if the unknownObj is an enemy of the current Object, otherwise returns FALSE.
+		</description>
+	</func>
+
+	<func name="IsAlive" returns="bool">
+		<description>
+			Returns TRUE if the object is alive, otherwise returns FALSE.
+		</description>
+	</func>
+
+	<func name="GetEnemies" returns="ObjList">
+		<description>
+		</description>
+	</func>
+
+	<func name="Kill" returns="void">
+		<description>
+			Destroys the object.
+		</description>
+	</func>
+
+	<func name="pr" returns="void">
+	  <param name="number" type="str"/>
+		<description>
+			Used by the debug mode to print strings. Debug mode prints to the console the current action/state of the object.
+		</description>
+	</func>
+
+	<func name="pr" returns="void">
+	  <param name="number" type="int"/>
+		<description>
+			Used by the debug mode to print numbers. Debug mode prints to the console the current action/state of the object.
+		</description>
+	</func>
+
+	<func name="GetDebug" returns="bool">
+		<description>
+			Returns TRUE if the object is in debug mode, otherwise returns FALSE.
+		</description>
+	</func>
+
+	<func name="SetDebug" returns="void">
+	  <param name="number" type="bool"/>
+		<description>
+			Sets the object in debug mode. Debug mode prints to the console the current action/state of the object.
+		</description>
+	</func>
+
+		<description>
+			This is a generic type for all objects on the map. Objects are units, buildings etc. This type corresponds to the "Object" class in the XML class hierarchy.
+		</description>
+</type>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    type    Obj    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    type    Building    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+<type name="Building" parent="Obj">
+
+	<func name="BestTarget" returns="Obj">
+		<description>
+			Returns the nearest enemy Obj, that can be attacked.
+		</description>
+	</func>
+
+	<func name="Attack" returns="bool" latent="1">
+	  <param name="enemyObject" type="Obj"/>
+		<description>
+			Returns TRUE if the enemyObject can be attacked, otherwise returns FALSE.
+		</description>
+	</func>
+
+		<description>
+			This is a generic type for all structures/buildings on the map.
+		</description>
+</type>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    type    Building    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    type    Wagon    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+<type name="Wagon ______________ UNDER CONSTRUCTION _____ 00 ________ " parent="Unit">
+
+	<func name="SetSource" returns="void">
+		<description>
+		</description>
+	</func>
+
+	<func name="SetDestination" returns="void">
+		<description>
+		</description>
+	</func>
+
+	<func name="GetMaxLoad" returns="int">
+		<description>
+		</description>
+	</func>
+
+	<func name="GetGoldLoad" returns="int">
+		<description>
+		</description>
+	</func>
+
+	<func name="GetFoodLoad" returns="int">
+		<description>
+		</description>
+	</func>
+
+		<description>
+			This is a generic type for all wagons on the map.
+		</description>
+</type>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    type    Wagon    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    type    Unit    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+<type name="Unit" parent="Obj">
+
+	<prop name="speed" type="int" ptr="1">
+		<description>
+			Holds the speed value of the unit.
+		</description>
+	</prop>
+
+	<prop name="speed_factor" type="int" ptr="1">
+		<description>
+			Holds the speed_factor of the unit. If speed_factor is equal to 200 it doubles the speed of the unit.
+		</description>
+	</prop>
+
+	<prop name="energy" type="int" ptr="1">
+		<description>
+			Holds the energy value of the unit.
+		</description>
+	</prop>
+
+	<prop name="user" type="int" ptr="1">
+		<description>
+			Holds the user value of the unit.
+		</description>
+	</prop>
+
+	<prop name="dest" type="TPoint">
+		<description>
+			Holds the destination point of the unit.
+		</description>
+	</prop>
+
+	<func name="Goto" returns="bool" latent="1">
+	  <param name="number" type="Obj"/>
+	  <param name="number" type="int"/>
+	  <param name="number" type="int"/>
+		<description>
+		</description>
+	</func>
+
+	<func name="Goto" returns="bool" latent="1">
+	  <param name="number" type="TPoint"/>
+	  <param name="number" type="int"/>
+		<description>
+		</description>
+	</func>
+
+	<func name="HasPath" returns="bool">
+		<description>
+			Returns TRUE if the unit has a destination and is moving to it, FALSE if the unit has reached the destination.
+		</description>
+	</func>
+
+	<func name="CancelPath" returns="void">
+		<description>
+			Cancels the current movement of the unit.
+		</description>
+	</func>
+
+	<func name="BestTarget" returns="Obj">
+		<description>
+			Returns the nearest enemy Obj, that can be attacked.
+		</description>
+	</func>
+
+	<func name="InRange" returns="bool">
+	  <param name="object" type="Obj"/>
+		<description>
+			Returns TRUE if the object is in the range of the unit, otherwise returns FALSE.
+		</description>
+	</func>
+
+	<func name="Attack" returns="bool" latent="1">
+	  <param name="enemy" type="Obj"/>
+		<description>
+			Returns TRUE if the enemy can be attacked, otherwise returns FALSE. For that bool Attack() uses the function bool InRange( Obj object );
+		</description>
+	</func>
+
+	<func name="AttachTo" returns="bool">
+	  <param name="hero" type="Hero"/>
+		<description>
+			Returns TRUE if the unit can be attached to the hero, otherwise returns FALSE.
+		</description>
+	</func>
+
+	<func name="DetachFrom" returns="void">
+	  <param name="hero" type="Hero"/>
+		<description>
+			Detaches the unit from the hero.
+		</description>
+	</func>
+
+	<func name="Idle" returns="void">
+	  <param name="time" type="int"/>
+	  <param name="number" type="int"/>
+		<description>
+			Plays the idle animation within the given 'time' in milliseconds if the engine allows it. The unit has an Idle status.
+		</description>
+	</func>
+
+	<func name="Taunt" returns="void">
+	  <param name="time" type="int"/>
+	  <param name="number" type="int"/>
+		<description>
+			Plays the taunt animation within the given 'time' in milliseconds if the engine allows it. The unit has a Taunt status.
+		</description>
+	</func>
+
+		<description>
+			This is a generic type for all units on the map.
+		</description>
+</type>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    type    Unit    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    type    Hero    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+<type name="Hero" parent="Unit">
+
+	<func name="army" returns="ObjList">
+		<description>
+			Returns an ObjList, containing the units, attached to the Hero.
+		</description>
+	</func>
+
+		<description>
+			This is a generic type for all heroes on the map.
+		</description>
+</type>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    type    Hero    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    type    Settlement    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+<type name="Settlement" parent="Building">
+
+	<func name="AttachBuilding" returns="void">
+	  <param name="building" type="Building"/>
+		<description>
+			Attaches a building to the settlement.
+		</description>
+	</func>
+
+		<description>
+			This is a generic type for all settlements on the map.
+		</description>
+</type>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    type    Settlement    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    type    ObjList    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+<type name="ObjList">
+
+	<func name="Count" returns="int">
+		<description>
+			Returns the number of objects in the list.
+		</description>
+	</func>
+
+	<func name="[" returns="Obj">
+	  <param name="number" type="int"/>
+		<description>
+			Makes possible addressing the objects by a number like in an array. For example Obj = ObjList[0]; is the first object in the list.
+		</description>
+	</func>
+
+	<func name="First" returns="Obj">
+		<description>
+			Returns the first object in the list.
+		</description>
+	</func>
+
+	<func name="FirstUnit" returns="Unit">
+		<description>
+			Returns the first unit in the list.
+		</description>
+	</func>
+
+	<func name="Contains" returns="bool">
+	  <param name="object" type="Obj"/>
+		<description>
+			Returns TRUE if the ObjList contains the object, otherwise returns FALSE.
+		</description>
+	</func>
+
+	<func name="Add" returns="void">
+	  <param name="object" type="Obj"/>
+		<description>
+			Adds the object at the end of the ObjList.
+		</description>
+	</func>
+
+	<func name="Remove" returns="void">
+	  <param name="object" type="Obj"/>
+		<description>
+			Removes the object from the ObjList.
+		</description>
+	</func>
+
+	<func name="ClearDead" returns="void">
+		<description>
+			Clears from the list all objects with health = 0 and all deleted objects.
+		</description>
+	</func>
+
+		<description>
+			This is a generic type for all structures/buildings on the map.
+		</description>
+</type>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    type    ObjList    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    TYPES    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    TYPES    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    TYPES    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    GROUPS    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    GROUPS    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    GROUPS    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    Point    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+<group name="Point">
+
+	<func name="ptGetX" returns="int">
+	  <param name="point" type="TPoint"/>
+		<description>
+			Returns the x property of the point.
+		</description>
+	</func>
+
+	<func name="ptGetY" returns="int">
+	  <param name="point" type="TPoint"/>
+		<description>
+			Returns the y property of the point.
+		</description>
+	</func>
+
+	<func name="ptSet" returns="void">
+	  <param name="point" type="TPoint" ptr="1"/>
+	  <param name="x" type="int"/>
+	  <param name="y" type="int"/>
+		<description>
+			Sets the x and y property of the point with the given x and y.
+		</description>
+	</func>
+
+	<func name="ptInRect" returns="bool">
+	  <param name="point" type="TPoint"/>
+	  <param name="rectangle" type="TRect"/>
+		<description>
+			Returns TRUE if the point is in the area that the rectangle encloses, otherwise returns FALSE.
+		</description>
+	</func>
+
+	<func name="Dist" returns="int">
+	  <param name="pointA" type="TPoint"/>
+	  <param name="pointB" type="TPoint"/>
+		<description>
+			Returns the distance between pointA and pointB.
+		</description>
+	</func>
+
+		<description>
+			Functions for performing basic operations with points.
+		</description>
+</group>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    Point    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    Rect    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+<group name="Rect">
+
+	<func name="rcIntersect" returns="TRect">
+	  <param name="rectangleA" type="TRect"/>
+	  <param name="rectangleB" type="TRect"/>
+		<description>
+			Intersects rectangleA with rectangleB and returns a new rectangle in result.
+		</description>
+	</func>
+
+	<func name="rcAdd" returns="TRect">
+	  <param name="rectangleA" type="TRect"/>
+	  <param name="rectangleB" type="TRect"/>
+		<description>
+			Adds rectangleA to rectangleB and returns a new rectangle in result.
+		</description>
+	</func>
+
+	<func name="rcGetCenter" returns="TPoint">
+	  <param name="rectangle" type="TRect"/>
+		<description>
+			Returns a point with x and y properties that are the coordinates of the geometrical center of the rectangle.
+		</description>
+	</func>
+
+		<description>
+			Functions for performing basic operations with rectangles.
+		</description>
+</group>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    Rect    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    Math    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+<group name="Math">
+
+	<func name="abs" returns="int">
+	  <param name="number" type="int"/>
+		<description>
+			Returns the absolute value of the number.
+		</description>
+	</func>
+	<func name="rand" returns="int">
+	  <param name="value" type="int"/>
+		<description>
+			Returns a random integer in the range 0 to value - 1.
+		</description>
+	</func>
+	<func name="sqrt" returns="float">
+	  <param name="number" type="float"/>
+		<description>
+			Returns the square-root of the number.
+		</description>
+	</func>
+
+		<description>
+			Mathematical functions for performing basic numeric operations such as absolute, random etc.
+		</description>
+</group>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    Math    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    String    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+<group name="String">
+
+	<func name="StrCmp" returns="int">
+	  <param name="stringA" type="str"/>
+	  <param name="stringB" type="str"/>
+		<description>
+			Returns TRUE if stringA is identical to stringB, otherwise returns FALSE.
+		</description>
+	</func>
+
+	<func name="StrCat" returns="void">
+	  <param name="stringA" type="str" ptr="1"/>
+	  <param name="stringB" type="str"/>
+		<description>
+			Appends stringB to stringA. In result stringA is changed.
+		</description>
+	</func>
+
+	<func name="+" returns="str">
+	  <param name="stringA" type="str"/>
+	  <param name="stringB" type="str"/>
+		<description>
+			Appends stringB to stringA. In result stringA is changed. stringA = stringA + stringB.
+		</description>
+	</func>
+
+	<func name="FindChrPos" returns="int">
+	  <param name="string" type="str"/>
+	  <param name="char" type="int"/>
+		<description>
+			Returns the position of the char in the string.
+		</description>
+	</func>
+
+	<func name="GetChr" returns="int">
+	  <param name="string" type="str"/>
+	  <param name="position" type="int"/>
+		<description>
+			Returns the char at a given position in the string.
+		</description>
+	</func>
+
+	<func name="IsNull" returns="bool">
+	  <param name="string" type="str"/>
+		<description>
+			Returns TRUE if the string is empty, otherwise returns FALSE.
+		</description>
+	</func>
+
+	<func name="StrLen" returns="int">
+	  <param name="string" type="str"/>
+		<description>
+			Returns the length of the string.
+		</description>
+	</func>
+
+		<description>
+			Functions, that perform basic operations with strings such as comparing, concatenating etc.
+		</description>
+</group>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    String    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    Script Behaviour    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+<group name="Script Behaviour">
+
+	<func name="Sleep" returns="void">
+	  <param name="time" type="int"/>
+		<description>
+			Stops the execution of the script for the given time in milliseconds. The script awaits the specified time to run out.
+		</description>
+	</func>
+
+	<func name="KillScript" returns="void">
+		<description>
+			Breaks the execution of the current script.
+		</description>
+	</func>
+
+	<func name="Run" returns="bool">
+	  <param name="scriptFileName" type="str"/>
+		<description>
+			Executes the script in the file with the given scriptFileName.
+		</description>
+	</func>
+
+		<description>
+			Functions, that rule the script behaviour.
+		</description>
+</group>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    Script Behaviour    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    Environment    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+<group name="Environment">
+
+	<func name="EnvWriteString" returns="void">
+	  <param name="nameStr" type="str"/>
+	  <param name="string" type="str"/>
+		<description>
+			Creates a global variable if it doesn't exist with name 'nameStr' and assigns it the given string.
+		</description>
+	</func>
+
+	<func name="EnvWriteInt" returns="void">
+	  <param name="nameInt" type="str"/>
+	  <param name="value" type="int"/>
+		<description>
+			Creates a global variable if it doesn't exist with name 'nameInt' and assigns it the given value.
+		</description>
+	</func>
+
+	<func name="EnvReadString" returns="str">
+	  <param name="nameStr" type="str"/>
+		<description>
+			Returns the value of the global variable 'nameStr'.
+		</description>
+	</func>
+
+	<func name="EnvReadInt" returns="int">
+	  <param name="nameInt" type="str"/>
+		<description>
+			Returns the value of the global variable 'nameInt'.
+		</description>
+	</func>
+
+	<func name="EnvList" returns="void">
+	  <param name="number" type="int"/>
+		<description>
+			Starts a window with the current values of the global variables.
+		</description>
+	</func>
+
+	<func name="EnvExport" returns="void">
+	  <param name="number" type="str"/>
+		<description>
+			Creates a script exported to a file, a sequence of commands EnvWriteString and EnvWriteInt, that will create the current environment.
+		</description>
+	</func>
+
+		<description>
+			Provides support for a global environment composed of variables of type string or int.
+		</description>
+</group>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    Environment    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    Console    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+<group name="Console">
+
+	<func name="pr" returns="void">
+	  <param name="string" type="str"/>
+		<description>
+			Outputs the string to the console.
+		</description>
+	</func>
+
+	<func name="pr" returns="void">
+	  <param name="number" type="int"/>
+		<description>
+			Outputs the number to the console.
+		</description>
+	</func>
+
+	<func name="cls" returns="void">
+		<description>
+			Clears the console.
+		</description>
+	</func>
+
+	<func name="quit" returns="void">
+		<description>
+			Terminates the application.
+		</description>
+	</func>
+
+	<func name="Black" returns="void">
+		<description>
+			Clears the screen to black.
+		</description>
+	</func>
+
+		<description>
+			Functions for management the console. The console is a text field with several lines, placed over the game, specific to the game engine and the editor that allows to issue different commands by pressing the Enter and typing them; seeing the results on the screen as text messages that can be also errors.
+		</description>
+</group>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    Console    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    Editor    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+<group name="Editor">
+
+	<func name="Choose" returns="str">
+	  <param name="namelist" type="str"/>
+	  <param name="list" type="str"/>
+	  <param name="number" type="int"/>
+		<description>
+			Starts a dialog that lets the user to choose from a list.
+		</description>
+	</func>
+
+	<func name="ListClasses" returns="str">
+		<description>
+			Returns a list of the XML classes used in the game. The list is used by the dialog started with the function Choose.
+		</description>
+	</func>
+
+	<func name="ListFolder" returns="str">
+	  <param name="folderName" type="str"/>
+		<description>
+			Returns a list of filenames from the folderName. The list is used by the dialog started with the function Choose.
+		</description>
+	</func>
+
+	<func name="ListTerrains" returns="str">
+		<description>
+			Returns a list of the terrains used in the game. The list is used by the dialog started with the function Choose.
+		</description>
+	</func>
+
+	<func name="MiniMap" returns="void">
+		<description>
+			Starts a mini map.
+		</description>
+	</func>
+
+	<func name="SetMiniMapRect" returns="void">
+	  <param name="rectangle" type="TRect"/>
+		<description>
+			Sets the mini map margins accordingly to the given rectangle.
+		</description>
+	</func>
+
+	<func name="FlatTerrain" returns="void">
+		<description>
+			Makes the whole terrain flat by setting its height to 0.
+		</description>
+	</func>
+
+	<func name="GetMapSize" returns="TPoint">
+		<description>
+			Returns a point, that contains in its x property the horizontal and in its y property the vertical sizes of the current map.
+		</description>
+	</func>
+
+	<func name="ExportMapObj" returns="void">
+	  <param name="fileName" type="str"/>
+		<description>
+			Saves the map objects on the map to the given fileName.
+		</description>
+	</func>
+
+	<func name="ImportMapObj" returns="void">
+	  <param name="fileName" type="str"/>
+		<description>
+			Loads the map objects on the map from the given fileName.
+		</description>
+	</func>
+
+	<func name="RandomTerrain" returns="void">
+	  <param name="fileName" type="str"/>
+		<description>
+			Generates a random terrain of the map. fileName is name of a file, where are set the options for the random generation.
+		</description>
+	</func>
+
+	<func name="SaveTerrain" returns="void">
+	  <param name="fileName" type="str"/>
+		<description>
+			Saves terrain to a set of files with names beginning with the given fileName.
+		</description>
+	</func>
+
+	<func name="LoadTerrain" returns="void">
+	  <param name="fileName" type="str"/>
+		<description>
+			Loads terrain from a set of files with names beginning with the given fileName.
+		</description>
+	</func>
+
+	<func name="GetSelection" returns="ObjList">
+		<description>
+			Returns an ObjList, containing the currently selected objects / for example - units /.
+		</description>
+	</func>
+
+	<func name="PlaceEx" returns="Obj">
+	  <param name="class" type="str"/>
+	  <param name="x" type="int"/>
+	  <param name="y" type="int"/>
+	  <param name="player" type="int"/>
+		<description>
+			Places an object of the defined class on the position, defined by x and y. The object belongs to the defined player.
+		</description>
+	</func>
+
+		<description>
+			Functions for editing the map and objects on it.
+		</description>
+</group>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    Editor    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    Command    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+<group name="Command">
+
+	<func name="ClearCommandsMultiple" returns="void">
+	  <param name="objList" type="ObjList"/>
+		<description>
+			Clears all commands in the queue of all objects in the objList.
+		</description>
+	</func>
+
+	<func name="AddCommandMultiple" returns="void">
+	  <param name="objList" type="ObjList"/>
+	  <param name="beginning" type="bool"/>
+	  <param name="commandName" type="str"/>
+		<description>
+			Adds a command, that does not require parameters, to the queues of all objects in the list objList. If beginning is TRUE the command is added to the head of the queue; otherwise the command is added to its tail.
+		</description>
+	</func>
+
+	<func name="AddCommandMultiple" returns="void">
+	  <param name="objList" type="ObjList"/>
+	  <param name="beginning" type="bool"/>
+	  <param name="commandName" type="str"/>
+	  <param name="pointParameter" type="TPoint"/>
+		<description>
+			Adds a command, that requires a point as parameter - pointParameter, to the queues of all objects in the list objList. If beginning is TRUE the command is added to the head of the queue; otherwise the command is added to its tail.
+		</description>
+	</func>
+
+	<func name="AddCommandMultiple" returns="void">
+	  <param name="objList" type="ObjList"/>
+	  <param name="beginning" type="bool"/>
+	  <param name="commandName" type="str"/>
+	  <param name="objectParameter" type="Obj"/>
+		<description>
+			Adds a command, that requires an object as parameter - objectParameter, to the queues of all objects in the list objList. If beginning is TRUE the command is added to the head of the queue; otherwise the command is added to its tail.
+		</description>
+	</func>
+
+	<func name="ScriptEditor" returns="void">
+		<description>
+			Starts the ScriptEditor dialog. There you can edit scripts.
+		</description>
+	</func>
+
+		<description>
+			Functions for editing and issuing commands for the units on the map.
+		</description>
+</group>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    Command functions    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    Music and Sound    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+<group name="Music and Sound">
+
+	<func name="PlayMusic" returns="void">
+	  <param name="mp3FileName" type="str"/>
+		<description>
+			Plays a music from the given mp3FileName. The filename must have extension '.mp3'.
+		</description>
+	</func>
+
+	<func name="MusicPlaying" returns="bool">
+		<description>
+			Returns TRUE if curently is playing a music, otherwise returns FALSE.
+		</description>
+	</func>
+
+	<func name="PlaySound" returns="void">
+	  <param name="wavFileName" type="str"/>
+		<description>
+			Plays a sound from the given wavFileName. The filename must have extension '.wav'.
+		</description>
+	</func>
+
+		<description>
+			Functions for managing the music and the sounds in the game.
+		</description>
+</group>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    Music and Sound    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    View control    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+<group name="View control">
+
+	<func name="ViewPos" returns="TPoint">
+		<description>
+			Returns a map point, that is the center of the current View.
+		</description>
+	</func>
+
+	<func name="View" returns="void">
+	  <param name="point" type="TPoint"/>
+	  <param name="number" type="bool"/>
+		<description>
+			Centers the View on a map point.
+		</description>
+	</func>
+
+		<description>
+			Functions, that give control of the View.
+		</description>
+</group>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    View control    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    Game control    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+<group name="Game control">
+
+	<func name="GetSpeed" returns="int">
+		<description>
+			Returns the curent game speed.
+		</description>
+	</func>
+
+	<func name="SetSpeed" returns="void">
+	  <param name="newSpeed" type="int"/>
+		<description>
+			Sets the game speed to newSpeed.
+		</description>
+	</func>
+
+	<func name="SetPlayer" returns="void">
+	  <param name="newPlayer" type="int"/>
+		<description>
+			All objects that have the same value of the player property as newPlayer will be controlled by the current human player, that means he will operate with them.
+		</description>
+	</func>
+
+	<func name="ToggleFog" returns="void">
+		<description>
+			Toggles the map fog.
+		</description>
+	</func>
+
+		<description>
+			Functions, that give control of the Game.
+		</description>
+</group>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    Game control    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    Other    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+<group name="Other functions">
+
+	<func name="DumpStack" returns="void">
+		<description>
+		</description>
+	</func>
+
+	<func name="DumpCode" returns="void">
+	  <param name="number" type="int"/>
+		<description>
+		</description>
+	</func>
+
+	<func name="Invalidate" returns="void">
+		<description>
+		</description>
+	</func>
+
+	<func name="InvalidateAllToggle" returns="void">
+		<description>
+		</description>
+	</func>
+
+	<func name="ToggleInvRects" returns="void">
+		<description>
+		</description>
+	</func>
+
+	<func name="ToggleFPS" returns="void">
+		<description>
+			Turns on a mode that shows the status of the FPS and the memory size that the game/editor is currently using.
+		</description>
+	</func>
+
+	<func name="SetCursor" returns="void">
+	  <param name="filename" type="str"/>
+		<description>
+			Sets the cursor with a picture from the file with the given filename.
+		</description>
+	</func>
+
+	<func name="MakePassable" returns="void">
+		<description>
+			Makes the whole map passable for all units.
+		</description>
+	</func>
+
+	<func name="RebuildPass" returns="void">
+		<description>
+			Rebuilds the passability for all units accordingly to the terrain.
+		</description>
+	</func>
+
+	<func name="AddFD" returns="void">
+		<description>
+			Adds squares on the map so the curves of the terrain can be seen very precisely.
+		</description>
+	</func>
+
+	<func name="RemFD" returns="void">
+		<description>
+			Removes the squares on the map placed with the function AddFD.
+		</description>
+	</func>
+
+	<func name="Splash" returns="void">
+	  <param name="number" type="str"/>
+	  <param name="number" type="str"/>
+		<description>
+		</description>
+	</func>
+
+	<func name="InsDecor" returns="void">
+	  <param name="number" type="int"/>
+	  <param name="number" type="int"/>
+	  <param name="number" type="int"/>
+		<description>
+			Inserts decor.
+		</description>
+	</func>
+
+	<func name="DelDecor" returns="void">
+	  <param name="number" type="int"/>
+	  <param name="number" type="int"/>
+		<description>
+			Deletes decor.
+		</description>
+	</func>
+
+	<func name="PreLit" returns="void">
+		<description>
+		</description>
+	</func>
+
+	<func name="RayOfLight" returns="void">
+	  <param name="number" type="int"/>
+	  <param name="number" type="int"/>
+	  <param name="number" type="int"/>
+	  <param name="number" type="int"/>
+		<description>
+		</description>
+	</func>
+
+	<func name="DumpFuncToXML" returns="void">
+		<description>
+			Lists all script functions in a XML file.
+		</description>
+	</func>
+
+	<func name="SHU" returns="void">
+		<description>
+		</description>
+	</func>
+
+	<func name="Globals" returns="glob">
+		<description>
+		</description>
+	</func>
+
+	<func name="glob::Now" returns="int">
+	  <param name="number" type="glob"/>
+		<description>
+		</description>
+	</func>
+
+	<func name="NearestUnit" returns="Unit">
+	  <param name="objList" type="ObjList"/>
+	  <param name="point" type="TPoint"/>
+		<description>
+			Returns the nearest unit from the object list to the point.
+		</description>
+	</func>
+
+	<func name="ListFolderEx" returns="str">
+	  <param name="number" type="str"/>
+	  <param name="number" type="str"/>
+		<description>
+		</description>
+	</func>
+
+	<func name="DeepWater" returns="void">
+	  <param name="number" type="int"/>
+	  <param name="number" type="int"/>
+	  <param name="number" type="int"/>
+		<description>
+		</description>
+	</func>
+
+		<description>
+			Functions, that don't belong to another group.
+		</description>
+</group>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    Other    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    Functions with BUGS    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+<group name="Functions with BUGS">
+
+	<func name="pause" returns="void">
+		<description>
+			Does nothing but raises dust.
+		</description>
+	</func>
+
+	<func name="Clear" returns="void">
+		<description>
+			???????????Clears the debug flags for all game objects.
+		</description>
+	</func>
+
+	<func name="ExploreAll" returns="void">
+		<description>
+			Shows the whole map as if it is already explored.
+		</description>
+	</func>
+
+	<func name="ToggleZoomMap" returns="void">
+		<description>
+			Zooms the main map.
+		</description>
+	</func>
+
+		<description>
+			Functions, that are like a ZOO for BUGS.
+		</description>
+</group>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    Functions with BUGS    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    Functions to DELETE    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	{
+<group name="Functions to DELETE">
+
+	<func name="PlaySound1" returns="void">
+		<description>
+			Does something suspicious. The func is created from somebody once upon a time to no purpose.
+		</description>
+	</func>
+
+	<func name="PlaySound2" returns="void">
+		<description>
+			Does something suspicious. The func is created from somebody once upon a time to no purpose.
+		</description>
+	</func>
+
+	<func name="PlaySound3" returns="void">
+		<description>
+			Does something suspicious. The func is created from somebody once upon a time to no purpose.
+		</description>
+	</func>
+
+	<func name="PlaySound4" returns="void">
+		<description>
+			Does something suspicious. The func is created from somebody once upon a time to no purpose.
+		</description>
+	</func>
+
+		<description>
+			Functions, that MUST be DELETED.
+		</description>
+</group>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    group    Functions to DELETE    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    GROUPS    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    GROUPS    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    GROUPS    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	}
+
+</doc>
