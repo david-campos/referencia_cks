@@ -2291,7 +2291,7 @@ const THE_OBJ = (function () {
             "params": [],
             "description": "Devuelve el número actual de comandos en la cola de comandos del objeto.",
             "description_en": "Returns the current number of commands in the command queue of the object.",
-            "related": ["Obj::command", "Obj::CmdCount:str", "Obj::CmdDisable:str", "Obj::CmdEnable:str", "Obj::ExecCmd:str_point_Obj_bool", "Obj::ExecDefaultCmd:point_Obj_bool_bool", "Obj::GetCmdEnable", "Obj::SetCmdEnable:bool", "Obj::AddCommand:bool_str", "Obj::ClearCommands", "Obj::KillCommand", "Obj::SetCommand:str", "ObjList::AddCommand:bool_str", "ObjList::AddCommandOffset:bool_str_point", "ObjList::ClearCommands", "ObjList::KillCommand", "ObjList::SetCommand:str", "ObjList::SetCommandOffset:str_point", "Query::AddCommand:bool_str", "Query::AddCommandOffset:bool_str_point", "Query::ClearCommands", "Query::KillCommand", "Query::SetCommand:str", "Query::SetCommandOffset:str_point", "ObjList::ExecCmd:str_point_Obj_bool", "ObjList::ExecDefaultCmd:point_Obj_bool_bool", "ObjList::GetCanExecCmd:str", "Query::AddDefCmd:point_Obj_bool_bool", "Squad::ClrCmd:int_int_int", "Squad::SetCmd:int_int_int_str", "AIExecCmd:Obj_str"]
+            "related": ["Obj::command", "Obj::CmdCount:str"]
         }, {
             "id": "Obj::CmdCount:str",
             "name": "CmdCount",
@@ -2301,9 +2301,9 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "number", "type": 5, "is_ptr": false}],
-            "description": "Devuelve el número de veces que el comando dado aparece en la cola de comandos actual del objeto.",
-            "description_en": "Returns the number of times the given command appears in the current command queue of the object.",
-            "related": ["Obj::command", "Obj::CmdCount", "Obj::CmdDisable:str", "Obj::CmdEnable:str", "Obj::ExecCmd:str_point_Obj_bool", "Obj::ExecDefaultCmd:point_Obj_bool_bool", "Obj::GetCmdEnable", "Obj::SetCmdEnable:bool", "Obj::AddCommand:bool_str", "Obj::ClearCommands", "Obj::KillCommand", "Obj::SetCommand:str", "ObjList::AddCommand:bool_str", "ObjList::AddCommandOffset:bool_str_point", "ObjList::ClearCommands", "ObjList::KillCommand", "ObjList::SetCommand:str", "ObjList::SetCommandOffset:str_point", "Query::AddCommand:bool_str", "Query::AddCommandOffset:bool_str_point", "Query::ClearCommands", "Query::KillCommand", "Query::SetCommand:str", "Query::SetCommandOffset:str_point", "ObjList::ExecCmd:str_point_Obj_bool", "ObjList::ExecDefaultCmd:point_Obj_bool_bool", "ObjList::GetCanExecCmd:str", "Query::AddDefCmd:point_Obj_bool_bool", "Squad::ClrCmd:int_int_int", "Squad::SetCmd:int_int_int_str", "AIExecCmd:Obj_str"]
+            "description": "Devuelve el número de veces que el comando dado aparece en la cola de comandos actual del objeto. En <a href='class.htm'>esta página</a> puedes ver todos los comandos posibles para cualquier <a href='#Obj::class'>clase</a> del juego.",
+            "description_en": "Returns the number of times the given command appears in the current command queue of the object. You can find every possible command for a given <a href='#Obj::class'>class</a> in <a href='class.htm?en'>this page</a>.",
+            "related": ["Obj::command", "Obj::CmdCount"]
         }, {
             "id": "Obj::ClearCommands",
             "name": "ClearCommands",
@@ -2315,7 +2315,7 @@ const THE_OBJ = (function () {
             "params": [],
             "description": "Elimina todos los comandos en la cola de comandos del objeto, deteniendo también el comando actual.",
             "description_en": "Removes all the commands from the queue of commands of the object, stopping the current command as well.",
-            "related": ["Obj::command", "Obj::CmdCount", "Obj::CmdDisable:str", "Obj::CmdEnable:str", "Obj::ExecCmd:str_point_Obj_bool", "Obj::ExecDefaultCmd:point_Obj_bool_bool", "Obj::GetCmdEnable", "Obj::SetCmdEnable:bool", "Obj::AddCommand:bool_str", "Obj::KillCommand", "Obj::SetCommand:str", "ObjList::AddCommand:bool_str", "ObjList::AddCommandOffset:bool_str_point", "ObjList::ClearCommands", "ObjList::KillCommand", "ObjList::SetCommand:str", "ObjList::SetCommandOffset:str_point", "Query::AddCommand:bool_str", "Query::AddCommandOffset:bool_str_point", "Query::ClearCommands", "Query::KillCommand", "Query::SetCommand:str", "Query::SetCommandOffset:str_point", "ObjList::ExecCmd:str_point_Obj_bool", "ObjList::ExecDefaultCmd:point_Obj_bool_bool", "ObjList::GetCanExecCmd:str", "Query::AddDefCmd:point_Obj_bool_bool", "Squad::ClrCmd:int_int_int", "Squad::SetCmd:int_int_int_str", "AIExecCmd:Obj_str"]
+            "related": ["Obj::command", "Obj::CmdCount", "Obj::KillCommand", "ObjList::ClearCommands", "Query::ClearCommands", "Squad::ClrCmd:int_int_int"]
         }, {
             "id": "Obj::KillCommand",
             "name": "KillCommand",
@@ -2327,7 +2327,7 @@ const THE_OBJ = (function () {
             "params": [],
             "description": "Detiene la ejecución del comando actual del objeto, pasando al siguiente comando en la cola si lo hubiese.",
             "description_en": "Stops the execution of the current command, starting the next command in the queue of commands of the object if there is any.",
-            "related": ["Obj::command", "Obj::CmdCount", "Obj::CmdDisable:str", "Obj::CmdEnable:str", "Obj::ExecCmd:str_point_Obj_bool", "Obj::ExecDefaultCmd:point_Obj_bool_bool", "Obj::GetCmdEnable", "Obj::SetCmdEnable:bool", "Obj::AddCommand:bool_str", "Obj::ClearCommands", "Obj::SetCommand:str", "ObjList::AddCommand:bool_str", "ObjList::AddCommandOffset:bool_str_point", "ObjList::ClearCommands", "ObjList::KillCommand", "ObjList::SetCommand:str", "ObjList::SetCommandOffset:str_point", "Query::AddCommand:bool_str", "Query::AddCommandOffset:bool_str_point", "Query::ClearCommands", "Query::KillCommand", "Query::SetCommand:str", "Query::SetCommandOffset:str_point", "ObjList::ExecCmd:str_point_Obj_bool", "ObjList::ExecDefaultCmd:point_Obj_bool_bool", "ObjList::GetCanExecCmd:str", "Query::AddDefCmd:point_Obj_bool_bool", "Squad::ClrCmd:int_int_int", "Squad::SetCmd:int_int_int_str", "AIExecCmd:Obj_str"]
+            "related": ["Obj::command", "Obj::CmdCount", "Obj::ClearCommands", "ObjList::KillCommand", "Query::KillCommand"]
         }, {
             "id": "Obj::AddCommand:bool_str",
             "name": "AddCommand",
@@ -2337,9 +2337,9 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "principio", "name_en": "beginning", "type": 2, "is_ptr": false}, {"name": "comando", "name_en": "command", "type": 5, "is_ptr": false}],
-            "description": "Añade el comando indicado a la cola de comandos del objeto. Si <tt>principio</tt> es <tt>true</tt> se añadirá al principio de la cola (sin reemplazar al comando actual), si es <tt>false</tt> se añadirá al final de la cola.",
-            "description_en": "Adds the given command at the end of the command queue of the object. If <tt>beginning</tt> is <tt>true</tt>, then it will be added at the beginning of the queue, if it is <tt>false</tt>, the command will be added at the end of the queue.",
-            "related": ["Obj::command", "Obj::CmdCount", "Obj::AddCommand:bool_str_point", "Obj::AddCommand:bool_str_Obj", "Obj::ClearCommands", "Obj::SetCommand:str", "ObjList::AddCommand:bool_str", "ObjList::AddCommandOffset:bool_str_point", "ObjList::ClearCommands", "ObjList::KillCommand", "ObjList::SetCommand:str", "ObjList::SetCommandOffset:str_point", "Query::AddCommand:bool_str", "Query::AddCommandOffset:bool_str_point", "Query::ClearCommands", "Query::KillCommand", "Query::SetCommand:str", "Query::SetCommandOffset:str_point"]
+            "description": "Añade el comando indicado a la cola de comandos del objeto. Si <tt>principio</tt> es <tt>true</tt> se añadirá al principio de la cola (sin reemplazar al comando actual), si es <tt>false</tt> se añadirá al final de la cola. En <a href='class.htm'>esta página</a> puedes ver todos los comandos posibles para cualquier clase del juego.",
+            "description_en": "Adds the given command at the end of the command queue of the object. If <tt>beginning</tt> is <tt>true</tt>, then it will be added at the beginning of the queue, if it is <tt>false</tt>, the command will be added at the end of the queue. You can find every possible command for a given class in <a href='class.htm?en'>this page</a>.",
+            "related": ["Obj::command", "Obj::CmdCount", "Obj::AddCommand:bool_str_point", "Obj::AddCommand:bool_str_Obj", "Obj::SetCommand:str", "ObjList::AddCommand:bool_str", "Query::AddCommand:bool_str"]
         }, {
             "id": "Obj::AddCommand:bool_str_point",
             "name": "AddCommand",
@@ -2348,11 +2348,15 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 2, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "principio", "name_en": "beginning", "type": 2, "is_ptr": false}, {
+                "name": "comando",
+                "name_en": "command",
                 "type": 5,
                 "is_ptr": false
-            }, {"name": "number", "type": 6, "is_ptr": false}]
+            }, {"name": "destino", "name_en": "target", "type": 6, "is_ptr": false}],
+            "description": "Añade el comando indicado, con el punto dado como argumento, a la cola de comandos del objeto. Si <tt>principio</tt> es <tt>true</tt> se añadirá al principio de la cola (sin reemplazar al comando actual), si es <tt>false</tt> se añadirá al final de la cola. En <a href='class.htm'>esta página</a> puedes ver todos los comandos posibles para cualquier clase del juego con sus argumentos (si el argumento es un <a href='#point' class='type'>point</a>, puedes usar este método).",
+            "description_en": "Adds the given command, with the given point as argument, at the end of the command queue of the object. If <tt>beginning</tt> is <tt>true</tt>, then it will be added at the beginning of the queue, if it is <tt>false</tt>, the command will be added at the end of the queue. You can find every possible command for a given class with its arguments in <a href='class.htm?en'>this page</a> (if the argument is a <a href='#point' class='type'>point</a>, you can use this method).",
+            "related": ["Obj::command", "Obj::CmdCount", "Obj::AddCommand:bool_str", "Obj::AddCommand:bool_str_Obj", "Obj::SetCommand:str_point", "ObjList::AddCommand:bool_str_point", "ObjList::AddCommandOffset:bool_str_point","Query::AddCommand:bool_str_point", "Query::AddCommandOffset:bool_str_point"]
         }, {
             "id": "Obj::AddCommand:bool_str_Obj",
             "name": "AddCommand",
@@ -2361,11 +2365,15 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 2, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "principio", "name_en": "beginning", "type": 2, "is_ptr": false}, {
+                "name": "comando",
+                "name_en": "command",
                 "type": 5,
                 "is_ptr": false
-            }, {"name": "number", "type": 11, "is_ptr": false}]
+            }, {"name": "objetivo", "name_en": "target", "type": 11, "is_ptr": false}],
+            "description": "Añade el comando indicado, con el objeto dado como argumento, a la cola de comandos del objeto. Si <tt>principio</tt> es <tt>true</tt> se añadirá al principio de la cola (sin reemplazar al comando actual), si es <tt>false</tt> se añadirá al final de la cola. En <a href='class.htm'>esta página</a> puedes ver todos los comandos posibles para cualquier clase del juego con sus argumentos (si el argumento es un Object o hereda de esta clase, puedes usar este método).",
+            "description_en": "Adds the given command, with the given object as argument, at the end of the command queue of the object. If <tt>beginning</tt> is <tt>true</tt>, then it will be added at the beginning of the queue, if it is <tt>false</tt>, the command will be added at the end of the queue. You can find every possible command for a given class with its arguments in <a href='class.htm?en'>this page</a> (if the argument is an Object or it inherits from this class, you can use this method).",
+            "related": ["Obj::command", "Obj::CmdCount", "Obj::AddCommand:bool_str", "Obj::AddCommand:bool_str_point", "Obj::SetCommand:str_Obj", "ObjList::AddCommand:bool_str_Obj", "Query::AddCommand:bool_str_Obj"]
         }, {
             "id": "Obj::SneakCommand:str",
             "name": "SneakCommand",
@@ -2374,7 +2382,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "comando", "name_en": "command", "type": 5, "is_ptr": false}],
+            "description": "Introduce el comando indicado para ser ejecutado inmediatamente, moviendo el <a href='#Obj::command'>comando actual</a> a la cabeza de la cola de comandos del objeto. En <a href='class.htm'>esta página</a> puedes ver todos los comandos posibles para cualquier clase del juego (este método solo funcionará con comandos que no tengan ningún argumento).",
+            "description_en": "Introduces the given command to be immediately executed, moving the <a href='#Obj::command'>current command</a> to the head of the command queue of the object. You can find every possible command for a given class with its arguments in <a href='class.htm?en'>this page</a> (this method will only work with commands with no arguments).",
+            "related": ["Obj::command", "Obj::AddCommand:bool_str", "Obj::SetCommand:str"]
         }, {
             "id": "Obj::SetCommand:str",
             "name": "SetCommand",
@@ -2383,7 +2394,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "comando", "name_en": "command", "type": 5, "is_ptr": false}],
+            "description": "Limpia la cola de comandos del objeto, detiene el comando actual e inicia el comando dado. En <a href='class.htm'>esta página</a> puedes ver todos los comandos posibles para cualquier clase del juego (este método solo funcionará con comandos que no tengan ningún argumento).",
+            "description_en": "Clears the queue of commands of the object, kills the current command and starts the given one. You can find every possible command for a given class with its arguments in <a href='class.htm?en'>this page</a> (this method will only work with commands with no arguments).",
+            "related": ["Obj::command", "Obj::ClearCommands", "Obj::AddCommand:bool_str", "Obj::SneakCommand:str", "Obj::SetCommand:str_point", "Obj::SetCommand:str_Obj", "ObjList::SetCommand:str", "Query::SetCommand:str"]
         }, {
             "id": "Obj::SetCommand:str_point",
             "name": "SetCommand",
@@ -2392,7 +2406,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "comando", "name_en": "command", "type": 5, "is_ptr": false}, {"name": "destino", "name_en": "target", "type": 6, "is_ptr": false}],
+            "description": "Limpia la cola de comandos del objeto, detiene el comando actual e inicia el comando dado con el punto dado como argumento. En <a href='class.htm'>esta página</a> puedes ver todos los comandos posibles para cualquier clase del juego (este método solo funcionará con comandos que tengan un argumento de tipo <tt>point</tt>).",
+            "description_en": "Clears the queue of commands of the object, kills the current command and starts the given one with the passed point as argument. You can find every possible command for a given class with its arguments in <a href='class.htm?en'>this page</a> (this method will only work with commands with one argument of type <tt>point</tt>).",
+            "related": ["Obj::command", "Obj::ClearCommands", "Obj::AddCommand:bool_str_point", "Obj::SetCommand:str", "Obj::SetCommand:str_Obj", "ObjList::SetCommand:str_point", "ObjList::SetCommandOffset:str_point", "Query::SetCommand:str_point", "Query::SetCommandOffset:str_point"]
         }, {
             "id": "Obj::SetCommand:str_Obj",
             "name": "SetCommand",
@@ -2401,7 +2418,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "comando", "name_en": "command", "type": 5, "is_ptr": false}, {"name": "objetivo", "name_en": "target", "type": 11, "is_ptr": false}],
+            "description": "Limpia la cola de comandos del objeto, detiene el comando actual e inicia el comando dado con el objeto dado como argumento. En <a href='class.htm'>esta página</a> puedes ver todos los comandos posibles para cualquier clase del juego (este método solo funcionará con comandos que tengan un argumento de tipo <tt>Obj</tt> o alguna clase que herede de <tt>Obj</tt>).",
+            "description_en": "Clears the queue of commands of the object, kills the current command and starts the given one with the passed object as argument. You can find every possible command for a given class with its arguments in <a href='class.htm?en'>this page</a> (this method will only work with commands with one argument of type <tt>Obj</tt> or some class that inherits from it).",
+            "related": ["Obj::command", "Obj::ClearCommands", "Obj::AddCommand:bool_str_Obj", "Obj::SetCommand:str", "Obj::SetCommand:str_point", "ObjList::SetCommand:str_Obj", "Query::SetCommand:str_Obj"]
         }, {
             "id": "Obj::ExecDefaultCmd:point_Obj_bool_bool",
             "name": "ExecDefaultCmd",
@@ -2410,11 +2430,15 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "punto", "name_en": "point", "type": 6, "is_ptr": false}, {
+                "name": "objeto",
+                "name_en": "object",
                 "type": 11,
                 "is_ptr": false
-            }, {"name": "number", "type": 2, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
+            }, {"name": "reemplazar", "name_en": "replace", "type": 2, "is_ptr": false}, {"name": "tecla_ctrl", "name_en": "ctrl_key", "type": 2, "is_ptr": false}],
+            "description": "<p>Ejecuta el comando por defecto para el objeto al hacer click en el objetivo. El comando será seleccionado según el tipo y <a href='#Obj::IsValid'>validez</a> de <tt>objeto</tt>. El parámetro <tt>tecla_ctrl</tt> ha de ponerse a <tt>true</tt> si se desea ejecutar el comando que se ejecutaría al mantener pulsada la tecla <i>control</i> cuando hacemos click sobre el objetivo.</p><p>Si el parámetro <tt>reemplazar</tt> es <tt>true</tt>, se reemplazará la cola de comandos del objeto (similar a <a href='#Obj::SetCommand'>Obj::SetCommand</a>). Si <tt>reemplazar</tt> es <tt>false</tt>, en cambio, el comando será añadido al final de la cola (como <a href='#Obj::AddCommand:bool_str'>Obj::AddCommand</a>).</p><p>En <a href='class.htm'>esta página</a> puedes ver todos los comandos posibles para cualquier clase del juego, así como los comandos por defecto para cada objetivo.</p>",
+            "description_en": "<p>Executes the default command for the object on clicking the target. The command will be selected by the type and <a href='#Obj::IsValid'>validity</a> of <tt>object</tt>. If we wish to execute the default command that would be executed when the control key is pressed, <tt>ctrl_key</tt> must be <tt>true</tt>.</p><p>If the <tt>replace</tt> argument is <tt>true</tt>, the command will replace the whole queue of commands of the object (similar to <a href='#Obj::SetCommand'>Obj::SetCommand</a>). If it is <tt>false</tt> instead, the command will just be added at the end of the queue (like <a href='#Obj::AddCommand:bool_str'>Obj::AddCommand</a> with the first parameter as <tt>false</tt>).</p><p>You can find every possible command for a given class with its arguments in <a href='class.htm?en'>this page</a>, as well as the default commands to be executed for each target.</p>",
+            "related": ["Obj::command", "Obj::ExecCmd:str_point_Obj_bool", "Obj::SetCommand:str", "Obj::AddCommand:bool_str", "ObjList::ExecDefaultCmd:point_Obj_bool_bool"]
         }, {
             "id": "Obj::ExecCmd:str_point_Obj_bool",
             "name": "ExecCmd",
@@ -2423,11 +2447,15 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "comando", "name_en": "command", "type": 5, "is_ptr": false}, {
+                "name": "punto",
+                "name_en": "point",
                 "type": 6,
                 "is_ptr": false
-            }, {"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
+            }, {"name": "objeto", "name_en": "object", "type": 11, "is_ptr": false}, {"name": "reemplazar", "name_en": "replace", "type": 2, "is_ptr": false}],
+            "description": "<p>Ejecuta el comando indicado con el punto / objeto indicados como parámetro. Según el comando indicado será relevante un parámetro o el otro.</p><p>Si el parámetro <tt>reemplazar</tt> es <tt>true</tt>, se reemplazará la cola de comandos del objeto (similar a <a href='#Obj::SetCommand'>Obj::SetCommand</a>). Si <tt>reemplazar</tt> es <tt>false</tt>, en cambio, el comando será añadido al final de la cola (como <a href='#Obj::AddCommand:bool_str'>Obj::AddCommand</a>).</p><p>En <a href='class.htm'>esta página</a> puedes ver todos los comandos posibles para cualquier clase del juego, así como los comandos por defecto para cada objetivo.</p>",
+            "description_en": "<p>Executes the specified command with the given target point / object. Depending on the object, one argument or the other will be relevant.</p><p>If the <tt>replace</tt> argument is <tt>true</tt>, the command will replace the whole queue of commands of the object (similar to <a href='#Obj::SetCommand'>Obj::SetCommand</a>). If it is <tt>false</tt> instead, the command will just be added at the end of the queue (like <a href='#Obj::AddCommand:bool_str'>Obj::AddCommand</a> with the first parameter as <tt>false</tt>).</p><p>You can find every possible command for a given class with its arguments in <a href='class.htm?en'>this page</a>, as well as the default commands to be executed for each target.</p>",
+            "related": ["Obj::command", "Obj::ExecDefaultCmd:point_Obj_bool_bool", "Obj::SetCommand:str", "Obj::AddCommand:bool_str", "ObjList::ExecCmd:str_point_Obj_bool"]
         }, {
             "id": "Obj::CmdDisable:str",
             "name": "CmdDisable",

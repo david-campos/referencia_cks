@@ -17,6 +17,7 @@ class Node:
         self.parent = None
         self.commands = {}
         self.properties = {}
+        self.default_commands = {}
 
     def add_child(self, child):
         self.children.append(child)
@@ -32,6 +33,9 @@ class Node:
 
     def add_command(self, command, params):
         self.commands[command] = params
+
+    def add_default_command(self, target, commands):
+        self.default_commands[target] = commands
 
     def find(self, id):
         if len(self.children) > 0:
@@ -75,7 +79,8 @@ class Node:
     def serialize_single(self):
         obj = {
             'properties': self.properties,
-            'commands': self.commands
+            'commands': self.commands,
+            'def_cmds': self.default_commands
         }
         if self.parent:
             obj['parent'] = self.parent_name
@@ -91,6 +96,7 @@ class Node:
             self.id: {
                 'properties': self.properties,
                 'commands': self.commands,
+                'def_cmds': self.default_commands,
                 'children': children
             }
         }
@@ -125,6 +131,15 @@ for file in class_files:
                         print('File ' + command_tag.attrib['vs'] + ' contains no params signature?')
 
                 node.add_command(command_tag.attrib['sig'], params)
+        for defcommand_tag in root.iter('defaultcmd'):
+            target = defcommand_tag.attrib['target']
+            commands = []
+            for command in defcommand_tag.iter('cmd'):
+                commands.append({
+                    'cmd': command.attrib['name'],
+                    'ctrl': 'ctrl' in command.attrib and command.attrib['ctrl'] == '1'
+                })
+            node.add_default_command(target, commands)
     else:
         print("NO ID! " + file)
 

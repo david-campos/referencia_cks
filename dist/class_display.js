@@ -1,12 +1,16 @@
 window.onload = function () {
     const lang = location.search === '?en' ? 0 : 1;
+
+    if (location.hash === "" || location.hash === "#") {
+        location.replace("#Object");
+    }
     const className = decodeURIComponent(location.hash.substring(1));
 
     // Class select
     const classSelect = document.getElementById('class-select');
     const classSelectLabel = document.getElementById('class-select-label');
     classSelectLabel.innerText = ["Go to another class: ", "Ir a otra clase: "][lang];
-    let selectHtml = "";
+    let selectHtml = '';
     const allClasses = Object.keys(CLASSES_DETAILS);
     allClasses.sort();
     for (const otherClass of allClasses) {
@@ -17,40 +21,58 @@ window.onload = function () {
     classSelect.innerHTML = selectHtml;
     classSelect.addEventListener('change', () => {
         location.assign("#" + classSelect.value);
-        location.reload();
+        window.onload();
     });
 
     // Rest
     const container = document.getElementById('class');
-    if (location.hash === "" || location.hash === "#") {
-        container.innerText = ["Please, specify a class", "Por favor, especifica una clase."][lang];
-    } else {
-        const inherited = ["Inherited from", "Heredado de"][lang];
-        if (className) {
-            const cmmds = commands(className);
-            let commands_html = "";
-            for (const [k, v] of Object.entries(cmmds)) {
-                commands_html += (k === className ? '' : `<h3>${inherited} ${k}</h3>`)
-                    + `<div class='details'>${Object.entries(v).map(([command, params]) =>
-                        `<div><span class="meth">${command}</span>(<wbr>${params.slice(1).map(([t, n]) =>
-                            `${n}: <span class='type'>${t}</span>`).join(", ")
-                        })</div>`).join("\n")
-                    }</div>`;
-            }
-            const properties_html = Object.entries(properties(className)).map(([cls, props]) =>
-                (cls === className ? '' : `<h3>${inherited} ${cls}</h3>`)
-                + `<div class='details'>${Object.entries(props).map(([prop, val]) =>
-                    `<div><span class='prop-key'>${prop}</span>: <span class='prop-value'>"${val}"</span></div>`).join("\n")}</div>`
-            ).join("\n");
-            const cmd = ["Commands", "Comandos"][lang];
-            const prp = ["Properties", "Propiedades"][lang];
-            container.innerHTML = `<h1><span class="class-route">${route(className).map(
-                cls => `<a href='#${cls}' onclick='setTimeout(() => location.reload())'>${cls}</a>`
-                ).join("&nbsp;/ ")}&nbsp;/</span><br>${className}</h1>`
-                + `<details class="class-details" open><summary><h2>${cmd}</h2></summary>${commands_html}</details> `
-                + `<details class="class-details" open><summary><h2>${prp}</h2></summary>${properties_html}</details> `;
-        } else {
-            container.innerText = ["Class not found.", "Clase no encontrada"][lang];
+    const inherited = ["Inherited from", "Heredado de"][lang];
+    if (className) {
+        const cmmds = commands(className);
+        let commands_html = "";
+        for (const [k, v] of Object.entries(cmmds)) {
+            commands_html += (k === className ? '' : `<h3>${inherited} ${k}</h3>`)
+                + `<div class='details'>${Object.entries(v).map(([command, params]) =>
+                    `<div><span class="meth">${command}</span>(<wbr>${params.slice(1).map(([t, n]) =>
+                        `${n}: <span class='type'>${t}</span>`).join(", ")
+                    })</div>`).join("\n")
+                }</div>`;
         }
+        const defcommands_html = Object.entries(defaultCmds(className)).map(([cls, defCmds]) =>
+            (cls === className ? '' : `<h3>${inherited} ${cls}</h3>`)
+            + `<div class='details'>${Object.entries(defCmds).map(([target, cmds]) =>
+                `<div><span class='def-cmd-tgt'>${target !== ''
+                    ? target : ['No target', 'Sin objetivo'][lang]
+                }</span>: ${cmds.map(cmd =>
+                    `<span class='def-cmd-cmd'>${cmd.cmd + (cmd.ctrl ? '*' : '')}</span>`
+                ).join(", ")}</div>`
+            ).join("")}</div>`
+        ).join("\n");
+        const properties_html = Object.entries(properties(className)).map(([cls, props]) =>
+            (cls === className ? '' : `<h3>${inherited} ${cls}</h3>`)
+            + `<div class='details'>${Object.entries(props).map(([prop, val]) =>
+                `<div><span class='prop-key'>${prop}</span>: <span class='prop-value'>"${val}"</span></div>`).join("\n")}</div>`
+        ).join("\n");
+        const childrenNodes = Object.entries(CLASSES_DETAILS)
+            .filter(([_, node]) => node.parent === className)
+            .map(([childName]) => childName);
+        childrenNodes.sort();
+        const children_html = `<div class='details'>${childrenNodes.map(
+            childName => `<a href="#${childName}" onclick="setTimeout(() => location.reload())">${childName}</a>`
+        ).join("")}</div>`;
+        const cmd = ["Commands", "Comandos"][lang];
+        const defcmd = ["Default commands", "Comandos por defecto"][lang];
+        const prp = ["Properties", "Propiedades"][lang];
+        const children = ["Direct children", "Hijos directos"][lang];
+        container.innerHTML = `<h1><span class="class-route">${route(className).map(
+            cls => `<a href='#${cls}' onclick='setTimeout(() => location.reload())'>${cls}</a>`
+            ).join("&nbsp;/ ")}&nbsp;/</span><br>${className}</h1>`
+            + `<details class="class-details"><summary><h2>${children}</h2></summary>${children_html}</details> `
+            + `<details class="class-details" open><summary><h2>${cmd}</h2></summary>${commands_html}</details> `
+            + `<details class="class-details"><summary><h2>${defcmd}</h2></summary><p>${
+                ["* = with control key", "* = con tecla control"][lang]}</p>${defcommands_html}</details> `
+            + `<details class="class-details" open><summary><h2>${prp}</h2></summary>${properties_html}</details> `;
+    } else {
+        container.innerText = ["Class not found.", "Clase no encontrada"][lang];
     }
 }

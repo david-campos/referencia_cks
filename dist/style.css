@@ -233,7 +233,7 @@ details {
 
 .related {
     color: #555;
-    font-style: italic;
+    font-size: .9em;
 }
 
 .related a {
@@ -407,9 +407,11 @@ table.class-list td:hover .path {
     line-height: 1.5;
     font-family: "Roboto Mono";
     justify-content: space-evenly;
+    align-items: flex-start;
 }
 
-.class-details .details > div {
+.class-details .details > div,
+.class-details .details > a {
     background: #ccc;
     border-radius: 5px;
     margin: 5px;
@@ -418,8 +420,13 @@ table.class-list td:hover .path {
     flex: 1 1 auto;
 }
 
-.class-details .prop-key {
+.class-details .prop-key,
+.class-details .def-cmd-cmd {
     color: #005580;
+}
+
+.class-details .def-cmd-tgt {
+    color: #800000;
 }
 
 .class-details > h3 {
