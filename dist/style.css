@@ -1,7 +1,20 @@
 body {
     padding-top: 2rem;
     color: #333;
-    font-family: "Noto Sans"
+    font-family: "Noto Sans";
+    font-size: 12pt;
+}
+
+@media (max-width: 600px) {
+    body {
+        font-size: 10pt;
+    }
+}
+
+@media (max-width: 500px) {
+    body {
+        font-size: 9pt;
+    }
 }
 
 a {
@@ -65,7 +78,7 @@ a:hover .tooltiptext {
 }
 
 .method, .operator, .property {
-    word-break: keep-all;
+    word-break: break-word;
 }
 
 .method.dangerous, .operator.dangerous, .property.dangerous {
@@ -88,11 +101,26 @@ header {
     align-items: center;
 }
 
+.footer {
+    display: flex;
+}
+
+.footer-sec {
+    flex: 1;
+}
+
+@media (max-width: 900px) {
+    .footer {
+        flex-direction: column;
+    }
+}
+
 pre {
     font-family: "Roboto Mono";
     padding-left: 1em;
     color: #000080;
     background-color: #eee;
+    overflow-x: auto;
 }
 
 tt {
@@ -229,6 +257,10 @@ details {
     font-family: "Noto Sans";
     text-indent: 0;
     margin: 1rem 0;
+}
+
+.description {
+    overflow-x: auto;
 }
 
 .related {

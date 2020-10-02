@@ -17,7 +17,9 @@ const TRANSLATE_TEXTS = {
     "search-": "Filtrar por nombre...",
     "search-en": "Filter by name...",
     "related-": "Relacionado:",
-    "related-en": "Related:"
+    "related-en": "Related:",
+    "documented-": "Documentado:",
+    "documented-en": "Documented: "
 }
 
 function escapeHtmlAndNameCorrection(unsafe) {
@@ -34,11 +36,11 @@ function renderType(type, isPtr, classes) {
 }
 
 function addReturn(func, classes) {
-    return `<span class="return"><span class="two_dots">: </span>${renderType(func.returns, func.returns_ptr, classes)}</span>`;
+    return `<wbr><span class="return"><span class="two_dots">:&nbsp;</span>${renderType(func.returns, func.returns_ptr, classes)}</span>`;
 }
 
 function renderParam(param, classes) {
-    return `<span class="param"><span class="name">${escapeHtmlAndNameCorrection(param['name_' + lang] || param.name)}</span><span class="two_dots mid">:</span>${renderType(param.type, param.is_ptr, classes)}</span>`
+    return `<wbr><span class="param"><span class="name">${escapeHtmlAndNameCorrection(param['name_' + lang] || param.name)}</span><span class="two_dots mid">:</span>${renderType(param.type, param.is_ptr, classes)}</span>`
 }
 
 function renderRelated(relatedList) {
@@ -148,7 +150,7 @@ function renderFunction(func, classes) {
                                 <span class="in">::</span>
                                 <span class="meth">${escapeHtmlAndNameCorrection(func.name)}</span>
                                 <span class="par open">(</span>
-                                ${func.params.map(p => renderParam(p, classes)).join('<span class="sep">,</span>')}
+                                ${func.params.map(p => renderParam(p, classes)).join('<span class="sep">,<wbr></span>')}
                                 <span class="par close">)</span>
                                 ${addReturn(func, classes)}
                             </span>
@@ -161,7 +163,7 @@ function renderFunction(func, classes) {
                                 ${func.dangerous ? '<span class="material-icons">error</span>' : ''}
                                 <span class="meth">${escapeHtmlAndNameCorrection(func.name)}</span>
                                 <span class="par open">(</span>
-                                ${func.params.map(p => renderParam(p, classes)).join('<span class="sep">,</span>')}
+                                ${func.params.map(p => renderParam(p, classes)).join('<span class="sep">,<wbr></span>')}
                                 <span class="par close">)</span>
                                 ${addReturn(func, classes)}
                             </span>
@@ -293,6 +295,7 @@ window.onload = function () {
     const groupByLabel = document.getElementById('group-by-label');
     const groupBySelect = document.getElementById('group-by-select');
     const searchInput = document.getElementById('search');
+    const documented = document.getElementById('documented');
     let searchTimeout; // To debounce search
 
     function updateSelectText() {
@@ -302,11 +305,19 @@ window.onload = function () {
         searchInput.setAttribute('placeholder', TRANSLATE_TEXTS['search-' + lang]);
     }
 
+    function updateDocumented() {
+        const nDocumented = THE_OBJ.funcs.filter(f => 'description' in f).length
+            + THE_OBJ.funcs.filter(f => 'description_en' in f).length;
+        const nTotal = 2 * THE_OBJ.funcs.length;
+        documented.innerHTML = `${TRANSLATE_TEXTS['documented-' + lang]} ${Math.round(nDocumented/nTotal*100)}%`;
+    }
+
     lang_select.value = lang;
     lang_select.addEventListener('change', () => {
         lang = lang_select.value;
         location.replace((lang === 'en' ? '' : '?en') + location.hash);
         updateSelectText();
+        updateDocumented();
         render();
     });
     groupBySelect.addEventListener('change', () => {
@@ -331,6 +342,7 @@ window.onload = function () {
     });
 
     updateSelectText();
+    updateDocumented();
     sortFuncs();
     render();
     // For links with hash to work after first render
