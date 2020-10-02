@@ -46,7 +46,19 @@ function renderRelated(relatedList) {
     return `<div class="related">${TRANSLATE_TEXTS['related-' + lang]} ${relatedList.map(elementId => {
         const element = funcsById.get(elementId);
         const of = element.of ? THE_OBJ.classes[element.of].name + "::" : '';
-        return `<a href="#${elementId}">${of}${escapeHtmlAndNameCorrection(element.name)}</a>`
+        if (element.type === 'operator') {
+            const param0 = element.params.length === 2
+                ? typeForIdentifier(element.params[0].type, element.params[0].is_ptr, THE_OBJ.classes) + ' '
+                : '';
+            const param1idx = element.params.length === 2 ? 1 : 0;
+            const param1 = typeForIdentifier(element.params[param1idx].type, element.params[param1idx].is_ptr, THE_OBJ.classes);
+            return `<a href="#${elementId}">${param0}${escapeHtmlAndNameCorrection(element.name)} ${param1}</a>`;
+        } else {
+            const params = element.type === 'method' ? `(${element.params.map(
+                p => typeForIdentifier(p.type, p.is_ptr, THE_OBJ.classes)
+            ).join(", ")})` : '';
+            return `<a href="#${elementId}">${of}${escapeHtmlAndNameCorrection(element.name)}${params}</a>`;
+        }
     }).join(', ')}</div>`;
 }
 

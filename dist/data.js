@@ -2338,7 +2338,8 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [{"name": "principio", "name_en": "beginning", "type": 2, "is_ptr": false}, {"name": "comando", "name_en": "command", "type": 5, "is_ptr": false}],
             "description": "Añade el comando indicado a la cola de comandos del objeto. Si <tt>principio</tt> es <tt>true</tt> se añadirá al principio de la cola (sin reemplazar al comando actual), si es <tt>false</tt> se añadirá al final de la cola.",
-            "description_en": "Adds the given command at the end of the command queue of the object. If <tt>beginning</tt> is <tt>true</tt>, then it will be added at the beginning of the queue, if it is <tt>false</tt>, the command will be added at the end of the queue."
+            "description_en": "Adds the given command at the end of the command queue of the object. If <tt>beginning</tt> is <tt>true</tt>, then it will be added at the beginning of the queue, if it is <tt>false</tt>, the command will be added at the end of the queue.",
+            "related": ["Obj::command", "Obj::CmdCount", "Obj::AddCommand:bool_str_point", "Obj::AddCommand:bool_str_Obj", "Obj::ClearCommands", "Obj::SetCommand:str", "ObjList::AddCommand:bool_str", "ObjList::AddCommandOffset:bool_str_point", "ObjList::ClearCommands", "ObjList::KillCommand", "ObjList::SetCommand:str", "ObjList::SetCommandOffset:str_point", "Query::AddCommand:bool_str", "Query::AddCommandOffset:bool_str_point", "Query::ClearCommands", "Query::KillCommand", "Query::SetCommand:str", "Query::SetCommandOffset:str_point"]
         }, {
             "id": "Obj::AddCommand:bool_str_point",
             "name": "AddCommand",

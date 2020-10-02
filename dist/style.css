@@ -53,6 +53,7 @@ a .tooltiptext.dangerous {
     color: #ff5252;
     background-color: #6c3333;
 }
+
 a .tooltiptext.dangerous::after {
     border-color: #6c3333 transparent transparent transparent;
 }
@@ -255,26 +256,33 @@ details {
 .description table > tbody > tr:nth-child(even) {
     background-color: #dddddd;
 }
+
 .description table > tbody > tr:nth-child(odd) {
     background-color: #f0f0f0;
 }
+
 .description table td, .description table th {
     padding: 0 .5rem;
     border-left: 1px solid white;
     border-right: 1px solid white;
 }
+
 .description table.c-0 td:nth-child(1) {
     text-align: center;
 }
+
 .description table.c-1 td:nth-child(2) {
     text-align: center;
 }
+
 .description table.c-2 td:nth-child(3) {
     text-align: center;
 }
+
 .description table.c-3 td:nth-child(4) {
     text-align: center;
 }
+
 .description table.tt tbody {
     font-family: "Roboto Mono";
 }
@@ -322,6 +330,7 @@ table.class-list {
     border: 1px solid white;
     font-size: 10pt;
 }
+
 table.class-list td {
     border: 1px solid white;
     vertical-align: top;
@@ -331,21 +340,27 @@ table.class-list td {
 table.class-list td[data-depth='0'] {
     background-color: #eeeeee;
 }
+
 table.class-list td[data-depth='1'] {
     background-color: #e8e8e8;
 }
+
 table.class-list td[data-depth='2'] {
     background-color: #e0e0e0;
 }
+
 table.class-list td[data-depth='3'] {
     background-color: #d8d8d8;
 }
+
 table.class-list td[data-depth='4'] {
     background-color: #d0d0d0;
 }
+
 table.class-list td[data-depth='5'] {
     background-color: #c8c8c8;
 }
+
 table.class-list td[data-depth='6'] {
     background-color: #c0c0c0;
 }
@@ -360,4 +375,55 @@ table.class-list td .path {
 table.class-list td:focus .path,
 table.class-list td:hover .path {
     display: inline;
+}
+
+#class-select-container {
+    width: 100%;
+    text-align: center;
+}
+
+#class {
+    margin: 0 1rem;
+}
+
+#class h1 {
+    text-align: center;
+}
+
+.class-route,
+.class-route a,
+.class-route a:visited {
+    color: #999;
+}
+
+.class-details {
+    background-color: #eee;
+    margin: 0 1rem;
+}
+
+.class-details .details {
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 1.5;
+    font-family: "Roboto Mono";
+    justify-content: space-evenly;
+}
+
+.class-details .details > div {
+    background: #ccc;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    width: 20rem;
+    flex: 1 1 auto;
+}
+
+.class-details .prop-key {
+    color: #005580;
+}
+
+.class-details > h3 {
+    text-align: center;
+    margin: 1rem 0 0;
+    font-weight: 600;
 }
