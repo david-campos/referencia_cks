@@ -1,9 +1,11 @@
+from __future__ import annotations
+
 import functools
 import json
 import sys
 from os import listdir
 from os.path import isfile, join
-from typing import List, Tuple
+from typing import List, Tuple, Optional
 
 from lxml import etree
 
@@ -16,6 +18,8 @@ class Node:
         self.children = []
         self.parent = None
         self.commands = {}
+        self.no_commands = []
+        self.methods = {}
         self.properties = {}
         self.default_commands = {}
 
@@ -31,13 +35,19 @@ class Node:
     def add_property(self, prop, value):
         self.properties[prop] = value
 
-    def add_command(self, command, params):
-        self.commands[command] = params
+    def add_command(self, command, sticky):
+        self.commands[command] = sticky
+
+    def add_no_command(self, no_command):
+        self.no_commands.append(no_command)
+
+    def add_method(self, method, params):
+        self.methods[method] = params
 
     def add_default_command(self, target, commands):
         self.default_commands[target] = commands
 
-    def find(self, id):
+    def find(self, id) -> Optional[Node]:
         if len(self.children) > 0:
             for c in self.children:
                 if c.id == id:
@@ -80,6 +90,8 @@ class Node:
         obj = {
             'properties': self.properties,
             'commands': self.commands,
+            'no_commands': self.no_commands,
+            'methods': self.methods,
             'def_cmds': self.default_commands
         }
         if self.parent:
@@ -96,6 +108,8 @@ class Node:
             self.id: {
                 'properties': self.properties,
                 'commands': self.commands,
+                'no_commands': self.no_commands,
+                'methods': self.methods,
                 'def_cmds': self.default_commands,
                 'children': children
             }
@@ -115,22 +129,22 @@ for file in class_files:
         for properties in root.iter('properties'):
             for key in properties.attrib:
                 node.add_property(key, properties.attrib[key])
-        for command_tag in root.iter('method'):
-            if 'vs' not in command_tag.attrib:
-                print("No VS in " + node.id + "/" + command_tag.attrib['sig'])
+        for method_tag in root.iter('method'):
+            if 'vs' not in method_tag.attrib:
+                print("No VS in " + node.id + "/" + method_tag.attrib['sig'])
             else:
-                file = command_tag.attrib['vs']
+                file = method_tag.attrib['vs']
                 params = []
-                with open(folder + "/../../" + command_tag.attrib['vs'].upper()) as f:
+                with open(folder + "/../../" + method_tag.attrib['vs'].upper()) as f:
                     line = ""
                     while line == "":
                         line = f.readline().strip()
                     if line.startswith('//'):
                         params = [x.strip().split(' ') for x in line.split(",")[1:]]
                     else:
-                        print('File ' + command_tag.attrib['vs'] + ' contains no params signature?')
+                        print('File ' + method_tag.attrib['vs'] + ' contains no params signature?')
 
-                node.add_command(command_tag.attrib['sig'], params)
+                node.add_method(method_tag.attrib['sig'], params)
         for defcommand_tag in root.iter('defaultcmd'):
             target = defcommand_tag.attrib['target']
             commands = []
@@ -153,6 +167,35 @@ for node in nodes:
                 parent.add_child(node)
                 node.set_parent(parent)
                 break
+
+folder = sys.argv[2]
+command_files = [f for f in listdir(folder) if isfile(join(folder, f))]
+commands = {}
+for file in command_files:
+    tree = etree.parse(folder + "/" + file, parser=parser)
+    rootTree = tree.getroot()
+    if rootTree.tag == 'commands':
+        for cmd in rootTree.iter('cmd'):
+            name = cmd.attrib['name']
+            commands[name] = {
+                'rollover': cmd.attrib['rollover'] if 'rollover' in cmd.attrib else None,
+                'targets': []
+            }
+            if 'description' in cmd.attrib:
+                commands[name]['description'] = cmd.attrib['description']
+            for cmdtext in cmd.iter('cmdtext'):
+                if 'target' in cmdtext.attrib:
+                    commands[name]['targets'].append(cmdtext.attrib['target'])
+            for src in cmd.iter('src'):
+                if 'obj' in src.attrib:
+                    node = root.find(src.attrib['obj'])
+                    if node:
+                        node.add_command(name, 'sticky' in src.attrib and src.attrib['sticky'] == 'yes')
+            for nsrc in cmd.iter('nsrc'):
+                if 'obj' in nsrc.attrib:
+                    node = root.find(nsrc.attrib['obj'])
+                    if node:
+                        node.add_no_command(name)
 
 
 def print_rows(the_rows: List[List[dict]]):
@@ -198,9 +241,11 @@ def rows(node, parents) -> Tuple[List[List[dict]], int]:
         }]], 1
 
 
-def write_json(file):
+def write_json(file1, file2):
     dic = {}
     for nod in nodes:
         dic[nod.id] = nod.serialize_single()
-    with open(file, 'w') as outfile:
+    with open(file1, 'w') as outfile:
         json.dump(dic, outfile)
+    with open(file2, 'w') as outfile:
+        json.dump(commands, outfile)

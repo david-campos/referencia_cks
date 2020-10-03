@@ -466,3 +466,9 @@ table.class-list td:hover .path {
     margin: 1rem 0 0;
     font-weight: 600;
 }
+
+.class-details .rollover {
+    display: block;
+    color: #555;
+    text-align: center;
+}

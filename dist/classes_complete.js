@@ -1,7 +1,10 @@
-function with_inherited(prop, node_key, exclude = []) {
+function with_inherited(prop, node_key, exclude = [], exclude_extra = null) {
     let ret = {};
     const node = CLASSES_DETAILS[node_key];
     if (node) {
+        if (exclude_extra) {
+            exclude = exclude.concat(exclude_extra(node));
+        }
         const myCommands = Object.fromEntries(Object.entries(node[prop])
             .filter(([k]) => !exclude.includes(k)));
         const myCommandsKeys = Object.keys(myCommands);
@@ -26,7 +29,9 @@ function route(className) {
 }
 
 const defaultCmds = with_inherited.bind(null, 'def_cmds');
-const commands = with_inherited.bind(null, 'commands');
+const commands = className => with_inherited('commands', className, [],
+    node => node.no_commands);
+const methods = with_inherited.bind(null, 'methods');
 const properties = with_inherited.bind(null, 'properties');
 
 const CLASSES_DETAILS =
@@ -39,10 +44,24 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Egyptian walls",
                 "sentry_class_name": "ESentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
-        "StaminaBoost": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
-        "CGule": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "StaminaBoost": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
+        "CGule": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "MWallsS": {
             "properties": {
                 "race": "ImperialRome",
@@ -52,7 +71,7 @@ const CLASSES_DETAILS =
                 "wall_set": "Imperial Roman walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "MSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "MTavern": {
             "properties": {
@@ -63,7 +82,19 @@ const CLASSES_DETAILS =
                 "selection_radius": "195",
                 "edittree_pos": "Structures/Stronghold (Imperial Rome)/Tavern SW",
                 "help": "/contents/buildings/RTavern"
-            }, "commands": {"buyfoodforgold": [["Obj", "This"]]}, "def_cmds": {}, "parent": "BaseTavern"
+            },
+            "commands": {
+                "MAddPop": false,
+                "Free Wine": false,
+                "Import horses": false,
+                "Scout Area": false,
+                "investR": false,
+                "MTribute": false
+            },
+            "no_commands": [],
+            "methods": {"buyfoodforgold": [["Obj", "This"]]},
+            "def_cmds": {},
+            "parent": "BaseTavern"
         },
         "RVelit": {
             "properties": {
@@ -81,7 +112,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Velites",
                 "help": "contents/units/RVelit",
                 "edittree_pos": "Units/Roman/Velit"
-            }, "commands": {}, "def_cmds": {}, "parent": "ShortRanged"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ShortRanged"
         },
         "TOutpost": {
             "properties": {
@@ -102,7 +133,12 @@ const CLASSES_DETAILS =
                 "defenders_out_1": "10",
                 "start_level_1": "8",
                 "end_level_1": "24"
-            }, "commands": {"goutpost_sellfood": [["Obj", "This"]]}, "def_cmds": {}, "parent": "Outpost"
+            },
+            "commands": {"goutpost_sellfood": false, "goutpost_no_sellfood": false},
+            "no_commands": [],
+            "methods": {"goutpost_sellfood": [["Obj", "This"]]},
+            "def_cmds": {},
+            "parent": "Outpost"
         },
         "RTavern": {
             "properties": {
@@ -113,15 +149,35 @@ const CLASSES_DETAILS =
                 "selection_radius": "195",
                 "edittree_pos": "Structures/Stronghold (Republican Rome)/Tavern SW",
                 "help": "/contents/buildings/RTavern"
-            }, "commands": {"buyfoodforgold": [["Obj", "This"]]}, "def_cmds": {}, "parent": "BaseTavern"
+            },
+            "commands": {
+                "RAddPop": false,
+                "Free Wine": false,
+                "Import horses": false,
+                "Scout Area": false,
+                "investR": false,
+                "RTribute": false,
+                "buyfoodforgold": false
+            },
+            "no_commands": [],
+            "methods": {"buyfoodforgold": [["Obj", "This"]]},
+            "def_cmds": {},
+            "parent": "BaseTavern"
         },
-        "Ceasefire2": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Ceasefire2": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "Crack 01": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Cracks/Crack 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "ShipL": {
             "properties": {
@@ -130,7 +186,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Ships",
                 "help": "/contents/units/Ship",
                 "edittree_pos": "Units/Others/Ship"
-            }, "commands": {}, "def_cmds": {}, "parent": "ShipBattle"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ShipBattle"
         },
         "Horse": {
             "properties": {
@@ -140,14 +196,14 @@ const CLASSES_DETAILS =
                 "radius": "30",
                 "selection_radius": "32",
                 "speed": "160"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
         "Rock Medium 04": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Rocks/Rock Medium 4"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "BVikingLord": {
             "properties": {
@@ -163,7 +219,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Viking Lords",
                 "help": "contents/units/BVikingLord",
                 "edittree_pos": "Units/Britain/Viking Lord"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": ["detach"], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
         "CWallsS": {
             "properties": {
@@ -174,7 +230,7 @@ const CLASSES_DETAILS =
                 "wall_set": "Carthaginian walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "CSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "TWallsNE": {
             "properties": {
@@ -184,28 +240,28 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "German walls",
                 "sentry_class_name": "TSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "GHero3b": {
             "properties": {
                 "display_name": "Brand",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/GHero3.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "GaulHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "GaulHero"
         },
         "EHero1a": {
             "properties": {
                 "display_name": "Payneferher",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/EHero1.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "EgyptianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "EgyptianHero"
         },
         "BHero1a": {
             "properties": {
                 "display_name": "Thrydwulf",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/BHero1.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "BritonHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BritonHero"
         },
         "MGate0": {
             "properties": {
@@ -215,11 +271,13 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Imperial Roman walls",
                 "sentry_class_name": "MSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "SummoningObj": {
             "properties": {"stamina_dec_time": "1000"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -232,14 +290,14 @@ const CLASSES_DETAILS =
                 "wall_set": "Gaul walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "GSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "STAT03": {
             "properties": {
                 "radius": "10",
                 "selection_radius": "10",
                 "edittree_pos": "Structures/Others/Europe/Statue"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "GShipyard2": {
             "properties": {
@@ -251,14 +309,14 @@ const CLASSES_DETAILS =
                 "exit_vector_x": "120",
                 "exit_vector_y": "100",
                 "build_ship_variation": "3"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseShipyard"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseShipyard"
         },
         "WallRuined": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Ruins/Wall (Ruined)"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "BaseAnimal": {
             "properties": {
@@ -270,7 +328,12 @@ const CLASSES_DETAILS =
                 "can_be_invisible": "0",
                 "always_visible_on_minimap": "1",
                 "unit_specials": "Freedom"
-            }, "commands": {}, "def_cmds": {}, "parent": "Unit"
+            },
+            "commands": {},
+            "no_commands": ["stand_position", "detach"],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Unit"
         },
         "EPriest": {
             "properties": {
@@ -286,7 +349,9 @@ const CLASSES_DETAILS =
                 "help": "contents/units/EPriest",
                 "edittree_pos": "Units/Egypt/Priest"
             },
-            "commands": {
+            "commands": {"ecloud_of_plague": true, "cripple": true, "Eturn2zombie": false},
+            "no_commands": [],
+            "methods": {
                 "stand_position": [["Obj", "This"]],
                 "ondie": [["Obj", "This"]],
                 "advance": [["Obj", "This"], ["point", "pt"]],
@@ -311,21 +376,21 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Carthaginian walls",
                 "sentry_class_name": "CSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "Ritual Stone 02": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Sacred/Ritual Stone 2"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "TWVillager": {
             "properties": {
                 "race": "Germany",
                 "icon": "gameres/icons/TWVillager.bmp",
                 "edittree_pos": "Units/Germany/Peasant (female)"
-            }, "commands": {}, "def_cmds": {}, "parent": "PeasantFemale"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "PeasantFemale"
         },
         "EHorusWarrior": {
             "properties": {
@@ -341,7 +406,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Horus Warriors",
                 "help": "contents/units/EHorusWarrior",
                 "edittree_pos": "Units/Egypt/Horus Warrior"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
         "TTownhall": {
             "properties": {
@@ -356,18 +421,38 @@ const CLASSES_DETAILS =
                 "edittree_pos": "Structures/Stronghold (Germany)/Townhall",
                 "produces_gold": "1",
                 "produces_food": "1"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseTownhall"
+            },
+            "commands": {
+                "autotrain_start_cbet": false,
+                "autotrain_stop_cbet": false,
+                "townhall_military_training": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseTownhall"
         },
-        "ITempleAnim": {"properties": {}, "commands": {"idle": [["Obj", "This"]]}, "def_cmds": {}, "parent": "Object"},
+        "ITempleAnim": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "This"]]},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "DSkeleton2": {
             "properties": {"edittree_pos": "Structures/Others/Desert/Skeleton 2"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
         "BBlacksmithFire": {
             "properties": {"decor_always_animate": "1"},
-            "commands": {"idle": [["Obj", "This"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "This"]]},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -399,7 +484,18 @@ const CLASSES_DETAILS =
                 "display_name": "Unit",
                 "display_name_plural": "Units",
                 "help": "/contents/units"
-            }, "commands": {
+            },
+            "commands": {
+                "stand_position": false,
+                "move": true,
+                "transport": false,
+                "attack_unit_type": false,
+                "detach": true,
+                "enter_parry_mode": false,
+                "boardship": false
+            },
+            "no_commands": ["boardunit", "unboardall"],
+            "methods": {
                 "idle": [["Obj", "me"]],
                 "standstill": [["Obj", "me"]],
                 "advance": [["Obj", "me"], ["point", "pt"]],
@@ -458,7 +554,8 @@ const CLASSES_DETAILS =
                 "enter_parry_mode": [["Obj", "me"]],
                 "leave_parry_mode": [["Obj", "me"]],
                 "hero_set_final_party_orientation": [["Obj", "This"], ["point", "pt"]]
-            }, "def_cmds": {
+            },
+            "def_cmds": {
                 "": [{"cmd": "move", "ctrl": false}, {"cmd": "advance", "ctrl": true}],
                 "Inn": [{"cmd": "transport", "ctrl": false}, {"cmd": "approach", "ctrl": false}],
                 "ShipBattle": [{"cmd": "boardship", "ctrl": false}, {"cmd": "approach", "ctrl": false}],
@@ -490,7 +587,8 @@ const CLASSES_DETAILS =
                 }],
                 "Teleport": [{"cmd": "teleport", "ctrl": false}, {"cmd": "approach", "ctrl": false}],
                 "ItemHolder": [{"cmd": "getitems", "ctrl": false}, {"cmd": "approach", "ctrl": false}]
-            }, "parent": "Object"
+            },
+            "parent": "Object"
         },
         "MGate6": {
             "properties": {
@@ -500,7 +598,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Imperial Roman walls",
                 "sentry_class_name": "MSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "RGateN": {
             "properties": {
@@ -510,7 +608,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Republican Roman walls",
                 "sentry_class_name": "RSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "IGateNE": {
             "properties": {
@@ -520,7 +618,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Iberian walls",
                 "sentry_class_name": "ISentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "BBowman": {
             "properties": {
@@ -537,7 +635,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Bowmen",
                 "help": "contents/units/BBowman",
                 "edittree_pos": "Units/Britain/Bowman"
-            }, "commands": {}, "def_cmds": {}, "parent": "Ranged"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Ranged"
         },
         "CCatapult": {
             "properties": {
@@ -550,7 +648,9 @@ const CLASSES_DETAILS =
                 "projectile_fire": "Gule_fire",
                 "projectile_explosion": "CGule_explosion"
             },
-            "commands": {"attack_ground": [["Obj", "me"], ["point", "pt"]]},
+            "commands": {"catapult_attack": false, "attack_ground": false},
+            "no_commands": [],
+            "methods": {"attack_ground": [["Obj", "me"], ["point", "pt"]]},
             "def_cmds": {"": [{"cmd": "attack_ground", "ctrl": false}, {"cmd": "attack_ground", "ctrl": true}]},
             "parent": "Catapult"
         },
@@ -560,11 +660,13 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/MHero2.bmp",
                 "edittree_pos": "Units/Roman/Hero (Imperial) 2"
-            }, "commands": {}, "def_cmds": {}, "parent": "ImperialRomanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ImperialRomanHero"
         },
         "ship_wreck": {
             "properties": {"edittree_pos": "Structures/Water/Ship wreck (large)", "water_unit": "1"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -573,7 +675,7 @@ const CLASSES_DETAILS =
                 "display_name": "Ishpi",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/EHero2.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "EgyptianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "EgyptianHero"
         },
         "EHouse3": {
             "properties": {
@@ -583,14 +685,14 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/ehouse.bmp",
                 "edittree_pos": "Structures/Village (Egypt)/House 3",
                 "display_name": "House"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseHouse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseHouse"
         },
         "Sed2": {
             "properties": {
                 "health": "100",
                 "maxhealth": "100",
                 "edittree_pos": "Structures/Others/Sacred/Statue 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "RGateSW": {
             "properties": {
@@ -600,7 +702,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Republican Roman walls",
                 "sentry_class_name": "RSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "IWallsSW": {
             "properties": {
@@ -610,14 +712,14 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "Iberian walls",
                 "sentry_class_name": "ISentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "COLUMNS2": {
             "properties": {
                 "radius": "60",
                 "selection_radius": "60",
                 "edittree_pos": "Structures/Others/Egypt/Columns2"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "RibCage": {
             "properties": {
@@ -626,7 +728,7 @@ const CLASSES_DETAILS =
                 "radius": "28",
                 "selection_radius": "30",
                 "display_name": "Rib cage"
-            }, "commands": {}, "def_cmds": {}, "parent": "ItemHolder"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ItemHolder"
         },
         "MHero3": {
             "properties": {
@@ -634,7 +736,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/MHero3.bmp",
                 "edittree_pos": "Units/Roman/Hero (Imperial) 3"
-            }, "commands": {}, "def_cmds": {}, "parent": "ImperialRomanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ImperialRomanHero"
         },
         "MWallsN": {
             "properties": {
@@ -645,7 +747,7 @@ const CLASSES_DETAILS =
                 "wall_set": "Imperial Roman walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "MSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "CVillage": {
             "properties": {
@@ -656,11 +758,18 @@ const CLASSES_DETAILS =
                 "edittree_pos": "Structures/Village (Carthage)/Village hall",
                 "foodperpop": "100",
                 "help": "/contents/buildings/Village"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseVillage"
+            },
+            "commands": {"trainpeasantc": false},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseVillage"
         },
         "DRuins3": {
             "properties": {"edittree_pos": "Structures/Others/Desert/Ruins 3"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -672,7 +781,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "British walls",
                 "sentry_class_name": "BSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "ISentry": {
             "properties": {
@@ -683,23 +792,30 @@ const CLASSES_DETAILS =
                 "armor_pierce": "0",
                 "icon": "gameres/icons/IArcher.bmp",
                 "unit_specials": "Drain, Keen sight, Freedom"
-            }, "commands": {}, "def_cmds": {}, "parent": "Sentry"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Sentry"
         },
         "RUIN04": {
             "properties": {
                 "radius": "10",
                 "selection_radius": "10",
                 "edittree_pos": "Structures/Others/Europe/Ruin04"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
-        "IGule_shadow": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "IGule_shadow": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "EHero2": {
             "properties": {
                 "display_name": "Nebnufer",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/EHero2.bmp",
                 "edittree_pos": "Units/Egypt/Hero 2"
-            }, "commands": {}, "def_cmds": {}, "parent": "EgyptianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "EgyptianHero"
         },
         "MGate7": {
             "properties": {
@@ -709,7 +825,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Imperial Roman walls",
                 "sentry_class_name": "MSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "RHastatus": {
             "properties": {
@@ -725,14 +841,14 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Hastati",
                 "help": "contents/units/RHastatus",
                 "edittree_pos": "Units/Roman/Hastatus"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
         "RUIN02": {
             "properties": {
                 "radius": "10",
                 "selection_radius": "10",
                 "edittree_pos": "Structures/Others/Europe/Ruin 2"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "CWallsSW": {
             "properties": {
@@ -742,11 +858,13 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "Carthaginian walls",
                 "sentry_class_name": "CSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "CampWeaponRack2": {
             "properties": {"edittree_pos": "Structures/Others/Camp/Weapon rack 2"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -755,21 +873,21 @@ const CLASSES_DETAILS =
                 "radius": "30",
                 "selection_radius": "30",
                 "edittree_pos": "Structures/Others/Desert/Ruins 8"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "CHero1b": {
             "properties": {
                 "display_name": "Himilco",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/CHero1.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "CarthaginianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "CarthaginianHero"
         },
         "Ritual Stone 03": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Sacred/Ritual Stone 3"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "GShipyard1": {
             "properties": {
@@ -781,7 +899,7 @@ const CLASSES_DETAILS =
                 "build_ship_variation": "0",
                 "exit_vector_x": "-120",
                 "exit_vector_y": "100"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseShipyard"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseShipyard"
         },
         "IGateNW": {
             "properties": {
@@ -791,18 +909,20 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Iberian walls",
                 "sentry_class_name": "ISentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "Ruin_Door02": {
             "properties": {
                 "health": "100",
                 "maxhealth": "100",
                 "edittree_pos": "Structures/Others/Ruins/Ruin Door 2"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "plet": {
             "properties": {"radius": "0", "selection_radius": "0"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -812,31 +932,45 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/CHero3.bmp",
                 "edittree_pos": "Units/Carthage/Hero 3"
-            }, "commands": {}, "def_cmds": {}, "parent": "CarthaginianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "CarthaginianHero"
         },
         "EHero3b": {
             "properties": {
                 "display_name": "Sepi",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/EHero3.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "EgyptianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "EgyptianHero"
         },
-        "CGule_shadow": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "CGule_shadow": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "Stonehenge2": {
             "properties": {
                 "edittree_pos": "Structures/Interactive/Stonehenge 2",
                 "icon": "gameres/icons/Stonehenge.bmp",
                 "radius": "250",
                 "selection_radius": "255"
-            }, "commands": {}, "def_cmds": {}, "parent": "Stonehenge"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Stonehenge"
         },
-        "Frenzy2": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Frenzy2": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "SPHINXBIG1": {
             "properties": {
                 "radius": "40",
                 "selection_radius": "40",
                 "edittree_pos": "Structures/Others/Egypt/Sphynx Big 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "ITownhall": {
             "properties": {
@@ -849,7 +983,12 @@ const CLASSES_DETAILS =
                 "auto_repair": "no",
                 "help": "/contents/buildings/ITownhall",
                 "edittree_pos": "Structures/Stronghold (Iberia)/Townhall"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseTownhall"
+            },
+            "commands": {"autotrain_start_i": false, "autotrain_stop_i": false, "healing": false},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseTownhall"
         },
         "GHero2": {
             "properties": {
@@ -857,7 +996,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/GHero2.bmp",
                 "edittree_pos": "Units/Gaul/Hero 2"
-            }, "commands": {}, "def_cmds": {}, "parent": "GaulHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "GaulHero"
         },
         "TWallsSE": {
             "properties": {
@@ -867,11 +1006,13 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "German walls",
                 "sentry_class_name": "TSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "TBlacksmithFire": {
             "properties": {"decor_always_animate": "1"},
-            "commands": {"idle": [["Obj", "This"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "This"]]},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -880,7 +1021,7 @@ const CLASSES_DETAILS =
                 "display_name": "Barka",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/CHero3.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "CarthaginianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "CarthaginianHero"
         },
         "Larax": {
             "properties": {
@@ -891,7 +1032,7 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/Larax.bmp",
                 "edittree_pos": "Units/Heroes/Larax (Gaul)",
                 "HeroSkills": "Leadership, Epic attack, Epic endurance, Defensive cry, Battle cry"
-            }, "commands": {}, "def_cmds": {}, "parent": "HeroMounted"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "HeroMounted"
         },
         "IGateSW": {
             "properties": {
@@ -901,7 +1042,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Iberian walls",
                 "sentry_class_name": "ISentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "IHero1": {
             "properties": {
@@ -909,15 +1050,22 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/IHero1.bmp",
                 "edittree_pos": "Units/Iberia/Hero 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "IberianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "IberianHero"
         },
-        "Disease2": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Disease2": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "IPeasantMulti": {
             "properties": {
                 "icon": "gameres/icons/IPeasants.bmp",
                 "help": "contents/units",
                 "interface": "thumb,unit,holder"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "IHero4": {
             "properties": {
@@ -927,9 +1075,16 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/IHero4.bmp",
                 "edittree_pos": "Units/Heroes/Unknown (Iberian)",
                 "HeroSkills": "Healing, Ceasefire, Team defense, Epic endurance, Euphoria"
-            }, "commands": {}, "def_cmds": {}, "parent": "HeroMounted"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "HeroMounted"
         },
-        "DestLock": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "DestLock": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "RTribune": {
             "properties": {
                 "race": "RepublicanRome",
@@ -946,7 +1101,7 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/RTribune.bmp",
                 "help": "contents/units/RTribune",
                 "edittree_pos": "Units/Roman/Tribune"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
         "GGateN": {
             "properties": {
@@ -956,16 +1111,23 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Gaul walls",
                 "sentry_class_name": "GSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "RWVillager": {
             "properties": {
                 "race": "RepublicanRome",
                 "icon": "gameres/icons/RWoman.bmp",
                 "edittree_pos": "Units/Roman/Peasant (female)"
-            }, "commands": {}, "def_cmds": {}, "parent": "PeasantFemale"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "PeasantFemale"
         },
-        "AdvArea": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "Area"},
+        "AdvArea": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Area"
+        },
         "CGateNE": {
             "properties": {
                 "race": "Carthage",
@@ -974,7 +1136,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Carthaginian walls",
                 "sentry_class_name": "CSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "RBarracks": {
             "properties": {
@@ -986,7 +1148,24 @@ const CLASSES_DETAILS =
                 "edittree_pos": "Structures/Stronghold (Republican Rome)/Barracks",
                 "auto_repair": "no",
                 "help": "/contents/buildings/RBarracks"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseBarracks"
+            },
+            "commands": {
+                "repair barracks": false,
+                "Barrack Level 1": false,
+                "Barrack Level 2": false,
+                "RBarrack Level 3": false,
+                "trainRHastatus": false,
+                "trainRArcher": false,
+                "trainRGladiator": false,
+                "trainRPrinciple": false,
+                "trainRScout": false,
+                "trainRTribune": false,
+                "Equip Chariot": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseBarracks"
         },
         "CHouse02": {
             "properties": {
@@ -996,7 +1175,7 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/chouse.bmp",
                 "edittree_pos": "Structures/Village (Carthage)/House 2",
                 "display_name": "House"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseHouse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseHouse"
         },
         "Object": {
             "properties": {
@@ -1027,28 +1206,32 @@ const CLASSES_DETAILS =
                 "radius": "0",
                 "selection_radius": "0",
                 "interface": "thumb"
-            }, "commands": {"idle": [["Obj", "this"]], "wait": [["Obj", "this"], ["point", "pt"]]}, "def_cmds": {}
+            },
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "this"]], "wait": [["Obj", "this"], ["point", "pt"]]},
+            "def_cmds": {}
         },
         "IHero3b": {
             "properties": {
                 "display_name": "Poemana",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/IHero3.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "IberianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "IberianHero"
         },
         "Rock Medium 02": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Rocks/Rock Medium 2"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "IVillager": {
             "properties": {
                 "race": "Iberia",
                 "icon": "gameres/icons/IVillager.bmp",
                 "edittree_pos": "Units/Iberia/Peasant (male)"
-            }, "commands": {}, "def_cmds": {}, "parent": "Peasant"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Peasant"
         },
         "GHouse1": {
             "properties": {
@@ -1058,17 +1241,21 @@ const CLASSES_DETAILS =
                 "radius": "110",
                 "selection_radius": "112",
                 "edittree_pos": "Structures/Village (Gaul)/House 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseHouse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseHouse"
         },
         "TempleOfThorFire2": {
             "properties": {"decor_always_animate": "1"},
-            "commands": {"idle": [["Obj", "This"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "This"]]},
             "def_cmds": {},
             "parent": "Object"
         },
         "TBarrackHorse5": {
             "properties": {},
-            "commands": {"idle": [["Obj", "This"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "This"]]},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -1090,7 +1277,9 @@ const CLASSES_DETAILS =
                 "help": "contents/units/Lion",
                 "edittree_pos": "Units/Animals/Lion (aggressive)"
             },
-            "commands": {
+            "commands": {},
+            "no_commands": [],
+            "methods": {
                 "idle": [["Obj", "me"]],
                 "attack": [["Obj", "me"], ["Obj", "tgt"]],
                 "lead": [["Obj", "This"]],
@@ -1104,12 +1293,16 @@ const CLASSES_DETAILS =
         "SummoningUnit": {
             "properties": {"stamina_dec_time": "1000"},
             "commands": {},
+            "no_commands": ["detach"],
+            "methods": {},
             "def_cmds": {},
             "parent": "BaseAnimal"
         },
         "WatchEye": {
             "properties": {"sight": "550"},
-            "commands": {"spy": [["Obj", "this"]], "infinite_spy": [["Obj", "this"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"spy": [["Obj", "this"]], "infinite_spy": [["Obj", "this"]]},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -1119,7 +1312,7 @@ const CLASSES_DETAILS =
                 "can_be_captured": "0",
                 "inventory_size": "16",
                 "help": "/contents/items"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "ITavern": {
             "properties": {
@@ -1132,7 +1325,16 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/ITavern.bmp",
                 "help": "/contents/buildings/ITavern"
             },
-            "commands": {"sellfoodforgold": [["Obj", "this"]], "calltoarms": [["Obj", "this"]]},
+            "commands": {
+                "IAddPop": false,
+                "Free Drinks": false,
+                "Sell food": false,
+                "ITribute": false,
+                "Housing": false,
+                "Call to arms": false
+            },
+            "no_commands": [],
+            "methods": {"sellfoodforgold": [["Obj", "this"]], "calltoarms": [["Obj", "this"]]},
             "def_cmds": {},
             "parent": "BaseTavern"
         },
@@ -1142,7 +1344,7 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/Stonehenge.bmp",
                 "radius": "250",
                 "selection_radius": "255"
-            }, "commands": {}, "def_cmds": {}, "parent": "Stonehenge"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Stonehenge"
         },
         "RGateE": {
             "properties": {
@@ -1152,22 +1354,29 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Republican Roman walls",
                 "sentry_class_name": "RSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "RHero2a": {
             "properties": {
                 "display_name": "Glycon",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/RHero2.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "RepublicanRomanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "RepublicanRomanHero"
         },
-        "bcatapult_placing": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "catapult_placing"},
+        "bcatapult_placing": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "catapult_placing"
+        },
         "CPeasantMulti": {
             "properties": {
                 "icon": "gameres/icons/CPeasants.bmp",
                 "help": "contents/units",
                 "interface": "thumb,unit,holder"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "CSentry": {
             "properties": {
@@ -1180,7 +1389,7 @@ const CLASSES_DETAILS =
                 "unit_specials": "Penetration, Keen sight, Freedom",
                 "projectile_class": "Javelin",
                 "building_projectile_class": "Javelin"
-            }, "commands": {}, "def_cmds": {}, "parent": "Sentry"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Sentry"
         },
         "LionFUnit": {
             "properties": {
@@ -1199,11 +1408,13 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Lionesses",
                 "help": "contents/units/Lioness",
                 "edittree_pos": "Units/Animals/Lioness"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseAnimal"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseAnimal"
         },
         "MultiOneShip": {
             "properties": {"interface": "thumb,unit,holder"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "MultiOne"
         },
@@ -1216,7 +1427,7 @@ const CLASSES_DETAILS =
                 "wall_set": "German walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "TSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "RChariot": {
             "properties": {
@@ -1235,7 +1446,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Chariots",
                 "help": "contents/units/RChariot",
                 "edittree_pos": "Units/Roman/Chariot"
-            }, "commands": {}, "def_cmds": {}, "parent": "Ranged"
+            }, "commands": {}, "no_commands": ["detach"], "methods": {}, "def_cmds": {}, "parent": "Ranged"
         },
         "IEliteGuard": {
             "properties": {
@@ -1253,7 +1464,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Elite Guards",
                 "help": "contents/units/IEliteGuard",
                 "edittree_pos": "Units/Iberia/Elite Guard"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
         "EWallsW": {
             "properties": {
@@ -1264,7 +1475,7 @@ const CLASSES_DETAILS =
                 "wall_set": "Egyptian walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "ESentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "IHouse3": {
             "properties": {
@@ -1274,11 +1485,13 @@ const CLASSES_DETAILS =
                 "radius": "110",
                 "selection_radius": "112",
                 "edittree_pos": "Structures/Village (Iberia)/House 3"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseHouse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseHouse"
         },
         "Swamp1": {
             "properties": {"edittree_pos": "Structures/Others/Swamps/Swamp 1"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -1287,7 +1500,7 @@ const CLASSES_DETAILS =
                 "race": "Carthage",
                 "icon": "gameres/icons/CWVillager.bmp",
                 "edittree_pos": "Units/Carthage/Peasant (female)"
-            }, "commands": {}, "def_cmds": {}, "parent": "PeasantFemale"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "PeasantFemale"
         },
         "RArcher": {
             "properties": {
@@ -1304,14 +1517,14 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Archers",
                 "help": "contents/units/RArcher",
                 "edittree_pos": "Units/Roman/Archer"
-            }, "commands": {}, "def_cmds": {}, "parent": "Ranged"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Ranged"
         },
         "COLUMN ALONE1": {
             "properties": {
                 "radius": "40",
                 "selection_radius": "40",
                 "edittree_pos": "Structures/Others/Egypt/Column Alone 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "GHouse3": {
             "properties": {
@@ -1321,14 +1534,14 @@ const CLASSES_DETAILS =
                 "radius": "110",
                 "selection_radius": "112",
                 "edittree_pos": "Structures/Village (Gaul)/House 3"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseHouse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseHouse"
         },
         "THero2b": {
             "properties": {
                 "display_name": "Rusto",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/THero2.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "GermanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "GermanHero"
         },
         "TWallsNW": {
             "properties": {
@@ -1338,11 +1551,13 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "German walls",
                 "sentry_class_name": "TSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "CampTent3": {
             "properties": {"edittree_pos": "Structures/Others/Camp/Tent 3"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -1351,7 +1566,7 @@ const CLASSES_DETAILS =
                 "radius": "60",
                 "selection_radius": "60",
                 "edittree_pos": "Structures/Others/Egypt/Sphynx Small 2"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "Trader": {
             "properties": {
@@ -1364,7 +1579,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "45",
                 "speed": "80",
                 "edittree_pos": "Units/Others/Caravan Mule"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wagon"
+            }, "commands": {"boardship": false}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wagon"
         },
         "ESentry": {
             "properties": {
@@ -1375,9 +1590,16 @@ const CLASSES_DETAILS =
                 "armor_pierce": "0",
                 "icon": "gameres/icons/EArcher.bmp",
                 "unit_specials": "Drain, Keen sight, Freedom"
-            }, "commands": {}, "def_cmds": {}, "parent": "Sentry"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Sentry"
         },
-        "DefensiveStand": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "DefensiveStand": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "Building": {
             "properties": {
                 "maxhealth": "5000",
@@ -1392,7 +1614,12 @@ const CLASSES_DETAILS =
                 "exit_interval": "20",
                 "help": "/contents/buildings",
                 "interface": "thumb, building"
-            }, "commands": {"repair": [["Obj", "b"]], "broken": [["Obj", "this"]]}, "def_cmds": {}, "parent": "Object"
+            },
+            "commands": {},
+            "no_commands": [],
+            "methods": {"repair": [["Obj", "b"]], "broken": [["Obj", "this"]]},
+            "def_cmds": {},
+            "parent": "Object"
         },
         "CarthaginianHero": {
             "properties": {
@@ -1403,11 +1630,13 @@ const CLASSES_DETAILS =
                 "race": "Carthage",
                 "help": "/contents/units/CHero",
                 "HeroSkills": "Vigor, Frenzy, Rush, Egoism, Wisdom"
-            }, "commands": {}, "def_cmds": {}, "parent": "HeroMounted"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "HeroMounted"
         },
         "Big_Arrow": {
             "properties": {"projectile_explosion": "CGule_fire"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -1416,7 +1645,7 @@ const CLASSES_DETAILS =
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Ruins/Column Bullhead"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "ShamanGhost": {
             "properties": {
@@ -1437,7 +1666,9 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Ghouls",
                 "help": "contents/units/Ghost"
             },
-            "commands": {
+            "commands": {},
+            "no_commands": [],
+            "methods": {
                 "advance": [["Obj", "This"], ["point", "pt"]],
                 "attack": [["Obj", "This"], ["point", "pt"]],
                 "move": [["Obj", "This"], ["point", "pt"]],
@@ -1455,7 +1686,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Egyptian walls",
                 "sentry_class_name": "ESentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "GGateSW": {
             "properties": {
@@ -1465,14 +1696,14 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Gaul walls",
                 "sentry_class_name": "GSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "RHero3c": {
             "properties": {
                 "display_name": "Dexion",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/RHero3.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "RepublicanRomanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "RepublicanRomanHero"
         },
         "RTownhall": {
             "properties": {
@@ -1484,7 +1715,12 @@ const CLASSES_DETAILS =
                 "selection_radius": "175",
                 "edittree_pos": "Structures/Stronghold (Republican Rome)/Townhall",
                 "help": "/contents/buildings/RTownhall"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseTownhall"
+            },
+            "commands": {"autotrain_start_gr": false, "autotrain_stop_gr": false, "townhall_military_training": false},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseTownhall"
         },
         "MGate2": {
             "properties": {
@@ -1494,7 +1730,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Imperial Roman walls",
                 "sentry_class_name": "MSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "NHero1": {
             "properties": {
@@ -1504,11 +1740,13 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/NHero1.bmp",
                 "edittree_pos": "Units/Heroes/Heardred",
                 "HeroSkills": "Leadership, Epic attack, Epic endurance, Defensive cry, Battle cry"
-            }, "commands": {}, "def_cmds": {}, "parent": "HeroMounted"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "HeroMounted"
         },
         "GWVillagerAmbient": {
             "properties": {"race": "Gaul", "icon": "gameres/icons/GWoman.bmp"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "PeasantAmbient"
         },
@@ -1517,7 +1755,7 @@ const CLASSES_DETAILS =
                 "display_name": "Kaeso",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/RHero2.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "RepublicanRomanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "RepublicanRomanHero"
         },
         "MHero1": {
             "properties": {
@@ -1525,11 +1763,13 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/MHero1.bmp",
                 "edittree_pos": "Units/Roman/Hero (Imperial) 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "ImperialRomanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ImperialRomanHero"
         },
         "Swamp2": {
             "properties": {"edittree_pos": "Structures/Others/Swamps/Swamp 2"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -1538,7 +1778,7 @@ const CLASSES_DETAILS =
                 "display_name": "Granius",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/MHero1.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "ImperialRomanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ImperialRomanHero"
         },
         "IGateSE": {
             "properties": {
@@ -1548,7 +1788,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Iberian walls",
                 "sentry_class_name": "ISentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "GWallsSW": {
             "properties": {
@@ -1558,20 +1798,29 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "Gaul walls",
                 "sentry_class_name": "GSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
-        "TripleStrike": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "TripleStrike": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "CHero2": {
             "properties": {
                 "display_name": "Hamack",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/CHero2.bmp",
                 "edittree_pos": "Units/Carthage/Hero 2"
-            }, "commands": {}, "def_cmds": {}, "parent": "CarthaginianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "CarthaginianHero"
         },
         "DLion": {
             "properties": {"edittree_pos": "Structures/Others/Desert/Lion"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -1580,7 +1829,7 @@ const CLASSES_DETAILS =
                 "race": "RepublicanRome",
                 "icon": "gameres/icons/RMan.bmp",
                 "edittree_pos": "Units/Roman/Peasant (male)"
-            }, "commands": {}, "def_cmds": {}, "parent": "Peasant"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Peasant"
         },
         "RHero1": {
             "properties": {
@@ -1588,21 +1837,21 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/RHero1.bmp",
                 "edittree_pos": "Units/Roman/Hero (Republican) 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "RepublicanRomanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "RepublicanRomanHero"
         },
         "SiloRuined": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Ruins/Silo (Ruined)"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "BHero2b": {
             "properties": {
                 "display_name": "Hunuald",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/BHero2.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "BritonHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BritonHero"
         },
         "CBlacksmith": {
             "properties": {
@@ -1613,16 +1862,52 @@ const CLASSES_DETAILS =
                 "selection_radius": "260",
                 "edittree_pos": "Structures/Stronghold (Carthage)/Blacksmith",
                 "help": "/contents/buildings/CBlacksmith"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseBlacksmith"
+            },
+            "commands": {
+                "repair blacksmith": false,
+                "Strenghten Stronghold Defences I": false,
+                "Strenghten Stronghold Defences II": false,
+                "Forge spears": false,
+                "Forge javelins": false,
+                "Forge swords": false,
+                "Forge maces": false,
+                "Forge pikes": false,
+                "StopSpecialization1": false,
+                "StopSpecialization2": false,
+                "StopSpecialization3": false,
+                "StopSpecialization4": false,
+                "StopSpecialization5": false,
+                "StopSpecialization": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseBlacksmith"
         },
         "CBlacksmithAnim": {
             "properties": {},
-            "commands": {"idle": [["Obj", "This"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "This"]]},
             "def_cmds": {},
             "parent": "Object"
         },
-        "Javelin": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "Object"},
-        "Death_Magic": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Javelin": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
+        "Death_Magic": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "BaseVillage": {
             "properties": {
                 "house_pop_bonus": "10",
@@ -1649,6 +1934,17 @@ const CLASSES_DETAILS =
                 "display_name": "Village Hall"
             },
             "commands": {
+                "repair village": false,
+                "tribute": false,
+                "tribute_default": false,
+                "stoptribute": false,
+                "createfoodmule1": false,
+                "createfoodmule2": false,
+                "creategoldmule1": false,
+                "creategoldmule2": false
+            },
+            "no_commands": [],
+            "methods": {
                 "idle": [["Obj", "This"]],
                 "tribute": [["Obj", "this"], ["Obj", "To"]],
                 "tribute_default": [["Obj", "this"], ["Obj", "To"]],
@@ -1676,7 +1972,7 @@ const CLASSES_DETAILS =
                 "radius": "70",
                 "selection_radius": "75",
                 "help": "/contents/buildings/Well"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseWell"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseWell"
         },
         "GVillage": {
             "properties": {
@@ -1685,14 +1981,19 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/GWarehouse.bmp",
                 "edittree_pos": "Structures/Village (Gaul)/Village hall",
                 "help": "/contents/buildings/Village"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseVillage"
+            },
+            "commands": {"trainpeasantg": false},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseVillage"
         },
         "Column Small": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Ruins/Column Small"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "BWallsS": {
             "properties": {
@@ -1703,14 +2004,14 @@ const CLASSES_DETAILS =
                 "wall_set": "British walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "BSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "GHero3a": {
             "properties": {
                 "display_name": "Darhinnox",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/GHero3.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "GaulHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "GaulHero"
         },
         "CHero1": {
             "properties": {
@@ -1718,7 +2019,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/CHero1.bmp",
                 "edittree_pos": "Units/Carthage/Hero 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "CarthaginianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "CarthaginianHero"
         },
         "GArena2": {
             "properties": {
@@ -1729,7 +2030,24 @@ const CLASSES_DETAILS =
                 "edittree_pos": "Structures/Stronghold (Gaul)/Arena SE",
                 "help": "/contents/buildings/GArena",
                 "icon": "gameres/icons/GArena.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseArena"
+            },
+            "commands": {
+                "Fights": false,
+                "Gaul Training 1": false,
+                "Gaul Training 2": false,
+                "Gaul Training 3": false,
+                "hireheroG": false,
+                "Hire Trident warrior": false,
+                "Trident Warrior Exp1": false,
+                "Trident Warrior Exp2": false,
+                "Trident Warrior Exp3": false,
+                "Warrior Tales": false,
+                "Battle tactics": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseArena"
         },
         "BWallsN": {
             "properties": {
@@ -1740,11 +2058,13 @@ const CLASSES_DETAILS =
                 "wall_set": "British walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "BSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "kolona1": {
             "properties": {"edittree_pos": "Structures/Others/Ruins/Roman pillar"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -1753,7 +2073,7 @@ const CLASSES_DETAILS =
                 "race": "Germany",
                 "icon": "gameres/icons/TVillager.bmp",
                 "edittree_pos": "Units/Germany/Peasant (male)"
-            }, "commands": {}, "def_cmds": {}, "parent": "Peasant"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Peasant"
         },
         "RGateNW": {
             "properties": {
@@ -1763,18 +2083,20 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Republican Roman walls",
                 "sentry_class_name": "RSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "STAT01": {
             "properties": {
                 "radius": "10",
                 "selection_radius": "10",
                 "edittree_pos": "Structures/Others/Egypt/Statue1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "DElephantSkeleton2": {
             "properties": {"edittree_pos": "Structures/Others/Desert/Elephant Skeleton 2"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -1784,7 +2106,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/IHero2.bmp",
                 "edittree_pos": "Units/Iberia/Hero 2"
-            }, "commands": {}, "def_cmds": {}, "parent": "IberianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "IberianHero"
         },
         "EVillage": {
             "properties": {
@@ -1795,11 +2117,18 @@ const CLASSES_DETAILS =
                 "edittree_pos": "Structures/Village (Egypt)/Village hall",
                 "foodperpop": "100",
                 "help": "/contents/buildings/Village"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseVillage"
+            },
+            "commands": {"trainpeasante": false},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseVillage"
         },
         "EBlacksmithFire": {
             "properties": {"decor_always_animate": "1"},
-            "commands": {"idle": [["Obj", "This"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "This"]]},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -1808,18 +2137,20 @@ const CLASSES_DETAILS =
                 "radius": "40",
                 "selection_radius": "40",
                 "edittree_pos": "Structures/Others/Egypt/Ruins1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "Ritual Stone 01": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Sacred/Ritual Stone 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "IVillagerAmbient": {
             "properties": {"race": "Iberia", "icon": "gameres/icons/IVillager.bmp"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "PeasantAmbient"
         },
@@ -1837,7 +2168,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Swordsmen",
                 "help": "contents/units/ESwordsman",
                 "edittree_pos": "Units/Egypt/Swordsman"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
         "Wall": {
             "properties": {
@@ -1846,7 +2177,7 @@ const CLASSES_DETAILS =
                 "display_name": "Wall",
                 "help": "/contents/buildings/Fortification",
                 "non_selectable": "1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Building"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Building"
         },
         "Obelisk1": {
             "properties": {
@@ -1857,7 +2188,12 @@ const CLASSES_DETAILS =
                 "display_name": "Obelisk",
                 "icon": "gameres/icons/Obelisk1.bmp",
                 "help": "/contents/buildings/Obelisk 1"
-            }, "commands": {"idle": [["Obj", "This"]]}, "def_cmds": {}, "parent": "ItemHolder"
+            },
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "This"]]},
+            "def_cmds": {},
+            "parent": "ItemHolder"
         },
         "RamUnit": {
             "properties": {
@@ -1877,7 +2213,9 @@ const CLASSES_DETAILS =
                 "selection_radius": "80",
                 "display_name": "Ram"
             },
-            "commands": {"idle": [["Obj", "me"]], "attack": [["Obj", "me"], ["Obj", "target1"]]},
+            "commands": {},
+            "no_commands": ["capture", "explore", "train", "detach", "getitems", "patrol", "build_catapult"],
+            "methods": {"idle": [["Obj", "me"]], "attack": [["Obj", "me"], ["Obj", "target1"]]},
             "def_cmds": {
                 "Inn": [{"cmd": "approach", "ctrl": false}],
                 "ShipBattle": [{"cmd": "approach", "ctrl": false}],
@@ -1899,14 +2237,26 @@ const CLASSES_DETAILS =
                 "auto_repair": "no",
                 "icon": "gameres/icons/MTemple.bmp",
                 "help": "/contents/buildings/RTemple"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseBarracks"
+            },
+            "commands": {
+                "repair temple": false,
+                "trainRPriest": false,
+                "Altar of Jupiter": false,
+                "Cloud of Plague": false,
+                "Wrath of Jupiter": false,
+                "God's Gift": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseBarracks"
         },
         "BHero2a": {
             "properties": {
                 "display_name": "Edric",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/BHero2.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "BritonHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BritonHero"
         },
         "BritonHero": {
             "properties": {
@@ -1921,11 +2271,13 @@ const CLASSES_DETAILS =
                 "projectile_class": "Arrow",
                 "building_projectile_class": "Fire_Arrow",
                 "help": "/contents/units/BHero"
-            }, "commands": {}, "def_cmds": {}, "parent": "Hero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Hero"
         },
         "CampWeaponRack3": {
             "properties": {"edittree_pos": "Structures/Others/Camp/Weapon rack 3"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -1937,7 +2289,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "German walls",
                 "sentry_class_name": "TSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "IWallsE": {
             "properties": {
@@ -1948,11 +2300,13 @@ const CLASSES_DETAILS =
                 "wall_set": "Iberian walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "ISentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "GTower01": {
             "properties": {"race": "Gaul", "wall_set": "Gaul walls", "icon": "gameres/icons/GTower.bmp"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Tower"
         },
@@ -1966,25 +2320,39 @@ const CLASSES_DETAILS =
                 "edittree_pos": "Structures/Stronghold (Iberia)/Sanctuary",
                 "auto_repair": "no",
                 "icon": "gameres/icons/ISanctuary.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseBarracks"
+            },
+            "commands": {
+                "repair sanctuary": false,
+                "trainIEnchantress": false,
+                "Code of Valor": false,
+                "Ancestral Knowledge": false,
+                "Cover of Mercy": false,
+                "Iberian Mass Heal": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseBarracks"
         },
         "GWVillager": {
             "properties": {
                 "race": "Gaul",
                 "icon": "gameres/icons/GWoman.bmp",
                 "edittree_pos": "Units/Gaul/Peasant (female)"
-            }, "commands": {}, "def_cmds": {}, "parent": "PeasantFemale"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "PeasantFemale"
         },
         "MTower": {
             "properties": {
                 "race": "ImperialRome",
                 "wall_set": "Imperial Roman walls",
                 "icon": "gameres/icons/RTower.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "Tower"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Tower"
         },
         "DCube2": {
             "properties": {"edittree_pos": "Structures/Others/Desert/Cube 2"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -2002,7 +2370,9 @@ const CLASSES_DETAILS =
                 "help": "contents/units/IEnchantress",
                 "edittree_pos": "Units/Iberia/Enchantress"
             },
-            "commands": {
+            "commands": {"teach": true, "cover_of_mercy": true, "mass_heal": false},
+            "no_commands": [],
+            "methods": {
                 "stand_position": [["Obj", "This"]],
                 "ondie": [["Obj", "This"]],
                 "advance": [["Obj", "This"], ["point", "pt"]],
@@ -2035,7 +2405,12 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Numidian Javelin Throwers",
                 "help": "contents/units/CJavelinThrower",
                 "edittree_pos": "Units/Carthage/Javelin Thrower"
-            }, "commands": {"ondie": [["Obj", "THIS"]]}, "def_cmds": {}, "parent": "ShortRanged"
+            },
+            "commands": {},
+            "no_commands": [],
+            "methods": {"ondie": [["Obj", "THIS"]]},
+            "def_cmds": {},
+            "parent": "ShortRanged"
         },
         "GHero4": {
             "properties": {
@@ -2043,18 +2418,20 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/GHero4.bmp",
                 "edittree_pos": "Units/Gaul/Hero 4"
-            }, "commands": {}, "def_cmds": {}, "parent": "GaulHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "GaulHero"
         },
         "SphinxSmall4": {
             "properties": {
                 "radius": "60",
                 "selection_radius": "60",
                 "edittree_pos": "Structures/Others/Egypt/Sphynx Small 4"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "Mist": {
             "properties": {"radius": "100", "range": "200", "stamina_dec_time": "1200"},
-            "commands": {"idle": [["Obj", "This"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "This"]]},
             "def_cmds": {},
             "parent": "SummoningObj"
         },
@@ -2069,6 +2446,15 @@ const CLASSES_DETAILS =
                 "help": "/contents/buildings/CMarket"
             },
             "commands": {
+                "Free Trade": false,
+                "Expedition": false,
+                "CTribute": false,
+                "Mercenary pact": false,
+                "Slavery": false,
+                "buyfoodforgold": false
+            },
+            "no_commands": [],
+            "methods": {
                 "buyfoodforgold": [["Obj", "This"]],
                 "heal": [["Obj", "THIS"]],
                 "expedition": [["Obj", "this"], ["point", "pt"]]
@@ -2090,9 +2476,21 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Macemen",
                 "help": "contents/units/CMaceman",
                 "edittree_pos": "Units/Carthage/Maceman"
-            }, "commands": {"ondie": [["Obj", "THIS"]]}, "def_cmds": {}, "parent": "Melee"
+            },
+            "commands": {},
+            "no_commands": [],
+            "methods": {"ondie": [["Obj", "THIS"]]},
+            "def_cmds": {},
+            "parent": "Melee"
         },
-        "TSentry1": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "TSentry"},
+        "TSentry1": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "TSentry"
+        },
         "BWallsSE": {
             "properties": {
                 "race": "Britain",
@@ -2101,7 +2499,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "British walls",
                 "sentry_class_name": "BSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "Witch hut": {
             "properties": {
@@ -2112,7 +2510,7 @@ const CLASSES_DETAILS =
                 "display_name": "Witch hut",
                 "respawn_time": "300000",
                 "respawn_item": "Rye spikes"
-            }, "commands": {}, "def_cmds": {}, "parent": "ItemHolder"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ItemHolder"
         },
         "MGate3": {
             "properties": {
@@ -2122,7 +2520,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Imperial Roman walls",
                 "sentry_class_name": "MSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "GGateS": {
             "properties": {
@@ -2132,9 +2530,16 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Gaul walls",
                 "sentry_class_name": "GSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
-        "Slingstone": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Slingstone": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "IArena": {
             "properties": {
                 "race": "Iberia",
@@ -2144,16 +2549,44 @@ const CLASSES_DETAILS =
                 "edittree_pos": "Structures/Stronghold (Iberia)/Arena",
                 "help": "/contents/buildings/IArena",
                 "icon": "gameres/icons/IArena.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseArena"
+            },
+            "commands": {
+                "Tournaments": false,
+                "Heroes' Wisdom": false,
+                "Warriors' Wisdom": false,
+                "hireheroI": false,
+                "Mountain Clan": false,
+                "Call Mountaineer": false,
+                "Mountain Clan Legacy": false,
+                "Nobility": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseArena"
         },
-        "Damage2": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
-        "rcatapult_placing": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "catapult_placing"},
+        "Damage2": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
+        "rcatapult_placing": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "catapult_placing"
+        },
         "BHero3c": {
             "properties": {
                 "display_name": "Egbert",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/BHero3.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "BritonHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BritonHero"
         },
         "THouse2": {
             "properties": {
@@ -2163,9 +2596,16 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/Thouse.bmp",
                 "edittree_pos": "Structures/Village (Germany)/House 2",
                 "display_name": "House"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseHouse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseHouse"
         },
-        "BattleCry2": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "BattleCry2": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "Teleport_1": {
             "properties": {
                 "radius": "200",
@@ -2176,14 +2616,14 @@ const CLASSES_DETAILS =
                 "exit_vector_x": "-250",
                 "exit_vector_y": "250",
                 "description": "Allows armies to go from one cave entrance to the other instantly"
-            }, "commands": {}, "def_cmds": {}, "parent": "Teleport"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Teleport"
         },
         "Crack 03": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Cracks/Crack 3"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "CWallsNE": {
             "properties": {
@@ -2193,7 +2633,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "Carthaginian walls",
                 "sentry_class_name": "CSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "BTempleOfThor": {
             "properties": {
@@ -2205,7 +2645,19 @@ const CLASSES_DETAILS =
                 "edittree_pos": "Structures/Stronghold (Britain)/Temple of Thor",
                 "auto_repair": "no",
                 "icon": "gameres/icons/BTempleOfThor.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseBarracks"
+            },
+            "commands": {
+                "repair Temple of Thor": false,
+                "trainBDruid": false,
+                "Britain chamber": false,
+                "Britain Ghoul Summoning": false,
+                "Wolf Summoning": false,
+                "Britain Mass Heal": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseBarracks"
         },
         "BHero2": {
             "properties": {
@@ -2213,14 +2665,14 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/BHero2.bmp",
                 "edittree_pos": "Units/Britain/Hero 2"
-            }, "commands": {}, "def_cmds": {}, "parent": "BritonHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BritonHero"
         },
         "RHero3b": {
             "properties": {
                 "display_name": "Marcipor",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/RHero3.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "RepublicanRomanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "RepublicanRomanHero"
         },
         "MBlacksmith": {
             "properties": {
@@ -2231,11 +2683,27 @@ const CLASSES_DETAILS =
                 "selection_radius": "260",
                 "edittree_pos": "Structures/Stronghold (Imperial Rome)/Blacksmith",
                 "help": "/contents/buildings/RBlacksmith"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseBlacksmith"
+            },
+            "commands": {
+                "repair blacksmith": false,
+                "Strenghten Stronghold Defences I": false,
+                "Strenghten Stronghold Defences II": false,
+                "Roman Archers": false,
+                "Roman Velit": false,
+                "Roman Principle": false,
+                "Roman Scout": false,
+                "Roman Praetorian": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseBlacksmith"
         },
         "Ghost_sacrifice": {
             "properties": {},
-            "commands": {"idle": [["Obj", "This"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "This"]]},
             "def_cmds": {},
             "parent": "Sacrifice"
         },
@@ -2248,14 +2716,14 @@ const CLASSES_DETAILS =
                 "wall_set": "Iberian walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "ISentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "SPHINXBIG2": {
             "properties": {
                 "radius": "40",
                 "selection_radius": "40",
                 "edittree_pos": "Structures/Others/Egypt/Sphynx Big 2"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "TTavern": {
             "properties": {
@@ -2267,7 +2735,19 @@ const CLASSES_DETAILS =
                 "auto_repair": "no",
                 "icon": "gameres/icons/TTavern.bmp",
                 "help": "/contents/buildings/TTavern"
-            }, "commands": {"buyfoodforgold": [["Obj", "This"]]}, "def_cmds": {}, "parent": "BaseTavern"
+            },
+            "commands": {
+                "TTribute": false,
+                "TAddPop": false,
+                "TGrainTrade": false,
+                "TFoodTax": false,
+                "TReligiousFeast": false,
+                "buyfoodforgold": false
+            },
+            "no_commands": [],
+            "methods": {"buyfoodforgold": [["Obj", "This"]]},
+            "def_cmds": {},
+            "parent": "BaseTavern"
         },
         "RWallsSW": {
             "properties": {
@@ -2277,7 +2757,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "Republican Roman walls",
                 "sentry_class_name": "RSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "CArena": {
             "properties": {
@@ -2288,7 +2768,20 @@ const CLASSES_DETAILS =
                 "selection_radius": "365",
                 "edittree_pos": "Structures/Stronghold (Carthage)/Arena",
                 "help": "/contents/buildings/CArena"
-            }, "commands": {"mahout_school": [["Obj", "This"]]}, "def_cmds": {}, "parent": "BaseArena"
+            },
+            "commands": {
+                "People's Assembly": false,
+                "Shared Strength": false,
+                "Shared Triumph": false,
+                "Mahout School": false,
+                "hireheroC": false,
+                "Train War Elephant": false,
+                "Spoils of war": false
+            },
+            "no_commands": [],
+            "methods": {"mahout_school": [["Obj", "This"]]},
+            "def_cmds": {},
+            "parent": "BaseArena"
         },
         "TSanctuaryOfVotan": {
             "properties": {
@@ -2300,21 +2793,34 @@ const CLASSES_DETAILS =
                 "auto_repair": "no",
                 "icon": "gameres/icons/TSanctuaryOfVotan.bmp",
                 "help": "/contents/buildings/TArena"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseArena"
+            },
+            "commands": {
+                "hireheroT": false,
+                "TFights": false,
+                "Call Valkyries": false,
+                "Legendary Valkyries": false,
+                "Learning": false,
+                "Attack focus": false,
+                "Teuton Master": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseArena"
         },
         "Rock Small 01": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Rocks/Rock Small 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "RHero2c": {
             "properties": {
                 "display_name": "Bellator",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/RHero2.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "RepublicanRomanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "RepublicanRomanHero"
         },
         "BWallsE": {
             "properties": {
@@ -2325,11 +2831,13 @@ const CLASSES_DETAILS =
                 "wall_set": "British walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "BSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "DCube1": {
             "properties": {"edittree_pos": "Structures/Others/Desert/Cube 1"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -2341,7 +2849,7 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/bhouse.bmp",
                 "edittree_pos": "Structures/Village (Britain)/House 2",
                 "display_name": "House"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseHouse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseHouse"
         },
         "BWallsNW": {
             "properties": {
@@ -2351,7 +2859,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "British walls",
                 "sentry_class_name": "BSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "BSentry": {
             "properties": {
@@ -2362,14 +2870,14 @@ const CLASSES_DETAILS =
                 "armor_pierce": "0",
                 "icon": "gameres/icons/BBowman.bmp",
                 "unit_specials": "Triple strike, Keen sight, Freedom"
-            }, "commands": {}, "def_cmds": {}, "parent": "Sentry"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Sentry"
         },
         "COLUMN CONNECTION1": {
             "properties": {
                 "radius": "40",
                 "selection_radius": "40",
                 "edittree_pos": "Structures/Others/Egypt/Column Connection 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "Stonehenge": {
             "properties": {
@@ -2397,6 +2905,14 @@ const CLASSES_DETAILS =
                 "hides_units": "1"
             },
             "commands": {
+                "wisdom": false,
+                "starvation": false,
+                "soothing": false,
+                "sacrifice": false,
+                "bloodlust": false
+            },
+            "no_commands": [],
+            "methods": {
                 "idle": [["Obj", "This"]],
                 "soothing": [["Obj", "This"]],
                 "wisdom": [["Obj", "This"]],
@@ -2415,7 +2931,7 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/Thouse.bmp",
                 "edittree_pos": "Structures/Village (Germany)/House 3",
                 "display_name": "House"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseHouse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseHouse"
         },
         "CGateE": {
             "properties": {
@@ -2425,7 +2941,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Carthaginian walls",
                 "sentry_class_name": "CSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "RWallsNE": {
             "properties": {
@@ -2435,14 +2951,14 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "Republican Roman walls",
                 "sentry_class_name": "RSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "Rock Small 02": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Rocks/Rock Small 2"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "TWallsW": {
             "properties": {
@@ -2453,7 +2969,7 @@ const CLASSES_DETAILS =
                 "wall_set": "German walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "TSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "IOutpost": {
             "properties": {
@@ -2479,11 +2995,21 @@ const CLASSES_DETAILS =
                 "defenders_out_2": "10",
                 "start_level_2": "8",
                 "end_level_2": "8"
-            }, "commands": {}, "def_cmds": {}, "parent": "Outpost"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Outpost"
         },
         "Military": {
             "properties": {"healthbar_type": "2"},
             "commands": {
+                "attack": true,
+                "capture": true,
+                "explore": false,
+                "advance": true,
+                "train": true,
+                "patrol": true,
+                "build_catapult": false
+            },
+            "no_commands": [],
+            "methods": {
                 "train": [["Obj", "This"]],
                 "ondie": [["Obj", "THIS"]],
                 "enter_tent": [["Obj", "This"], ["Obj", "bld"]],
@@ -2511,18 +3037,24 @@ const CLASSES_DETAILS =
                 "edittree_pos": "Units/Heroes/Lleldoryn (Druid)"
             },
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {"ShipBattle": [{"cmd": "boardship", "ctrl": false}, {"cmd": "approach", "ctrl": false}]},
             "parent": "BaseMage"
         },
         "CampFire": {
             "properties": {"decor_always_animate": "1", "edittree_pos": "Structures/Others/Camp/Fireplace"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
         "TVillagerAmbient": {
             "properties": {"race": "Germany", "icon": "gameres/icons/TVillager.bmp"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "PeasantAmbient"
         },
@@ -2544,7 +3076,9 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Peasants",
                 "help": "contents/units/Villagers"
             },
-            "commands": {"enter": [["Obj", "This"], ["Obj", "bld"]], "transport": [["Obj", "This"], ["Obj", "other"]]},
+            "commands": {},
+            "no_commands": ["detach"],
+            "methods": {"enter": [["Obj", "This"], ["Obj", "bld"]], "transport": [["Obj", "This"], ["Obj", "other"]]},
             "def_cmds": {
                 "Inn": [{"cmd": "transport", "ctrl": false}, {"cmd": "approach", "ctrl": false}],
                 "Catapult": [{"cmd": "approach", "ctrl": false}],
@@ -2558,18 +3092,20 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/BHero3.bmp",
                 "edittree_pos": "Units/Britain/Hero 3"
-            }, "commands": {}, "def_cmds": {}, "parent": "BritonHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BritonHero"
         },
         "Toro 2": {
             "properties": {
                 "radius": "70",
                 "selection_radius": "70",
                 "edittree_pos": "Structures/Others/Ruins/Bull 2"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "MVillagerAmbient": {
             "properties": {"race": "ImperialRome", "icon": "gameres/icons/RMan.bmp"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "PeasantAmbient"
         },
@@ -2581,18 +3117,20 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Carthaginian walls",
                 "sentry_class_name": "CSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "TPeasantMulti": {
             "properties": {
                 "icon": "gameres/icons/TPeasants.bmp",
                 "help": "contents/units",
                 "interface": "thumb,unit,holder"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "CVillagerAmbient": {
             "properties": {"race": "Carthage", "icon": "gameres/icons/CVillager.bmp"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "PeasantAmbient"
         },
@@ -2601,16 +3139,23 @@ const CLASSES_DETAILS =
                 "radius": "10",
                 "selection_radius": "10",
                 "edittree_pos": "Structures/Others/Egypt/Statue2"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "EHero3c": {
             "properties": {
                 "display_name": "Tefibi",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/EHero3.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "EgyptianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "EgyptianHero"
         },
-        "MSentry1": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "MSentry"},
+        "MSentry1": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "MSentry"
+        },
         "Gate": {
             "properties": {
                 "icon": "gameres/icons/GGates.bmp",
@@ -2620,7 +3165,9 @@ const CLASSES_DETAILS =
                 "help": "/contents/buildings/Fortification",
                 "sentry_class_name": "RSentry1"
             },
-            "commands": {
+            "commands": {"opengate": false, "closegate": false, "repair gate": false},
+            "no_commands": [],
+            "methods": {
                 "idle": [["Obj", "gate"]],
                 "open": [["Obj", "gate"]],
                 "close": [["Obj", "gate"]],
@@ -2633,23 +3180,34 @@ const CLASSES_DETAILS =
         "DRuins9": {
             "properties": {"edittree_pos": "Structures/Others/Desert/Ruins 9"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
         "CampWeaponRack1": {
             "properties": {"edittree_pos": "Structures/Others/Camp/Weapon rack 1"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
-        "Lightning2": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Lightning2": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "GHero3": {
             "properties": {
                 "display_name": "Dumnorix",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/GHero3.bmp",
                 "edittree_pos": "Units/Gaul/Hero 3"
-            }, "commands": {}, "def_cmds": {}, "parent": "GaulHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "GaulHero"
         },
         "CWallsNW": {
             "properties": {
@@ -2659,14 +3217,14 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "Carthaginian walls",
                 "sentry_class_name": "CSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "EVillager": {
             "properties": {
                 "race": "Egypt",
                 "icon": "gameres/icons/EVillager.bmp",
                 "edittree_pos": "Units/Egypt/Peasant (male)"
-            }, "commands": {}, "def_cmds": {}, "parent": "Peasant"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Peasant"
         },
         "GHouse5": {
             "properties": {
@@ -2676,16 +3234,23 @@ const CLASSES_DETAILS =
                 "radius": "112",
                 "selection_radius": "115",
                 "edittree_pos": "Structures/Village (Gaul)/House 5"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseHouse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseHouse"
         },
         "SPHINXBIG3": {
             "properties": {
                 "radius": "40",
                 "selection_radius": "40",
                 "edittree_pos": "Structures/Others/Egypt/Sphynx Big 3"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
-        "Fire_Arrow": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Fire_Arrow": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "RGateNE": {
             "properties": {
                 "race": "RepublicanRome",
@@ -2694,14 +3259,14 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Republican Roman walls",
                 "sentry_class_name": "RSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "EWVillager": {
             "properties": {
                 "race": "Egypt",
                 "icon": "gameres/icons/EWVillager.bmp",
                 "edittree_pos": "Units/Egypt/Peasant (female)"
-            }, "commands": {}, "def_cmds": {}, "parent": "PeasantFemale"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "PeasantFemale"
         },
         "BaseMage": {
             "properties": {
@@ -2714,7 +3279,9 @@ const CLASSES_DETAILS =
                 "min_range": "0",
                 "sight": "400"
             },
-            "commands": {
+            "commands": {},
+            "no_commands": [],
+            "methods": {
                 "globalspell": [["Obj", "me"], ["Obj", "target"]],
                 "train": [["Obj", "this"]],
                 "learn": [["Obj", "This"], ["Obj", "target"]]
@@ -2738,18 +3305,25 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Militiamen",
                 "help": "contents/units/IMilitiaman",
                 "edittree_pos": "Units/Iberia/Militiaman"
-            }, "commands": {"convert": [["Obj", "This"]]}, "def_cmds": {}, "parent": "Melee"
+            },
+            "commands": {"convert2peasant": false},
+            "no_commands": [],
+            "methods": {"convert": [["Obj", "This"]]},
+            "def_cmds": {},
+            "parent": "Melee"
         },
         "THero1b": {
             "properties": {
                 "display_name": "Hildegaud",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/THero1.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "GermanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "GermanHero"
         },
         "CampFence1": {
             "properties": {"edittree_pos": "Structures/Others/Camp/Fence 1"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -2758,21 +3332,21 @@ const CLASSES_DETAILS =
                 "radius": "40",
                 "selection_radius": "40",
                 "edittree_pos": "Structures/Others/Egypt/Column Connection 2"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "Ruins 04": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Ruins/Ruins 4"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "Ruins 02": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Ruins/Ruins 2"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "Hen": {
             "properties": {
@@ -2790,7 +3364,12 @@ const CLASSES_DETAILS =
                 "no_transparent_draw": "1",
                 "always_visible_on_minimap": "0",
                 "healthbar_type": "0"
-            }, "commands": {"idle": [["Obj", "This"]]}, "def_cmds": {}, "parent": "Animal"
+            },
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "This"]]},
+            "def_cmds": {},
+            "parent": "Animal"
         },
         "RPrinciple": {
             "properties": {
@@ -2806,39 +3385,59 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Principles",
                 "help": "contents/units/RPrinciple",
                 "edittree_pos": "Units/Roman/Principle"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
         "MHero3b": {
             "properties": {
                 "display_name": "Vinicius",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/MHero3.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "ImperialRomanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ImperialRomanHero"
         },
         "DRuins4": {
             "properties": {"edittree_pos": "Structures/Others/Desert/Ruins 4"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
         "TBarrackHorse1": {
             "properties": {},
-            "commands": {"idle": [["Obj", "This"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "This"]]},
             "def_cmds": {},
             "parent": "Object"
         },
-        "Gule": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "Object"},
-        "Sacrifice": {"properties": {"radius": "10"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Gule": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
+        "Sacrifice": {
+            "properties": {"radius": "10"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "THero2a": {
             "properties": {
                 "display_name": "Malo",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/THero2.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "GermanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "GermanHero"
         },
         "EVillagerAmbient": {
             "properties": {"race": "Egypt", "icon": "gameres/icons/RMan.bmp"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "PeasantAmbient"
         },
@@ -2848,21 +3447,21 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/RHero2.bmp",
                 "edittree_pos": "Units/Roman/Hero (Republican) 2"
-            }, "commands": {}, "def_cmds": {}, "parent": "RepublicanRomanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "RepublicanRomanHero"
         },
         "BHero1c": {
             "properties": {
                 "display_name": "Osuald",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/BHero1.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "BritonHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BritonHero"
         },
         "EHero3a": {
             "properties": {
                 "display_name": "Paneb",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/EHero3.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "EgyptianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "EgyptianHero"
         },
         "EagleSummoned": {
             "properties": {
@@ -2870,7 +3469,7 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/eagle.bmp",
                 "unit_specials": "Keen sight",
                 "stamina_dec_time": "10000"
-            }, "commands": {}, "def_cmds": {}, "parent": "Eagle"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Eagle"
         },
         "ROutpost": {
             "properties": {
@@ -2891,7 +3490,12 @@ const CLASSES_DETAILS =
                 "defenders_out_1": "8",
                 "start_level_1": "4",
                 "end_level_1": "12"
-            }, "commands": {"routpost_interest": [["Obj", "This"]]}, "def_cmds": {}, "parent": "Outpost"
+            },
+            "commands": {},
+            "no_commands": [],
+            "methods": {"routpost_interest": [["Obj", "This"]]},
+            "def_cmds": {},
+            "parent": "Outpost"
         },
         "TAxeman": {
             "properties": {
@@ -2907,11 +3511,13 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Axemen",
                 "help": "contents/units/Axeman",
                 "edittree_pos": "Units/Germany/Axeman"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
         "WatchEyeSmall": {
             "properties": {"sight": "300"},
-            "commands": {"spy": [["Obj", "this"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"spy": [["Obj", "this"]]},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -2923,7 +3529,7 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/ehouse.bmp",
                 "edittree_pos": "Structures/Village (Egypt)/House 2",
                 "display_name": "House"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseHouse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseHouse"
         },
         "TGate5": {
             "properties": {
@@ -2933,7 +3539,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "German walls",
                 "sentry_class_name": "TSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "BGate2": {
             "properties": {
@@ -2943,7 +3549,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "British walls",
                 "sentry_class_name": "BSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "IberianHero": {
             "properties": {
@@ -2954,11 +3560,32 @@ const CLASSES_DETAILS =
                 "race": "Iberia",
                 "HeroSkills": "Healing, Ceasefire, Team defense, Epic endurance, Euphoria",
                 "help": "/contents/units/IHero"
-            }, "commands": {}, "def_cmds": {}, "parent": "HeroMounted"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "HeroMounted"
         },
-        "AdditionalDefense": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
-        "Gule_shadow": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "Object"},
-        "Death": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "AdditionalDefense": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
+        "Gule_shadow": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
+        "Death": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "BHouse03": {
             "properties": {
                 "race": "Britain",
@@ -2967,18 +3594,20 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/bhouse.bmp",
                 "edittree_pos": "Structures/Village (Britain)/House 3",
                 "display_name": "House"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseHouse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseHouse"
         },
         "Ruins 05": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Ruins/Ruins 5"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "TempleOfThorFire1": {
             "properties": {"decor_always_animate": "1"},
-            "commands": {"idle": [["Obj", "This"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "This"]]},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -2988,7 +3617,7 @@ const CLASSES_DETAILS =
                 "display_name": "Egypt Ship",
                 "display_name_plural": "Ships",
                 "edittree_pos": "Units/Others/Egypt Ship"
-            }, "commands": {}, "def_cmds": {}, "parent": "ShipBattle"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ShipBattle"
         },
         "Caesar": {
             "properties": {
@@ -2998,7 +3627,7 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/Caesar.bmp",
                 "edittree_pos": "Units/Heroes/Caesar (Roman)",
                 "HeroSkills": "Administration, Team attack, Team defense, Quick March, Discipline"
-            }, "commands": {}, "def_cmds": {}, "parent": "HeroMounted"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "HeroMounted"
         },
         "CGateNW": {
             "properties": {
@@ -3008,14 +3637,14 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Carthaginian walls",
                 "sentry_class_name": "CSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "CVillager": {
             "properties": {
                 "race": "Carthage",
                 "icon": "gameres/icons/CVillager.bmp",
                 "edittree_pos": "Units/Carthage/Peasant (male)"
-            }, "commands": {}, "def_cmds": {}, "parent": "Peasant"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Peasant"
         },
         "IWallsSE": {
             "properties": {
@@ -3025,9 +3654,16 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "Iberian walls",
                 "sentry_class_name": "ISentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
-        "Assault": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Assault": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "Tradecar_Donkey": {
             "properties": {
                 "maxhealth": "400",
@@ -3039,30 +3675,46 @@ const CLASSES_DETAILS =
                 "selection_radius": "50",
                 "speed": "80",
                 "edittree_pos": "Units/Others/Caravan Donkey"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wagon"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wagon"
         },
         "Field2": {
             "properties": {"edittree_pos": "Structures/Others/Fields/Field 2"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
-        "Lightning3": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Lightning3": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "SPHINXBIG4": {
             "properties": {
                 "radius": "40",
                 "selection_radius": "40",
                 "edittree_pos": "Structures/Others/Egypt/Sphynx Big 4"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "RUIN": {
             "properties": {
                 "radius": "10",
                 "selection_radius": "10",
                 "edittree_pos": "Structures/Others/Europe/Ruin"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
-        "ESentry1": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "ESentry"},
+        "ESentry1": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "ESentry"
+        },
         "CHouse01": {
             "properties": {
                 "race": "Carthage",
@@ -3071,7 +3723,7 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/chouse.bmp",
                 "edittree_pos": "Structures/Village (Carthage)/House 1",
                 "display_name": "House"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseHouse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseHouse"
         },
         "EWallsN": {
             "properties": {
@@ -3082,7 +3734,7 @@ const CLASSES_DETAILS =
                 "wall_set": "Egyptian walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "ESentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "TWallsE": {
             "properties": {
@@ -3093,11 +3745,13 @@ const CLASSES_DETAILS =
                 "wall_set": "German walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "TSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "DRuins5": {
             "properties": {"edittree_pos": "Structures/Others/Desert/Ruins 5"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -3110,7 +3764,7 @@ const CLASSES_DETAILS =
                 "wall_set": "Imperial Roman walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "MSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "CartTrader": {
             "properties": {
@@ -3123,7 +3777,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "50",
                 "speed": "80",
                 "edittree_pos": "Units/Others/Caravan Cart"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wagon"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wagon"
         },
         "WolfUnit": {
             "properties": {
@@ -3144,6 +3798,8 @@ const CLASSES_DETAILS =
                 "edittree_pos": "Units/Animals/Wolf"
             },
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {
                 "": [{"cmd": "move", "ctrl": false}, {"cmd": "advance", "ctrl": true}],
                 "Unit": [{"cmd": "attack", "ctrl": false}]
@@ -3153,6 +3809,8 @@ const CLASSES_DETAILS =
         "ship_wreck2": {
             "properties": {"edittree_pos": "Structures/Water/Ship wreck (small)", "water_unit": "1"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -3161,34 +3819,52 @@ const CLASSES_DETAILS =
                 "radius": "60",
                 "selection_radius": "60",
                 "edittree_pos": "Structures/Others/Egypt/Sphynx Small 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "BHero3b": {
             "properties": {
                 "display_name": "Alric",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/BHero3.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "BritonHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BritonHero"
         },
         "WaterRocks01": {
             "properties": {"edittree_pos": "Structures/Water/Rocks 1", "water_unit": "1"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
-        "Gule_fire": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
-        "BleedingAttack": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Gule_fire": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
+        "BleedingAttack": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "OldManA": {
             "properties": {
                 "race": "Egypt",
                 "radius": "20",
                 "selection_radius": "20",
                 "edittree_pos": "Units/Others/Old Man Africa"
-            }, "commands": {}, "def_cmds": {}, "parent": "PeasantAmbient"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "PeasantAmbient"
         },
         "ChimneySmoke": {
             "properties": {"decor_always_animate": "1"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -3203,17 +3879,47 @@ const CLASSES_DETAILS =
                 "help": "/contents/buildings/GBarracks",
                 "edittree_pos": "Structures/Stronghold (Gaul)/Barracks",
                 "auto_repair": "no"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseBarracks"
+            },
+            "commands": {
+                "repair barracks": false,
+                "Barrack Level 1": false,
+                "Barrack Level 2": false,
+                "GBarrack Level 3": false,
+                "trainGSwordsman": false,
+                "trainGArcher": false,
+                "trainGAxeman": false,
+                "trainGSpearman": false,
+                "trainGHorseman": false,
+                "trainGWomanWarrior": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseBarracks"
         },
-        "Area": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Area": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "Silo": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Ruins/Silo"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
-        "Experience": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Experience": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "TGate6": {
             "properties": {
                 "race": "Germany",
@@ -3222,14 +3928,14 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "German walls",
                 "sentry_class_name": "TSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "GHero4a": {
             "properties": {
                 "display_name": "Beow",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/GHero4.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "GaulHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "GaulHero"
         },
         "Fountain2": {
             "properties": {
@@ -3239,11 +3945,13 @@ const CLASSES_DETAILS =
                 "selection_radius": "30",
                 "help": "/contents/buildings/Fountain 2",
                 "display_name": "Fountain"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseWell"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseWell"
         },
         "DRuins1": {
             "properties": {"edittree_pos": "Structures/Others/Desert/Ruins 1"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -3255,9 +3963,16 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "edittree_pos": "Structures/Others/Ruins/Roman Arch",
                 "icon": "gameres/icons/RArch.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
-        "MultiOneRanged": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "MultiOne"},
+        "MultiOneRanged": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "MultiOne"
+        },
         "RWallsNW": {
             "properties": {
                 "race": "RepublicanRome",
@@ -3266,9 +3981,16 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "Republican Roman walls",
                 "sentry_class_name": "RSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
-        "FireSmoke": {"properties": {"decor_always_animate": "1"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "FireSmoke": {
+            "properties": {"decor_always_animate": "1"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "MArena": {
             "properties": {
                 "race": "ImperialRome",
@@ -3278,28 +4000,51 @@ const CLASSES_DETAILS =
                 "selection_radius": "365",
                 "edittree_pos": "Structures/Stronghold (Imperial Rome)/Arena",
                 "help": "/contents/buildings/MArena"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseArena"
+            },
+            "commands": {
+                "MGladiator Shows": false,
+                "hireheroM": false,
+                "Hire Liberati": false,
+                "Liberati guild": false,
+                "Military Academy": false,
+                "Standartization I": false,
+                "Standartization II": false,
+                "Flexibility": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseArena"
         },
         "Rock Large 03": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Rocks/Rock Large 3"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "WaterRocks02": {
             "properties": {"edittree_pos": "Structures/Water/Rocks 2", "water_unit": "1"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
-        "CSentry1": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "CSentry"},
+        "CSentry1": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "CSentry"
+        },
         "Haystack Big": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Fields/Haystack Big"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "Chest": {
             "properties": {
@@ -3308,7 +4053,7 @@ const CLASSES_DETAILS =
                 "radius": "28",
                 "selection_radius": "30",
                 "display_name": "Chest"
-            }, "commands": {}, "def_cmds": {}, "parent": "ItemHolder"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ItemHolder"
         },
         "EWallsE": {
             "properties": {
@@ -3319,7 +4064,7 @@ const CLASSES_DETAILS =
                 "wall_set": "Egyptian walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "ESentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "GShipyard4": {
             "properties": {
@@ -3331,7 +4076,7 @@ const CLASSES_DETAILS =
                 "exit_vector_x": "-120",
                 "exit_vector_y": "-100",
                 "build_ship_variation": "1"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseShipyard"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseShipyard"
         },
         "RGateW": {
             "properties": {
@@ -3341,7 +4086,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Republican Roman walls",
                 "sentry_class_name": "RSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "CTemple": {
             "properties": {
@@ -3353,18 +4098,33 @@ const CLASSES_DETAILS =
                 "auto_repair": "no",
                 "icon": "gameres/icons/CTemple.bmp",
                 "help": "/contents/buildings/CTemple"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseBarracks"
+            },
+            "commands": {
+                "repairCTemple": false,
+                "trainCShaman": false,
+                "Dark Rituals": false,
+                "Zombify": false,
+                "Sacred Legion": false,
+                "trainCNoble": false,
+                "Ferocity": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseBarracks"
         },
         "Pyramide2": {
             "properties": {
                 "radius": "40",
                 "selection_radius": "40",
                 "edittree_pos": "Structures/Others/Egypt/Pyramide2"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "BaseBlacksmith": {
             "properties": {"interface": "thumb,building,queue", "auto_repair": "no"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "BaseTownBuilding"
         },
@@ -3383,7 +4143,12 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Libyan Footmen",
                 "help": "contents/units/CLibyanFootman",
                 "edittree_pos": "Units/Carthage/Libyan Footman"
-            }, "commands": {"ondie": [["Obj", "THIS"]]}, "def_cmds": {}, "parent": "Melee"
+            },
+            "commands": {},
+            "no_commands": [],
+            "methods": {"ondie": [["Obj", "THIS"]]},
+            "def_cmds": {},
+            "parent": "Melee"
         },
         "CNumidianRider": {
             "properties": {
@@ -3401,18 +4166,25 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Numidian Riders",
                 "help": "contents/units/CNumidianRider",
                 "edittree_pos": "Units/Carthage/Numidian Rider"
-            }, "commands": {"ondie": [["Obj", "THIS"]]}, "def_cmds": {}, "parent": "Horse"
+            },
+            "commands": {},
+            "no_commands": [],
+            "methods": {"ondie": [["Obj", "THIS"]]},
+            "def_cmds": {},
+            "parent": "Horse"
         },
         "Ritual Stone 04": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Sacred/Ritual Stone 4"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "CoverOfMercy": {
             "properties": {"radius": "1000", "range": "200", "stamina_dec_time": "2000"},
-            "commands": {"idle": [["Obj", "This"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "This"]]},
             "def_cmds": {},
             "parent": "SummoningObj"
         },
@@ -3433,11 +4205,13 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Lions",
                 "help": "contents/units/Lion",
                 "edittree_pos": "Units/Animals/Lion"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseAnimal"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseAnimal"
         },
         "WagonGold": {
             "properties": {"icon": "gameres/icons/wagon.bmp"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -3447,15 +4221,24 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/THero1.bmp",
                 "edittree_pos": "Units/Germany/Hero 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "GermanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "GermanHero"
         },
         "DRuins2": {
             "properties": {"edittree_pos": "Structures/Others/Desert/Ruins 2"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
-        "FormDir": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "FormDir": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "IGateW": {
             "properties": {
                 "race": "Iberia",
@@ -3464,7 +4247,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Iberian walls",
                 "sentry_class_name": "ISentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "TWallsS": {
             "properties": {
@@ -3475,7 +4258,7 @@ const CLASSES_DETAILS =
                 "wall_set": "German walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "TSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "fountain": {
             "properties": {
@@ -3484,11 +4267,13 @@ const CLASSES_DETAILS =
                 "radius": "54",
                 "selection_radius": "56",
                 "display_name": "Fountain"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseWell"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseWell"
         },
         "DRuins6": {
             "properties": {"edittree_pos": "Structures/Others/Desert/Ruins 6"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -3503,7 +4288,12 @@ const CLASSES_DETAILS =
                 "auto_repair": "no",
                 "help": "/contents/buildings/GTownhall",
                 "edittree_pos": "Structures/Stronghold (Gaul)/Townhall"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseTownhall"
+            },
+            "commands": {"autotrain_start_gr": false, "autotrain_stop_gr": false, "refreshment": false},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseTownhall"
         },
         "GGateW": {
             "properties": {
@@ -3513,14 +4303,14 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Gaul walls",
                 "sentry_class_name": "GSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "BHero3a": {
             "properties": {
                 "display_name": "Alchfrid",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/BHero3.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "BritonHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BritonHero"
         },
         "EWallsSE": {
             "properties": {
@@ -3530,7 +4320,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "Egyptian walls",
                 "sentry_class_name": "ESentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "GHouse6": {
             "properties": {
@@ -3540,7 +4330,7 @@ const CLASSES_DETAILS =
                 "radius": "100",
                 "selection_radius": "110",
                 "edittree_pos": "Structures/Village (Gaul)/House 6"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseHouse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseHouse"
         },
         "TGate3": {
             "properties": {
@@ -3550,7 +4340,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "German walls",
                 "sentry_class_name": "TSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "TGate2": {
             "properties": {
@@ -3560,14 +4350,14 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "German walls",
                 "sentry_class_name": "TSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "GPeasantMulti": {
             "properties": {
                 "icon": "gameres/icons/GPeasants.bmp",
                 "help": "contents/units",
                 "interface": "thumb,unit,holder"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "IDefender": {
             "properties": {
@@ -3583,7 +4373,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Defenders",
                 "help": "contents/units/IDefender",
                 "edittree_pos": "Units/Iberia/Defender"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
         "EHero3": {
             "properties": {
@@ -3591,7 +4381,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/EHero3.bmp",
                 "edittree_pos": "Units/Egypt/Hero 3"
-            }, "commands": {}, "def_cmds": {}, "parent": "EgyptianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "EgyptianHero"
         },
         "Teleport_2": {
             "properties": {
@@ -3603,11 +4393,13 @@ const CLASSES_DETAILS =
                 "exit_vector_x": "250",
                 "exit_vector_y": "250",
                 "description": "Allows armies to go from one cave entrance to the other instantly"
-            }, "commands": {}, "def_cmds": {}, "parent": "Teleport"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Teleport"
         },
         "dolmen1": {
             "properties": {"edittree_pos": "Structures/Others/Sacred/Dolmen 1"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -3616,15 +4408,17 @@ const CLASSES_DETAILS =
                 "race": "Britain",
                 "icon": "gameres/icons/BWVillager.bmp",
                 "edittree_pos": "Units/Britain/Peasant (female)"
-            }, "commands": {}, "def_cmds": {}, "parent": "PeasantFemale"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "PeasantFemale"
         },
         "ETower": {
             "properties": {"race": "Egypt", "wall_set": "Egyptian walls", "icon": "gameres/icons/ETower.bmp"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Tower"
         },
-        "Axe": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Axe": {"properties": {}, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"},
         "BGate0": {
             "properties": {
                 "race": "Britain",
@@ -3633,7 +4427,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "British walls",
                 "sentry_class_name": "BSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "THuntress": {
             "properties": {
@@ -3651,9 +4445,16 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Huntresses",
                 "help": "contents/units/THuntress",
                 "edittree_pos": "Units/Germany/Huntress"
-            }, "commands": {}, "def_cmds": {}, "parent": "ShortRanged"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ShortRanged"
         },
-        "Rage": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Rage": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "Obelisk2": {
             "properties": {
                 "radius": "30",
@@ -3663,14 +4464,19 @@ const CLASSES_DETAILS =
                 "display_name": "Obelisk",
                 "icon": "gameres/icons/Obelisk2.bmp",
                 "help": "/contents/buildings/Obelisk 2"
-            }, "commands": {"idle": [["Obj", "This"]]}, "def_cmds": {}, "parent": "ItemHolder"
+            },
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "This"]]},
+            "def_cmds": {},
+            "parent": "ItemHolder"
         },
         "EHero1b": {
             "properties": {
                 "display_name": "Tjety",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/EHero1.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "EgyptianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "EgyptianHero"
         },
         "RGateSE": {
             "properties": {
@@ -3680,7 +4486,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Republican Roman walls",
                 "sentry_class_name": "RSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "BaseBarracks": {
             "properties": {
@@ -3689,7 +4495,9 @@ const CLASSES_DETAILS =
                 "interface": "thumb,building,queue",
                 "auto_repair": "no"
             },
-            "commands": {"idle": [["Obj", "This"]], "train": [["Obj", "This"]], "trainex": [["Obj", "This"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "This"]], "train": [["Obj", "This"]], "trainex": [["Obj", "This"]]},
             "def_cmds": {},
             "parent": "BaseTownBuilding"
         },
@@ -3712,7 +4520,9 @@ const CLASSES_DETAILS =
                 "display_name": "Sentry",
                 "display_name_plural": "Sentries"
             },
-            "commands": {
+            "commands": {"sentry_attack": true},
+            "no_commands": ["stand_position", "move", "transport", "attack", "approach", "capture", "explore", "advance", "train", "detach", "patrol", "build_catapult", "enter_parry_mode"],
+            "methods": {
                 "goto": [["Obj", "me"], ["point", "pt"]],
                 "patrol": [["Obj", "me"], ["Obj", "wall1"]],
                 "guard": [["Obj", "me"], ["Obj", "wall_gate"]],
@@ -3731,7 +4541,7 @@ const CLASSES_DETAILS =
                 "display_name": "Raginmund",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/THero3.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "GermanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "GermanHero"
         },
         "COutpost": {
             "properties": {
@@ -3752,7 +4562,7 @@ const CLASSES_DETAILS =
                 "defenders_out_1": "12",
                 "start_level_1": "1",
                 "end_level_1": "1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Outpost"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Outpost"
         },
         "EOutpost": {
             "properties": {
@@ -3768,7 +4578,12 @@ const CLASSES_DETAILS =
                 "range": "1000",
                 "settlement_food": "500",
                 "settlement_gold": "500"
-            }, "commands": {"routpost_interest": [["Obj", "This"]]}, "def_cmds": {}, "parent": "Outpost"
+            },
+            "commands": {},
+            "no_commands": [],
+            "methods": {"routpost_interest": [["Obj", "This"]]},
+            "def_cmds": {},
+            "parent": "Outpost"
         },
         "EBarracks": {
             "properties": {
@@ -3781,7 +4596,23 @@ const CLASSES_DETAILS =
                 "help": "/contents/buildings/EBarracks",
                 "edittree_pos": "Structures/Stronghold (Egypt)/Barracks",
                 "auto_repair": "no"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseBarracks"
+            },
+            "commands": {
+                "repair barracks": false,
+                "Barrack Level 1": false,
+                "Barrack Level 2": false,
+                "Barrack Level 3": false,
+                "trainESwordsman": false,
+                "trainEArcher": false,
+                "trainEAxeTrower": false,
+                "trainEAnubisWarrior": false,
+                "trainEHorusWarrior": false,
+                "trainEGuardian": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseBarracks"
         },
         "Ruins1": {
             "properties": {
@@ -3792,7 +4623,7 @@ const CLASSES_DETAILS =
                 "hides_units": "0",
                 "icon": "gameres/icons/Oracul.bmp",
                 "minimap_icon_type": "black"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseRuins"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseRuins"
         },
         "IHouse2": {
             "properties": {
@@ -3802,23 +4633,30 @@ const CLASSES_DETAILS =
                 "radius": "106",
                 "selection_radius": "110",
                 "edittree_pos": "Structures/Village (Iberia)/House 2"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseHouse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseHouse"
         },
         "Column Lion 01": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Ruins/Column Lion 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "IHero2c": {
             "properties": {
                 "display_name": "Obana",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/IHero2.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "IberianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "IberianHero"
         },
-        "Deflection": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Deflection": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "GWallsE": {
             "properties": {
                 "race": "Gaul",
@@ -3828,17 +4666,31 @@ const CLASSES_DETAILS =
                 "wall_set": "Gaul walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "GSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
-        "icatapult_placing": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "catapult_placing"},
-        "BSentry1": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "BSentry"},
+        "icatapult_placing": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "catapult_placing"
+        },
+        "BSentry1": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BSentry"
+        },
         "ShipRome": {
             "properties": {
                 "icon": "gameres/icons/ShipRome.bmp",
                 "display_name": "Rome Ship",
                 "display_name_plural": "Ships",
                 "edittree_pos": "Units/Others/Rome Ship"
-            }, "commands": {}, "def_cmds": {}, "parent": "ShipBattle"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ShipBattle"
         },
         "EWallsNW": {
             "properties": {
@@ -3848,7 +4700,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "Egyptian walls",
                 "sentry_class_name": "ESentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "RShipyard4": {
             "properties": {
@@ -3861,15 +4713,24 @@ const CLASSES_DETAILS =
                 "exit_vector_x": "120",
                 "exit_vector_y": "90",
                 "build_ship_variation": "1"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseShipyard"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseShipyard"
         },
         "kolona2": {
             "properties": {"edittree_pos": "Structures/Others/Ruins/Tilted column"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
-        "Exclamation_Mark": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Exclamation_Mark": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "MWallsNE": {
             "properties": {
                 "race": "ImperialRome",
@@ -3878,17 +4739,21 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "Imperial Roman walls",
                 "sentry_class_name": "MSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "MWVillagerAmbient": {
             "properties": {"race": "ImperialRome", "icon": "gameres/icons/RWoman.bmp"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "PeasantAmbient"
         },
         "Field3": {
             "properties": {"edittree_pos": "Structures/Others/Fields/Field 3"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -3906,7 +4771,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Swordsmen",
                 "help": "contents/units/TSwordsman",
                 "edittree_pos": "Units/Germany/Swordsman"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
         "IWallsW": {
             "properties": {
@@ -3917,7 +4782,7 @@ const CLASSES_DETAILS =
                 "wall_set": "Iberian walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "ISentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "RShipyard3": {
             "properties": {
@@ -3930,11 +4795,13 @@ const CLASSES_DETAILS =
                 "exit_vector_x": "120",
                 "exit_vector_y": "-100",
                 "build_ship_variation": "2"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseShipyard"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseShipyard"
         },
         "WaterRocks03": {
             "properties": {"edittree_pos": "Structures/Water/Rocks 3", "water_unit": "1"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -3948,9 +4815,36 @@ const CLASSES_DETAILS =
                 "edittree_pos": "Structures/Stronghold (Carthage)/Barracks",
                 "auto_repair": "no",
                 "help": "/contents/buildings/CBarracks"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseBarracks"
+            },
+            "commands": {
+                "repair barracks": false,
+                "Barrack Level 1": false,
+                "Barrack Level 2": false,
+                "Barrack Level 3": false,
+                "trainCLibyanFootman": false,
+                "trainCLibyanFootmanNonSpec": false,
+                "trainCJavelinThrower": false,
+                "trainCJavelinThrowerNonSpec": false,
+                "trainCBerberAssassin": false,
+                "trainCBerberAssassinNonSpec": false,
+                "trainCMaceman": false,
+                "trainCMacemanNonSpec": false,
+                "trainCNumidianRider": false,
+                "trainCNumidianRiderNonSpec": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseBarracks"
         },
-        "AttackAnimal": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "BaseAnimal"},
+        "AttackAnimal": {
+            "properties": {},
+            "commands": {"attack": true, "advance": true},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseAnimal"
+        },
         "RBlacksmith": {
             "properties": {
                 "race": "RepublicanRome",
@@ -3960,7 +4854,21 @@ const CLASSES_DETAILS =
                 "selection_radius": "260",
                 "edittree_pos": "Structures/Stronghold (Republican Rome)/Blacksmith",
                 "help": "/contents/buildings/RBlacksmith"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseBlacksmith"
+            },
+            "commands": {
+                "repair blacksmith": false,
+                "Strenghten Stronghold Defences I": false,
+                "Strenghten Stronghold Defences II": false,
+                "Roman Archers": false,
+                "Roman Principle": false,
+                "Roman Scout": false,
+                "Roman Full Armor": false,
+                "Roman Chariot Wheels": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseBlacksmith"
         },
         "CWallsN": {
             "properties": {
@@ -3971,23 +4879,29 @@ const CLASSES_DETAILS =
                 "wall_set": "Carthaginian walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "CSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "DElephantSkeleton1": {
             "properties": {"edittree_pos": "Structures/Others/Desert/Elephant Skeleton 1"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
         "BWVillagerAmbient": {
             "properties": {"race": "Britain", "icon": "gameres/icons/BWVillager.bmp"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "PeasantAmbient"
         },
         "BaseTavern": {
             "properties": {"interface": "thumb,building,queue", "auto_repair": "no"},
-            "commands": {
+            "commands": {"repair tavern": false, "repayloan": false},
+            "no_commands": [],
+            "methods": {
                 "addpop": [["Obj", "This"]],
                 "buyslaves": [["Obj", "This"]],
                 "invest": [["Obj", "This"]],
@@ -4003,12 +4917,16 @@ const CLASSES_DETAILS =
         "Swamp": {
             "properties": {"edittree_pos": "Structures/Others/Swamps/Swamp (large)"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
         "TBarrackHorse3": {
             "properties": {},
-            "commands": {"idle": [["Obj", "This"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "This"]]},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -4021,7 +4939,7 @@ const CLASSES_DETAILS =
                 "respawn_item": "Snake skin",
                 "respawn_time": "600000",
                 "display_name": "Boulder"
-            }, "commands": {}, "def_cmds": {}, "parent": "ItemHolder"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ItemHolder"
         },
         "RScout": {
             "properties": {
@@ -4038,21 +4956,21 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Scouts",
                 "help": "contents/units/RScout",
                 "edittree_pos": "Units/Roman/Scout"
-            }, "commands": {}, "def_cmds": {}, "parent": "Horse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Horse"
         },
         "STHEAD": {
             "properties": {
                 "radius": "10",
                 "selection_radius": "10",
                 "edittree_pos": "Structures/Others/Egypt/Statue Head"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "CHero3a": {
             "properties": {
                 "display_name": "Clitomacus",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/CHero3.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "CarthaginianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "CarthaginianHero"
         },
         "GWallsW": {
             "properties": {
@@ -4063,7 +4981,7 @@ const CLASSES_DETAILS =
                 "wall_set": "Gaul walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "GSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "CGateSE": {
             "properties": {
@@ -4073,7 +4991,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Carthaginian walls",
                 "sentry_class_name": "CSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "Crow": {
             "properties": {
@@ -4095,7 +5013,9 @@ const CLASSES_DETAILS =
                 "speed": "160",
                 "healthbar_type": "0"
             },
-            "commands": {"idle": [["Obj", "This"]], "move": [["Obj", "This"], ["point", "pt"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "This"]], "move": [["Obj", "This"], ["point", "pt"]]},
             "def_cmds": {},
             "parent": "Animal"
         },
@@ -4113,7 +5033,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Spearmen",
                 "help": "contents/units/GSpearman",
                 "edittree_pos": "Units/Gaul/Spearman"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
         "EArcher": {
             "properties": {
@@ -4130,14 +5050,14 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Archers",
                 "help": "contents/units/EArcher",
                 "edittree_pos": "Units/Egypt/Archer"
-            }, "commands": {}, "def_cmds": {}, "parent": "Ranged"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Ranged"
         },
         "BHero2c": {
             "properties": {
                 "display_name": "Cadmon",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/BHero2.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "BritonHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BritonHero"
         },
         "GGateNE": {
             "properties": {
@@ -4147,11 +5067,13 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Gaul walls",
                 "sentry_class_name": "GSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "BCatapultUnit": {
             "properties": {"race": "Britain", "icon": "gameres/icons/bram.bmp"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "RamUnit"
         },
@@ -4160,7 +5082,7 @@ const CLASSES_DETAILS =
                 "display_name": "Beorht",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/GHero2.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "GaulHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "GaulHero"
         },
         "TEnchantress": {
             "properties": {
@@ -4176,7 +5098,9 @@ const CLASSES_DETAILS =
                 "help": "contents/units/TEnchantress",
                 "edittree_pos": "Units/Germany/Enchantress"
             },
-            "commands": {
+            "commands": {"teagle_summoning": false, "twolf_summoning": false, "t_mass_heal": false, "curse": true},
+            "no_commands": [],
+            "methods": {
                 "stand_position": [["Obj", "This"]],
                 "ondie": [["Obj", "This"]],
                 "advance": [["Obj", "This"], ["point", "pt"]],
@@ -4205,21 +5129,21 @@ const CLASSES_DETAILS =
                 "exit_vector_x": "-120",
                 "exit_vector_y": "-100",
                 "build_ship_variation": "1"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseShipyard"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseShipyard"
         },
         "MPeasantMulti": {
             "properties": {
                 "icon": "gameres/icons/MPeasants.bmp",
                 "help": "contents/units",
                 "interface": "thumb,unit,holder"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "GHero1b": {
             "properties": {
                 "display_name": "Gyrth",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/GHero1.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "GaulHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "GaulHero"
         },
         "THero2": {
             "properties": {
@@ -4227,7 +5151,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/THero2.bmp",
                 "edittree_pos": "Units/Germany/Hero 2"
-            }, "commands": {}, "def_cmds": {}, "parent": "GermanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "GermanHero"
         },
         "Ranged": {
             "properties": {
@@ -4241,7 +5165,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "15",
                 "projectile_class": "Arrow",
                 "building_projectile_class": "Fire_Arrow"
-            }, "commands": {}, "def_cmds": {}, "parent": "Military"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Military"
         },
         "IVillage": {
             "properties": {
@@ -4250,23 +5174,35 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/IStorage.bmp",
                 "edittree_pos": "Structures/Village (Iberia)/Village hall",
                 "help": "/contents/buildings/Village"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseVillage"
+            },
+            "commands": {"trainpeasanti": false},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseVillage"
         },
         "Rock Large 01": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Rocks/Rock Large 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "Flag": {
             "properties": {
                 "radius": "10",
                 "selection_radius": "10",
                 "edittree_pos": "Structures/Others/Europe/Flag"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
-        "ccatapult_placing": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "catapult_placing"},
+        "ccatapult_placing": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "catapult_placing"
+        },
         "TTent": {
             "properties": {
                 "maxhealth": "15000",
@@ -4295,15 +5231,27 @@ const CLASSES_DETAILS =
                 "max_units": "0",
                 "settlement_icon_name": "",
                 "minimap_icon_type": "color"
-            }, "commands": {}, "def_cmds": {"": [{"cmd": "unitsout", "ctrl": false}]}, "parent": "Building"
+            },
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {"": [{"cmd": "unitsout", "ctrl": false}]},
+            "parent": "Building"
         },
-        "CGule_explosion": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "CGule_explosion": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "Ruins 06": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Ruins/Ruins 6"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "Fish": {
             "properties": {
@@ -4325,7 +5273,9 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Fish",
                 "edittree_pos": "Units/Animals/Fish"
             },
-            "commands": {"idle": [["Obj", "me"]], "move": [["Obj", "This"], ["point", "pt"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "me"]], "move": [["Obj", "This"], ["point", "pt"]]},
             "def_cmds": {},
             "parent": "Animal"
         },
@@ -4334,7 +5284,7 @@ const CLASSES_DETAILS =
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Cracks/Crack 2"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "THero3": {
             "properties": {
@@ -4342,17 +5292,31 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/THero3.bmp",
                 "edittree_pos": "Units/Germany/Hero 3"
-            }, "commands": {}, "def_cmds": {}, "parent": "GermanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "GermanHero"
         },
         "Ruins 01": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Ruins/Ruins 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
-        "Curse": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
-        "Frenzy": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Curse": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
+        "Frenzy": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "MutableVillage": {
             "properties": {
                 "race": "Mutable",
@@ -4361,7 +5325,7 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/GWarehouse.bmp",
                 "edittree_pos": "Structures/Any Race Village",
                 "help": "/contents/buildings/Village"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseVillage"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseVillage"
         },
         "CBerberAssassin": {
             "properties": {
@@ -4377,11 +5341,37 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Berber Assassins",
                 "help": "contents/units/CBerberAssassin",
                 "edittree_pos": "Units/Carthage/Berber Assassin"
-            }, "commands": {"ondie": [["Obj", "THIS"]]}, "def_cmds": {}, "parent": "Melee"
+            },
+            "commands": {},
+            "no_commands": [],
+            "methods": {"ondie": [["Obj", "THIS"]]},
+            "def_cmds": {},
+            "parent": "Melee"
         },
-        "Ceasefire": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
-        "ecatapult_placing": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "catapult_placing"},
-        "Gule_explosion": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Ceasefire": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
+        "ecatapult_placing": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "catapult_placing"
+        },
+        "Gule_explosion": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "TBarracks": {
             "properties": {
                 "race": "Germany",
@@ -4393,17 +5383,37 @@ const CLASSES_DETAILS =
                 "help": "/contents/buildings/TBarracks",
                 "edittree_pos": "Structures/Stronghold (Germany)/Barracks",
                 "auto_repair": "no"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseBarracks"
+            },
+            "commands": {
+                "repair barracks": false,
+                "Barrack Level 1": false,
+                "Barrack Level 2": false,
+                "TBarrack Level 3": false,
+                "trainTSwordsman": false,
+                "trainTArcher": false,
+                "trainTAxeman": false,
+                "trainTHuntress": false,
+                "trainTTeutonRider": false,
+                "trainTMaceman": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseBarracks"
         },
         "dolmen2": {
             "properties": {"edittree_pos": "Structures/Others/Sacred/Dolmen 2"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
         "BaseTownBuilding": {
             "properties": {"auto_repair": "no", "interface": "thumb,building"},
-            "commands": {
+            "commands": {},
+            "no_commands": [],
+            "methods": {
                 "research": [["Obj", "This"]],
                 "immediate_research": [["Obj", "This"]],
                 "getcharm": [["Obj", "This"]]
@@ -4421,7 +5431,9 @@ const CLASSES_DETAILS =
                 "projectile_fire": "Gule_fire",
                 "projectile_explosion": "Gule_explosion"
             },
-            "commands": {"attack_ground": [["Obj", "me"], ["point", "pt"]]},
+            "commands": {"catapult_attack": false, "attack_ground": false},
+            "no_commands": [],
+            "methods": {"attack_ground": [["Obj", "me"], ["point", "pt"]]},
             "def_cmds": {"": [{"cmd": "attack_ground", "ctrl": false}, {"cmd": "attack_ground", "ctrl": true}]},
             "parent": "Catapult"
         },
@@ -4430,9 +5442,16 @@ const CLASSES_DETAILS =
                 "radius": "10",
                 "selection_radius": "10",
                 "edittree_pos": "Structures/Others/Europe/Ruin 3"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
-        "Fire": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Fire": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "ISlinger": {
             "properties": {
                 "race": "Iberia",
@@ -4449,7 +5468,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Slingers",
                 "help": "contents/units/ISlinger",
                 "edittree_pos": "Units/Iberia/Slinger"
-            }, "commands": {}, "def_cmds": {}, "parent": "Ranged"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Ranged"
         },
         "RGladiator": {
             "properties": {
@@ -4465,7 +5484,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Gladiators",
                 "help": "contents/units/RGladiator",
                 "edittree_pos": "Units/Roman/Gladiator"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
         "StonePile": {
             "properties": {
@@ -4476,7 +5495,7 @@ const CLASSES_DETAILS =
                 "respawn_item": "Poison Mushroom",
                 "respawn_time": "300000",
                 "display_name": "Stone Pile"
-            }, "commands": {}, "def_cmds": {}, "parent": "ItemHolder"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ItemHolder"
         },
         "Peaceful": {
             "properties": {
@@ -4490,7 +5509,9 @@ const CLASSES_DETAILS =
                 "formation_radius": "26",
                 "target_factor": "1000"
             },
-            "commands": {
+            "commands": {},
+            "no_commands": [],
+            "methods": {
                 "advance": [["Obj", "This"], ["point", "pt"]],
                 "attack": [["Obj", "This"], ["point", "pt"]],
                 "move": [["Obj", "This"], ["point", "pt"]],
@@ -4504,7 +5525,7 @@ const CLASSES_DETAILS =
                 "radius": "10",
                 "selection_radius": "10",
                 "edittree_pos": "Structures/Others/Europe/Cross"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "CGateN": {
             "properties": {
@@ -4514,9 +5535,16 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Carthaginian walls",
                 "sentry_class_name": "CSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
-        "Charge": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Charge": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "TGate4": {
             "properties": {
                 "race": "Germany",
@@ -4525,17 +5553,21 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "German walls",
                 "sentry_class_name": "TSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "WagonFood": {
             "properties": {"icon": "gameres/icons/Wagon.bmp"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
         "RWVillagerAmbient": {
             "properties": {"race": "RepublicanRome", "icon": "gameres/icons/RWoman.bmp"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "PeasantAmbient"
         },
@@ -4550,11 +5582,13 @@ const CLASSES_DETAILS =
                 "build_ship_variation": "0",
                 "exit_vector_x": "-120",
                 "exit_vector_y": "80"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseShipyard"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseShipyard"
         },
         "DRuins10": {
             "properties": {"edittree_pos": "Structures/Others/Desert/Ruins 10"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -4578,9 +5612,16 @@ const CLASSES_DETAILS =
                 "display_name_plural": "War Elephants",
                 "help": "contents/units/CWarElephant",
                 "edittree_pos": "Units/Carthage/War Elephant"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": ["detach"], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
-        "Fogs": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Fogs": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "BaseRuins": {
             "properties": {
                 "is_central_building": "1",
@@ -4607,7 +5648,7 @@ const CLASSES_DETAILS =
                 "description": "Allows heroes of the specified level to enter and obtain the item inside. Upon exiting the hero is at 10% of his full health",
                 "inventory_size": "1",
                 "help": "/contents/buildings/Ruins"
-            }, "commands": {}, "def_cmds": {}, "parent": "Building"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Building"
         },
         "BWallsSW": {
             "properties": {
@@ -4617,7 +5658,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "British walls",
                 "sentry_class_name": "BSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "MGate1": {
             "properties": {
@@ -4627,7 +5668,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Imperial Roman walls",
                 "sentry_class_name": "MSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "Tower": {
             "properties": {
@@ -4637,7 +5678,12 @@ const CLASSES_DETAILS =
                 "auto_repair": "no",
                 "display_name": "Tower",
                 "help": "/contents/buildings/Fortification"
-            }, "commands": {}, "def_cmds": {}, "parent": "Building"
+            },
+            "commands": {"repair tower": false, "Tower Attack": false},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Building"
         },
         "GBlacksmith": {
             "properties": {
@@ -4649,7 +5695,23 @@ const CLASSES_DETAILS =
                 "edittree_pos": "Structures/Stronghold (Gaul)/Blacksmith",
                 "help": "/contents/buildings/GBlacksmith",
                 "auto_repair": "no"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseBlacksmith"
+            },
+            "commands": {
+                "repair blacksmith": false,
+                "Strenghten Stronghold Defences I": false,
+                "Strenghten Stronghold Defences II": false,
+                "Gaul Axeman": false,
+                "Gaul Iron Axes": false,
+                "Gaul Spearman": false,
+                "Gaul Iron Spearheads": false,
+                "Gaul Horseman": false,
+                "Gaul Woman Warrior": false,
+                "Gaul Fine Armor": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseBlacksmith"
         },
         "GWallsSE": {
             "properties": {
@@ -4659,7 +5721,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "Gaul walls",
                 "sentry_class_name": "GSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "ETownhall": {
             "properties": {
@@ -4671,11 +5733,18 @@ const CLASSES_DETAILS =
                 "selection_radius": "175",
                 "edittree_pos": "Structures/Stronghold (Egypt)/Townhall",
                 "help": "/contents/buildings/ETownhall"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseTownhall"
+            },
+            "commands": {"autotrain_start_cbet": false, "autotrain_stop_cbet": false},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseTownhall"
         },
         "ETempleofOsirisFire": {
             "properties": {"decor_always_animate": "1"},
-            "commands": {"idle": [["Obj", "This"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "This"]]},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -4697,19 +5766,25 @@ const CLASSES_DETAILS =
                 "non_selectable": "1",
                 "auto_repair": "no"
             },
-            "commands": {"idle": [["Obj", "me"]], "attack": [["Obj", "This"], ["Obj", "target"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "me"]], "attack": [["Obj", "This"], ["Obj", "target"]]},
             "def_cmds": {},
             "parent": "Building"
         },
         "mist_placing": {
             "properties": {"desync_hash": "0", "radius": "50", "selection_radius": "200", "sight": "95"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "catapult_placing"
         },
         "DElephantSkeleton3": {
             "properties": {"edittree_pos": "Structures/Others/Desert/Elephant Skeleton 3"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -4723,11 +5798,22 @@ const CLASSES_DETAILS =
                 "selection_radius": "175",
                 "edittree_pos": "Structures/Stronghold (Carthage)/Townhall",
                 "help": "/contents/buildings/CTownhall"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseTownhall"
+            },
+            "commands": {
+                "autotrain_start_cbet": false,
+                "autotrain_stop_cbet": false,
+                "townhall_military_training": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseTownhall"
         },
         "Crops1": {
             "properties": {"edittree_pos": "Structures/Others/Fields/Crops 1"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -4739,7 +5825,7 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/GHeroWoman.bmp",
                 "edittree_pos": "Units/Heroes/Morgatha (Gaul)",
                 "HeroSkills": "Leadership, Epic attack, Epic endurance, Defensive cry, Battle cry"
-            }, "commands": {}, "def_cmds": {}, "parent": "HeroMounted"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "HeroMounted"
         },
         "Tent03": {
             "properties": {
@@ -4747,11 +5833,13 @@ const CLASSES_DETAILS =
                 "radius": "90",
                 "selection_radius": "92",
                 "edittree_pos": "Structures/Others/Tents/Tent 3"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "Wagons": {
             "properties": {"icon": "gameres/icons/Wagon.bmp"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -4764,14 +5852,26 @@ const CLASSES_DETAILS =
                 "selection_radius": "195",
                 "edittree_pos": "Structures/Stronghold (Imperial Rome)/Tavern SE",
                 "help": "/contents/buildings/RTavern"
-            }, "commands": {"buyfoodforgold": [["Obj", "This"]]}, "def_cmds": {}, "parent": "BaseTavern"
+            },
+            "commands": {
+                "MAddPop": false,
+                "Free Wine": false,
+                "Import horses": false,
+                "Scout Area": false,
+                "investR": false,
+                "MTribute": false
+            },
+            "no_commands": [],
+            "methods": {"buyfoodforgold": [["Obj", "This"]]},
+            "def_cmds": {},
+            "parent": "BaseTavern"
         },
         "ERuins2": {
             "properties": {
                 "radius": "40",
                 "selection_radius": "40",
                 "edittree_pos": "Structures/Others/Egypt/Ruins2"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "GDruidHouse": {
             "properties": {
@@ -4783,11 +5883,13 @@ const CLASSES_DETAILS =
                 "edittree_pos": "Structures/Stronghold (Gaul)/Druid House",
                 "auto_repair": "no",
                 "icon": "gameres/icons/Gdruidhouse.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseBarracks"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseBarracks"
         },
         "Boat_wreck": {
             "properties": {"edittree_pos": "Structures/Water/Boat wreck", "water_unit": "1"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -4798,21 +5900,21 @@ const CLASSES_DETAILS =
                 "radius": "250",
                 "selection_radius": "255",
                 "description": "Allows spells which have an effect on the entire map. In order to cast these spells a sage must be present near the Shrine, to ensure that it accumulates enough power for such rituals"
-            }, "commands": {}, "def_cmds": {}, "parent": "Stonehenge"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Stonehenge"
         },
         "THero3b": {
             "properties": {
                 "display_name": "Willamar",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/THero3.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "GermanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "GermanHero"
         },
         "RTower01": {
             "properties": {
                 "race": "RepublicanRome",
                 "wall_set": "Republican Roman walls",
                 "icon": "gameres/icons/RTower.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "Tower"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Tower"
         },
         "BGate1": {
             "properties": {
@@ -4822,7 +5924,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "British walls",
                 "sentry_class_name": "BSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "RWallsSE": {
             "properties": {
@@ -4832,14 +5934,14 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "Republican Roman walls",
                 "sentry_class_name": "RSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "CHero2c": {
             "properties": {
                 "display_name": "Phameas",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/CHero2.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "CarthaginianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "CarthaginianHero"
         },
         "OakStump": {
             "properties": {
@@ -4850,7 +5952,7 @@ const CLASSES_DETAILS =
                 "display_name": "Oak stump",
                 "respawn_time": "300000",
                 "respawn_item": "Healing water"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseWell"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseWell"
         },
         "Impassable": {
             "properties": {
@@ -4860,7 +5962,7 @@ const CLASSES_DETAILS =
                 "speed": "0",
                 "radius": "50",
                 "selection_radius": "50"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseTownBuilding"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseTownBuilding"
         },
         "Tombstone": {
             "properties": {
@@ -4871,7 +5973,7 @@ const CLASSES_DETAILS =
                 "display_name": "Tombstone",
                 "respawn_time": "120000",
                 "respawn_item": "Healing water"
-            }, "commands": {}, "def_cmds": {}, "parent": "ItemHolder"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ItemHolder"
         },
         "catapult_placing": {
             "properties": {
@@ -4880,35 +5982,35 @@ const CLASSES_DETAILS =
                 "selection_radius": "800",
                 "sight": "95",
                 "help": "/contents/units/Catapult"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "THero1c": {
             "properties": {
                 "display_name": "Hrodric",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/THero1.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "GermanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "GermanHero"
         },
         "IHero1b": {
             "properties": {
                 "display_name": "Frouida",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/IHero1.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "IberianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "IberianHero"
         },
         "IHero2a": {
             "properties": {
                 "display_name": "Pindusa",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/IHero2.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "IberianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "IberianHero"
         },
         "RHero1a": {
             "properties": {
                 "display_name": "Epicydes",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/RHero1.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "RepublicanRomanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "RepublicanRomanHero"
         },
         "EGuardian": {
             "properties": {
@@ -4924,14 +6026,14 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Guardians",
                 "help": "contents/units/EGuardian",
                 "edittree_pos": "Units/Egypt/Guardian"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
         "Rock Medium 01": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Rocks/Rock Medium 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "DeadTree": {
             "properties": {
@@ -4943,7 +6045,7 @@ const CLASSES_DETAILS =
                 "respawn_item": "Eagle feather",
                 "respawn_time": "600000",
                 "display_name": "Dead tree"
-            }, "commands": {}, "def_cmds": {}, "parent": "ItemHolder"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ItemHolder"
         },
         "GSwordsman": {
             "properties": {
@@ -4961,7 +6063,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Swordsmen",
                 "help": "contents/units/GSwordsman",
                 "edittree_pos": "Units/Gaul/Swordsman"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
         "CWallsW": {
             "properties": {
@@ -4972,9 +6074,16 @@ const CLASSES_DETAILS =
                 "wall_set": "Carthaginian walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "CSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
-        "Penetration": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Penetration": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "BGate7": {
             "properties": {
                 "race": "Britain",
@@ -4983,14 +6092,14 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "British walls",
                 "sentry_class_name": "BSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "IHero3c": {
             "properties": {
                 "display_name": "Ataecina",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/IHero3.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "IberianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "IberianHero"
         },
         "TGate0": {
             "properties": {
@@ -5000,9 +6109,16 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "German walls",
                 "sentry_class_name": "TSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
-        "Revenge": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Revenge": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "Rhouse03": {
             "properties": {
                 "race": "RepublicanRome",
@@ -5011,7 +6127,7 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/rhouse.bmp",
                 "edittree_pos": "Structures/Village (Rome)/House 1",
                 "display_name": "House"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseHouse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseHouse"
         },
         "BearUnit": {
             "properties": {
@@ -5032,6 +6148,8 @@ const CLASSES_DETAILS =
                 "edittree_pos": "Units/Animals/Bear"
             },
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {
                 "": [{"cmd": "move", "ctrl": false}, {"cmd": "advance", "ctrl": true}],
                 "Unit": [{"cmd": "attack", "ctrl": false}]
@@ -5043,7 +6161,7 @@ const CLASSES_DETAILS =
                 "race": "Gaul",
                 "icon": "gameres/icons/GMan.bmp",
                 "edittree_pos": "Units/Gaul/Peasant (male)"
-            }, "commands": {}, "def_cmds": {}, "parent": "Peasant"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Peasant"
         },
         "FacePillar": {
             "properties": {
@@ -5052,7 +6170,7 @@ const CLASSES_DETAILS =
                 "radius": "57",
                 "selection_radius": "58",
                 "display_name": "Face Pillar"
-            }, "commands": {}, "def_cmds": {}, "parent": "ItemHolder"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ItemHolder"
         },
         "GGateSE": {
             "properties": {
@@ -5062,11 +6180,13 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Gaul walls",
                 "sentry_class_name": "GSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "CampFence4": {
             "properties": {"edittree_pos": "Structures/Others/Camp/Fence 4"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -5080,11 +6200,26 @@ const CLASSES_DETAILS =
                 "auto_repair": "no",
                 "icon": "gameres/icons/GTavern.bmp",
                 "help": "/contents/buildings/GTavern"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseTavern"
+            },
+            "commands": {
+                "GAddPop": false,
+                "Free Beer": false,
+                "Food Tax": false,
+                "Nordic trade routes": false,
+                "Belts of Might": false,
+                "getloan": false,
+                "GTribute": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseTavern"
         },
         "HeroFootman": {
             "properties": {"radius": "20", "selection_radius": "20"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Hero"
         },
@@ -5097,7 +6232,7 @@ const CLASSES_DETAILS =
                 "race": "Gaul",
                 "help": "/contents/units/GHero",
                 "HeroSkills": "Leadership, Epic attack, Epic endurance, Defensive cry, Battle cry"
-            }, "commands": {}, "def_cmds": {}, "parent": "HeroMounted"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "HeroMounted"
         },
         "CHero4": {
             "properties": {
@@ -5107,21 +6242,21 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/Anibal.bmp",
                 "edittree_pos": "Units/Heroes/Unknown (Carthaginian)",
                 "HeroSkills": "Vigor, Frenzy, Rush, Egoism, Wisdom"
-            }, "commands": {}, "def_cmds": {}, "parent": "HeroMounted"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "HeroMounted"
         },
         "Bridge 02": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Bridges/Bridge 2"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "Ruins 03": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Ruins/Ruins 3"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "GWallsNE": {
             "properties": {
@@ -5131,7 +6266,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "Gaul walls",
                 "sentry_class_name": "GSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "BBlacksmith": {
             "properties": {
@@ -5143,9 +6278,29 @@ const CLASSES_DETAILS =
                 "edittree_pos": "Structures/Stronghold (Britain)/Blacksmith",
                 "help": "/contents/buildings/BBlacksmith",
                 "auto_repair": "no"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseBlacksmith"
+            },
+            "commands": {
+                "repair blacksmith": false,
+                "Strenghten Stronghold Defences I": false,
+                "Strenghten Stronghold Defences II": false,
+                "Britain Spears": false,
+                "Britain Large Shields": false,
+                "Britain Javelins": false,
+                "Britain Swords": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseBlacksmith"
         },
-        "IGule": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "IGule": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "MGate4": {
             "properties": {
                 "race": "ImperialRome",
@@ -5154,14 +6309,14 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Imperial Roman walls",
                 "sentry_class_name": "MSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "CTower01": {
             "properties": {
                 "race": "Carthage",
                 "wall_set": "Carthaginian walls",
                 "icon": "gameres/icons/CTower.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "Tower"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Tower"
         },
         "GGateE": {
             "properties": {
@@ -5171,11 +6326,13 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Gaul walls",
                 "sentry_class_name": "GSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "TBarrackHorse4": {
             "properties": {},
-            "commands": {"idle": [["Obj", "This"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "This"]]},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -5184,7 +6341,7 @@ const CLASSES_DETAILS =
                 "display_name": "Claudius",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/MHero3.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "ImperialRomanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ImperialRomanHero"
         },
         "ScullTree": {
             "properties": {
@@ -5193,9 +6350,16 @@ const CLASSES_DETAILS =
                 "radius": "28",
                 "selection_radius": "30",
                 "display_name": "Skull tree"
-            }, "commands": {}, "def_cmds": {}, "parent": "ItemHolder"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ItemHolder"
         },
-        "tcatapult_placing": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "catapult_placing"},
+        "tcatapult_placing": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "catapult_placing"
+        },
         "RWallsS": {
             "properties": {
                 "race": "RepublicanRome",
@@ -5205,18 +6369,29 @@ const CLASSES_DETAILS =
                 "wall_set": "Republican Roman walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "RSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
-        "Death_Magic2": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Death_Magic2": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "Field4": {
             "properties": {"edittree_pos": "Structures/Others/Fields/Field 4"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
         "BTower": {
             "properties": {"race": "Britain", "icon": "gameres/icons/BTower.bmp", "wall_set": "British walls"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Tower"
         },
@@ -5230,7 +6405,12 @@ const CLASSES_DETAILS =
                 "radius": "15",
                 "selection_radius": "15",
                 "speed": "80"
-            }, "commands": {"attack": [["Obj", "me"], ["Obj", "u"]]}, "def_cmds": {}, "parent": "Military"
+            },
+            "commands": {},
+            "no_commands": [],
+            "methods": {"attack": [["Obj", "me"], ["Obj", "u"]]},
+            "def_cmds": {},
+            "parent": "Military"
         },
         "EWallsS": {
             "properties": {
@@ -5241,7 +6421,7 @@ const CLASSES_DETAILS =
                 "wall_set": "Egyptian walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "ESentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "ICatapult": {
             "properties": {
@@ -5254,7 +6434,9 @@ const CLASSES_DETAILS =
                 "projectile_explosion": "IGule_explosion",
                 "icon": "gameres/icons/icatapult.bmp"
             },
-            "commands": {"attack_ground": [["Obj", "me"], ["point", "pt"]]},
+            "commands": {"catapult_attack": false, "attack_ground": false},
+            "no_commands": [],
+            "methods": {"attack_ground": [["Obj", "me"], ["point", "pt"]]},
             "def_cmds": {"": [{"cmd": "attack_ground", "ctrl": false}, {"cmd": "attack_ground", "ctrl": true}]},
             "parent": "Catapult"
         },
@@ -5264,15 +6446,24 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/RHero3.bmp",
                 "edittree_pos": "Units/Roman/Hero (Republican) 3"
-            }, "commands": {}, "def_cmds": {}, "parent": "RepublicanRomanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "RepublicanRomanHero"
         },
         "dolmen4": {
             "properties": {"edittree_pos": "Structures/Others/Sacred/Dolmen 4"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
-        "RSentry1": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "RSentry"},
+        "RSentry1": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "RSentry"
+        },
         "IWallsN": {
             "properties": {
                 "race": "Iberia",
@@ -5282,7 +6473,7 @@ const CLASSES_DETAILS =
                 "wall_set": "Iberian walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "ISentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "Teleport": {
             "properties": {
@@ -5307,7 +6498,7 @@ const CLASSES_DETAILS =
                 "minimap_icon_type": "black",
                 "help": "/contents/buildings/Caves",
                 "description": "Allows armies to go from one cave entrance to the other instantly"
-            }, "commands": {}, "def_cmds": {}, "parent": "Building"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Building"
         },
         "IWallsNE": {
             "properties": {
@@ -5317,7 +6508,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "Iberian walls",
                 "sentry_class_name": "ISentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "BGate6": {
             "properties": {
@@ -5327,7 +6518,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "British walls",
                 "sentry_class_name": "BSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "RWallsN": {
             "properties": {
@@ -5338,7 +6529,7 @@ const CLASSES_DETAILS =
                 "wall_set": "Republican Roman walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "RSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "BJavelineer": {
             "properties": {
@@ -5354,21 +6545,21 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Javelineers",
                 "help": "contents/units/BJavelineer",
                 "edittree_pos": "Units/Britain/Javelineer"
-            }, "commands": {}, "def_cmds": {}, "parent": "ShortRanged"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ShortRanged"
         },
         "BPeasantMulti": {
             "properties": {
                 "icon": "gameres/icons/BPeasants.bmp",
                 "help": "contents/units",
                 "interface": "thumb,unit,holder"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "IHero1a": {
             "properties": {
                 "display_name": "Tullonio",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/IHero1.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "IberianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "IberianHero"
         },
         "Hero": {
             "properties": {
@@ -5390,7 +6581,31 @@ const CLASSES_DETAILS =
                 "target_factor": "200",
                 "interface": "thumb,hero,items,holder",
                 "healthbar_type": "3"
-            }, "commands": {
+            },
+            "commands": {
+                "stand_ground": false,
+                "form-line-menu": false,
+                "form-front-menu": false,
+                "form-block-menu": false,
+                "form-cavalry-menu": false,
+                "form-line": false,
+                "form-front": false,
+                "form-block": false,
+                "form-cavalry": false,
+                "leavearmy": false,
+                "moveinfight": true,
+                "divine_grace": false,
+                "skill_battle_cry": false,
+                "skill_healing": false,
+                "skill_ceasefire": false,
+                "skill_frenzy": false,
+                "skill_divine_rush": false,
+                "skill_charge": false,
+                "skill_assault": false,
+                "skill_defensive_cry": false
+            },
+            "no_commands": ["boardunit", "unboardall", "stand_position", "detach", "build_catapult"],
+            "methods": {
                 "sleep": [["Obj", "this"]],
                 "idle": [["Obj", "This"]],
                 "uiadvance": [["Obj", "This"], ["point", "pt"]],
@@ -5431,7 +6646,8 @@ const CLASSES_DETAILS =
                 "engage_unit_type": [["Obj", "me"], ["Obj", "target"]],
                 "taunt": [["Obj", "This"]],
                 "divine_grace": [["Obj", "me"]]
-            }, "def_cmds": {
+            },
+            "def_cmds": {
                 "": [{"cmd": "moveinfight", "ctrl": false}, {"cmd": "move", "ctrl": false}, {
                     "cmd": "advance",
                     "ctrl": true
@@ -5463,7 +6679,8 @@ const CLASSES_DETAILS =
                 "Unit": [{"cmd": "stay_hidden", "ctrl": false}],
                 "Hero": [{"cmd": "attach", "ctrl": false}, {"cmd": "attack", "ctrl": false}],
                 "ItemHolder": [{"cmd": "getitems", "ctrl": false}, {"cmd": "approach", "ctrl": false}]
-            }, "parent": "Military"
+            },
+            "parent": "Military"
         },
         "RPriest": {
             "properties": {
@@ -5479,7 +6696,9 @@ const CLASSES_DETAILS =
                 "help": "contents/units/RPriest",
                 "edittree_pos": "Units/Roman/Priest"
             },
-            "commands": {
+            "commands": {"heal": true, "cloud_of_plague": true, "wrath_of_jupiter": true},
+            "no_commands": [],
+            "methods": {
                 "stand_position": [["Obj", "This"]],
                 "ondie": [["Obj", "THIS"]],
                 "advance": [["Obj", "This"], ["point", "pt"]],
@@ -5503,7 +6722,7 @@ const CLASSES_DETAILS =
                 "auto_repair": "yes",
                 "maxhealth": "1000",
                 "help": "/contents/buildings/House"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseBuilding"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseBuilding"
         },
         "CWallsSE": {
             "properties": {
@@ -5513,7 +6732,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "Carthaginian walls",
                 "sentry_class_name": "CSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "EHouse1": {
             "properties": {
@@ -5523,11 +6742,13 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/ehouse.bmp",
                 "edittree_pos": "Structures/Village (Egypt)/House 1",
                 "display_name": "House"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseHouse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseHouse"
         },
         "Wolf": {
             "properties": {"edittree_pos": "Units/Animals/Wolf (aggressive)"},
-            "commands": {
+            "commands": {},
+            "no_commands": [],
+            "methods": {
                 "idle": [["Obj", "me"]],
                 "attack": [["Obj", "me"], ["Obj", "tgt"]],
                 "lead": [["Obj", "This"]],
@@ -5547,7 +6768,7 @@ const CLASSES_DETAILS =
                 "wall_set": "Republican Roman walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "RSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "TTempleOfNeptus": {
             "properties": {
@@ -5559,7 +6780,19 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/TTempleOfNeptus.bmp",
                 "help": "/contents/buildings/TTemple",
                 "edittree_pos": "Structures/Stronghold (Germany)/Temple of Neptus"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseBarracks"
+            },
+            "commands": {
+                "repairTTempleOfNeptus": false,
+                "trainTEnchantress": false,
+                "German chamber": false,
+                "German Wolf Summoning": false,
+                "German Eagle Summoning": false,
+                "German Mass Heal": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseBarracks"
         },
         "BaseShipyard": {
             "properties": {
@@ -5591,6 +6824,23 @@ const CLASSES_DETAILS =
                 "minimap_icon_type": "color"
             },
             "commands": {
+                "tribute": false,
+                "tribute_default": false,
+                "stoptribute": false,
+                "createfoodmule1": false,
+                "createfoodmule2": false,
+                "creategoldmule1": false,
+                "creategoldmule2": false,
+                "buildship": false,
+                "buildshipEgypt": false,
+                "buildshipRome": false,
+                "createfoodboat1": false,
+                "createfoodboat2": false,
+                "creategoldboat1": false,
+                "creategoldboat2": false
+            },
+            "no_commands": [],
+            "methods": {
                 "idle": [["Obj", "This"]],
                 "tribute": [["Obj", "this"], ["Obj", "To"]],
                 "tribute_default": [["Obj", "this"], ["Obj", "To"]],
@@ -5622,7 +6872,7 @@ const CLASSES_DETAILS =
                 "race": "Egypt",
                 "HeroSkills": "Recovery, Vigor, Survival, Quick March, Healing",
                 "help": "/contents/units/EHero"
-            }, "commands": {}, "def_cmds": {}, "parent": "HeroMounted"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "HeroMounted"
         },
         "IGateN": {
             "properties": {
@@ -5632,7 +6882,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Iberian walls",
                 "sentry_class_name": "ISentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "Keltill": {
             "properties": {
@@ -5643,7 +6893,7 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/Keltil.bmp",
                 "edittree_pos": "Units/Heroes/Keltill (Gaul)",
                 "HeroSkills": "Leadership, Epic attack, Epic endurance, Defensive cry, Battle cry"
-            }, "commands": {}, "def_cmds": {}, "parent": "HeroMounted"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "HeroMounted"
         },
         "BoarUnit": {
             "properties": {
@@ -5664,16 +6914,27 @@ const CLASSES_DETAILS =
                 "edittree_pos": "Units/Animals/Boar"
             },
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {
                 "": [{"cmd": "move", "ctrl": false}, {"cmd": "advance", "ctrl": true}],
                 "Unit": [{"cmd": "attack", "ctrl": false}]
             },
             "parent": "AttackAnimal"
         },
-        "DefensiveCry": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "DefensiveCry": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "CWVillagerAmbient": {
             "properties": {"race": "Carthage", "icon": "gameres/icons/CWVillager.bmp"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "PeasantAmbient"
         },
@@ -5691,7 +6952,9 @@ const CLASSES_DETAILS =
                 "help": "contents/units/BDruid",
                 "edittree_pos": "Units/Britain/Druid"
             },
-            "commands": {
+            "commands": {"b_ghoul_summoning": true, "wolf_summoning": false, "b_mass_heal": false, "hide": true},
+            "no_commands": [],
+            "methods": {
                 "stand_position": [["Obj", "This"]],
                 "ondie": [["Obj", "This"]],
                 "advance": [["Obj", "me"], ["point", "pt"]],
@@ -5719,14 +6982,14 @@ const CLASSES_DETAILS =
                 "race": "Germany",
                 "HeroSkills": "Concealment, Defensive cry, Quick March, Assault, Euphoria",
                 "help": "/contents/units/THero"
-            }, "commands": {}, "def_cmds": {}, "parent": "HeroMounted"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "HeroMounted"
         },
         "IWVillager": {
             "properties": {
                 "race": "Iberia",
                 "icon": "gameres/icons/IWVillager.bmp",
                 "edittree_pos": "Units/Iberia/Peasant (female)"
-            }, "commands": {}, "def_cmds": {}, "parent": "PeasantFemale"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "PeasantFemale"
         },
         "GGateNW": {
             "properties": {
@@ -5736,11 +6999,13 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Gaul walls",
                 "sentry_class_name": "GSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "DColumn": {
             "properties": {"edittree_pos": "Structures/Others/Desert/Column"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -5759,7 +7024,9 @@ const CLASSES_DETAILS =
                 "edittree_pos": "Units/Carthage/Shaman",
                 "shaman_food_gain": "2"
             },
-            "commands": {
+            "commands": {"curse": true, "turn2zombie": false},
+            "no_commands": [],
+            "methods": {
                 "stand_position": [["Obj", "This"]],
                 "ondie": [["Obj", "This"]],
                 "advance": [["Obj", "This"], ["point", "pt"]],
@@ -5780,11 +7047,13 @@ const CLASSES_DETAILS =
                 "display_name": "Flavius",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/MHero2.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "ImperialRomanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ImperialRomanHero"
         },
         "Bear": {
             "properties": {"edittree_pos": "Units/Animals/Bear (aggressive)"},
-            "commands": {
+            "commands": {},
+            "no_commands": [],
+            "methods": {
                 "idle": [["Obj", "This"]],
                 "engage": [["Obj", "me"]],
                 "move": [["Obj", "This"], ["point", "pt"]],
@@ -5810,10 +7079,29 @@ const CLASSES_DETAILS =
                 "edittree_pos": "Units/Others/Boat",
                 "icon": "gameres/icons/Boat.bmp",
                 "water_unit": "1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wagon"
+            },
+            "commands": {},
+            "no_commands": ["boardunit", "unboardall"],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Wagon"
         },
-        "Parry": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
-        "Assault2": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Parry": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
+        "Assault2": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "BHouse01": {
             "properties": {
                 "race": "Britain",
@@ -5822,14 +7110,14 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/bhouse.bmp",
                 "edittree_pos": "Structures/Village (Britain)/House 1",
                 "display_name": "House"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseHouse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseHouse"
         },
         "RUIN01": {
             "properties": {
                 "radius": "10",
                 "selection_radius": "10",
                 "edittree_pos": "Structures/Others/Europe/Ruin 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "GHorseman": {
             "properties": {
@@ -5846,12 +7134,21 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Horsemen",
                 "help": "contents/units/GHorseman",
                 "edittree_pos": "Units/Gaul/Horseman"
-            }, "commands": {}, "def_cmds": {}, "parent": "Horse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Horse"
         },
-        "GSentry1": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "GSentry"},
+        "GSentry1": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "GSentry"
+        },
         "CropsField": {
             "properties": {"edittree_pos": "Structures/Others/Fields/Crops field"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -5860,17 +7157,31 @@ const CLASSES_DETAILS =
                 "display_name": "Unferth",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/GHero2.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "GaulHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "GaulHero"
         },
         "Column Lion 02": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Ruins/Column Lion 2"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
-        "Feedback": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
-        "Arrow": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Feedback": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
+        "Arrow": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "ICavalry": {
             "properties": {
                 "race": "Iberia",
@@ -5886,7 +7197,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Cavalry",
                 "help": "contents/units/ICavalry",
                 "edittree_pos": "Units/Iberia/Cavalry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Horse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Horse"
         },
         "MGate5": {
             "properties": {
@@ -5896,17 +7207,21 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Imperial Roman walls",
                 "sentry_class_name": "MSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "TTower": {
             "properties": {"race": "Germany", "wall_set": "German walls", "icon": "gameres/icons/TTower.bmp"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Tower"
         },
         "TWVillagerAmbient": {
             "properties": {"race": "Germany", "icon": "gameres/icons/TWVillager.bmp"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "PeasantAmbient"
         },
@@ -5919,7 +7234,20 @@ const CLASSES_DETAILS =
                 "selection_radius": "260",
                 "edittree_pos": "Structures/Stronghold (Egypt)/Blacksmith",
                 "help": "/contents/buildings/EBlacksmith"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseBlacksmith"
+            },
+            "commands": {
+                "repair blacksmith": false,
+                "Strenghten Stronghold Defences I": false,
+                "Strenghten Stronghold Defences II": false,
+                "Charm of Seth": false,
+                "Charm of Thoth": false,
+                "Charm of Ra": false,
+                "Charm of Isis": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseBlacksmith"
         },
         "DefItemHolder": {
             "properties": {
@@ -5929,11 +7257,13 @@ const CLASSES_DETAILS =
                 "radius": "19",
                 "selection_radius": "20",
                 "display_name": "Leather bag"
-            }, "commands": {}, "def_cmds": {}, "parent": "ItemHolder"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ItemHolder"
         },
         "Animal": {
             "properties": {"unit_specials": "Freedom"},
-            "commands": {"move": [["Obj", "This"], ["point", "pt"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"move": [["Obj", "This"], ["point", "pt"]]},
             "def_cmds": {"": [{"cmd": "move", "ctrl": false}]},
             "parent": "BaseAnimal"
         },
@@ -5942,11 +7272,13 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/EPeasants.bmp",
                 "help": "contents/units",
                 "interface": "thumb,unit,holder"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "WolfSummoned": {
             "properties": {"edittree_pos": "", "does_not_regenerate": "1", "stamina_dec_time": "18000"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "WolfUnit"
         },
@@ -5958,9 +7290,16 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Iberian walls",
                 "sentry_class_name": "ISentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
-        "Lightning": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Lightning": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "BVillage": {
             "properties": {
                 "race": "Britain",
@@ -5968,7 +7307,12 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/BVillage.bmp",
                 "edittree_pos": "Structures/Village (Britain)/Village hall",
                 "help": "/contents/buildings/Village"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseVillage"
+            },
+            "commands": {"trainpeasantb": false},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseVillage"
         },
         "EAxetrower": {
             "properties": {
@@ -5986,7 +7330,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Axe Throwers",
                 "help": "contents/units/EAxetrower",
                 "edittree_pos": "Units/Egypt/Axe Thrower"
-            }, "commands": {}, "def_cmds": {}, "parent": "ShortRanged"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ShortRanged"
         },
         "GTridentWarrior": {
             "properties": {
@@ -6002,18 +7346,20 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Trident Warriors",
                 "help": "contents/units/GTridentWarrior",
                 "edittree_pos": "Units/Gaul/Trident Warrior"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": ["detach"], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
         "COLUMNS1": {
             "properties": {
                 "radius": "60",
                 "selection_radius": "60",
                 "edittree_pos": "Structures/Others/Egypt/Columns1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "Boar": {
             "properties": {"edittree_pos": "Units/Animals/Boar (aggressive)"},
-            "commands": {
+            "commands": {},
+            "no_commands": [],
+            "methods": {
                 "idle": [["Obj", "This"]],
                 "engage": [["Obj", "me"]],
                 "move": [["Obj", "This"], ["point", "pt"]],
@@ -6031,14 +7377,14 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/Thouse.bmp",
                 "edittree_pos": "Structures/Village (Germany)/House 1",
                 "display_name": "House"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseHouse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseHouse"
         },
         "ERUINS": {
             "properties": {
                 "radius": "20",
                 "selection_radius": "20",
                 "edittree_pos": "Structures/Others/Egypt/Ruins"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "WELL": {
             "properties": {
@@ -6046,9 +7392,16 @@ const CLASSES_DETAILS =
                 "selection_radius": "30",
                 "edittree_pos": "Structures/Item holders/Stone Well",
                 "icon": "gameres/icons/stone well.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseWell"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseWell"
         },
-        "BattleCry": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "BattleCry": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "CGateW": {
             "properties": {
                 "race": "Carthage",
@@ -6057,11 +7410,13 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Carthaginian walls",
                 "sentry_class_name": "CSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "ruins": {
             "properties": {"edittree_pos": "Structures/Others/Ruins"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -6077,6 +7432,16 @@ const CLASSES_DETAILS =
                 "auto_repair": "no"
             },
             "commands": {
+                "repair blacksmith": false,
+                "Strenghten Stronghold Defences I": false,
+                "Strenghten Stronghold Defences II": false,
+                "Axemen production": false,
+                "Javelin production": false,
+                "Horseshoes production": false,
+                "Macemen production": false
+            },
+            "no_commands": [],
+            "methods": {
                 "axemen_school": [["Obj", "This"]],
                 "huntress_school": [["Obj", "This"]],
                 "teutonrider_school": [["Obj", "This"]],
@@ -6094,7 +7459,7 @@ const CLASSES_DETAILS =
                 "race": "ImperialRome",
                 "help": "/contents/units/RHero",
                 "HeroSkills": "Administration, Team attack, Team defense, Quick March, Discipline"
-            }, "commands": {}, "def_cmds": {}, "parent": "HeroMounted"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "HeroMounted"
         },
         "BOutpost": {
             "properties": {
@@ -6115,7 +7480,7 @@ const CLASSES_DETAILS =
                 "defenders_out_1": "6",
                 "start_level_1": "1",
                 "end_level_1": "12"
-            }, "commands": {}, "def_cmds": {}, "parent": "Outpost"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Outpost"
         },
         "EGate7": {
             "properties": {
@@ -6125,18 +7490,20 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Egyptian walls",
                 "sentry_class_name": "ESentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "Rock Medium 05": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Rocks/Rock Medium 5"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "GVillagerAmbient": {
             "properties": {"race": "Gaul", "icon": "gameres/icons/GMan.bmp"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "PeasantAmbient"
         },
@@ -6148,14 +7515,14 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "Imperial Roman walls",
                 "sentry_class_name": "MSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "Toro 1": {
             "properties": {
                 "radius": "70",
                 "selection_radius": "70",
                 "edittree_pos": "Structures/Others/Ruins/Bull 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "BaseTownhall": {
             "properties": {
@@ -6180,6 +7547,16 @@ const CLASSES_DETAILS =
                 "minimap_icon_type": "color"
             },
             "commands": {
+                "repair townhall": false,
+                "autotrain_start": false,
+                "autotrain_stop": false,
+                "createfoodmule1": false,
+                "createfoodmule2": false,
+                "creategoldmule1": false,
+                "creategoldmule2": false
+            },
+            "no_commands": [],
+            "methods": {
                 "unitsout": [["Obj", "This"], ["point", "pt"]],
                 "createfoodmulesmall": [["Obj", "This"]],
                 "createfoodmulebig": [["Obj", "This"]],
@@ -6200,7 +7577,7 @@ const CLASSES_DETAILS =
                 "radius": "90",
                 "selection_radius": "92",
                 "edittree_pos": "Structures/Others/Tents/Tent 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "BGate4": {
             "properties": {
@@ -6210,9 +7587,16 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "British walls",
                 "sentry_class_name": "BSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
-        "OffensiveTactics": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "OffensiveTactics": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "TTeutonRider": {
             "properties": {
                 "race": "Germany",
@@ -6229,13 +7613,17 @@ const CLASSES_DETAILS =
                 "help": "contents/units/TRider",
                 "edittree_pos": "Units/Germany/Teuton Rider"
             },
-            "commands": {"toTeutonArcher": [["Obj", "This"]], "enter_tent": [["Obj", "This"], ["Obj", "bld"]]},
+            "commands": {"to_teuton_archer": false},
+            "no_commands": [],
+            "methods": {"toTeutonArcher": [["Obj", "This"]], "enter_tent": [["Obj", "This"], ["Obj", "bld"]]},
             "def_cmds": {},
             "parent": "Horse"
         },
         "CampTent2": {
             "properties": {"edittree_pos": "Structures/Others/Camp/Tent 2"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -6254,7 +7642,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Archers",
                 "help": "contents/units/IArcher",
                 "edittree_pos": "Units/Iberia/Archer"
-            }, "commands": {}, "def_cmds": {}, "parent": "Ranged"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Ranged"
         },
         "RWallsW": {
             "properties": {
@@ -6265,7 +7653,7 @@ const CLASSES_DETAILS =
                 "wall_set": "Republican Roman walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "RSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "LionF": {
             "properties": {
@@ -6285,7 +7673,9 @@ const CLASSES_DETAILS =
                 "help": "contents/units/Lioness",
                 "edittree_pos": "Units/Animals/Lioness (aggressive)"
             },
-            "commands": {
+            "commands": {},
+            "no_commands": [],
+            "methods": {
                 "idle": [["Obj", "me"]],
                 "attack": [["Obj", "me"], ["Obj", "tgt"]],
                 "lead": [["Obj", "This"]],
@@ -6310,7 +7700,9 @@ const CLASSES_DETAILS =
                 "help": "contents/units/GDruid",
                 "edittree_pos": "Units/Gaul/Druid"
             },
-            "commands": {
+            "commands": {"heal": true, "ghoul_summoning": true, "eagle_summoning": false, "restoration": false},
+            "no_commands": [],
+            "methods": {
                 "stand_position": [["Obj", "This"]],
                 "ondie": [["Obj", "This"]],
                 "advance": [["Obj", "This"], ["point", "pt"]],
@@ -6333,7 +7725,7 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/RPeasants.bmp",
                 "help": "contents/units",
                 "interface": "thumb,unit,holder"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "MTownhall": {
             "properties": {
@@ -6345,18 +7737,25 @@ const CLASSES_DETAILS =
                 "selection_radius": "175",
                 "edittree_pos": "Structures/Stronghold (Imperial Rome)/Townhall",
                 "help": "/contents/buildings/RTownhall"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseTownhall"
+            },
+            "commands": {"autotrain_start_gr": false, "autotrain_stop_gr": false, "townhall_military_training": false},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseTownhall"
         },
         "CHero2b": {
             "properties": {
                 "display_name": "Asdrubal",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/CHero2.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "CarthaginianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "CarthaginianHero"
         },
         "TTempleofNeptusWell": {
             "properties": {},
-            "commands": {"idle": [["Obj", "This"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "This"]]},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -6369,7 +7768,19 @@ const CLASSES_DETAILS =
                 "selection_radius": "195",
                 "edittree_pos": "Structures/Stronghold (Egypt)/Market",
                 "help": "/contents/buildings/ETavern"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseTavern"
+            },
+            "commands": {
+                "ETribute": false,
+                "BuySlaves": false,
+                "GrainTrade": false,
+                "ReligiousFeast": false,
+                "Gossip": false,
+                "Hecatomb": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseTavern"
         },
         "RVillage": {
             "properties": {
@@ -6380,11 +7791,18 @@ const CLASSES_DETAILS =
                 "edittree_pos": "Structures/Village (Rome)/Village hall",
                 "foodperpop": "100",
                 "help": "/contents/buildings/Village"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseVillage"
+            },
+            "commands": {"trainpeasantr": false},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseVillage"
         },
         "HeroMounted": {
             "properties": {"radius": "30", "selection_radius": "32"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Hero"
         },
@@ -6393,7 +7811,7 @@ const CLASSES_DETAILS =
                 "display_name": "Hengest",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/GHero1.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "GaulHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "GaulHero"
         },
         "EWallsSW": {
             "properties": {
@@ -6403,21 +7821,21 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "Egyptian walls",
                 "sentry_class_name": "ESentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "CHero1c": {
             "properties": {
                 "display_name": "Bythia",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/CHero1.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "CarthaginianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "CarthaginianHero"
         },
         "BHero1b": {
             "properties": {
                 "display_name": "Reduald",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/BHero1.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "BritonHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BritonHero"
         },
         "BWallsW": {
             "properties": {
@@ -6428,7 +7846,7 @@ const CLASSES_DETAILS =
                 "wall_set": "British walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "BSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "BHighlander": {
             "properties": {
@@ -6444,12 +7862,21 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Highlanders",
                 "help": "contents/units/BHighlander",
                 "edittree_pos": "Units/Britain/Highlander"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
-        "DefensiveCry2": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "DefensiveCry2": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "BVillagerAmbient": {
             "properties": {"race": "Britain", "icon": "gameres/icons/BVillager.bmp"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "PeasantAmbient"
         },
@@ -6458,18 +7885,20 @@ const CLASSES_DETAILS =
                 "display_name": "Gallio",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/RHero1.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "RepublicanRomanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "RepublicanRomanHero"
         },
         "CHero3b": {
             "properties": {
                 "display_name": "Saunites",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/CHero3.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "CarthaginianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "CarthaginianHero"
         },
         "Crops2": {
             "properties": {"edittree_pos": "Structures/Others/Fields/Crops 2"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -6487,14 +7916,14 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Swordsmen",
                 "help": "contents/units/BSwordsman",
                 "edittree_pos": "Units/Britain/Swordsman"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
         "MultiOne": {
             "properties": {
                 "icon": "gameres/icons/multi.bmp",
                 "help": "contents/units",
                 "interface": "thumb,unit"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "TSentry": {
             "properties": {
@@ -6505,9 +7934,16 @@ const CLASSES_DETAILS =
                 "armor_pierce": "0",
                 "icon": "gameres/icons/TArcher.bmp",
                 "unit_specials": "Attack skill, Active, Keen sight, Freedom"
-            }, "commands": {}, "def_cmds": {}, "parent": "Sentry"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Sentry"
         },
-        "StaminaLoss": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "StaminaLoss": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "ShipBattle": {
             "properties": {
                 "maxhealth": "3000",
@@ -6533,7 +7969,9 @@ const CLASSES_DETAILS =
                 "help": "/contents/units/Ship",
                 "edittree_pos": "Units/Others/Ship"
             },
-            "commands": {
+            "commands": {"boardunit": false, "unboardall": false},
+            "no_commands": ["capture", "train", "detach", "build_catapult"],
+            "methods": {
                 "boardunit": [["Obj", "This"], ["Obj", "ToBoard"]],
                 "unboard": [["Obj", "This"], ["ObjList", "ol"], ["point", "pt"]],
                 "unboardall": [["Obj", "This"], ["point", "pt"]],
@@ -6558,7 +7996,7 @@ const CLASSES_DETAILS =
                 "display_name": "Durio",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/RHero1.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "RepublicanRomanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "RepublicanRomanHero"
         },
         "IHero3": {
             "properties": {
@@ -6566,7 +8004,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/IHero3.bmp",
                 "edittree_pos": "Units/Iberia/Hero 3"
-            }, "commands": {}, "def_cmds": {}, "parent": "IberianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "IberianHero"
         },
         "RArena": {
             "properties": {
@@ -6577,7 +8015,20 @@ const CLASSES_DETAILS =
                 "selection_radius": "365",
                 "edittree_pos": "Structures/Stronghold (Republican Rome)/Arena",
                 "help": "/contents/buildings/RArena"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseArena"
+            },
+            "commands": {
+                "RGladiator Shows": false,
+                "Rome Training 1": false,
+                "Rome Training 2": false,
+                "Veteran Offence": false,
+                "Veteran Defence": false,
+                "Veteran Health": false,
+                "hireheroR": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseArena"
         },
         "EWallsNE": {
             "properties": {
@@ -6587,7 +8038,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "Egyptian walls",
                 "sentry_class_name": "ESentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "EGate0": {
             "properties": {
@@ -6597,7 +8048,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Egyptian walls",
                 "sentry_class_name": "ESentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "BGate3": {
             "properties": {
@@ -6607,14 +8058,14 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "British walls",
                 "sentry_class_name": "BSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "Ruin_Door01": {
             "properties": {
                 "health": "100",
                 "maxhealth": "100",
                 "edittree_pos": "Structures/Others/Ruins/Ruin Door 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "Outpost": {
             "properties": {
@@ -6641,6 +8092,17 @@ const CLASSES_DETAILS =
                 "interface": "thumb,building,holder"
             },
             "commands": {
+                "Outpost Attack": false,
+                "tribute": false,
+                "tribute_default": false,
+                "stoptribute": false,
+                "createfoodmule1": false,
+                "createfoodmule2": false,
+                "creategoldmule1": false,
+                "creategoldmule2": false
+            },
+            "no_commands": [],
+            "methods": {
                 "idle": [["Obj", "This"]],
                 "tribute": [["Obj", "this"], ["Obj", "To"]],
                 "tribute_default": [["Obj", "this"], ["Obj", "To"]],
@@ -6686,7 +8148,12 @@ const CLASSES_DETAILS =
                 "max_units": "0",
                 "settlement_icon_name": "",
                 "help": "/contents/buildings/Inn"
-            }, "commands": {"transport_request": [["Obj", "b"]]}, "def_cmds": {}, "parent": "BaseHouse"
+            },
+            "commands": {"transport_request": true},
+            "no_commands": [],
+            "methods": {"transport_request": [["Obj", "b"]]},
+            "def_cmds": {},
+            "parent": "BaseHouse"
         },
         "BBarracks": {
             "properties": {
@@ -6699,14 +8166,29 @@ const CLASSES_DETAILS =
                 "help": "/contents/buildings/BBarracks",
                 "edittree_pos": "Structures/Stronghold (Britain)/Barracks",
                 "auto_repair": "no"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseBarracks"
+            },
+            "commands": {
+                "repair barracks": false,
+                "Barrack Level 1": false,
+                "BBarrack Level 2": false,
+                "trainBSwordsman": false,
+                "trainBBowman": false,
+                "trainBBronzeSpearman": false,
+                "trainBShieldBearer": false,
+                "trainBJavelineer": false,
+                "trainBHighlander": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseBarracks"
         },
         "Haystack Small": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Fields/Haystack Small"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "TValkyrie": {
             "properties": {
@@ -6723,21 +8205,21 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Valkyries",
                 "help": "contents/units/TValkyrie",
                 "edittree_pos": "Units/Germany/Valkyrie"
-            }, "commands": {}, "def_cmds": {}, "parent": "Horse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Horse"
         },
         "EHero2c": {
             "properties": {
                 "display_name": "Hekatef",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/EHero2.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "EgyptianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "EgyptianHero"
         },
         "COLUMN ALONE2": {
             "properties": {
                 "radius": "40",
                 "selection_radius": "40",
                 "edittree_pos": "Structures/Others/Egypt/Column Alone 2"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "RPraetorian": {
             "properties": {
@@ -6755,9 +8237,16 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Praetorians",
                 "help": "contents/units/RPraetorian",
                 "edittree_pos": "Units/Roman/Praetorian"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
-        "Watersteps": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Watersteps": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "GSentry": {
             "properties": {
                 "race": "Gaul",
@@ -6767,7 +8256,7 @@ const CLASSES_DETAILS =
                 "armor_pierce": "0",
                 "icon": "gameres/icons/GArcher.bmp",
                 "unit_specials": "Attack skill, Keen sight, Freedom"
-            }, "commands": {}, "def_cmds": {}, "parent": "Sentry"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Sentry"
         },
         "EChariot": {
             "properties": {
@@ -6786,7 +8275,12 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Chariots of Osiris",
                 "help": "contents/units/EChariot",
                 "edittree_pos": "Units/Egypt/Chariot of Osiris"
-            }, "commands": {"engage": [["Obj", "me"]]}, "def_cmds": {}, "parent": "Ranged"
+            },
+            "commands": {},
+            "no_commands": ["detach"],
+            "methods": {"engage": [["Obj", "me"]]},
+            "def_cmds": {},
+            "parent": "Ranged"
         },
         "TTeutonArcher": {
             "properties": {
@@ -6807,7 +8301,9 @@ const CLASSES_DETAILS =
                 "help": "contents/units/TArcher",
                 "edittree_pos": "Units/Germany/Teuton Archer"
             },
-            "commands": {"toTeutonRider": [["Obj", "This"]], "enter_tent": [["Obj", "This"], ["Obj", "bld"]]},
+            "commands": {"to_teuton_rider": false},
+            "no_commands": [],
+            "methods": {"toTeutonRider": [["Obj", "This"]], "enter_tent": [["Obj", "This"], ["Obj", "bld"]]},
             "def_cmds": {},
             "parent": "Ranged"
         },
@@ -6820,9 +8316,33 @@ const CLASSES_DETAILS =
                 "edittree_pos": "Structures/Stronghold (Gaul)/Arena SW",
                 "help": "/contents/buildings/GArena",
                 "icon": "gameres/icons/GArena.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseArena"
+            },
+            "commands": {
+                "Fights": false,
+                "Gaul Training 1": false,
+                "Gaul Training 2": false,
+                "Gaul Training 3": false,
+                "hireheroG": false,
+                "Hire Trident warrior": false,
+                "Trident Warrior Exp1": false,
+                "Trident Warrior Exp2": false,
+                "Trident Warrior Exp3": false,
+                "Warrior Tales": false,
+                "Battle tactics": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseArena"
         },
-        "IGule_fire": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "IGule_fire": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "RTavern2": {
             "properties": {
                 "race": "RepublicanRome",
@@ -6832,7 +8352,20 @@ const CLASSES_DETAILS =
                 "selection_radius": "195",
                 "edittree_pos": "Structures/Stronghold (Republican Rome)/Tavern SE",
                 "help": "/contents/buildings/RTavern"
-            }, "commands": {"buyfoodforgold": [["Obj", "This"]]}, "def_cmds": {}, "parent": "BaseTavern"
+            },
+            "commands": {
+                "RAddPop": false,
+                "Free Wine": false,
+                "Import horses": false,
+                "Scout Area": false,
+                "investR": false,
+                "RTribute": false,
+                "buyfoodforgold": false
+            },
+            "no_commands": [],
+            "methods": {"buyfoodforgold": [["Obj", "This"]]},
+            "def_cmds": {},
+            "parent": "BaseTavern"
         },
         "GHero1": {
             "properties": {
@@ -6840,7 +8373,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/GHero1.bmp",
                 "edittree_pos": "Units/Gaul/Hero 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "GaulHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "GaulHero"
         },
         "OldManE": {
             "properties": {
@@ -6848,16 +8381,32 @@ const CLASSES_DETAILS =
                 "radius": "20",
                 "selection_radius": "20",
                 "edittree_pos": "Units/Others/Old Man Europe"
-            }, "commands": {}, "def_cmds": {}, "parent": "PeasantAmbient"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "PeasantAmbient"
         },
-        "SpikedArmor": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
-        "DSkeleton1": {
-            "properties": {"edittree_pos": "Structures/Others/Desert/Skeleton 1"},
+        "SpikedArmor": {
+            "properties": {"desync_hash": "0"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
-        "Heal": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "DSkeleton1": {
+            "properties": {"edittree_pos": "Structures/Others/Desert/Skeleton 1"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
+        "Heal": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "TreeTrunk": {
             "properties": {
                 "delete_empty": "0",
@@ -6868,11 +8417,13 @@ const CLASSES_DETAILS =
                 "display_name": "Tree trunk",
                 "respawn_item": "Healing herbs",
                 "respawn_time": "120000"
-            }, "commands": {}, "def_cmds": {}, "parent": "ItemHolder"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ItemHolder"
         },
         "BaseArena": {
             "properties": {"interface": "thumb,building,queue", "auto_repair": "no"},
-            "commands": {"hirehero": [["Obj", "This"]], "trainex": [["Obj", "This"]]},
+            "commands": {"repair arena": false},
+            "no_commands": [],
+            "methods": {"hirehero": [["Obj", "This"]], "trainex": [["Obj", "This"]]},
             "def_cmds": {},
             "parent": "BaseTownBuilding"
         },
@@ -6884,9 +8435,16 @@ const CLASSES_DETAILS =
                 "radius": "106",
                 "selection_radius": "110",
                 "edittree_pos": "Structures/Village (Gaul)/House 2"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseHouse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseHouse"
         },
-        "Invisibility": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Invisibility": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "IHouse1": {
             "properties": {
                 "race": "Iberia",
@@ -6895,7 +8453,7 @@ const CLASSES_DETAILS =
                 "radius": "110",
                 "selection_radius": "112",
                 "edittree_pos": "Structures/Village (Iberia)/House 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseHouse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseHouse"
         },
         "MWallsNW": {
             "properties": {
@@ -6905,7 +8463,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "Imperial Roman walls",
                 "sentry_class_name": "MSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "well2": {
             "properties": {
@@ -6914,23 +8472,30 @@ const CLASSES_DETAILS =
                 "radius": "350",
                 "selection_radius": "275",
                 "help": "/contents/buildings/Well"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseWell"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseWell"
         },
         "MHero1b": {
             "properties": {
                 "display_name": "Nasennius",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/MHero1.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "ImperialRomanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ImperialRomanHero"
         },
         "IHero3a": {
             "properties": {
                 "display_name": "Verora",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/IHero3.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "IberianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "IberianHero"
         },
-        "GetItem": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "GetItem": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "GAxeman": {
             "properties": {
                 "race": "Gaul",
@@ -6945,40 +8510,51 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Axemen",
                 "help": "contents/units/GAxeman",
                 "edittree_pos": "Units/Gaul/Axeman"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
         "Column Tall": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Ruins/Column Tall"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
-        "Damage1": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Damage1": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "BHero1": {
             "properties": {
                 "display_name": "Gawain",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/BHero1.bmp",
                 "edittree_pos": "Units/Britain/Hero 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "BritonHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BritonHero"
         },
         "THero3a": {
             "properties": {
                 "display_name": "Mangod",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/THero3.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "GermanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "GermanHero"
         },
         "WaterRocks04": {
             "properties": {"edittree_pos": "Structures/Water/Rocks 4", "water_unit": "1"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
         "TBarrackHorse2": {
             "properties": {},
-            "commands": {"idle": [["Obj", "This"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "This"]]},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -6987,7 +8563,7 @@ const CLASSES_DETAILS =
                 "radius": "40",
                 "selection_radius": "120",
                 "edittree_pos": "Structures/Others/Egypt/Pyramid1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "LionThrone": {
             "properties": {
@@ -6996,21 +8572,21 @@ const CLASSES_DETAILS =
                 "radius": "57",
                 "selection_radius": "58",
                 "display_name": "Lion Throne"
-            }, "commands": {}, "def_cmds": {}, "parent": "ItemHolder"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ItemHolder"
         },
         "IHero1c": {
             "properties": {
                 "display_name": "Atennes",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/IHero1.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "IberianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "IberianHero"
         },
         "RHero3a": {
             "properties": {
                 "display_name": "Tarautas",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/RHero3.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "RepublicanRomanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "RepublicanRomanHero"
         },
         "ECatapult": {
             "properties": {
@@ -7023,7 +8599,9 @@ const CLASSES_DETAILS =
                 "projectile_fire": "Gule_fire",
                 "projectile_explosion": "CGule_explosion"
             },
-            "commands": {"attack_ground": [["Obj", "me"], ["point", "pt"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"attack_ground": [["Obj", "me"], ["point", "pt"]]},
             "def_cmds": {"": [{"cmd": "attack_ground", "ctrl": false}, {"cmd": "attack_ground", "ctrl": true}]},
             "parent": "Catapult"
         },
@@ -7032,14 +8610,14 @@ const CLASSES_DETAILS =
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Rocks/Rock Medium 7"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "THero1a": {
             "properties": {
                 "display_name": "Gautbehrt",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/THero1.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "GermanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "GermanHero"
         },
         "BTownhall": {
             "properties": {
@@ -7051,43 +8629,64 @@ const CLASSES_DETAILS =
                 "selection_radius": "175",
                 "edittree_pos": "Structures/Stronghold (Britain)/Townhall",
                 "help": "/contents/buildings/BTownhall"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseTownhall"
+            },
+            "commands": {"autotrain_start_cbet": false, "autotrain_stop_cbet": false, "refreshment": false},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseTownhall"
         },
         "Rock Large 02": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Rocks/Rock Large 2"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
-        "IGule_explosion": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
-        "DRuins7": {
-            "properties": {"edittree_pos": "Structures/Others/Desert/Ruins 7"},
+        "IGule_explosion": {
+            "properties": {"desync_hash": "0"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
-        "Empty": {"properties": {"interface": "empty"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "DRuins7": {
+            "properties": {"edittree_pos": "Structures/Others/Desert/Ruins 7"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
+        "Empty": {
+            "properties": {"interface": "empty"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "MHero2b": {
             "properties": {
                 "display_name": "Bruttius",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/MHero2.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "ImperialRomanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ImperialRomanHero"
         },
         "SphinxSmall3": {
             "properties": {
                 "radius": "60",
                 "selection_radius": "60",
                 "edittree_pos": "Structures/Others/Egypt/Sphynx Small 3"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "Rock Medium 03": {
             "properties": {
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Rocks/Rock Medium 3"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "RCatapult": {
             "properties": {
@@ -7097,7 +8696,9 @@ const CLASSES_DETAILS =
                 "range": "700",
                 "min_range": "201"
             },
-            "commands": {"attack": [["Obj", "me"], ["Obj", "target"]], "autofire": [["Obj", "This"]]},
+            "commands": {"catapult_attack": false},
+            "no_commands": [],
+            "methods": {"attack": [["Obj", "me"], ["Obj", "target"]], "autofire": [["Obj", "This"]]},
             "def_cmds": {
                 "Building": [{"cmd": "catapult_attack", "ctrl": false}, {
                     "cmd": "catapult_attack",
@@ -7114,7 +8715,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "Gaul walls",
                 "sentry_class_name": "GSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "TMaceman": {
             "properties": {
@@ -7130,21 +8731,21 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Macemen",
                 "help": "contents/units/TMaceman",
                 "edittree_pos": "Units/Germany/Maceman"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
         "CHero2a": {
             "properties": {
                 "display_name": "Muttines",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/CHero2.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "CarthaginianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "CarthaginianHero"
         },
         "MHero1a": {
             "properties": {
                 "display_name": "Plinius",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/MHero1.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "ImperialRomanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ImperialRomanHero"
         },
         "Eagle": {
             "properties": {
@@ -7167,7 +8768,9 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/eagle.bmp",
                 "healthbar_type": "0"
             },
-            "commands": {
+            "commands": {"hover": false},
+            "no_commands": [],
+            "methods": {
                 "idle": [["Obj", "This"]],
                 "move": [["Obj", "This"], ["point", "pt"]],
                 "hover": [["Obj", "This"], ["point", "pt"]],
@@ -7186,7 +8789,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "1000",
                 "edittree_pos": "Structures/Any Race Stronghold",
                 "help": "/contents/buildings/RTownhall"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseTownhall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseTownhall"
         },
         "GWallsN": {
             "properties": {
@@ -7197,21 +8800,21 @@ const CLASSES_DETAILS =
                 "wall_set": "Gaul walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "GSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "CHero1a": {
             "properties": {
                 "display_name": "Xanthippus",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/CHero1.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "CarthaginianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "CarthaginianHero"
         },
         "GHero4b": {
             "properties": {
                 "display_name": "Selred",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/GHero4.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "GaulHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "GaulHero"
         },
         "TGate1": {
             "properties": {
@@ -7221,14 +8824,14 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "German walls",
                 "sentry_class_name": "TSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "EHero1c": {
             "properties": {
                 "display_name": "Unis",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/EHero1.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "EgyptianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "EgyptianHero"
         },
         "BCatapult": {
             "properties": {
@@ -7238,11 +8841,18 @@ const CLASSES_DETAILS =
                 "damage": "300",
                 "maxhealth": "1000",
                 "icon": "gameres/icons/bram.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "Catapult"
+            },
+            "commands": {},
+            "no_commands": ["autofire", "stop", "disband"],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Catapult"
         },
         "CampTent1": {
             "properties": {"edittree_pos": "Structures/Others/Camp/Tent 1"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -7260,11 +8870,13 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Shield Bearers",
                 "help": "contents/units/BShieldBearer",
                 "edittree_pos": "Units/Britain/Shield Bearer"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
         "CampFence3": {
             "properties": {"edittree_pos": "Structures/Others/Camp/Fence 3"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -7276,7 +8888,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "Iberian walls",
                 "sentry_class_name": "ISentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "MWallsE": {
             "properties": {
@@ -7287,11 +8899,13 @@ const CLASSES_DETAILS =
                 "wall_set": "Imperial Roman walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "MSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "IBlacksmithAnim": {
             "properties": {},
-            "commands": {"idle": [["Obj", "This"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "This"]]},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -7303,7 +8917,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Egyptian walls",
                 "sentry_class_name": "ESentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "BMorrigansMonument": {
             "properties": {
@@ -7315,17 +8929,34 @@ const CLASSES_DETAILS =
                 "edittree_pos": "Structures/Stronghold (Britain)/Morrigan's monument",
                 "auto_repair": "no",
                 "icon": "gameres/icons/BMorrigansMonument.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseArena"
+            },
+            "commands": {
+                "Britain Fights": false,
+                "hireheroB": false,
+                "Hire Viking Lord": false,
+                "Shrine of Thor": false,
+                "BNobility": false,
+                "Noble Offence": false,
+                "Noble Defence": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseArena"
         },
         "CampTower1": {
             "properties": {"edittree_pos": "Structures/Others/Camp/Tower 1"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
         "CampFence2": {
             "properties": {"edittree_pos": "Structures/Others/Camp/Fence 2"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -7337,7 +8968,7 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/rhouse.bmp",
                 "edittree_pos": "Structures/Village (Rome)/House 3",
                 "display_name": "House"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseHouse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseHouse"
         },
         "BTavern": {
             "properties": {
@@ -7349,7 +8980,19 @@ const CLASSES_DETAILS =
                 "auto_repair": "no",
                 "icon": "gameres/icons/BTavern.bmp",
                 "help": "/contents/buildings/BTavern"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseTavern"
+            },
+            "commands": {
+                "BAddPop": false,
+                "Gambling": false,
+                "Gambler's Day": false,
+                "Gambler's Test": false,
+                "Gambler's Luck": false,
+                "BTribute": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseTavern"
         },
         "GArcher": {
             "properties": {
@@ -7366,7 +9009,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Archers",
                 "help": "contents/units/GArcher",
                 "edittree_pos": "Units/Gaul/Archer"
-            }, "commands": {}, "def_cmds": {}, "parent": "Ranged"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Ranged"
         },
         "TArcher": {
             "properties": {
@@ -7383,11 +9026,13 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Archers",
                 "help": "contents/units/TArcher",
                 "edittree_pos": "Units/Germany/Archer"
-            }, "commands": {}, "def_cmds": {}, "parent": "Ranged"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Ranged"
         },
         "ShortRanged": {
             "properties": {"formation_priority": "500", "sight": "500", "range": "300"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Ranged"
         },
@@ -7405,14 +9050,14 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Anubis Warriors",
                 "help": "contents/units/EAnubisWarrior",
                 "edittree_pos": "Units/Egypt/Anubis Warrior"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
         "EHero2a": {
             "properties": {
                 "display_name": "Amenwahsu",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/EHero2.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "EgyptianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "EgyptianHero"
         },
         "TCatapult": {
             "properties": {
@@ -7422,7 +9067,12 @@ const CLASSES_DETAILS =
                 "damage": "300",
                 "maxhealth": "1000",
                 "icon": "gameres/icons/tram.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "Catapult"
+            },
+            "commands": {},
+            "no_commands": ["autofire", "stop", "disband"],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Catapult"
         },
         "RSentry": {
             "properties": {
@@ -7433,11 +9083,13 @@ const CLASSES_DETAILS =
                 "armor_pierce": "0",
                 "icon": "gameres/icons/RArcher.bmp",
                 "unit_specials": "Defense skill, Keen sight, Freedom"
-            }, "commands": {}, "def_cmds": {}, "parent": "Sentry"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Sentry"
         },
         "RVillagerAmbient": {
             "properties": {"race": "RepublicanRome", "icon": "gameres/icons/RMan.bmp"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "PeasantAmbient"
         },
@@ -7457,7 +9109,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Woman Warriors",
                 "help": "contents/units/GWWarrior",
                 "edittree_pos": "Units/Gaul/Woman Warrior"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
         "EGate4": {
             "properties": {
@@ -7467,7 +9119,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Egyptian walls",
                 "sentry_class_name": "ESentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "Wagon": {
             "properties": {
@@ -7483,6 +9135,14 @@ const CLASSES_DETAILS =
                 "inventory_size": "0"
             },
             "commands": {
+                "unload": false,
+                "loadgold1": false,
+                "loadgold2": false,
+                "loadfood1": false,
+                "loadfood2": false
+            },
+            "no_commands": ["detach"],
+            "methods": {
                 "unload": [["Obj", "This"], ["Obj", "Bld"]],
                 "loadgoldbig": [["Obj", "This"]],
                 "loadfoodbig": [["Obj", "This"]],
@@ -7515,20 +9175,33 @@ const CLASSES_DETAILS =
                 "projectile_class": "Arrow",
                 "building_projectile_class": "Fire_Arrow"
             },
-            "commands": {"idle": [["Obj", "me"]], "attack": [["Obj", "me"], ["Obj", "u"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "me"]], "attack": [["Obj", "me"], ["Obj", "u"]]},
             "def_cmds": {},
             "parent": "FakeTower"
         },
-        "Disease": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "Disease": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "statue1": {
             "properties": {"edittree_pos": "Structures/Others/Ruins/Roman statue"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
         "CampTent4": {
             "properties": {"edittree_pos": "Structures/Others/Camp/Tent 4"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -7537,10 +9210,24 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/multi.bmp",
                 "help": "contents/units",
                 "interface": "thumb,unit,holder"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
-        "ISentry1": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "ISentry"},
-        "gcatapult_placing": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "catapult_placing"},
+        "ISentry1": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "ISentry"
+        },
+        "gcatapult_placing": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "catapult_placing"
+        },
         "MWallsSE": {
             "properties": {
                 "race": "ImperialRome",
@@ -7549,7 +9236,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "110",
                 "wall_set": "Imperial Roman walls",
                 "sentry_class_name": "MSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "IBarracks": {
             "properties": {
@@ -7562,23 +9249,45 @@ const CLASSES_DETAILS =
                 "help": "/contents/buildings/IBarracks",
                 "edittree_pos": "Structures/Stronghold (Iberia)/Barracks",
                 "auto_repair": "no"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseBarracks"
+            },
+            "commands": {
+                "repair barracks": false,
+                "Barrack Level 1": false,
+                "Barrack Level 2": false,
+                "Barrack Level 3": false,
+                "trainIMilitiaman": false,
+                "trainIArcher": false,
+                "trainISlinger": false,
+                "trainIDefender": false,
+                "trainICavalry": false,
+                "trainIEliteGuard": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseBarracks"
         },
         "DStatue": {
             "properties": {"edittree_pos": "Structures/Others/Desert/Statue"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
         "CampTower2": {
             "properties": {"edittree_pos": "Structures/Others/Camp/Tower 2"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
         "ITower01": {
             "properties": {"race": "Iberia", "wall_set": "Iberian walls", "icon": "gameres/icons/ITower.bmp"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Tower"
         },
@@ -7587,7 +9296,7 @@ const CLASSES_DETAILS =
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Rocks/Rock Medium 6"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "RLiberatus": {
             "properties": {
@@ -7603,7 +9312,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Liberati",
                 "help": "contents/units/RLiberatus",
                 "edittree_pos": "Units/Roman/Liberatus"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": ["detach"], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
         "GOutpost": {
             "properties": {
@@ -7624,9 +9333,21 @@ const CLASSES_DETAILS =
                 "defenders_out_1": "2",
                 "start_level_1": "12",
                 "end_level_1": "24"
-            }, "commands": {"goutpost_sellfood": [["Obj", "This"]]}, "def_cmds": {}, "parent": "Outpost"
+            },
+            "commands": {"goutpost_sellfood": false, "goutpost_no_sellfood": false},
+            "no_commands": [],
+            "methods": {"goutpost_sellfood": [["Obj", "This"]]},
+            "def_cmds": {},
+            "parent": "Outpost"
         },
-        "CGule_fire": {"properties": {"desync_hash": "0"}, "commands": {}, "def_cmds": {}, "parent": "Object"},
+        "CGule_fire": {
+            "properties": {"desync_hash": "0"},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Object"
+        },
         "MBarracks": {
             "properties": {
                 "race": "ImperialRome",
@@ -7637,11 +9358,29 @@ const CLASSES_DETAILS =
                 "edittree_pos": "Structures/Stronghold (Imperial Rome)/Barracks",
                 "auto_repair": "no",
                 "help": "/contents/buildings/MBarracks"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseBarracks"
+            },
+            "commands": {
+                "repair barracks": false,
+                "Barrack Level 1": false,
+                "Barrack Level 2": false,
+                "MBarrack Level 3": false,
+                "trainMHastatus": false,
+                "trainMArcher": false,
+                "trainMVelit": false,
+                "trainMPrinciple": false,
+                "trainMScout": false,
+                "trainMPraetorian": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseBarracks"
         },
         "Flame": {
             "properties": {"edittree_pos": "Structures/Others/Flame", "sight": "0"},
-            "commands": {"idle": [["Obj", "This"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "This"]]},
             "def_cmds": {},
             "parent": "Object"
         },
@@ -7662,7 +9401,9 @@ const CLASSES_DETAILS =
                 "no_transparent_draw": "1",
                 "healthbar_type": "0"
             },
-            "commands": {"enter": [["Obj", "This"], ["Obj", "bld"]], "transport": [["Obj", "This"], ["Obj", "other"]]},
+            "commands": {},
+            "no_commands": ["detach"],
+            "methods": {"enter": [["Obj", "This"], ["Obj", "bld"]], "transport": [["Obj", "This"], ["Obj", "other"]]},
             "def_cmds": {"Inn": [{"cmd": "transport", "ctrl": false}], "Building": [{"cmd": "enter", "ctrl": false}]},
             "parent": "Peaceful"
         },
@@ -7671,7 +9412,7 @@ const CLASSES_DETAILS =
                 "race": "Britain",
                 "icon": "gameres/icons/BVillager.bmp",
                 "edittree_pos": "Units/Britain/Peasant (male)"
-            }, "commands": {}, "def_cmds": {}, "parent": "Peasant"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Peasant"
         },
         "Catapult": {
             "properties": {
@@ -7708,7 +9449,9 @@ const CLASSES_DETAILS =
                 "max_units": "10",
                 "settlement_icon_name": ""
             },
-            "commands": {
+            "commands": {"autofire": false, "stop": false, "disband": false},
+            "no_commands": [],
+            "methods": {
                 "idle": [["Obj", "This"]],
                 "attack": [["Obj", "me"], ["Obj", "target"]],
                 "autofire": [["Obj", "This"]],
@@ -7728,7 +9471,25 @@ const CLASSES_DETAILS =
                 "auto_repair": "no",
                 "icon": "gameres/icons/ETempleOfAnubis.bmp",
                 "help": "/contents/buildings/ETempleOfHorusAndAnubis"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseArena"
+            },
+            "commands": {
+                "hireheroE": false,
+                "Cult of Anubis": false,
+                "Statue of Isis, mother of Anubis": false,
+                "Path of the dead I": false,
+                "Path of the dead II": false,
+                "Path of the dead III": false,
+                "Cult of Horus": false,
+                "Statue of Osiris, father of Horus": false,
+                "Light of Horus I": false,
+                "Light of Horus II": false,
+                "Light of Horus III": false,
+                "Statue of Amon-Ra": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseArena"
         },
         "RGateS": {
             "properties": {
@@ -7738,7 +9499,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Republican Roman walls",
                 "sentry_class_name": "RSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "HeroGrave": {
             "properties": {
@@ -7750,7 +9511,7 @@ const CLASSES_DETAILS =
                 "signt": "0",
                 "display_name": "Hero grave",
                 "description": "Heroes of the same player visiting the grave will benefit from the experience of the dead hero.\\nWarriors of the same player visiting the grave will receive charms that improve their combat skills until they kill an enemy"
-            }, "commands": {}, "def_cmds": {}, "parent": "ItemHolder"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ItemHolder"
         },
         "TGate7": {
             "properties": {
@@ -7760,7 +9521,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "German walls",
                 "sentry_class_name": "TSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "MSentry": {
             "properties": {
@@ -7771,22 +9532,31 @@ const CLASSES_DETAILS =
                 "armor_pierce": "0",
                 "icon": "gameres/icons/RArcher.bmp",
                 "unit_specials": "Defense skill, Keen sight, Freedom"
-            }, "commands": {}, "def_cmds": {}, "parent": "Sentry"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Sentry"
         },
         "IHero2b": {
             "properties": {
                 "display_name": "Adaegina",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/IHero2.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "IberianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "IberianHero"
         },
         "dolmen3": {
             "properties": {"edittree_pos": "Structures/Others/Sacred/Dolmen 3"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
-        "test": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "Building"},
+        "test": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Building"
+        },
         "CNoble": {
             "properties": {
                 "race": "Carthage",
@@ -7803,11 +9573,13 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Nobles",
                 "help": "contents/units/CNoble",
                 "edittree_pos": "Units/Carthage/Noble"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
         "PeasantFemale": {
             "properties": {"display_name": "Peasant", "display_name_plural": "Peasants"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Peasant"
         },
@@ -7819,14 +9591,14 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/rhouse.bmp",
                 "edittree_pos": "Structures/Village (Rome)/House 2",
                 "display_name": "House"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseHouse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseHouse"
         },
         "MHero3a": {
             "properties": {
                 "display_name": "Tadius",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/MHero3.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "ImperialRomanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ImperialRomanHero"
         },
         "GHouse4": {
             "properties": {
@@ -7836,7 +9608,7 @@ const CLASSES_DETAILS =
                 "radius": "100",
                 "selection_radius": "110",
                 "edittree_pos": "Structures/Village (Gaul)/House 4"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseHouse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseHouse"
         },
         "BBronzeSpearman": {
             "properties": {
@@ -7852,7 +9624,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Bronze Spearmen",
                 "help": "contents/units/BBronzeSpearman",
                 "edittree_pos": "Units/Britain/Bronze Spearman"
-            }, "commands": {}, "def_cmds": {}, "parent": "Melee"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Melee"
         },
         "RepublicanRomanHero": {
             "properties": {
@@ -7863,7 +9635,7 @@ const CLASSES_DETAILS =
                 "race": "RepublicanRome",
                 "help": "/contents/units/RHero",
                 "HeroSkills": "Administration, Team attack, Team defense, Quick March, Epic endurance"
-            }, "commands": {}, "def_cmds": {}, "parent": "HeroMounted"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "HeroMounted"
         },
         "EGate3": {
             "properties": {
@@ -7873,7 +9645,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Egyptian walls",
                 "sentry_class_name": "ESentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "EHero1": {
             "properties": {
@@ -7881,7 +9653,7 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/EHero1.bmp",
                 "edittree_pos": "Units/Egypt/Hero 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "EgyptianHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "EgyptianHero"
         },
         "EGate1": {
             "properties": {
@@ -7891,7 +9663,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Egyptian walls",
                 "sentry_class_name": "ESentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "ETempleOfOsiris": {
             "properties": {
@@ -7903,7 +9675,20 @@ const CLASSES_DETAILS =
                 "auto_repair": "no",
                 "icon": "gameres/icons/ETempleOfOsiris.bmp",
                 "help": "/contents/buildings/ETempleOfOsiris"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseBarracks"
+            },
+            "commands": {
+                "repairETemple": false,
+                "trainEPriest": false,
+                "Cult of Osiris": false,
+                "EZombify": false,
+                "ECloud of Plague": false,
+                "Mumification": false,
+                "Chariot of Osiris": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseBarracks"
         },
         "Deer": {
             "properties": {
@@ -7923,7 +9708,9 @@ const CLASSES_DETAILS =
                 "help": "contents/units/Deer",
                 "edittree_pos": "Units/Animals/Deer"
             },
-            "commands": {
+            "commands": {},
+            "no_commands": [],
+            "methods": {
                 "idle": [["Obj", "me"]],
                 "move": [["Obj", "This"], ["point", "pt"]],
                 "unitmove": [["Obj", "This"], ["point", "pt"]]
@@ -7933,7 +9720,9 @@ const CLASSES_DETAILS =
         },
         "BaseWell": {
             "properties": {"sight": "0", "display_name": "Well"},
-            "commands": {"idle": [["Obj", "This"]]},
+            "commands": {},
+            "no_commands": [],
+            "methods": {"idle": [["Obj", "This"]]},
             "def_cmds": {},
             "parent": "ItemHolder"
         },
@@ -7945,7 +9734,7 @@ const CLASSES_DETAILS =
                 "icon": "gameres/icons/chouse.bmp",
                 "edittree_pos": "Structures/Village (Carthage)/House 3",
                 "display_name": "House"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseHouse"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseHouse"
         },
         "GShipyard3": {
             "properties": {
@@ -7957,14 +9746,14 @@ const CLASSES_DETAILS =
                 "exit_vector_x": "120",
                 "exit_vector_y": "-100",
                 "build_ship_variation": "2"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseShipyard"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "BaseShipyard"
         },
         "THero2c": {
             "properties": {
                 "display_name": "Manifred",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/THero2.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "GermanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "GermanHero"
         },
         "IBlacksmith": {
             "properties": {
@@ -7976,7 +9765,20 @@ const CLASSES_DETAILS =
                 "edittree_pos": "Structures/Stronghold (Iberia)/Blacksmith",
                 "help": "/contents/buildings/IBlacksmith",
                 "auto_repair": "no"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseBlacksmith"
+            },
+            "commands": {
+                "repair blacksmith": false,
+                "Strenghten Stronghold Defences I": false,
+                "Strenghten Stronghold Defences II": false,
+                "Spears": false,
+                "Horseshoes": false,
+                "Slings": false,
+                "Battleaxes": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseBlacksmith"
         },
         "GGhost": {
             "properties": {
@@ -8001,7 +9803,9 @@ const CLASSES_DETAILS =
                 "help": "contents/units/Ghost",
                 "edittree_pos": "Units/Others/Ghoul"
             },
-            "commands": {
+            "commands": {},
+            "no_commands": ["boardunit", "unboardall", "stand_position"],
+            "methods": {
                 "advance": [["Obj", "This"], ["point", "pt"]],
                 "attack": [["Obj", "This"], ["point", "pt"]],
                 "move": [["Obj", "This"], ["point", "pt"]],
@@ -8026,23 +9830,34 @@ const CLASSES_DETAILS =
                 "display_name_plural": "Mountaineers",
                 "help": "contents/units/IMountaineer",
                 "edittree_pos": "Units/Iberia/Mountaineer"
-            }, "commands": {"ondie": [["Obj", "THIS"]]}, "def_cmds": {}, "parent": "Melee"
+            },
+            "commands": {},
+            "no_commands": ["detach"],
+            "methods": {"ondie": [["Obj", "THIS"]]},
+            "def_cmds": {},
+            "parent": "Melee"
         },
         "Field1": {
             "properties": {"edittree_pos": "Structures/Others/Fields/Field 1"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
         "EWVillagerAmbient": {
             "properties": {"race": "Egypt", "icon": "gameres/icons/EWVillager.bmp"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "PeasantAmbient"
         },
         "TCatapultUnit": {
             "properties": {"race": "Germany", "icon": "gameres/icons/tram.bmp"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "RamUnit"
         },
@@ -8051,7 +9866,7 @@ const CLASSES_DETAILS =
                 "radius": "300",
                 "selection_radius": "300",
                 "edittree_pos": "Structures/Others/Bridges/Bridge 1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "BGate5": {
             "properties": {
@@ -8061,7 +9876,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "British walls",
                 "sentry_class_name": "BSentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "IGateE": {
             "properties": {
@@ -8071,7 +9886,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "170",
                 "wall_set": "Iberian walls",
                 "sentry_class_name": "ISentry1"
-            }, "commands": {}, "def_cmds": {}, "parent": "Gate"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Gate"
         },
         "RTemple": {
             "properties": {
@@ -8083,33 +9898,56 @@ const CLASSES_DETAILS =
                 "auto_repair": "no",
                 "icon": "gameres/icons/RTemple.bmp",
                 "help": "/contents/buildings/RTemple"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseBarracks"
+            },
+            "commands": {
+                "repair temple": false,
+                "trainRPriest": false,
+                "Altar of Jupiter": false,
+                "Cloud of Plague": false,
+                "Wrath of Jupiter": false,
+                "God's Gift": false
+            },
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseBarracks"
         },
-        "BaseBuilding": {"properties": {}, "commands": {}, "def_cmds": {}, "parent": "Building"},
+        "BaseBuilding": {
+            "properties": {},
+            "commands": {},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "Building"
+        },
         "Tent02": {
             "properties": {
                 "display_name": "Teuton tent",
                 "radius": "150",
                 "selection_radius": "152",
                 "edittree_pos": "Structures/Others/Tents/Tent 2"
-            }, "commands": {}, "def_cmds": {}, "parent": "Object"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Object"
         },
         "MHero2a": {
             "properties": {
                 "display_name": "Cispius",
                 "display_name_plural": "Heroes",
                 "icon": "gameres/icons/MHero2.bmp"
-            }, "commands": {}, "def_cmds": {}, "parent": "ImperialRomanHero"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "ImperialRomanHero"
         },
         "sanctuary": {
             "properties": {"edittree_pos": "Structures/Others/Sacred/Sanctuary"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "Object"
         },
         "IWVillagerAmbient": {
             "properties": {"race": "Iberia", "icon": "gameres/icons/IWVillager.bmp"},
             "commands": {},
+            "no_commands": [],
+            "methods": {},
             "def_cmds": {},
             "parent": "PeasantAmbient"
         },
@@ -8124,7 +9962,7 @@ const CLASSES_DETAILS =
                 "selection_radius": "45",
                 "speed": "80",
                 "edittree_pos": "Units/Others/Caravan Camel"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wagon"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wagon"
         },
         "CWallsE": {
             "properties": {
@@ -8135,7 +9973,7 @@ const CLASSES_DETAILS =
                 "wall_set": "Carthaginian walls",
                 "num_sentry_slots": "4",
                 "sentry_class_name": "CSentry"
-            }, "commands": {}, "def_cmds": {}, "parent": "Wall"
+            }, "commands": {}, "no_commands": [], "methods": {}, "def_cmds": {}, "parent": "Wall"
         },
         "TVillage": {
             "properties": {
@@ -8146,8 +9984,1277 @@ const CLASSES_DETAILS =
                 "edittree_pos": "Structures/Village (Germany)/Village hall",
                 "foodperpop": "100",
                 "help": "/contents/buildings/Village"
-            }, "commands": {}, "def_cmds": {}, "parent": "BaseVillage"
+            },
+            "commands": {"trainpeasantt": false},
+            "no_commands": [],
+            "methods": {},
+            "def_cmds": {},
+            "parent": "BaseVillage"
         }
+    };
+
+const CLASSES_DETAILS_CMDS =
+    {
+        "repairETemple": {"rollover": "Repair", "targets": []},
+        "trainEPriest": {"rollover": "Call Priest", "targets": []},
+        "Cult of Osiris": {
+            "rollover": "Cult of Osiris",
+            "targets": [],
+            "description": "Allows construction of chariots in the Temple of Osiris"
+        },
+        "EZombify": {
+            "rollover": "Zombify",
+            "targets": [],
+            "description": "Allows priests to transform into ghouls when they die in battle or sacrifice themselves"
+        },
+        "ECloud of Plague": {
+            "rollover": "Cloud of Plague",
+            "targets": [],
+            "description": "Allows priests to sacrifice themselves to create a cloud of plague which damages all warriors it covers"
+        },
+        "Mumification": {
+            "rollover": "Mummification",
+            "targets": [],
+            "description": "New heroes are hired with 2/3 the level of the best hero you've had"
+        },
+        "Chariot of Osiris": {"rollover": "Chariot of Osiris", "targets": []},
+        "repair sanctuary": {"rollover": "Repair", "targets": []},
+        "trainIEnchantress": {"rollover": "Call Enchantress", "targets": []},
+        "Code of Valor": {
+            "rollover": "Code of Valor",
+            "targets": [],
+            "description": "All existing enchantresses become level 8. Increases the teach speed of enchantresses depending on their level."
+        },
+        "Ancestral Knowledge": {
+            "rollover": "Ancestral Knowledge",
+            "targets": [],
+            "description": "Increases the level to which enchantresses could teach friendly warriors from 4 to 8"
+        },
+        "Cover of Mercy": {
+            "rollover": "Cover of Mercy",
+            "targets": [],
+            "description": "Allows enchantresses to sacrifice themselves to protect allies from damage"
+        },
+        "Iberian Mass Heal": {
+            "rollover": "Mass Heal",
+            "targets": [],
+            "description": "Allows enchantresses to sacrifice themselves to heal nearby allies"
+        },
+        "repair arena": {"rollover": "Repair", "targets": []},
+        "Fights": {"rollover": "Fights", "targets": [], "description": "New Swordsmen and Archers are level 4"},
+        "Britain Fights": {"rollover": "Fights", "targets": [], "description": "All new warriors are level 4"},
+        "MGladiator Shows": {
+            "rollover": "Gladiator shows",
+            "targets": [],
+            "description": "Allows Liberati to be hired"
+        },
+        "RGladiator Shows": {
+            "rollover": "Gladiator shows",
+            "targets": [],
+            "description": "Allows Gladiators to be hired"
+        },
+        "People's Assembly": {
+            "rollover": "People's Assembly",
+            "targets": [],
+            "description": "Allows the training of War Elephants"
+        },
+        "Tournaments": {"rollover": "Tournaments", "targets": [], "description": "Allows Mountaineers to be hired"},
+        "Gaul Training 1": {
+            "rollover": "Training",
+            "targets": [],
+            "description": "Allows warriors to train to level 4"
+        },
+        "Rome Training 1": {
+            "rollover": "Training",
+            "targets": [],
+            "description": "Allows warriors to train to level 4"
+        },
+        "Gaul Training 2": {
+            "rollover": "Advanced training",
+            "targets": [],
+            "description": "Allows warriors to train to level 8"
+        },
+        "Rome Training 2": {
+            "rollover": "Advanced training",
+            "targets": [],
+            "description": "Allows warriors to train to level 8"
+        },
+        "Veteran Offence": {
+            "rollover": "Veteran Offense",
+            "targets": [],
+            "description": "Warriors receive a Veteran Offense medal (+20% damage) at their first kill"
+        },
+        "Veteran Defence": {
+            "rollover": "Veteran Defense",
+            "targets": [],
+            "description": "Warriors receive a Veteran Defense medal (+20% armor) at their first kill"
+        },
+        "Veteran Health": {
+            "rollover": "Veteran Health",
+            "targets": [],
+            "description": "Warriors receive a Veteran Health medal (+20% health) at their first kill"
+        },
+        "Gaul Training 3": {
+            "rollover": "Special training",
+            "targets": [],
+            "description": "Allows warriors to train to level 12"
+        },
+        "Shared Strength": {
+            "rollover": "Shared Strength",
+            "targets": [],
+            "description": "If you have over 12 warriors of a type the new ones you hire are level 6"
+        },
+        "Shared Triumph": {
+            "rollover": "Shared Triumph",
+            "targets": [],
+            "description": "If you have over 24 warriors of a type the new ones you hire are level 12"
+        },
+        "Heroes' Wisdom": {
+            "rollover": "Heroes' Wisdom",
+            "targets": [],
+            "description": "Increases heroes' experience with time"
+        },
+        "Warriors' Wisdom": {
+            "rollover": "Warriors' Wisdom",
+            "targets": [],
+            "description": "Increases warriors' experience with time until they reach level 12"
+        },
+        "Mahout School": {
+            "rollover": "Mahout School",
+            "targets": [],
+            "description": "Increases the number of elephants you can support by 1"
+        },
+        "hireheroR": {"rollover": "Hire hero", "targets": []},
+        "hireheroM": {"rollover": "Hire hero", "targets": []},
+        "hireheroG": {"rollover": "Hire hero", "targets": []},
+        "hireheroC": {"rollover": "Hire hero", "targets": []},
+        "hireheroI": {"rollover": "Hire hero", "targets": []},
+        "hireheroE": {"rollover": "Hire hero", "targets": []},
+        "hireheroB": {"rollover": "Hire hero", "targets": []},
+        "hireheroT": {"rollover": "Hire hero", "targets": []},
+        "Hire Trident warrior": {
+            "rollover": "Hire Trident Warrior",
+            "targets": [],
+            "description": "Hires a Trident Warrior"
+        },
+        "Trident Warrior Exp1": {
+            "rollover": "Trident Warrior Experience I",
+            "targets": [],
+            "description": "All new Trident Warriors are level 12"
+        },
+        "Trident Warrior Exp2": {
+            "rollover": "Trident Warrior Experience II",
+            "targets": [],
+            "description": "All new Trident Warriors are level 18"
+        },
+        "Trident Warrior Exp3": {
+            "rollover": "Trident Warrior Experience III",
+            "targets": [],
+            "description": "All new Trident Warriors are level 24"
+        },
+        "Warrior Tales": {
+            "rollover": "Warrior Tales",
+            "targets": [],
+            "description": "When a warrior dies he gives 1 experience to a nearby ally (though not to a hero)"
+        },
+        "Hire Viking Lord": {"rollover": "Hire Viking Lord", "targets": [], "description": "Hires a Viking Lord"},
+        "Shrine of Thor": {
+            "rollover": "Shrine of Thor",
+            "targets": [],
+            "description": "Each new Viking Lord is 2 levels more experienced than the last (though not over level 20)"
+        },
+        "Hire Liberati": {"rollover": "Hire Liberati", "targets": [], "description": "Hires a group of 10 Liberati"},
+        "Mountain Clan": {
+            "rollover": "Mountain Clan",
+            "targets": [],
+            "description": "Increases the limit of Mountaineers you can have to 20"
+        },
+        "Call Mountaineer": {"rollover": "Hire Mountaineer", "targets": [], "description": "Hires a Mountaineer"},
+        "Train War Elephant": {"rollover": "Train War Elephant", "targets": [], "description": ""},
+        "Spoils of war": {
+            "rollover": "Spoils of war",
+            "targets": [],
+            "description": "Allows warriors to collect spoils of war worth 100 gold from each enemy they've killed "
+        },
+        "Liberati guild": {
+            "rollover": "Liberati guild",
+            "targets": [],
+            "description": "All new Liberati are one level better than the best Liberatus you've had"
+        },
+        "Military Academy": {
+            "rollover": "Military academy",
+            "targets": [],
+            "description": "All new heroes are level 12"
+        },
+        "Mountain Clan Legacy": {
+            "rollover": "Mountain Clan Legacy",
+            "targets": [],
+            "description": "New Mountaineers have the experience of the best Mountaineer you've had"
+        },
+        "Battle tactics": {
+            "rollover": "Battle tactics",
+            "targets": [],
+            "description": "Doubles the experience your army receives in battle"
+        },
+        "Nobility": {
+            "rollover": "Nobility",
+            "targets": [],
+            "description": "All warriors who reach level 8 become level 12"
+        },
+        "BNobility": {
+            "rollover": "Nobility",
+            "targets": [],
+            "description": "All warriors who reach level 8 become level 12"
+        },
+        "Noble Offence": {
+            "rollover": "Noble Offense",
+            "targets": [],
+            "description": "All warriors above level 12 receive a Noble Offense artifact (+4 damage) at their first kill"
+        },
+        "Noble Defence": {
+            "rollover": "Noble Defense",
+            "targets": [],
+            "description": "All warriors above level 12 receive a Noble Defense artifact (+4 armor) at their first kill"
+        },
+        "Standartization I": {
+            "rollover": "Standardization I",
+            "targets": [],
+            "description": "All new warriors are level 4 but cannot gain more experience"
+        },
+        "Standartization II": {
+            "rollover": "Standardization II",
+            "targets": [],
+            "description": "All new warriors are level 8 but cannot gain more experience"
+        },
+        "Flexibility": {
+            "rollover": "Flexibility",
+            "targets": [],
+            "description": "Allows warriors to gain experience past level 8"
+        },
+        "Cult of Anubis": {
+            "rollover": "Cult of Anubis",
+            "targets": [],
+            "description": "Allows training of Anubis warriors"
+        },
+        "Statue of Isis, mother of Anubis": {
+            "rollover": "Statue of Isis, mother of Anubis",
+            "targets": [],
+            "description": "Warriors heal twice as fast"
+        },
+        "Path of the dead I": {
+            "rollover": "Path of the dead I",
+            "targets": [],
+            "description": "Allows a warrior to become at least level 4 upon killing an enemy"
+        },
+        "Path of the dead II": {
+            "rollover": "Path of the dead II",
+            "targets": [],
+            "description": "Allows a warrior to become at least level 8 upon killing an enemy"
+        },
+        "Path of the dead III": {
+            "rollover": "Path of the dead III",
+            "targets": [],
+            "description": "Allows a warrior to become at least level 12 upon killing an enemy"
+        },
+        "Cult of Horus": {
+            "rollover": "Cult of Horus",
+            "targets": [],
+            "description": "Allows training of Horus warriors"
+        },
+        "Statue of Osiris, father of Horus": {
+            "rollover": "Statue of Osiris, father of Horus",
+            "targets": [],
+            "description": "Warriors restore stamina twice as fast"
+        },
+        "Light of Horus I": {
+            "rollover": "Light of Horus I",
+            "targets": [],
+            "description": "All new warriors are level 2"
+        },
+        "Light of Horus II": {
+            "rollover": "Light of Horus II",
+            "targets": [],
+            "description": "All new warriors are level 4"
+        },
+        "Light of Horus III": {
+            "rollover": "Light of Horus III",
+            "targets": [],
+            "description": "All new warriors are level 6"
+        },
+        "Statue of Amon-Ra": {
+            "rollover": "Statue of Amon-Ra",
+            "targets": [],
+            "description": "Warriors get 5 additional health points with every level"
+        },
+        "TFights": {"rollover": "Fights", "targets": [], "description": "Gathers 2000 food (works only once)"},
+        "Call Valkyries": {"rollover": "Call Valkyries", "targets": [], "description": "Calls 5 Valkyries"},
+        "Legendary Valkyries": {
+            "rollover": "Legendary Valkyries",
+            "targets": [],
+            "description": "All new Valkyries are one level better than the best Valkyries you've had"
+        },
+        "Learning": {
+            "rollover": "Learning",
+            "targets": [],
+            "description": "All warriors gain 1 experience for every successful attack against a more experienced enemy"
+        },
+        "Attack focus": {
+            "rollover": "Attack focus",
+            "targets": [],
+            "description": "The warriors' damage is not reduced when fighting more experienced enemies"
+        },
+        "Teuton Master": {
+            "rollover": "Teuton Master",
+            "targets": [],
+            "description": "Allows Teuton Riders to change to Teuton Archers and vise versa"
+        },
+        "repair barracks": {"rollover": "Repair", "targets": []},
+        "Barrack Level 1": {
+            "rollover": "Fast warrior equipment",
+            "targets": [],
+            "description": "Equips warriors twice as fast"
+        },
+        "Barrack Level 2": {
+            "rollover": "Faster warrior equipment",
+            "targets": [],
+            "description": "Equips warriors four times as fast"
+        },
+        "BBarrack Level 2": {
+            "rollover": "Faster warrior equipment",
+            "targets": [],
+            "description": "Equips warriors four times as fast"
+        },
+        "Barrack Level 3": {
+            "rollover": "Fastest warrior equipment",
+            "targets": [],
+            "description": "Equips warriors eight times as fast"
+        },
+        "catapult_attack": {"rollover": null, "targets": ["Building", "Unit"]},
+        "attack_ground": {"rollover": null, "targets": [""]},
+        "autofire": {"rollover": "Fire at will", "targets": []},
+        "stop": {"rollover": "Stop firing", "targets": []},
+        "disband": {"rollover": "Dismantle", "targets": []},
+        "boardunit": {"rollover": null, "targets": []},
+        "unboardall": {"rollover": "Land forces here", "targets": []},
+        "GAddPop": {
+            "rollover": "Increase population",
+            "targets": [],
+            "description": "Increases the stronghold population by 10"
+        },
+        "RAddPop": {
+            "rollover": "Increase population",
+            "targets": [],
+            "description": "Increases the stronghold population by 10"
+        },
+        "MAddPop": {
+            "rollover": "Increase population",
+            "targets": [],
+            "description": "Increases the stronghold population by 10"
+        },
+        "IAddPop": {
+            "rollover": "Increase population",
+            "targets": [],
+            "description": "Increases the stronghold population by 10"
+        },
+        "BAddPop": {
+            "rollover": "Increase population",
+            "targets": [],
+            "description": "Increases the stronghold population by 10"
+        },
+        "Free Beer": {
+            "rollover": "Free beer",
+            "targets": [],
+            "description": "Attracts 20 population to the stronghold (works only once)"
+        },
+        "Free Wine": {
+            "rollover": "Free wine",
+            "targets": [],
+            "description": "Explores a large area around the stronghold"
+        },
+        "Free Trade": {
+            "rollover": "Free trade",
+            "targets": [],
+            "description": "Increases the population of the stronghold to 100 (works only once)"
+        },
+        "Free Drinks": {
+            "rollover": "Free Drinks",
+            "targets": [],
+            "description": "Attracts 10 population to the stronghold (works only once)"
+        },
+        "Gambling": {
+            "rollover": "Gambling",
+            "targets": [],
+            "description": "Allows you to win 5000 or lose your investment (20% chance)"
+        },
+        "Gambler's Day": {
+            "rollover": "Gambler's Day",
+            "targets": [],
+            "description": "When a warrior kills a more experienced enemy he has a 35% chance to become the level of that enemy"
+        },
+        "Gambler's Test": {
+            "rollover": "Gambler's Test",
+            "targets": [],
+            "description": "Every warrior has a 4% chance to instantly kill a less experienced enemy"
+        },
+        "Gambler's Luck": {
+            "rollover": "Gambler's Luck",
+            "targets": [],
+            "description": "Every dying warrior has a 20% chance to restore his health to full instead of dying"
+        },
+        "Import horses": {"rollover": "Import horses", "targets": [], "description": "All new scouts are level 10"},
+        "repair tavern": {"rollover": "Repair", "targets": []},
+        "Sell food": {
+            "rollover": "Sell food",
+            "targets": [],
+            "description": "Sells 1000 food at the market for 500 gold"
+        },
+        "Scout Area": {
+            "rollover": "Scout area",
+            "targets": [],
+            "description": "Temporarily removes the fog of war around a chosen point and reveals any hidden warriors there"
+        },
+        "Expedition": {
+            "rollover": "Expedition",
+            "targets": [],
+            "description": "Removes the fog of war in a chosen area and reveals any hidden warriors there. There can be only one such area at a given moment"
+        },
+        "investR": {"rollover": "Investment", "targets": [], "description": "Adds 6000 gold to the stronghold"},
+        "Food Tax": {
+            "rollover": "Food Tax",
+            "targets": [],
+            "description": "Collects a food tax from the population of the stronghold"
+        },
+        "Nordic trade routes": {
+            "rollover": "Nordic trade routes",
+            "targets": [],
+            "description": "Equips all new warriors with Bear teeth amulets (+4 attack)"
+        },
+        "Belts of Might": {
+            "rollover": "Belts of Might",
+            "targets": [],
+            "description": "Equips all new warriors with Belt of might amulets (+4 armor)"
+        },
+        "getloan": {"rollover": "Get Loan", "targets": [], "description": "Borrows 4000 gold at 10% interest"},
+        "repayloan": {
+            "rollover": "Repay Loan",
+            "targets": [],
+            "description": "Gives all current gold to repay the loan (without interest)"
+        },
+        "GTribute": {
+            "rollover": "Tribute (once per game)",
+            "targets": [],
+            "description": "Gathers %s1 gold in each outpost you own. The amount of gold increases by 500 every 10 minutes (though not over 2000)"
+        },
+        "RTribute": {
+            "rollover": "Tribute (once per game)",
+            "targets": [],
+            "description": "Gathers %s1 gold in each outpost you own. The amount of gold increases by 500 every 10 minutes (though not over 2000)"
+        },
+        "MTribute": {
+            "rollover": "Tribute (once per game)",
+            "targets": [],
+            "description": "Gathers %s1 gold in each outpost you own. The amount of gold increases by 500 every 10 minutes (though not over 2000)"
+        },
+        "CTribute": {
+            "rollover": "Tribute (once per game)",
+            "targets": [],
+            "description": "Gathers %s1 gold in each outpost you own. The amount of gold increases by 500 every 10 minutes (though not over 2000)"
+        },
+        "ITribute": {
+            "rollover": "Tribute (once per game)",
+            "targets": [],
+            "description": "Gathers %s1 gold in each outpost you own. The amount of gold increases by 500 every 10 minutes (though not over 2000)"
+        },
+        "BTribute": {
+            "rollover": "Tribute (once per game)",
+            "targets": [],
+            "description": "Gathers %s1 gold in each outpost you own. The amount of gold increases by 500 every 10 minutes (though not over 2000)"
+        },
+        "TTribute": {
+            "rollover": "Tribute (once per game)",
+            "targets": [],
+            "description": "Gathers %s1 gold in each outpost you own. The amount of gold increases by 500 every 10 minutes (though not over 2000)"
+        },
+        "ETribute": {
+            "rollover": "Tribute (once per game)",
+            "targets": [],
+            "description": "Gathers %s1 gold in each outpost you own. The amount of gold increases by 500 every 10 minutes (though not over 2000)"
+        },
+        "Housing": {
+            "rollover": "Housing",
+            "targets": [],
+            "description": "Increases the maximum population of the stronghold by 20"
+        },
+        "Mercenary pact": {
+            "rollover": "Mercenary Pact",
+            "targets": [],
+            "description": "Gives 40 gold to a hero each time one of his attached warriors dies"
+        },
+        "Slavery": {"rollover": "Slavery", "targets": [], "description": "Sell 50 population for 2000 gold"},
+        "Call to arms": {
+            "rollover": "Call to arms",
+            "targets": [],
+            "description": "Drafts 50 peasants, making them Militiamen"
+        },
+        "BuySlaves": {
+            "rollover": "Buy Slaves",
+            "targets": [],
+            "description": "Increases the stronghold population to maximum"
+        },
+        "GrainTrade": {
+            "rollover": "Grain Trade",
+            "targets": [],
+            "description": "Slowly exchanges the food in the stronghold for gold"
+        },
+        "ReligiousFeast": {
+            "rollover": "Religious Feast",
+            "targets": [],
+            "description": "Heals the warriors around the townhall"
+        },
+        "Gossip": {
+            "rollover": "Gossip",
+            "targets": [],
+            "description": "Temporarily removes the fog of war around a chosen point and reveals any hidden warriors there"
+        },
+        "Hecatomb": {
+            "rollover": "Hecatomb",
+            "targets": [],
+            "description": "Increases the stronghold population to maximum"
+        },
+        "TAddPop": {
+            "rollover": "Increase population",
+            "targets": [],
+            "description": "Increases the stronghold population by 10"
+        },
+        "TGrainTrade": {"rollover": "Grain Trade", "targets": [], "description": "Gathers 2000 food"},
+        "TFoodTax": {
+            "rollover": "Food Tax",
+            "targets": [],
+            "description": "Collects a food tax from population of the stronghold"
+        },
+        "TReligiousFeast": {
+            "rollover": "Religious Feast",
+            "targets": [],
+            "description": "Heals the warriors around the townhall"
+        },
+        "stand_position": {"rollover": "Stand ground", "targets": []},
+        "move": {"rollover": "Move", "targets": [""]},
+        "transport": {"rollover": null, "targets": ["Inn"]},
+        "attack": {"rollover": "Attack", "targets": ["Hero", "Unit", "Building", ""]},
+        "attack_unit_type": {"rollover": null, "targets": ["Unit"]},
+        "approach": {"rollover": null, "targets": ["Object"]},
+        "attack_independent": {"rollover": null, "targets": ["Building", "TTent"]},
+        "capture": {"rollover": "Capture", "targets": ["Wall", "Gate", "Tower", "Building", "Wagon", ""]},
+        "explore": {"rollover": "Explore", "targets": [""]},
+        "attach": {"rollover": "Attach to hero", "targets": ["Hero"]},
+        "teleport": {"rollover": null, "targets": ["Teleport"]},
+        "enter": {"rollover": null, "targets": ["Building"]},
+        "advance": {"rollover": null, "targets": [""]},
+        "train": {"rollover": "Train warriors", "targets": [], "description": "Train combat with fellow warriors"},
+        "detach": {"rollover": "Detach", "targets": [], "description": "Detach from hero"},
+        "getitems": {"rollover": null, "targets": ["ItemHolder"]},
+        "patrol": {"rollover": "Patrol", "targets": [""]},
+        "build_catapult": {
+            "rollover": "Build siege machine",
+            "targets": [""],
+            "description": "Builds a machine to deal with the enemy fortress"
+        },
+        "convert2peasant": {
+            "rollover": "Convert to peasant",
+            "targets": [],
+            "description": "Disarms a warrior and converts him to a peasant"
+        },
+        "show": {"rollover": "Show", "targets": [], "description": "Shows hidden warriors for 20 seconds"},
+        "enter_parry_mode": {"rollover": "Enter parry mode", "targets": [], "description": "Put warrior in parry mode"},
+        "to_teuton_rider": {"rollover": "Convert to Teuton Rider", "targets": []},
+        "to_teuton_archer": {"rollover": "Convert to Teuton Archer", "targets": []},
+        "hero_set_final_party_orientation": {"rollover": null, "targets": []},
+        "RBarrack Level 3": {
+            "rollover": "Fastest warrior equipment",
+            "targets": [],
+            "description": "Equips warriors eight times as fast"
+        },
+        "trainRHastatus": {"rollover": "Equip Hastatus", "targets": []},
+        "trainRArcher": {"rollover": "Equip Archer", "targets": []},
+        "trainRGladiator": {"rollover": "Equip Gladiator", "targets": []},
+        "trainRPrinciple": {"rollover": "Equip Principle", "targets": []},
+        "trainRScout": {"rollover": "Equip Scout", "targets": []},
+        "trainRTribune": {"rollover": "Equip Tribune", "targets": []},
+        "Equip Chariot": {"rollover": "Equip Chariot", "targets": []},
+        "repair temple": {"rollover": "Repair", "targets": []},
+        "trainRPriest": {"rollover": "Call Priest", "targets": []},
+        "Altar of Jupiter": {
+            "rollover": "Altar of Jupiter",
+            "targets": [],
+            "description": "All new priests are level 4"
+        },
+        "Cloud of Plague": {
+            "rollover": "Cloud of Plague",
+            "targets": [],
+            "description": "Allows priests to sacrifice themselves to create a cloud of plague which damages all warriors it covers"
+        },
+        "Wrath of Jupiter": {
+            "rollover": "Wrath of Jupiter",
+            "targets": [],
+            "description": "Strikes a nearby enemy with lightning every time a priest dies"
+        },
+        "God's Gift": {
+            "rollover": "God's Gift",
+            "targets": [],
+            "description": "All new warriors are equipped with a God's Gift artifact, which heals a warrior at his first kill and then disappears"
+        },
+        "repair blacksmith": {"rollover": "Repair", "targets": []},
+        "Strenghten Stronghold Defences I": {
+            "rollover": "Strengthen Stronghold Defenses I",
+            "targets": [],
+            "description": "Makes the defenders at the stronghold walls level 12"
+        },
+        "Strenghten Stronghold Defences II": {
+            "rollover": "Strengthen Stronghold Defenses II",
+            "targets": [],
+            "description": "Makes the defenders at the stronghold walls level 24"
+        },
+        "Roman Archers": {
+            "rollover": "Arrows",
+            "targets": [],
+            "description": "Allows Archers to be equipped in the Barracks"
+        },
+        "Roman Velit": {
+            "rollover": "Throwing Spears",
+            "targets": [],
+            "description": "Allows Velites to be equipped in the Barracks"
+        },
+        "Roman Principle": {
+            "rollover": "Pikes",
+            "targets": [],
+            "description": "Allows Principles to be equipped in the Barracks"
+        },
+        "Roman Scout": {
+            "rollover": "Horseshoes",
+            "targets": [],
+            "description": "Allows Scouts to be equipped in the Barracks"
+        },
+        "Roman Praetorian": {
+            "rollover": "Spike Armor",
+            "targets": [],
+            "description": "Allows Praetorians to be equipped in the Barracks"
+        },
+        "Roman Full Armor": {
+            "rollover": "Full Armor",
+            "targets": [],
+            "description": "Allows Tribunes to be equipped in the Barracks"
+        },
+        "Roman Chariot Wheels": {
+            "rollover": "Chariot Wheels",
+            "targets": [],
+            "description": "Allows Chariots to be built in the Barracks"
+        },
+        "Gaul Axeman": {
+            "rollover": "Axes",
+            "targets": [],
+            "description": "Allows Axemen to be equipped in the Barracks"
+        },
+        "Gaul Iron Axes": {"rollover": "Iron Axes", "targets": [], "description": "All new Axemen are level 6"},
+        "Gaul Spearman": {
+            "rollover": "Spears",
+            "targets": [],
+            "description": "Allows Spearmen to be equipped in the Barracks"
+        },
+        "Gaul Iron Spearheads": {
+            "rollover": "Iron Spearheads",
+            "targets": [],
+            "description": "All new Spearmen are level 6"
+        },
+        "Gaul Horseman": {
+            "rollover": "Horseshoes",
+            "targets": [],
+            "description": "Allows Horsemen to be equipped in the Barracks"
+        },
+        "Gaul Woman Warrior": {
+            "rollover": "Woman Armor",
+            "targets": [],
+            "description": "Allows Woman Warriors to be equipped in the Barracks"
+        },
+        "Gaul Fine Armor": {
+            "rollover": "Fine Armor",
+            "targets": [],
+            "description": "All new Woman Warriors are level 6"
+        },
+        "Spears": {
+            "rollover": "Spears",
+            "targets": [],
+            "description": "Allows Defenders to be equipped in the Barracks"
+        },
+        "Horseshoes": {
+            "rollover": "Horseshoes",
+            "targets": [],
+            "description": "Allows Cavalry to be equipped in the Barracks"
+        },
+        "Slings": {
+            "rollover": "Slings",
+            "targets": [],
+            "description": "Allows Slingers to be equipped in the Barracks"
+        },
+        "Battleaxes": {
+            "rollover": "Battle Axes",
+            "targets": [],
+            "description": "Allows Elite Guards to be equipped in the Barracks"
+        },
+        "Forge spears": {"rollover": "Forge Spears", "targets": [], "description": "Libyan Footmen become cheaper"},
+        "Forge javelins": {
+            "rollover": "Forge Javelins",
+            "targets": [],
+            "description": "Javelin Throwers become cheaper"
+        },
+        "Forge swords": {"rollover": "Forge Swords", "targets": [], "description": "Berber Assassins become cheaper"},
+        "Forge maces": {"rollover": "Forge Maces", "targets": [], "description": "Macemen become cheaper"},
+        "Forge pikes": {"rollover": "Forge Pikes", "targets": [], "description": "Numidian Riders become cheaper"},
+        "StopSpecialization1": {
+            "rollover": "Cease Production",
+            "targets": [],
+            "description": "Stop production of Spears and allow production of other weapons"
+        },
+        "StopSpecialization2": {
+            "rollover": "Cease Production",
+            "targets": [],
+            "description": "Stop production of Javelins and allow production of other weapons"
+        },
+        "StopSpecialization3": {
+            "rollover": "Cease Production",
+            "targets": [],
+            "description": "Stop production of Swords and allow production of other weapons"
+        },
+        "StopSpecialization4": {
+            "rollover": "Cease Production",
+            "targets": [],
+            "description": "Stop production of Maces and allow production of other weapons"
+        },
+        "StopSpecialization5": {
+            "rollover": "Cease Production",
+            "targets": [],
+            "description": "Stop production of Pikes and allow production of other weapons"
+        },
+        "StopSpecialization": {
+            "rollover": "Cease Production",
+            "targets": [],
+            "description": "Stop production and allow production of other weapons"
+        },
+        "Britain Spears": {
+            "rollover": "Spears",
+            "targets": [],
+            "description": "Allows Bronze Spearmen to be equipped in the Barracks"
+        },
+        "Britain Large Shields": {
+            "rollover": "Large Shields",
+            "targets": [],
+            "description": "Allows Shield Bearers to be equipped in the Barracks"
+        },
+        "Britain Javelins": {
+            "rollover": "Javelins",
+            "targets": [],
+            "description": "Allows Javelineers to be equipped in the Barracks"
+        },
+        "Britain Swords": {
+            "rollover": "Swords",
+            "targets": [],
+            "description": "Allows Highlanders to be equipped in the Barracks"
+        },
+        "Charm of Seth": {
+            "rollover": "Charm of Seth",
+            "targets": [],
+            "description": "Gives a Damage charm (+4 damage) to up to 50 warriors around the townhall"
+        },
+        "Charm of Thoth": {
+            "rollover": "Charm of Thoth",
+            "targets": [],
+            "description": "Gives an Armor charm (+4 armor) to up to 50 warriors around the townhall"
+        },
+        "Charm of Ra": {
+            "rollover": "Charm of Ra",
+            "targets": [],
+            "description": "Gives a Health charm (+40 health points) to up to 50 warriors around the townhall"
+        },
+        "Charm of Isis": {
+            "rollover": "Charm of Isis",
+            "targets": [],
+            "description": "Gives a Knowledge charm (+4 levels) to up to 50 warriors around the townhall"
+        },
+        "Axemen production": {
+            "rollover": "Increase Axe production",
+            "targets": [],
+            "description": "Increases the number of Axemen you can have by 10"
+        },
+        "Javelin production": {
+            "rollover": "Increase Javelin production",
+            "targets": [],
+            "description": "Increases the number of Huntresses you can have by 10"
+        },
+        "Horseshoes production": {
+            "rollover": "Increase Horseshoe production",
+            "targets": [],
+            "description": "Increases the number of Teuton Riders you can have by 10"
+        },
+        "Macemen production": {
+            "rollover": "Increase Mace production",
+            "targets": [],
+            "description": "Increases the number of Macemen you can have by 10"
+        },
+        "unload": {"rollover": "Unload caravan", "targets": ["Building"]},
+        "loadgold1": {"rollover": "Load 1000 gold", "targets": []},
+        "loadgold2": {"rollover": "Load 250 gold", "targets": []},
+        "loadfood1": {"rollover": "Load 1000 food", "targets": []},
+        "loadfood2": {"rollover": "Load 250 food", "targets": []},
+        "follow": {"rollover": null, "targets": ["Unit"]},
+        "boardship": {"rollover": null, "targets": ["ShipL"]},
+        "repair townhall": {"rollover": "Repair", "targets": []},
+        "unitsout": {"rollover": null, "targets": [""]},
+        "autotrain_start_gr": {
+            "rollover": "Automatic training",
+            "targets": [],
+            "description": "Start automatic training of warriors in the stronghold"
+        },
+        "autotrain_stop_gr": {
+            "rollover": "Stop automatic training",
+            "targets": [],
+            "description": "Stop automatic training of warriors in the stronghold"
+        },
+        "autotrain_start_cbet": {
+            "rollover": "Automatic training",
+            "targets": [],
+            "description": "Start automatic training of warriors in the stronghold"
+        },
+        "autotrain_stop_cbet": {
+            "rollover": "Stop automatic training",
+            "targets": [],
+            "description": "Stop automatic training of warriors in the stronghold"
+        },
+        "autotrain_start_i": {
+            "rollover": "Automatic teaching",
+            "targets": [],
+            "description": "Start automatic teaching of warriors in the stronghold"
+        },
+        "autotrain_stop_i": {
+            "rollover": "Stop automatic teaching",
+            "targets": [],
+            "description": "Stop automatic teaching of warriors in the stronghold"
+        },
+        "refreshment": {
+            "rollover": "Refreshment",
+            "targets": [],
+            "description": "Restores the stamina of all friendly warriors around the townhall"
+        },
+        "healing": {
+            "rollover": "Healing",
+            "targets": [],
+            "description": "Restores 2000 health between the friendly warriors around the townhall"
+        },
+        "autotrain_start": {"rollover": null, "targets": []},
+        "autotrain_stop": {"rollover": null, "targets": []},
+        "townhall_military_training": {
+            "rollover": "Military training",
+            "targets": [],
+            "description": "Adds 1 level to all allies around the townhall (up to level 10)"
+        },
+        "sentry_attack": {"rollover": "Attack", "targets": ["Hero", "Unit"]},
+        "repairCTemple": {"rollover": "Repair", "targets": []},
+        "trainCShaman": {"rollover": "Call Shaman", "targets": []},
+        "Dark Rituals": {
+            "rollover": "Dark Rituals",
+            "targets": [],
+            "description": "Allows a shaman to feed 2 nearby allies"
+        },
+        "Zombify": {
+            "rollover": "Zombify",
+            "targets": [],
+            "description": "Allows shamans to transform to ghouls when they die in battle or sacrifice themselves"
+        },
+        "Sacred Legion": {
+            "rollover": "Sacred Legion",
+            "targets": [],
+            "description": "Allows Nobles to be equipped in the Temple"
+        },
+        "trainCNoble": {"rollover": "Equip Noble", "targets": []},
+        "Ferocity": {
+            "rollover": "Ferocity",
+            "targets": [],
+            "description": "Allows a warrior to restores 3 stamina each time he kills an enemy"
+        },
+        "repair tower": {"rollover": "Repair", "targets": []},
+        "Tower Attack": {"rollover": "Attack", "targets": ["Unit"]},
+        "trainESwordsman": {"rollover": "Equip Swordsman", "targets": []},
+        "trainEArcher": {"rollover": "Equip Archer", "targets": []},
+        "trainEAxeTrower": {"rollover": "Equip Axe thrower", "targets": []},
+        "trainEAnubisWarrior": {"rollover": "Equip Anubis Warrior", "targets": []},
+        "trainEHorusWarrior": {"rollover": "Equip Horus Warrior", "targets": []},
+        "trainEGuardian": {"rollover": "Equip Guardian", "targets": []},
+        "trainCLibyanFootman": {"rollover": "Hire Libyan Footman", "targets": []},
+        "trainCLibyanFootmanNonSpec": {"rollover": "Hire Libyan Footman at double price", "targets": []},
+        "trainCJavelinThrower": {"rollover": "Hire Javelin Thrower", "targets": []},
+        "trainCJavelinThrowerNonSpec": {"rollover": "Hire Javelin Thrower at double price", "targets": []},
+        "trainCBerberAssassin": {"rollover": "Hire Berber Assassin", "targets": []},
+        "trainCBerberAssassinNonSpec": {"rollover": "Hire Berber Assassin at double price", "targets": []},
+        "trainCMaceman": {"rollover": "Hire Maceman", "targets": []},
+        "trainCMacemanNonSpec": {"rollover": "Hire Maceman at double price", "targets": []},
+        "trainCNumidianRider": {"rollover": "Hire Numidian Rider", "targets": []},
+        "trainCNumidianRiderNonSpec": {"rollover": "Hire Numidian Rider at double price", "targets": []},
+        "Outpost Attack": {"rollover": "Attack", "targets": ["Unit"]},
+        "trainIMilitiaman": {"rollover": "Equip Militiaman", "targets": []},
+        "trainIArcher": {"rollover": "Equip Archer", "targets": []},
+        "trainISlinger": {"rollover": "Equip Slinger", "targets": []},
+        "trainIDefender": {"rollover": "Equip Defender", "targets": []},
+        "trainICavalry": {"rollover": "Equip Cavalry", "targets": []},
+        "trainIEliteGuard": {"rollover": "Equip Elite Guard", "targets": []},
+        "wisdom": {
+            "rollover": "Wind of wisdom",
+            "targets": [],
+            "description": "Increases the level of everyone after 30 seconds (but not over level 20)"
+        },
+        "starvation": {
+            "rollover": "Starvation",
+            "targets": [],
+            "description": "Constantly decreases all food supplies. Lasts for 2 minutes"
+        },
+        "soothing": {
+            "rollover": "Soothing rain",
+            "targets": [],
+            "description": "Restores the stamina of everyone every 5 seconds. Lasts 30 seconds"
+        },
+        "sacrifice": {
+            "rollover": "Divine sacrifice",
+            "targets": [],
+            "description": "Constantly damages all sages. Lasts for 1 minute"
+        },
+        "bloodlust": {
+            "rollover": "Bloodlust",
+            "targets": [],
+            "description": "Causes all warriors to ignore enemy armor. Lasts for 1 minute"
+        },
+        "repairTTempleOfNeptus": {"rollover": "Repair", "targets": []},
+        "trainTEnchantress": {"rollover": "Call Enchantress", "targets": []},
+        "German chamber": {
+            "rollover": "Ritual Chamber",
+            "targets": [],
+            "description": "Allows enchantresses to gain experience by learning from more experienced warriors"
+        },
+        "German Wolf Summoning": {
+            "rollover": "Wolf summoning",
+            "targets": [],
+            "description": "Allows enchantresses to sacrifice themselves and summon a wolf, which is under your control for about 3 minutes"
+        },
+        "German Eagle Summoning": {
+            "rollover": "Eagle summoning",
+            "targets": [],
+            "description": "Allows enchantresses to sacrifice themselves and summon an eagle, which is under your control for about 2 minutes"
+        },
+        "German Mass Heal": {
+            "rollover": "Mass Heal",
+            "targets": [],
+            "description": "Allows enchantresses to sacrifice themselves to heal nearby allies"
+        },
+        "transport_request": {
+            "rollover": "Transport Party",
+            "targets": [],
+            "description": "Transports the party to another map"
+        },
+        "repair Temple of Thor": {"rollover": "Repair", "targets": []},
+        "trainBDruid": {"rollover": "Call Druid", "targets": []},
+        "Britain chamber": {
+            "rollover": "Ritual Chamber",
+            "targets": [],
+            "description": "Allows druids to gain experience by learning from warriors"
+        },
+        "Britain Ghoul Summoning": {
+            "rollover": "Ghoul summoning",
+            "targets": [],
+            "description": "Allows druids to sacrifice themselves and summon a Ghoul, which drains the life of all enemies nearby for about 10 seconds"
+        },
+        "Wolf Summoning": {
+            "rollover": "Wolf summoning",
+            "targets": [],
+            "description": "Allows druids to sacrifice themselves and summon a wolf, which remains under your control for about 3 minutes"
+        },
+        "Britain Mass Heal": {
+            "rollover": "Mass heal",
+            "targets": [],
+            "description": "Allows druids to sacrifices themselves to heal nearby allies"
+        },
+        "GBarrack Level 3": {
+            "rollover": "Fastest warrior equipment",
+            "targets": [],
+            "description": "Equips warriors eight times as fast"
+        },
+        "trainGSwordsman": {"rollover": "Equip Swordsman", "targets": []},
+        "trainGArcher": {"rollover": "Equip Archer", "targets": []},
+        "trainGAxeman": {"rollover": "Equip Axeman", "targets": []},
+        "trainGSpearman": {"rollover": "Equip Spearman", "targets": []},
+        "trainGHorseman": {"rollover": "Equip Horseman", "targets": []},
+        "trainGWomanWarrior": {"rollover": "Equip Woman Warrior", "targets": []},
+        "repair druid house": {"rollover": "Repair", "targets": []},
+        "trainGDruid": {"rollover": "Call Druid", "targets": []},
+        "Ritual Chamber": {
+            "rollover": "Ritual Chamber",
+            "targets": [],
+            "description": "Allows druids to gain experience by learning from more experienced warriors"
+        },
+        "Ghoul Summoning": {
+            "rollover": "Ghoul summoning",
+            "targets": [],
+            "description": "Allows druids to sacrifice themselves and summon a Ghoul, which drains the life from all enemies nearby for about 10 seconds"
+        },
+        "Restoration": {
+            "rollover": "Restoration",
+            "targets": [],
+            "description": "Allows druids to sacrifice themselves to restore the stamina of 5 nearby allies"
+        },
+        "Eagle Summoning": {
+            "rollover": "Eagle summoning",
+            "targets": [],
+            "description": "Allows druids to sacrifice themselves and summon an eagle, which is under your control for about 2 minutes"
+        },
+        "hover": {"rollover": "Hover over that point", "targets": []},
+        "glearn": {
+            "rollover": "Learn from ally",
+            "targets": ["Unit"],
+            "description": "Gains knowledge from a more experienced ally"
+        },
+        "blearn": {
+            "rollover": "Learn from ally",
+            "targets": ["Unit"],
+            "description": "Gains knowledge from a more experienced ally"
+        },
+        "tlearn": {
+            "rollover": "Learn from ally",
+            "targets": ["Unit"],
+            "description": "Gains knowledge from a more experienced ally"
+        },
+        "learn": {
+            "rollover": "Learn from ally",
+            "targets": ["Unit"],
+            "description": "Gains knowledge from a more experienced ally"
+        },
+        "teach": {"rollover": "Teach an ally", "targets": ["Unit"], "description": "Teaches an ally"},
+        "heal": {
+            "rollover": "Heal",
+            "targets": ["Unit"],
+            "description": "Heals the target with 20 plus the level of the healer"
+        },
+        "cloud_of_plague": {
+            "rollover": "Create Cloud of Plague",
+            "targets": [],
+            "description": "Creates a cloud that slowly kills all affected enemies (sacrificing the priest's life)"
+        },
+        "ecloud_of_plague": {
+            "rollover": "Create Cloud of Plague",
+            "targets": [],
+            "description": "Creates a cloud that slowly kills all affected enemies (sacrificing the priest's life)"
+        },
+        "cover_of_mercy": {
+            "rollover": "Create Cover of Mercy",
+            "targets": [],
+            "description": "Creates a cloud that reduces all combat damage allies receive by half (sacrificing the enchantress' life)"
+        },
+        "ghoul_summoning": {
+            "rollover": "Summon Ghoul",
+            "targets": [],
+            "description": "Summons a ghoul that drains the life of nearby enemies and also could be controlled (sacrificing the druid's life)"
+        },
+        "b_ghoul_summoning": {
+            "rollover": "Summon Ghoul",
+            "targets": [],
+            "description": "Summons a ghoul that drains the life of nearby enemies and also could be controlled (sacrificing the druid's life)"
+        },
+        "eagle_summoning": {
+            "rollover": "Summon Eagle",
+            "targets": [],
+            "description": "Summons an eagle that could be controlled (sacrificing the druid's life)"
+        },
+        "teagle_summoning": {
+            "rollover": "Summon Eagle",
+            "targets": [],
+            "description": "Summons an eagle that could be controlled (sacrificing the enchantress' life)"
+        },
+        "wolf_summoning": {
+            "rollover": "Summon Wolf",
+            "targets": [],
+            "description": "Summons a wolf that could be controlled (sacrificing the druid's life)"
+        },
+        "twolf_summoning": {
+            "rollover": "Summon Wolf",
+            "targets": [],
+            "description": "Summons a wolf that could be controlled (sacrificing the enchantress' life)"
+        },
+        "restoration": {
+            "rollover": "Restoration",
+            "targets": [],
+            "description": "Restores the stamina of up to 5 nearby allies (sacrificing the druid's life)"
+        },
+        "b_mass_heal": {
+            "rollover": "Mass heal",
+            "targets": [],
+            "description": "Heals nearby allies (sacrificing the druid's life)"
+        },
+        "mass_heal": {
+            "rollover": "Mass Heal",
+            "targets": [],
+            "description": "Heals nearby allies (sacrificing the enchantress' life)"
+        },
+        "t_mass_heal": {
+            "rollover": "Mass Heal",
+            "targets": [],
+            "description": "Heals nearby allies (sacrificing the enchantress' life)"
+        },
+        "hide": {
+            "rollover": "Invisibility",
+            "targets": ["Unit", ""],
+            "description": "Hides the target from the eyes of all enemies"
+        },
+        "wrath_of_jupiter": {
+            "rollover": "Wrath of Jupiter",
+            "targets": [],
+            "description": "Channels the Wrath of Jupiter hurting the target (sacrificing the priest's life)"
+        },
+        "curse": {
+            "rollover": "Curse",
+            "targets": [],
+            "description": "Curses the target warrior to miss his next attack"
+        },
+        "cripple": {"rollover": "Cripple", "targets": [], "description": "Drains all of the target's stamina"},
+        "turn2zombie": {"rollover": "Zombify", "targets": [], "description": "Transform to zombie"},
+        "Eturn2zombie": {"rollover": "Zombify", "targets": [], "description": "Transform to zombie"},
+        "opengate": {"rollover": "Open Gate", "targets": []},
+        "closegate": {"rollover": "Close Gate", "targets": []},
+        "repair gate": {"rollover": "Repair", "targets": []},
+        "TBarrack Level 3": {
+            "rollover": "Fastest warrior equipment",
+            "targets": [],
+            "description": "Equips warriors eight times as fast"
+        },
+        "trainTSwordsman": {"rollover": "Equip Swordsman", "targets": []},
+        "trainTArcher": {"rollover": "Equip Archer", "targets": []},
+        "trainTAxeman": {"rollover": "Equip Axeman", "targets": []},
+        "trainTHuntress": {"rollover": "Equip Huntress", "targets": []},
+        "trainTTeutonRider": {"rollover": "Equip Teuton Rider", "targets": []},
+        "trainTMaceman": {"rollover": "Equip Maceman", "targets": []},
+        "stand_ground": {
+            "rollover": "Stand ground",
+            "targets": [],
+            "description": "Keeps army in battle formation (applies bonus)"
+        },
+        "boardshiphero": {"rollover": null, "targets": ["ShipL"]},
+        "form-line-menu": {"rollover": "Select Formation", "targets": []},
+        "form-front-menu": {"rollover": "Select Formation", "targets": []},
+        "form-block-menu": {"rollover": "Select Formation", "targets": []},
+        "form-cavalry-menu": {"rollover": "Select Formation", "targets": []},
+        "form-line": {"rollover": "Select Line formation", "targets": []},
+        "form-front": {"rollover": "Select Front formation", "targets": []},
+        "form-block": {"rollover": "Select Block formation", "targets": []},
+        "form-cavalry": {"rollover": "Select Cavalry core formation", "targets": []},
+        "leavearmy": {
+            "rollover": "Leave army",
+            "targets": [],
+            "description": "Leaves the attached allies on their own"
+        },
+        "moveinfight": {"rollover": null, "targets": [""]},
+        "divine_grace": {"rollover": "Divine Grace", "targets": [], "description": "Restores 100 of the hero's health"},
+        "skill_battle_cry": {"rollover": "Battle Cry", "targets": [], "description": "Activates the Battle Cry skill"},
+        "skill_healing": {"rollover": "Healing", "targets": [], "description": "Activates the Healing skill"},
+        "skill_ceasefire": {"rollover": "Ceasefire", "targets": [], "description": "Activates the Ceasefire skill"},
+        "skill_frenzy": {"rollover": "Frenzy", "targets": [], "description": "Activates the Frenzy skill"},
+        "skill_divine_rush": {"rollover": "Rush", "targets": [], "description": "Activates the Rush skill"},
+        "skill_charge": {"rollover": "Charge", "targets": [], "description": "Activates the Charge skill"},
+        "skill_assault": {"rollover": "Assault", "targets": [], "description": "Activates the Assault skill"},
+        "skill_defensive_cry": {
+            "rollover": "Defensive Cry",
+            "targets": [],
+            "description": "Activates the Defensive Cry skill"
+        },
+        "MBarrack Level 3": {
+            "rollover": "Fastest warrior equipment",
+            "targets": [],
+            "description": "Equips warriors eight times as fast"
+        },
+        "trainMHastatus": {"rollover": "Equip Hastatus", "targets": []},
+        "trainMArcher": {"rollover": "Equip Archer", "targets": []},
+        "trainMVelit": {"rollover": "Equip Velit", "targets": []},
+        "trainMPrinciple": {"rollover": "Equip Principle", "targets": []},
+        "trainMScout": {"rollover": "Equip Scout", "targets": []},
+        "trainMPraetorian": {"rollover": "Equip Praetorian", "targets": []},
+        "repair village": {
+            "rollover": "Repopulate",
+            "targets": [],
+            "description": "Repairs the village and restores its population to maximum"
+        },
+        "tribute": {
+            "rollover": "Supply",
+            "targets": ["BaseTownhall", "TTent", "Outpost", "BaseVillage"],
+            "description": "Sends resources to another location"
+        },
+        "tribute_default": {"rollover": null, "targets": ["BaseTownhall", "Outpost", "BaseVillage", "TTent"]},
+        "stoptribute": {"rollover": "Supply", "targets": [], "description": "Stop sending resources"},
+        "buyfoodforgold": {"rollover": "Buy 800 food", "targets": []},
+        "trainpeasantr": {
+            "rollover": "Call peasants",
+            "targets": [],
+            "description": "Calls 5 peasants of the population"
+        },
+        "trainpeasantm": {
+            "rollover": "Call peasants",
+            "targets": [],
+            "description": "Calls 5 peasants of the population"
+        },
+        "trainpeasantg": {
+            "rollover": "Call peasants",
+            "targets": [],
+            "description": "Calls 5 peasants of the population"
+        },
+        "trainpeasantc": {
+            "rollover": "Call peasants",
+            "targets": [],
+            "description": "Calls 5 peasants of the population"
+        },
+        "trainpeasanti": {
+            "rollover": "Call peasants",
+            "targets": [],
+            "description": "Calls 5 peasants of the population"
+        },
+        "trainpeasantb": {
+            "rollover": "Call peasants",
+            "targets": [],
+            "description": "Calls 5 peasants of the population"
+        },
+        "trainpeasantt": {
+            "rollover": "Call peasants",
+            "targets": [],
+            "description": "Calls 5 peasants of the population"
+        },
+        "trainpeasante": {
+            "rollover": "Call peasants",
+            "targets": [],
+            "description": "Calls 5 peasants of the population"
+        },
+        "createfoodmule1": {"rollover": "Load a caravan with 250 food", "targets": []},
+        "createfoodmule2": {"rollover": "Load a caravan with 1000 food", "targets": []},
+        "creategoldmule1": {"rollover": "Load a caravan with 250 gold", "targets": []},
+        "creategoldmule2": {"rollover": "Load a caravan with 1000 gold", "targets": []},
+        "goutpost_sellfood": {
+            "rollover": "Sell food",
+            "targets": [],
+            "description": "Slowly exchanges stored food for gold"
+        },
+        "goutpost_no_sellfood": {"rollover": "Stop selling food", "targets": []},
+        "trainBSwordsman": {"rollover": "Equip Swordsman", "targets": []},
+        "trainBBowman": {"rollover": "Equip Bowman", "targets": []},
+        "trainBBronzeSpearman": {"rollover": "Equip Bronze Spearman", "targets": []},
+        "trainBShieldBearer": {"rollover": "Equip Shield Bearer", "targets": []},
+        "trainBJavelineer": {"rollover": "Equip Javelineer", "targets": []},
+        "trainBHighlander": {"rollover": "Equip Highlander", "targets": []},
+        "buildship": {"rollover": "Create Battleship", "targets": []},
+        "buildshipEgypt": {"rollover": "Create Egyptian Ship", "targets": []},
+        "buildshipRome": {"rollover": "Create Roman Ship", "targets": []},
+        "createfoodboat1": {"rollover": "Create Boat with 250 food", "targets": []},
+        "createfoodboat2": {"rollover": "Create Boat with 1000 food", "targets": []},
+        "creategoldboat1": {"rollover": "Create Boat with 250 gold", "targets": []},
+        "creategoldboat2": {"rollover": "Create Boat with 1000 gold", "targets": []}
     };
 
 const CLASSES_DETAILS_ROOT_ID = 'Object';
