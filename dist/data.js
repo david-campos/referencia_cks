@@ -2300,7 +2300,7 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}],
+            "params": [{"name": "comando", "name_en": "command", "type": 5, "is_ptr": false}],
             "description": "Devuelve el número de veces que el comando dado aparece en la cola de comandos actual del objeto. En <a href='class.htm'>esta página</a> puedes ver todos los comandos posibles para cualquier <a href='#Obj::class'>clase</a> del juego.",
             "description_en": "Returns the number of times the given command appears in the current command queue of the object. You can find every possible command for a given <a href='#Obj::class'>class</a> in <a href='class.htm?en'>this page</a>.",
             "related": ["Obj::command", "Obj::CmdCount"]
@@ -2464,10 +2464,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}],
+            "params": [{"name": "comando", "name_en": "command", "type": 5, "is_ptr": false}],
             "description": "<p>Elimina (desactiva) el comando indicado del objeto. El comando no aparecerá como desactivado, como sería intuitivo, si no que directamente desaparecerá de la barra. Métodos como <a href='#Obj::SetCommand:str'>SetCommand</a> o <a href='#Obj::SneakCommand:str'>Obj::SneakCommand</a> todavía podrán ejecutar el comando, pero no ocurrirá por interacción del jugador o con métodos como <a href='#Obj::AddCommand:bool_str'>AddCommand</a>, <a href='#Obj::ExecCmd:str_point_Obj_bool'>ExecCmd</a> o <a href='#Obj::ExecDefaultCmd:point_Obj_bool_bool'>ExecDefaultCmd</a>.. Puedes reactivar el comando utilizando <a href='#Obj::CmdEnable:str'>CmdEnable</a>.</p><p>En <a href='class.htm'>esta página</a> puedes ver todos los comandos posibles para cualquier clase del juego.</p>",
             "description_en": "<p>Removes the specified command from object. The command will not show up as disabled, but instead it will directly disappear from the bar. The methods <a href='#Obj::SetCommand:str'>SetCommand</a> or <a href='#Obj::SneakCommand:str'>Obj::SneakCommand</a> will still be able to execute the command, but it will not happen by interaction from the player or with other methods like <a href='#Obj::AddCommand:bool_str'>AddCommand</a>, <a href='#Obj::ExecCmd:str_point_Obj_bool'>ExecCmd</a> or <a href='#Obj::ExecDefaultCmd:point_Obj_bool_bool'>ExecDefaultCmd</a>. You can enable the command again using <a href='#Obj::CmdEnable:str'>CmdEnable</a>.</p><p>You can find every possible command for a given class with its arguments in <a href='class.htm?en'>this page</a>, as well as the default commands to be executed for each target.</p>",
-            "related": ["Obj::command", "Obj::ExecDefaultCmd:point_Obj_bool_bool", "Obj::ExecCmd:str_point_Obj_bool", "Obj::SetCommand:str", "Obj::AddCommand:bool_str"]
+            "related": ["Obj::command", "Obj::CmdEnable:str", "Obj::ExecDefaultCmd:point_Obj_bool_bool", "Obj::ExecCmd:str_point_Obj_bool", "Obj::SetCommand:str", "Obj::AddCommand:bool_str"]
         }, {
             "id": "Obj::CmdEnable:str",
             "name": "CmdEnable",
@@ -2476,7 +2476,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "comando", "name_en": "command", "type": 5, "is_ptr": false}],
+            "description": "<p>Reactiva el comando indicado del objeto, que habría sido previamente desactivado mediante <a href='#Obj::CmdDisable:str'>CmdDisable</a></p><p>En <a href='class.htm'>esta página</a> puedes ver todos los comandos posibles para cualquier clase del juego.</p>",
+            "description_en": "<p>Reactivates the command for the object, which had been previously deactivated by using <a href='#Obj::CmdDisable:str'>CmdDisable</a>.</p><p>You can find every possible command for a given class with its arguments in <a href='class.htm?en'>this page</a>, as well as the default commands to be executed for each target.</p>",
+            "related": ["Obj::command", "Obj::CmdDisable:str", "Obj::ExecDefaultCmd:point_Obj_bool_bool", "Obj::ExecCmd:str_point_Obj_bool"]
         }, {
             "id": "Obj::IsValid",
             "name": "IsValid",
@@ -2485,7 +2488,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "<p>Indica si el objeto es válido. Ejemplos de objetos inválidos son las referencias a objetos todavía no asignadas o el retorno de funciones de conversión de clases como <a href='#Obj::AsUnit'>Obj::AsUnit</a> cuando la clase no se corresponde con el objeto dado. Por ejemplo, el código <tt>foro.obj.AsUnit().IsValid()</tt> retornará <tt>false</tt> si <tt>foro</tt> no es una unidad (y por el nombre parece que no lo será 😅). Referencias <i>limpiadas</i> con <a href='#ptr.Obj::Clear'>Obj::Clear</a> devolverán <tt>false</tt> con este método, también.</p>",
+            "description_en": "<p>Indicates whether an object is valid. Some invalid objects are, for example, the references to objects not yet assigned or the return of conversion functions like <a href='#Obj::AsUnit'>Obj::AsUnit</a> when the class does not match the given object. For example, the code <tt>townhall.obj.AsUnit().IsValid()</tt> will return <tt>false</tt> if <tt>townhall</tt> is not a unit (and, by the name, it seems it is not 😅). Cleared references (using <a href='#ptr.Obj::Clear'>Obj::Clear</a>) will return <tt>false</tt> as well.</p>",
+            "related": ["ptr.Obj::Clear"]
         }, {
             "id": "Item::IsValid",
             "name": "IsValid",
@@ -2494,7 +2500,10 @@ const THE_OBJ = (function () {
             "of": 12,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "<p>Indica si el ítem es válido. Un ejemplo de ítem inválido sería el retornado por <a href='#Obj::FindItem:str'>Obj::FindItem</a> cuando el objeto no se encuentra en posesión del ítem.</p>",
+            "description_en": "<p>Indicates whether an item is valid. An example of invalid item would be the one returned by <a href='#Obj::FindItem:str'>Obj::FindItem</a> when the search item is not held by the object.</p>",
+            "related": ["Obj::IsValid"]
         }, {
             "id": "Obj::DistTo:point",
             "name": "DistTo",
@@ -2503,7 +2512,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "punto", "name_en": "point", "type": 6, "is_ptr": false}],
+            "description": "<p>Distancia desde el límite del círculo que ocupa el objeto hasta el punto dado. Es decir, <a href='#point::Dist:point'>distancia cartesiana</a> desde la <a href='#Obj::pos'>posición del objeto</a> hasta el punto dado, restando el <a href='#Obj::radius'>radio del objeto</a>. Para objetos contenidos en otros objetos, la posición considerada es <tt>Point(-1, -1)</tt> (ver <a href='#Obj::pos'>Obj::pos</a>).</p><p>Por tanto, <tt>miObjeto.DistTo(punto)</tt> es equivalente a <tt>miObjeto.pos.Dist(punto) - miObjeto.radius</tt>.</p>",
+            "description_en": "<p>Distance from the limit of the circle occupied by the object till the given point. More formally, it returns the <a href='#point::Dist:point'>Cartesian distance</a> from the <a href='#Obj::pos'>position of the object</a> to the given point minus the a href='#Obj::radius'>radius of the object</p>. For objects contained within other objects, the position used is <tt>Point(-1, -1)</tt> (see <a href='#Obj::pos'>Obj::pos</a>.</p><p>Therefore, <tt>myObject.DistTo(point)</tt> is equivalent to <tt>myObject.pos.Dist(point) - myObject.radius</tt>.</p>",
+            "related": ["Obj::DistTo:Obj", "Obj::pos", "Obj::radius", "point::Dist:point"]
         }, {
             "id": "Obj::DistTo:Obj",
             "name": "DistTo",
@@ -2512,7 +2524,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "otro", "name_en": "other", "type": 11, "is_ptr": false}],
+            "description": "<p>Distancia entre los objetos. Es decir, <a href='#point::Dist:point'>distancia cartesiana</a> desde la <a href='#Obj::pos'>posición del objeto</a> hasta la <a href='#Obj::pos'>posición de <tt>otro</tt></a>, restando los <a href='#Obj::radius'>radios de ambos objetos</a>. Para objetos contenidos en otros objetos, la posición considerada es <tt>Point(-1, -1)</tt> (ver <a href='#Obj::pos'>Obj::pos</a>).</p><p>Por tanto, <tt>objA.DistTo(objB)</tt> es equivalente a <tt>objA.pos.Dist(objB.pos) - objA.radius - objB.radius</tt>.</p>",
+            "description_en": "<p>Distance between the objects. More formally, this method returns the <a href='#point::Dist:point'>Cartesian distance</a> from the <a href='#Obj::pos'>object position</a> to the <a href='#Obj::pos'>position of <tt>other</tt></a>, subtracting the <a href='#Obj::radius'>radius of both objects</a>. For objects which are inside other objects, the position is <tt>Point(-1, -1)</tt> (see <a href='#Obj::pos'>Obj::pos</a>).</p><p>Therefore, <tt>objA.DistTo(objB)</tt> is equivalent to <tt>objA.pos.Dist(objB.pos) - objA.radius - objB.radius</tt>.</p>",
+            "related": ["Obj::DistTo:point", "Obj::pos", "Obj::radius", "point::Dist:point"]
         }, {
             "id": "Obj::IsEnemy:Obj",
             "name": "IsEnemy",
@@ -2521,7 +2536,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "otro", "name_en": "other", "type": 11, "is_ptr": false}],
+            "description": "Devuelve <tt>true</tt> si el objeto es enemigo de <tt>otro</tt>. Para ser un enemigo del objeto, <tt>otro</tt> debe pertenecer a un jugador diferente y el jugador del objeto debe tener el alto al fuego contra el jugador de <tt>otro</tt> apagado en la diplomacia. Nótese que el hecho de ser un objeto enemigo de otro no implica lo inverso (que el otro sea enemigo del primero). La expresión <tt>objA.IsEnemy(objB)</tt> es equivalente a <tt>!DiplGetCeaseFire(objA.player, objB.player)</tt>.",
+            "description_en": "Returns <tt>true</tt> if the object is an enemy of <tt>other</tt>. To be an enemy of the object, <tt>other</tt> must belong to a different player and the player owner of the object must have the cease fire flag against <tt>other</tt> turned off in the diplomacy. Notice that the fact that one object is enemy of another does not imply the inverse (the other being enemy of the first). The expression <tt>objA.IsEnemy(objB)</tt> is equivalent to <tt>!DiplGetCeaseFire(objA.player, objB.player)</tt>.",
+            "related": ["Obj::player", "DiplGetCeaseFire:int_int"]
         }, {
             "id": "Obj::IsAlive",
             "name": "IsAlive",
@@ -2530,7 +2548,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve <tt>true</tt> si el objeto está vivo. Los edificios permanecen vivos, sin importar la vida que tengan. Las unidades se mantienen vivas hasta que sus <a href='#Obj::health'>puntos de salud</a> alcanzan cero. Puedes utilizar <a href='#Obj::IsDead'>Obj::IsDead</a> para obtener el resultado inverso. Para edificios, puedes utilizar <a href='#Building::IsBroken'>Building::IsBroken</a> o <a href='#Building::IsVeryBroken'>Building::IsVeryBroken</a> para comprobar si están rotos.",
+            "description_en": "Returns <tt>true</tt> if the object is alive. The buildings remain alive, no matter their health. The units remain alive until their <a href='#Obj::health'>health points</a> reach zero. You can use <a href='#Obj::IsDead'>Obj::IsDead</a> to obtain the inverse result. For buildings, you can use <a href='#Building::IsBroken'>Building::IsBroken</a> or <a href='#Building::IsVeryBroken'>Building::IsVeryBroken</a> to check whether they are broken.",
+            "related": ["Obj::health", "Obj::IsDead", "Building::IsBroken", "Building::IsVeryBroken"]
         }, {
             "id": "Obj::IsDead",
             "name": "IsDead",
@@ -2539,7 +2560,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve <tt>true</tt> si el objeto está muerto. Los edificios permanecen vivos, sin importar la vida que tengan. Las unidades se mantienen vivas hasta que sus <a href='#Obj::health'>puntos de salud</a> alcanzan cero, entonces pasan a estar muertas. Puedes utilizar <a href='#Obj::IsAlive'>Obj::IsAlive</a> para obtener el resultado inverso. Para edificios, puedes utilizar <a href='#Building::IsBroken'>Building::IsBroken</a> o <a href='#Building::IsVeryBroken'>Building::IsVeryBroken</a> para comprobar si están rotos.",
+            "description_en": "Returns <tt>true</tt> if the object is dead. The buildings remain alive, no matter their health. The units remain alive until their <a href='#Obj::health'>health points</a> reach zero, then they are dead. You can use <a href='#Obj::IsAlive'>Obj::IsAlive</a> to obtain the inverse result. For buildings, you can use <a href='#Building::IsBroken'>Building::IsBroken</a> or <a href='#Building::IsVeryBroken'>Building::IsVeryBroken</a> to check whether they are broken.",
+            "related": ["Obj::health", "Obj::IsAlive", "Building::IsBroken", "Building::IsVeryBroken"]
         }, {
             "id": "Obj::IsValidTarget:Obj",
             "name": "IsValidTarget",
@@ -2548,7 +2572,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "objetivo", "name_en": "target", "type": 11, "is_ptr": false}],
+            "description": "Devuelve <tt>true</tt> si el objeto  <tt>objetivo</tt> es válido para ser atacado por el objeto. Por ejemplo, un foro sería válido como objetivo de un arquero, pero no de una unidad de combate cuerpo a cuerpo. Una unidad del mismo jugador o un jugador aliado tampoco sería un objetivo válido. Hacer a la unidad objetivo invisible o en estado de mensajero también la hace un objetivo inválido.",
+            "description_en": "Returns <tt>true</tt> if the object <tt>target</tt> valid to be attacked by the object. For example, a town hall would be a valid target for an archer, but not for a melee unit. A unit from the same player or an ally would also be an invalid target. Making the target object invisible or setting its messenger status to <tt>true</tt> makes it an invalid target also.",
+            "related": ["Obj::IsEnemy:Obj", "Obj::IsValidCaptureTarget:Obj", "Obj::IsValid", "Obj::SetVisible:bool", "Obj::SetMessengerStatus:bool"]
         }, {
             "id": "Obj::IsValidCaptureTarget:Obj",
             "name": "IsValidCaptureTarget",
@@ -2557,7 +2584,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "objetivo", "name_en": "target", "type": 11, "is_ptr": false}],
+            "description": "Este método crashea el juego si el objetivo no es de tipo <a href='#Building'>Building</a>. Comprueba si el objetivo es apto para ser capturado por el objeto.",
+            "description_en": "This method crashes the game when the target is not a <a href='#Building'>Building</a>. Checks whether the target is valid to be captured by the object.",
+            "dangerous": true
         }, {
             "id": "Obj::SetVisible:bool",
             "name": "SetVisible",
@@ -2566,7 +2596,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 2, "is_ptr": false}]
+            "params": [{"name": "visible", "type": 2, "is_ptr": false}],
+            "description": "Hace el objeto visible o invisible, tal como cuando una unidad usa la habilidad <i>Encubrimiento</i>. En el caso de las unidades, permanecerán invisibles hasta que inicien un ataque, capturen un asentamiento, recojan un ítem, etc.",
+            "description_en": "Turns the object visible or invisible, just like the special <i>Invisibility</i>. If the object is a unit, it will remain invisible until it starts an attack, captures a settlement, picks an item, etc.",
+            "related": ["Obj::IsVisible", "Obj::CanSee:Obj", "ObjList::SetVisible:bool", "VisibleObjsInSight:Obj_str"]
         }, {
             "id": "Obj::IsVisible",
             "name": "IsVisible",
@@ -2575,7 +2608,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve <tt>true</tt> si el objeto es visible (puede ser visto por sus enemigos). Un objeto se puede volver invisible por distintos medios, por ejemplo, usando la habilidad <i>Encubrimiento</i>. Para volver a un objeto visible o invisible puedes usar el método <a href='#Obj::SetVisible:bool'>Obj::SetVisible</a>.",
+            "description_en": "Returns <tt>true</tt> if the object is visible (it can be seen by its enemies). An object can be turned invisible through different ways, for example using the skill <i>Invisibility</i>. To turn visible or invisible an object you can use the method <a href='#Obj::SetVisible:bool'>Obj::SetVisible</a>.",
+            "related": ["Obj::SetVisible:bool", "Obj::CanSee:Obj", "ObjList::SetVisible:bool", "VisibleObjsInSight:Obj_str"]
         }, {
             "id": "Obj::SetMessengerStatus:bool",
             "name": "SetMessengerStatus",
@@ -2584,7 +2620,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 2, "is_ptr": false}]
+            "params": [{"name": "activar", "name_en": "enable", "type": 2, "is_ptr": false}],
+            "description": "Pone / saca al objeto el estado de mensajero, en el cual no puede ser atacado por ningún otro.",
+            "description_en": "It sets / unsets the messenger status for the object, a state in which it cannot be attacked by anyone.",
+            "related": ["Obj::CanAttack:Obj"]
         }, {
             "id": "Obj::CanSee:Obj",
             "name": "CanSee",
@@ -2593,7 +2632,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "objetivo", "name_en": "target", "type": 11, "is_ptr": false}],
+            "description": "Devuelve <tt>true</tt> si el objeto puede ver el objeto <tt>objetivo</tt>. Esto <strong>no</strong> tiene que ver con la <a href='#Obj::pos'>posición</a> y <a href='#Obj::sight'>rango de visión</a> de los objetos, sino con la visibilidad de <tt>objetivo</tt> y la diplomacia entre los <a href='#Obj::player'>jugadores</a> que poseen ambos objetos. Si ambos objetos son del mismo jugador, aunque el objeto <tt>objetivo</tt> sea invisible este objeto todavía podrá verlo. Lo mismo ocurrirá, por ejemplo, si el jugador dueño de <tt>objetivo</tt> tiene <a href='#DiplGetShareView:int_int'>vista compartida</a> con el jugador dueño del objeto.",
+            "description_en": "Returns <tt>true</tt> if the object can see <tt>target</tt>. This has <strong>not</strong> to be with the <a href='#Obj::pos'>position</a> or the <a href='#Obj::sight'>sight</a> of the objects, but rather with the visibility of <tt>target</tt> and the diplomacy between the <a href='#Obj::player'>players</a> who own the objects. If both objects belong to the same player, even if <tt>target</tt> is invisible, the object will still be able to see it. The same will happen, for example, if the player owner of <tt>target</tt> <a href='#DiplGetShareView:int_int'>has shared view</a> with the player who owns the object.",
+            "related": ["Obj::SetVisible:bool", "Obj::IsVisible", "Obj::sight", "Unit::EnemiesInSight", "ObjsInSight:Obj_str", "VisibleObjsInSight:Obj_str"]
         }, {
             "id": "Obj::CanAttack:Obj",
             "name": "CanAttack",
@@ -2602,7 +2644,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "objetivo", "name_en": "target", "type": 11, "is_ptr": false}],
+            "description": "Devuelve <tt>true</tt> si el objeto puede atacar a <tt>objetivo</tt>. Esto depende de los <a href='#Obj::player'>jugadores</a> que poseen ambos objetos, la <a href='#DiplGetCeaseFire:int_int'>diplomacia entre ellos</a>, la <a href='#Obj::IsVisible'>visibilidad</a> de <tt>objetivo</tt>, su <a href='#Obj::SetMessengerStatus:bool'>estado de mensajero</a>, etc.",
+            "description_en": "Returns <tt>true</tt> if the object can attack the object <tt>target</tt>. This depends on the players owning both objects, the diplomacy between them, the visibility of <tt>target</tt>, its messenger status, etc.",
+            "related": ["Unit::Attack:Obj", "Building::Attack:Obj"]
         }, {
             "id": "Obj::Erase",
             "name": "Erase",
@@ -2611,7 +2656,9 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Elimina el objeto. Después de ser eliminado el objeto será <a href='#Obj::IsValid'>inválido</a>.",
+            "description_en": "Removes the object. After erasing the object will be <a href='#Obj::IsValid'>invalid</a>."
         }, {
             "id": "Obj::player",
             "name": "player",
@@ -2620,7 +2667,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Número del jugador que es dueño del objeto.",
+            "description_en": "Number of the player owner of the object.",
+            "related": ["Obj::SetPlayer:int", "Obj::SetPlayer:int", "ObjList::ObjPlayer:int", "Settlement::player", "Squad::Player", "ClassPlayerAreaObjs:str_int_str", "ClassPlayerObjs:str_int", "GetPlayerUnits:int", "IsAIPlayer:int"]
         }, {
             "id": "Obj::SetPlayer:int",
             "name": "SetPlayer",
@@ -2629,7 +2679,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}],
+            "description": "Asigna el número del jugador que es dueño del objeto.",
+            "description_en": "Sets de number of the player owner of the object.",
+            "related": ["Obj::player", "Obj::SetPlayer:int", "ObjList::ObjPlayer:int", "ObjList::SetPlayer:int", "Query::SetPlayer:int", "Settlement::SetPlayer:int", "SetPlayer:int"]
         }, {
             "id": "Obj::Damage:int",
             "name": "Damage",
