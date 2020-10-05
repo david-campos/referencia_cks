@@ -259,10 +259,6 @@ details {
     margin: 1rem 0;
 }
 
-.description {
-    overflow-x: auto;
-}
-
 .related {
     color: #555;
     font-size: .9em;
@@ -355,7 +351,7 @@ footer {
     }
 }
 
-/* Class list */
+/************ Class list **************/
 table.class-list {
     border-spacing: 0;
     margin: 0 auto;
@@ -409,6 +405,9 @@ table.class-list td:hover .path {
     display: inline;
 }
 
+/********** CLASS ***********/
+
+
 #class-select-container {
     width: 100%;
     text-align: center;
@@ -457,6 +456,10 @@ table.class-list td:hover .path {
     color: #005580;
 }
 
+.class-details .def-cmd-cmd {
+    cursor: pointer;
+}
+
 .class-details .def-cmd-tgt {
     color: #800000;
 }
@@ -472,3 +475,16 @@ table.class-list td:hover .path {
     color: #555;
     text-align: center;
 }
+
+.class-details .def-cmd-cmd.selected {
+    font-weight: bold;
+    text-shadow: 1px 1px 5px #00aaf0,  -1px -1px 5px #00aaf0;
+}
+
+.class-details div[data-cmd].selected {
+    background-color: #f0f0f0;
+    -webkit-box-shadow: 0px 0px 5px 2px #005580;
+    -moz-box-shadow: 0px 0px 5px 2px #005580;
+    box-shadow: 0px 0px 5px 2px #005580;
+}
+

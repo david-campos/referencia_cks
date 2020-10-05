@@ -1,3 +1,16 @@
+function remark(element) {
+    const cmd = element.getAttribute("data-cmd");
+    document.querySelectorAll(`[data-cmd=${cmd}]`)
+        .forEach(el => el.classList.add("selected"));
+    document.querySelectorAll(`[data-cmd]:not([data-cmd=${cmd}])`)
+        .forEach(el => el.classList.remove("selected"));
+    const scrollTo = document.querySelectorAll(`div[data-cmd=${cmd}]`).item(0);
+    if (scrollTo) {
+        scrollTo.parentElement.parentElement.setAttribute("open", "1");
+        scrollTo.scrollIntoView({behavior: "smooth", block: "center", inline: "center"});
+    }
+}
+
 window.onload = function () {
     const lang = location.search === '?en' ? 0 : 1;
 
@@ -34,7 +47,7 @@ window.onload = function () {
                 Object.keys(defCmds)
                     .map(cmd => [cmd, CLASSES_DETAILS_CMDS[cmd]])
                     .map(([cmd, cmdObj]) =>
-                        `<div>${
+                        `<div data-cmd="${cmd}">${
                             cmdObj.rollover ? `<span class="rollover">${cmdObj.rollover}</span>` : ''
                         }<span class="meth">${cmd}</span>(<wbr>${cmdObj.targets.map(t =>
                             `<span class='type'>${t !== '' ? t : 'point'}</span>`).join(" | ")
@@ -48,7 +61,9 @@ window.onload = function () {
                 `<div><span class='def-cmd-tgt'>${target !== ''
                     ? target : ['No target', 'Sin objetivo'][lang]
                 }</span>: ${cmds.map(cmd =>
-                    `<span class='def-cmd-cmd'>${cmd.cmd + (cmd.ctrl ? '*' : '')}</span>`
+                    `<span class='def-cmd-cmd' data-cmd="${cmd.cmd}"
+                        title="${["Click to remark associated command / method", "Click para remarcar el método / comando asociado"][lang]}"
+                        onclick="remark(this)">${cmd.cmd + (cmd.ctrl ? '*' : '')}</span>`
                 ).join(", ")}</div>`
             ).join("")}</div>`
         ).join("\n");
@@ -69,7 +84,7 @@ window.onload = function () {
         for (const [k, v] of Object.entries(methds)) {
             methods_html += (k === className ? '' : `<h3>${inherited} ${k}</h3>`)
                 + `<div class='details'>${Object.entries(v).map(([mtd, params]) =>
-                    `<div><span class="meth">${mtd}</span>(<wbr>${params.slice(1).map(([t, n]) =>
+                    `<div data-cmd="${mtd}"><span class="meth">${mtd}</span>(<wbr>${params.slice(1).map(([t, n]) =>
                         `${n}: <span class='type'>${t}</span>`).join(", ")
                     })</div>`).join("\n")
                 }</div>`;
