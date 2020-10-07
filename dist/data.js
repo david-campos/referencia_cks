@@ -1914,8 +1914,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "property",
             "params": [],
-            "description": "Defensa del objeto frente a ataques oblicuos.",
-            "description_en": "Defense of the object against slash attacks.",
+            "description": "Defensa del objeto frente a ataques oblicuos. En el juego original, solo difiere de <a href='#Obj::armor_pierce'>Obj::armor_pierce</a> para barcos y botes (concretamente, las clases <a href='class.htm#ShipL.armor_pierce,armor_slash'>\"ShipL\"</a>, <a href='class.htm#ShipEgypt.armor_pierce,armor_slash'>\"ShipEgypt\"</a>, <a href='class.htm#ShipRome.armor_pierce,armor_slash'>\"ShipRome\"</a>, <a href='class.htm#ShipS.armor_pierce,armor_slash'>\"ShipS\"</a> y <a href='class.htm#ShipBattle.armor_pierce,armor_slash'>\"ShipBattle\"</a>).",
+            "description_en": "Defense of the object against slash attacks. In the original game, it only differs from <a href='#Obj::armor_pierce'>Obj::armor_pierce</a> for ships, and boats (concretely, the classes <a href='class.htm#ShipL.armor_pierce,armor_slash'>\"ShipL\"</a>, <a href='class.htm#ShipEgypt.armor_pierce,armor_slash'>\"ShipEgypt\"</a>, <a href='class.htm#ShipRome.armor_pierce,armor_slash'>\"ShipRome\"</a>, <a href='class.htm#ShipS.armor_pierce,armor_slash'>\"ShipS\"</a> and <a href='class.htm#ShipBattle.armor_pierce,armor_slash'>\"ShipBattle\"</a>).",
             "related": ["Obj::armor_pierce", "SelAvgArmor"]
         }, {
             "id": "Obj::armor_pierce",
@@ -1926,8 +1926,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "property",
             "params": [],
-            "description": "Defensa del objeto frente a ataques de penetración.",
-            "description_en": "Defense of the object against pierce attacks.",
+            "description": "Defensa del objeto frente a ataques de penetración. En el juego original, solo difiere de <a href='#Obj::armor_slash'>Obj::armor_slash</a> para barcos y botes (concretamente, las clases <a href='class.htm#ShipL.armor_pierce,armor_slash'>\"ShipL\"</a>, <a href='class.htm#ShipEgypt.armor_pierce,armor_slash'>\"ShipEgypt\"</a>, <a href='class.htm#ShipRome.armor_pierce,armor_slash'>\"ShipRome\"</a>, <a href='class.htm#ShipS.armor_pierce,armor_slash'>\"ShipS\"</a> y <a href='class.htm#ShipBattle.armor_pierce,armor_slash'>\"ShipBattle\"</a>).",
+            "description_en": "Defense of the object against pierce attacks. In the original game, it only differs from <a href='#Obj::armor_slash'>Obj::armor_slash</a> for ships, and boats (concretely, the classes <a href='class.htm#ShipL.armor_pierce,armor_slash'>\"ShipL\"</a>, <a href='class.htm#ShipEgypt.armor_pierce,armor_slash'>\"ShipEgypt\"</a>, <a href='class.htm#ShipRome.armor_pierce,armor_slash'>\"ShipRome\"</a>, <a href='class.htm#ShipS.armor_pierce,armor_slash'>\"ShipS\"</a> and <a href='class.htm#ShipBattle.armor_pierce,armor_slash'>\"ShipBattle\"</a>).",
             "related": ["Obj::armor_slash", "SelAvgArmor"]
         }, {
             "id": "Obj::health",
@@ -2336,10 +2336,15 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "principio", "name_en": "beginning", "type": 2, "is_ptr": false}, {"name": "comando", "name_en": "command", "type": 5, "is_ptr": false}],
+            "params": [{"name": "principio", "name_en": "beginning", "type": 2, "is_ptr": false}, {
+                "name": "comando",
+                "name_en": "command",
+                "type": 5,
+                "is_ptr": false
+            }],
             "description": "<p>Añade el comando indicado a la cola de comandos del objeto. Si <tt>principio</tt> es <tt>true</tt> se añadirá al principio de la cola (sin reemplazar al comando actual), si es <tt>false</tt> se añadirá al final de la cola.</p><p>Los comandos desactivados con <a href='#Obj::CmdDisable:str'>Obj::CmdDisable</a> no se ejecutarán si se usa este método (a diferencia de <a href='#Obj::SetCommand:str'>Obj::SetCommand</a> o  <a href='#Obj::SneakCommand:str'>Obj::SneakCommand</a>).</p><p>En <a href='class.htm'>esta página</a> puedes ver todos los comandos posibles para cualquier clase del juego.</p>",
             "description_en": "<p>Adds the given command at the end of the command queue of the object. If <tt>beginning</tt> is <tt>true</tt>, then it will be added at the beginning of the queue, if it is <tt>false</tt>, the command will be added at the end of the queue.</p><p>Commands disabled with <a href='#Obj::CmdDisable:str'>Obj::CmdDisable</a> will not be executed when using this method (but they will do with <a href='#Obj::SetCommand:str'>Obj::SetCommand</a> or <a href='#Obj::SneakCommand:str'>Obj::SneakCommand</a>).</p><p>You can find every possible command for a given class in <a href='class.htm?en'>this page</a>.</p>",
-            "related": ["Obj::command", "Obj::CmdCount", "Obj::AddCommand:bool_str_point", "Obj::AddCommand:bool_str_Obj", "Obj::SetCommand:str", "Obj::ExecCmd:str_point_Obj_bool","Obj::ExecDefaultCmd:point_Obj_bool_bool", "ObjList::AddCommand:bool_str", "Query::AddCommand:bool_str"]
+            "related": ["Obj::command", "Obj::CmdCount", "Obj::AddCommand:bool_str_point", "Obj::AddCommand:bool_str_Obj", "Obj::SetCommand:str", "Obj::ExecCmd:str_point_Obj_bool", "Obj::ExecDefaultCmd:point_Obj_bool_bool", "ObjList::AddCommand:bool_str", "Query::AddCommand:bool_str"]
         }, {
             "id": "Obj::AddCommand:bool_str_point",
             "name": "AddCommand",
@@ -2356,7 +2361,7 @@ const THE_OBJ = (function () {
             }, {"name": "destino", "name_en": "target", "type": 6, "is_ptr": false}],
             "description": "<p>Añade el comando indicado, con el punto dado como argumento, a la cola de comandos del objeto. Si <tt>principio</tt> es <tt>true</tt> se añadirá al principio de la cola (sin reemplazar al comando actual), si es <tt>false</tt> se añadirá al final de la cola.</p><p>Los comandos desactivados con <a href='#Obj::CmdDisable:str'>Obj::CmdDisable</a> no se ejecutarán si se usa este método (a diferencia de <a href='#Obj::SetCommand:str'>Obj::SetCommand</a> o <a href='#Obj::SneakCommand:str'>Obj::SneakCommand</a>).</p><p>En <a href='class.htm'>esta página</a> puedes ver todos los comandos posibles para cualquier clase del juego con sus argumentos (si el argumento es un <a href='#point' class='type'>point</a>, puedes usar este método).</p>",
             "description_en": "<p>Adds the given command, with the given point as argument, at the end of the command queue of the object. If <tt>beginning</tt> is <tt>true</tt>, then it will be added at the beginning of the queue, if it is <tt>false</tt>, the command will be added at the end of the queue.</p><p>Commands disabled with <a href='#Obj::CmdDisable:str'>Obj::CmdDisable</a> will not be executed when using this method (but they will do with <a href='#Obj::SetCommand:str'>Obj::SetCommand</a> or <a href='#Obj::SneakCommand:str'>Obj::SneakCommand</a>).</p><p>You can find every possible command for a given class with its arguments in <a href='class.htm?en'>this page</a> (if the argument is a <a href='#point' class='type'>point</a>, you can use this method).</p>",
-            "related": ["Obj::command", "Obj::CmdCount", "Obj::AddCommand:bool_str", "Obj::AddCommand:bool_str_Obj", "Obj::SetCommand:str_point", "Obj::ExecCmd:str_point_Obj_bool","Obj::ExecDefaultCmd:point_Obj_bool_bool", "ObjList::AddCommand:bool_str_point", "ObjList::AddCommandOffset:bool_str_point","Query::AddCommand:bool_str_point", "Query::AddCommandOffset:bool_str_point"]
+            "related": ["Obj::command", "Obj::CmdCount", "Obj::AddCommand:bool_str", "Obj::AddCommand:bool_str_Obj", "Obj::SetCommand:str_point", "Obj::ExecCmd:str_point_Obj_bool", "Obj::ExecDefaultCmd:point_Obj_bool_bool", "ObjList::AddCommand:bool_str_point", "ObjList::AddCommandOffset:bool_str_point", "Query::AddCommand:bool_str_point", "Query::AddCommandOffset:bool_str_point"]
         }, {
             "id": "Obj::AddCommand:bool_str_Obj",
             "name": "AddCommand",
@@ -2373,7 +2378,7 @@ const THE_OBJ = (function () {
             }, {"name": "objetivo", "name_en": "target", "type": 11, "is_ptr": false}],
             "description": "<p>Añade el comando indicado, con el objeto dado como argumento, a la cola de comandos del objeto. Si <tt>principio</tt> es <tt>true</tt> se añadirá al principio de la cola (sin reemplazar al comando actual), si es <tt>false</tt> se añadirá al final de la cola.</p><p>Los comandos desactivados con <a href='#Obj::CmdDisable:str'>Obj::CmdDisable</a> no se ejecutarán si se usa este método (a diferencia de <a href='#Obj::SetCommand:str'>Obj::SetCommand</a> o <a href='#Obj::SneakCommand:str'>Obj::SneakCommand</a>).</p><p>En <a href='class.htm'>esta página</a> puedes ver todos los comandos posibles para cualquier clase del juego con sus argumentos (si el argumento es un Object o hereda de esta clase, puedes usar este método).</p>",
             "description_en": "<p>Adds the given command, with the given object as argument, at the end of the command queue of the object. If <tt>beginning</tt> is <tt>true</tt>, then it will be added at the beginning of the queue, if it is <tt>false</tt>, the command will be added at the end of the queue.</p><p>Commands disabled with <a href='#Obj::CmdDisable:str'>Obj::CmdDisable</a> will not be executed when using this method (but they will do with <a href='#Obj::SetCommand:str'>Obj::SetCommand</a> or <a href='#Obj::SneakCommand:str'>Obj::SneakCommand</a>).</p><p>You can find every possible command for a given class with its arguments in <a href='class.htm?en'>this page</a> (if the argument is an Object or it inherits from this class, you can use this method).</p>",
-            "related": ["Obj::command", "Obj::CmdCount", "Obj::AddCommand:bool_str", "Obj::AddCommand:bool_str_point", "Obj::SetCommand:str_Obj", "Obj::ExecCmd:str_point_Obj_bool","Obj::ExecDefaultCmd:point_Obj_bool_bool", "ObjList::AddCommand:bool_str_Obj", "Query::AddCommand:bool_str_Obj"]
+            "related": ["Obj::command", "Obj::CmdCount", "Obj::AddCommand:bool_str", "Obj::AddCommand:bool_str_point", "Obj::SetCommand:str_Obj", "Obj::ExecCmd:str_point_Obj_bool", "Obj::ExecDefaultCmd:point_Obj_bool_bool", "ObjList::AddCommand:bool_str_Obj", "Query::AddCommand:bool_str_Obj"]
         }, {
             "id": "Obj::SneakCommand:str",
             "name": "SneakCommand",
@@ -2406,7 +2411,12 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "comando", "name_en": "command", "type": 5, "is_ptr": false}, {"name": "destino", "name_en": "target", "type": 6, "is_ptr": false}],
+            "params": [{"name": "comando", "name_en": "command", "type": 5, "is_ptr": false}, {
+                "name": "destino",
+                "name_en": "target",
+                "type": 6,
+                "is_ptr": false
+            }],
             "description": "Limpia la cola de comandos del objeto, detiene el comando actual e inicia el comando dado con el punto dado como argumento. En <a href='class.htm'>esta página</a> puedes ver todos los comandos posibles para cualquier clase del juego (este método solo funcionará con comandos que tengan un argumento de tipo <tt>point</tt>).",
             "description_en": "Clears the queue of commands of the object, kills the current command and starts the given one with the passed point as argument. You can find every possible command for a given class with its arguments in <a href='class.htm?en'>this page</a> (this method will only work with commands with one argument of type <tt>point</tt>).",
             "related": ["Obj::command", "Obj::ClearCommands", "Obj::AddCommand:bool_str_point", "Obj::SetCommand:str", "Obj::SetCommand:str_Obj", "Obj::ExecCmd:str_point_Obj_bool", "Obj::ExecDefaultCmd:point_Obj_bool_bool", "ObjList::SetCommand:str_point", "ObjList::SetCommandOffset:str_point", "Query::SetCommand:str_point", "Query::SetCommandOffset:str_point"]
@@ -2418,7 +2428,12 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "comando", "name_en": "command", "type": 5, "is_ptr": false}, {"name": "objetivo", "name_en": "target", "type": 11, "is_ptr": false}],
+            "params": [{"name": "comando", "name_en": "command", "type": 5, "is_ptr": false}, {
+                "name": "objetivo",
+                "name_en": "target",
+                "type": 11,
+                "is_ptr": false
+            }],
             "description": "Limpia la cola de comandos del objeto, detiene el comando actual e inicia el comando dado con el objeto dado como argumento. En <a href='class.htm'>esta página</a> puedes ver todos los comandos posibles para cualquier clase del juego (este método solo funcionará con comandos que tengan un argumento de tipo <tt>Obj</tt> o alguna clase que herede de <tt>Obj</tt>).",
             "description_en": "Clears the queue of commands of the object, kills the current command and starts the given one with the passed object as argument. You can find every possible command for a given class with its arguments in <a href='class.htm?en'>this page</a> (this method will only work with commands with one argument of type <tt>Obj</tt> or some class that inherits from it).",
             "related": ["Obj::command", "Obj::ClearCommands", "Obj::AddCommand:bool_str_Obj", "Obj::SetCommand:str", "Obj::SetCommand:str_point", "Obj::ExecCmd:str_point_Obj_bool", "Obj::ExecDefaultCmd:point_Obj_bool_bool", "ObjList::SetCommand:str_Obj", "Query::SetCommand:str_Obj"]
@@ -2435,7 +2450,12 @@ const THE_OBJ = (function () {
                 "name_en": "object",
                 "type": 11,
                 "is_ptr": false
-            }, {"name": "reemplazar", "name_en": "replace", "type": 2, "is_ptr": false}, {"name": "tecla_ctrl", "name_en": "ctrl_key", "type": 2, "is_ptr": false}],
+            }, {"name": "reemplazar", "name_en": "replace", "type": 2, "is_ptr": false}, {
+                "name": "tecla_ctrl",
+                "name_en": "ctrl_key",
+                "type": 2,
+                "is_ptr": false
+            }],
             "description": "<p>Ejecuta el comando por defecto para el objeto al hacer click en el objetivo. El comando será seleccionado según el tipo y <a href='#Obj::IsValid'>validez</a> de <tt>objeto</tt>. El parámetro <tt>tecla_ctrl</tt> ha de ponerse a <tt>true</tt> si se desea ejecutar el comando que se ejecutaría al mantener pulsada la tecla <i>control</i> cuando hacemos click sobre el objetivo.</p><p>Si el parámetro <tt>reemplazar</tt> es <tt>true</tt>, se reemplazará la cola de comandos del objeto (similar a <a href='#Obj::SetCommand:str'>Obj::SetCommand</a>). Si <tt>reemplazar</tt> es <tt>false</tt>, en cambio, el comando será añadido al final de la cola (como <a href='#Obj::AddCommand:bool_str'>Obj::AddCommand</a>).</p><p>Los comandos desactivados con <a href='#Obj::CmdDisable:str'>Obj::CmdDisable</a> no se ejecutarán si se usa este método (a diferencia de <a href='#Obj::SetCommand:str'>Obj::SetCommand</a> o <a href='#Obj::SneakCommand:str'>Obj::SneakCommand</a>).</p><p>En <a href='class.htm'>esta página</a> puedes ver todos los comandos posibles para cualquier clase del juego, así como los comandos por defecto para cada objetivo.</p>",
             "description_en": "<p>Executes the default command for the object on clicking the target. The command will be selected by the type and <a href='#Obj::IsValid'>validity</a> of <tt>object</tt>. If we wish to execute the default command that would be executed when the control key is pressed, <tt>ctrl_key</tt> must be <tt>true</tt>.</p><p>If the <tt>replace</tt> argument is <tt>true</tt>, the command will replace the whole queue of commands of the object (similar to <a href='#Obj::SetCommand:str'>Obj::SetCommand</a>). If it is <tt>false</tt> instead, the command will just be added at the end of the queue (like <a href='#Obj::AddCommand:bool_str'>Obj::AddCommand</a> with the first parameter as <tt>false</tt>).</p><p>Commands disabled with <a href='#Obj::CmdDisable:str'>Obj::CmdDisable</a> will not be executed when using this method (but they will do with <a href='#Obj::SetCommand:str'>Obj::SetCommand</a> or <a href='#Obj::SneakCommand:str'>Obj::SneakCommand</a>).</p><p>You can find every possible command for a given class with its arguments in <a href='class.htm?en'>this page</a>, as well as the default commands to be executed for each target.</p>",
             "related": ["Obj::command", "Obj::ExecCmd:str_point_Obj_bool", "Obj::SetCommand:str", "Obj::AddCommand:bool_str", "ObjList::ExecDefaultCmd:point_Obj_bool_bool"]
@@ -2452,7 +2472,12 @@ const THE_OBJ = (function () {
                 "name_en": "point",
                 "type": 6,
                 "is_ptr": false
-            }, {"name": "objeto", "name_en": "object", "type": 11, "is_ptr": false}, {"name": "reemplazar", "name_en": "replace", "type": 2, "is_ptr": false}],
+            }, {"name": "objeto", "name_en": "object", "type": 11, "is_ptr": false}, {
+                "name": "reemplazar",
+                "name_en": "replace",
+                "type": 2,
+                "is_ptr": false
+            }],
             "description": "<p>Ejecuta el comando indicado con el punto / objeto indicados como parámetro. Según el comando indicado será relevante un parámetro o el otro.</p><p>Si el parámetro <tt>reemplazar</tt> es <tt>true</tt>, se reemplazará la cola de comandos del objeto (similar a <a href='#Obj::SetCommand:str'>Obj::SetCommand</a>). Si <tt>reemplazar</tt> es <tt>false</tt>, en cambio, el comando será añadido al final de la cola (como <a href='#Obj::AddCommand:bool_str'>Obj::AddCommand</a>).</p><p>Los comandos desactivados con <a href='#Obj::CmdDisable:str'>Obj::CmdDisable</a> no se ejecutarán si se usa este método (a diferencia de <a href='#Obj::SetCommand:str'>Obj::SetCommand</a> o <a href='#Obj::SneakCommand:str'>Obj::SneakCommand</a>).</p><p>En <a href='class.htm'>esta página</a> puedes ver todos los comandos posibles para cualquier clase del juego, así como los comandos por defecto para cada objetivo.</p>",
             "description_en": "<p>Executes the specified command with the given target point / object. Depending on the object, one argument or the other will be relevant.</p><p>If the <tt>replace</tt> argument is <tt>true</tt>, the command will replace the whole queue of commands of the object (similar to <a href='#Obj::SetCommand:str'>Obj::SetCommand</a>). If it is <tt>false</tt> instead, the command will just be added at the end of the queue (like <a href='#Obj::AddCommand:bool_str'>Obj::AddCommand</a> with the first parameter as <tt>false</tt>).</p><p>Commands disabled with <a href='#Obj::CmdDisable:str'>Obj::CmdDisable</a> will not be executed when using this method (but they will do with <a href='#Obj::SetCommand:str'>Obj::SetCommand</a> or <a href='#Obj::SneakCommand:str'>Obj::SneakCommand</a>).</p><p>You can find every possible command for a given class with its arguments in <a href='class.htm?en'>this page</a>, as well as the default commands to be executed for each target.</p>",
             "related": ["Obj::command", "Obj::ExecDefaultCmd:point_Obj_bool_bool", "Obj::SetCommand:str", "Obj::AddCommand:bool_str", "ObjList::ExecCmd:str_point_Obj_bool"]
@@ -2691,7 +2716,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "puntos_salud", "name_en": "health_points", "type": 1, "is_ptr": false}],
+            "description": "<p>Retira los <a href='#Obj::health'>puntos de salud</a> dados al objeto. Esto no se ve afectado por la <a href='#Obj::armor_slash'>defensa</a> del objeto u otros parámetros.</p><p>Por ejemplo, <tt>miObj.Damage(100)</tt> sería equivalente a <tt>miObj.SetHealth(MAX(miObj.health - 100, 0))</tt>.</p>",
+            "description_en": "<p>Removes the given <a href='#Obj::health'>health points</a> from the object. This is not affected by the object <a href='#Obj::armor_slash'>armor</a> or other parameters.</p><p>For example, <tt>myObj.Damage(100)</tt> would be equivalent to <tt>myObj.SetHealth(MAX(myObj.health - 100, 0))</tt>.</p>",
+            "related": ["Obj::health", "Obj::Heal:int", "Obj::SetHealth:int"]
         }, {
             "id": "Obj::Heal:int",
             "name": "Heal",
@@ -2700,7 +2728,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "puntos_salud", "name_en": "health_points", "type": 1, "is_ptr": false}],
+            "description": "<p>Añade los <a href='#Obj::health'>puntos de salud</a> dados al objeto.</p><p>Por ejemplo, <tt>miObj.Heal(100)</tt> sería equivalente a <tt>miObj.SetHealth(MIN(miObj.health + 100, miObj.maxhealth))</tt>.</p>",
+            "description_en": "<p>Adds the given <a href='#Obj::health'>health points</a> to the object.</p><p>For example, <tt>myObj.Heal(100)</tt> would be equivalent to <tt>myObj.SetHealth(MIN(myObj.health + 100, myObj.maxhealth))</tt>.</p>",
+            "related": ["Obj::health", "Obj::maxhealth", "Obj::Damage:int", "Obj::SetHealth:int"]
         }, {
             "id": "Obj::HealStamina:int",
             "name": "HealStamina",
@@ -2709,7 +2740,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "puntos_energia", "name_en": "stamina_points", "type": 1, "is_ptr": false}],
+            "description": "<p>Añade los <a href='#Obj::stamina'>puntos de energía</a> dados al objeto.</p><p>Por ejemplo, <tt>miObj.HealStamina(3)</tt> sería equivalente a <tt>miObj.SetStamina(MIN(miObj.stamina + 3, miObj.maxstamina))</tt>.</p>",
+            "description_en": "<p>Adds the given <a href='#Obj::stamina'>stamina points</a> to the object.</p><p>For example, <tt>myObj.HealStamina(3)</tt> would be equivalent to <tt>myObj.SetStamina(MIN(myObj.stamina + 3, myObj.maxstamina))</tt>.</p>",
+            "related": ["Obj::stamina", "Obj::maxstamina", "Obj::SetStamina:int"]
         }, {
             "id": "Obj::SetPos:point",
             "name": "SetPos",
@@ -2718,7 +2752,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "posicion", "name_en": "position", "type": 6, "is_ptr": false}],
+            "description": "<p.>Cambia la <a href='#Obj::pos'>posición</a> del objeto, limpia todos sus <a href='#Obj::command'>comandos</a> y para la <a href='#Obj::GetAnim'>animación actual</a>. Este método ajusta todos los parámetros internos del juego de forma que es seguro usarlo durante el juego en sí.</p>",
+            "description_en": "<p.>Sets the <a href='#Obj::pos'>position</a> of the object, clears all its <a href='#Obj::command'>commands</a> and stops the <a href='#Obj::GetAnim'>current animation</a>. This command adjusts all the necessary internal parameters of the game so it is safe to use it during game play.</p>",
+            "related": ["Obj::pos", "Obj::posRH", "Obj::SetPosSimple:point"]
         }, {
             "id": "Obj::SetPosSimple:point",
             "name": "SetPosSimple",
@@ -2727,7 +2764,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "posicion", "name_en": "position", "type": 6, "is_ptr": false}],
+            "description": "<p.>Cambia la <a href='#Obj::pos'>posición</a> del objeto; sin limpiar su cola de <a href='#Obj::command'>comandos</a>, sin detener la <a href='#Obj::GetAnim'>animación actual</a> ni modificar ningún otro parámetro interno del juego. A consecuencia de esto, la posición de la animación y los comandos en cola y posteriores parecen fallar.</p><p>Este comando se corresponde con mover un objeto en el editor, no en el juego. Si deseas cambiar la posición del objeto durante el juego, se recomienda usar en su lugar <a href='#Obj::SetPos:point'>Obj::SetPos</a>.</p>",
+            "description_en": "<p.>Sets the <a href='#Obj::pos'>position</a> of the object; without neither clearing its command queue, nor stopping its animation nor changing any other internal parameter of the game. In consequence, the position of the animation and the commands of the object seem to fail.</p><p>This command corresponds to moving the object in the editor, not the game. If you wish to change the position of the object during game play, it is recommended to make use of <a href='#Obj::SetPos:point'>Obj::SetPos</a> instead.</p>",
+            "related": ["Obj::pos", "Obj::posRH", "Obj::SetPosSimple:point"]
         }, {
             "id": "Obj::SetBlind:bool",
             "name": "SetBlind",
@@ -2745,7 +2785,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "destino", "name_en": "target", "type": 6, "is_ptr": false}],
+            "description": "<p>Gira el objeto de forma que mire hacia <tt>destino</tt>. El argumento <tt>destino</tt> debe estar en coordenadas del mundo, no en local.</p><p>Nótese que el renderizado de los objetos es independiente de su orientación. Algunos objetos, como los edificios, se verán representados exactamente igual sin importar en que dirección estén orientados. Otros, como las unidades, habitualmente presentarán visualizaciones distintas para cada rango de orientaciones, dando una sensación de falso 3D.</p><p>Ejemplo: para hacer que el objeto en la referencia <tt>miObj</tt> mire hacia la parte inferior del mapa usaríamos <tt>miObj.Face(miObj.pos + Point(0, 1))</tt>.</p>",
+            "description_en": "<p>Turns the object around so it faces <tt>target</tt>. The argument <tt>target</tt> must be in world coordinates rather than local.</p><p>Notice that the rendering of the obejcts is independent from their orientation. Some object, like buildings, will look exactly the same no matter the direction they are facing. Other objects, like units, usually will present different views for each range of orientations, giving a fake appearance of 3D.</p><p>Example: to make the object in the reference <tt>myObj</tt> face towards the bottom of the map we would use <tt>myObj.Face(myObj.pos + Point(0, 1))</tt>.</p>",
+            "related": ["Query::Face:point", "ObjList::Face:point", "Obj::GetDir", "Unit::dir"]
         }, {
             "id": "Obj::GetDir",
             "name": "GetDir",
@@ -2754,7 +2797,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "<p>Retorna la dirección en la que mira actualmente el objeto, relativa al objeto mismo (en coordenadas locales).</p><p>Nótese que el renderizado de los objetos es independiente de su orientación. Algunos objetos, como los edificios, se verán representados exactamente igual sin importar en que dirección estén orientados. Otros, como las unidades, habitualmente presentarán visualizaciones distintas para cada rango de orientaciones, dando una sensación de falso 3D.</p>",
+            "description_en": "<p>Returns the direction the object is currently facing, relative to the object itself (in local coordinates).</p><p>Notice that the rendering of the obejcts is independent from their orientation. Some object, like buildings, will look exactly the same no matter the direction they are facing. Other objects, like units, usually will present different views for each range of orientations, giving a fake appearance of 3D.</p>",
+            "related": ["Obj::Face:point", "Unit::dir"]
         }, {
             "id": "Obj::Progress",
             "name": "Progress",

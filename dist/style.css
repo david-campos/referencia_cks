@@ -20,9 +20,12 @@ body {
 a {
     color: #303070;
     text-decoration: underline;
+    position: relative;
+}
+
+a[href^="#"] {
     text-decoration-style: dotted;
     text-decoration-skip-ink: none;
-    position: relative;
 }
 
 /* Tooltip text */
@@ -79,6 +82,7 @@ a:hover .tooltiptext {
 
 .method, .operator, .property {
     word-break: break-word;
+    scroll-margin-block-start: 1rem;
 }
 
 .method.dangerous, .operator.dangerous, .property.dangerous {
@@ -351,6 +355,50 @@ footer {
     }
 }
 
+main.one-remarked .property:not(.remark),
+main.one-remarked .method:not(.remark),
+main.one-remarked .operator:not(.remark) {
+    animation-name: show;
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out;
+}
+main.one-remarked .remark::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 102%;
+    height: 102%;
+
+    padding-left: 2rem;
+    left: calc(-2rem - 1%);
+    top: -1%;
+
+    animation-name: fade;
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out;
+
+    opacity: 0;
+
+    -webkit-box-shadow: 0 0 5px 2px #005580;
+    -moz-box-shadow: 0 0 5px 2px #005580;
+    box-shadow: 0 0 5px 2px #005580;
+}
+
+@keyframes show {
+    from, 50% {
+        filter: opacity(.5) blur(1px);
+    }
+    to {
+        filter: opacity(1) blur(0);
+    }
+}
+
+@keyframes fade {
+    from { opacity: 0; }
+    20% {opacity: 1; }
+    to { opacity: 0; }
+}
+
 /************ Class list **************/
 table.class-list {
     border-spacing: 0;
@@ -478,10 +526,10 @@ table.class-list td:hover .path {
 
 .class-details .def-cmd-cmd.selected {
     font-weight: bold;
-    text-shadow: 1px 1px 5px #00aaf0,  -1px -1px 5px #00aaf0;
+    text-shadow: 1px 1px 5px #00aaf0, -1px -1px 5px #00aaf0;
 }
 
-.class-details div[data-cmd].selected {
+.class-details div[data-label].selected {
     background-color: #f0f0f0;
     -webkit-box-shadow: 0px 0px 5px 2px #005580;
     -moz-box-shadow: 0px 0px 5px 2px #005580;

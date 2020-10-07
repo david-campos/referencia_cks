@@ -1,23 +1,45 @@
-function remark(element) {
-    const cmd = element.getAttribute("data-cmd");
-    document.querySelectorAll(`[data-cmd=${cmd}]`)
-        .forEach(el => el.classList.add("selected"));
-    document.querySelectorAll(`[data-cmd]:not([data-cmd=${cmd}])`)
+function getClassFromHash() {
+    if (location.hash === "" || location.hash === "#") {
+        return "";
+    }
+    const hashPointIdx = location.hash.indexOf(".");
+    const hashClass = hashPointIdx >= 0
+        ? location.hash.substring(1, hashPointIdx)
+        : location.hash.substr(1);
+    return decodeURIComponent(hashClass);
+}
+
+function getRemarkedFromHash() {
+    const hashPointIdx = location.hash.indexOf(".");
+    const remarked = hashPointIdx >= 0
+        ? location.hash.substr(hashPointIdx + 1)
+        : null;
+    return decodeURIComponent(remarked);
+}
+
+function remark(labels) {
+    location.replace(`#${getClassFromHash()}.${encodeURIComponent(labels)}`);
+    document.querySelectorAll(`[data-label]`)
         .forEach(el => el.classList.remove("selected"));
-    const scrollTo = document.querySelectorAll(`div[data-cmd=${cmd}]`).item(0);
-    if (scrollTo) {
-        scrollTo.parentElement.parentElement.setAttribute("open", "1");
-        scrollTo.scrollIntoView({behavior: "smooth", block: "center", inline: "center"});
+    if (labels) {
+        const scrollTo = labels.split(",").map(l => l.trim()).map(label => {
+            document.querySelectorAll(`[data-label=${label}]`)
+                .forEach(el => el.classList.add("selected"));
+            return document.querySelectorAll(`div[data-label=${label}]`).item(0);
+        }).reduce((p, c) => p.offsetTop > c.offsetTop ? c : p);
+        if (scrollTo) {
+            scrollTo.parentElement.parentElement.setAttribute("open", "1");
+            scrollTo.scrollIntoView({behavior: "smooth", block: "center", inline: "center"});
+        }
     }
 }
 
 window.onload = function () {
     const lang = location.search === '?en' ? 0 : 1;
-
-    if (location.hash === "" || location.hash === "#") {
-        location.replace("#Object");
+    const className = getClassFromHash();
+    if (!(className in CLASSES_DETAILS)) {
+        location.replace('#Object');
     }
-    const className = decodeURIComponent(location.hash.substring(1));
 
     // Class select
     const classSelect = document.getElementById('class-select');
@@ -47,7 +69,7 @@ window.onload = function () {
                 Object.keys(defCmds)
                     .map(cmd => [cmd, CLASSES_DETAILS_CMDS[cmd]])
                     .map(([cmd, cmdObj]) =>
-                        `<div data-cmd="${cmd}">${
+                        `<div data-label="${cmd}">${
                             cmdObj.rollover ? `<span class="rollover">${cmdObj.rollover}</span>` : ''
                         }<span class="meth">${cmd}</span>(<wbr>${cmdObj.targets.map(t =>
                             `<span class='type'>${t !== '' ? t : 'point'}</span>`).join(" | ")
@@ -61,30 +83,30 @@ window.onload = function () {
                 `<div><span class='def-cmd-tgt'>${target !== ''
                     ? target : ['No target', 'Sin objetivo'][lang]
                 }</span>: ${cmds.map(cmd =>
-                    `<span class='def-cmd-cmd' data-cmd="${cmd.cmd}"
+                    `<span class='def-cmd-cmd' data-label="${cmd.cmd}"
                         title="${["Click to remark associated command / method", "Click para remarcar el método / comando asociado"][lang]}"
-                        onclick="remark(this)">${cmd.cmd + (cmd.ctrl ? '*' : '')}</span>`
+                        onclick="remark(this.getAttribute('data-label'))">${cmd.cmd + (cmd.ctrl ? '*' : '')}</span>`
                 ).join(", ")}</div>`
             ).join("")}</div>`
         ).join("\n");
         const properties_html = Object.entries(properties(className)).map(([cls, props]) =>
             (cls === className ? '' : `<h3>${inherited} ${cls}</h3>`)
             + `<div class='details'>${Object.entries(props).map(([prop, val]) =>
-                `<div><span class='prop-key'>${prop}</span>: <span class='prop-value'>"${val}"</span></div>`).join("\n")}</div>`
+                `<div data-label="${prop}"><span class='prop-key'>${prop}</span>: <span class='prop-value'>"${val}"</span></div>`).join("\n")}</div>`
         ).join("\n");
         const childrenNodes = Object.entries(CLASSES_DETAILS)
             .filter(([_, node]) => node.parent === className)
             .map(([childName]) => childName);
         childrenNodes.sort();
         const children_html = `<div class='details'>${childrenNodes.map(
-            childName => `<a href="#${childName}" onclick="setTimeout(() => location.reload())">${childName}</a>`
+            childName => `<a href="#${childName}" data-label="${childName}" onclick="setTimeout(() => location.reload())">${childName}</a>`
         ).join("")}</div>`;
         const methds = methods(className);
         let methods_html = "";
         for (const [k, v] of Object.entries(methds)) {
             methods_html += (k === className ? '' : `<h3>${inherited} ${k}</h3>`)
                 + `<div class='details'>${Object.entries(v).map(([mtd, params]) =>
-                    `<div data-cmd="${mtd}"><span class="meth">${mtd}</span>(<wbr>${params.slice(1).map(([t, n]) =>
+                    `<div data-label="${mtd}"><span class="meth">${mtd}</span>(<wbr>${params.slice(1).map(([t, n]) =>
                         `${n}: <span class='type'>${t}</span>`).join(", ")
                     })</div>`).join("\n")
                 }</div>`;
@@ -103,6 +125,7 @@ window.onload = function () {
                 ["* = with control key", "* = con tecla control"][lang]}</p>${defcommands_html}</details> `
             + `<details class="class-details" open><summary><h2>${prp}</h2></summary>${properties_html}</details> `
             + `<details class="class-details"><summary><h2>${mtd}</h2></summary>${methods_html}</details> `;
+        remark(getRemarkedFromHash());
     } else {
         container.innerText = ["Class not found.", "Clase no encontrada"][lang];
     }

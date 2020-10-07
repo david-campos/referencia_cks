@@ -192,8 +192,17 @@ const TRANSLATE_TYPES = {
 function sortFuncs() {
     THE_OBJ.funcs.sort((a, b) => {
         if (a[groupBy] === b[groupBy]) {
-            if (a.type === b.type) return a.name.localeCompare(b.name);
-            else return TYPES_ORDER[a.type] - TYPES_ORDER[b.type];
+            if (a.type === b.type) {
+                if (a.of === b.of) {
+                    return a.name.localeCompare(b.name);
+                } else if (a.of === null) {
+                    return 1;
+                } else if (b.of === null) {
+                    return -1;
+                } else {
+                    return a.of - b.of;
+                }
+            } else return TYPES_ORDER[a.type] - TYPES_ORDER[b.type];
         } else if (a[groupBy] === null) return 1;
         else if (b[groupBy] === null) return -1;
         else return a[groupBy] - b[groupBy];
@@ -274,7 +283,7 @@ function render() {
     html += "</details>";
     const main = document.getElementById('main');
     main.innerHTML = html;
-    for (const link of main.querySelectorAll('a:not(.linkThis)')) {
+    for (const link of main.querySelectorAll('a[href^="#"]:not(.linkThis)')) {
         link.addEventListener('pointerenter', addTooltip);
     }
     const t1 = performance.now();
@@ -348,6 +357,15 @@ window.onload = function () {
     // For links with hash to work after first render
     if (location.hash) {
         const elem = document.getElementById(location.hash.slice(1));
-        if (elem) setTimeout(elem.scrollIntoView.bind(elem));
+        if (elem) {
+            setTimeout(elem.scrollIntoView.bind(elem));
+            const main = document.getElementById('main');
+            main.classList.add("one-remarked");
+            elem.classList.add("remark");
+            setTimeout(() => {
+                main.classList.remove("one-remarked");
+                elem.classList.remove("remark");
+            }, 4100);
+        }
     }
 }
