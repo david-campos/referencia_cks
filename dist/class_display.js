@@ -14,14 +14,14 @@ function getRemarkedFromHash() {
     const remarked = hashPointIdx >= 0
         ? location.hash.substr(hashPointIdx + 1)
         : null;
-    return decodeURIComponent(remarked);
+    return remarked ? decodeURIComponent(remarked) : null;
 }
 
 function remark(labels) {
-    location.replace(`#${getClassFromHash()}.${encodeURIComponent(labels)}`);
     document.querySelectorAll(`[data-label]`)
         .forEach(el => el.classList.remove("selected"));
     if (labels) {
+        location.replace(`#${getClassFromHash()}.${encodeURIComponent(labels)}`);
         const scrollTo = labels.split(",").map(l => l.trim()).map(label => {
             document.querySelectorAll(`[data-label=${label}]`)
                 .forEach(el => el.classList.add("selected"));
@@ -31,6 +31,8 @@ function remark(labels) {
             scrollTo.parentElement.parentElement.setAttribute("open", "1");
             scrollTo.scrollIntoView({behavior: "smooth", block: "center", inline: "center"});
         }
+    } else {
+        location.replace(`#${getClassFromHash()}`);
     }
 }
 
@@ -55,7 +57,7 @@ window.onload = function () {
     }
     classSelect.innerHTML = selectHtml;
     classSelect.addEventListener('change', () => {
-        location.assign("#" + classSelect.value);
+        location.replace("#" + classSelect.value);
         window.onload();
     });
 

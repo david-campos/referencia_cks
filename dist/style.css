@@ -480,6 +480,11 @@ table.class-list td:hover .path {
     margin: 0 1rem;
 }
 
+.class-details summary {
+    border-top: 4px solid white;
+    background-color: #ddd;
+}
+
 .class-details .details {
     display: flex;
     flex-wrap: wrap;
