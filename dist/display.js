@@ -229,6 +229,27 @@ function addTooltip(event) {
             const ellip = index > 0 && text[index - 1] === '.' ? ' [&hellip;]' : '&hellip;'
             text = `${index >= 0 ? text.slice(0, index) : text}${ellip}`;
         }
+        if (!link.innerText.includes(referred.name)) {
+            let name;
+            if (referred.type === 'operator') {
+                const param0 = referred.params.length === 2
+                    ? typeForIdentifier(referred.params[0].type, referred.params[0].is_ptr, THE_OBJ.classes) + ' '
+                    : '';
+                const param1idx = referred.params.length === 2 ? 1 : 0;
+                const param1 = typeForIdentifier(
+                    referred.params[param1idx].type,
+                    referred.params[param1idx].is_ptr,
+                    THE_OBJ.classes);
+                name = `${param0}${escapeHtmlAndNameCorrection(referred.name)}${param1}`;
+            } else {
+                const of = referred.of ? THE_OBJ.classes[referred.of].name + "::" : '';
+                const params = referred.type === 'method' ? `(${referred.params.map(
+                    p => typeForIdentifier(p.type, p.is_ptr, THE_OBJ.classes)
+                ).join(", ")})` : '';
+                name = `${of}${escapeHtmlAndNameCorrection(referred.name)}${params}`;
+            }
+            text = `<i>${name}:</i> ${text}`;
+        }
         const isDangerous = referred.dangerous;
         if (isDangerous) {
             text = `<span class="material-icons">error</span> ${text}`;

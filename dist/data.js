@@ -2717,8 +2717,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "puntos_salud", "name_en": "health_points", "type": 1, "is_ptr": false}],
-            "description": "<p>Retira los <a href='#Obj::health'>puntos de salud</a> dados al objeto. Esto no se ve afectado por la <a href='#Obj::armor_slash'>defensa</a> del objeto u otros parámetros.</p><p>Por ejemplo, <tt>miObj.Damage(100)</tt> sería equivalente a <tt>miObj.SetHealth(MAX(miObj.health - 100, 0))</tt>.</p>",
-            "description_en": "<p>Removes the given <a href='#Obj::health'>health points</a> from the object. This is not affected by the object <a href='#Obj::armor_slash'>armor</a> or other parameters.</p><p>For example, <tt>myObj.Damage(100)</tt> would be equivalent to <tt>myObj.SetHealth(MAX(myObj.health - 100, 0))</tt>.</p>",
+            "description": "<p>Retira los <a href='#Obj::health'>puntos de salud</a> dados al objeto e indica si el objeto ha muerto por el daño. Esto no se ve afectado por la <a href='#Obj::armor_slash'>defensa</a> del objeto u otros parámetros. Devuelve <tt>true</tt> si el objeto ha perecido a causa del daño.</p><p>Por ejemplo, <tt>miObj.Damage(100);</tt> sería equivalente a <tt>miObj.SetHealth(MAX(miObj.health - 100, 0));</tt>.</p>",
+            "description_en": "<p>Removes the given <a href='#Obj::health'>health points</a> from the object and returns if the object has died by the damage. This is not affected by the object <a href='#Obj::armor_slash'>armor</a> or other parameters. Returns <tt>true</tt> if the object dies by the damage caused.</p><p>For example, <tt>myObj.Damage(100)</tt> would be equivalent to <tt>myObj.SetHealth(MAX(myObj.health - 100, 0))</tt>.</p>",
             "related": ["Obj::health", "Obj::Heal:int", "Obj::SetHealth:int"]
         }, {
             "id": "Obj::Heal:int",
@@ -2843,7 +2843,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "nombre_grupo", "name_en": "group_name", "type": 5, "is_ptr": false}],
+            "description": "Retorna <tt>true</tt> si el objeto forma parte del grupo con nombre <tt>nombre_grupo</tt>, o <tt>false</tt> si no. Los nombres de grupo distinguen entre mayúsculas y minúsculas.",
+            "description_en": "Returns <tt>true</tt> if the object is part of the group with name <tt>nombre_grupo</tt>, or <tt>false</tt> otherwise. Group names are case-sensitive.",
+            "related": ["Obj::AddToGroup:str", "Obj::RemoveFromGroup:str", "Obj::RemoveFromAllGroups", "Group:str"]
         }, {
             "id": "Obj::AddToGroup:str",
             "name": "AddToGroup",
@@ -2852,7 +2855,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "nombre_grupo", "name_en": "group_name", "type": 5, "is_ptr": false}],
+            "description": "Añade el objeto al grupo con el nombre dado. Si no existe un grupo con el nombre dado no hay problema, pues se creará.",
+            "description_en": "Adds the object to the group with the given name. If a group with the given name does not exist it is not a problem as it will be created.",
+            "related": ["Obj::IsInGroup:str", "Obj::RemoveFromGroup:str", "Obj::RemoveFromAllGroups", "Group:str"]
         }, {
             "id": "Obj::RemoveFromGroup:str",
             "name": "RemoveFromGroup",
@@ -2861,7 +2867,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "description": "Quita al objeto del grupo con el nombre dado.",
+            "description_en": "Removes the object from the group with the given name.",
+            "params": [{"name": "nombre_grupo", "name_en": "group_name", "type": 5, "is_ptr": false}],
+            "related": ["Obj::IsInGroup:str", "Obj::AddToGroup:str", "Obj::RemoveFromAllGroups", "Group:str"]
         }, {
             "id": "Obj::RemoveFromAllGroups",
             "name": "RemoveFromAllGroups",
@@ -2870,7 +2879,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Quita al objeto de todos los grupos a los que pertenece.",
+            "description_en": "Removes the object from all the groups that it has been added to.",
+            "related": ["Obj::IsInGroup:str", "Obj::AddToGroup:str", "Obj::RemoveFromGroup:str", "Group:str"]
         }, {
             "id": "Obj::SetName:str",
             "name": "SetName",
@@ -2879,7 +2891,15 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}],
+            "description": "<p>Cambia el nombre de scripts del objeto. Cuando programamos secuencias en el editor, tenemos la posibilidad de referirnos a objetos directamente por su nombre en el código, pues el compilador los convierte a <a href='#NamedObj'>NamedObj</a>. Este nombre es evaluado en tiempo de compilación (al pulsar compilar), no de ejecución. De forma que si cambiamos el nombre con este método, los objetos referidos de esta forma en el código no se verán afectados.</p>" +
+                "<p>El uso de este método no afecta al funcionamiento de <a href='#SpawnNamed:str'>SpawnNamed</a> dado que, aunque altera el nombre del objeto, no afecta a la plantilla de objeto que es compilada previamente y sigue estando referida por el mismo nombre.</p>" +
+                "<p>Sin embargo, el uso con <a href='#GetNamedObj:str'>GetNamedObj</a> no es tan sencillo. Usar este método produce ciertas inconsistencias en esta función. Si la función no ha sido llamada en el mapa actual antes de la llamada a <tt>SetName</tt>, el objeto será devuelto por el nuevo nombre sin problema, tal como cabría esperar. Si la función fue llamada con anterioridad, el objeto no será devuelto ya con ninguno de los dos nombres. Una vez <a href='#ChangeMap:str_str'>cambiemos de mapa</a>, si el objeto formaba parte del <a href='#Party'>grupo de viaje</a>, volverá a ser posible obtenerlo usando el nuevo nombre.</p>",
+            "description_en": "<p>Changes the scripts name of the object. When programming sequences in the editor, we can refer to objects directly by their script names in the code, as they are converted by the compiler into <a class='type' href='#NamedObj'>NamedObj</a>. This name is checked by the compiler when compiling, not during execution. This way, if we change the name of the object using this method, all the references in this way to the object within the code will not be affected.</p>" +
+                "<p>The usage of this method does not affect <a href='#SpawnNamed:str'>SpawnNamed</a>, since it alters the name of the object but not the object template which is what is spawned.</p>"+
+                "<p>However, using it with <a href='#GetNamedObj:str'>GetNamedObj</a> is not so easy. Using this method produces certain inconsistencies with this function. If the function has not been called in the current map before the call to <tt>SetName</tt>, the object will be returned by its new name, just as we would expect. If the function has been called before, the object will not be returned by neither the old nor the new name. Once we <a href='#ChangeMap:str_str'>change map</a>, if the object was in the <a href='#Party'>party group</a>, it will be obtainable by the new name.</p>",
+            "related": ["Obj::name", "Item::display_name", "Item::name", "Settlement::name", "GetNamedObj:str",
+                "SpawnNamed:str"]
         }, {
             "id": "Obj::Select:int",
             "name": "Select",
@@ -2888,7 +2908,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}],
+            "description": "Selecciona el objeto para el jugador dado. Si el objeto es compatible con la selección actual, simplemente será añadido a la selección, si no lo es reemplazará a la selección actual. Este método no funciona con objetos de otro jugador que se encuentren en áreas sin explorar o con niebla de guerra para el jugador que ha de seleccionarlos.",
+            "description_en": "Selects the object for the given player. If the object is compatible with the current selection, it will simply be added to it, otherwise it will replace the current selection. This method does not work with objects from the other player which are in unexplored areas or with war fog over them for <tt>player</tt>.",
+            "related": ["Obj::_LastSelectionTime", "Obj::Deselect:int", "Obj::Deselect", "Unit::SetNoselectFlag:bool", "SquadList::Select:int", "_GetSelection", "SwapSelectedObj:Obj_Obj"]
         }, {
             "id": "Obj::Deselect:int",
             "name": "Deselect",
@@ -2897,7 +2920,11 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}],
+            "description": "Elimina al objeto de la selección del jugador indicado.",
+            "description_en": "Removes the object from the selection of the given player.",
+            "related": ["Obj::_LastSelectionTime", "Obj::Deselect", "Obj::Select:int", "_GetSelection", "ClearSelection:int", "SwapSelectedObj:Obj_Obj"]
+
         }, {
             "id": "Obj::Deselect",
             "name": "Deselect",
@@ -2906,7 +2933,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Elimina al objeto de la selección de todos los jugadores.",
+            "description_en": "Removes the object from the selection of all players.",
+            "related": ["Obj::_LastSelectionTime", "Obj::Deselect:int", "Obj::Select:int", "_GetSelection", "ClearSelection:int", "SwapSelectedObj:Obj_Obj"]
         }, {
             "id": "ClearSelection:int",
             "name": "ClearSelection",
@@ -2915,7 +2945,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}],
+            "description": "Limpia la selección del jugador indicado (deselecciona todo lo seleccionado).",
+            "description_en": "Clears the selection of the given player (deselects every selected object).",
+            "related": ["Obj::_LastSelectionTime", "Obj::Deselect", "Obj::Select:int", "_GetSelection", "SwapSelectedObj:Obj_Obj"]
         }, {
             "id": "Obj::PlayAnim:int_point",
             "name": "PlayAnim",
@@ -2924,7 +2957,11 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "animacion", "name_en": "animation", "type": 1, "is_ptr": false}, {"name": "punto", "name_en": "pt", "type": 6, "is_ptr": false}],
+            "dangerous": true,
+            "description": "Crashea el juego al ser llamada. Aparece en algunos scripts en DATA, por lo que debería haber alguna forma posible de usarlo. Sin embargo, todas las pruebas que el autor de esta documentación ha hecho han llevado al crasheo del juego, incluso probando números de animación copiados directamente de esos scripts.",
+            "description_en": "Crashes the game when called. It shows up in some of the scripts in DATA, so there should be a way to make it work. However, every test the author of this documentation conducted eventually lead to the game crashing, even when trying some animation numbers copied directly from those scripts.",
+            "related": ["Obj::StartAnim:int_point", "Obj::GetAnimTime:int", "Obj::StartDelayedAnim:int_point_int", "Obj::GetAnim"]
         }, {
             "id": "Obj::GetAnimTime:int",
             "name": "GetAnimTime",
@@ -2933,7 +2970,11 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "animacion", "name_en": "animation", "type": 1, "is_ptr": false}],
+            "description_en": "Returns the duration time (in milliseconds) of the given animation (crashes the game if the animation does not exist).",
+            "description": "Retorna la duración (en milésimas de segundo) de la animación dada (crashea el juego si la animación no existe).",
+            "related": ["Obj::TimeToAnimFinish", "Obj::TimeToActionMoment", "Obj::StartAnim:int_point", "Obj::StartDelayedAnim:int_point_int", "Obj::GetAnim", "Obj::PlayAnim:int_point"],
+            "dangerous": true
         }, {
             "id": "Obj::StartAnim:int_point",
             "name": "StartAnim",
@@ -2942,7 +2983,11 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "animacion", "name_en": "animation", "type": 1, "is_ptr": false}, {"name": "pt", "type": 6, "is_ptr": false}],
+            "description": "Inicia la animación indicada en dirección al punto dado (si la animación no existe, crashea el juego).",
+            "description_en": "Starts the given animation towards the given point (if the animation does not exist, crashes the game).",
+            "related": ["Obj::StartDelayedAnim:int_point_int", "Obj::PlayAnim:int_point"],
+            "dangerous": true
         }, {
             "id": "Obj::StartDelayedAnim:int_point_int",
             "name": "StartDelayedAnim",
@@ -2955,7 +3000,10 @@ const THE_OBJ = (function () {
                 "name": "number",
                 "type": 6,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Inicia la animación indicada en dirección al punto dado (si la animación no existe, crashea el juego).",
+            "description_en": "Starts the given animation towards the given point (if the animation does not exist, crashes the game).",
+            "related": ["Obj::StartAnim:int_point", "Obj::PlayAnim:int_point"],
         }, {
             "id": "Obj::TimeToActionMoment",
             "name": "TimeToActionMoment",
