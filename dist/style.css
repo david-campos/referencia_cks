@@ -65,13 +65,26 @@ a .tooltiptext::after {
     border-color: #555 transparent transparent transparent;
 }
 
-a .tooltiptext.dangerous {
+a .tooltiptext .material-icons {
+    font-size: 19px;
+}
+
+a .tooltiptext.very-dangerous {
     color: #ff5252;
     background-color: #6c3333;
 }
 
-a .tooltiptext.dangerous::after {
+a .tooltiptext.very-dangerous::after {
     border-color: #6c3333 transparent transparent transparent;
+}
+
+a .tooltiptext.dangerous {
+    color: #ffff52;
+    background-color: #6c5f33;
+}
+
+a .tooltiptext.dangerous::after {
+    border-color: #6c5f33 transparent transparent transparent;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
@@ -85,13 +98,25 @@ a:hover .tooltiptext {
     scroll-margin-block-start: 1rem;
 }
 
-.method.dangerous, .operator.dangerous, .property.dangerous {
-    color: #bb0000;
-    background-color: #ffe9e9;
+.method.very-dangerous, .operator.very-dangerous, .property.very-dangerous {
     text-indent: 0;
     margin-left: 0;
     padding-left: .2em;
     padding-right: .2em;
+}
+
+.method.very-dangerous .description,
+.operator.very-dangerous .description,
+.property.very-dangerous .description,
+.method.very-dangerous .related,
+.operator.very-dangerous .related,
+.property.very-dangerous .related {
+    margin-left: 2rem;
+}
+
+.method.very-dangerous, .operator.very-dangerous, .property.very-dangerous {
+    color: #bb0000;
+    background-color: #ffe9e9;
 }
 
 .container {
@@ -272,6 +297,15 @@ details {
     color: #505090;
 }
 
+.description .dangerous-warn {
+    background-color: #fff699;
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 1rem;
+    padding: .5rem;
+    color: #bd5800;
+}
+
 .description p {
     margin-bottom: 0;
 }
@@ -362,6 +396,7 @@ main.one-remarked .operator:not(.remark) {
     animation-duration: 4s;
     animation-timing-function: ease-in-out;
 }
+
 main.one-remarked .remark::after {
     content: '';
     position: absolute;
@@ -394,9 +429,15 @@ main.one-remarked .remark::after {
 }
 
 @keyframes fade {
-    from { opacity: 0; }
-    20% {opacity: 1; }
-    to { opacity: 0; }
+    from {
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
 
 /************ Class list **************/

@@ -43,10 +43,14 @@ function renderParam(param, classes) {
     return `<wbr><span class="param"><span class="name">${escapeHtmlAndNameCorrection(param['name_' + lang] || param.name)}</span><span class="two_dots mid">:</span>${renderType(param.type, param.is_ptr, classes)}</span>`
 }
 
-function renderRelated(relatedList) {
+function renderRelated(inFunction, relatedList) {
     if (!relatedList || relatedList.length === 0) return '';
     return `<div class="related">${TRANSLATE_TEXTS['related-' + lang]} ${relatedList.map(elementId => {
         const element = funcsById.get(elementId);
+        if (!element) {
+            console.warn(`Unknown related function in "${inFunction.id}": "${elementId}".`);
+            return `[unknown ${elementId}]`;
+        }
         const of = element.of ? THE_OBJ.classes[element.of].name + "::" : '';
         if (element.type === 'operator') {
             const param0 = element.params.length === 2
@@ -65,8 +69,8 @@ function renderRelated(relatedList) {
 }
 
 function renderDescription(func) {
-    return `<div class="description">${func['description_' + lang] || func.description
-    || `<span class=\"to-fill\">${TRANSLATE_TEXTS['no-desc-' + lang]}</span>`}</div>${renderRelated(func.related)}`;
+    return `<div class="description">${renderDangerousWarn(func)}${func['description_' + lang] || func.description
+    || `<span class=\"to-fill\">${TRANSLATE_TEXTS['no-desc-' + lang]}</span>`}</div>${renderRelated(func, func.related)}`;
 }
 
 function typeForIdentifier(type, isPtr, classes) {
@@ -99,15 +103,35 @@ function renderLinkThis(func, classes) {
     return `<a class="linkThis" href="#${func.id}"><span class="material-icons">link</span></a>`;
 }
 
+function dangerousClass(func) {
+    return func.dangerous ? 'dangerous' : (
+        func.very_dangerous ? 'very-dangerous' : ''
+    );
+}
+
+function dangerousIcon(func) {
+    return func.dangerous
+        ? ''
+        : (func.very_dangerous
+                ? '<span class="material-icons">error</span>'
+                : ''
+        );
+}
+
+function renderDangerousWarn(func) {
+    if (!func.dangerous) return '';
+    return `<div class="dangerous-warn"><span class="material-icons">warning</span> ${func.dangerous[lang === '' ? 'es' : lang]}</div>`;
+}
+
 function renderFunction(func, classes) {
     switch (func.type) {
         case 'operator':
             if (func.params.length === 2) {
                 const param0 = func.params[0];
                 const param1 = func.params[1];
-                return `<div class="binary operator${func.dangerous ? ' dangerous' : ''}" id="${func.id}">
+                return `<div class="binary operator ${dangerousClass(func)}" id="${func.id}">
                             <span class="name">
-                                ${func.dangerous ? '<span class="material-icons">error</span>' : ''}
+                                ${dangerousIcon(func)}
                                 ${renderType(param0.type, param0.is_ptr, classes)}
                                 <span class="op">${escapeHtmlAndNameCorrection(func.name)}</span>
                                 ${renderType(param1.type, param1.is_ptr, classes)}
@@ -118,9 +142,9 @@ function renderFunction(func, classes) {
                         </div>`.replace(/\n\s*/g, '');
             } else {
                 const param0 = func.params[0];
-                return `<div class="unary operator${func.dangerous ? ' dangerous' : ''}" id="${func.id}">
+                return `<div class="unary operator ${dangerousClass(func)}" id="${func.id}">
                             <span class="name">
-                                ${func.dangerous ? '<span class="material-icons">error</span>' : ''}
+                                ${dangerousIcon(func)}
                                 <span class="op">${escapeHtmlAndNameCorrection(func.name)}</span>
                                 ${renderType(param0.type, param0.is_ptr, classes)}
                                 ${addReturn(func, classes)}
@@ -130,9 +154,9 @@ function renderFunction(func, classes) {
                         </div>`.replace(/\n\s*/g, '');
             }
         case 'property':
-            return `<div class="property${func.dangerous ? ' dangerous' : ''}" id="${func.id}">
+            return `<div class="property ${dangerousClass(func)}" id="${func.id}">
                         <span class="name">
-                            ${func.dangerous ? '<span class="material-icons">error</span>' : ''}
+                            ${dangerousIcon(func)}
                             ${renderType(func.of, func.of_ptr, classes)}
                             <span class="in">::</span>
                             <span class="prop">${escapeHtmlAndNameCorrection(func.name)}</span>
@@ -143,9 +167,9 @@ function renderFunction(func, classes) {
                     </div>`.replace(/\n\s*/g, '')
         case 'method':
             if (func.of != null) {
-                return `<div class="method${func.dangerous ? ' dangerous' : ''}" id="${func.id}">
+                return `<div class="method ${dangerousClass(func)}" id="${func.id}">
                             <span class="name">
-                                ${func.dangerous ? '<span class="material-icons">error</span>' : ''}
+                                ${dangerousIcon(func)}
                                 ${renderType(func.of, func.of_ptr, classes)}
                                 <span class="in">::</span>
                                 <span class="meth">${escapeHtmlAndNameCorrection(func.name)}</span>
@@ -158,9 +182,9 @@ function renderFunction(func, classes) {
                             ${renderLinkThis(func, classes)}
                         </div>`.replace(/\n\s*/g, '')
             } else {
-                return `<div class="method${func.dangerous ? ' dangerous' : ''}" id="${func.id}">
+                return `<div class="method ${dangerousClass(func)}" id="${func.id}">
                             <span class="name">
-                                ${func.dangerous ? '<span class="material-icons">error</span>' : ''}
+                                ${dangerousIcon(func)}
                                 <span class="meth">${escapeHtmlAndNameCorrection(func.name)}</span>
                                 <span class="par open">(</span>
                                 ${func.params.map(p => renderParam(p, classes)).join('<span class="sep">,<wbr></span>')}
@@ -250,11 +274,8 @@ function addTooltip(event) {
             }
             text = `<i>${name}:</i> ${text}`;
         }
-        const isDangerous = referred.dangerous;
-        if (isDangerous) {
-            text = `<span class="material-icons">error</span> ${text}`;
-        }
-        link.innerHTML += `<span class="tooltiptext${isDangerous ? ' dangerous' : ''}">${text}</span>`;
+        text = `${dangerousIcon(referred)} ${text}`;
+        link.innerHTML += `<span class="tooltiptext ${dangerousClass(referred)}">${text}</span>`;
     }
     link.removeEventListener('pointerenter', addTooltip);
 }
@@ -339,7 +360,7 @@ window.onload = function () {
         const nDocumented = THE_OBJ.funcs.filter(f => 'description' in f).length
             + THE_OBJ.funcs.filter(f => 'description_en' in f).length;
         const nTotal = 2 * THE_OBJ.funcs.length;
-        documented.innerHTML = `${TRANSLATE_TEXTS['documented-' + lang]} ${Math.round(nDocumented/nTotal*100)}%`;
+        documented.innerHTML = `${TRANSLATE_TEXTS['documented-' + lang]} ${Math.round(nDocumented / nTotal * 100)}%`;
     }
 
     lang_select.value = lang;

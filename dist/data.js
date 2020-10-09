@@ -1528,7 +1528,7 @@ const THE_OBJ = (function () {
             "params": [{"name": "clave", "name_en": "key", "type": 5, "is_ptr": false}],
             "description": "Este método crashea el juego cuando la clave existe en el diccionario.",
             "description_en": "This method crashes the game when the key exists in the map.",
-            "dangerous": true
+            "very_dangerous": true
         }, {
             "id": "ptr.StrMap::exists:str",
             "name": "exists",
@@ -1581,9 +1581,12 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "config_file", "type": 5, "is_ptr": false}],
-            "description": "Esta función crashea el juego si no logra abrir el archivo de configuración. Genera el terreno aleatoriamente a partir de la configuración que lee del archivo indicado.",
-            "description_en": "This function crashes the game if the configuration file cannot be open. Generates a random terrain using the configuration in the given file.",
-            "dangerous": true
+            "description": " Genera el terreno aleatoriamente a partir de la configuración que lee del archivo indicado.",
+            "description_en": "Generates a random terrain using the configuration in the given file.",
+            "dangerous": {
+                "es": "Esta función crashea el juego si no logra abrir el archivo de configuración.",
+                "en": "This function crashes the game if the configuration file cannot be open."
+            }
         }, {
             "id": "ptr.Obj::-e-:ptr.Obj_Obj",
             "name": "=",
@@ -2610,9 +2613,12 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "objetivo", "name_en": "target", "type": 11, "is_ptr": false}],
-            "description": "Este método crashea el juego si el objetivo no es de tipo <a href='#Building'>Building</a>. Comprueba si el objetivo es apto para ser capturado por el objeto.",
-            "description_en": "This method crashes the game when the target is not a <a href='#Building'>Building</a>. Checks whether the target is valid to be captured by the object.",
-            "dangerous": true
+            "description": "Comprueba si el objetivo es apto para ser capturado por el objeto.",
+            "description_en": "Checks whether the target is valid to be captured by the object.",
+            "dangerous": {
+                "en": "This method crashes the game when the target is not a <a href='#Building'>Building</a>.",
+                "es": "Este método crashea el juego si el objetivo no es de tipo <a href='#Building'>Building</a>."
+            }
         }, {
             "id": "Obj::SetVisible:bool",
             "name": "SetVisible",
@@ -2958,7 +2964,7 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "animacion", "name_en": "animation", "type": 1, "is_ptr": false}, {"name": "punto", "name_en": "pt", "type": 6, "is_ptr": false}],
-            "dangerous": true,
+            "very_dangerous": true,
             "description": "Crashea el juego al ser llamada. Aparece en algunos scripts en DATA, por lo que debería haber alguna forma posible de usarlo. Sin embargo, todas las pruebas que el autor de esta documentación ha hecho han llevado al crasheo del juego, incluso probando números de animación copiados directamente de esos scripts.",
             "description_en": "Crashes the game when called. It shows up in some of the scripts in DATA, so there should be a way to make it work. However, every test the author of this documentation conducted eventually lead to the game crashing, even when trying some animation numbers copied directly from those scripts.",
             "related": ["Obj::StartAnim:int_point", "Obj::GetAnimTime:int", "Obj::StartDelayedAnim:int_point_int", "Obj::GetAnim"]
@@ -2971,10 +2977,13 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "animacion", "name_en": "animation", "type": 1, "is_ptr": false}],
-            "description_en": "Returns the duration time (in milliseconds) of the given animation (crashes the game if the animation does not exist).",
-            "description": "Retorna la duración (en milésimas de segundo) de la animación dada (crashea el juego si la animación no existe).",
+            "description_en": "Returns the duration time (in milliseconds) of the given animation.",
+            "description": "Retorna la duración (en milésimas de segundo) de la animación dada.",
             "related": ["Obj::TimeToAnimFinish", "Obj::TimeToActionMoment", "Obj::StartAnim:int_point", "Obj::StartDelayedAnim:int_point_int", "Obj::GetAnim", "Obj::PlayAnim:int_point"],
-            "dangerous": true
+            "dangerous": {
+                "en": "This method crashes the game if the animation does not exist.",
+                "es": "Este método crashea el juego si la animación no existe."
+            }
         }, {
             "id": "Obj::StartAnim:int_point",
             "name": "StartAnim",
@@ -2984,10 +2993,13 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "animacion", "name_en": "animation", "type": 1, "is_ptr": false}, {"name": "pt", "type": 6, "is_ptr": false}],
-            "description": "Inicia la animación indicada en dirección al punto dado (si la animación no existe, crashea el juego).",
-            "description_en": "Starts the given animation towards the given point (if the animation does not exist, crashes the game).",
+            "description": "Inicia la animación indicada en dirección al punto dado.",
+            "description_en": "Starts the given animation towards the given point.",
             "related": ["Obj::StartDelayedAnim:int_point_int", "Obj::PlayAnim:int_point"],
-            "dangerous": true
+            "dangerous": {
+                "en": "This method crashes the game if the animation does not exist.",
+                "es": "Este método crashea el juego si la animación no existe."
+            }
         }, {
             "id": "Obj::StartDelayedAnim:int_point_int",
             "name": "StartDelayedAnim",
@@ -2996,13 +3008,14 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "animacion", "name_en": "animation", "type": 1, "is_ptr": false}, {
+                "name": "punto",
+                "name_en": "pt",
                 "type": 6,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}],
-            "description": "Inicia la animación indicada en dirección al punto dado (si la animación no existe, crashea el juego).",
-            "description_en": "Starts the given animation towards the given point (if the animation does not exist, crashes the game).",
+            }, {"name": "tiempo", "name_en": "delay", "type": 1, "is_ptr": false}],
+            "description": "Inicia, tras un tiempo dado, la animación indicada en dirección al punto dado (si la animación no existe, crashea el juego). El tiempo dado se especificara en milésimas de segundo.",
+            "description_en": "Starts, after a given delay, the given animation towards the given point (if the animation does not exist, crashes the game). The given time is specified in milliseconds.",
             "related": ["Obj::StartAnim:int_point", "Obj::PlayAnim:int_point"],
         }, {
             "id": "Obj::TimeToActionMoment",
@@ -3012,7 +3025,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Retorna el tiempo restante (en milésimas de segundo) para que la animación actual llegue a su punto de acción, o <tt>0</tt> si no tiene punto de acción. Nótese que este tiempo es relativo al momento actual.",
+            "description_en": "Return the time remaining until the current animation gets to its action moment (in milliseconds), or <tt>0</tt> if there is no action moment. Notice this time is relative to the current moment.",
+            "related": ["Obj::StartAnim:int_point", "Obj::GetAnim", "Obj::TimeToAnimFinish", "Obj::GetAnimTime:int"]
         }, {
             "id": "Obj::TimeToAnimFinish",
             "name": "TimeToAnimFinish",
@@ -3021,7 +3037,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Retorna el tiempo restante (en milésimas de segundo) para que la animación actual termine. En el momento en que se inicia la animación este valor será igual que <a href='#Obj::GetAnimTime:int'>Obj::GetAnimTime</a> para la animación lanzada, y luego tenderá a cero.",
+            "description_en": "Returns the time remaining until the current animation finishes (in milliseconds). At the moment of starting the animation this value is the same as <a href='#Obj::GetAnimTime:int'>Obj::GetAnimTime</a> for the started animation, and then it will tend to zero.",
+            "related": ["Obj::StartAnim:int_point", "Obj::GetAnim", "Obj::TimeToActionMoment", "Obj::GetAnimTime:int"]
         }, {
             "id": "Obj::GetAnim",
             "name": "GetAnim",
@@ -3030,7 +3049,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Retorna el número de la animación actualmente reproducida por el objeto.",
+            "description_en": "Returns the number of the current animation of the object.",
+            "related": ["Obj::StartAnim:int_point", "Obj::StartDelayedAnim:int_point_int", "Obj::GetAnimTime:int"]
         }, {
             "id": "Obj::SetState:int",
             "name": "SetState",
@@ -3039,6 +3061,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
+            "dangerous": {
+                "en": "This method crashes the game if the animation does not exist.",
+                "es": "Este método crashea el juego si la animación no existe."
+            },
             "params": [{"name": "number", "type": 1, "is_ptr": false}]
         }, {
             "id": "Obj::AddItem:str",
