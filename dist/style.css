@@ -130,6 +130,19 @@ header {
     align-items: center;
 }
 
+nav {
+    display: flex;
+    justify-content: center;
+}
+
+nav a {
+    text-decoration: none;
+    border: 1px solid #333;
+    padding: .5rem;
+    margin: .5rem;
+    border-radius: 5px;
+}
+
 .footer {
     display: flex;
 }

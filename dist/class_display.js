@@ -41,6 +41,8 @@ window.onload = function () {
     const className = getClassFromHash();
     if (!(className in CLASSES_DETAILS)) {
         location.replace('#Object');
+        window.onload(null);
+        return;
     }
 
     // Class select
@@ -58,7 +60,7 @@ window.onload = function () {
     classSelect.innerHTML = selectHtml;
     classSelect.addEventListener('change', () => {
         location.replace("#" + classSelect.value);
-        window.onload();
+        window.onload(null);
     });
 
     // Rest

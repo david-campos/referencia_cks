@@ -366,6 +366,24 @@ window.onload = function () {
         documented.innerHTML = `${TRANSLATE_TEXTS['documented-' + lang]} ${Math.round(nDocumented / nTotal * 100)}%`;
     }
 
+    document.addEventListener('keyup', event => {
+        if (event.shiftKey) {
+            switch (event.code) {
+                case 'KeyF':
+                    searchInput.focus();
+                    break;
+                case 'KeyR':
+                    groupBySelect.value = 'returns';
+                    groupBySelect.dispatchEvent(new Event('change'));
+                    break;
+                case 'KeyC':
+                    groupBySelect.value = 'of';
+                    groupBySelect.dispatchEvent(new Event('change'));
+                    break;
+            }
+        }
+    });
+
     lang_select.value = lang;
     lang_select.addEventListener('change', () => {
         lang = lang_select.value;

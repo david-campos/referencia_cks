@@ -1953,8 +1953,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "property",
             "params": [],
-            "description": "Energía actual del objeto. Las <a class='type' href='#Unit'>unidades</a> gastan energía para usar <a href='#Unit::SetSpecial:int_bool'>habilidades especiales</a>.",
-            "description_en": "Current stamina of the object. <a class='type' href='#Unit'>Units</a> spend stamina to use <a href='#Unit::SetSpecial:int_bool'>special skills</a>.",
+            "description": "<p>Energía actual del objeto. Las <a class='type' href='#Unit'>unidades</a> gastan energía para usar <a href='#Unit::SetSpecial:int_bool'>habilidades especiales</a>.</p><p>En objetos de la clase <a href='class.htm#HeroGrave'>HeroGrave</a> esta propiedad indica el número de guerreros que recibirán amuletos al visitar la tumba.</p><p>En objetos de la clase <a href='class.htm#Stonehenge'>Stonehenge</a> indica el poder acumulado para lanzar hechizos.</p>",
+            "description_en": "<p>Current stamina of the object. <a class='type' href='#Unit'>Units</a> spend stamina to use <a href='#Unit::SetSpecial:int_bool'>special skills</a>.</p><p>In <a href='class.htm#HeroGrave'>HeroGrave</a> objects this property indicates the number of warriors that will receive charms when they visit the grave.</p><p>In <a href='class.htm#Stonehenge'>Stonehenge</a> objects it indicates the accumulated power to cast spells.</p>",
             "related": ["Obj::maxstamina", "Obj::GetStaminaDecTime", "Obj::HealStamina:int", "Obj::SetStamina:int", "Query::HealStamina:int", "GetCmdStaminaCost:str", "SelAvgStamina"]
         }, {
             "id": "Obj::maxhealth",
@@ -1977,8 +1977,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "property",
             "params": [],
-            "description": "Máxima energía del objeto.",
-            "description_en": "Maximum stamina of the object.",
+            "description": "<p>Máxima energía del objeto.</p><p>En objetos de la clase <a href='class.htm#HeroGrave'>HeroGrave</a> esta propiedad indica el nivel del héroe que descansa en la tumba.</p>",
+            "description_en": "<p>Maximum stamina of the object.</p><p>In <a href='class.htm#HeroGrave'>HeroGrave</a> objects this property indicates the level of the hero lying in the grave.</p>",
             "related": ["Obj::stamina", "Obj::SetMaxStamina:int", "Unit::maxstamina", "ObjList::ObjFullStamina", "Settlement::max_stamina"]
         }, {
             "id": "Obj::sight",
@@ -3069,7 +3069,9 @@ const THE_OBJ = (function () {
                 "en": "This method crashes the game if the state is not valid.",
                 "es": "Este método crashea el juego si el estado no es válido."
             },
-            "params": [{"name": "estado", "name_en": "state", "type": 1, "is_ptr": false}]
+            "params": [{"name": "estado", "name_en": "state", "type": 1, "is_ptr": false}],
+            "description": "Cambia el <i>estado</i> del objeto. Cómo afecta cada estado al objeto parece depender de cada clase de objeto. Por ejemplo, las tumbas de héroe se cubren progresivamente de musgo al ir cambiando su estado desde 1 hasta 5.",
+            "description_en": "Changes the <i>state</i> of the object. How the state affects the object seems to depend on each class of object. For example, the hero graves get covered in moss progressively when changing their state from 1 up to 5."
         }, {
             "id": "Obj::AddItem:str",
             "name": "AddItem",
