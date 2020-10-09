@@ -3014,9 +3014,13 @@ const THE_OBJ = (function () {
                 "type": 6,
                 "is_ptr": false
             }, {"name": "tiempo", "name_en": "delay", "type": 1, "is_ptr": false}],
-            "description": "Inicia, tras un tiempo dado, la animación indicada en dirección al punto dado (si la animación no existe, crashea el juego). El tiempo dado se especificara en milésimas de segundo.",
-            "description_en": "Starts, after a given delay, the given animation towards the given point (if the animation does not exist, crashes the game). The given time is specified in milliseconds.",
+            "description": "Inicia, tras un tiempo dado, la animación indicada en dirección al punto dado. El tiempo dado se especificara en milésimas de segundo.",
+            "description_en": "Starts, after a given delay, the given animation towards the given point. The given time is specified in milliseconds.",
             "related": ["Obj::StartAnim:int_point", "Obj::PlayAnim:int_point"],
+            "dangerous": {
+                "en": "This method crashes the game if the animation does not exist.",
+                "es": "Este método crashea el juego si la animación no existe."
+            }
         }, {
             "id": "Obj::TimeToActionMoment",
             "name": "TimeToActionMoment",
@@ -3062,10 +3066,10 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "dangerous": {
-                "en": "This method crashes the game if the animation does not exist.",
-                "es": "Este método crashea el juego si la animación no existe."
+                "en": "This method crashes the game if the state is not valid.",
+                "es": "Este método crashea el juego si el estado no es válido."
             },
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "estado", "name_en": "state", "type": 1, "is_ptr": false}]
         }, {
             "id": "Obj::AddItem:str",
             "name": "AddItem",

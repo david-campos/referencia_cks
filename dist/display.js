@@ -109,9 +109,12 @@ function dangerousClass(func) {
     );
 }
 
-function dangerousIcon(func) {
+function dangerousIcon(func, forDangerousToo = false) {
     return func.dangerous
-        ? ''
+        ? (forDangerousToo
+                ? '<span class="material-icons">warning</span>'
+                : ''
+        )
         : (func.very_dangerous
                 ? '<span class="material-icons">error</span>'
                 : ''
@@ -120,7 +123,7 @@ function dangerousIcon(func) {
 
 function renderDangerousWarn(func) {
     if (!func.dangerous) return '';
-    return `<div class="dangerous-warn"><span class="material-icons">warning</span> ${func.dangerous[lang === '' ? 'es' : lang]}</div>`;
+    return `<div class="dangerous-warn">${dangerousIcon(func, true)} ${func.dangerous[lang === '' ? 'es' : lang]}</div>`;
 }
 
 function renderFunction(func, classes) {
@@ -274,7 +277,7 @@ function addTooltip(event) {
             }
             text = `<i>${name}:</i> ${text}`;
         }
-        text = `${dangerousIcon(referred)} ${text}`;
+        text = `${dangerousIcon(referred, true)} ${text}`;
         link.innerHTML += `<span class="tooltiptext ${dangerousClass(referred)}">${text}</span>`;
     }
     link.removeEventListener('pointerenter', addTooltip);
