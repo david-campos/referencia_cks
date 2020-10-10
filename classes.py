@@ -2,12 +2,15 @@ from __future__ import annotations
 
 import functools
 import json
+import os
 import sys
 from os import listdir
 from os.path import isfile, join
 from typing import List, Tuple, Optional
 
 from lxml import etree
+
+packs_folder = sys.argv[1]
 
 
 class Node:
@@ -22,6 +25,8 @@ class Node:
         self.methods = {}
         self.properties = {}
         self.default_commands = {}
+        self.animations = {}
+        self.states = {}
 
     def add_child(self, child):
         self.children.append(child)
@@ -86,13 +91,21 @@ class Node:
             propertis = {**propertis, **self.parent.properties_with_inherited(should_exclude)}
         return propertis
 
+    def add_state(self, idx, state):
+        self.states[idx] = state
+
+    def add_anim(self, idx, anim):
+        self.animations[idx] = anim
+
     def serialize_single(self):
         obj = {
             'properties': self.properties,
             'commands': self.commands,
             'no_commands': self.no_commands,
             'methods': self.methods,
-            'def_cmds': self.default_commands
+            'def_cmds': self.default_commands,
+            'states': self.states,
+            'anims': self.animations
         }
         if self.parent:
             obj['parent'] = self.parent_name
@@ -111,12 +124,14 @@ class Node:
                 'no_commands': self.no_commands,
                 'methods': self.methods,
                 'def_cmds': self.default_commands,
-                'children': children
+                'children': children,
+                'states': self.states,
+                'anims': self.animations
             }
         }
 
 
-folder = sys.argv[1]
+folder = packs_folder + '/DATA/CLASSES/'
 class_files = [f for f in listdir(folder) if isfile(join(folder, f))]
 parser = etree.XMLParser(remove_blank_text=True)
 nodes = []
@@ -126,6 +141,29 @@ for file in class_files:
     if 'id' in root.attrib:
         node = Node(root.attrib['id'], root.attrib['parent'] if 'parent' in root.attrib else '')
         nodes.append(node)
+        if 'entity' in root.attrib and len(root.attrib['entity']) > 0:
+            entity_file = packs_folder + root.attrib['entity'].upper()
+            if os.path.exists(entity_file):
+                tree_entity = etree.parse(entity_file, parser=parser)
+                entity_root = tree_entity.getroot()
+                states = entity_root.find('states')
+                if states is not None:
+                    for state_tag in states:
+                        state = {'name': state_tag.attrib['name']}
+                        if 'anim_idx' in state_tag.attrib and state_tag.attrib['anim_idx'] != '65536':
+                            state['anim_idx'] = state_tag.attrib['anim_idx']
+                        if 'anim_frame' in state_tag.attrib and state_tag.attrib['anim_frame'] != '65536':
+                            state['anim_frame'] = state_tag.attrib['anim_frame']
+                        node.add_state(state_tag.attrib['idx'], state)
+                anims = entity_root.find('anims')
+                if anims is not None:
+                    for anim_tag in anims:
+                        node.add_anim(anim_tag.attrib['idx'], {
+                            'name': anim_tag.attrib['name'],
+                            'startstate': anim_tag.attrib['startstate'],
+                            'endstate': anim_tag.attrib['endstate'],
+                            'duration': anim_tag.attrib['duration']
+                        })
         for properties in root.iter('properties'):
             for key in properties.attrib:
                 node.add_property(key, properties.attrib[key])
@@ -135,7 +173,7 @@ for file in class_files:
             else:
                 file = method_tag.attrib['vs']
                 params = []
-                with open(folder + "/../../" + method_tag.attrib['vs'].upper()) as f:
+                with open(packs_folder + method_tag.attrib['vs'].upper()) as f:
                     line = ""
                     while line == "":
                         line = f.readline().strip()
@@ -168,7 +206,7 @@ for node in nodes:
                 node.set_parent(parent)
                 break
 
-folder = sys.argv[2]
+folder = packs_folder + "DATA/COMMANDS"
 command_files = [f for f in listdir(folder) if isfile(join(folder, f))]
 commands = {}
 for file in command_files:

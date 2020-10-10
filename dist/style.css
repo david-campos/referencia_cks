@@ -228,7 +228,7 @@ h3 {
     text-decoration: none;
 }
 
-.meth, .prop, .op {
+.meth, .prop, .op, .state-name, .anim-name {
     color: #005580;
 }
 
@@ -567,7 +567,9 @@ table.class-list td:hover .path {
     cursor: pointer;
 }
 
-.class-details .def-cmd-tgt {
+.class-details .def-cmd-tgt,
+.class-details .state-idx,
+.class-details .anim-idx {
     color: #800000;
 }
 

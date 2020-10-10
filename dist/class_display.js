@@ -115,20 +115,45 @@ window.onload = function () {
                     })</div>`).join("\n")
                 }</div>`;
         }
+        const classStates = states(className);
+        const states_html = Object.entries(classStates).map(([cls, stts]) =>
+            (cls === className ? '' : `<h3>${inherited} ${cls}</h3>`)
+            + `<div class='details'>${Object.entries(stts).map(([idx, state]) => {
+                const texts = [];
+                if (state.anim_idx) texts.push(`<span>animation ${state.anim_idx}</span>`);
+                if (state.anim_frame) texts.push(`<span>frame ${state.anim_frame}</span>`);
+                return `<div data-label="${state.name}"><span class='state-idx'>${idx}</span>. <span class='state-name'>${state.name}</span>${
+                    texts.length > 0 ? `: ${texts.join(', ')}` : ''
+                }</div>`;
+            }).join("")}</div>`
+        ).join("");
+        const anims_html = Object.entries(animations(className)).map(([cls, anims]) =>
+            (cls === className ? '' : `<h3>${inherited} ${cls}</h3>`)
+            + `<div class='details'>${Object.entries(anims).map(([idx, anim]) =>
+                `<div data-label="${anim.name}"><span class='anim-idx'>${idx}</span>. <span class='anim-name'>${anim.name}</span>`
+            + `(<span class='anim-duration'>${anim.duration}</span>ms): `
+            + `state <span class='anim-start'>${anim.startstate}</span> to <span class='anim-end'>${anim.endstate}</span></div>`
+            ).join("")}</div>`
+        ).join("");
         const mtd = ["Methods", "Métodos"][lang];
         const cmd = ["Commands", "Comandos"][lang];
         const defcmd = ["Default commands", "Comandos por defecto"][lang];
         const prp = ["Properties", "Propiedades"][lang];
         const children = ["Direct children", "Hijos directos"][lang];
+        const sts = ["States", "Estados"][lang];
+        const anm = ["Animations", "Animaciones"][lang];
         container.innerHTML = `<h1><span class="class-route">${route(className).map(
             cls => `<a href='#${cls}' onclick='setTimeout(() => location.reload())'>${cls}</a>`
             ).join("&nbsp;/ ")}&nbsp;/</span><br>${className}</h1>`
-            + `<details class="class-details"><summary><h2>${children}</h2></summary>${children_html}</details> `
-            + `<details class="class-details" open><summary><h2>${cmd}</h2></summary>${commands_html}</details> `
-            + `<details class="class-details"><summary><h2>${defcmd}</h2></summary><p>${
-                ["* = with control key", "* = con tecla control"][lang]}</p>${defcommands_html}</details> `
-            + `<details class="class-details" open><summary><h2>${prp}</h2></summary>${properties_html}</details> `
-            + `<details class="class-details"><summary><h2>${mtd}</h2></summary>${methods_html}</details> `;
+            + (childrenNodes.length > 0 ? `<details class="class-details"><summary><h2>${children}</h2></summary>${children_html}</details>` : '')
+            + (properties_html.length > 0 ? `<details class="class-details" open><summary><h2>${prp}</h2></summary>${properties_html}</details>` : '')
+            + (commands_html.length > 0 ? `<details class="class-details" open><summary><h2>${cmd}</h2></summary>${commands_html}</details>` : '')
+            + (defcommands_html.length > 0 ? `<details class="class-details"><summary><h2>${defcmd}</h2></summary><p>${
+                ["* = with control key", "* = con tecla control"][lang]}</p>${defcommands_html}</details>` : '')
+            + (methods_html.length > 0 ? `<details class="class-details"><summary><h2>${mtd}</h2></summary>${methods_html}</details>` : '')
+            + (states_html.length > 0 ? `<details class="class-details"><summary><h2>${sts}</h2></summary>${states_html}</details>` : '')
+            + (anims_html.length > 0 ? `<details class="class-details"><summary><h2>${anm}</h2></summary>${anims_html}</details>` : '')
+        ;
         remark(getRemarkedFromHash());
     } else {
         container.innerText = ["Class not found.", "Clase no encontrada"][lang];
