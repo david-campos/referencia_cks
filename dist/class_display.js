@@ -40,7 +40,8 @@ window.onload = function () {
     const lang = location.search === '?en' ? 0 : 1;
     const className = getClassFromHash();
     if (!(className in CLASSES_DETAILS)) {
-        location.replace('#Object');
+        const remarked = getRemarkedFromHash();
+        location.replace(`${location.query || ''}#Object${remarked ? `.${remarked}` : ''}`);
         window.onload(null);
         return;
     }
@@ -59,7 +60,8 @@ window.onload = function () {
     }
     classSelect.innerHTML = selectHtml;
     classSelect.addEventListener('change', () => {
-        location.replace("#" + classSelect.value);
+        const remarked = getRemarkedFromHash();
+        location.replace(`${location.query || ''}#${classSelect.value}${remarked ? `.${remarked}` : ''}`);
         window.onload(null);
     });
 

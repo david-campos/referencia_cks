@@ -2965,8 +2965,8 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [{"name": "animacion", "name_en": "animation", "type": 1, "is_ptr": false}, {"name": "punto", "name_en": "pt", "type": 6, "is_ptr": false}],
             "very_dangerous": true,
-            "description": "Crashea el juego al ser llamada. Aparece en algunos scripts en DATA, por lo que debería haber alguna forma posible de usarlo. Sin embargo, todas las pruebas que el autor de esta documentación ha hecho han llevado al crasheo del juego, incluso probando números de animación copiados directamente de esos scripts.",
-            "description_en": "Crashes the game when called. It shows up in some of the scripts in DATA, so there should be a way to make it work. However, every test the author of this documentation conducted eventually lead to the game crashing, even when trying some animation numbers copied directly from those scripts.",
+            "description": "Crashea el juego al ser llamada. Aparece en algunos scripts en DATA, por lo que debería haber alguna forma posible de usarlo. Sin embargo, todas las pruebas que el autor de esta documentación ha hecho han llevado al crasheo del juego, incluso probando números de animación copiados directamente de esos scripts. En <a href='class.htm'>esta página</a> puedes consultar las animaciones posibles para una clase dada.",
+            "description_en": "Crashes the game when called. It shows up in some of the scripts in DATA, so there should be a way to make it work. However, every test the author of this documentation conducted eventually lead to the game crashing, even when trying some animation numbers copied directly from those scripts. You can check all the possible animations for a given class in <a href='class.htm'>this page</a>.",
             "related": ["Obj::StartAnim:int_point", "Obj::GetAnimTime:int", "Obj::StartDelayedAnim:int_point_int", "Obj::GetAnim"]
         }, {
             "id": "Obj::GetAnimTime:int",
@@ -2977,8 +2977,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "animacion", "name_en": "animation", "type": 1, "is_ptr": false}],
-            "description_en": "Returns the duration time (in milliseconds) of the given animation.",
-            "description": "Retorna la duración (en milésimas de segundo) de la animación dada.",
+            "description": "Retorna la duración (en milésimas de segundo) de la animación dada. En <a href='class.htm'>esta página</a> puedes consultar las animaciones posibles para una clase dada.",
+            "description_en": "Returns the duration time (in milliseconds) of the given animation. You can check all the possible animations for a given class in <a href='class.htm'>this page</a>.",
             "related": ["Obj::TimeToAnimFinish", "Obj::TimeToActionMoment", "Obj::StartAnim:int_point", "Obj::StartDelayedAnim:int_point_int", "Obj::GetAnim", "Obj::PlayAnim:int_point"],
             "dangerous": {
                 "en": "This method crashes the game if the animation does not exist.",
@@ -2993,8 +2993,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "animacion", "name_en": "animation", "type": 1, "is_ptr": false}, {"name": "pt", "type": 6, "is_ptr": false}],
-            "description": "Inicia la animación indicada en dirección al punto dado.",
-            "description_en": "Starts the given animation towards the given point.",
+            "description": "Inicia la animación indicada en dirección al punto dado. En <a href='class.htm'>esta página</a> puedes consultar las animaciones posibles para una clase dada.",
+            "description_en": "Starts the given animation towards the given point. You can check all the possible animations for a given class in <a href='class.htm'>this page</a>.",
             "related": ["Obj::StartDelayedAnim:int_point_int", "Obj::PlayAnim:int_point"],
             "dangerous": {
                 "en": "This method crashes the game if the animation does not exist.",
@@ -3014,8 +3014,8 @@ const THE_OBJ = (function () {
                 "type": 6,
                 "is_ptr": false
             }, {"name": "tiempo", "name_en": "delay", "type": 1, "is_ptr": false}],
-            "description": "Inicia, tras un tiempo dado, la animación indicada en dirección al punto dado. El tiempo dado se especificara en milésimas de segundo.",
-            "description_en": "Starts, after a given delay, the given animation towards the given point. The given time is specified in milliseconds.",
+            "description": "Inicia, tras un tiempo dado, la animación indicada en dirección al punto dado. El tiempo dado se especificara en milésimas de segundo. En <a href='class.htm'>esta página</a> puedes consultar las animaciones posibles para una clase dada.",
+            "description_en": "Starts, after a given delay, the given animation towards the given point. The given time is specified in milliseconds. You can check all the possible animations for a given class in <a href='class.htm'>this page</a>.",
             "related": ["Obj::StartAnim:int_point", "Obj::PlayAnim:int_point"],
             "dangerous": {
                 "en": "This method crashes the game if the animation does not exist.",
@@ -3054,8 +3054,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description": "Retorna el número de la animación actualmente reproducida por el objeto.",
-            "description_en": "Returns the number of the current animation of the object.",
+            "description": "Retorna el número de la animación actualmente reproducida por el objeto. En <a href='class.htm'>esta página</a> puedes consultar las animaciones posibles para una clase dada.",
+            "description_en": "Returns the number of the current animation of the object. You can check all the possible animations for a given class in <a href='class.htm'>this page</a>.",
             "related": ["Obj::StartAnim:int_point", "Obj::StartDelayedAnim:int_point_int", "Obj::GetAnimTime:int"]
         }, {
             "id": "Obj::SetState:int",
@@ -3070,8 +3070,8 @@ const THE_OBJ = (function () {
                 "es": "Este método crashea el juego si el estado no es válido."
             },
             "params": [{"name": "estado", "name_en": "state", "type": 1, "is_ptr": false}],
-            "description": "Cambia el <i>estado</i> del objeto. Cómo afecta cada estado al objeto parece depender de cada clase de objeto. Por ejemplo, las tumbas de héroe se cubren progresivamente de musgo al ir cambiando su estado desde 1 hasta 5.",
-            "description_en": "Changes the <i>state</i> of the object. How the state affects the object seems to depend on each class of object. For example, the hero graves get covered in moss progressively when changing their state from 1 up to 5."
+            "description": "Cambia el <i>estado</i> del objeto. Cómo afecta cada estado al objeto parece depender de cada clase de objeto. Por ejemplo, las tumbas de héroe se cubren progresivamente de musgo al ir cambiando su estado desde 1 hasta 5. En <a href='class.htm'>esta página</a> puedes consultar los estados para una clase dada.",
+            "description_en": "Changes the <i>state</i> of the object. How the state affects the object seems to depend on each class of object. For example, the hero graves get covered in moss progressively when changing their state from 1 up to 5. In <a href='class.htm'>this page</a> you can check the states for a given class."
         }, {
             "id": "Obj::AddItem:str",
             "name": "AddItem",
@@ -3080,7 +3080,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "nombre_item", "name_en": "item_name", "type": 5, "is_ptr": false}],
+            "description": "Añade el ítem con el nombre de script dado al inventario del objeto. Si el objeto tiene el inventario lleno o no existe un ítem con el nombre de script dado, no se hará nada. Devuelve <tt>true</tt> si el ítem ha sido añadido al inventario del objeto, o <tt>false</tt> si no.",
+            "description_en": "Adds the item with the given script name to the inventory of the object. If the object has a full inventory or an item with the given script name does not exist, nothing will happen. It returns <tt>true</tt> if the item has been added to the inventory of the object, or <tt>false</tt> otherwise.",
+            "related": ["Obj::free_item_slots", "Obj::item_count", "Obj::items_count", "Obj::max_items", "Obj::RemoveItem:str", "Obj::ExchangeItem:Item_str", "Obj::GiveItem:Item_Obj", "Obj::OpenItemHolder:ItemHolder",  "ItemHolder::AddItem:str", "Squad::TakeNearbyItems:int", "GetItem:str"]
         }, {
             "id": "Obj::GiveItem:Item_Obj",
             "name": "GiveItem",
@@ -3089,7 +3092,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 12, "is_ptr": false}, {"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "item", "type": 12, "is_ptr": false}, {"name": "receptor", "name_en": "receiver", "type": 11, "is_ptr": false}],
+            "description": "Intenta transferir un ítem desde el objeto al receptor, y retorna si ha sido posible. El ítem <tt>item</tt> será transferido a <tt>receptor</tt> sólo si el objeto lo posee y <tt>receptor</tt> tiene <a href='#Obj::free_item_slots'>huecos para ítems libres</a> para recibirlo. No tiene en cuenta la posición del objeto o el <tt>receptor</tt>. Devuelve <tt>true</tt> en caso de éxito, o <tt>false</tt> en caso contrario.",
+            "description_en": "Attempts to transfer an item from the object to the receiver, and returns whether it has succeeded. The item <tt>item</tt> will be transferred to <tt>receiver</tt> only if the object owns it and the <tt>receiver</tt> has enough <a href='#Obj::free_item_slots'>free item slots</a> to receive it. This method does not care about the positions of the object or the <tt>receiver</tt>. It will return <tt>true</tt> in case of success, and <tt>false</tt> otherwise.",
+            "related": ["Obj::free_item_slots", "Obj::item_count", "Obj::items_count", "Obj::max_items", "Obj::RemoveItem:str", "Obj::DropItem:Item_point", "Obj::FindItem:str", "Obj::GetItem:int", "Obj::ExchangeItem:Item_str", "Obj::AddItem:str", "Obj::OpenItemHolder:ItemHolder",  "ItemHolder::AddItem:str", "Squad::TakeNearbyItems:int"]
         }, {
             "id": "Obj::OpenItemHolder:ItemHolder",
             "name": "OpenItemHolder",
@@ -3098,7 +3104,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 21, "is_ptr": false}]
+            "params": [{"name": "contenedor", "name_en": "holder", "type": 21, "is_ptr": false}],
+            "description": "Intenta obtener tantos ítems como sea posible del contenedor, y retorna si se obtuvo algún ítem. El método no tiene en cuenta la distancia hasta el contenedor. Se transferirán tantos ítems como sea posible mientras <tt>contenedor</tt> tenga ítems que ser recogidos y el objeto tenga <a href='#Obj::free_item_slots'>espacios libres</a> para ellos. Devuelve <tt>true</tt> si al menos un objeto ha sido recogido, o <tt>false</tt> si no se ha recogido ninguno.",
+            "description_en": "Tries to obtain as many items as possible from the holder, and returns whether any item has been transferred. The method does not have in account the distance betweent he object and <tt>holder</tt>. As many items as possible will be transferred, as long as the <tt>holder</tt> has items to be taken and the object has <a href='#Obj::free_item_slots'>free item slots</a> for them. It returns <tt>true</tt> if at least one item has been picked up, or <tt>false</tt> otherwise.",
+            "related": ["Obj::free_item_slots", "Obj::item_count", "Obj::items_count", "Obj::max_items", "Obj::AsItemHolder", "Obj::ExchangeItem:Item_str", "Obj::FindItem:str", "Obj::GetItem:int", "Obj::GiveItem:Item_Obj", "Obj::HasItem:str", "Obj::PutItem:Item_ItemHolder", "Obj::RemoveItem:int", "ItemHolder::HasItem:str", "ItemHolder::RemoveItem:str", "Squad::TakeNearbyItems:int"]
         }, {
             "id": "Obj::PutItem:Item_ItemHolder",
             "name": "PutItem",
@@ -3107,7 +3116,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 12, "is_ptr": false}, {"name": "number", "type": 21, "is_ptr": false}]
+            "params": [{"name": "item", "type": 12, "is_ptr": false}, {"name": "contenedor", "name_en": "holder", "type": 21, "is_ptr": false}],
+            "description": "Intenta poner el ítem dado en el contenedor, y retorna si ha sido posible. El método no tiene en cuenta la distancia desde el objeto al contenedor, pero sí que el objeto posea el ítem y que el contenedor tenga <a href='#Obj::free_item_slots'>espacios libres</a> para objetos. Devuelve <tt>true</tt> si se ha puesto el item en el contenedor, o <tt>false</tt> si no.",
+            "description_en": "Attempts to put the given item into the holder, and returns whether it was possible to do so. The method does not have in account the distance between the object and <tt>holder</tt>, but yes the possession of the item by the object and the <a href='#Obj::free_item_slots'>free item slots</a> in the holder. Returns <tt>true</tt> if the item gets put into the holder, or <tt>false</tt> otherwise.",
+            "related": ["Obj::free_item_slots", "Obj::item_count", "Obj::items_count", "Obj::max_items", "Obj::AsItemHolder", "Obj::ExchangeItem:Item_str", "Obj::FindItem:str", "Obj::GetItem:int", "Obj::GiveItem:Item_Obj", "Obj::HasItem:str", "Obj::DropItem:Item_point", "Obj::OpenItemHolder:ItemHolder", "Obj::RemoveItem:int", "ItemHolder::HasItem:str", "ItemHolder::RemoveItem:str", "Squad::TakeNearbyItems:int"]
         }, {
             "id": "Obj::DropItem:Item_point",
             "name": "DropItem",
@@ -3116,7 +3128,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 12, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "item", "type": 12, "is_ptr": false}, {"name": "punto", "name_en": "pt", "type": 6, "is_ptr": false}],
+            "description": "Intenta dejar el item dado en una <a href='class.htm#DefItemHolder'>cartera de cuero</a> en el suelo, en el punto indicado. No tiene en cuenta la distancia, pero sí comprueba que el objeto posea el ítem que se desea dejar. En los tests realizados por el autor, el método parece devolver siempre <tt>false</tt>.",
+            "description_en": "Attempts to leave the item in a <a href='class.htm#DefItemHolder'>leather bag</a> on the floor, at the given point. It does not care about distance to the point, but it does check the object possesses the item we want to drop. In the tests performed by the author of these lines, the meth od returns always <tt>false</tt>.",
+            "related": ["Obj::free_item_slots", "Obj::item_count", "Obj::items_count", "Obj::max_items", "Obj::ExchangeItem:Item_str", "Obj::FindItem:str", "Obj::GetItem:int", "Obj::DropItem:Item_point", "Obj::GiveItem:Item_Obj", "Obj::HasItem:str", "Obj::RemoveItem:int", "ItemHolder::RemoveItem:str", "Squad::TakeNearbyItems:int"]
         }, {
             "id": "Obj::FindItem:str",
             "name": "FindItem",
@@ -3125,7 +3140,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "nombre", "name_en": "name", "type": 5, "is_ptr": false}],
+            "description": "Busca en los ítems del objeto el primer ítem con el nombre de scripts dado. Se puede comprobar si se encontró el ítem comprobando si el ítem retornado es válido con <a href='#Item::IsValid'>Item::IsValid</a>.",
+            "description_en": "Searchs for an item with the given scripts name among the items carried by the object. If no item with the given name is found, an invalid item will be returned (which can be checked with <a href='#Item::IsValid'>Item::IsValid</a>).",
+            "related": ["Obj::GetItem:int", "Obj::GetItemIndex:Item"]
         }, {
             "id": "Obj::RemoveItem:int",
             "name": "RemoveItem",
@@ -3134,7 +3152,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "indice", "name_en": "index", "type": 1, "is_ptr": false}],
+            "description": "Elimina el ítem en el índice dado del inventario del objeto. Los índices de los ítems empiezan en 1 (no en 0).",
+            "description_en": "Removes the item at the given index from the item slots of the object. The indices of the items start by 1 (not 0).",
+            "related": ["Obj::GetItemIndex:Item", "Obj::GetItem:int", "Obj::RemoveItem:str", "Obj::RemoveItemsOfType:str", "Obj::RemoveAllItems"]
         }, {
             "id": "Obj::RemoveItem:str",
             "name": "RemoveItem",
@@ -3143,7 +3164,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "nombre", "name_en": "name", "type": 5, "is_ptr": false}],
+            "description": "Elimina un ítem con el nombre de scripts dado del inventario del objeto.",
+            "description_en": "Removes one item with the given scripting name from the item slots of the object.",
+            "related": ["Obj::FindItem:str", "Obj::RemoveItemsOfType:str", "Obj::RemoveItem:int", "Obj::DropItem:Item_point", "Obj::RemoveAllItems"]
         }, {
             "id": "Obj::RemoveAllItems",
             "name": "RemoveAllItems",
@@ -3152,7 +3176,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Elimina todos los ítems del inventario del objeto.",
+            "descriptio_en": "Removes all the items the object carries.",
+            "related": ["Obj::RemoveItemsOfType:str", "Obj::RemoveItem:str", "Obj::RemoveItem:int"]
         }, {
             "id": "Obj::ExchangeItem:Item_str",
             "name": "ExchangeItem",
@@ -3161,7 +3188,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 12, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "reemplazable", "name_en": "replaceable", "type": 12, "is_ptr": false}, {"name": "nombre_reemplazo", "name_en": "replacement_name", "type": 5, "is_ptr": false}],
+            "description": "Intercambia un ítem por otro ítem nuevo. El nuevo ítem será una instancia del ítem con nombre de scripts <tt>nombre_reemplazo</tt> y ocupará el mismo índice que ocupaba el ítem reemplazado. Devuelve <tt>true</tt> si tiene éxito o <tt>false</tt> si no (por ejemplo, si no existe un ítem con el nombre dado en <tt>nombre_reemplazo</tt>).",
+            "description_en": "Exchanges an item for a new one. The new item will be an instance of the item with the scripting name <tt>replacement_name</tt> and it will occupy the same index the replaced item occupied. Returns <tt>true</tt> if the replacement is successful, or <tt>false</tt> otherwise (for example, if no item with scripting name <tt>replacement_name</tt> exists).",
+            "related": ["Obj::GetItemIndex:Item", "Obj::RemoveItem:int", "Obj::AddItem:str", "Obj::FindItem:str", "Obj::GiveItem:Item_Obj"],
         }, {
             "id": "Obj::GetItem:int",
             "name": "GetItem",
@@ -3171,9 +3201,9 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "indice", "name_en": "index", "type": 1, "is_ptr": false}],
-            "description": "Obtiene el <a href='#Item'>Item</a> portado por el objeto en el índice indicado. Los índices de los ítems para este método comienzan en 1 (en lugar de en 0).",
-            "description_en": "Gets the <a href='#Item'>Item</a> held by the object at the given index. The indices start by 1 (rather than 0).",
-            "related": ["Obj::free_item_slots", "Obj::item_count", "Obj::items_count", "Obj::max_items", "Obj::AddItem:str", "Obj::AsItemHolder", "Obj::DropItem:Item_point", "Obj::ExchangeItem:Item_str", "Obj::FindItem:str", "Obj::GetItemIndex:Item", "Obj::GiveItem:Item_Obj", "Obj::HasItem:str", "Obj::OpenItemHolder:ItemHolder", "Obj::PutItem:Item_ItemHolder", "Obj::RemoveAllItems", "Obj::RemoveItem:int", "Obj::RemoveItem:str", "Obj::RemoveItemsOfType:str", "Obj::UseItem:str", "Squad::TakeNearbyItems:int", "GetItem:str"]
+            "description": "Obtiene el <a href='#Item'>Item</a> portado por el objeto en el índice indicado. Los índices de los ítems comienzan en 1 (en lugar de en 0). Si no existe un ítem con el índice dado se devuelve un ítem inválido que puede comprobarse con <a href='#Item::IsValid'>Item::IsValid</a>.",
+            "description_en": "Gets the <a href='#Item'>Item</a> held by the object at the given index. Item indices start by 1 (rather than 0). If no item with the given index exists, an invalid item is returned and can be checked with <a href='#Item::IsValid'>Item::IsValid</a>.",
+            "related": ["Obj::AddItem:str", "Obj::FindItem:str", "Obj::GetItemIndex:Item", "Obj::HasItem:str"]
         }, {
             "id": "Obj::RemoveItemsOfType:str",
             "name": "RemoveItemsOfType",
@@ -3182,7 +3212,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "nombre", "name_en": "name", "type": 5, "is_ptr": false}],
+            "description": "Elimina todos los ítems de un tipo del inventario del objeto. El nombre dado es el nombre de scripting de los ítems a eliminar. Devuelve la cantidad de objetos eliminados.",
+            "description_en": "Removes all the items of a type from the object items. The given name is the scripting name of the items to remove. Returns the amount of removed objects.",
+            "related": ["Obj::RemoveAllItems", "Obj::RemoveItem:str", "Obj::RemoveItem:int"]
         }, {
             "id": "Obj::GetItemIndex:Item",
             "name": "GetItemIndex",
@@ -3191,7 +3224,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 12, "is_ptr": false}]
+            "params": [{"name": "item", "type": 12, "is_ptr": false}],
+            "description": "Devuelve el índice del ítem en el objeto. Los índices de ítems comienzan en 1 (en vez de en 0). En caso de que el ítem sea inválido o no se encuentre en el inventario del objeto devuelve <tt>-1</tt>.",
+            "description_en": "Returns the index of the item within the object. The item indices start by 1 (rather than 0). In case the item is invalid or not found in the object inventory returns <tt>-1</tt>.",
+            "related": ["Obj::GetItem:int", "Obj::RemoveItem:int"]
         }, {
             "id": "Obj::items_count",
             "name": "items_count",
@@ -3200,7 +3236,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Cantidad de ítems que el objeto porta en su inventario. No parece haber ninguna diferencia entre esta propiedad y <a href='#Obj::item_count'>Obj::item_count</a>.",
+            "description_en": "Amount of items in the object inventory. There is, apparently, no difference between this property and <a href='#Obj::item_count'>Obj::item_count</a>.",
+            "related": ["Obj::free_item_slots", "Obj::item_count", "Obj::max_items"]
         }, {
             "id": "Obj::free_item_slots",
             "name": "free_item_slots",
@@ -3209,7 +3248,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Cantidad de espacios para ítems disponibles en el objeto. Este número debería ser igual a <a href='#Obj::max_items'>Obj::max_items</a> menos <a href='#Obj::items_count'>Obj::items_count</a>.",
+            "description_en": "Amount of free item slots available in the object. This number should be equals to <a href='#Obj::max_items'>Obj::max_items</a> minus <a href='#Obj::items_count'>Obj::items_count</a>.",
+            "related": ["Obj::item_count", "Obj::items_count", "Obj::max_items"]
         }, {
             "id": "Obj::item_count",
             "name": "item_count",
@@ -3218,7 +3260,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Cantidad de ítems que el objeto porta en su inventario. No parece haber ninguna diferencia entre esta propiedad y <a href='#Obj::items_count'>Obj::items_count</a>.",
+            "description_en": "Amount of items in the object inventory. There is, apparently, no difference between this property and <a href='#Obj::items_count'>Obj::items_count</a>.",
+            "related": ["Obj::free_item_slots", "Obj::items_count", "Obj::max_items"]
         }, {
             "id": "Obj::max_items",
             "name": "max_items",
@@ -3227,7 +3272,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Máxima cantidad de ítems que puede tener el objeto.",
+            "description_en": "Maximum amount of items the object can have.",
+            "related": ["Obj::free_item_slots", "Obj::items_count", "Obj::item_count"]
         }, {
             "id": "Obj::ClipDestToMap:point",
             "name": "ClipDestToMap",
@@ -3236,7 +3284,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "dest", "type": 6, "is_ptr": false}],
+            "description": "Restringe el punto al mapa. Es decir, obtiene el punto dentro del mapa más cercano a <tt>dest</tt>. Como vemos, <tt>objeto.ClipDestToMap(punto)</tt> equivaldría a <tt>punto.IntoRect(GetMapRect())</tt>.",
+            "description_en": "Restricts the point to the map. I.e., obtains the closest point inside the map to <tt>dest</tt>. As we can see, <tt>object.ClipDestToMap(point)</tt> is equivalent to <tt>point.IntoRect(GetMapRect())</tt>.",
+            "related": ["ptr.point::IntoRect:rect", "GetMapRect", "GetMapSize"]
         }, {
             "id": "Obj::pr:str",
             "name": "pr",
@@ -3245,7 +3296,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "mensaje", "name_en": "message", "type": 5, "is_ptr": false}],
+            "description": "Imprime el mensaje a la consola del juego si el objeto está en <a href='#Obj::GetDebug'>modo de debug</a>.",
+            "description_en": "Prints the message to the console of the game if the object is in <a href='#Obj::GetDebug'>debug mode</a>.",
+            "related": ["Obj::pr:int", "Obj::pr:Obj", "pr:str", "pr:int", "pr:bool"]
         }, {
             "id": "Obj::pr:int",
             "name": "pr",
@@ -3254,7 +3308,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "numero", "name_en": "number", "type": 1, "is_ptr": false}],
+            "description": "Imprime el número a la consola del juego si el objeto está en <a href='#Obj::GetDebug'>modo de debug</a>.",
+            "description_en": "Prints the number to the console of the game if the object is in <a href='#Obj::GetDebug'>debug mode</a>.",
+            "related": ["Obj::pr:str", "Obj::pr:Obj", "pr:str", "pr:int", "pr:bool"]
         }, {
             "id": "Obj::pr:Obj",
             "name": "pr",
@@ -3263,7 +3320,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "description": "Imprime lo que parece ser una identificación de la instancia de objeto a la consola del juego si el objeto está en <a href='#Obj::GetDebug'>modo de debug</a>.",
+            "description_en": "Prints what seems to be an identification of the object instance to the console of the game if the object is in <a href='#Obj::GetDebug'>debug mode</a>.",
+            "params": [{"name": "objeto", "name_en": "object", "type": 11, "is_ptr": false}],
+            "related": ["Obj::pr:str", "Obj::pr:int", "pr:str", "pr:int", "pr:bool"]
         }, {
             "id": "Obj::GetDebug",
             "name": "GetDebug",
@@ -3272,7 +3332,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve <tt>true</tt> si el objeto está en modo de debug. Si el objeto está en modo de debug, los métodos <tt>pr</tt> del objeto imprimirán a la consola del juego. Algunos scripts internos del juego también imprimen a la consola cuando el objeto está en modo debug.",
+            "description_en": "Return <tt>true</tt> if the object is in debug mode. If the object is in debug mode, the <tt>pr</tt> methods of the object will print to the console of the game. Some internal scripts of the game print to the console as well when the object is in debug mode.",
+            "related": ["Obj::SetDebug:bool", "Obj::pr:str", "Obj::pr:int", "Obj::pr:Obj"]
         }, {
             "id": "Obj::SetDebug:bool",
             "name": "SetDebug",
@@ -3281,7 +3344,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 2, "is_ptr": false}]
+            "params": [{"name": "activar", "name_en": "enable", "type": 2, "is_ptr": false}],
+            "description": "Activa o desactiva el modo de debug del objeto. Ver <a href='#Obj::GetDebug'>Obj::GetDebug</a> para más información sobre el modo de debug de los objetos.",
+            "description_en": "Enables or disables the debug mode of the object. See <a href='#Obj::GetDebug'>Obj::GetDebug</a> for more information about the debug mode of the objects.",
+            "related": ["Obj::GetDebug", "Obj::pr:str", "Obj::pr:int", "Obj::pr:Obj"]
         }, {
             "id": "Obj::class",
             "name": "class",
@@ -3290,7 +3356,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Nombre de la clase del objeto. La clase del objeto determina sus comandos, su apariencia, sus propiedades, etc. En <a href='class.htm'>esta página</a> puedes consultar propiedades, métodos y demás para cualquier clase del juego original. En <a href='class_list.htm'>esta otra</a> puedes visualizar la jerarquía de clases.",
+            "description_en": "Name of the object class. The class of the object determines its commands, its appearance, its properties, etc. You can find properties, methods and more for any class of the original game in <a href='class.htm'>this page</a>. The hierarchy of classes can be visualised in <a href='class_list.htm'>this page</a>.",
+            "related": ["Obj::IsHeirOf:str", "Building::GetSentryClassName", "ObjList::ObjClass:str", "Settlement::FirstBldClass", "_ListClasses", "GetClassHealt:str", "GetClassRace:str", "GetRandomHeroClass:str_int"]
         }, {
             "id": "Obj::command",
             "name": "command",
@@ -3299,7 +3368,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Nombre del comando ejecutado actualmente por el objeto.",
+            "description_en": "Name of the command currently executed by the object.",
+            "related": ["Obj::command:int", "Obj::SetCommand:str", "Obj::AddCommand:bool_str"]
         }, {
             "id": "Obj::command:int",
             "name": "command",
@@ -3308,7 +3380,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "n", "type": 1, "is_ptr": false}],
+            "description": "Nombre del n-ésimo comando en la cola del objeto, empezando por cero. Nótese que el comando con índice <tt>0</tt> es el devuelto por <a href='#Obj::command'>Obj::command</a>.",
+            "description_en": "Name of the n-th command in the command queue of the object, zero-based. Notice that the command with index <tt>0</tt> is the one returned <a href='#Obj::command'>Obj::command</a>.",
+            "related": ["Obj::command", "Obj::SetCommand:str", "Obj::AddCommand:bool_str"]
         }, {
             "id": "cmdparam",
             "name": "cmdparam",
@@ -3317,7 +3392,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "En la programación de comandos en los archivos del juego, este método devuelve el parámetro pasado al comando. Este parámetro tiene significados distintos: por ejemplo, en el comando <tt>train</tt> este parámetro se utiliza para indicar el tipo de unidad a reclutar.",
+            "description_en": "In the implementation of commands, in the files of the game, this method returns the parameter passed to the command. This parameter has different meanings: for example, in the command <tt>train</tt>, this parameter is used to specify the type of unit to be trained.",
+            "related": ["cmdcost_food", "cmdcost_gold", "cmdcost_pop", "cmdcost_stamina", "cmdwaiting"]
         }, {
             "id": "cmdwaiting",
             "name": "cmdwaiting",
@@ -3326,7 +3404,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "En la programación de comandos en los archivos del juego, este método devuelve el comando en espera. Esto se usa con el menú de formaciones. De todos los comandos de menú de formación posibles del héroe, solo se renderiza el que corresponde a la formación actual del héroe (esto se puede ver en <tt>DATA/SUBAI/HERO_FORMATION_MENU_VERIFY.VS</tt>, referenciado en <tt>DATA/COMMANDS/HERO.XML</tt>). Tras pulsar el icono del menú de formación, el comando pulsado es devuelto en <tt>cmdwaiting</tt> en los scripts de verificación de los comandos para elegir la nueva formación (como vemos en <tt>DATA/SUBAI/HERO_FORMATION_VERIFY.VS</tt>).",
+            "description_en": "In the implementation of commands, in the files of the game, this method returns the waiting command. This is used in the formations menu. From all the possible formation-menu commands of the hero, only the one corresponding to the heroes current formation is rendered (this can be seen in <tt>DATA/SUBAI/HERO_FORMATION_MENU_VERIFY.VS</tt>, referenced in <tt>DATA/COMMANDS/HERO.XML</tt>)After clicking on the formation menu icon, the selected command is returned in <tt>cmdwaiting</tt> in the verification scripts of the commands to select the new formation (as we see in <tt>DATA/SUBAI/HERO_FORMATION_VERIFY.VS</tt>).",
+            "related": ["cmdcost_food", "cmdcost_gold", "cmdcost_pop", "cmdcost_stamina", "cmdparam"]
         }, {
             "id": "rollover",
             "name": "rollover",
