@@ -3395,7 +3395,8 @@ const THE_OBJ = (function () {
             "params": [],
             "description": "En la programación de comandos en los archivos del juego, este método devuelve el parámetro pasado al comando. Este parámetro tiene significados distintos: por ejemplo, en el comando <tt>train</tt> este parámetro se utiliza para indicar el tipo de unidad a reclutar.",
             "description_en": "In the implementation of commands, in the files of the game, this method returns the parameter passed to the command. This parameter has different meanings: for example, in the command <tt>train</tt>, this parameter is used to specify the type of unit to be trained.",
-            "related": ["cmdcost_food", "cmdcost_gold", "cmdcost_pop", "cmdcost_stamina", "cmdwaiting"]
+            "related": ["cmdcost_food", "cmdcost_gold", "cmdcost_pop", "cmdcost_stamina", "cmdwaiting"],
+            "notForSequences": true,
         }, {
             "id": "cmdwaiting",
             "name": "cmdwaiting",
@@ -3407,7 +3408,8 @@ const THE_OBJ = (function () {
             "params": [],
             "description": "En la programación de comandos en los archivos del juego, este método devuelve el comando en espera. Esto se usa con el menú de formaciones. De todos los comandos de menú de formación posibles del héroe, solo se renderiza el que corresponde a la formación actual del héroe (esto se puede ver en <tt>DATA/SUBAI/HERO_FORMATION_MENU_VERIFY.VS</tt>, referenciado en <tt>DATA/COMMANDS/HERO.XML</tt>). Tras pulsar el icono del menú de formación, el comando pulsado es devuelto en <tt>cmdwaiting</tt> en los scripts de verificación de los comandos para elegir la nueva formación (como vemos en <tt>DATA/SUBAI/HERO_FORMATION_VERIFY.VS</tt>).",
             "description_en": "In the implementation of commands, in the files of the game, this method returns the waiting command. This is used in the formations menu. From all the possible formation-menu commands of the hero, only the one corresponding to the heroes current formation is rendered (this can be seen in <tt>DATA/SUBAI/HERO_FORMATION_MENU_VERIFY.VS</tt>, referenced in <tt>DATA/COMMANDS/HERO.XML</tt>)After clicking on the formation menu icon, the selected command is returned in <tt>cmdwaiting</tt> in the verification scripts of the commands to select the new formation (as we see in <tt>DATA/SUBAI/HERO_FORMATION_VERIFY.VS</tt>).",
-            "related": ["cmdcost_food", "cmdcost_gold", "cmdcost_pop", "cmdcost_stamina", "cmdparam"]
+            "related": ["cmdcost_food", "cmdcost_gold", "cmdcost_pop", "cmdcost_stamina", "cmdparam"],
+            "notForSequences": true
         }, {
             "id": "rollover",
             "name": "rollover",
@@ -3416,7 +3418,8 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "notForSequences": true
         }, {
             "id": "rollover:Obj_bool",
             "name": "rollover",
@@ -3425,7 +3428,8 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
+            "params": [{"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}],
+            "notForSequences": true
         }, {
             "id": "rollover:Obj_str_bool",
             "name": "rollover",
@@ -3438,7 +3442,8 @@ const THE_OBJ = (function () {
                 "name": "number",
                 "type": 5,
                 "is_ptr": false
-            }, {"name": "number", "type": 2, "is_ptr": false}]
+            }, {"name": "number", "type": 2, "is_ptr": false}],
+            "notForSequences": true
         }, {
             "id": "rollover:Obj_str",
             "name": "rollover",
@@ -3447,7 +3452,8 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}],
+            "notForSequences": true
         }, {
             "id": "rollover_desc:Obj_str_bool",
             "name": "rollover_desc",
@@ -3460,7 +3466,8 @@ const THE_OBJ = (function () {
                 "name": "number",
                 "type": 5,
                 "is_ptr": false
-            }, {"name": "number", "type": 2, "is_ptr": false}]
+            }, {"name": "number", "type": 2, "is_ptr": false}],
+            "notForSequences": true
         }, {
             "id": "cmdcost_gold",
             "name": "cmdcost_gold",
@@ -3469,7 +3476,12 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "notForSequences": true,
+            "description": "Devuelve el coste en <a href='#Settlement::gold'>oro</a> del comando que está siendo programado / verificado.",
+            "description_en": "Returns the cost in <a href='#Settlement::gold'>gold</a> for the command that is being implemented / verified.",
+            "related": ["cmdcost_food", "cmdcost_pop", "cmdcost_stamina",
+                "GetCmdCost:str_ptr.int_ptr.int", "Settlement::gold"]
         }, {
             "id": "cmdcost_food",
             "name": "cmdcost_food",
@@ -3478,7 +3490,12 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "notForSequences": true,
+            "description": "Devuelve el coste en <a href='#Settlement::food'>comida</a> del comando que está siendo programado / verificado.",
+            "description_en": "Returns the cost in <a href='#Settlement::food'>food</a> for the command that is being implemented / verified.",
+            "related": ["cmdcost_gold", "cmdcost_pop", "cmdcost_stamina",
+                "GetCmdCost:str_ptr.int_ptr.int", "Settlement::food"]
         }, {
             "id": "cmdcost_pop",
             "name": "cmdcost_pop",
@@ -3487,7 +3504,12 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "notForSequences": true,
+            "description": "Devuelve el coste en <a href='#Settlement::population'>población</a> del comando que está siendo programado / verificado.",
+            "description_en": "Returns the cost in <a href='#Settlement::population'>population</a> for the command that is being implemented / verified.",
+            "related": ["cmdcost_food", "cmdcost_gold", "cmdcost_stamina",
+                "GetCmdCost:str_ptr.int_ptr.int", "Settlement::population"]
         }, {
             "id": "cmdcost_stamina",
             "name": "cmdcost_stamina",
@@ -3496,7 +3518,12 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "notForSequences": true,
+            "description": "Devuelve el coste en <a href='#Obj::stamina'>energía</a> del comando que está siendo programado / verificado.",
+            "description_en": "Returns the cost in <a href='#Obj::stamina'>stamina</a> for the command that is being implemented / verified.",
+            "related": ["cmdcost_food", "cmdcost_gold", "cmdcost_pop",
+                "GetCmdCost:str_ptr.int_ptr.int", "Obj::stamina"]
         }, {
             "id": "GetPlayerRace:int",
             "name": "GetPlayerRace",

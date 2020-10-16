@@ -295,7 +295,7 @@ details {
     padding: 0 2rem;
 }
 
-.description, .related {
+.description, .related, .not-for-seqs {
     font-family: "Noto Sans";
     text-indent: 0;
     margin: 1rem 0;
@@ -308,6 +308,15 @@ details {
 
 .related a {
     color: #505090;
+}
+
+.not-for-seqs {
+    margin: 0;
+    text-indent: 0;
+    text-align: right;
+    padding: .5rem;
+    font-size: .9rem;
+    color: #7b4d1d;
 }
 
 .description .dangerous-warn {
@@ -368,6 +377,7 @@ details {
 
 .description .material-icons,
 .name .material-icons,
+.not-for-seqs .material-icons,
 .tooltiptext .material-icons {
     position: relative;
     top: .2ex;
@@ -375,6 +385,9 @@ details {
 
 .name .material-icons {
     margin-right: .2em;
+}
+.not-for-seqs .material-icons {
+    margin-left: .2em;
 }
 
 footer {

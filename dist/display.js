@@ -19,7 +19,9 @@ const TRANSLATE_TEXTS = {
     "related-": "Relacionado:",
     "related-en": "Related:",
     "documented-": "Documentado:",
-    "documented-en": "Documented: "
+    "documented-en": "Documented: ",
+    "not-for-seqs-": "Inútil en secuencias del editor de mapas.",
+    "not-for-seqs-en": "Useless for sequences in the map editor."
 }
 
 function escapeHtmlAndNameCorrection(unsafe) {
@@ -68,8 +70,14 @@ function renderRelated(inFunction, relatedList) {
     }).join(', ')}</div>`;
 }
 
+function renderNotForSequences(func) {
+    if(func.notForSequences) {
+        return `<div class="not-for-seqs"><span>${TRANSLATE_TEXTS["not-for-seqs-" + lang]}</span><span class="material-icons">description</span></div>`;
+    } else return '';
+}
+
 function renderDescription(func) {
-    return `<div class="description">${renderDangerousWarn(func)}${func['description_' + lang] || func.description
+    return `${renderNotForSequences(func)}<div class="description">${renderDangerousWarn(func)}${func['description_' + lang] || func.description
     || `<span class=\"to-fill\">${TRANSLATE_TEXTS['no-desc-' + lang]}</span>`}</div>${renderRelated(func, func.related)}`;
 }
 
