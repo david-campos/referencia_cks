@@ -3532,7 +3532,12 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}],
+            "description": "Obtiene la raza asociada al jugador. Esta es la raza que escoge el jugador antes de comenzar en un mapa de estrategia, por ejemplo. Más información sobre razas disponible en <a href='#Obj::race'>Obj::race</a>.",
+            "description_en": "Obtains the race associated to the player. This is the race selected by the player before starting in an strategy map, for example. More information on races can be found in <a href='#Obj::race'>Obj::race</a>.",
+            "related": ["Obj::race", "Obj::raceStr", "Obj::raceStrPref", "Obj::raceStrPrefLow",
+                "GetClassRace:str", "GetRaceStr:int", "GetRaceStrPref:int", "GetRaceStrPrefLow:int",
+                "SetPlayerSettRace:int_int", "SetSettRace:str_int"]
         }, {
             "id": "Obj::_LastSelectionTime",
             "name": "_LastSelectionTime",
@@ -3541,7 +3546,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve el valor de <a href='#GetTime'>tiempo</a> la última vez que el objeto fue seleccionado.",
+            "description_en": "Returns the <a href='#GetTime'>time</a> value the last time the object was selected.",
+            "related": ["_GetSelection", "GetTime"]
         }, {
             "id": "_GetSelection",
             "name": "_GetSelection",
@@ -3550,7 +3558,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Obtiene la lista de los objetos seleccionados por el jugador actual.",
+            "description_en": "Gets the list of selected object by the current player.",
+            "related": ["SetPlayer:int", "ClearSelection:int", "SelectionFood", "SelectionGold", "Obj::Deselect:int", "Obj::Deselect", "Obj::Select:int", "SquadList::Select:int"]
         }, {
             "id": "ClearDebug",
             "name": "ClearDebug",
@@ -3559,7 +3570,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Saca a todos los objetos del mapa del <a href='#Obj::GetDebug'>modo debug</a>.",
+            "description_en": "For every object in the map sets <a href='#Obj::GetDebug'>debug</a> to <tt>false</tt>.",
+            "related": ["Obj::GetDebug", "Obj::SetDebug:bool", "DebugSelected", "IngameDebugSelected"]
         }, {
             "id": "Place:str_point_int",
             "name": "Place",
@@ -3568,11 +3582,15 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}, {
+                "name": "posicion",
+                "name_en": "position",
                 "type": 6,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}],
+            "description": "Genera un objeto, instancia de una <a href='#Obj::class'>clase</a> dada, en la <a href='#Obj::pos'>posición</a> indicada y del <a href='#Obj::player'>jugador</a> dado. En <a href='class_list.htm'>esta página</a> puedes consultar todas las clases del juego original.",
+            "description_en": "Places an object, instance of a given <a href='#Obj::class'>class</a>, at the indicated <a href='#Obj::pos'>position</a> and owned by the given <a href='#Obj::player'>player</a>. In <a href='class_list.htm'>this page</a> you can check every class of the original game.",
+            "related": [ "PlaceCatapult:int_int_int_int", "PlaceInHolder:str_str_int", "_PlaceEx:str_int_int_int", "_Place:str_int_int", "_AdvPlaceAreaCirc:str_point_int_str_str", "_AdvPlaceAreaRect:str_rect_str_str"]
         }, {
             "id": "PlaceInHolder:str_str_int",
             "name": "PlaceInHolder",
@@ -3581,11 +3599,15 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}, {
+                "name": "asentamiento",
+                "name_en": "settlement",
                 "type": 5,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}],
+            "description": "Genera un objeto, instancia de una <a href='#Obj::class'>clase</a> dada, dentro del <a href='#Settlement'>asentamiento</a> con el nombre de script dado y del <a href='#Obj::player'>jugador</a> indicado. En <a href='class_list.htm'>esta página</a> puedes consultar todas las clases del juego original.",
+            "description_en": "Places an object, instance of a given <a href='#Obj::class'>class</a>, inside the indicated <a href='#Settlement'>settlement</a> and owned by the given <a href='#Obj::player'>player</a>. In <a href='class_list.htm'>this page</a> you can check every class of the original game.",
+            "related": [ "PlaceCatapult:int_int_int_int", "Place:str_point_int", "_PlaceEx:str_int_int_int", "_Place:str_int_int", "_AdvPlaceAreaCirc:str_point_int_str_str", "_AdvPlaceAreaRect:str_rect_str_str"]
         }, {
             "id": "_PlaceEx:str_int_int_int",
             "name": "_PlaceEx",
@@ -3594,11 +3616,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}, {
+                "name": "x",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "y", "type": 1, "is_ptr": false}, {"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}],
+            "description": "Genera un objeto, instancia de una <a href='#Obj::class'>clase</a> dada, en la <a href='#Obj::pos'>posición</a> indicada por <tt>x</tt> e <tt>y</tt>, poseído por el <a href='#Obj::player'>jugador</a> dado. En <a href='class_list.htm'>esta página</a> puedes consultar todas las clases del juego original.",
+            "description_en": "Places an object, instance of a given <a href='#Obj::class'>class</a>, at the <a href='#Obj::pos'>position</a> indicated by <tt>x</tt> and <tt>y</tt> and owned by the given <a href='#Obj::player'>player</a>. In <a href='class_list.htm'>this page</a> you can check every class of the original game.",
+            "related": ["Place:str_point_int", "PlaceCatapult:int_int_int_int", "PlaceInHolder:str_str_int", "_Place:str_int_int", "_AdvPlaceAreaCirc:str_point_int_str_str", "_AdvPlaceAreaRect:str_rect_str_str"]
         }, {
             "id": "_PlaceBlockEx:str_int_int_int_int_int_int_int",
             "name": "_PlaceBlockEx",

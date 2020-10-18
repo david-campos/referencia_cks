@@ -352,6 +352,28 @@ function filterToIds() {
     return THE_OBJ.funcs.filter(func => filters.reduce((p, c) => p && c(func), true)).map(f => f.id);
 }
 
+function next(elems, upOrDown) {
+    for (let i = 0; i < elems.length; i++) {
+        const el = elems.item(i);
+        const rect = el.getBoundingClientRect();
+        const elemTop = rect.top;
+        const elemBottom = rect.bottom;
+
+        if (elemTop < window.innerHeight && elemBottom >= 100) {
+            const other = upOrDown === 'up' ? i -1 : i + 1;
+            if (other >= 0 && other < elems.length) {
+                elems[other].scrollIntoView({block: "start", behavior: "smooth"});
+            }
+            break;
+        }
+    }
+}
+
+const moveDetails = (upOrDown) => next(
+    document.getElementsByTagName('details'), upOrDown);
+const moveFunc = (upOrDown) => next(
+    document.querySelectorAll('div.operator,div.method,div.property'), upOrDown);
+
 window.onload = function () {
     const lang_select = document.getElementById('lang_select');
     const groupByLabel = document.getElementById('group-by-label');
@@ -388,6 +410,18 @@ window.onload = function () {
                     groupBySelect.value = 'of';
                     groupBySelect.dispatchEvent(new Event('change'));
                     break;
+                case 'PageUp':
+                    moveDetails('up');
+                    break;
+                case 'PageDown':
+                    moveDetails('down');
+                    break;
+                case 'ArrowUp':
+                    moveFunc('up');
+                    break;
+                case 'ArrowDown':
+                    moveFunc('down');
+                    break;
             }
         }
     });
@@ -416,6 +450,7 @@ window.onload = function () {
             render();
         }, 300);
     });
+    searchInput.addEventListener('keyup', event => event.stopPropagation());
 
     THE_OBJ.funcs.forEach(f => {
         funcsById.set(f.id, f);
