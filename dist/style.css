@@ -93,7 +93,7 @@ a:hover .tooltiptext {
     opacity: 1;
 }
 
-.method, .operator, .property {
+.method, .operator:not(.token), .property {
     word-break: break-word;
     scroll-margin-block-start: 1rem;
 }
@@ -157,13 +157,6 @@ nav a {
     }
 }
 
-pre {
-    font-family: "Roboto Mono";
-    padding-left: 1em;
-    color: #000080;
-    background-color: #eee;
-    overflow-x: auto;
-}
 
 tt {
     font-family: "Roboto Mono";
@@ -252,7 +245,7 @@ h3 {
     font-weight: 400
 }
 
-.property, .method, .operator {
+.property, .method, .operator:not(.token) {
     text-indent: -2rem;
     margin-left: 2rem;
     line-height: 1.5;
@@ -264,7 +257,7 @@ h3 {
 
 .property:not(:last-child),
 .method:not(:last-child),
-.operator:not(:last-child) {
+.operator:not(:last-child):not(.token) {
     margin-bottom: 0.5em;
     border-bottom: 2px dotted lightgray;
 }
@@ -394,6 +387,10 @@ footer {
     background: #333;
     color: #eee;
     padding: 3rem;
+}
+
+footer a {
+    color: #7dd3ff;
 }
 
 .bi {

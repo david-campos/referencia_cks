@@ -212,8 +212,8 @@ const THE_OBJ = (function () {
             "of_ptr": true,
             "type": "operator",
             "params": [{"name": "number", "type": 1, "is_ptr": true}, {"name": "number", "type": 1, "is_ptr": false}],
-            "description": "Añade la cantidad del <tt>int</tt> situado a la derecha del operador a la referencia a <tt>int</tt> situada a la izquierda, y retorna también el entero resultante. Ejemplo: <pre>int a;  // Declaramos a<br>a = 5;  // Guardamos 5 en la variable a<br>a += 2; // Ahora a contiene 7</pre>",
-            "description_en": "Add the value of the <tt>int</tt> at the right of the operator onto the reference to <tt>int</tt> at the left, and also return the resulting integer value. Example: <pre>int a;  // We declare a<br>a = 5;  // We save 5 in the variable a<br>a += 2; // Now a contains 7</pre>"
+            "description": "Añade la cantidad del <tt>int</tt> situado a la derecha del operador a la referencia a <tt>int</tt> situada a la izquierda, y retorna también el entero resultante. Ejemplo: <pre class='language-cks'>int a;  // Declaramos a\r\na = 5;  // Guardamos 5 en la variable a\r\na += 2; // Ahora a contiene 7</pre>",
+            "description_en": "Add the value of the <tt>int</tt> at the right of the operator onto the reference to <tt>int</tt> at the left, and also return the resulting integer value. Example: <pre class='language-cks'>int a;  // We declare a\r\na = 5;  // We save 5 in the variable a\r\na += 2; // Now a contains 7</pre>"
         }, {
             "id": "ptr.int::-m--e-:ptr.int_int",
             "name": "-=",
@@ -223,8 +223,8 @@ const THE_OBJ = (function () {
             "of_ptr": true,
             "type": "operator",
             "params": [{"name": "number", "type": 1, "is_ptr": true}, {"name": "number", "type": 1, "is_ptr": false}],
-            "description": "Substrae la cantidad del <tt>int</tt> situado a la derecha del operador de la referencia a <tt>int</tt> situada a la izquierda, y retorna también el entero resultante. Ejemplo: <pre>int a;  // Declaramos a<br>a = 5;  // Guardamos 5 en la variable a<br>a -= 2; // Ahora a contiene 3</pre>",
-            "description_en": "Substract the value of the <tt>int</tt> at the right of the operator from the reference to <tt>int</tt> at the left, and also return the resulting integer value. Example: <pre>int a;  // We declare a<br>a = 5;  // We save 5 in the variable a<br>a -= 2; // Now a contains 3</pre>"
+            "description": "Substrae la cantidad del <tt>int</tt> situado a la derecha del operador de la referencia a <tt>int</tt> situada a la izquierda, y retorna también el entero resultante. Ejemplo: <pre class='language-cks'>int a;  // Declaramos a\r\na = 5;  // Guardamos 5 en la variable a\r\na -= 2; // Ahora a contiene 3</pre>",
+            "description_en": "Substract the value of the <tt>int</tt> at the right of the operator from the reference to <tt>int</tt> at the left, and also return the resulting integer value. Example: <pre class='language-cks'>int a;  // We declare a\r\na = 5;  // We save 5 in the variable a\r\na -= 2; // Now a contains 3</pre>"
         }, {
             "id": "int::-bs-a:int_int",
             "name": "\\a",
@@ -289,8 +289,8 @@ const THE_OBJ = (function () {
             "of_ptr": true,
             "type": "operator",
             "params": [{"name": "number", "type": 1, "is_ptr": true}, {"name": "number", "type": 1, "is_ptr": false}],
-            "description": "Asigna el valor <tt>int</tt> dado a la referencia a <tt>int</tt> indicada (a la izquierda del operador). Ejemplo: <pre>int a; // Declaramos a, ahora es una referencia a int<br>a = 5; // Guardamos 5 en la variable a</pre>",
-            "description_en": "Saves the given <tt>int</tt> value into the given <tt>int</tt> reference (at the left of the operator). Example: <pre>int a; // Declare a so it is a reference to an int<br>a = 5; // Save 5 into the variable a</pre>"
+            "description": "Asigna el valor <tt>int</tt> dado a la referencia a <tt>int</tt> indicada (a la izquierda del operador). Ejemplo: <pre class='language-cks'>int a; // Declaramos a, ahora es una referencia a int\r\na = 5; // Guardamos 5 en la variable a</pre>",
+            "description_en": "Saves the given <tt>int</tt> value into the given <tt>int</tt> reference (at the left of the operator). Example: <pre class='language-cks'>int a; // Declare a so it is a reference to an int\r\na = 5; // Save 5 into the variable a</pre>"
         }, {
             "id": "int::-a-:int_int",
             "name": "*",
@@ -499,8 +499,8 @@ const THE_OBJ = (function () {
             "of_ptr": true,
             "type": "operator",
             "params": [{"name": "number", "type": 3, "is_ptr": true}, {"name": "number", "type": 3, "is_ptr": false}],
-            "description": "Asigna el valor <tt>float</tt> dado a la referencia a <tt>float</tt> indicada (a la izquierda del operador). Ejemplo: <pre>float a; // Declaramos a, ahora es una referencia a float<br>a = 5.32; // Guardamos 5.32 en la variable a</pre>",
-            "description_en": "Saves the given <tt>float</tt> value into the given <tt>float</tt> reference (at the left of the operator). Example: <pre>float a; // Declare a so it is a reference to an float<br>a = 5.32; // Save 5.32 into the variable a</pre>"
+            "description": "Asigna el valor <tt>float</tt> dado a la referencia a <tt>float</tt> indicada (a la izquierda del operador). Ejemplo: <pre class='language-cks'>float a; // Declaramos a, ahora es una referencia a float\r\na = 5.32; // Guardamos 5.32 en la variable a</pre>",
+            "description_en": "Saves the given <tt>float</tt> value into the given <tt>float</tt> reference (at the left of the operator). Example: <pre class='language-cks'>float a; // Declare a so it is a reference to an float\r\na = 5.32; // Save 5.32 into the variable a</pre>"
         }, {
             "id": "float::-a-:float_float",
             "name": "*",
@@ -762,8 +762,8 @@ const THE_OBJ = (function () {
                 "type": 5,
                 "is_ptr": false
             }],
-            "description": "Guarda en la referencia <tt>destino</tt> el resultado de concatenar el valor de <tt>extra</tt> al final de <tt>destino</tt>. Por ejemplo: <pre>str miCadena = \"Hola \"; // Note el espacio extra al final<br>StrCat(miCadena, \"Cesar\"); // Ahora miCadena contiene \"Hola Cesar\"</pre> <strong>Cuidado: ¡Esta función no retorna ningún valor!</strong> (para eso consulta <a href='#str::-p-:str_str'>el operador suma de str</a>).",
-            "description_en": "Saves into <tt>target</tt> the result of appending the value of <tt>extra</tt> at the end. For example: <pre>str myStr = \"Hi \"; // Notice the extra space at the end<br>StrCat(myStr, \"Caesar\"); // Now myStr contains \"Hi Caesar\"</pre> <strong>Warning: This function does not return any value!</strong> (to do this you may check <a href='#str::-p-:str_str'>the sum operation over str</a>)."
+            "description": "Guarda en la referencia <tt>destino</tt> el resultado de concatenar el valor de <tt>extra</tt> al final de <tt>destino</tt>. Por ejemplo: <pre class='language-cks'>str miCadena = \"Hola \"; // Note el espacio extra al final\r\nStrCat(miCadena, \"Cesar\"); // Ahora miCadena contiene \"Hola Cesar\"</pre> <strong>Cuidado: ¡Esta función no retorna ningún valor!</strong> (para eso consulta <a href='#str::-p-:str_str'>el operador suma de str</a>).",
+            "description_en": "Saves into <tt>target</tt> the result of appending the value of <tt>extra</tt> at the end. For example: <pre class='language-cks'>str myStr = \"Hi \"; // Notice the extra space at the end\r\nStrCat(myStr, \"Caesar\"); // Now myStr contains \"Hi Caesar\"</pre> <strong>Warning: This function does not return any value!</strong> (to do this you may check <a href='#str::-p-:str_str'>the sum operation over str</a>)."
         }, {
             "id": "ParseStr:str_ptr.str",
             "name": "ParseStr",
@@ -778,8 +778,8 @@ const THE_OBJ = (function () {
                 "type": 5,
                 "is_ptr": true
             }],
-            "description": "Retorna el contenido de la cadena <tt>cadena</tt> hasta la primera coma (<tt>,</tt>), descarta la coma y guarda el resto en <tt>resto_out</tt>. Esta función es útil para dividir cadenas de parámetros separados por comas, por ejemplo: <pre>str params, siguiente;<br>StrArray parsed;<br><br>params = \"param1, param2, param3\";<br><br>siguiente = ParseStr(params, params);<br>while(siguiente != \"\") {<br>&nbsp;&nbsp;&nbsp;&nbsp;parsed[parsed.size] = siguiente;<br>&nbsp;&nbsp;&nbsp;&nbsp;siguiente = ParseStr(params, params);<br>}<br>// Ahora parsed contiene \"param1\", \"param2\" y \"param3\" en los índices 0, 1 y 2, respectivamente</pre>",
-            "description_en": "Returns the content of the string <tt>string</tt> up until the first comma (<tt>,</tt>), discards the comma and saves the rest into <tt>rest_out</tt>. This function is useful to divide strings of comma-separated parameters, for example: <pre>str params, next;<br>StrArray parsed;<br><br>params = \"param1, param2, param3\";<br><br>next = ParseStr(params, params);<br>while(next != \"\") {<br>&nbsp;&nbsp;&nbsp;&nbsp;parsed[parsed.size] = next;<br>&nbsp;&nbsp;&nbsp;&nbsp;next = ParseStr(params, params);<br>}<br>// Now parsed contains \"param1\", \"param2\" and \"param3\" in the indices 0, 1 and 2, respectively</pre>"
+            "description": "Retorna el contenido de la cadena <tt>cadena</tt> hasta la primera coma (<tt>,</tt>), descarta la coma y guarda el resto en <tt>resto_out</tt>. Esta función es útil para dividir cadenas de parámetros separados por comas, por ejemplo: <pre class='language-cks'>str params, siguiente;\r\nStrArray parsed;\r\n\r\nparams = \"param1, param2, param3\";\r\n\r\nsiguiente = ParseStr(params, params);\r\nwhile(siguiente != \"\") {\r\n&nbsp;&nbsp;&nbsp;&nbsp;parsed[parsed.size] = siguiente;\r\n&nbsp;&nbsp;&nbsp;&nbsp;siguiente = ParseStr(params, params);\r\n}\r\n// Ahora parsed contiene \"param1\", \"param2\" y \"param3\" en los índices 0, 1 y 2, respectivamente</pre>",
+            "description_en": "Returns the content of the string <tt>string</tt> up until the first comma (<tt>,</tt>), discards the comma and saves the rest into <tt>rest_out</tt>. This function is useful to divide strings of comma-separated parameters, for example: <pre class='language-cks'>str params, next;\r\nStrArray parsed;\r\n\r\nparams = \"param1, param2, param3\";\r\n\r\nnext = ParseStr(params, params);\r\nwhile(next != \"\") {\r\n&nbsp;&nbsp;&nbsp;&nbsp;parsed[parsed.size] = next;\r\n&nbsp;&nbsp;&nbsp;&nbsp;next = ParseStr(params, params);\r\n}\r\n// Now parsed contains \"param1\", \"param2\" and \"param3\" in the indices 0, 1 and 2, respectively</pre>"
         }, {
             "id": "StrStr:str_str",
             "name": "StrStr",
@@ -1025,8 +1025,8 @@ const THE_OBJ = (function () {
             "of_ptr": true,
             "type": "method",
             "params": [{"name": "longitud", "name_en": "length", "type": 1, "is_ptr": false}],
-            "description": "Interpretando el punto como un vector, modifica los valores de <i>x</i> e <i>y</i> para que la longitud del vector sea lo más próxima posible a <tt>longitud</tt>. Por ejemplo: <pre>point miVector;<br>miVector = Point(30, 40); // Tenemos un vector con coordenadas 30, 40<br>miVector.SetLen(5); // Ahora las coordenadas de miVector son 3, 4</pre>Relacionado: usa el método <a href='#point::Len'>point::Len</a> para obtener la longitud de un vector.",
-            "description_en": "Interpreting the point as a vector, this method modifies the <i>x</i> and <i>y</i> properties for the length of this vector to be as close as possible to <tt>length</tt>. For example: <pre>point myVector;<br>myVector = Point(30, 40); // We have a vector with coordinates 30, 40<br>myVector.SetLen(5); // Now the coordinates of myVector are 3, 4</pre>Related: use <a href='#point::Len'>point::Len</a> to obtain the length of a vector."
+            "description": "Interpretando el punto como un vector, modifica los valores de <i>x</i> e <i>y</i> para que la longitud del vector sea lo más próxima posible a <tt>longitud</tt>. Por ejemplo: <pre class='language-cks'>point miVector;\r\nmiVector = Point(30, 40); // Tenemos un vector con coordenadas 30, 40\r\nmiVector.SetLen(5); // Ahora las coordenadas de miVector son 3, 4</pre>Relacionado: usa el método <a href='#point::Len'>point::Len</a> para obtener la longitud de un vector.",
+            "description_en": "Interpreting the point as a vector, this method modifies the <i>x</i> and <i>y</i> properties for the length of this vector to be as close as possible to <tt>length</tt>. For example: <pre class='language-cks'>point myVector;\r\nmyVector = Point(30, 40); // We have a vector with coordinates 30, 40\r\nmyVector.SetLen(5); // Now the coordinates of myVector are 3, 4</pre>Related: use <a href='#point::Len'>point::Len</a> to obtain the length of a vector."
         }, {
             "id": "point::Len",
             "name": "Len",
@@ -1047,8 +1047,8 @@ const THE_OBJ = (function () {
             "of_ptr": true,
             "type": "method",
             "params": [{"name": "grados", "name_en": "degrees", "type": 1, "is_ptr": false}],
-            "description": "Rota el punto tantos grados como se indique alrededor del origen (0, 0) en sentido horario. Por ejemplo: <pre>point miPunto;<br>miPunto = Point(10, 0);<br>miPunto.Rot(90); // Ahora miPunto tiene coordenadas 0, -10 (ha rotado 90 grados)</pre>",
-            "description_en": "Rotates the point the indicated degrees around the origin (0, 0) in clockwise direction. For example: <pre>point myPoint;<br>myPoint = Point(10, 0);<br>myPoint.Rot(90); // Now myPoint has coordinates 0, -10 (it has rotated 90 degrees)</pre>"
+            "description": "Rota el punto tantos grados como se indique alrededor del origen (0, 0) en sentido horario. Por ejemplo: <pre class='language-cks'>point miPunto;\r\nmiPunto = Point(10, 0);\r\nmiPunto.Rot(90); // Ahora miPunto tiene coordenadas 0, -10 (ha rotado 90 grados)</pre>",
+            "description_en": "Rotates the point the indicated degrees around the origin (0, 0) in clockwise direction. For example: <pre class='language-cks'>point myPoint;\r\nmyPoint = Point(10, 0);\r\nmyPoint.Rot(90); // Now myPoint has coordinates 0, -10 (it has rotated 90 degrees)</pre>"
         }, {
             "id": "point::InRect:rect",
             "name": "InRect",
@@ -2839,8 +2839,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "property",
             "params": [],
-            "description": "<p>Devuelve las milésimas de segundo que el comando actual del objeto tarda en completarse (solo aplicable a comandos con tiempo de ejecución, como por ejemplo el reclutamiento de guerreros). Nótese que el valor devuelto es el tiempo total que tarda desde el momento en que es lanzado, no el que falta para que el comando se complete al momento de llamar a esta propiedad.</p><p>Por ejemplo, si tenemos un cuartel romano llamado <tt>cuartelRomano</tt>, y queremos reclutar un pretoriano y esperar a que termine de reclutarse, podríamos hacer algo como esto: <pre>point dummyPt; Obj dummyObj;  // Para ExecCmd, serán ignorados<br>Obj cuartel;<br>cuartel = cuartelRomano.obj;<br>cuartel.ExecCmd(\"trainMPraetorian\", dummyPt, dummyObj, true);<br>Sleep(cuartel.cmddelay);<br>// Todo lo siguiente se ejecutará una vez el pretoriano termine su reclutamiento</pre></p>",
-            "description_en": "<p>Returns the milliseconds the current command will take to complete (only appliable to commands with execution time, for example when training new units). Notice the returned value is the total value the command needs to complete since the moment it is launched, not the time remaining for the command to complete at the moment of calling this property.</p><p>For example, if we have some Roma barracks called <tt>romanBarracks</tt>, and we want to train a new praetorian and wait for the training to complete, we could use something like this: <pre>point dummyPt; Obj dummyObj;  // For ExecCmd, they will be ignored<br>Obj barracks;<br>barracks = romanBarracks.obj;<br>barracks.ExecCmd(\"trainMPraetorian\", dummyPt, dummyObj, true);<br>Sleep(barracks.cmddelay);<br>// Everyhing after this will be executed once the praetorian finishes training</pre></p>",
+            "description": "<p>Devuelve las milésimas de segundo que el comando actual del objeto tarda en completarse (solo aplicable a comandos con tiempo de ejecución, como por ejemplo el reclutamiento de guerreros). Nótese que el valor devuelto es el tiempo total que tarda desde el momento en que es lanzado, no el que falta para que el comando se complete al momento de llamar a esta propiedad.</p><p>Por ejemplo, si tenemos un cuartel romano llamado <tt>cuartelRomano</tt>, y queremos reclutar un pretoriano y esperar a que termine de reclutarse, podríamos hacer algo como esto: <pre class='language-cks'>point dummyPt; Obj dummyObj;  // Para ExecCmd, serán ignorados\r\nObj cuartel;\r\ncuartel = cuartelRomano.obj;\r\ncuartel.ExecCmd(\"trainMPraetorian\", dummyPt, dummyObj, true);\r\nSleep(cuartel.cmddelay);\r\n// Todo lo siguiente se ejecutará una vez el pretoriano termine su reclutamiento</pre></p>",
+            "description_en": "<p>Returns the milliseconds the current command will take to complete (only appliable to commands with execution time, for example when training new units). Notice the returned value is the total value the command needs to complete since the moment it is launched, not the time remaining for the command to complete at the moment of calling this property.</p><p>For example, if we have some Roma barracks called <tt>romanBarracks</tt>, and we want to train a new praetorian and wait for the training to complete, we could use something like this: <pre class='language-cks'>point dummyPt; Obj dummyObj;  // For ExecCmd, they will be ignored\r\nObj barracks;\r\nbarracks = romanBarracks.obj;\r\nbarracks.ExecCmd(\"trainMPraetorian\", dummyPt, dummyObj, true);\r\nSleep(barracks.cmddelay);\r\n// Everyhing after this will be executed once the praetorian finishes training</pre></p>",
         }, {
             "id": "Obj::IsInGroup:str",
             "name": "IsInGroup",
@@ -2902,7 +2902,7 @@ const THE_OBJ = (function () {
                 "<p>El uso de este método no afecta al funcionamiento de <a href='#SpawnNamed:str'>SpawnNamed</a> dado que, aunque altera el nombre del objeto, no afecta a la plantilla de objeto que es compilada previamente y sigue estando referida por el mismo nombre.</p>" +
                 "<p>Sin embargo, el uso con <a href='#GetNamedObj:str'>GetNamedObj</a> no es tan sencillo. Usar este método produce ciertas inconsistencias en esta función. Si la función no ha sido llamada en el mapa actual antes de la llamada a <tt>SetName</tt>, el objeto será devuelto por el nuevo nombre sin problema, tal como cabría esperar. Si la función fue llamada con anterioridad, el objeto no será devuelto ya con ninguno de los dos nombres. Una vez <a href='#ChangeMap:str_str'>cambiemos de mapa</a>, si el objeto formaba parte del <a href='#Party'>grupo de viaje</a>, volverá a ser posible obtenerlo usando el nuevo nombre.</p>",
             "description_en": "<p>Changes the scripts name of the object. When programming sequences in the editor, we can refer to objects directly by their script names in the code, as they are converted by the compiler into <a class='type' href='#NamedObj'>NamedObj</a>. This name is checked by the compiler when compiling, not during execution. This way, if we change the name of the object using this method, all the references in this way to the object within the code will not be affected.</p>" +
-                "<p>The usage of this method does not affect <a href='#SpawnNamed:str'>SpawnNamed</a>, since it alters the name of the object but not the object template which is what is spawned.</p>"+
+                "<p>The usage of this method does not affect <a href='#SpawnNamed:str'>SpawnNamed</a>, since it alters the name of the object but not the object template which is what is spawned.</p>" +
                 "<p>However, using it with <a href='#GetNamedObj:str'>GetNamedObj</a> is not so easy. Using this method produces certain inconsistencies with this function. If the function has not been called in the current map before the call to <tt>SetName</tt>, the object will be returned by its new name, just as we would expect. If the function has been called before, the object will not be returned by neither the old nor the new name. Once we <a href='#ChangeMap:str_str'>change map</a>, if the object was in the <a href='#Party'>party group</a>, it will be obtainable by the new name.</p>",
             "related": ["Obj::name", "Item::display_name", "Item::name", "Settlement::name", "GetNamedObj:str",
                 "SpawnNamed:str"]
@@ -2963,7 +2963,12 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "animacion", "name_en": "animation", "type": 1, "is_ptr": false}, {"name": "punto", "name_en": "pt", "type": 6, "is_ptr": false}],
+            "params": [{"name": "animacion", "name_en": "animation", "type": 1, "is_ptr": false}, {
+                "name": "punto",
+                "name_en": "pt",
+                "type": 6,
+                "is_ptr": false
+            }],
             "very_dangerous": true,
             "description": "Crashea el juego al ser llamada. Aparece en algunos scripts en DATA, por lo que debería haber alguna forma posible de usarlo. Sin embargo, todas las pruebas que el autor de esta documentación ha hecho han llevado al crasheo del juego, incluso probando números de animación copiados directamente de esos scripts. En <a href='class.htm'>esta página</a> puedes consultar las animaciones posibles para una clase dada.",
             "description_en": "Crashes the game when called. It shows up in some of the scripts in DATA, so there should be a way to make it work. However, every test the author of this documentation conducted eventually lead to the game crashing, even when trying some animation numbers copied directly from those scripts. You can check all the possible animations for a given class in <a href='class.htm'>this page</a>.",
@@ -2992,7 +2997,11 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "animacion", "name_en": "animation", "type": 1, "is_ptr": false}, {"name": "pt", "type": 6, "is_ptr": false}],
+            "params": [{"name": "animacion", "name_en": "animation", "type": 1, "is_ptr": false}, {
+                "name": "pt",
+                "type": 6,
+                "is_ptr": false
+            }],
             "description": "Inicia la animación indicada en dirección al punto dado. En <a href='class.htm'>esta página</a> puedes consultar las animaciones posibles para una clase dada.",
             "description_en": "Starts the given animation towards the given point. You can check all the possible animations for a given class in <a href='class.htm'>this page</a>.",
             "related": ["Obj::StartDelayedAnim:int_point_int", "Obj::PlayAnim:int_point"],
@@ -3083,7 +3092,7 @@ const THE_OBJ = (function () {
             "params": [{"name": "nombre_item", "name_en": "item_name", "type": 5, "is_ptr": false}],
             "description": "Añade el ítem con el nombre de script dado al inventario del objeto. Si el objeto tiene el inventario lleno o no existe un ítem con el nombre de script dado, no se hará nada. Devuelve <tt>true</tt> si el ítem ha sido añadido al inventario del objeto, o <tt>false</tt> si no.",
             "description_en": "Adds the item with the given script name to the inventory of the object. If the object has a full inventory or an item with the given script name does not exist, nothing will happen. It returns <tt>true</tt> if the item has been added to the inventory of the object, or <tt>false</tt> otherwise.",
-            "related": ["Obj::free_item_slots", "Obj::item_count", "Obj::items_count", "Obj::max_items", "Obj::RemoveItem:str", "Obj::ExchangeItem:Item_str", "Obj::GiveItem:Item_Obj", "Obj::OpenItemHolder:ItemHolder",  "ItemHolder::AddItem:str", "Squad::TakeNearbyItems:int", "GetItem:str"]
+            "related": ["Obj::free_item_slots", "Obj::item_count", "Obj::items_count", "Obj::max_items", "Obj::RemoveItem:str", "Obj::ExchangeItem:Item_str", "Obj::GiveItem:Item_Obj", "Obj::OpenItemHolder:ItemHolder", "ItemHolder::AddItem:str", "Squad::TakeNearbyItems:int", "GetItem:str"]
         }, {
             "id": "Obj::GiveItem:Item_Obj",
             "name": "GiveItem",
@@ -3092,10 +3101,15 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "item", "type": 12, "is_ptr": false}, {"name": "receptor", "name_en": "receiver", "type": 11, "is_ptr": false}],
+            "params": [{"name": "item", "type": 12, "is_ptr": false}, {
+                "name": "receptor",
+                "name_en": "receiver",
+                "type": 11,
+                "is_ptr": false
+            }],
             "description": "Intenta transferir un ítem desde el objeto al receptor, y retorna si ha sido posible. El ítem <tt>item</tt> será transferido a <tt>receptor</tt> sólo si el objeto lo posee y <tt>receptor</tt> tiene <a href='#Obj::free_item_slots'>huecos para ítems libres</a> para recibirlo. No tiene en cuenta la posición del objeto o el <tt>receptor</tt>. Devuelve <tt>true</tt> en caso de éxito, o <tt>false</tt> en caso contrario.",
             "description_en": "Attempts to transfer an item from the object to the receiver, and returns whether it has succeeded. The item <tt>item</tt> will be transferred to <tt>receiver</tt> only if the object owns it and the <tt>receiver</tt> has enough <a href='#Obj::free_item_slots'>free item slots</a> to receive it. This method does not care about the positions of the object or the <tt>receiver</tt>. It will return <tt>true</tt> in case of success, and <tt>false</tt> otherwise.",
-            "related": ["Obj::free_item_slots", "Obj::item_count", "Obj::items_count", "Obj::max_items", "Obj::RemoveItem:str", "Obj::DropItem:Item_point", "Obj::FindItem:str", "Obj::GetItem:int", "Obj::ExchangeItem:Item_str", "Obj::AddItem:str", "Obj::OpenItemHolder:ItemHolder",  "ItemHolder::AddItem:str", "Squad::TakeNearbyItems:int"]
+            "related": ["Obj::free_item_slots", "Obj::item_count", "Obj::items_count", "Obj::max_items", "Obj::RemoveItem:str", "Obj::DropItem:Item_point", "Obj::FindItem:str", "Obj::GetItem:int", "Obj::ExchangeItem:Item_str", "Obj::AddItem:str", "Obj::OpenItemHolder:ItemHolder", "ItemHolder::AddItem:str", "Squad::TakeNearbyItems:int"]
         }, {
             "id": "Obj::OpenItemHolder:ItemHolder",
             "name": "OpenItemHolder",
@@ -3116,7 +3130,12 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "item", "type": 12, "is_ptr": false}, {"name": "contenedor", "name_en": "holder", "type": 21, "is_ptr": false}],
+            "params": [{"name": "item", "type": 12, "is_ptr": false}, {
+                "name": "contenedor",
+                "name_en": "holder",
+                "type": 21,
+                "is_ptr": false
+            }],
             "description": "Intenta poner el ítem dado en el contenedor, y retorna si ha sido posible. El método no tiene en cuenta la distancia desde el objeto al contenedor, pero sí que el objeto posea el ítem y que el contenedor tenga <a href='#Obj::free_item_slots'>espacios libres</a> para objetos. Devuelve <tt>true</tt> si se ha puesto el item en el contenedor, o <tt>false</tt> si no.",
             "description_en": "Attempts to put the given item into the holder, and returns whether it was possible to do so. The method does not have in account the distance between the object and <tt>holder</tt>, but yes the possession of the item by the object and the <a href='#Obj::free_item_slots'>free item slots</a> in the holder. Returns <tt>true</tt> if the item gets put into the holder, or <tt>false</tt> otherwise.",
             "related": ["Obj::free_item_slots", "Obj::item_count", "Obj::items_count", "Obj::max_items", "Obj::AsItemHolder", "Obj::ExchangeItem:Item_str", "Obj::FindItem:str", "Obj::GetItem:int", "Obj::GiveItem:Item_Obj", "Obj::HasItem:str", "Obj::DropItem:Item_point", "Obj::OpenItemHolder:ItemHolder", "Obj::RemoveItem:int", "ItemHolder::HasItem:str", "ItemHolder::RemoveItem:str", "Squad::TakeNearbyItems:int"]
@@ -3128,7 +3147,12 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "item", "type": 12, "is_ptr": false}, {"name": "punto", "name_en": "pt", "type": 6, "is_ptr": false}],
+            "params": [{"name": "item", "type": 12, "is_ptr": false}, {
+                "name": "punto",
+                "name_en": "pt",
+                "type": 6,
+                "is_ptr": false
+            }],
             "description": "Intenta dejar el item dado en una <a href='class.htm#DefItemHolder'>cartera de cuero</a> en el suelo, en el punto indicado. No tiene en cuenta la distancia, pero sí comprueba que el objeto posea el ítem que se desea dejar. En los tests realizados por el autor, el método parece devolver siempre <tt>false</tt>.",
             "description_en": "Attempts to leave the item in a <a href='class.htm#DefItemHolder'>leather bag</a> on the floor, at the given point. It does not care about distance to the point, but it does check the object possesses the item we want to drop. In the tests performed by the author of these lines, the meth od returns always <tt>false</tt>.",
             "related": ["Obj::free_item_slots", "Obj::item_count", "Obj::items_count", "Obj::max_items", "Obj::ExchangeItem:Item_str", "Obj::FindItem:str", "Obj::GetItem:int", "Obj::DropItem:Item_point", "Obj::GiveItem:Item_Obj", "Obj::HasItem:str", "Obj::RemoveItem:int", "ItemHolder::RemoveItem:str", "Squad::TakeNearbyItems:int"]
@@ -3188,7 +3212,12 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "reemplazable", "name_en": "replaceable", "type": 12, "is_ptr": false}, {"name": "nombre_reemplazo", "name_en": "replacement_name", "type": 5, "is_ptr": false}],
+            "params": [{
+                "name": "reemplazable",
+                "name_en": "replaceable",
+                "type": 12,
+                "is_ptr": false
+            }, {"name": "nombre_reemplazo", "name_en": "replacement_name", "type": 5, "is_ptr": false}],
             "description": "Intercambia un ítem por otro ítem nuevo. El nuevo ítem será una instancia del ítem con nombre de scripts <tt>nombre_reemplazo</tt> y ocupará el mismo índice que ocupaba el ítem reemplazado. Devuelve <tt>true</tt> si tiene éxito o <tt>false</tt> si no (por ejemplo, si no existe un ítem con el nombre dado en <tt>nombre_reemplazo</tt>).",
             "description_en": "Exchanges an item for a new one. The new item will be an instance of the item with the scripting name <tt>replacement_name</tt> and it will occupy the same index the replaced item occupied. Returns <tt>true</tt> if the replacement is successful, or <tt>false</tt> otherwise (for example, if no item with scripting name <tt>replacement_name</tt> exists).",
             "related": ["Obj::GetItemIndex:Item", "Obj::RemoveItem:int", "Obj::AddItem:str", "Obj::FindItem:str", "Obj::GiveItem:Item_Obj"],
@@ -3547,8 +3576,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description": "Devuelve el valor de <a href='#GetTime'>tiempo</a> la última vez que el objeto fue seleccionado.",
-            "description_en": "Returns the <a href='#GetTime'>time</a> value the last time the object was selected.",
+            "description": "Devuelve el valor de <a href='#GetTime'>tiempo</a> en que el objeto fue seleccionado por última vez.",
+            "description_en": "Returns the <a href='#GetTime'>time</a> value in which the object was selected for the last time.",
             "related": ["_GetSelection", "GetTime"]
         }, {
             "id": "_GetSelection",
@@ -3588,9 +3617,9 @@ const THE_OBJ = (function () {
                 "type": 6,
                 "is_ptr": false
             }, {"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}],
-            "description": "Genera un objeto, instancia de una <a href='#Obj::class'>clase</a> dada, en la <a href='#Obj::pos'>posición</a> indicada y del <a href='#Obj::player'>jugador</a> dado. En <a href='class_list.htm'>esta página</a> puedes consultar todas las clases del juego original.",
-            "description_en": "Places an object, instance of a given <a href='#Obj::class'>class</a>, at the indicated <a href='#Obj::pos'>position</a> and owned by the given <a href='#Obj::player'>player</a>. In <a href='class_list.htm'>this page</a> you can check every class of the original game.",
-            "related": [ "PlaceCatapult:int_int_int_int", "PlaceInHolder:str_str_int", "_PlaceEx:str_int_int_int", "_Place:str_int_int", "_AdvPlaceAreaCirc:str_point_int_str_str", "_AdvPlaceAreaRect:str_rect_str_str"]
+            "description": "Coloca un objeto (y lo retorna), instancia de una <a href='#Obj::class'>clase</a> dada, en la <a href='#Obj::pos'>posición</a> indicada y del <a href='#Obj::player'>jugador</a> dado. En <a href='class_list.htm'>esta página</a> puedes consultar todas las clases del juego original.",
+            "description_en": "Places an object (and returns it), instance of a given <a href='#Obj::class'>class</a>, at the indicated <a href='#Obj::pos'>position</a> and owned by the given <a href='#Obj::player'>player</a>. In <a href='class_list.htm'>this page</a> you can check every class of the original game.",
+            "related": ["PlaceCatapult:int_int_int_int", "PlaceInHolder:str_str_int", "_PlaceEx:str_int_int_int", "_Place:str_int_int", "_AdvPlaceAreaCirc:str_point_int_str_str", "_AdvPlaceAreaRect:str_rect_str_str"]
         }, {
             "id": "PlaceInHolder:str_str_int",
             "name": "PlaceInHolder",
@@ -3605,9 +3634,9 @@ const THE_OBJ = (function () {
                 "type": 5,
                 "is_ptr": false
             }, {"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}],
-            "description": "Genera un objeto, instancia de una <a href='#Obj::class'>clase</a> dada, dentro del <a href='#Settlement'>asentamiento</a> con el nombre de script dado y del <a href='#Obj::player'>jugador</a> indicado. En <a href='class_list.htm'>esta página</a> puedes consultar todas las clases del juego original.",
-            "description_en": "Places an object, instance of a given <a href='#Obj::class'>class</a>, inside the indicated <a href='#Settlement'>settlement</a> and owned by the given <a href='#Obj::player'>player</a>. In <a href='class_list.htm'>this page</a> you can check every class of the original game.",
-            "related": [ "PlaceCatapult:int_int_int_int", "Place:str_point_int", "_PlaceEx:str_int_int_int", "_Place:str_int_int", "_AdvPlaceAreaCirc:str_point_int_str_str", "_AdvPlaceAreaRect:str_rect_str_str"]
+            "description": "Coloca un objeto (y lo retorna), instancia de una <a href='#Obj::class'>clase</a> dada, dentro del <a href='#Settlement'>asentamiento</a> con el nombre de script dado y del <a href='#Obj::player'>jugador</a> indicado. En <a href='class_list.htm'>esta página</a> puedes consultar todas las clases del juego original.",
+            "description_en": "Places an object (returning it), instance of a given <a href='#Obj::class'>class</a>, inside the indicated <a href='#Settlement'>settlement</a> and owned by the given <a href='#Obj::player'>player</a>. In <a href='class_list.htm'>this page</a> you can check every class of the original game.",
+            "related": ["PlaceCatapult:int_int_int_int", "Place:str_point_int", "_PlaceEx:str_int_int_int", "_Place:str_int_int", "_AdvPlaceAreaCirc:str_point_int_str_str", "_AdvPlaceAreaRect:str_rect_str_str"]
         }, {
             "id": "_PlaceEx:str_int_int_int",
             "name": "_PlaceEx",
@@ -3620,10 +3649,15 @@ const THE_OBJ = (function () {
                 "name": "x",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "y", "type": 1, "is_ptr": false}, {"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}],
-            "description": "Genera un objeto, instancia de una <a href='#Obj::class'>clase</a> dada, en la <a href='#Obj::pos'>posición</a> indicada por <tt>x</tt> e <tt>y</tt>, poseído por el <a href='#Obj::player'>jugador</a> dado. En <a href='class_list.htm'>esta página</a> puedes consultar todas las clases del juego original.",
-            "description_en": "Places an object, instance of a given <a href='#Obj::class'>class</a>, at the <a href='#Obj::pos'>position</a> indicated by <tt>x</tt> and <tt>y</tt> and owned by the given <a href='#Obj::player'>player</a>. In <a href='class_list.htm'>this page</a> you can check every class of the original game.",
-            "related": ["Place:str_point_int", "PlaceCatapult:int_int_int_int", "PlaceInHolder:str_str_int", "_Place:str_int_int", "_AdvPlaceAreaCirc:str_point_int_str_str", "_AdvPlaceAreaRect:str_rect_str_str"]
+            }, {"name": "y", "type": 1, "is_ptr": false}, {
+                "name": "jugador",
+                "name_en": "player",
+                "type": 1,
+                "is_ptr": false
+            }],
+            "description": "Coloca un objeto (y lo retorna), instancia de una <a href='#Obj::class'>clase</a> dada, en la <a href='#Obj::pos'>posición</a> indicada por <tt>x</tt> e <tt>y</tt>, poseído por el <a href='#Obj::player'>jugador</a> dado. En <a href='class_list.htm'>esta página</a> puedes consultar todas las clases del juego original.",
+            "description_en": "Places an object (and returns it), instance of a given <a href='#Obj::class'>class</a>, at the <a href='#Obj::pos'>position</a> indicated by <tt>x</tt> and <tt>y</tt> and owned by the given <a href='#Obj::player'>player</a>. In <a href='class_list.htm'>this page</a> you can check every class of the original game.",
+            "related": ["Place:str_point_int", "PlaceCatapult:int_int_int_int", "PlaceInHolder:str_str_int", "_Place:str_int_int", "_AdvPlaceAreaCirc:str_point_int_str_str", "_AdvPlaceAreaRect:str_rect_str_str", "_PlaceBlockEx:str_int_int_int_int_int_int_int"]
         }, {
             "id": "_PlaceBlockEx:str_int_int_int_int_int_int_int",
             "name": "_PlaceBlockEx",
@@ -3632,19 +3666,28 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}, {
+                "name": "jugador",
+                "name_en": "player",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {
-                "name": "number",
+            }, {"name_en": "left", "name": "izq", "type": 1, "is_ptr": false}, {
+                "name": "top",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {
-                "name": "number",
+            }, {"name": "columnas", "name_en": "columns", "type": 1, "is_ptr": false}, {
+                "name": "filas", "name_en": "rows",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "sep_x", "name_en": "col_gap", "type": 1, "is_ptr": false}, {
+                "name": "sep_y",
+                "name_en": "row_gap",
+                "type": 1,
+                "is_ptr": false
+            }],
+            "description": "<p>Coloca objetos en bloque, definiendo <a href='#Obj::pos'>posición</a>, número de filas y columnas, separación y <a href='#Obj::player'>jugador</a>. El bloque tendrá su esquina superior izquierda en las coordenadas (<tt>izq</tt>, <tt>top</tt>), y a partir de ahí se extenderá <tt>columnas</tt> columnas a la derecha y <tt>filas</tt> filas hacia abajo. Habrá una separación de <tt>sep_x</tt> entre cada columna y de <tt>sep_y</tt> entre cada fila. Todos los objetos pertenecerán al jugador <tt>jugador</tt>.</p><p>En <a href='class_list.htm'>esta página</a> puedes consultar todas las clases del juego original.</p>",
+            "description_en": "<p>Places a block of objects, defining <a href='#Obj::pos'>position</a>, number of rows and columns, separation and <a href='#Obj::player'>player</a>. The block will have its top-left corner at the coordinates (<tt>left</tt>, <tt>top</tt>), and from there it will extend <tt>columns</tt> columns to the right and <tt>rows</tt> rows to the bottom. There will be a gap of <tt>col_gap</tt> between each column and of <tt>row_gap</tt> between each row. All the objects will belong to the player <tt>player</tt>.</p><p>In <a href='class_list.htm'>this page</a> you can check every class of the original game.</p>",
+            "related": ["_AdvPlaceAreaCirc:str_point_int_str_str", "_AdvPlaceAreaRect:str_rect_str_str", "_Place:str_int_int", "_PlaceBlockEx:str_int_int_int_int_int_int_int_str", "_PlaceEx:str_int_int_int", "Place:str_point_int", "PlaceCatapult:int_int_int_int", "PlaceInHolder:str_str_int"]
         }, {
             "id": "_PlaceBlockEx:str_int_int_int_int_int_int_int_str",
             "name": "_PlaceBlockEx",
@@ -3653,23 +3696,20 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {
-                "name": "number",
-                "type": 1,
-                "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {
-                "name": "number",
-                "type": 1,
-                "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {
-                "name": "number",
-                "type": 1,
-                "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {
-                "name": "number",
-                "type": 1,
-                "is_ptr": false
-            }, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [
+                {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false},
+                {"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false},
+                {"name": "izq", "name_en": "left", "type": 1, "is_ptr": false},
+                {"name": "top", "type": 1, "is_ptr": false},
+                {"name": "columnas", "name_en": "columns", "type": 1, "is_ptr": false},
+                {"name": "filas", "name_en": "rows", "type": 1, "is_ptr": false},
+                {"name": "sep_x", "name_en": "col_gap", "type": 1, "is_ptr": false},
+                {"name": "sep_y", "name_en": "row_gap", "type": 1, "is_ptr": false},
+                {"name": "grupo", "name_en": "group", "type": 5, "is_ptr": false}
+            ],
+            "description": "<p>Coloca objetos en bloque <strong>dentro de un grupo</strong>, definiendo <a href='#Obj::pos'>posición</a>, número de filas y columnas, separación y <a href='#Obj::player'>jugador</a>. El bloque tendrá su esquina superior izquierda en las coordenadas (<tt>izq</tt>, <tt>top</tt>), y a partir de ahí se extenderá <tt>columnas</tt> columnas a la derecha y <tt>filas</tt> filas hacia abajo. Habrá una separación de <tt>sep_x</tt> entre cada columna y de <tt>sep_y</tt> entre cada fila. Todos los objetos pertenecerán al jugador <tt>jugador</tt>.</p><p>En <a href='class_list.htm'>esta página</a> puedes consultar todas las clases del juego original.</p>",
+            "description_en": "<p>Places a block of objects <strong>in a group</strong>, defining <a href='#Obj::pos'>position</a>, number of rows and columns, separation and <a href='#Obj::player'>player</a>. The block will have its top-left corner at the coordinates (<tt>left</tt>, <tt>top</tt>), and from there it will extend <tt>columns</tt> columns to the right and <tt>rows</tt> rows to the bottom. There will be a gap of <tt>col_gap</tt> between each column and of <tt>row_gap</tt> between each row. All the objects will belong to the player <tt>player</tt>.</p><p>In <a href='class_list.htm'>this page</a> you can check every class of the original game.</p>",
+            "related": ["_AdvPlaceAreaCirc:str_point_int_str_str", "_AdvPlaceAreaRect:str_rect_str_str", "_Place:str_int_int", "_PlaceBlockEx:str_int_int_int_int_int_int_int", "_PlaceEx:str_int_int_int", "Place:str_point_int", "PlaceCatapult:int_int_int_int", "PlaceInHolder:str_str_int"]
         }, {
             "id": "_Summon:str_int_int_int",
             "name": "_Summon",
@@ -3678,11 +3718,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}, {
+                "name": "x",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "y", "type": 1, "is_ptr": false}, {"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}],
+            "description": "Coloca un objeto, instancia de una <a href='#Obj::class'>clase</a> dada, en la <a href='#Obj::pos'>posición</a> indicada por <tt>x</tt> e <tt>y</tt>, poseído por el <a href='#Obj::player'>jugador</a> dado. En <a href='class_list.htm'>esta página</a> puedes consultar todas las clases del juego original.",
+            "description_en": "Places an object, instance of a given <a href='#Obj::class'>class</a>, at the <a href='#Obj::pos'>position</a> indicated by <tt>x</tt> and <tt>y</tt> and owned by the given <a href='#Obj::player'>player</a>. In <a href='class_list.htm'>this page</a> you can check every class of the original game.",
+            "related": ["Place:str_point_int", "PlaceCatapult:int_int_int_int", "PlaceInHolder:str_str_int", "_Place:str_int_int", "_AdvPlaceAreaCirc:str_point_int_str_str", "_AdvPlaceAreaRect:str_rect_str_str", "_PlaceBlockEx:str_int_int_int_int_int_int_int"]
         }, {
             "id": "Obj::IsWaterUnit",
             "name": "IsWaterUnit",
@@ -3691,7 +3734,9 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve <tt>true</tt> si el objeto es acuático. Las clases con la propiedad <tt>water_unit</tt> a <tt>1</tt> son acuáticas y por tanto devuelven <tt>true</tt> con este método, como por ejemplo los <a href='class.htm#ShipS.water_unit'>botes</a>. Puedes consultar detalles de todas las clases del juego original en la <a href='class.htm#Object.water_unit'>página de detalles de clases</a>.",
+            "description_en": "Returns <tt>true</tt> if the object is aquatic. The classes with the property <tt>water_unit</tt> set to <tt>1</tt> are aquatic and, therefore, they return <tt>true</tt> with this method. <a href='class.htm#ShipS.water_unit'>Boats</a> can be an example. You can check details of every class of the original game in the <a href='class.htm#Object.water_unit'>page of class details</a>."
         }, {
             "id": "Obj::SetCmdEnable:bool",
             "name": "SetCmdEnable",
@@ -3700,7 +3745,23 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 2, "is_ptr": false}]
+            "params": [{"name": "activos", "name_en": "enabled", "type": 2, "is_ptr": false}],
+            "description": "<p>Activa / desactiva los comandos en el objeto (de cara al jugador). Si los comandos están desactivados, el jugador no verá ningún botón de comando en la interfaz, no podrá activar comandos por defecto y tampoco podrá activarlos mediante atajos de teclado. Nótese que si el objeto es una unidad asociada a un héroe, todavía obedecerá las acciones del héroe. Los comandos lanzados mediante <a href='#Obj::SetCommand:str'>SetCommand</a> o similares no se ven afectados, únicamente los lanzados mediante <a href='#Obj::ExecCmd:str_point_Obj_bool'>ExecCmd</a> y <a href='#Obj::ExecDefaultCmd:point_Obj_bool_bool'>ExecDefaultCmd</a>.</p><p>Este método no causa redibujo de la interfaz, por lo que si el objeto ya estaba seleccionado, el jugador todavía podrá ver los comandos aunque no pueda activarlos. Si el objeto pudiera estar seleccionado al momento de desactivar o activar sus comandos, puede deseleccionarse y volverse a seleccionar con un código similar al siguiente: <pre class='language-cks'>" +
+                "bool select;\r\n" +
+                "// .. resto de la secuencia \r\n" +
+                "select = _GetSelection().Contains(myObj.obj); // guardamos en select si estaba seleccionado \r\n" +
+                "myObj.obj.Deselect(); // lo deseleccionamos \r\n" +
+                "myObj.obj.SetCmdEnable(false); // desactivamos sus comandos \r\n" +
+                "if (select) myObj.obj.Select(CurPlayer()); // si estaba seleccionado, lo seleccionamos" +
+                "</pre></p><p>Un valor de <tt>true</tt> en <tt>activos</tt> activará los comandos, mientras que <tt>false</tt> los desactivará.</p>",
+            "description_en": "<p>Enables / disables command input for the object (from the player). If the commands are disabled, the player will see no command buttons in the interface, they will not be able to start commands by default or using keyboard shortcuts. Notice that if the object is a unit attached to a hero, it will still obey the orders from the hero. Commands added by methods like <a href='#Obj::SetCommand:str'>SetCommand</a> and related are not affected by this method, only the ones added with <a href='#Obj::ExecCmd:str_point_Obj_bool'>ExecCmd</a> or <a href='#Obj::ExecDefaultCmd:point_Obj_bool_bool'>ExecDefaultCmd</a>.</p><p>This method does not cause redraw of the interface, so if the object was already selected the player will still be able to see the commands even if not able to activate them. If the object can be selected by the player at the moment of calling this method, you could use something like the following: <pre class='language-cks'>" +
+                "bool select;\r\n" +
+                "// .. other stuff \r\n" +
+                "select = _GetSelection().Contains(myObj.obj); // save into select whether it was selected \r\n" +
+                "myObj.obj.Deselect(); \r\n" +
+                "myObj.obj.SetCmdEnable(false); // disable its commands \r\n" +
+                "if (select) myObj.obj.Select(CurPlayer()); // if it was selected, we select it" +
+                "</pre></p><p>Passing <tt>true</tt> to <tt>enabled</tt> will enable the commands, while <tt>false</tt> will disable them.</p>"
         }, {
             "id": "Obj::GetCmdEnable",
             "name": "GetCmdEnable",
@@ -3709,7 +3770,9 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "<p>Comprueba si los comandos del objeto están activados. Si los comandos están desactivados, el jugador no puede iniciar ningún comando en el objeto ni añadirlo a la cola de comandos. Los comandos lanzados mediante <a href='#Obj::SetCommand:str'>SetCommand</a> o similares no se ven afectados, únicamente los lanzados mediante <a href='#Obj::ExecCmd:str_point_Obj_bool'>ExecCmd</a> y <a href='#Obj::ExecDefaultCmd:point_Obj_bool_bool'>ExecDefaultCmd</a>.</p><p>Devuelve <tt>true</tt> si están activados y <tt>false</tt> si no.</p>",
+            "description_en": "<p>Checks if the commands for the object are enabled. If the commands are disabled, the player cannot start any command in the object nor add it to the command queue. Commands added by methods like <a href='#Obj::SetCommand:str'>SetCommand</a> and related are not affected, only the ones added with <a href='#Obj::ExecCmd:str_point_Obj_bool'>ExecCmd</a> or <a href='#Obj::ExecDefaultCmd:point_Obj_bool_bool'>ExecDefaultCmd</a>.</p><p>Returns <tt>true</tt> if they are enabled and <tt>false</tt> if not.</p>"
         }, {
             "id": "Obj::AddToStoreBin",
             "name": "AddToStoreBin",
@@ -3745,7 +3808,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "archivo", "name_en": "file", "type": 5, "is_ptr": false}],
+            "description": "Reproduce el sonido especificado por el archivo de entidad de sonido dado en la posición del objeto. Los archivos de entidad de sonido son archivos XML que contienen una lista de archivos WAV, cada uno con una frecuencia asociada, que es la probabilidad de ese archivo de ser reproducido entre todos los presentes en la lista. Las frecuencias de la lista, por supuesto, suman 1 en total. Como en otros métodos del juego, <tt>archivo</tt> puede ser una ruta absoluta, una ruta relativa al juego o a sus packs, como por ejemplo <tt>\"data/Sound Entities/StonehengeSpell.xml\"</tt> o una ruta comenzando por <tt>CurrentLang/</tt> para hacer referencia a la carpeta de la traducción actual.",
+            "description_en": "Plays the sound specified by the given sound-entity file at the position of the object. Sound-entity files are XML files which contain a list of WAV files, each one with an associated frequency, which is the probability for that file to be played among all the ones in the list. The frequencies of the list, of course, add up to 1. Like in other methods of the game, <tt>file</tt> can be an absolute route, a relative route to the game or its packs folder (like, for example, <tt>\"data/Sound Entities/StonehengeSpell.xml\"</tt>) or a route starting by <tt>CurrentLang/</tt> to make reference to the current translation folder.",
+            "related": ["PlaySound:str", "PlaySound:int_str","PlayMusic:str","PlayMovie:str"]
         }, {
             "id": "Obj::ShowFloatText:str",
             "name": "ShowFloatText",
@@ -3754,7 +3820,9 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "texto", "name_en": "text", "type": 5, "is_ptr": false}],
+            "description": "Muestra el texto dado como un texto flotante sobre el objeto que asciende y se desaparece progresivamente. El método no siempre produce resultados visuales, pero el autor de estas líneas no ha podido determinar qué propiedad interna del objeto condiciona cuándo se muestra o no.",
+            "description_en": "Shows the given text as a floating text over the object which ascends and vanishes progressively. The method does not always produce visual results, but the author of these lines was not able to pinpoint what is the internal property of the object that this might depend on."
         }, {
             "id": "Group:str",
             "name": "Group",
@@ -3763,7 +3831,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "nombre", "name_en": "name", "type": 5, "is_ptr": false}],
+            "description": "Obtiene una consulta para obtener las unidades del grupo con el nombre dado.",
+            "description_en": "Gets a query to get the units in the group with the given name.",
+            "related": ["GetGroupSize:str", "Obj::IsInGroup:str"]
         }, {
             "id": "GetGroupSize:str",
             "name": "GetGroupSize",
@@ -3772,7 +3843,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "nombre", "name_en": "name", "type": 5, "is_ptr": false}],
+            "description": "Obtiene el número de objetos en el grupo de nombre dado.",
+            "description_en": "Gets the number of objects in the group with the given name.",
+            "related": ["Group:str", "Obj::IsInGroup:str"]
         }, {
             "id": "SpawnGroup:str",
             "name": "SpawnGroup",
@@ -3781,7 +3855,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "nombre", "name_en": "name", "type": 5, "is_ptr": false}],
+            "description": "<p>Genera un grupo a partir de plantillas. El método causa la generación de objetos correspondientes a todas las plantillas asociadas al grupo de nombre dado. Los objetos generados pertenecen al grupo dado (pues así lo hacían sus plantillas).</p><p>Nota: las plantillas de unidad, tal como se las denomina en el editor, parecen no ser propiamente <i>objetos</i> en el juego, y por tanto no aparecen ellas mismas en <a href='#GetGroupSize:str'>GetGroupSize</a> o métodos similares.</p>",
+            "description_en": "<p>Spawns a group from templates. The method causes the placement of objects corresponding to all the templates associated to the group with the given name. The generated objects belong to the given group (since that is what their templates did).</p><p>Note: the unit templates, as they are called in the editor, seem to not be <i>objects</i> for the game, and therfore they do not show up in <a href='#GetGroupSize:str'>GetGroupSize</a> or other methods themselves.</p>",
+            "related": ["SpawnGroupInHolder:str_str", "SpawnGroupInHolder:str_Obj", "SpawnNamed:str", "Group:str"]
         }, {
             "id": "SpawnGroupInHolder:str_str",
             "name": "SpawnGroupInHolder",
@@ -3790,7 +3867,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "grupo", "name_en": "group", "type": 5, "is_ptr": false}, {"name": "asentamiento", "name_en": "settlement", "type": 5, "is_ptr": false}],
+            "description": "<p>Genera un grupo a partir de plantillas en el asentamiento dado. El método causa la generación de objetos correspondientes a todas las plantillas asociadas al grupo de nombre dado. Los objetos generados pertenecen al grupo dado (pues así lo hacían sus plantillas).</p><p>Nota: las plantillas de unidad, tal como se las denomina en el editor, parecen no ser propiamente <i>objetos</i> en el juego, y por tanto no aparecen ellas mismas en <a href='#GetGroupSize:str'>GetGroupSize</a> o métodos similares.</p>",
+            "description_en": "<p>Spawns a group from templates inside the given settlement. The method causes the spawning of objects corresponding to all the templates associated to the group with the given name. The generated objects belong to the given group (since that is what their templates did).</p><p>Note: the unit templates, as they are called in the editor, seem to not be <i>objects</i> for the game, and therfore they do not show up in <a href='#GetGroupSize:str'>GetGroupSize</a> or other methods themselves.</p>",
+            "related": ["SpawnGroupInHolder:str_Obj", "SpawnGroup:str", "SpawnNamed:str", "Group:str"]
         }, {
             "id": "SpawnGroupInHolder:str_Obj",
             "name": "SpawnGroupInHolder",
@@ -3799,7 +3879,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "grupo", "name_en": "group", "type": 5, "is_ptr": false}, {"name": "contenedor", "name_en": "holder", "type": 11, "is_ptr": false}],
+            "description": "<p>Genera un grupo a partir de plantillas en el objeto <tt>contenedor</tt> dado. Esto funciona para edificios de asentamientos, pero también para barcos, por ejemplo. El método causa la generación de objetos correspondientes a todas las plantillas asociadas al grupo de nombre dado. Los objetos generados pertenecen al grupo dado (pues así lo hacían sus plantillas).</p><p>Nota: las plantillas de unidad, tal como se las denomina en el editor, parecen no ser propiamente <i>objetos</i> en el juego, y por tanto no aparecen ellas mismas en <a href='#GetGroupSize:str'>GetGroupSize</a> o métodos similares.</p>",
+            "description_en": "<p>Spawns a group from templates inside the given <tt>holder</tt> object. This works for settlement buildings, but also for ships, for example. The method causes the spawning of objects corresponding to all the templates associated to the group with the given name. The generated objects belong to the given group (since that is what their templates did).</p><p>Note: the unit templates, as they are called in the editor, seem to not be <i>objects</i> for the game, and therfore they do not show up in <a href='#GetGroupSize:str'>GetGroupSize</a> or other methods themselves.</p>",
+            "related": ["SpawnGroupInHolder:str_str", "SpawnGroup:str", "SpawnNamed:str", "Group:str"]
         }, {
             "id": "SpawnNamed:str",
             "name": "SpawnNamed",
@@ -3808,7 +3891,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}],
+            "description": "<p>Genera un objeto a partir de su plantilla. Generar más de un objeto con el mismo nombre de scripts parece hacer que <a href='#GetNamedObj:str'>GetNamedObj</a> solo retorne el primero, posteriormente el siguiente generado tras su muerte, y de nuevo así.</p><p>Nota: las plantillas de unidad, tal como se las denomina en el editor, parecen no ser propiamente <i>objetos</i> en el juego, y por tanto no aparecen ellas mismas en <a href='#GetGroupSize:str'>GetGroupSize</a> o métodos similares.</p>",
+            "description_en": "<p>Spawns an object from its template. Generating more than one object with the same scripting name seems to cause <a href='#GetNamedObj:str'>GetNamedObj</a> to return only the first one, later the first one generated after its death and again the same.</p><p>Note: the unit templates, as they are called in the editor, seem to not be <i>objects</i> for the game, and therfore they do not show up in <a href='#GetGroupSize:str'>GetGroupSize</a> or other methods themselves.</p>",
+            "related": ["SpawnGroup:str", "SpawnGroupInHolder:str_str", "SpawnGroupInHolder:str_Obj", "Group:str"]
         }, {
             "id": "ModLevel:str_int_int_int",
             "name": "ModLevel",

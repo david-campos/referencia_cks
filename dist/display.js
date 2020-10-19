@@ -3,6 +3,9 @@ let groupBy = 'of';
 const filters = [];
 const funcsById = new Map();
 
+window.Prism = window.Prism || {};
+Prism.manual = true;
+
 const TRANSLATE_TEXTS = {
     'no-desc-': 'Sin descripción todavía.',
     'no-desc-en': 'No description yet.',
@@ -339,6 +342,8 @@ function render() {
     for (const link of main.querySelectorAll('a[href^="#"]:not(.linkThis)')) {
         link.addEventListener('pointerenter', addTooltip);
     }
+    main.querySelectorAll('pre')
+        .forEach(pre => Prism.highlightElement(pre));
     const t1 = performance.now();
     console.log("Rendered in", (t1 - t0), "ms.");
 }
@@ -454,6 +459,12 @@ window.onload = function () {
 
     THE_OBJ.funcs.forEach(f => {
         funcsById.set(f.id, f);
+    });
+
+    Prism.languages.cks = Prism.languages.extend('clike', {
+        'keyword': new RegExp(`\\b(?:if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue|${
+            THE_OBJ.classes.map(cl => cl.name).join("|")
+        })\\b`),
     });
 
     updateSelectText();
