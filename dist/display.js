@@ -375,9 +375,10 @@ function next(elems, upOrDown, loop = false) {
 
         if (elemTop < window.innerHeight && elemBottom >= 100) {
             other = upOrDown === 'up' ? i - 1 : i + 1;
-            if (other < 0 && other >= elems.length) {
+            if (other < 0 || other >= elems.length) {
                 if (loop) {
                     other = (other + elems.length) % elems.length;
+                    console.log('hey');
                 } else {
                     return;
                 }
