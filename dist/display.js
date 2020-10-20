@@ -366,6 +366,7 @@ function filterToIds() {
 }
 
 function next(elems, upOrDown, loop = false) {
+    let other = 0;
     for (let i = 0; i < elems.length; i++) {
         const el = elems.item(i);
         const rect = el.getBoundingClientRect();
@@ -373,18 +374,18 @@ function next(elems, upOrDown, loop = false) {
         const elemBottom = rect.bottom;
 
         if (elemTop < window.innerHeight && elemBottom >= 100) {
-            let other = upOrDown === 'up' ? i - 1 : i + 1;
+            other = upOrDown === 'up' ? i - 1 : i + 1;
             if (other < 0 && other >= elems.length) {
                 if (loop) {
                     other = (other + elems.length) % elems.length;
                 } else {
-                    break;
+                    return;
                 }
             }
-            elems[other].scrollIntoView({block: "start", behavior: "smooth"});
             break;
         }
     }
+    elems[other].scrollIntoView({block: "start", behavior: "smooth"});
 }
 
 const moveDetails = (upOrDown) => next(
