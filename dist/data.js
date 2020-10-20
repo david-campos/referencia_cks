@@ -2706,8 +2706,9 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description": "Elimina el objeto. Después de ser eliminado el objeto será <a href='#Obj::IsValid'>inválido</a>.",
-            "description_en": "Removes the object. After erasing the object will be <a href='#Obj::IsValid'>invalid</a>."
+            "description": "Elimina el objeto. Después de ser eliminado la referencia al objeto será <a href='#Obj::IsValid'>inválida</a>.",
+            "description_en": "Removes the object. After erasing the object reference will be <a href='#Obj::IsValid'>invalid</a>.",
+            "related": ["Query::Erase"]
         }, {
             "id": "Obj::player",
             "name": "player",
@@ -4003,8 +4004,8 @@ const THE_OBJ = (function () {
                 "type": 1,
                 "is_ptr": false
             }, {"name": "area", "type": 5, "is_ptr": false}],
-            "description": "Consulta para los objetos de una clase y jugador específicos que se encuentren en un área. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
-            "description_en": "Query for the object of a specific class and player inside an area. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
+            "description": "Objetos de una clase y jugador específicos que se encuentren en un área. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
+            "description_en": "Object of a specific class and player inside an area. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
             "related": ["Obj::class", "Obj::player", "ClassPlayerObjs:str_int", "AreaObjs:str_str"]
         }, {
             "id": "ClassPlayerObjs:str_int",
@@ -4015,8 +4016,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}, {"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}],
-            "description": "Consulta para los objetos de una clase y jugador específicos. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
-            "description_en": "Query for the object of a specific class and player. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
+            "description": "Objetos de una clase y jugador específicos. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
+            "description_en": "Object of a specific class and player. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
             "related": ["Obj::class", "Obj::player", "GetPlayerUnits:int_str", "ClassPlayerAreaObjs:str_int_str"]
         }, {
             "id": "BuildingsInSettlement:str_str",
@@ -4039,8 +4040,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "asentamiento", "name_en": "settlement", "type": 5, "is_ptr": false}, {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
-            "description": "Consulta para los objetos de una clase específica que se encuentren dentro de un edificio del asentamiento indicado. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
-            "description_en": "Query for the objects of an specific class which are inside of a building in a given settlement. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
+            "description": "Objetos de una clase específica que se encuentren dentro del asentamiento indicado (dentro de su <a href='#Settlement::GetCentralBuilding'>edificio central</a>). Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
+            "description_en": "Objects of an specific class which are inside a given settlement (inside its <a href='#Settlement::GetCentralBuilding'>central building</a>). Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
             "related": ["Obj::class", "GetSettlement:str", "UnitsAroundSettlement:str_str", "UnitsGuardingSettlement:str_str", "UnitsInSettlement:Settlement_str", "Settlement::Units"]
         }, {
             "id": "UnitsAroundSettlement:str_str",
@@ -4051,9 +4052,9 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "asentamiento", "name_en": "settlement", "type": 5, "is_ptr": false}, {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
-            "description": "Consulta para los objetos de una clase específica que se encuentren en el área del asentamiento indicado. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
-            "description_en": "Query for the objects of an specific class which are inside the area of the given settlement. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
-            "related": ["Obj::class", "GetSettlement:str", "UnitsInSettlement:str_str", "UnitsGuardingSettlement:str_str", "UnitsInSettlement:Settlement_str", "Settlement::Units"]
+            "description": "Objetos de una clase específica que se encuentren en el área del asentamiento indicado. Un objeto se encuentra en el área de un asentamiento si está dentro del <a href='#Obj::sight'>radio de visión</a> de uno de sus edificios. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
+            "description_en": "Objects of an specific class which are inside the area of the given settlement. An object is inside the area of a settlement if it is inside the <a href='#Obj::sight'>sight</a> of one of its buildings. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
+            "related": ["Obj::class", "GetSettlement:str", "UnitsAroundSettlement:Settlement_str", "UnitsInSettlement:str_str", "UnitsGuardingSettlement:str_str", "UnitsInSettlement:Settlement_str", "Settlement::Units"]
         }, {
             "id": "UnitsGuardingSettlement:str_str",
             "name": "UnitsGuardingSettlement",
@@ -4063,9 +4064,9 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "asentamiento", "name_en": "settlement", "type": 5, "is_ptr": false}, {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
-            "description": "Consulta para los objetos de una clase específica que se encuentren protegiendo el asentamiento indicado. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
-            "description_en": "Query for the objects of an specific class which are guarding the given settlement. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
-            "related": ["Obj::class", "GetSettlement:str", "UnitsInSettlement:str_str", "UnitsAroundSettlement:str_str", "UnitsInSettlement:Settlement_str", "Settlement::Units"]
+            "description": "Objetos de una clase específica que se encuentren protegiendo el asentamiento indicado. Este método devuelve la <a href='#Union:Query_Query'>unión</a> de los <a href='#UnitsInSettlement:str_str'>objetos dentro del asentamiento</a> y los  <a href='#UnitsAroundSettlement:str_str'>objetos que rodean el asentamiento</a>. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
+            "description_en": "Objects of an specific class which are guarding the given settlement. This method returns the <a href='#Union:Query_Query'>union</a> of the <a href='#UnitsInSettlement:str_str'>objects inside the settlement</a> and the <a href='#UnitsAroundSettlement:str_str'>objects around the settlement</a>. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
+            "related": ["Obj::class", "GetSettlement:str", "UnitsGuardingSettlement:Settlement_str", "UnitsInSettlement:str_str", "UnitsAroundSettlement:str_str", "UnitsInSettlement:Settlement_str", "Settlement::Units"]
         }, {
             "id": "UnitsInSettlement:Settlement_str",
             "name": "UnitsInSettlement",
@@ -4074,7 +4075,11 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "asentamiento", "name_en": "settlement", "type": 28, "is_ptr": false},
+                {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
+            "description": "Objetos de una clase específica que se encuentren dentro de un edificio del asentamiento indicado. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
+            "description_en": "Objects of an specific class which are inside of a given settlement. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
+            "related": ["Obj::class", "UnitsInSettlement:str_str", "GetSettlement:str", "UnitsAroundSettlement:str_str", "UnitsGuardingSettlement:str_str", "Settlement::Units"]
         }, {
             "id": "UnitsAroundSettlement:Settlement_str",
             "name": "UnitsAroundSettlement",
@@ -4083,7 +4088,11 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "asentamiento", "name_en": "settlement", "type": 28, "is_ptr": false},
+                {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
+            "description": "Objetos de una clase específica que se encuentren en el área del asentamiento indicado. Un objeto se encuentra en el área de un asentamiento si está dentro del <a href='#Obj::sight'>radio de visión</a> de uno de sus edificios. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
+            "description_en": "Objects of an specific class which are inside the area of the given settlement. An object is inside the area of a settlement if it is inside the <a href='#Obj::sight'>sight</a> of one of its buildings. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
+            "related": ["Obj::class", "GetSettlement:str", "UnitsAroundSettlement:str_str", "UnitsInSettlement:str_str", "UnitsGuardingSettlement:str_str", "UnitsInSettlement:Settlement_str", "Settlement::Units"]
         }, {
             "id": "UnitsGuardingSettlement:Settlement_str",
             "name": "UnitsGuardingSettlement",
@@ -4092,7 +4101,11 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 28, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "asentamiento", "name_en": "settlement", "type": 28, "is_ptr": false},
+                {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
+            "description": "Objetos de una clase específica que se encuentren protegiendo el asentamiento indicado. Este método devuelve la <a href='#Union:Query_Query'>unión</a> de los <a href='#UnitsInSettlement:Settlement_str'>objetos dentro del asentamiento</a> y los  <a href='#UnitsAroundSettlement:Settlement_str'>objetos que rodean el asentamiento</a>. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
+            "description_en": "Objects of an specific class which are guarding the given settlement. This method returns the <a href='#Union:Query_Query'>union</a> of the <a href='#UnitsInSettlement:Settlement_str'>objects inside the settlement</a> and the <a href='#UnitsAroundSettlement:Settlement_str'>objects around the settlement</a>. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
+            "related": ["Obj::class", "GetSettlement:str", "UnitsGuardingSettlement:str_str", "UnitsInSettlement:str_str", "UnitsAroundSettlement:str_str", "UnitsInSettlement:Settlement_str", "Settlement::Units"]
         }, {
             "id": "EnemyObjs:int_str",
             "name": "EnemyObjs",
@@ -4101,7 +4114,11 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false},
+                {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
+            "description": "Objetos de una clase enemigos de un jugador dado. Este método excluye a objetos en <a href='#Obj::SetMessengerStatus:bool'>estado de mensajero</a>. Se consideran enemigos los objetos de jugadores que no tienen <a href='#DiplGetCeaseFire:int_int'>alto al fuego</a> cara el jugador dado. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
+            "description_en": "Objects of an specific class enemies of the given player. This method excludes objects with <a href='#Obj::SetMessengerStatus:bool'>messenger status</a>. It considers enemies the objects from players which do not have <a href='#DiplGetCeaseFire:int_int'>ceased fire</a> against the given player. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
+            "related": ["Obj::player", "Obj::IsEnemy:Obj", "FriendlyObjs:int_str", "ControllableObjs:int_str", "DiplGetCeaseFire:int_int", "CurPlayer"]
         }, {
             "id": "FriendlyObjs:int_str",
             "name": "FriendlyObjs",
@@ -4110,7 +4127,11 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false},
+                {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
+            "description": "Objetos de una clase que son amigos para el jugador dado. Este método excluye a objetos en <a href='#Obj::SetMessengerStatus:bool'>estado de mensajero</a>. Se consideran amigos aquellos objetos pertenecientes a jugadores hacia los cuales el jugador <tt>jugador</tt> tiene <a href='#DiplGetCeaseFire:int_int'>alto al fuego</a>, incluyendo esto los objetos del propio jugador. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
+            "description_en": "Objects of an specific class which are friends for the given player. This method excludes objects with <a href='#Obj::SetMessengerStatus:bool'>messenger status</a>. They are considered friendly those objects owned by a player to whom the given player <tt>player</tt> has <a href='#DiplGetCeaseFire:int_int'>ceased fire</a>, included the objects of the player <tt>player</tt>. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
+            "related": ["Obj::player", "Obj::IsEnemy:Obj", "EnemyObjs:int_str", "ControllableObjs:int_str", "DiplGetCeaseFire:int_int", "CurPlayer"]
         }, {
             "id": "ControllableObjs:int_str",
             "name": "ControllableObjs",
@@ -4119,7 +4140,11 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false},
+                {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
+            "description": "Objetos de una clase dada cuyo <a href='#Obj::player'>jugador</a> puede controlar los objetos del jugador dado. Parece ser un bug, pues lo intuitivo para <i>objetos controlables</i> sería obtener aquellos objetos que pueden ser controlados por el jugador dado. Nótese que si los jugadores que comparten control lo hacen de forma mutua, la función se comportará como es esperable a primera vista. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
+            "description_en": "Objects of an specific class whose <a href='#Obj::player'>player</a> can control the objects of the given player. There seems to be a bug, since the intuitive concept for <i>controllable objects</a> would be to get those object which can be controlled by the given player. Notice that if both players share control mutually, then this function will behave as it would be expected at first glance. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
+            "related": ["Obj::player", "Obj::IsEnemy:Obj", "EnemyObjs:int_str", "FriendlyObjs:int_str", "DiplGetShareControl:int_int", "CurPlayer"]
         }, {
             "id": "AreaObjs:str_str",
             "name": "AreaObjs",
@@ -4128,7 +4153,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "area", "type": 5, "is_ptr": false}, {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
+            "description": "Objetos de una clase dada en el área especificada. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
+            "description_en": "Objects of a particular class in the given area. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
+            "related": ["ClassPlayerAreaObjs:str_int_str", "ObjsInRect:rect_str", "ObjsInCircle:point_int_str"]
         }, {
             "id": "ObjsInRect:rect_str",
             "name": "ObjsInRect",
@@ -4137,7 +4165,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 7, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "rectangulo", "name_en": "rectangle", "type": 7, "is_ptr": false}, {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
+            "description": "Objetos de una clase dada en el rectángulo especificado. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
+            "description_en": "Objects of a particular class inside the given rectangle. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
+            "related": ["AreaObjs:str_str", "ObjsInCircle:point_int_str"]
         }, {
             "id": "ObjsInCircle:point_int_str",
             "name": "ObjsInCircle",
@@ -4146,11 +4177,15 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "centro", "name_en": "center", "type": 6, "is_ptr": false}, {
+                "name": "radio",
+                "name_en": "radius",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 5, "is_ptr": false}]
+            }, {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
+            "description": "Objetos de una clase dada en el círculo especificado. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
+            "description_en": "Objects of a particular class inside the given circle. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
+            "related": ["AreaObjs:str_str", "ObjsInRect:rect_str"]
         }, {
             "id": "ObjsInSight:Obj_str",
             "name": "ObjsInSight",
@@ -4159,7 +4194,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "objeto", "name_en": "object", "type": 11, "is_ptr": false}, {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
+            "description": "<p>Objetos de la clase indicada en el <a href='#Obj::sight'>radio de visión</a> del objeto dado. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.</p><p>La expresión <tt class='language-cks'>ObjsInSight(miObj, \"Unit\")</tt> es equivalente a <tt class='language-cks'>ObjsInRange(miObj, \"Unit\", miObj.sight)</tt>.</p>",
+            "description_en": "<p>Objects of a specific class in the <a href='#Obj::sight'>sight</a> of a given object. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.</p><p>The expression <tt class='language-cks'>ObjsInSight(myObj, \"Unit\")</tt> is equivalent to <tt class='language-cks'>ObjsInRange(myObj, \"Unit\", myObj.sight)</tt>.</p>",
+            "related": ["VisibleObjsInSight:Obj_str", "ObjsInRange:Obj_str_int", "Unit::EnemiesInSight"]
         }, {
             "id": "VisibleObjsInSight:Obj_str",
             "name": "VisibleObjsInSight",
@@ -4168,7 +4206,11 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "objeto", "name_en": "object", "type": 11, "is_ptr": false},
+                {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
+            "description": "Objetos visibles de la clase indicada en el <a href='#Obj::sight'>radio de visión</a> del objeto dado. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
+            "description_en": "Visible objects of a specific class in the <a href='#Obj::sight'>sight</a> of a given object. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
+            "related": ["ObjsInSight:Obj_str", "ObjsInRange:Obj_str_int", "Unit::EnemiesInSight"]
         }, {
             "id": "ObjsInRange:Obj_str_int",
             "name": "ObjsInRange",
@@ -4177,11 +4219,15 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "objeto", "name_en": "object", "type": 11, "is_ptr": false}, {
+                "name": "clase",
+                "name_en": "class",
                 "type": 5,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "rango", "name_en": "range", "type": 1, "is_ptr": false}],
+            "description": "Objetos de la clase indicada en el rango especificado con respecto al <tt>objeto</tt> dado. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
+            "description_en": "Objects of a specific class within the specified range relative to the given <tt>object</tt>. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
+            "related": ["VisibleObjsInSight:Obj_str", "ObjsInSight:Obj_str", "Unit::EnemiesInSight"]
         }, {
             "id": "AttachedUnits:Hero_str",
             "name": "AttachedUnits",
@@ -4190,7 +4236,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 15, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "heroe", "name_en": "hero", "type": 15, "is_ptr": false}, {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
+            "description": "Unidades de la clase indicada asociadas al héroe dado. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
+            "description_en": "Units of the given class associated to the provided hero. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
+            "related": ["Unit::AttachTo:Hero", "Squad::EvalAttach:Unit_int", "Hero::army"]
         }, {
             "id": "PartyQuery",
             "name": "PartyQuery",
@@ -4199,7 +4248,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Unidades en el <a href='#Party'>grupo de viaje</a>.",
+            "description_en": "Units in the <a href='#Party'>party group</a>.",
+            "related": ["Party", "Unit::GetParty", "Unit::SetParty:bool", "Query::SetParty:bool"],
         }, {
             "id": "Query::Erase",
             "name": "Erase",
@@ -4208,7 +4260,10 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "<a href='#Obj::Erase'>Elimina</a> del mapa todos los objetos en la consulta.",
+            "description_en": "<a href='#Obj::Erase'>Removes</a> from the map every object within the query.",
+            "related": ["Obj::Erase"]
         }, {
             "id": "Query::SetPlayer:int",
             "name": "SetPlayer",
@@ -4217,7 +4272,10 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}],
+            "description": "Cambia el <a href='#Obj::player'>jugador</a> a todos los objetos en la consulta.",
+            "description_en": "Changes the <a href='#Obj::player'>player</a> to every object within the query.",
+            "related": ["Obj::SetPlayer:int", "ObjList::SetPlayer:int", "Settlement::SetPlayer:int"]
         }, {
             "id": "Query::Damage:int",
             "name": "Damage",
@@ -4226,7 +4284,10 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "cantidad_vida", "name_en": "health_amount", "type": 1, "is_ptr": false}],
+            "description": "Substrae el número de <a href='#Obj::health'>puntos de vida</a> indicado de cada objeto en la consulta.",
+            "description_en": "Subtracts the number of <a href='#Obj::health'>health points</a> given from each object within the query.",
+            "related": ["Obj::Damage:int"]
         }, {
             "id": "Query::Heal:int",
             "name": "Heal",
@@ -4235,7 +4296,10 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "cantidad", "name_en": "amount", "type": 1, "is_ptr": false}],
+            "description": "Añade el número de <a href='#Obj::health'>puntos de vida</a> indicado a cada objeto en la consulta.",
+            "description_en": "Adds the given amount of <a href='#Obj::health'>health points</a> to every object within the query.",
+            "related": ["Obj::Heal:int"]
         }, {
             "id": "Query::HealStamina:int",
             "name": "HealStamina",
@@ -4244,7 +4308,10 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "cantidad", "name_en": "amount", "type": 1, "is_ptr": false}],
+            "description": "Añade el número de <a href='#Obj::stamina'>puntos de energía</a> indicado a cada objeto en la consulta.",
+            "description_en": "Adds the given amount of <a href='#Obj::stamina'>stamina points</a> to every object within the query.",
+            "related": ["Obj::HealStamina:int"]
         }, {
             "id": "Query::AddDefCmd:point_Obj_bool_bool",
             "name": "AddDefCmd",
@@ -8715,6 +8782,7 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": []
+            // NOTA: EXPLICAR AQUÍ EL PARTY GROUP (LOS OTROS MÉTODOS TENDRÁN ENLACE A ESTE)
         }, {
             "id": "GetTime",
             "name": "GetTime",

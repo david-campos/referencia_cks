@@ -356,6 +356,8 @@ function render() {
     }
     main.querySelectorAll('pre')
         .forEach(pre => Prism.highlightElement(pre));
+    main.querySelectorAll('tt.language-cks')
+        .forEach(tt => Prism.highlightElement(tt));
     const t1 = performance.now();
     console.log("Rendered in", (t1 - t0), "ms.");
 }
