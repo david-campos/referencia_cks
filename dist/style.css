@@ -1,7 +1,7 @@
 body {
     padding-top: 2rem;
     color: #333;
-    font-family: "Noto Sans";
+    font-family: "Noto Sans", sans-serif;
     font-size: 12pt;
 }
 
@@ -159,7 +159,7 @@ nav a {
 
 
 tt {
-    font-family: "Roboto Mono";
+    font-family: "Roboto Mono", monospace;
     color: #000080;
     background-color: #eee;
 }
@@ -249,7 +249,7 @@ h3 {
     text-indent: -2rem;
     margin-left: 2rem;
     line-height: 1.5;
-    font-family: "Roboto Mono";
+    font-family: "Roboto Mono", monospace;
     position: relative;
     padding-bottom: 24px;
 }
@@ -289,7 +289,7 @@ details {
 }
 
 .description, .related, .not-for-seqs {
-    font-family: "Noto Sans";
+    font-family: "Noto Sans", sans-serif;
     text-indent: 0;
     margin: 1rem 0;
 }
@@ -310,6 +310,38 @@ details {
     padding: .5rem;
     font-size: .9rem;
     color: #7b4d1d;
+}
+
+.research-notes {
+    background-color: #d6f6b1;
+    margin: 1rem 0;
+    scroll-margin-top: 7em;
+}
+
+.research-notes .research-notes-title {
+    font-family: "Noto Sans", sans-serif;
+    background-color: #add080;
+    font-weight: 600;
+    color: #005500;
+    padding: .5rem;
+    display: flex;
+}
+
+.research-notes .research-notes-title span:first-child {
+    flex: 1;
+}
+
+.research-notes .research-notes-title span:last-child {
+    position: static;
+    flex: 0;
+}
+
+.research-notes .research-notes-content {
+    font-family: "Roboto Mono", monospace;
+    color: #445544;
+    overflow-y: auto;
+    max-height: 6rem;
+    padding: 1rem;
 }
 
 .description .dangerous-warn {
@@ -365,7 +397,7 @@ details {
 }
 
 .description table.tt tbody {
-    font-family: "Roboto Mono";
+    font-family: "Roboto Mono", monospace;
 }
 
 .description .material-icons,
@@ -553,7 +585,7 @@ table.class-list td:hover .path {
     display: flex;
     flex-wrap: wrap;
     line-height: 1.5;
-    font-family: "Roboto Mono";
+    font-family: "Roboto Mono", monospace;
     justify-content: space-evenly;
     align-items: flex-start;
 }

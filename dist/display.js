@@ -24,7 +24,9 @@ const TRANSLATE_TEXTS = {
     "documented-": "Documentado:",
     "documented-en": "Documented: ",
     "not-for-seqs-": "Inútil en secuencias del editor de mapas.",
-    "not-for-seqs-en": "Useless for sequences in the map editor."
+    "not-for-seqs-en": "Useless for sequences in the map editor.",
+    "research-notes-": "Investigación requerida, notas:",
+    "research-notes-en": "Research required, research notes (Spanish):"
 }
 
 function escapeHtmlAndNameCorrection(unsafe) {
@@ -74,14 +76,20 @@ function renderRelated(inFunction, relatedList) {
 }
 
 function renderNotForSequences(func) {
-    if(func.notForSequences) {
+    if (func.notForSequences) {
         return `<div class="not-for-seqs"><span>${TRANSLATE_TEXTS["not-for-seqs-" + lang]}</span><span class="material-icons">description</span></div>`;
+    } else return '';
+}
+
+function renderResearchNotes(func) {
+    if (func.research_needed) {
+        return `<div class='research-notes'><div class='research-notes-title'><span>${TRANSLATE_TEXTS["research-notes-" + lang]}</span><span class="material-icons">biotech</span></div><div class="research-notes-content">${func.research_needed}</div></div>`;
     } else return '';
 }
 
 function renderDescription(func) {
     return `${renderNotForSequences(func)}<div class="description">${renderDangerousWarn(func)}${func['description_' + lang] || func.description
-    || `<span class=\"to-fill\">${TRANSLATE_TEXTS['no-desc-' + lang]}</span>`}</div>${renderRelated(func, func.related)}`;
+    || `<span class=\"to-fill\">${TRANSLATE_TEXTS['no-desc-' + lang]}</span>${renderResearchNotes(func)}`}</div>${renderRelated(func, func.related)}`;
 }
 
 function typeForIdentifier(type, isPtr, classes) {
@@ -357,7 +365,7 @@ function filterToIds() {
     return THE_OBJ.funcs.filter(func => filters.reduce((p, c) => p && c(func), true)).map(f => f.id);
 }
 
-function next(elems, upOrDown) {
+function next(elems, upOrDown, loop = false) {
     for (let i = 0; i < elems.length; i++) {
         const el = elems.item(i);
         const rect = el.getBoundingClientRect();
@@ -365,10 +373,15 @@ function next(elems, upOrDown) {
         const elemBottom = rect.bottom;
 
         if (elemTop < window.innerHeight && elemBottom >= 100) {
-            const other = upOrDown === 'up' ? i -1 : i + 1;
-            if (other >= 0 && other < elems.length) {
-                elems[other].scrollIntoView({block: "start", behavior: "smooth"});
+            let other = upOrDown === 'up' ? i - 1 : i + 1;
+            if (other < 0 && other >= elems.length) {
+                if (loop) {
+                    other = (other + elems.length) % elems.length;
+                } else {
+                    break;
+                }
             }
+            elems[other].scrollIntoView({block: "start", behavior: "smooth"});
             break;
         }
     }
@@ -378,6 +391,7 @@ const moveDetails = (upOrDown) => next(
     document.getElementsByTagName('details'), upOrDown);
 const moveFunc = (upOrDown) => next(
     document.querySelectorAll('div.operator,div.method,div.property'), upOrDown);
+const nextResearchNote = () => next(document.querySelectorAll('div.research-notes'), 'down', true);
 
 window.onload = function () {
     const lang_select = document.getElementById('lang_select');
@@ -426,6 +440,9 @@ window.onload = function () {
                     break;
                 case 'ArrowDown':
                     moveFunc('down');
+                    break;
+                case 'KeyN':
+                    nextResearchNote();
                     break;
             }
         }

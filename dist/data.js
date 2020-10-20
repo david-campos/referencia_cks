@@ -202,7 +202,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Detiene la ejecución del script actual, funciona también con secuencias.",
+            "description_en": "Breaks the execution of the current script, works also in sequences."
         }, {
             "id": "ptr.int::-p--e-:ptr.int_int",
             "name": "+=",
@@ -409,7 +411,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}],
+            "research_needed": "En mis tests, esto no ha imprimido a ningún lado. He probado si estaba imprimiendo al shell externo sobre el que esté corriendo el juego pero no, también he probado si algún archivo cambiaba o contenía el texto y nada. No estoy seguro de si esto será <i>legacy code</i> que quedó de alguna versión antigua del motor.",
+            "related": ["Write:float", "Write:str", "Write:pstr"]
         }, {
             "id": "MIN:int_int",
             "name": "MIN",
@@ -597,7 +601,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 3, "is_ptr": false}]
+            "params": [{"name": "number", "type": 3, "is_ptr": false}],
+            "research_needed": "En mis tests, esto no ha imprimido a ningún lado. He probado si estaba imprimiendo al shell externo sobre el que esté corriendo el juego pero no, también he probado si algún archivo cambiaba o contenía el texto y nada. No estoy seguro de si esto será <i>legacy code</i> que quedó de alguna versión antigua del motor.",
+            "related": ["Write:int", "Write:str", "Write:pstr"]
         }, {
             "id": "MIN:float_float",
             "name": "MIN",
@@ -708,7 +714,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 4, "is_ptr": false}]
+            "params": [{"name": "number", "type": 4, "is_ptr": false}],
+            "research_needed": "No hay ningún tipo de información que explique qué podrían ser las pstr o qué hacen.",
+            "related": ["Write:int", "Write:str", "Write:float"]
         }, {
             "id": "Write:str",
             "name": "Write",
@@ -717,7 +725,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}],
+            "research_needed": "En mis tests, esto no ha imprimido a ningún lado. He probado si estaba imprimiendo al shell externo sobre el que esté corriendo el juego pero no, también he probado si algún archivo cambiaba o contenía el texto y nada. No estoy seguro de si esto será <i>legacy code</i> que quedó de alguna versión antigua del motor.",
+            "related": ["Write:int", "Write:pstr", "Write:float"]
         }, {
             "id": "ptr.pstr::-e-:ptr.pstr_pstr",
             "name": "=",
@@ -726,7 +736,9 @@ const THE_OBJ = (function () {
             "of": 4,
             "of_ptr": true,
             "type": "operator",
-            "params": [{"name": "number", "type": 4, "is_ptr": true}, {"name": "number", "type": 4, "is_ptr": false}]
+            "params": [{"name": "number", "type": 4, "is_ptr": true}, {"name": "number", "type": 4, "is_ptr": false}],
+            "research_needed": "No hay ningún tipo de información que explique qué podrían ser las pstr o qué hacen.",
+            "related": ["Write:pstr"]
         }, {
             "id": "ptr.str::-e-:ptr.str_str",
             "name": "=",
@@ -804,7 +816,8 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}],
+            "research_needed": "No logro encontrar qué hace esta función, he probado con cosas separadas con comas, por si era similar a <a href='#ParseStr:str_ptr.str'>ParseStr</a> pero nada."
         }, {
             "id": "GetFromStrToEOL:str_str",
             "name": "GetFromStrToEOL",
@@ -813,7 +826,8 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}],
+            "research_needed": "No logro encontrar qué hace esta función, he probado con cosas separadas con comas, por si era similar a <a href='#ParseStr:str_ptr.str'>ParseStr</a> pero nada. Es seguro asumir que EOL aquí significa End-Of-Line, es decir hasta <tt>\\n</tt> o <tt>\\r\\n</tt>."
         }, {
             "id": "str::-p-:str_str",
             "name": "+",
@@ -865,7 +879,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "cadena", "name_en": "string", "type": 5, "is_ptr": false}],
+            "description": "Retorna <tt>true</tt> si la cadena está vacía, es decir, no contiene ningún carácter. En caso contrario devuelve <tt>false</tt>.",
+            "description_en": "Returns <tt>true</tt> if the string is empty, otherwise it returns <tt>false</tt>."
         }, {
             "id": "StrLen:str",
             "name": "StrLen",
@@ -934,7 +950,8 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}],
+            "research_needed": "No se encuentra en los scripts del juego, no estoy seguro de qué flags permite setear concretamente o si es <i>legacy code</i> que quedó de versiones anteriores."
         }, {
             "id": "SetFlag:ptr.int_int_bool",
             "name": "SetFlag",
@@ -947,7 +964,8 @@ const THE_OBJ = (function () {
                 "name": "number",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 2, "is_ptr": false}]
+            }, {"name": "number", "type": 2, "is_ptr": false}],
+            "research_needed": "No se encuentra en los scripts del juego, no estoy seguro de qué flags permite setear concretamente o si es <i>legacy code</i> que quedó de versiones anteriores."
         }, {
             "id": "Point:int_int",
             "name": "Point",
@@ -3448,7 +3466,9 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "notForSequences": true
+            "notForSequences": true,
+            "research_needed": "Claramente se refiere al texto flotante que se muestra al dejar el ratón sobre los comandos en la interfaz, aparece en la validación de muchos comandos. De todas formas, no lo he documentado porque sólo funciona desde los archivos de validación de comandos y no desde el juego en sí (normalmente hago mis tests con secuencias o metiendo códigos en la ventana de chat), y por tanto no he podido desgranar los detalles aún sobre sus parámetros y funcionamiento exacto.",
+            "related": ["rollover", "rollover:Obj_bool", "rollover:Obj_str_bool", "rollover:Obj_str", "rollover_desc:Obj_str_bool"]
         }, {
             "id": "rollover:Obj_bool",
             "name": "rollover",
@@ -3458,7 +3478,9 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}],
-            "notForSequences": true
+            "notForSequences": true,
+            "research_needed": "Claramente se refiere al texto flotante que se muestra al dejar el ratón sobre los comandos en la interfaz, aparece en la validación de muchos comandos. De todas formas, no lo he documentado porque sólo funciona desde los archivos de validación de comandos y no desde el juego en sí (normalmente hago mis tests con secuencias o metiendo códigos en la ventana de chat), y por tanto no he podido desgranar los detalles aún sobre sus parámetros y funcionamiento exacto.",
+            "related": ["rollover", "rollover:Obj_bool", "rollover:Obj_str_bool", "rollover:Obj_str", "rollover_desc:Obj_str_bool"]
         }, {
             "id": "rollover:Obj_str_bool",
             "name": "rollover",
@@ -3472,7 +3494,9 @@ const THE_OBJ = (function () {
                 "type": 5,
                 "is_ptr": false
             }, {"name": "number", "type": 2, "is_ptr": false}],
-            "notForSequences": true
+            "notForSequences": true,
+            "research_needed": "Claramente se refiere al texto flotante que se muestra al dejar el ratón sobre los comandos en la interfaz, aparece en la validación de muchos comandos. De todas formas, no lo he documentado porque sólo funciona desde los archivos de validación de comandos y no desde el juego en sí (normalmente hago mis tests con secuencias o metiendo códigos en la ventana de chat), y por tanto no he podido desgranar los detalles aún sobre sus parámetros y funcionamiento exacto.",
+            "related": ["rollover", "rollover:Obj_bool", "rollover:Obj_str_bool", "rollover:Obj_str", "rollover_desc:Obj_str_bool"]
         }, {
             "id": "rollover:Obj_str",
             "name": "rollover",
@@ -3482,7 +3506,9 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}],
-            "notForSequences": true
+            "notForSequences": true,
+            "research_needed": "Claramente se refiere al texto flotante que se muestra al dejar el ratón sobre los comandos en la interfaz, aparece en la validación de muchos comandos. De todas formas, no lo he documentado porque sólo funciona desde los archivos de validación de comandos y no desde el juego en sí (normalmente hago mis tests con secuencias o metiendo códigos en la ventana de chat), y por tanto no he podido desgranar los detalles aún sobre sus parámetros y funcionamiento exacto.",
+            "related": ["rollover", "rollover:Obj_bool", "rollover:Obj_str_bool", "rollover:Obj_str", "rollover_desc:Obj_str_bool"]
         }, {
             "id": "rollover_desc:Obj_str_bool",
             "name": "rollover_desc",
@@ -3496,7 +3522,9 @@ const THE_OBJ = (function () {
                 "type": 5,
                 "is_ptr": false
             }, {"name": "number", "type": 2, "is_ptr": false}],
-            "notForSequences": true
+            "notForSequences": true,
+            "research_needed": "Claramente se refiere al texto flotante que se muestra al dejar el ratón sobre los comandos en la interfaz, aparece en la validación de muchos comandos. De todas formas, no lo he documentado porque sólo funciona desde los archivos de validación de comandos y no desde el juego en sí (normalmente hago mis tests con secuencias o metiendo códigos en la ventana de chat), y por tanto no he podido desgranar los detalles aún sobre sus parámetros y funcionamiento exacto.",
+            "related": ["rollover", "rollover:Obj_bool", "rollover:Obj_str_bool", "rollover:Obj_str", "rollover_desc:Obj_str_bool"]
         }, {
             "id": "cmdcost_gold",
             "name": "cmdcost_gold",
@@ -3781,7 +3809,9 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "research_needed": "Aparece en el SUBAI para la desaparición de unidades. No parece tener ningún efecto en los tests que he realizado. Mi idea es que podría tener que ver con el manejo de memoria o algo interno similar del juego, pero quién sabe.",
+            "related": ["Obj::RemoveFromStoreBin"]
         }, {
             "id": "Obj::RemoveFromStoreBin",
             "name": "RemoveFromStoreBin",
@@ -3790,7 +3820,9 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "research_needed": "Aparece en el SUBAI para la desaparición de unidades. No parece tener ningún efecto en los tests que he realizado. Mi idea es que podría tener que ver con el manejo de memoria o algo interno similar del juego, pero quién sabe.",
+            "related": ["Obj::AddToStoreBin"]
         }, {
             "id": "Obj::IsInState",
             "name": "IsInState",
@@ -3799,7 +3831,8 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "research_needed": "Aparece en el SUBAI para el vuelo de águilas y cuervos, al comienzo hay un while que simplemente detiene el script hasta que este método devuelva <tt>true</tt>. He probado a hacerle <tt>pr</tt> en bucle e imprimir ciertos valores como <a href='#Unit::GetAnimState'>Unit::GetAnimState</a> pero no logro relacionarlo con nada."
         }, {
             "id": "Obj::PlaySound:str",
             "name": "PlaySound",
@@ -3903,6 +3936,7 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
+            "research_needed":  "Yo diría que tiene que estar relacionado con la modificación de terreno(?) Deberíamos probarlo en el editor. De todas formas, el parámetro <tt>string</tt> is probablemente un archivo y valores incorrectos parecen crashear el juego en mis tests.",
             "params": [{"name": "number", "type": 5, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
