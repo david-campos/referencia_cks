@@ -26,7 +26,9 @@ const TRANSLATE_TEXTS = {
     "not-for-seqs-": "Inútil en secuencias del editor de mapas.",
     "not-for-seqs-en": "Useless for sequences in the map editor.",
     "research-notes-": "Investigación requerida, notas:",
-    "research-notes-en": "Research required, research notes (Spanish):"
+    "research-notes-en": "Research required, research notes (Spanish):",
+    "unknown-param-": "ignoto",
+    "unknown-param-en": "unknown"
 }
 
 function escapeHtmlAndNameCorrection(unsafe) {
@@ -47,7 +49,9 @@ function addReturn(func, classes) {
 }
 
 function renderParam(param, classes) {
-    return `<wbr><span class="param"><span class="name">${escapeHtmlAndNameCorrection(param['name_' + lang] || param.name)}</span><span class="two_dots mid">:</span>${renderType(param.type, param.is_ptr, classes)}</span>`
+    return `<wbr><span class="param"><span class="name">${
+        param.name !== "number" ? escapeHtmlAndNameCorrection(param['name_' + lang] || param.name) : TRANSLATE_TEXTS['unknown-param-' + lang]
+    }</span><span class="two_dots mid">:</span>${renderType(param.type, param.is_ptr, classes)}</span>`
 }
 
 function renderRelated(inFunction, relatedList) {
@@ -414,7 +418,7 @@ window.onload = function () {
         const nDocumented = THE_OBJ.funcs.filter(f => 'description' in f).length
             + THE_OBJ.funcs.filter(f => 'description_en' in f).length;
         const nTotal = 2 * THE_OBJ.funcs.length;
-        documented.innerHTML = `${TRANSLATE_TEXTS['documented-' + lang]} ${Math.round(nDocumented / nTotal * 100)}%`;
+        documented.innerHTML = `${TRANSLATE_TEXTS['documented-' + lang]} ${Math.round(nDocumented / nTotal * 100)}% (${Math.floor(nDocumented / 2)})`;
     }
 
     document.addEventListener('keyup', event => {

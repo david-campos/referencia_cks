@@ -1853,7 +1853,7 @@ const THE_OBJ = (function () {
                 "<tr><td>5</td><td>Britain</td><td>B</td></tr>" +
                 "<tr><td>6</td><td>Egypt</td><td>E</td></tr>" +
                 "<tr><td>7</td><td>Germany</td><td>T</td></tr></tbody></table>",
-            "related": ["Obj::race", "Obj::raceStr", "Obj::raceStrPref", "Obj::raceStrPrefLow", "GetClassRace:str", "GetPlayerRace:int", "GetRaceStr:int", "GetRaceStrPref:int", "GetRaceStrPrefLow:int", "SetPlayerSettRace:int_int", "SetSettRace:str_int"]
+            "related": ["Obj::raceStr", "Obj::raceStrPref", "Obj::raceStrPrefLow", "GetClassRace:str", "GetPlayerRace:int", "GetRaceStr:int", "GetRaceStrPref:int", "GetRaceStrPrefLow:int", "SetPlayerSettRace:int_int", "SetSettRace:str_int"]
         }, {
             "id": "Obj::raceStr",
             "name": "raceStr",
@@ -3950,7 +3950,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}, {"name": "number", "type": 27, "is_ptr": false}]
+            "params": [{"name": "A", "type": 27, "is_ptr": false}, {"name": "B", "type": 27, "is_ptr": false}],
+            "description": "Devuelve la unión de ambas <tt>Query</tt>. Es decir, retorna una <tt>Query</tt> para todos los objetos que estén en <tt>A</tt>, en <tt>B</tt> o en ambos.",
+            "description_en": "Returns the union of both <tt>Query</tt>. I.e., returns a <tt>Query</tt> for every object within <tt>A</tt>, <tt>B</tt> or both.",
+            "related": ["Intersect:Query_Query", "Substract:Query_Query", "Subtract:Query_Query"]
         }, {
             "id": "Intersect:Query_Query",
             "name": "Intersect",
@@ -3959,7 +3962,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}, {"name": "number", "type": 27, "is_ptr": false}]
+            "params": [{"name": "A", "type": 27, "is_ptr": false}, {"name": "B", "type": 27, "is_ptr": false}],
+            "description": "Devuelve la intersección de ambas <tt>Query</tt>. Es decir, retorna una <tt>Query</tt> para todos los objetos que estén tanto en <tt>A</tt> como en <tt>B</tt>.",
+            "description_en": "Returns the intersection of both <tt>Query</tt>. I.e., returns a <tt>Query</tt> for every object selected by both <tt>A</tt> and <tt>B</tt>.",
+            "related": ["Union:Query_Query", "Substract:Query_Query", "Subtract:Query_Query"]
         }, {
             "id": "Substract:Query_Query",
             "name": "Substract",
@@ -3968,7 +3974,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}, {"name": "number", "type": 27, "is_ptr": false}]
+            "params": [{"name": "A", "type": 27, "is_ptr": false}, {"name": "B", "type": 27, "is_ptr": false}],
+            "description": "Devuelve la resta de una <tt>Query</tt> a la otra. Es decir, retorna una <tt>Query</tt> para todos los objetos que estén en <tt>A</tt> pero no estén en <tt>B</tt>.",
+            "description_en": "Returns the subtraction of one <tt>Query</tt> from the other. I.e., returns a <tt>Query</tt> for every object within <tt>A</tt> which is not in <tt>B</tt>.",
+            "related": ["Union:Query_Query", "Intersect:Query_Query", "Subtract:Query_Query"]
         }, {
             "id": "Subtract:Query_Query",
             "name": "Subtract",
@@ -3977,7 +3986,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}, {"name": "number", "type": 27, "is_ptr": false}]
+            "params": [{"name": "A", "type": 27, "is_ptr": false}, {"name": "B", "type": 27, "is_ptr": false}],
+            "description": "Devuelve la resta de una <tt>Query</tt> a la otra. Es decir, retorna una <tt>Query</tt> para todos los objetos que estén en <tt>A</tt> pero no estén en <tt>B</tt>.",
+            "description_en": "Returns the subtraction of one <tt>Query</tt> from the other. I.e., it returns a <tt>Query</tt> for every object within <tt>A</tt> which is not in <tt>B</tt>.",
+            "related": ["Union:Query_Query", "Intersect:Query_Query", "Substract:Query_Query"]
         }, {
             "id": "ClassPlayerAreaObjs:str_int_str",
             "name": "ClassPlayerAreaObjs",
@@ -3986,11 +3998,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}, {
+                "name": "jugador", "name_en": "player",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 5, "is_ptr": false}]
+            }, {"name": "area", "type": 5, "is_ptr": false}],
+            "description": "Consulta para los objetos de una clase y jugador específicos que se encuentren en un área. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
+            "description_en": "Query for the object of a specific class and player inside an area. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
+            "related": ["Obj::class", "Obj::player", "ClassPlayerObjs:str_int", "AreaObjs:str_str"]
         }, {
             "id": "ClassPlayerObjs:str_int",
             "name": "ClassPlayerObjs",
@@ -3999,7 +4014,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}, {"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}],
+            "description": "Consulta para los objetos de una clase y jugador específicos. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
+            "description_en": "Query for the object of a specific class and player. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
+            "related": ["Obj::class", "Obj::player", "GetPlayerUnits:int_str", "ClassPlayerAreaObjs:str_int_str"]
         }, {
             "id": "BuildingsInSettlement:str_str",
             "name": "BuildingsInSettlement",
@@ -4008,7 +4026,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "asentamiento", "name_en": "settlement", "type": 5, "is_ptr": false}, {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
+            "description": "Consulta para los edificios de un asentamiento de una clase específica. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
+            "description_en": "Query for the buildings in a settlement of a specific class. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
+            "related": ["Obj::class", "GetSettlement:str", "UnitsInSettlement:str_str", "Settlement::Buildings"]
         }, {
             "id": "UnitsInSettlement:str_str",
             "name": "UnitsInSettlement",
@@ -4017,7 +4038,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "asentamiento", "name_en": "settlement", "type": 5, "is_ptr": false}, {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
+            "description": "Consulta para los objetos de una clase específica que se encuentren dentro de un edificio del asentamiento indicado. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
+            "description_en": "Query for the objects of an specific class which are inside of a building in a given settlement. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
+            "related": ["Obj::class", "GetSettlement:str", "UnitsAroundSettlement:str_str", "UnitsGuardingSettlement:str_str", "UnitsInSettlement:Settlement_str", "Settlement::Units"]
         }, {
             "id": "UnitsAroundSettlement:str_str",
             "name": "UnitsAroundSettlement",
@@ -4026,7 +4050,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "asentamiento", "name_en": "settlement", "type": 5, "is_ptr": false}, {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
+            "description": "Consulta para los objetos de una clase específica que se encuentren en el área del asentamiento indicado. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
+            "description_en": "Query for the objects of an specific class which are inside the area of the given settlement. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
+            "related": ["Obj::class", "GetSettlement:str", "UnitsInSettlement:str_str", "UnitsGuardingSettlement:str_str", "UnitsInSettlement:Settlement_str", "Settlement::Units"]
         }, {
             "id": "UnitsGuardingSettlement:str_str",
             "name": "UnitsGuardingSettlement",
@@ -4035,7 +4062,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "asentamiento", "name_en": "settlement", "type": 5, "is_ptr": false}, {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
+            "description": "Consulta para los objetos de una clase específica que se encuentren protegiendo el asentamiento indicado. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
+            "description_en": "Query for the objects of an specific class which are guarding the given settlement. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
+            "related": ["Obj::class", "GetSettlement:str", "UnitsInSettlement:str_str", "UnitsAroundSettlement:str_str", "UnitsInSettlement:Settlement_str", "Settlement::Units"]
         }, {
             "id": "UnitsInSettlement:Settlement_str",
             "name": "UnitsInSettlement",

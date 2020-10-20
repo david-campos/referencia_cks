@@ -316,6 +316,7 @@ details {
     background-color: #d6f6b1;
     margin: 1rem 0;
     scroll-margin-top: 7em;
+    font-size: .8rem;
 }
 
 .research-notes .research-notes-title {
@@ -325,6 +326,7 @@ details {
     color: #005500;
     padding: .5rem;
     display: flex;
+    align-items: center;
 }
 
 .research-notes .research-notes-title span:first-child {
@@ -341,7 +343,7 @@ details {
     color: #445544;
     overflow-y: auto;
     max-height: 6rem;
-    padding: 1rem;
+    padding: .5rem;
 }
 
 .description .dangerous-warn {

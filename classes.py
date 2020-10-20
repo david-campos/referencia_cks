@@ -97,6 +97,14 @@ class Node:
     def add_anim(self, idx, anim):
         self.animations[idx] = anim
 
+    def find_prop(self, prop):
+        if prop in self.properties:
+            return self.properties[prop]
+        elif self.parent:
+            return self.parent.find_prop(prop)
+        else:
+            return None
+
     def serialize_single(self):
         obj = {
             'properties': self.properties,
@@ -256,6 +264,16 @@ def rows(node, parents) -> Tuple[List[List[dict]], int]:
     children_rows: List[Tuple[List[List[dict]], int]] = []
     for c in node.children:
         children_rows.append(rows(c, parents + "/" + node.id))
+    display_name = None
+    if 'display_name' in node.properties:
+        display_name = node.properties['display_name']
+    elif 'display_name_plural' in node.properties:
+        display_name = node.properties['display_name_plural']
+    if display_name:
+        display_name = '<br><span class="display-name">' + display_name + "</span>"
+    else:
+        display_name = ''
+    link = "<a href='class.htm?#" + node.id + "'>" + node.id + "</a>"
     if len(children_rows) > 0:
         longest = functools.reduce(lambda a, b: a if a >= b else b, map(lambda r: r[1], children_rows))
         returned_rows: List[List[dict]] = []
@@ -267,14 +285,14 @@ def rows(node, parents) -> Tuple[List[List[dict]], int]:
             returned_rows += crows[0]
         returned_rows[0].insert(0, {
             "depth": parents.count("/"),
-            "text": node.id + "<br><span class='path'>" + parents + "/" + node.id + "</span>",
+            "text": link + display_name + "<br><span class='path'>" + parents + "/" + node.id + "</span>",
             "rowspan": functools.reduce(lambda a, b: a + b, map(lambda a: a[0][0][0]["rowspan"], children_rows))
         })
         return returned_rows, longest + 1
     else:
         return [[{
             "depth": parents.count("/"),
-            "text": node.id + "<br><span class='path'>" + parents + "/" + node.id + "</span>",
+            "text": link + display_name + "<br><span class='path'>" + parents + "/" + node.id + "</span>",
             "rowspan": 1
         }]], 1
 
