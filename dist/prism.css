@@ -141,3 +141,14 @@ pre[class*="language-"] {
 	cursor: help;
 }
 
+.token.implicit-this::before {
+	content: 'this';
+	color: #aaa;
+	display: none;
+}
+.token.implicit-this:hover {
+	border: 1px dashed #aaa;
+}
+.token.implicit-this:hover::before {
+	display: inherit;
+}
