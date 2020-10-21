@@ -76,7 +76,7 @@ pre[class*="language-"] {
 }
 
 .token.punctuation {
-	color: #999;
+	color: #636363;
 }
 
 .token.namespace {
@@ -99,7 +99,7 @@ pre[class*="language-"] {
 .token.char,
 .token.builtin,
 .token.inserted {
-	color: #690;
+	color: #436500;
 }
 
 .token.operator,
@@ -107,7 +107,7 @@ pre[class*="language-"] {
 .token.url,
 .language-css .token.string,
 .style .token.string {
-	color: #9a6e3a;
+	color: #805c2f;
 	/* This background color was intended by the author of this theme. */
 	background: hsla(0, 0%, 100%, .5);
 }
@@ -115,12 +115,14 @@ pre[class*="language-"] {
 .token.atrule,
 .token.attr-value,
 .token.keyword {
-	color: #07a;
+	color: #800000;
 }
 
+.token.cks-method,
+.token.cks-property,
 .token.function,
 .token.class-name {
-	color: #DD4A68;
+	color: #005580;
 }
 
 .token.regex,

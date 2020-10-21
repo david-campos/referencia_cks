@@ -42,6 +42,14 @@ function escapeHtmlAndNameCorrection(unsafe) {
         .replace(/'/g, "&#039;");
 }
 
+function escapeForRegexAndNameCorrection(unsafe) {
+    return unsafe
+        .replace(/&|\\a/g, "&")
+        .replace(/<|\\l/g, "<")
+        .replace(/>|\\g/g, ">")
+        .replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+}
+
 function renderType(type, isPtr, classes) {
     return `<a href="#${classes[type].name}" class="type ${classes[type].name}">${classes[type].name}${isPtr ? '<span class="ptr">*</span>' : ''}</a>`;
 }
@@ -637,11 +645,24 @@ window.onload = function () {
         funcsById.set(f.id, f);
     });
 
+    const operatorsSortedByLen = THE_OBJ.funcs.filter(f => f.type === 'operator');
+    operatorsSortedByLen.sort((a, b) => b.name.length - a.name.length);
+
     Prism.languages.cks = Prism.languages.extend('clike', {
         'keyword': new RegExp(`\\b(?:if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue|${
             THE_OBJ.classes.map(cl => cl.name).join("|")
         })\\b`),
+        'function': null,
+        // 'function': /\w+(?=\()|(?<=\.)\w+\b/
+        'cks-method': new RegExp('\\b(?:' + THE_OBJ.funcs.filter(f => f.type === 'method')
+            .map(f => escapeForRegexAndNameCorrection(f.name)).join('|') + ')\\b'),
+        'cks-property': new RegExp('\\b(?:' + THE_OBJ.funcs.filter(f => f.type === 'property')
+            .map(f => escapeForRegexAndNameCorrection(f.name)).join('|') + ')\\b'),
+        'operator': new RegExp(operatorsSortedByLen
+            .map(f => escapeForRegexAndNameCorrection(f.name)).join('|'))
     });
+
+    console.log(Prism.languages.cks);
 
     updateSelectText();
     updateDocumented();

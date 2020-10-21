@@ -435,7 +435,7 @@ footer a {
 
 main.one-remarked .property:not(.remark),
 main.one-remarked .method:not(.remark),
-main.one-remarked .operator:not(.remark) {
+main.one-remarked .operator:not(.token):not(.remark) {
     animation-name: show;
     animation-duration: 4s;
     animation-timing-function: ease-in-out;
