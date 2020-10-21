@@ -136,6 +136,8 @@ nav a {
 
 .footer-sec {
     flex: 1;
+    text-align: center;
+    margin: .5rem 0;
 }
 
 @media (max-width: 900px) {
@@ -407,7 +409,7 @@ details {
 footer {
     background: #333;
     color: #eee;
-    padding: 3rem;
+    padding: 2.5rem 3rem;
 }
 
 footer a {

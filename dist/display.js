@@ -662,8 +662,6 @@ window.onload = function () {
             .map(f => escapeForRegexAndNameCorrection(f.name)).join('|'))
     });
 
-    console.log(Prism.languages.cks);
-
     updateSelectText();
     updateDocumented();
     updateShortkeys();
