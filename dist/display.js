@@ -410,7 +410,7 @@ function next(elems, upOrDown, loop = false) {
 }
 
 const moveDetails = (upOrDown) => next(
-    document.getElementsByTagName('details'), upOrDown);
+    document.querySelectorAll('details:not(.shortkeys)'), upOrDown);
 const moveFunc = (upOrDown) => next(
     document.querySelectorAll('div.operator,div.method,div.property'), upOrDown);
 const nextResearchNote = () => next(document.querySelectorAll('div.research-notes'), 'down', true);
@@ -423,7 +423,7 @@ function toggleDetailsExp(all, expansion = null) {
     const freeToggle = expansion === null;
     const shouldOpen = expansion === 'expand';
     /** @type {HTMLCollectionOf<HTMLDetailsElement>} */
-    const details = document.getElementsByTagName('details');
+    const details = document.querySelectorAll('details:not(.shortkeys)');
     if (all) {
         for (const elem of details) {
             elem.open = freeToggle ? !elem.open : shouldOpen;
