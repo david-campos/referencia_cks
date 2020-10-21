@@ -4,19 +4,6 @@ body {
     font-family: "Noto Sans", sans-serif;
     font-size: 12pt;
 }
-
-@media (max-width: 600px) {
-    body {
-        font-size: 10pt;
-    }
-}
-
-@media (max-width: 500px) {
-    body {
-        font-size: 9pt;
-    }
-}
-
 a {
     color: #303070;
     text-decoration: underline;
@@ -165,7 +152,7 @@ tt {
 }
 
 .settings {
-    margin: 1rem 0;
+    margin: 0 0 1rem;
 }
 
 .settings .container {
@@ -494,6 +481,72 @@ main.one-remarked .remark::after {
     }
     to {
         opacity: 0;
+    }
+}
+
+.shortkeys {
+    margin: 0 auto;
+    background-color: #efefef;
+}
+
+.shortkeys .shortkey {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.shortkeys .shortkey .keys {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    margin: .5rem;
+    flex: 0;
+    min-width: 10em;
+}
+
+.shortkeys .shortkey .shortkey-desc {
+    margin: calc(.5rem + 5px) 0;
+    flex: 1;
+}
+
+.shortkeys .shortkey .key {
+    border-radius: 5px;
+    border: 1px solid #999;
+    padding: 2px 5px;
+    box-shadow: rgba(0,0,0,.3) 2px 2px 2px 0px;
+    margin: 3px;
+    display: flex;
+    align-items: center;
+    max-width: min-content;
+    height: 1.15em;
+    background-color: white;
+}
+
+.shortkeys .shortkey .key .material-icons {
+    font-size: 1em;
+}
+
+
+@media (max-width: 600px) {
+    body {
+        font-size: 10pt;
+    }
+}
+
+@media (max-width: 500px) {
+    body {
+        font-size: 9pt;
+    }
+
+    #group-by-label {
+        display: none;
+    }
+
+    .shortkeys .shortkey {
+        flex-direction: column;
+    }
+
+    .shortkeys .shortkey .shortkey-desc {
+        margin: 0 1rem 1rem;
     }
 }
 

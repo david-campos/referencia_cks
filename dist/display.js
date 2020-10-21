@@ -28,7 +28,9 @@ const TRANSLATE_TEXTS = {
     "research-notes-": "Investigación requerida, notas:",
     "research-notes-en": "Research required, research notes (Spanish):",
     "unknown-param-": "ignoto",
-    "unknown-param-en": "unknown"
+    "unknown-param-en": "unknown",
+    "shortkeys-": "Atajos de teclado",
+    "shortkeys-en": "Keyboard shortcuts"
 }
 
 function escapeHtmlAndNameCorrection(unsafe) {
@@ -371,25 +373,37 @@ function filterToIds() {
     return THE_OBJ.funcs.filter(func => filters.reduce((p, c) => p && c(func), true)).map(f => f.id);
 }
 
-function next(elems, upOrDown, loop = false) {
-    let other = 0;
+function isElementVisible(el, topBias = 100) {
+    const {top: elemTop, bottom: elemBottom} = el.getBoundingClientRect();
+    return elemTop < window.innerHeight && elemBottom >= topBias;
+}
+
+function getCurrentlyVisibleIdx(elems) {
     for (let i = 0; i < elems.length; i++) {
         const el = elems.item(i);
-        const rect = el.getBoundingClientRect();
-        const elemTop = rect.top;
-        const elemBottom = rect.bottom;
+        if (isElementVisible(el)) {
+            return i;
+        }
+    }
+    return -1;
+}
 
-        if (elemTop < window.innerHeight && elemBottom >= 100) {
-            other = upOrDown === 'up' ? i - 1 : i + 1;
-            if (other < 0 || other >= elems.length) {
-                if (loop) {
-                    other = (other + elems.length) % elems.length;
-                    console.log('hey');
-                } else {
-                    return;
-                }
+/**
+ * @param elems
+ * @param {'up'|'down'} upOrDown
+ * @param {boolean} loop
+ */
+function next(elems, upOrDown, loop = false) {
+    let other = 0;
+    const current = getCurrentlyVisibleIdx(elems);
+    if (current > -1) {
+        other = upOrDown === 'up' ? current - 1 : current + 1;
+        if (other < 0 || other >= elems.length) {
+            if (loop) {
+                other = (other + elems.length) % elems.length;
+            } else {
+                return;
             }
-            break;
         }
     }
     elems[other].scrollIntoView({block: "start", behavior: "smooth"});
@@ -401,12 +415,53 @@ const moveFunc = (upOrDown) => next(
     document.querySelectorAll('div.operator,div.method,div.property'), upOrDown);
 const nextResearchNote = () => next(document.querySelectorAll('div.research-notes'), 'down', true);
 
+/**
+ * @param {boolean} all
+ * @param {'expand'|'collapse'|null} expansion
+ */
+function toggleDetailsExp(all, expansion = null) {
+    const freeToggle = expansion === null;
+    const shouldOpen = expansion === 'expand';
+    /** @type {HTMLCollectionOf<HTMLDetailsElement>} */
+    const details = document.getElementsByTagName('details');
+    if (all) {
+        for (const elem of details) {
+            elem.open = freeToggle ? !elem.open : shouldOpen;
+        }
+    } else {
+        let curr = getCurrentlyVisibleIdx(details);
+        if (curr < 0) return;
+        while (!freeToggle && details[curr].open === shouldOpen) {
+            curr++;
+            if (curr >= details.length || !isElementVisible(details[curr])) {
+                return;
+            }
+        }
+        details[curr].open = freeToggle ? !details[curr].open : shouldOpen;
+    }
+}
+
+function renderShortkey(shortkey, useAlt, description) {
+    return `<div class='shortkey'>
+<span class="keys">
+    <span class='key'>Shift</span> +
+${useAlt ? '    <span class="key">Alt</span> +' : ''}
+    <span class='key'>${shortkey.display}</span>
+    </span>
+    <span class="shortkey-desc">${description[lang || 'es']}</span>
+</div>`;
+}
+
+
 window.onload = function () {
     const lang_select = document.getElementById('lang_select');
     const groupByLabel = document.getElementById('group-by-label');
     const groupBySelect = document.getElementById('group-by-select');
+    /** @type {HTMLInputElement} */
     const searchInput = document.getElementById('search');
     const documented = document.getElementById('documented');
+    const shortkeysSum = document.getElementById('shortkeys-summary');
+    const shortkeysCont = document.getElementById('shortkeys-content');
     let searchTimeout; // To debounce search
 
     function updateSelectText() {
@@ -423,45 +478,138 @@ window.onload = function () {
         documented.innerHTML = `${TRANSLATE_TEXTS['documented-' + lang]} ${Math.round(nDocumented / nTotal * 100)}% (${Math.floor(nDocumented / 2)})`;
     }
 
+    const SHORT_KEYS = {
+        'KeyF': {
+            display: 'F',
+            describe: {
+                'es': 'Seleccionar el cuadro de filtrar por nombre',
+                'en': 'Select the name-filtering input field'
+            },
+            do: () => {
+                searchInput.focus();
+                searchInput.setSelectionRange(0, searchInput.value.length);
+            }
+        },
+        'KeyR': {
+            display: 'R',
+            describe: {
+                'es': 'Agrupar por tipo de retorno',
+                'en': 'Group by return type'
+            },
+            do: () => {
+                groupBySelect.value = 'returns';
+                groupBySelect.dispatchEvent(new Event('change'));
+            }
+        },
+        'KeyC': {
+            display: 'C',
+            describe: {
+                'es': 'Agrupar por clase',
+                'en': 'Group by class'
+            },
+            do: () => {
+                groupBySelect.value = 'of';
+                groupBySelect.dispatchEvent(new Event('change'));
+            }
+        },
+        'PageUp': {
+            display: 'Pag<span class="material-icons">keyboard_arrow_up</span>',
+            describe: {
+                'es': 'Grupo previo',
+                'en': 'Previous group'
+            },
+            do: () => moveDetails('up')
+        },
+        'PageDown': {
+            display: 'Pag<span class="material-icons">keyboard_arrow_down</span>',
+            describe: {
+                'es': 'Siguiente grupo',
+                'en': 'Next group'
+            },
+            do: () => moveDetails('down')
+        },
+        'ArrowUp': {
+            display: '<span class="material-icons">keyboard_arrow_up</span>',
+            describe: {
+                'es': 'Función siguiente',
+                'en': 'Next function'
+            },
+            do: () => moveFunc('up')
+        },
+        'ArrowDown': {
+            display: '<span class="material-icons">keyboard_arrow_down</span>',
+            describe: {
+                'es': 'Función previa',
+                'en': 'Previous function'
+            },
+            do: () => moveFunc('down')
+        },
+        'KeyN': {
+            display: 'N',
+            describe: {
+                'es': 'Siguiente "investigación requerida" (cíclico)',
+                'en': 'Next "required research" (cyclic)'
+            },
+            do: () => nextResearchNote()
+        },
+        'NumpadAdd': 'BracketRight',
+        'BracketRight': {
+            display: '+',
+            describe: {
+                'es': 'Expandir grupo',
+                'en': 'Expand group'
+            },
+            withAlt: {
+                'es': 'Expandir todo',
+                'en': 'Expand all'
+            },
+            do: event => toggleDetailsExp(event.altKey, 'expand')
+        },
+        'NumpadSubtract': 'Slash',
+        'Slash': {
+            display: '-',
+            describe: {
+                'es': 'Colapsar grupo',
+                'en': 'Collapse group'
+            },
+            withAlt: {
+                'es': 'Colapsar todo',
+                'en': 'Collapse all'
+            },
+            do: event => toggleDetailsExp(event.altKey, 'collapse')
+        }
+    };
     document.addEventListener('keyup', event => {
         if (event.shiftKey) {
-            switch (event.code) {
-                case 'KeyF':
-                    searchInput.focus();
-                    break;
-                case 'KeyR':
-                    groupBySelect.value = 'returns';
-                    groupBySelect.dispatchEvent(new Event('change'));
-                    break;
-                case 'KeyC':
-                    groupBySelect.value = 'of';
-                    groupBySelect.dispatchEvent(new Event('change'));
-                    break;
-                case 'PageUp':
-                    moveDetails('up');
-                    break;
-                case 'PageDown':
-                    moveDetails('down');
-                    break;
-                case 'ArrowUp':
-                    moveFunc('up');
-                    break;
-                case 'ArrowDown':
-                    moveFunc('down');
-                    break;
-                case 'KeyN':
-                    nextResearchNote();
-                    break;
+            let shortKey = SHORT_KEYS[event.code];
+            while ((typeof shortKey) === 'string') {
+                shortKey = SHORT_KEYS[shortKey];
+            }
+            if (shortKey && 'do' in shortKey) {
+                shortKey.do(event);
+                event.stopPropagation();
+                event.preventDefault();
             }
         }
     });
 
+    function updateShortkeys() {
+        shortkeysSum.innerHTML = TRANSLATE_TEXTS['shortkeys-' + lang];
+        shortkeysCont.innerHTML = Object.values(SHORT_KEYS)
+            .filter(sk => (typeof sk) === 'object')
+            .map(sk =>
+                renderShortkey(sk, false, sk.describe)
+                + (sk.withAlt ? renderShortkey(sk, true, sk.withAlt) : '')
+            ).join('');
+    }
+
     lang_select.value = lang;
     lang_select.addEventListener('change', () => {
-        lang = lang_select.value;
         location.replace((lang === 'en' ? '' : '?en') + location.hash);
+        lang = lang_select.value;
         updateSelectText();
         updateDocumented();
+        updateShortkeys();
         render();
     });
     groupBySelect.addEventListener('change', () => {
@@ -480,7 +628,10 @@ window.onload = function () {
             render();
         }, 300);
     });
-    searchInput.addEventListener('keyup', event => event.stopPropagation());
+    searchInput.addEventListener('keyup', event => {
+        event.stopPropagation();
+        if (event.code === 'Escape') searchInput.blur();
+    });
 
     THE_OBJ.funcs.forEach(f => {
         funcsById.set(f.id, f);
@@ -494,6 +645,7 @@ window.onload = function () {
 
     updateSelectText();
     updateDocumented();
+    updateShortkeys();
     sortFuncs();
     render();
     // For links with hash to work after first render
