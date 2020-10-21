@@ -656,10 +656,13 @@ window.onload = function () {
         // 'function': /\w+(?=\()|(?<=\.)\w+\b/
         'cks-method': new RegExp('\\b(?:' + THE_OBJ.funcs.filter(f => f.type === 'method')
             .map(f => escapeForRegexAndNameCorrection(f.name)).join('|') + ')\\b'),
-        'cks-property': new RegExp('\\b(?:' + THE_OBJ.funcs.filter(f => f.type === 'property')
-            .map(f => escapeForRegexAndNameCorrection(f.name)).join('|') + ')\\b'),
         'operator': new RegExp(operatorsSortedByLen
             .map(f => escapeForRegexAndNameCorrection(f.name)).join('|'))
+    });
+
+    Prism.languages.insertBefore('cks', 'punctuation', {
+        'cks-property': new RegExp('(?<=\\.)(?:' + THE_OBJ.funcs.filter(f => f.type === 'property')
+            .map(f => escapeForRegexAndNameCorrection(f.name)).join('|') + ')\\b'),
     });
 
     updateSelectText();
