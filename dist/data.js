@@ -131,8 +131,8 @@ const THE_OBJ = (function () {
         },
         {
             "name": "Query",
-            "description": "<p>Una consulta para obtener objetos (<a href=\"#Obj\" class=\"type\">Obj</a>). Varios métodos devuelven diferentes tipos de consultas. Un ejemplo de consulta sería <a href='#ClassPlayerObjs:str_int'>\"objetos de clase cUnit del jugador 2\"</a>.</p><p>A diferencia de una <a href='#ObjList'>lista de objetos</a>, las <tt>Query</tt> no son listas de objetos fijas (por eso se denominan consultas). Tomemos el ejemplo siguiente: <pre class='language-cks'>Query q;\r\nq = Group(\"grupo\");\r\nwhile(1) {\r\n&nbsp;&nbsp;&nbsp;&nbsp;pr(\"Count: \" + q.count);\r\n&nbsp;&nbsp;&nbsp;&nbsp;Sleep(1000);\r\n}</pre></p>",
-            "description_en": "A query for a set of objects (<a href=\"#Obj\" class=\"type\">Obj</a>). Several methods return different kinds of queries. An example of query would be  <a href='#ClassPlayerObjs:str_int'>\"objects of the cUnit class belonging to player 2\"</a>.",
+            "description": "<p>Una consulta para obtener objetos (<a href=\"#Obj\" class=\"type\">Obj</a>). Varios métodos devuelven diferentes tipos de consultas. Un ejemplo de consulta sería <a href='#ClassPlayerObjs:str_int'>\"objetos de clase \"Unit\" del jugador 2\"</a>.</p><p>A diferencia de una <a href='#ObjList'>lista de objetos</a>, las <tt>Query</tt> no son listas de objetos fijas (por eso se denominan consultas). Tomemos el ejemplo siguiente: <pre class='language-cks'>Query q;\r\nq = ClassPlayerObjs(\"Military\", 1);\r\nwhile(1) {\r\n&nbsp;&nbsp;&nbsp;&nbsp;pr(\"Count: \" + q.count); // esto imprimirá números cada vez más grandes\r\n&nbsp;&nbsp;&nbsp;&nbsp;Sleep(1000);\r\n}</pre>Si compilamos un mapa con esta secuencia y comenzamos a reclutar nuevas unidades, veremos que el número de elementos impreso va ascendiendo. Si hubiésemos guardado la lista de objetos al principio, en vez de la consulta, entonces el número de elementos sería siempre el mismo:<pre class='language-cks'>ObjList ol;\r\nol = ClassPlayerObjs(\"Military\", 1).GetObjList();\r\nwhile(1) {\r\n&nbsp;&nbsp;&nbsp;&nbsp;pr(\"Count: \" + ol.count); // esto imprimirá siempre lo mismo\r\n&nbsp;&nbsp;&nbsp;&nbsp;Sleep(1000);\r\n}</pre></p>",
+            "description_en": "<p>A query for a set of objects (<a href=\"#Obj\" class=\"type\">Obj</a>). Several methods return different kinds of queries. An example of query would be  <a href='#ClassPlayerObjs:str_int'>\"objects of the \"Unit\" class belonging to player 2\"</a>.</p><p>Differently from an <a href='#ObjList'>object list</a>, the queries are not fixed lists of objects (that is why they are called queries). Take the following example: <pre class='language-cks'>Query q;\r\nq = ClassPlayerObjs(\"Military\", 1);\r\nwhile(1) {\r\n&nbsp;&nbsp;&nbsp;&nbsp;pr(\"Count: \" + q.count); // this will print each time higher values\r\n&nbsp;&nbsp;&nbsp;&nbsp;Sleep(1000);\r\n}</pre>If we compile a map with this sequence and start training new units, we will see how the count increases. If we had saved into a reference the object list instead, the number of objects would be always the same:<pre class='language-cks'>ObjList ol;\r\nol = ClassPlayerObjs(\"Military\", 1).GetObjList();\r\nwhile(1) {\r\n&nbsp;&nbsp;&nbsp;&nbsp;pr(\"Count: \" + ol.count); // this will print always the same\r\n&nbsp;&nbsp;&nbsp;&nbsp;Sleep(1000);\r\n}</pre></p>",
         },
         {
             "name": "Settlement",
@@ -4367,7 +4367,8 @@ const THE_OBJ = (function () {
             "type": "property",
             "params": [],
             "description": "Número de objetos que la consulta retorna actualmente. Nótese que las consultas no son <a href='#ObjList'>listas de objetos</a>, si no que son dinámicas e incluso para la misma consulta ya guardada en una referencia, el número de objetos varía con el tiempo.",
-            "description_en": "Number of objects that the query returns currently. Notice queries are not <a href='#ObjList'>object lists</a>, but instead they are dynamic and even for the same query already saved in a reference, the number of objects may vary over time."
+            "description_en": "Number of objects that the query returns currently. Notice queries are not <a href='#ObjList'>object lists</a>, but instead they are dynamic and even for the same query already saved in a reference, the number of objects may vary over time.",
+            "related": ["Query::IsEmpty"]
         }, {
             "id": "Query::IsEmpty",
             "name": "IsEmpty",
@@ -4376,7 +4377,10 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve <tt>true</tt> si la consulta no contiene objetos.",
+            "description_en": "Returns <tt>true</tt> if the query does not contain any object.",
+            "related": ["Query::count"]
         }, {
             "id": "Query::Contains:Obj",
             "name": "Contains",

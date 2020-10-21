@@ -613,7 +613,7 @@ window.onload = function () {
 
     lang_select.value = lang;
     lang_select.addEventListener('change', () => {
-        location.replace((lang === 'en' ? '' : '?en') + location.hash);
+        window.history.replaceState({}, '',(lang === 'en' ? '?' : '?en') + location.hash);
         lang = lang_select.value;
         updateSelectText();
         updateDocumented();
