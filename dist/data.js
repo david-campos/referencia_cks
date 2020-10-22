@@ -2438,8 +2438,8 @@ const THE_OBJ = (function () {
                 "type": 6,
                 "is_ptr": false
             }],
-            "description": "Limpia la cola de comandos del objeto, detiene el comando actual e inicia el comando dado con el punto dado como argumento. En <a href='class.htm'>esta página</a> puedes ver todos los comandos posibles para cualquier clase del juego (este método solo funcionará con comandos que tengan un argumento de tipo <tt>point</tt>).<p>En <a href='class.htm'>esta página</a> puedes ver todos los comandos posibles para cualquier clase del juego. <strong>Este método solo funciona con los comandos listados como métodos</strong>, para lanzar aquellos listados como comandos utiliza <a href='#Obj::ExecCmd:str_point_Obj_bool'>Obj::ExecCmd</a>.",
-            "description_en": "Clears the queue of commands of the object, kills the current command and starts the given one with the passed point as argument. You can find every possible command for a given class with its arguments in <a href='class.htm?en'>this page</a> (this method will only work with commands with one argument of type <tt>point</tt>). <strong>This method works only with those listed in the section methods</strong>, to launch those listed in commands use <a href='#Obj::ExecCmd:str_point_Obj_bool'>Obj::ExecCmd</a>.",
+            "description": "<p>Limpia la cola de comandos del objeto, detiene el comando actual e inicia el comando dado con el punto dado como argumento. En <a href='class.htm'>esta página</a> puedes ver todos los comandos posibles para cualquier clase del juego (este método solo funcionará con comandos que tengan un argumento de tipo <tt>point</tt>). <strong>Este método solo funciona con los comandos listados como métodos</strong>, para lanzar aquellos listados como comandos utiliza <a href='#Obj::ExecCmd:str_point_Obj_bool'>Obj::ExecCmd</a>.</p>",
+            "description_en": "<p>Clears the queue of commands of the object, kills the current command and starts the given one with the passed point as argument. You can find every possible command for a given class with its arguments in <a href='class.htm?en'>this page</a> (this method will only work with commands with one argument of type <tt>point</tt>). <strong>This method works only with those listed in the section methods</strong>, to launch those listed in commands use <a href='#Obj::ExecCmd:str_point_Obj_bool'>Obj::ExecCmd</a>.</p>",
             "related": ["Obj::command", "Obj::ClearCommands", "Obj::AddCommand:bool_str_point", "Obj::SetCommand:str", "Obj::SetCommand:str_Obj", "Obj::ExecCmd:str_point_Obj_bool", "Obj::ExecDefaultCmd:point_Obj_bool_bool", "ObjList::SetCommand:str_point", "ObjList::SetCommandOffset:str_point", "Query::SetCommand:str_point", "Query::SetCommandOffset:str_point"]
         }, {
             "id": "Obj::SetCommand:str_Obj",
@@ -4389,7 +4389,10 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "objeto", "name_en": "object", "type": 11, "is_ptr": false}],
+            "description": "Devuelve <tt>true</tt> si la consulta contiene el <tt>objeto</tt> dado.",
+            "description_en": "Returns <tt>true</tt> if the query contains the given <tt>object</tt>.",
+            "related": ["Query::IsEmpty", "Query::GetObjList", "ObjList::Contains:Obj"]
         }, {
             "id": "Query::ClearCommands",
             "name": "ClearCommands",
@@ -4398,7 +4401,10 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Elimina todos los comandos en la cola de comandos de los objetos en la consulta, deteniendo también el comando actual. Este método llama a <a href='#Obj::ClearCommands'>Obj::ClearCommands</a> en cada objeto de la consulta.",
+            "description_en": "Removes all the commands from the queue of commands of the objects in the query, stopping the current command as well. This method calls <a href='#Obj::ClearCommands'>Obj::ClearCommands</a> en cada objeto de la consulta.",
+            "related": ["Obj::ClearCommands", "ObjList::ClearCommands"]
         }, {
             "id": "Query::KillCommand",
             "name": "KillCommand",
@@ -4407,7 +4413,10 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Detiene la ejecución del comando actual del objeto, pasando al siguiente comando en la cola si lo hubiese. Este método llama a <a href='#Obj::KillCommand'>Obj::KillCommand</a> en cada objeto de la consulta.",
+            "description_en": "Stops the execution of the current command, starting the next command in the queue of commands of the object if there is any. This method calls <a href='#Obj::KillCommand'>Obj::KillCommand</a> en cada objeto de la consulta.",
+            "related": ["Obj::KillCommand", "ObjList::KillCommand"]
         }, {
             "id": "Query::AddCommand:bool_str",
             "name": "AddCommand",
@@ -4416,7 +4425,15 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 2, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "principio", "name_en": "beginning", "type": 2, "is_ptr": false}, {
+                "name": "comando",
+                "name_en": "command",
+                "type": 5,
+                "is_ptr": false
+            }],
+            "description": "<p>Añade el comando indicado a la cola de comandos de cada objeto. Este método llama a <a href='#Obj::AddCommand:bool_str'>Obj::AddCommand</a> en cada objeto de la consulta.</p>",
+            "description_en": "<p>Adds the given command at the end of the command queue of each object. This method calls <a href='#Obj::AddCommand:bool_str'>Obj::AddCommand</a> en cada objeto de la consulta.</p>",
+            "related": ["Obj::AddCommand:bool_str", "Query::AddCommand:bool_str_Obj", "Query::AddCommand:bool_str_point"]
         }, {
             "id": "Query::AddCommand:bool_str_point",
             "name": "AddCommand",
@@ -4425,11 +4442,15 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 2, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "principio", "name_en": "beginning", "type": 2, "is_ptr": false}, {
+                "name": "comando",
+                "name_en": "command",
                 "type": 5,
                 "is_ptr": false
-            }, {"name": "number", "type": 6, "is_ptr": false}]
+            }, {"name": "destino", "name_en": "target", "type": 6, "is_ptr": false}],
+            "description": "<p>Añade el comando indicado a la cola de comandos de cada objeto. Este método llama a <a href='#Obj::AddCommand:bool_str_point'>Obj::AddCommand</a> en cada objeto de la consulta.</p>",
+            "description_en": "<p>Adds the given command at the end of the command queue of each object. This method calls <a href='#Obj::AddCommand:bool_str_point'>Obj::AddCommand</a> en cada objeto de la consulta.</p>",
+            "related": ["Obj::AddCommand:bool_str_point", "Query::AddCommand:bool_str_Obj", "Query::AddCommand:bool_str"]
         }, {
             "id": "Query::AddCommand:bool_str_Obj",
             "name": "AddCommand",
@@ -4438,11 +4459,15 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 2, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "principio", "name_en": "beginning", "type": 2, "is_ptr": false}, {
+                "name": "comando",
+                "name_en": "command",
                 "type": 5,
                 "is_ptr": false
-            }, {"name": "number", "type": 11, "is_ptr": false}]
+            }, {"name": "objetivo", "name_en": "target", "type": 11, "is_ptr": false}],
+            "description": "<p>Añade el comando indicado a la cola de comandos de cada objeto. Este método llama a <a href='#Obj::AddCommand:bool_str_Obj'>Obj::AddCommand</a> en cada objeto de la consulta.</p>",
+            "description_en": "<p>Adds the given command at the end of the command queue of each object. This method calls <a href='#Obj::AddCommand:bool_str_Obj'>Obj::AddCommand</a> en cada objeto de la consulta.</p>",
+            "related": ["Obj::AddCommand:bool_str_Obj", "Query::AddCommand:bool_str_point", "Query::AddCommand:bool_str"]
         }, {
             "id": "Query::AddCommandOffset:bool_str_point",
             "name": "AddCommandOffset",
@@ -4451,11 +4476,12 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 2, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "principio", "name_en": "beginning", "type": 2, "is_ptr": false}, {
+                "name": "comando",
+                "name_en": "command",
                 "type": 5,
                 "is_ptr": false
-            }, {"name": "number", "type": 6, "is_ptr": false}]
+            }, {"name": "destino", "name_en": "target", "type": 6, "is_ptr": false}]
         }, {
             "id": "Query::SetCommand:str",
             "name": "SetCommand",
@@ -4464,7 +4490,10 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "comando", "name_en": "command", "type": 5, "is_ptr": false}],
+            "description": "Limpia la cola de comandos de los objetos en la consulta, detiene el comando actual e inicia el comando dado. Este método llama a <a href='#Obj::SetCommand:str'>Obj::SetCommand</a> en cada objeto de la consulta.",
+            "description_en": "Clears the queue of commands of the objects in the query, kills the current command and starts the given one. This command calls <a href='#Obj::SetCommand:str'>Obj::SetCommand</a> for each object in the query.",
+            "related": ["Obj::SetCommand:str", "Query::SetCommand:str_point", "Query::SetCommand:str_Obj", "Query::SetCommandOffset:str_point"]
         }, {
             "id": "Query::SetCommand:str_point",
             "name": "SetCommand",
@@ -4473,7 +4502,15 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "comando", "name_en": "command", "type": 5, "is_ptr": false}, {
+                "name": "destino",
+                "name_en": "target",
+                "type": 6,
+                "is_ptr": false
+            }],
+            "description": "Limpia la cola de comandos del objeto, detiene el comando actual e inicia el comando dado con el punto dado como argumento. Este método llama a <a href='#Obj::SetCommand:str_point'>Obj::SetCommand</a> en cada objeto de la consulta.",
+            "description_en": "Clears the queue of commands of the object, kills the current command and starts the given one with the passed point as argument. This command calls <a href='#Obj::SetCommand:str_point'>Obj::SetCommand</a> for each object in the query.",
+            "related": ["Obj::SetCommand:str_point", "Query::SetCommand:str", "Query::SetCommand:str_Obj", "Query::SetCommandOffset:str_point"]
         }, {
             "id": "Query::SetCommand:str_Obj",
             "name": "SetCommand",
@@ -4482,7 +4519,15 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "comando", "name_en": "command", "type": 5, "is_ptr": false}, {
+                "name": "objetivo",
+                "name_en": "target",
+                "type": 11,
+                "is_ptr": false
+            }],
+            "description": "Limpia la cola de comandos del objeto, detiene el comando actual e inicia el comando dado con el punto dado como argumento. Este método llama a <a href='#Obj::SetCommand:str_Obj'>Obj::SetCommand</a> en cada objeto de la consulta.",
+            "description_en": "Clears the queue of commands of the object, kills the current command and starts the given one with the passed point as argument. This command calls <a href='#Obj::SetCommand:str_Obj'>Obj::SetCommand</a> for each object in the query.",
+            "related": ["Obj::SetCommand:str_Obj", "Query::SetCommand:str", "Query::SetCommand:str_point", "Query::SetCommandOffset:str_point"]
         }, {
             "id": "Query::SetCommandOffset:str_point",
             "name": "SetCommandOffset",
@@ -4500,7 +4545,9 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Obtiene la lista de objetos actual de la consulta.",
+            "description_en": "Gets the current list of object within the query."
         }, {
             "id": "DistributeExperience:Query_int",
             "name": "DistributeExperience",
