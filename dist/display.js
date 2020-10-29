@@ -103,7 +103,7 @@ function renderResearchNotes(func) {
 
 function renderDescription(func) {
     return `${renderNotForSequences(func)}<div class="description">${renderDangerousWarn(func)}${func['description_' + lang] || func.description
-    || `<span class=\"to-fill\">${TRANSLATE_TEXTS['no-desc-' + lang]}</span>${renderResearchNotes(func)}`}</div>${renderRelated(func, func.related)}`;
+    || `<span class=\"to-fill\">${TRANSLATE_TEXTS['no-desc-' + lang]}</span>`}${renderResearchNotes(func)}</div>${renderRelated(func, func.related)}`;
 }
 
 function typeForIdentifier(type, isPtr, classes) {
@@ -585,6 +585,15 @@ window.onload = function () {
                 'en': 'Collapse all'
             },
             do: event => toggleDetailsExp(event.altKey, 'collapse')
+        },
+        'KeyU': {
+            display: 'U',
+            describe: {es:'Solo no documentados', en: 'Undocumented only'},
+            do: () => {
+                searchInput.value = '';
+                filters.splice(0, filters.length, func => !func[`description${lang ? '_' + lang : ''}`]);
+                render();
+            }
         }
     };
     document.addEventListener('keyup', event => {
@@ -662,10 +671,13 @@ window.onload = function () {
 
     Prism.languages.insertBefore('cks', 'punctuation', {
         'cks-property': new RegExp('(?<=\\.)(?:' + THE_OBJ.funcs.filter(f => f.type === 'property')
-            .map(f => escapeForRegexAndNameCorrection(f.name)).join('|') + ')\\b'),
+            .map(f => escapeForRegexAndNameCorrection(f.name)).join('|') + ')\\b')
+    });
+
+    Prism.languages.insertBefore('cks', 'class-name', {
         'implicit-this': {
             alias: 'punctuation',
-            pattern: /(?<=\W)\./
+            pattern: /(?<!\w|[\])])\./
         }
     });
 

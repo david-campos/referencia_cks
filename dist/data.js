@@ -180,6 +180,8 @@ const THE_OBJ = (function () {
         return `Returns this <a class='type' href='#${THE_CLASSES[fromIdx].name}'>${THE_CLASSES[fromIdx].name}</a> as <a class='type' href='#${THE_CLASSES[toIdx].name}'>${THE_CLASSES[toIdx].name}</a>, assuming it is, indeed, an instance of this type. If it is not, it returns the equivalent to a <a href='#Obj::IsValid'>null / invalid object</a>`;
     }
 
+    const TAB = '&nbsp;&nbsp;&nbsp;&nbsp;';
+
     // noinspection HtmlUnknownAnchorTarget
     return {
         "classes": THE_CLASSES,
@@ -2811,8 +2813,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "destino", "name_en": "target", "type": 6, "is_ptr": false}],
-            "description": "<p>Gira el objeto de forma que mire hacia <tt>destino</tt>. El argumento <tt>destino</tt> debe estar en coordenadas del mundo, no en local.</p><p>Nótese que el renderizado de los objetos es independiente de su orientación. Algunos objetos, como los edificios, se verán representados exactamente igual sin importar en que dirección estén orientados. Otros, como las unidades, habitualmente presentarán visualizaciones distintas para cada rango de orientaciones, dando una sensación de falso 3D.</p><p>Ejemplo: para hacer que el objeto en la referencia <tt>miObj</tt> mire hacia la parte inferior del mapa usaríamos <tt class='language-cks'>miObj.Face(miObj.pos + Point(0, 1))</tt>.</p>",
-            "description_en": "<p>Turns the object around so it faces <tt>target</tt>. The argument <tt>target</tt> must be in world coordinates rather than local.</p><p>Notice that the rendering of the obejcts is independent from their orientation. Some object, like buildings, will look exactly the same no matter the direction they are facing. Other objects, like units, usually will present different views for each range of orientations, giving a fake appearance of 3D.</p><p>Example: to make the object in the reference <tt>myObj</tt> face towards the bottom of the map we would use <tt class='language-cks'>myObj.Face(myObj.pos + Point(0, 1))</tt>.</p>",
+            "description": "<p>Gira el objeto de forma que mire hacia el destino dado. El argumento <tt>destino</tt> debe estar en coordenadas del mundo, no en local.</p><p>Nótese que el renderizado de los objetos es independiente de su orientación. Algunos objetos, como los edificios, se verán representados exactamente igual sin importar en que dirección estén orientados. Otros, como las unidades, habitualmente presentarán visualizaciones distintas para cada rango de orientaciones, dando una sensación de falso 3D.</p><p>Ejemplo: para hacer que el objeto en la referencia <tt>miObj</tt> mire hacia la parte inferior del mapa usaríamos <tt class='language-cks'>miObj.Face(miObj.pos + Point(0, 1))</tt>.</p>",
+            "description_en": "<p>Turns the object around so it faces the given target. The argument <tt>target</tt> must be in world coordinates rather than local.</p><p>Notice that the rendering of the obejcts is independent from their orientation. Some object, like buildings, will look exactly the same no matter the direction they are facing. Other objects, like units, usually will present different views for each range of orientations, giving a fake appearance of 3D.</p><p>Example: to make the object in the reference <tt>myObj</tt> face towards the bottom of the map we would use <tt class='language-cks'>myObj.Face(myObj.pos + Point(0, 1))</tt>.</p>",
             "related": ["Query::Face:point", "ObjList::Face:point", "Obj::GetDir", "Unit::dir"]
         }, {
             "id": "Obj::GetDir",
@@ -3751,7 +3753,12 @@ const THE_OBJ = (function () {
                 "name": "x",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "y", "type": 1, "is_ptr": false}, {"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}],
+            }, {"name": "y", "type": 1, "is_ptr": false}, {
+                "name": "jugador",
+                "name_en": "player",
+                "type": 1,
+                "is_ptr": false
+            }],
             "description": "Coloca un objeto, instancia de una <a href='#Obj::class'>clase</a> dada, en la <a href='#Obj::pos'>posición</a> indicada por <tt>x</tt> e <tt>y</tt>, poseído por el <a href='#Obj::player'>jugador</a> dado. En <a href='class_list.htm'>esta página</a> puedes consultar todas las clases del juego original.",
             "description_en": "Places an object, instance of a given <a href='#Obj::class'>class</a>, at the <a href='#Obj::pos'>position</a> indicated by <tt>x</tt> and <tt>y</tt> and owned by the given <a href='#Obj::player'>player</a>. In <a href='class_list.htm'>this page</a> you can check every class of the original game.",
             "related": ["Place:str_point_int", "PlaceCatapult:int_int_int_int", "PlaceInHolder:str_str_int", "_Place:str_int_int", "_AdvPlaceAreaCirc:str_point_int_str_str", "_AdvPlaceAreaRect:str_rect_str_str", "_PlaceBlockEx:str_int_int_int_int_int_int_int"]
@@ -3845,7 +3852,7 @@ const THE_OBJ = (function () {
             "params": [{"name": "archivo", "name_en": "file", "type": 5, "is_ptr": false}],
             "description": "Reproduce el sonido especificado por el archivo de entidad de sonido dado en la posición del objeto. Los archivos de entidad de sonido son archivos XML que contienen una lista de archivos WAV, cada uno con una frecuencia asociada, que es la probabilidad de ese archivo de ser reproducido entre todos los presentes en la lista. Las frecuencias de la lista, por supuesto, suman 1 en total. Como en otros métodos del juego, <tt>archivo</tt> puede ser una ruta absoluta, una ruta relativa al juego o a sus packs, como por ejemplo <tt>\"data/Sound Entities/StonehengeSpell.xml\"</tt> o una ruta comenzando por <tt>CurrentLang/</tt> para hacer referencia a la carpeta de la traducción actual.",
             "description_en": "Plays the sound specified by the given sound-entity file at the position of the object. Sound-entity files are XML files which contain a list of WAV files, each one with an associated frequency, which is the probability for that file to be played among all the ones in the list. The frequencies of the list, of course, add up to 1. Like in other methods of the game, <tt>file</tt> can be an absolute route, a relative route to the game or its packs folder (like, for example, <tt>\"data/Sound Entities/StonehengeSpell.xml\"</tt>) or a route starting by <tt>CurrentLang/</tt> to make reference to the current translation folder.",
-            "related": ["PlaySound:str", "PlaySound:int_str","PlayMusic:str","PlayMovie:str"]
+            "related": ["PlaySound:str", "PlaySound:int_str", "PlayMusic:str", "PlayMovie:str"]
         }, {
             "id": "Obj::ShowFloatText:str",
             "name": "ShowFloatText",
@@ -3901,7 +3908,12 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "grupo", "name_en": "group", "type": 5, "is_ptr": false}, {"name": "asentamiento", "name_en": "settlement", "type": 5, "is_ptr": false}],
+            "params": [{"name": "grupo", "name_en": "group", "type": 5, "is_ptr": false}, {
+                "name": "asentamiento",
+                "name_en": "settlement",
+                "type": 5,
+                "is_ptr": false
+            }],
             "description": "<p>Genera un grupo a partir de plantillas en el asentamiento dado. El método causa la generación de objetos correspondientes a todas las plantillas asociadas al grupo de nombre dado. Los objetos generados pertenecen al grupo dado (pues así lo hacían sus plantillas).</p><p>Nota: las plantillas de unidad, tal como se las denomina en el editor, parecen no ser propiamente <i>objetos</i> en el juego, y por tanto no aparecen ellas mismas en <a href='#GetGroupSize:str'>GetGroupSize</a> o métodos similares.</p>",
             "description_en": "<p>Spawns a group from templates inside the given settlement. The method causes the spawning of objects corresponding to all the templates associated to the group with the given name. The generated objects belong to the given group (since that is what their templates did).</p><p>Note: the unit templates, as they are called in the editor, seem to not be <i>objects</i> for the game, and therfore they do not show up in <a href='#GetGroupSize:str'>GetGroupSize</a> or other methods themselves.</p>",
             "related": ["SpawnGroupInHolder:str_Obj", "SpawnGroup:str", "SpawnNamed:str", "Group:str"]
@@ -3913,7 +3925,12 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "grupo", "name_en": "group", "type": 5, "is_ptr": false}, {"name": "contenedor", "name_en": "holder", "type": 11, "is_ptr": false}],
+            "params": [{"name": "grupo", "name_en": "group", "type": 5, "is_ptr": false}, {
+                "name": "contenedor",
+                "name_en": "holder",
+                "type": 11,
+                "is_ptr": false
+            }],
             "description": "<p>Genera un grupo a partir de plantillas en el objeto <tt>contenedor</tt> dado. Esto funciona para edificios de asentamientos, pero también para barcos, por ejemplo. El método causa la generación de objetos correspondientes a todas las plantillas asociadas al grupo de nombre dado. Los objetos generados pertenecen al grupo dado (pues así lo hacían sus plantillas).</p><p>Nota: las plantillas de unidad, tal como se las denomina en el editor, parecen no ser propiamente <i>objetos</i> en el juego, y por tanto no aparecen ellas mismas en <a href='#GetGroupSize:str'>GetGroupSize</a> o métodos similares.</p>",
             "description_en": "<p>Spawns a group from templates inside the given <tt>holder</tt> object. This works for settlement buildings, but also for ships, for example. The method causes the spawning of objects corresponding to all the templates associated to the group with the given name. The generated objects belong to the given group (since that is what their templates did).</p><p>Note: the unit templates, as they are called in the editor, seem to not be <i>objects</i> for the game, and therfore they do not show up in <a href='#GetGroupSize:str'>GetGroupSize</a> or other methods themselves.</p>",
             "related": ["SpawnGroupInHolder:str_str", "SpawnGroup:str", "SpawnNamed:str", "Group:str"]
@@ -3937,7 +3954,7 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "research_needed":  "Yo diría que tiene que estar relacionado con la modificación de terreno(?) Deberíamos probarlo en el editor. De todas formas, el parámetro <tt>string</tt> is probablemente un archivo y valores incorrectos parecen crashear el juego en mis tests.",
+            "research_needed": "Yo diría que tiene que estar relacionado con la modificación de terreno(?) Deberíamos probarlo en el editor. De todas formas, el parámetro <tt>string</tt> is probablemente un archivo y valores incorrectos parecen crashear el juego en mis tests.",
             "params": [{"name": "number", "type": 5, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
@@ -4015,7 +4032,12 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}, {"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}],
+            "params": [{"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}, {
+                "name": "jugador",
+                "name_en": "player",
+                "type": 1,
+                "is_ptr": false
+            }],
             "description": "Objetos de una clase y jugador específicos. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
             "description_en": "Object of a specific class and player. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
             "related": ["Obj::class", "Obj::player", "GetPlayerUnits:int_str", "ClassPlayerAreaObjs:str_int_str"]
@@ -4027,7 +4049,12 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "asentamiento", "name_en": "settlement", "type": 5, "is_ptr": false}, {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
+            "params": [{"name": "asentamiento", "name_en": "settlement", "type": 5, "is_ptr": false}, {
+                "name": "clase",
+                "name_en": "class",
+                "type": 5,
+                "is_ptr": false
+            }],
             "description": "Consulta para los edificios de un asentamiento de una clase específica. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
             "description_en": "Query for the buildings in a settlement of a specific class. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
             "related": ["Obj::class", "GetSettlement:str", "UnitsInSettlement:str_str", "Settlement::Buildings"]
@@ -4039,7 +4066,12 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "asentamiento", "name_en": "settlement", "type": 5, "is_ptr": false}, {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
+            "params": [{"name": "asentamiento", "name_en": "settlement", "type": 5, "is_ptr": false}, {
+                "name": "clase",
+                "name_en": "class",
+                "type": 5,
+                "is_ptr": false
+            }],
             "description": "Objetos de una clase específica que se encuentren dentro del asentamiento indicado (dentro de su <a href='#Settlement::GetCentralBuilding'>edificio central</a>). Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
             "description_en": "Objects of an specific class which are inside a given settlement (inside its <a href='#Settlement::GetCentralBuilding'>central building</a>). Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
             "related": ["Obj::class", "GetSettlement:str", "UnitsAroundSettlement:str_str", "UnitsGuardingSettlement:str_str", "UnitsInSettlement:Settlement_str", "Settlement::Units"]
@@ -4051,7 +4083,12 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "asentamiento", "name_en": "settlement", "type": 5, "is_ptr": false}, {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
+            "params": [{"name": "asentamiento", "name_en": "settlement", "type": 5, "is_ptr": false}, {
+                "name": "clase",
+                "name_en": "class",
+                "type": 5,
+                "is_ptr": false
+            }],
             "description": "Objetos de una clase específica que se encuentren en el área del asentamiento indicado. Un objeto se encuentra en el área de un asentamiento si está dentro del <a href='#Obj::sight'>radio de visión</a> de uno de sus edificios. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
             "description_en": "Objects of an specific class which are inside the area of the given settlement. An object is inside the area of a settlement if it is inside the <a href='#Obj::sight'>sight</a> of one of its buildings. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
             "related": ["Obj::class", "GetSettlement:str", "UnitsAroundSettlement:Settlement_str", "UnitsInSettlement:str_str", "UnitsGuardingSettlement:str_str", "UnitsInSettlement:Settlement_str", "Settlement::Units"]
@@ -4063,7 +4100,12 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "asentamiento", "name_en": "settlement", "type": 5, "is_ptr": false}, {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
+            "params": [{"name": "asentamiento", "name_en": "settlement", "type": 5, "is_ptr": false}, {
+                "name": "clase",
+                "name_en": "class",
+                "type": 5,
+                "is_ptr": false
+            }],
             "description": "Objetos de una clase específica que se encuentren protegiendo el asentamiento indicado. Este método devuelve la <a href='#Union:Query_Query'>unión</a> de los <a href='#UnitsInSettlement:str_str'>objetos dentro del asentamiento</a> y los  <a href='#UnitsAroundSettlement:str_str'>objetos que rodean el asentamiento</a>. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
             "description_en": "Objects of an specific class which are guarding the given settlement. This method returns the <a href='#Union:Query_Query'>union</a> of the <a href='#UnitsInSettlement:str_str'>objects inside the settlement</a> and the <a href='#UnitsAroundSettlement:str_str'>objects around the settlement</a>. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
             "related": ["Obj::class", "GetSettlement:str", "UnitsGuardingSettlement:Settlement_str", "UnitsInSettlement:str_str", "UnitsAroundSettlement:str_str", "UnitsInSettlement:Settlement_str", "Settlement::Units"]
@@ -4153,7 +4195,12 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "area", "type": 5, "is_ptr": false}, {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
+            "params": [{"name": "area", "type": 5, "is_ptr": false}, {
+                "name": "clase",
+                "name_en": "class",
+                "type": 5,
+                "is_ptr": false
+            }],
             "description": "Objetos de una clase dada en el área especificada. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
             "description_en": "Objects of a particular class in the given area. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
             "related": ["ClassPlayerAreaObjs:str_int_str", "ObjsInRect:rect_str", "ObjsInCircle:point_int_str"]
@@ -4165,7 +4212,12 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "rectangulo", "name_en": "rectangle", "type": 7, "is_ptr": false}, {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
+            "params": [{"name": "rectangulo", "name_en": "rectangle", "type": 7, "is_ptr": false}, {
+                "name": "clase",
+                "name_en": "class",
+                "type": 5,
+                "is_ptr": false
+            }],
             "description": "Objetos de una clase dada en el rectángulo especificado. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
             "description_en": "Objects of a particular class inside the given rectangle. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
             "related": ["AreaObjs:str_str", "ObjsInCircle:point_int_str"]
@@ -4194,7 +4246,12 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "objeto", "name_en": "object", "type": 11, "is_ptr": false}, {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
+            "params": [{"name": "objeto", "name_en": "object", "type": 11, "is_ptr": false}, {
+                "name": "clase",
+                "name_en": "class",
+                "type": 5,
+                "is_ptr": false
+            }],
             "description": "<p>Objetos de la clase indicada en el <a href='#Obj::sight'>radio de visión</a> del objeto dado. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.</p><p>La expresión <tt class='language-cks'>ObjsInSight(miObj, \"Unit\")</tt> es equivalente a <tt class='language-cks'>ObjsInRange(miObj, \"Unit\", miObj.sight)</tt>.</p>",
             "description_en": "<p>Objects of a specific class in the <a href='#Obj::sight'>sight</a> of a given object. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.</p><p>The expression <tt class='language-cks'>ObjsInSight(myObj, \"Unit\")</tt> is equivalent to <tt class='language-cks'>ObjsInRange(myObj, \"Unit\", myObj.sight)</tt>.</p>",
             "related": ["VisibleObjsInSight:Obj_str", "ObjsInRange:Obj_str_int", "Unit::EnemiesInSight"]
@@ -4236,7 +4293,12 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "heroe", "name_en": "hero", "type": 15, "is_ptr": false}, {"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}],
+            "params": [{"name": "heroe", "name_en": "hero", "type": 15, "is_ptr": false}, {
+                "name": "clase",
+                "name_en": "class",
+                "type": 5,
+                "is_ptr": false
+            }],
             "description": "Unidades de la clase indicada asociadas al héroe dado. Consulta el <a href='class_list.htm'>árbol de clases del juego</a> para saber qué clase usar.",
             "description_en": "Units of the given class associated to the provided hero. Check the <a href='class_list.htm'>tree of classes of the game</a> for help with which class to use.",
             "related": ["Unit::AttachTo:Hero", "Squad::EvalAttach:Unit_int", "Hero::army"]
@@ -4450,7 +4512,7 @@ const THE_OBJ = (function () {
             }, {"name": "destino", "name_en": "target", "type": 6, "is_ptr": false}],
             "description": "<p>Añade el comando indicado a la cola de comandos de cada objeto. Este método llama a <a href='#Obj::AddCommand:bool_str_point'>Obj::AddCommand</a> en cada objeto de la consulta.</p>",
             "description_en": "<p>Adds the given command at the end of the command queue of each object. This method calls <a href='#Obj::AddCommand:bool_str_point'>Obj::AddCommand</a> en cada objeto de la consulta.</p>",
-            "related": ["Obj::AddCommand:bool_str_point", "Query::AddCommand:bool_str_Obj", "Query::AddCommand:bool_str"]
+            "related": ["Obj::AddCommand:bool_str_point", "Query::AddCommand:bool_str_Obj", "Query::AddCommand:bool_str", "Query::AddCommandOffset:bool_str_point"]
         }, {
             "id": "Query::AddCommand:bool_str_Obj",
             "name": "AddCommand",
@@ -4481,7 +4543,10 @@ const THE_OBJ = (function () {
                 "name_en": "command",
                 "type": 5,
                 "is_ptr": false
-            }, {"name": "destino", "name_en": "target", "type": 6, "is_ptr": false}]
+            }, {"name": "destino", "name_en": "target", "type": 6, "is_ptr": false}],
+            "description": "<p>Añade el comando indicado a la cola de comandos de cada objeto, manteniendo el desplazamiento con respecto al centro. Este método llama a <a href='#Obj::AddCommand:bool_str_point'>Obj::AddCommand</a> en cada objeto de la consulta, sumando el desplazamiento correspondiente para que se mantenga la formación original de los objetos de la consulta.</p><p>Consulta <a href='#Query::SetCommandOffset:str_point'>Query::SetCommandOffset</a> para más detalles sobre el desplazamiento.</p>",
+            "description_en": "<p>Adds the given command at the end of the command queue of each object, keeping the offset of the object respect to the center. This method calls <a href='#Obj::AddCommand:bool_str_point'>Obj::AddCommand</a> on each object of the query, adding the corresponding offset so the original formation shape gets preserved.</p><p>Check <a href='#Query::SetCommandOffset:str_point'>Query::SetCommandOffset</a> for more details on the offset.</p>",
+            "related": ["Obj::AddCommand:bool_str_point", "Query::AddCommand:bool_str_Obj", "Query::AddCommand:bool_str", "Query::SetCommandOffset:str_point"]
         }, {
             "id": "Query::SetCommand:str",
             "name": "SetCommand",
@@ -4536,7 +4601,15 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "comando", "name_en": "command", "type": 5, "is_ptr": false}, {
+                "name": "centro_destino",
+                "name_en": "target_center",
+                "type": 6,
+                "is_ptr": false
+            }],
+            "description": "<p>Limpia la cola de comandos del objeto, detiene el comando actual e inicia el comando dado con el punto dado como argumento, manteniendo la formación. Este método llama a <a href='#Obj::SetCommand:str_point'>Obj::SetCommand</a> en cada objeto de la consulta, y para cada uno utiliza <tt>centro_destino</tt> desplazado por el mismo offset que aquel que tiene el objeto con respecto al centroide de las posiciones del grupo. El resultado es que el conjunto de puntos objetivo de los comandos lanzados por este método tendrá la misma forma que el conjunto de posiciones actual de los elementos de la consulta. Si usamos esto con el comando <tt>move</tt> sobre un grupo de unidades, por ejemplo, éstas se desplazaran manteniendo la forma original.</p><p>Para un ejemplo de código equivalente consultar <a href='#ObjList::SetCommandOffset:str_point'>ObjList::SetCommandOffset</a>.</p>",
+            "description_en": "<p>Clears the queue of commands of the object, kills the current command and starts the given one with the passed point as argument, keeping the offset. This command calls <a href='#Obj::SetCommand:str_point'>Obj::SetCommand</a> for each object in the query, and for each it uses <tt>target_center</tt> offset by the same vector as the current one for that object with respect to the centroid of the elements in the query. The result is that the set of target points for the commands started with this method will have the same shape as the set of current positions of the objects within the query. If used with the command <tt>move</tt> over a group of units, for example, the units will move keeping the original group shape.</p><p>For an example of equivalent code check <a href='#ObjList::SetCommandOffset:str_point'>ObjList::SetCommandOffset</a>.</p>",
+            "related": ["Query::SetCommand:str_point", "Query::AddCommandOffset:bool_str_point", "ObjList::SetCommandOffset:str_point"]
         }, {
             "id": "Query::GetObjList",
             "name": "GetObjList",
@@ -4547,7 +4620,7 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [],
             "description": "Obtiene la lista de objetos actual de la consulta.",
-            "description_en": "Gets the current list of object within the query."
+            "description_en": "Gets the current list of objects within the query."
         }, {
             "id": "DistributeExperience:Query_int",
             "name": "DistributeExperience",
@@ -4556,7 +4629,19 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{
+                "name": "consulta",
+                "name_en": "query",
+                "type": 27,
+                "is_ptr": false
+            }, {"name": "puntos_experiencia", "name_en": "experience_points", "type": 1, "is_ptr": false}],
+            "description": "<p>Distribuye puntos de experiencia entre un conjunto de objetos. Toma la consulta <tt>consulta</tt>, y a cada unidad contenida en ella le aumenta la experiencia por tantos puntos como resulte de dividir <tt>puntos_experiencia</tt> entre la cantidad de objetos obtenidos por la consulta. Es decir, que distribuye la experiencia a partes iguales entre los objetos.</p><p>Nota: no confundir puntos de <a href='#Unit::experience'>experiencia</a> con <a href='#Unit::level'>niveles</a>, conforme las unidades suben de nivel, la cantidad de puntos de experiencia requerida para subir de nivel aumentan también.</p>",
+            "description_en": "<p>Distributes experience points among a query of objects. Takes the query <tt>query</tt>, and it increases by the result of dividing <tt>experience_points</tt> between the number of objects in the query the experience points of each unit within the query. I.e., it distributes the experience in equal amounts among the objects.</p><p>Note: do not mistake <a href='#Unit::experience'>experience points</a> with <a href='#Unit::level'>levels</a>, as units increase their level, the amount of experience points required to achieve the next level also increases.</p>",
+            "dangerous": {
+                "es": "Si la consulta incluye objetos que no sean <a href='#Unit'>unidades</a>, se produce una violación de segmento que crashea el juego.",
+                "en": "If the query contains object which are not <a href='#Unit'>units</a>, a segment violations occurs and the game crashes."
+            },
+            "related": ["Unit::experience", "Unit::SetExperience:int", "Unit::level", "Unit::SetLevel:int"]
         }, {
             "id": "AttackArea:Query_str",
             "name": "AttackArea",
@@ -4565,7 +4650,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "consulta", "name_en": "query", "type": 27, "is_ptr": false}, {
+                "name": "area",
+                "type": 5,
+                "is_ptr": false
+            }],
+            "description": "Ataca el área con los objetos dados. Para cada objeto en la consulta, lanza el comando <tt>advance</tt> con un <a href='#GetRandomPointInArea:str'>punto aleatorio del área</a> <tt>area</tt> como objetivo, provocando que los objetos &quot;ataquen&quot; el área.",
+            "description_en": "Attacks the area with the given objects. For each object within the query, sets the command <tt>advance</tt> to a <a href='#GetRandomPointInArea:str'>random point within the area</a> <tt>area</tt>, causing the objects to &quot;attack&quot; the area.",
+            "related": ["MoveToArea:Query_str"]
         }, {
             "id": "MoveToArea:Query_str",
             "name": "MoveToArea",
@@ -4574,7 +4666,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "consulta", "name_en": "query", "type": 27, "is_ptr": false}, {
+                "name": "area",
+                "type": 5,
+                "is_ptr": false
+            }],
+            "description": "Mueve los objetos dados al área. Para cada objeto en la consulta, lanza el comando <tt>move</tt> con un <a href='#GetRandomPointInArea:str'>punto aleatorio del área</a> <tt>area</tt> como objetivo, provocando que los objetos &quot;ataquen&quot; el área.",
+            "description_en": "Moves the given objects to the area. For each object within the query, sets the command <tt>move</tt> to a <a href='#GetRandomPointInArea:str'>random point within the area</a> <tt>area</tt>, causing the objects to move somewhere within the area.",
+            "related": ["AttackArea:Query_str"]
         }, {
             "id": "NearestObj:Query_point",
             "name": "NearestObj",
@@ -4583,7 +4682,15 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "consulta", "name_en": "query", "type": 27, "is_ptr": false}, {
+                "name": "punto",
+                "name_en": "pt",
+                "type": 6,
+                "is_ptr": false
+            }],
+            "description": "Encuentra el objeto en la consulta más cercano a un punto dado. Llama a <a href='#Query::NearestObj:point'>NearestObj</a> sobre <tt>consulta</tt> con <tt>punto</tt> como argumento.",
+            "description_en": "Finds the closest object within the query to a given point. Calls <a href='#Query::NearestObj:point'>NearestObj</a> over <tt>query</tt> with <tt>pt</tt> as an argument.",
+            "related": ["NearestObj:Query_Obj", "Query::NearestObj:point", "Query::NearestObj:Obj"]
         }, {
             "id": "NearestObj:Query_Obj",
             "name": "NearestObj",
@@ -4592,7 +4699,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}, {"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "consulta", "name_en": "query", "type": 27, "is_ptr": false}, {
+                "name": "obj",
+                "type": 11,
+                "is_ptr": false
+            }],
+            "description": "Encuentra el objeto en la consulta más cercano a un objeto dado. Llama a <a href='#Query::NearestObj:Obj'>NearestObj</a> sobre <tt>consulta</tt> con <tt>obj</tt> como argumento.",
+            "description_en": "Finds the closest object within the query to a given object. Calls <a href='#Query::NearestObj:Obj'>NearestObj</a> over <tt>query</tt> with <tt>obj</tt> as an argument.",
+            "related": ["Query::NearestObj:Obj", "NearestObj:Query_point", "Query::NearestObj:point"]
         }, {
             "id": "Query::NearestObj:point",
             "name": "NearestObj",
@@ -4601,7 +4715,10 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "punto", "name_en": "pt", "type": 6, "is_ptr": false}],
+            "description": "Encuentra el objeto en la consulta más cercano a un punto dado. El método usa <a href='#Obj::pos'>Obj::pos</a> para obtener la posición y por tanto puede dar resultados inesperados con unidades que se encuentren dentro de un contenedor.",
+            "description_en": "Finds the closest object within the query to a given point. The method uses <a href='#Obj::pos'>Obj::pos</a> to obtain the position and, therefore, it can give unexpected results with units inside a holder.",
+            "related": ["NearestObj:Query_point", "Query::NearestObj:Obj", "NearestObj:Query_Obj"]
         }, {
             "id": "Query::NearestObj:Obj",
             "name": "NearestObj",
@@ -4610,7 +4727,10 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "obj", "type": 11, "is_ptr": false}],
+            "description": "Encuentra el objeto en la consulta más cercano a un objeto dado. El método usa <a href='#Obj::pos'>Obj::pos</a> para obtener la posición y por tanto puede dar resultados inesperados con unidades que se encuentren dentro de un contenedor.",
+            "description_en": "Finds the closest object within the query to a given object. The method uses <a href='#Obj::pos'>Obj::pos</a> to obtain the position and, therefore, it can give unexpected results with units inside a holder.",
+            "related": ["NearestObj:Query_Obj", "Query::NearestObj:point", "NearestObj:Query_point"]
         }, {
             "id": "Query::AddToGroup:str",
             "name": "AddToGroup",
@@ -4619,7 +4739,10 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "grupo", "name_en": "group", "type": 5, "is_ptr": false}],
+            "description": "Añade todos los objetos en la consulta al grupo dado. Este método llama <a href='#Obj::AddToGroup:str'>Obj::AddToGroup</a> en cada objeto de la consulta.",
+            "description_en": "Adds every object within the query to the given group. This method calls <a href='#Obj::AddToGroup:str'>Obj::AddToGroup</a> on each object within the query.",
+            "related": ["Obj::AddToGroup:str", "ObjList::AddToGroup:str", "Group:str", "Query::RemoveFromGroup:str", "Query::RemoveFromAllGroups"]
         }, {
             "id": "Query::RemoveFromGroup:str",
             "name": "RemoveFromGroup",
@@ -4628,7 +4751,10 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "grupo", "name_en": "group", "type": 5, "is_ptr": false}],
+            "description": "Elimina todos los objetos en la consulta del grupo dado. Este método llama <a href='#Obj::RemoveFromGroup:str'>Obj::RemoveFromGroup</a> en cada objeto de la consulta.",
+            "description_en": "Removes every object within the query from the given group. This method calls <a href='#Obj::RemoveFromGroup:str'>Obj::RemoveFromGroup</a> on each object within the query.",
+            "related": ["Obj::RemoveFromGroup:str", "ObjList::RemoveFromGroup:str", "Group:str", "Query::AddToGroup:str", "Query::RemoveFromAllGroups"]
         }, {
             "id": "Query::RemoveFromAllGroups",
             "name": "RemoveFromAllGroups",
@@ -4637,7 +4763,10 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Elimina todos los objetos en la consulta de todos los grupos en los que se encuentren. Este método llama <a href='#Obj::RemoveFromAllGroups'>Obj::RemoveFromAllGroups</a> en cada objeto de la consulta.",
+            "description_en": "Removes every object within the query from every group it is in. This method calls <a href='#Obj::RemoveFromAllGroups'>Obj::RemoveFromAllGroups</a> on each object within the query.",
+            "related": ["Obj::RemoveFromAllGroups", "ObjList::RemoveFromAllGroups", "Query::RemoveFromGroup:str", "Query::AddToGroup:str"]
         }, {
             "id": "Query::Face:point",
             "name": "Face",
@@ -4646,7 +4775,10 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "punto", "name_en": "pt", "type": 6, "is_ptr": false}],
+            "description": "Hace que todos los objetos en la consulta miren al punto dado. Este método llama <a href='#Obj::Face:point'>Obj::Face(<tt>punto</tt>)</a> en cada objeto de la consulta.",
+            "description_en": "Makes every object within the query face the given point. This method calls <a href='#Obj::Face:point'>Obj::Face(<tt>pt</tt>)</a> on each object within the query.",
+            "related": ["Obj::Face:point", "ObjList::Face:point"]
         }, {
             "id": "Query::SetFood:int",
             "name": "SetFood",
@@ -4655,7 +4787,10 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "comida", "name_en": "food", "type": 1, "is_ptr": false}],
+            "description": "Pone la <a href='#Unit::food'>comida</a> de cada objeto en la consulta a la cantidad indicada. Este método llama <a href='#Unit::SetFood:int'>Unit::SetFood(<tt>comida</tt>)</a> en cada objeto de la consulta. No funciona con asentamientos ni con mulas.",
+            "description_en": "Sets the <a href='#Unit::food'>food</a> of every object within the query to the given amount. This method calls <a href='#Unit::SetFood:int'>Unit::SetFood(<tt>food</tt>)</a> on each object within the query. Does not work with settlements nor wagons.",
+            "related": ["Unit::SetFood:int", "Settlement::SetFood:int", "Wagon::SetFood:int"]
         }, {
             "id": "Query::InHolder:str",
             "name": "InHolder",
@@ -4664,7 +4799,10 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "asentamiento", "name_en": "settlement", "type": 5, "is_ptr": false}],
+            "description": "Devuelve cuántas unidades de la consulta se encuentran dentro del edificio principal del asentamiento.",
+            "description_en": "Returns how many units from the query are inside the unit holder of a settlement.",
+            "related": ["Query::AddToHolder:str", "ObjList::InHolder:str", "Unit::InHolder", "Unit::GetHolderSett"]
         }, {
             "id": "Query::AddToHolder:str",
             "name": "AddToHolder",
@@ -4673,7 +4811,10 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "asentamiento", "name_en": "settlement", "type": 5, "is_ptr": false}],
+            "description": "Añade las unidades de la consulta al edificio principal del asentamiento dado. De forma similar a <a href='#Unit::EnterHolder:Obj'>Unit::EnterHolder</a>, las unidades no se acercarán al asentamiento, si no que desaparecerán sin más y aparecerán en su interior.",
+            "description_en": "Adds the units in the query to the unit holder of the given settlement. Similarly to <a href='#Unit::EnterHolder:Obj'>Unit::EnterHolder</a>, the units will not approach the settlement, but instead they will vanish and appear already inside the holder.",
+            "related": ["Query::InHolder:str", "ObjList::AddToHolder:str", "Unit::EnterHolder:Obj"]
         }, {
             "id": "Query::GetAverageDirection",
             "name": "GetAverageDirection",
@@ -4682,7 +4823,10 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve la media de las <a href='#Obj::GetDir'>direcciones</a> de los objetos en la consulta.",
+            "description_en": "Returns the average of the <a href='#Obj::GetDir'>directions</a> of the objects within the query.",
+            "related": ["Obj::GetDir", "Unit::dir", "Query::Face:point"]
         }, {
             "id": "Query::SetParty:bool",
             "name": "SetParty",
@@ -4691,7 +4835,10 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 2, "is_ptr": false}]
+            "params": [{"name": "viaja", "name_en": "party", "type": 2, "is_ptr": false}],
+            "description": "Introduce o saca todas las unidades en la consulta en el <a href='#Party'>grupo de viaje</a>.",
+            "description_en": "Introduces or removes all the units within the query from the <a href='#Party'>party group</a>.",
+            "related": ["Unit::SetParty:bool", "Unit::GetParty", "Party", "PartyQuery"]
         }, {
             "id": "Query::SetMessengerStatus:bool",
             "name": "SetMessengerStatus",
@@ -4700,7 +4847,10 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 2, "is_ptr": false}]
+            "params": [{"name": "activar", "name_en": "enable", "type": 2, "is_ptr": false}],
+            "description": "Cambia el <a href='#Obj::SetMessengerStatus:bool'>estado de mensajero</a> de todos los objetos en la consulta.",
+            "description_en": "Sets the <a href='#Obj::SetMessengerStatus:bool'>messenger status</a> to all the objects within the query.",
+            "related": ["Obj::SetMessengerStatus:bool"]
         }, {
             "id": "Query::SetFeeding:bool",
             "name": "SetFeeding",
@@ -4709,7 +4859,10 @@ const THE_OBJ = (function () {
             "of": 27,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 2, "is_ptr": false}]
+            "params": [{"name": "activar", "name_en": "enable", "type": 2, "is_ptr": false}],
+            "description": "Activa / desactiva el <a href='#Unit::SetFeeding:bool'>consumo de víveres</a> para todas las unidades en la consulta.",
+            "description_en": "Enables / disables <a href='#Unit::SetFeeding:bool'>feeding</a> for every unit in the query.",
+            "related": ["Unit::SetFeeding:bool"]
         }, {
             "id": "GetNamedObj:str",
             "name": "GetNamedObj",
@@ -4718,7 +4871,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "nombre", "name_en": "name", "type": 5, "is_ptr": false}],
+            "description": "Obtiene el objeto con el nombre de scripts dado como un <a class='type' href='#NamedObj'>NamedObj</a>. Cuando en una secuencia del editor utilizas el nombre de scripts de un objeto directamente, el resultado es equivalente a usar este método. Por ejemplo, <tt class='language-cks'>manolo.obj.SetLevel(5)</tt> es equivalente a <tt class='language-cks'>GetNamedObj(\"manolo\").obj.SetLevel(5)</tt>. Si no existe un objeto con el nombre dado devuelve un <a class='type' href='#NamedObj'>NamedObj</a> <a href='#NamedObj::IsValid'>inválido</a>.",
+            "description_en": "Obtains the object with the given scripting name as a <a class='type' href='#NamedObj'>NamedObj</a>. When, in a sequence within the editor, you use the scripting name of an object directly, the result is equivalent to using this method. For example, <tt class='language-cks'>billy.obj.SetLevel(5)</tt> is equivalent to <tt class='language-cks'>GetNamedObj(\"billy\").obj.SetLevel(5)</tt>. If an object with the given scripting name does not exist, it returns an <a href='#NamedObj::IsValid'>invalid</a> <a class='type' href='#NamedObj'>NamedObj</a>.",
+            "related": ["NamedObj::IsValid"]
         }, {
             "id": "NamedObj::IsValid",
             "name": "IsValid",
@@ -4727,7 +4883,9 @@ const THE_OBJ = (function () {
             "of": 29,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Indica si el <a class='type' href='#NamedObj'>NamedObj</a> es válido. Es decir, si se corresponde con una instancia de objeto real. Si se llama a este método sobre un <a class='type' href='#NamedObj'>NamedObj</a> obtenido mediante <a href='#GetNamedObj:str'>GetNamedObj</a> con el nombre de un objeto inexistente, este método devolverá <tt>false</tt>.",
+            "description_en": "Indicates whether the <a class='type' href='#NamedObj'>NamedObj</a> is valid. I.e., if it corresponds to a real object instance. If called on a <a class='type' href='#NamedObj'>NamedObj</a> obtained with <a href='#GetNamedObj:str'>GetNamedObj</a> with the name of a non-existing object, this method will return <tt>false</tt>."
         }, {
             "id": "NamedObj::IsDead",
             "name": "IsDead",
@@ -4736,7 +4894,10 @@ const THE_OBJ = (function () {
             "of": 29,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Retorna si el <a href='#NamedObj::obj'>objeto asociado</a> está <a href='#Obj::IsDead'>muerto</a>.",
+            "description_en": "Returns whether the <a href='#NamedObj::obj'>associated object</a> is <a href='#Obj::IsDead'>dead</a>.",
+            "related": ["Obj::IsDead"]
         }, {
             "id": "NamedObj::obj",
             "name": "obj",
@@ -4745,7 +4906,9 @@ const THE_OBJ = (function () {
             "of": 29,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Objeto asociado a este <a class='type' href='#NamedObj'>NamedObj</a>, podría entenderse como una conversión de <a class='type' href='#NamedObj'>NamedObj</a> a <a class='type' href='#Obj'>Obj</a>.",
+            "description_en": "Object associated to this <a class='type' href='#NamedObj'>NamedObj</a>, which could be seen as the cast from <a class='type' href='#NamedObj'>NamedObj</a> to <a class='type' href='#Obj'>Obj</a>."
         }, {
             "id": "EnemyInRange:point_int_Obj",
             "name": "EnemyInRange",
@@ -4754,11 +4917,15 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "centro", "name_en": "center", "type": 6, "is_ptr": false}, {
+                "name": "rango",
+                "name_en": "range",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 11, "is_ptr": false}]
+            }, {"name": "objeto", "name_en": "object", "type": 11, "is_ptr": false}],
+            "description": "Devuelve <tt>true</tt> si existe un enemigo del objeto provisto en el rango indicado con respecto al punto dado. Los objetos en <a href='#Obj::SetMessengerStatus:bool'>estado de mensajero</a> no son consideradas enemigas.",
+            "description_en": "Returns <tt>true</tt> if there is an enemy of the provided object within the given range from the indicated point. Objects with <a href='#Obj::SetMessengerStatus:bool'>messenger status</a> are not considered enemies.",
+            "related": [ "EnemyObjs:int_str", "Obj::IsEnemy:Obj"]
         }, {
             "id": "Building::BestTarget",
             "name": "BestTarget",
@@ -4767,7 +4934,11 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "research_needed": "Estaría bien investigar qué características tiene en cuenta para decidir que un objeto es &quot;mejor&quot; objetivo que otro.",
+            "description": "Mejor objetivo para atacar para las <a href='class.htm?#FakeTower'>FakeTower</a>s. Los fortines son <a href='#Settlement::IsIndependent'>asentamientos independientes</a>, pero entre los edificios asociados cuentan con varias <a href='class.htm?#FakeTower'>FakeTower</a>, de las cuales salen las flechas cuando el fortín ataca unidades a su alrededor. Este método devuelve el &quot;mejor objetivo&quot; para estas torres para atacar, aunque los criterios que definen qué objetivo es mejor no están claros.",
+            "description_en": "Best target to attack for <a href='class.htm?#FakeTower'>FakeTower</a>s. The outposts are <a href='#Settlement::IsIndependent'>independent settlements</a>, but between their associated buildings they count on several  <a href='class.htm?#FakeTower'>FakeTower</a>, from which the arrows come out when the outpost attacks units around it. This method returns &quot;the best target&quot; for this towers to attack, but the criteria behind this selection is not clear.",
+            "related": ["Building::Attack:Obj"]
         }, {
             "id": "Building::Attack:Obj",
             "name": "Attack",
@@ -4776,7 +4947,9 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "objetivo", "name_en": "target", "type": 11, "is_ptr": false}],
+            "description": "Hace que el edificio ataque el objeto <tt>objetivo</tt>. Por lo que sabe el autor de estas líneas, las <a href='class.htm?#FakeTower'>FakeTower</a> son los únicos edificios pueden atacar otros objetos.",
+            "description_en": "Causes the building to attack the object <tt>target</tt>. As far as the author of these lines knows, the <a href='class.htm?#FakeTower'>FakeTower</a> are the only buildings able to attack other objects."
         }, {
             "id": "Building::GetEnterPoint:Unit",
             "name": "GetEnterPoint",
@@ -4812,7 +4985,7 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "type", "type": 1, "is_ptr": false}, {"name": "idx", "type": 1, "is_ptr": false}]
         }, {
             "id": "Building::settlement",
             "name": "settlement",
@@ -7903,7 +8076,49 @@ const THE_OBJ = (function () {
             "of": 26,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "comando", "name_en": "command", "type": 5, "is_ptr": false}, {
+                "name": "centro_destino",
+                "name_en": "target_center",
+                "type": 6,
+                "is_ptr": false
+            }],
+            "description": "<p>Limpia la cola de comandos de cada objeto, detiene el comando actual e inicia el comando dado con el punto dado como argumento desplazado para mantener la formación. Este método llama a <a href='#Obj::SetCommand:str_point'>Obj::SetCommand</a> en cada objeto de la lista, y para cada uno utiliza <tt>centro_destino</tt> desplazado por el mismo offset que aquel que tiene el objeto con respecto al centroide de las posiciones del grupo. El resultado es que el conjunto de puntos objetivo de los comandos lanzados por este método tendrá la misma forma que el conjunto de posiciones actual de los elementos de la consulta.</p><p>Un ejemplo de código equivalente a <tt class='language-cks'>miOl.SetCommandOffset(\"move\", miPunto)</tt> sería el siguiente:<pre class='language-cks'>" +
+                "// ObjList miOl, point miPunto\r\n" +
+                "int i;\r\n" +
+                "point centro; // para guardar el centro de las posiciones\r\n" +
+                "if (miOl.count > 0) { // solo si hay al menos un elemento\r\n" +
+                TAB + "// Calculamos el centro de las posiciones (la media) \r\n" +
+                TAB + "centro = miOl[0].pos;\r\n" +
+                TAB + "for (i = 1; i < miOl.count; i += 1) {\r\n" +
+                TAB + TAB + "centro = centro + miOl[i].pos;\r\n" +
+                TAB + "}\r\n" +
+                TAB + "centro = centro / miOl.count;\r\n" +
+                "\r\n" +
+                TAB + "// Ahora usamos la distancia al centro para aplicarla a miPunto \r\n" +
+                TAB + "for (i = 0; i < miOl.count; i+= 1) {\r\n" +
+                TAB + TAB + "miOl[i].SetCommand(\"move\", miPunto + (miOl[i].pos - centro));\r\n" +
+                TAB + "}\r\n" +
+                "}\r\n" +
+                "</pre></p>",
+            "description_en": "<p>Clears the queue of commands of each object, kills the current command and starts the given one with the passed point as argument, keeping the offset. This command calls <a href='#Obj::SetCommand:str_point'>Obj::SetCommand</a> for each object in the query, and for each it uses <tt>target_center</tt> offset by the same vector as the current one for that object with respect to the centroid of the elements in the query. The result is that the set of target points for the commands started with this method will have the same shape as the set of current positions of the objects within the query. If used with the command <tt>move</tt> over a group of units, for example, the units will move keeping the original group shape.</p><p>An example of equivalent code to <tt class='language-cks'>myOl.SetCommandOffset(\"move\", myPoint)</tt> could be as follows:<pre class='language-cks'>" +
+                "// ObjList myOl, point myPoint\r\n" +
+                "int i;\r\n" +
+                "point center; // to save the center of the positions\r\n" +
+                "if (myOl.count > 0) { // if it's empty there is nothing to do\r\n" +
+                TAB + "// Calculate center of the ObjList positions\r\n" +
+                TAB + "center = myOl[0].pos;\r\n" +
+                TAB + "for (i = 1; i < myOl.count; i += 1) {\r\n" +
+                TAB + TAB + "center = center + myOl[i].pos;\r\n" +
+                TAB + "}\r\n" +
+                TAB + "center = center / myOl.count; // Avg point = center\r\n" +
+                "\r\n" +
+                TAB + "// Now lets use the distance from center to offset myPoint \r\n" +
+                TAB + "for (i = 0; i < myOl.count; i+= 1) {\r\n" +
+                TAB + TAB + "myOl[i].SetCommand(\"move\", myPoint + (myOl[i].pos - center));\r\n" +
+                TAB + "}\r\n" +
+                "}\r\n" +
+                "</pre></p>",
+            "related": ["Query::SetCommand:str_point", "Query::AddCommandOffset:bool_str_point", "ObjList::SetCommandOffset:str_point"]
         }, {
             "id": "ObjList::GetCanExecCmd:str",
             "name": "GetCanExecCmd",
