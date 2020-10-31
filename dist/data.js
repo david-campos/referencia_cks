@@ -3772,7 +3772,7 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [],
             "description": "Devuelve <tt>true</tt> si el objeto es acuático. Las clases con la propiedad <tt>water_unit</tt> a <tt>1</tt> son acuáticas y por tanto devuelven <tt>true</tt> con este método, como por ejemplo los <a href='class.htm#ShipS.water_unit'>botes</a>. Puedes consultar detalles de todas las clases del juego original en la <a href='class.htm#Object.water_unit'>página de detalles de clases</a>.",
-            "description_en": "Returns <tt>true</tt> if the object is aquatic. The classes with the property <tt>water_unit</tt> set to <tt>1</tt> are aquatic and, therefore, they return <tt>true</tt> with this method. <a href='class.htm#ShipS.water_unit'>Boats</a> can be an example. You can check details of every class of the original game in the <a href='class.htm#Object.water_unit'>page of class details</a>."
+            "description_en": "Returns <tt>true</tt> if the object is aquatic. The classes with the property <tt>water_unit</tt> set to <tt>1</tt> are aquatic and, therefore, they return <tt>true</tt> with this method. <a href='class.htm?en#ShipS.water_unit'>Boats</a> can be an example. You can check details of every class of the original game in the <a href='class.htm?en#Object.water_unit'>page of class details</a>."
         }, {
             "id": "Obj::SetCmdEnable:bool",
             "name": "SetCmdEnable",
@@ -4925,7 +4925,7 @@ const THE_OBJ = (function () {
             }, {"name": "objeto", "name_en": "object", "type": 11, "is_ptr": false}],
             "description": "Devuelve <tt>true</tt> si existe un enemigo del objeto provisto en el rango indicado con respecto al punto dado. Los objetos en <a href='#Obj::SetMessengerStatus:bool'>estado de mensajero</a> no son consideradas enemigas.",
             "description_en": "Returns <tt>true</tt> if there is an enemy of the provided object within the given range from the indicated point. Objects with <a href='#Obj::SetMessengerStatus:bool'>messenger status</a> are not considered enemies.",
-            "related": [ "EnemyObjs:int_str", "Obj::IsEnemy:Obj"]
+            "related": ["EnemyObjs:int_str", "Obj::IsEnemy:Obj"]
         }, {
             "id": "Building::BestTarget",
             "name": "BestTarget",
@@ -4936,8 +4936,8 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [],
             "research_needed": "Estaría bien investigar qué características tiene en cuenta para decidir que un objeto es &quot;mejor&quot; objetivo que otro.",
-            "description": "Mejor objetivo para atacar para las <a href='class.htm?#FakeTower'>FakeTower</a>s. Los fortines son <a href='#Settlement::IsIndependent'>asentamientos independientes</a>, pero entre los edificios asociados cuentan con varias <a href='class.htm?#FakeTower'>FakeTower</a>, de las cuales salen las flechas cuando el fortín ataca unidades a su alrededor. Este método devuelve el &quot;mejor objetivo&quot; para estas torres para atacar, aunque los criterios que definen qué objetivo es mejor no están claros.",
-            "description_en": "Best target to attack for <a href='class.htm?#FakeTower'>FakeTower</a>s. The outposts are <a href='#Settlement::IsIndependent'>independent settlements</a>, but between their associated buildings they count on several  <a href='class.htm?#FakeTower'>FakeTower</a>, from which the arrows come out when the outpost attacks units around it. This method returns &quot;the best target&quot; for this towers to attack, but the criteria behind this selection is not clear.",
+            "description": "Mejor objetivo para atacar para las <a href='class.htm#FakeTower'>FakeTower</a>s. Los fortines son <a href='#Settlement::IsIndependent'>asentamientos independientes</a>, pero entre los edificios asociados cuentan con varias <a href='class.htm#FakeTower'>FakeTower</a>, de las cuales salen las flechas cuando el fortín ataca unidades a su alrededor. Este método devuelve el &quot;mejor objetivo&quot; para estas torres para atacar, aunque los criterios que definen qué objetivo es mejor no están claros.",
+            "description_en": "Best target to attack for <a href='class.htm?en#FakeTower'>FakeTower</a>s. The outposts are <a href='#Settlement::IsIndependent'>independent settlements</a>, but between their associated buildings they count on several  <a href='class.htm?en#FakeTower'>FakeTower</a>, from which the arrows come out when the outpost attacks units around it. This method returns &quot;the best target&quot; for this towers to attack, but the criteria behind this selection is not clear.",
             "related": ["Building::Attack:Obj"]
         }, {
             "id": "Building::Attack:Obj",
@@ -4948,8 +4948,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "objetivo", "name_en": "target", "type": 11, "is_ptr": false}],
-            "description": "Hace que el edificio ataque el objeto <tt>objetivo</tt>. Por lo que sabe el autor de estas líneas, las <a href='class.htm?#FakeTower'>FakeTower</a> son los únicos edificios pueden atacar otros objetos.",
-            "description_en": "Causes the building to attack the object <tt>target</tt>. As far as the author of these lines knows, the <a href='class.htm?#FakeTower'>FakeTower</a> are the only buildings able to attack other objects."
+            "description": "Hace que el edificio ataque el objeto <tt>objetivo</tt>. Por lo que sabe el autor de estas líneas, las <a href='class.htm#FakeTower'>FakeTower</a> son los únicos edificios pueden atacar otros objetos.",
+            "description_en": "Causes the building to attack the object <tt>target</tt>. As far as the author of these lines knows, the <a href='class.htm?en#FakeTower'>FakeTower</a> are the only buildings able to attack other objects."
         }, {
             "id": "Building::GetEnterPoint:Unit",
             "name": "GetEnterPoint",
@@ -4958,7 +4958,10 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "unidad", "name_en": "unit", "type": 13, "is_ptr": false}],
+            "description": "Obtiene el punto adecuado para que la unidad entre al edificio.",
+            "description_en": "Obtains the right point for the unit to enter the building.",
+            "related": ["Building::GetExitPoint:Obj_point", "Building::GetExitPoint:point_bool"]
         }, {
             "id": "Building::GetExitPoint:Obj_point",
             "name": "GetExitPoint",
@@ -4967,7 +4970,19 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "objeto", "name_en": "object", "type": 11, "is_ptr": false}, {
+                "name": "destino",
+                "name_en": "destination",
+                "type": 6,
+                "is_ptr": false
+            }],
+            "description": "Obtiene el punto por el que el objeto dado debería salir del edificio hacia el punto indicado.",
+            "description_en": "Returns the point by which the given object should leave the building towards the indicated point.",
+            "dangerous": {
+                "es": "Si el objeto es inválido, este método puede crashear el juego.",
+                "en": "If the object is invalid, this method may crash the game."
+            },
+            "related": ["Building::GetEnterPoint:Unit", "Building::GetExitPoint:point_bool"]
         }, {
             "id": "Building::GetExitPoint:point_bool",
             "name": "GetExitPoint",
@@ -4976,7 +4991,15 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
+            "params": [{"name": "destino", "name_en": "destination", "type": 6, "is_ptr": false}, {
+                "name": "number",
+                "type": 2,
+                "is_ptr": false
+            }],
+            "research_needed": "Desconozco qué significa el segundo argumento. Cuando es <tt>true</tt> el método parece retornar siempre la <a href='#Obj::pos'>posición</a> del edificio. Quizás tenga una utilidad especial con un tipo de edificio concreto o quizás sea legacy code.",
+            "description": "Obtiene el punto por el que salir del edificio para ir hacia el destino dado.",
+            "description_en": "Obtains the point by which to get out of the building to go towards the given destination.",
+            "related": ["Building::GetExitPoint:Obj_point", "Building::GetEnterPoint:Unit"]
         }, {
             "id": "Building::GetPoint:int_int",
             "name": "GetPoint",
@@ -4985,7 +5008,13 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "type", "type": 1, "is_ptr": false}, {"name": "idx", "type": 1, "is_ptr": false}]
+            "params": [{"name": "tipo", "name_en": "type", "type": 1, "is_ptr": false}, {
+                "name": "n",
+                "type": 1,
+                "is_ptr": false
+            }],
+            "description": "<p>Obtiene el n-ésimo punto de tipo dado dado de la entidad del edificio. Nótese que el índice <tt>n</tt> es el índice empezando por cero con respecto al tipo de punto dado y no el índice indicado en el archivo de entidad directamente. Por ejemplo: la entidad asociada a la clase <a href='class.htm#ROutpost.point'>ROutpost</a> tiene dos puntos de tipo <tt>1</tt>, con índices <tt>1</tt> y <tt>4</tt>. Sin embargo, para obtenerlos mediante este método necesitaríamos usar <tt class='language-cks'>outpost.GetPoint(1, 0)</tt> y <tt class='language-cks'>outpost.GetPoint(1, 1)</tt>.</p><p>Puedes ver todos los puntos en la entidad asociada a una clase dada en la <a href='class.htm#EOutpost.point'>página de detalles de clases</a>. Los puntos, tal como se indican en la entidad, parecen estar definidos con respecto al dibujo, mientras que este método los retorna respecto a la posición del objeto, por lo que las coordenadas pueden no coincidir de forma exacta.</p>",
+            "description_en": "<p>Gets the n-th point of the given type in the entity of the building. Notice that the index <tt>n</tt> is the zero-based index with respect to the given type of point rather than index indicated in the entity file. For example: the entity associated to the class <a href='class.htm#ROutpost.point'>ROutpost</a> has two points of type <tt>1</tt>, with indices <tt>1</tt> and <tt>4</tt>. However, to obtain those points using this method we would need to use <tt class='language-cks'>outpost.GetPoint(1, 0)</tt> and <tt class='language-cks'>outpost.GetPoint(1, 1)</tt>.</p><p>You can check all the points in the associated entity to a given class in the <a href='class.htm?en#EOutpost.point'>page for class details</a>. The points, just as they are defined in the entity, seem to be defined with respect to the drawing corner, while this method returns the point respect to the object position, so the coordinates may be slightly different than the ones displayed in the page.</p>"
         }, {
             "id": "Building::settlement",
             "name": "settlement",
@@ -4994,7 +5023,9 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Obtiene el asentamiento al que pertenece el edificio.",
+            "description_en": "Returns the settlement of which the building is part."
         }, {
             "id": "Building::IsBroken",
             "name": "IsBroken",
@@ -5003,7 +5034,10 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve <tt>true</tt> si el edificio está roto y necesita ser reparado.",
+            "description_en": "Returns <tt>true</tt> if the building is broken and needs to be repaired.",
+            "related": ["Building::RRepair"]
         }, {
             "id": "Building::IsCentralBuliding",
             "name": "IsCentralBuliding",
@@ -5012,7 +5046,9 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "<p>Devuelve <tt>true</tt> si el edificio es un edificio central. Los edificios centrales de los asentamientos son aquellos que permiten crear el asentamiento, en los que se reúnen las unidades (por ejemplo un <a href='class.htm#RTownhall.is_central_building'>foro romano</a> o un <a href='class.htm#ROutpost.is_central_building'>fortín</a>).</p><p><span class='material-icons'>info</span> Nota: el nombre de este método <strong>está escrito correctamente</strong> tal como aparece en esta guía (es <i>Buliding</i> y no <i>Building</i>), parece ser que contenía un error tipográfico en la propia definición en CKS.</p>",
+            "description_en": "<p>Returns <tt>true</tt> if the building is a central building. The central buildings of the settlements are those that allow to create the settlement, in which the units are held (for example a <a href='class.htm?en#RTownhall.is_central_building'>roman town hall</a> or an <a href='class.htm?en#ROutpost.is_central_building'>outpost</a>).</p><p><span class='material-icons'>info</span> Note: <strong>the name of this method is correctly written</strong> as it appears in this guide (it is <i>Buliding</i> and not <i>Building</i>), it seems to contain a typo already in the CKS definition.</p>"
         }, {
             "id": "Building::RRepair",
             "name": "RRepair",
@@ -5021,7 +5057,9 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Repara el edificio. Al no ser un comando, esto no supone un coste para el asentamiento y es instantáneo.",
+            "description_en": "Repairs the building. Since it is not a command, this does not suppose any cost for the settlement and it is immediately executed."
         }, {
             "id": "Building::GetExitVector",
             "name": "GetExitVector",
@@ -5030,7 +5068,10 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Si el edificio es un puerto, obtiene la dirección en la que un barco debe &quot;salir&quot; de él. Cuando un barco o bote es construído, su animación de construcción se reproduce en esta dirección.",
+            "description_en": "If the building is a shipyard, gets the direction in which a boat should &quot;exit&quot;. When a boat or a ship is constructed, its building animation is played in this direction.",
+            "related": ["Ship::ShowBuildAnimation:point"]
         }, {
             "id": "Building::PopTransportationUI",
             "name": "PopTransportationUI",
@@ -5039,7 +5080,9 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Muestra la interfaz de transporte desde esta posada. La interfaz de transporte de las posadas permite mover al grupo de viaje entre mapas de una aventura y es abierta por las <a href='class.htm#Inn'>posadas</a> en el comando <tt>transport_request</tt>.",
+            "description_en": "Shows the transport user interface from this inn. The transport interface allows to move the group between maps of an adventure and it is open by the <a href='class.htm?en#Inn'>inns</a> within the command <tt>transport_request</tt>."
         }, {
             "id": "Building::GetGlobalSpell",
             "name": "GetGlobalSpell",
@@ -5048,7 +5091,10 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Obtiene el &quot;hechizo global&quot; cuya cuenta atrás está siendo mostrada actualmente por el edificio. El valor de retorno es un número entero, pero para cada valor existe una constante CKS definida por el juego. Cuando no hay ningún mensaje de hechizo activo devuelve <tt>0</tt> (que, por desgracia, coincide con el viento de la sabiduría). Estos son todos los posibles valores: <table class='tt c-0'><thead><tr><th>Valor</th><th>Constante CKS</th><th>Descripción</th></tr></thead><tbody><tr><td>0</td><td>gsWindOfWisdom</td><td>Viento de la sabiduría</td></tr><tr><td>1</td><td>gsStarvation</td><td>Hambruna</td></tr><tr><td>2</td><td>gsSoothingRain</td><td>Ritual de la vitalidad</td></tr><tr><td>3</td><td>gsDivineSacrifice</td><td>Castigo espiritual</td></tr><tr><td>4</td><td>gsBloodlust</td><td>Sed de sangre</td></tr><tr><td>5</td><td>gsTribute</td><td>Tributos</td></tr></tbody></table>",
+            "description_en": "Gets the &quot;global spell&quot; for which a countdown is currently displayed by the building (if any). The returned value is an integer number, but for each possible value there is a CKS constant defined by the game. When no current global spell countdown is being displayed, it returns <tt>0</tt> (which, unfortunately, corresponds also to the wind of wisdom). These are all the possible values: <table class='tt c-0'><thead><tr><th>Value</th><th>CKS Constant</th></tr></thead><tbody><tr><td>0</td><td>gsWindOfWisdom</td></tr><tr><td>1</td><td>gsStarvation</td></tr><tr><td>2</td><td>gsSoothingRain</td></tr><tr><td>3</td><td>gsDivineSacrifice</td></tr><tr><td>4</td><td>gsBloodlust</td></tr><tr><td>5</td><td>gsTribute</td></tr></tbody></table>",
+            "related": ["Building::GlobalSpellStart:int_int", "Building::GlobalSpellStop"]
         }, {
             "id": "Building::GlobalSpellStart:int_int",
             "name": "GlobalSpellStart",
@@ -5057,7 +5103,15 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "hechizo", "name_en": "spell", "type": 1, "is_ptr": false}, {
+                "name": "jugador",
+                "name_en": "player",
+                "type": 1,
+                "is_ptr": false
+            }],
+            "description": "Muestra el mensaje de cuenta atrás para un &quot;hechizo global&quot; por el jugador dado. El argumento <tt>hechizo</tt> es un número entero, pero para cada valor posible existe una constante CKS definida por el juego. Comprobar la tabla en <a href='#Building::GetGlobalSpell'>GetGlobalSpell</a> para ver todos los posibles valores y sus correspondientes constantes. Nótese que este método solo inicia la cuenta atrás pero <strong>no realiza ningún efecto</strong>, pues los efectos están implementados en los comandos correspondientes.",
+            "description_en": "Shows the message with the countdown of a &quot;global spell&quot; from the given player. The <tt>spell</tt> argument is an intenger number, but each value corresponds to a CKS constant defined by the game. Check the table in <a href='#Building::GetGlobalSpell'>GetGlobalSpell</a> to check all the possible values and their corresponding constants. Notice that this method only starts the countdown but does <strong>not do any effect</strong>, since the effects themselves are implemented in their corresponding commands.",
+            "related": ["Building::GlobalSpellStart:int_int_int", "Building::GlobalSpellStop", "Building::GetGlobalSpell"]
         }, {
             "id": "Building::GlobalSpellStart:int_int_int",
             "name": "GlobalSpellStart",
@@ -5079,7 +5133,10 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Elimina el mensaje de cuenta atrás para el &quot;hechizo global&quot; actualmente mostrado por el edificio (si hay alguno).",
+            "description_en": "Removes the message with the countdown for the &quot;global spell&quot; currently shown by the building (if any).",
+            "related": ["Building::GlobalSpellStart:int_int", "Building::GetGlobalSpell"]
         }, {
             "id": "Building::SetGlobalSpellData:int",
             "name": "SetGlobalSpellData",
@@ -5142,7 +5199,10 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve <tt>true</tt> si el edificio es un <a href='class.htm?#Stonehenge'>altar de sacrificios</a> y está controlado por el <a href='#CurPlayer'>jugador actual</a>.",
+            "description_en": "Returns <tt>true</tt> if the building is a <a href='class.htm?#Stonehenge'>stonehenge</a> and it is controlled by the <a href='#CurPlayer'>current player</a>.",
+            "related": ["Building::StonehengeNumControllingMages"]
         }, {
             "id": "Building::StonehengeNumControllingMages",
             "name": "StonehengeNumControllingMages",
@@ -5151,7 +5211,10 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Si es un <a href='class.htm?#Stonehenge'>altar de sacrificios</a>, devuelve el número de unidades mágicas que lo están controlando. Si no, devuelve 0.",
+            "description_en": "If it is a <a href='class.htm?#Stonehenge'>stonehenge</a>, returns the number of mage units controlling it. If not, it returns 0.",
+            "related": ["Building::IsStonehengeControlable"]
         }, {
             "id": "Building::itemtypes",
             "name": "itemtypes",

@@ -26,6 +26,7 @@ class Node:
         self.properties = {}
         self.default_commands = {}
         self.animations = {}
+        self.points = {}
         self.states = {}
 
     def add_child(self, child):
@@ -51,6 +52,9 @@ class Node:
 
     def add_default_command(self, target, commands):
         self.default_commands[target] = commands
+
+    def add_point(self, idx, point):
+        self.points[idx] = point
 
     def find(self, id) -> Optional[Node]:
         if len(self.children) > 0:
@@ -117,6 +121,8 @@ class Node:
         }
         if self.parent:
             obj['parent'] = self.parent_name
+        if len(self.points) > 0:
+            obj['points'] = self.points
         return obj
 
     def serialize_recursive(self):
@@ -134,6 +140,7 @@ class Node:
                 'def_cmds': self.default_commands,
                 'children': children,
                 'states': self.states,
+                'points': self.points,
                 'anims': self.animations
             }
         }
@@ -171,6 +178,14 @@ for file in class_files:
                             'startstate': anim_tag.attrib['startstate'],
                             'endstate': anim_tag.attrib['endstate'],
                             'duration': anim_tag.attrib['duration']
+                        })
+                points = entity_root.find('points')
+                if points is not None:
+                    for point_tag in points:
+                        node.add_point(point_tag.attrib['idx'], {
+                            'type': point_tag.attrib['type'],
+                            'x': point_tag.attrib['x'],
+                            'y': point_tag.attrib['y']
                         })
         for properties in root.iter('properties'):
             for key in properties.attrib:

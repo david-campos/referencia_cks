@@ -132,11 +132,23 @@ window.onload = function () {
         const anims_html = Object.entries(animations(className)).map(([cls, anims]) =>
             (cls === className ? '' : `<h3>${inherited} ${cls}</h3>`)
             + `<div class='details'>${Object.entries(anims).map(([idx, anim]) =>
-                `<div data-label="${anim.name}"><span class='anim-idx'>${idx}</span>. <span class='anim-name'>${anim.name}</span>`
+            `<div data-label="${anim.name}"><span class='anim-idx'>${idx}</span>. <span class='anim-name'>${anim.name}</span>`
             + `(<span class='anim-duration'>${anim.duration}</span>ms): `
             + `state <span class='anim-start'>${anim.startstate}</span> to <span class='anim-end'>${anim.endstate}</span></div>`
             ).join("")}</div>`
         ).join("");
+        const type = ["Type", "Tipo"][lang];
+        const points = CLASSES_DETAILS[className].points;
+        const points_html = points ?
+            Object.values(points).map(pt => pt.type).filter((t, i, a) => a.indexOf(t) === i).map(t =>
+                `<div class="details" data-label="point-type-${t}"><h3 class="point-type-title">${type} ${t}</h3>${
+                    Object.entries(points).filter(([idx, pt]) => pt.type === t).map(([idx, pt]) =>
+                        `<div data-label="point"><span class="point-idx">${idx}</span>. `
+                        + `(<span class="point-coord">${pt.x}</span>, <span class="point-coord">${pt.y}</span>)</div>`
+                    ).join('')
+                }</div>`
+            ).join('')
+            : '';
         const mtd = ["Methods", "Métodos"][lang];
         const cmd = ["Commands", "Comandos"][lang];
         const defcmd = ["Default commands", "Comandos por defecto"][lang];
@@ -144,6 +156,7 @@ window.onload = function () {
         const children = ["Direct children", "Hijos directos"][lang];
         const sts = ["States", "Estados"][lang];
         const anm = ["Animations", "Animaciones"][lang];
+        const pts = ["Points", "Puntos"][lang];
         container.innerHTML = `<h1><span class="class-route">${route(className).map(
             cls => `<a href='#${cls}' onclick='setTimeout(() => location.reload())'>${cls}</a>`
             ).join("&nbsp;/ ")}&nbsp;/</span><br>${className}</h1>`
@@ -155,6 +168,7 @@ window.onload = function () {
             + (methods_html.length > 0 ? `<details class="class-details"><summary><h2>${mtd}</h2></summary>${methods_html}</details>` : '')
             + (states_html.length > 0 ? `<details class="class-details"><summary><h2>${sts}</h2></summary>${states_html}</details>` : '')
             + (anims_html.length > 0 ? `<details class="class-details"><summary><h2>${anm}</h2></summary>${anims_html}</details>` : '')
+            + (points_html.length > 0 ? `<details class="class-details"><summary><h2>${pts}</h2></summary>${points_html}</details>` : '')
         ;
         remark(getRemarkedFromHash());
     } else {

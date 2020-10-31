@@ -210,7 +210,7 @@ h3 {
     text-decoration: none;
 }
 
-.meth, .prop, .op, .state-name, .anim-name {
+.meth, .prop, .op, .state-name, .anim-name, .point-coord {
     color: #005580;
 }
 
@@ -369,6 +369,7 @@ details {
     padding: 0 .5rem;
     border-left: 1px solid white;
     border-right: 1px solid white;
+    word-break: normal;
 }
 
 .description table.c-0 td:nth-child(1) {
@@ -615,7 +616,7 @@ table.class-list td:hover .path {
 }
 
 #class {
-    margin: 0 1rem;
+    margin: 0 1rem 3rem;
 }
 
 #class h1 {
@@ -668,7 +669,8 @@ table.class-list td:hover .path {
 
 .class-details .def-cmd-tgt,
 .class-details .state-idx,
-.class-details .anim-idx {
+.class-details .anim-idx,
+.class-details .point-idx {
     color: #800000;
 }
 
@@ -690,9 +692,14 @@ table.class-list td:hover .path {
 }
 
 .class-details div[data-label].selected {
-    background-color: #f0f0f0;
+    background-color: #e0e0e0;
     -webkit-box-shadow: 0px 0px 5px 2px #005580;
     -moz-box-shadow: 0px 0px 5px 2px #005580;
     box-shadow: 0px 0px 5px 2px #005580;
 }
 
+.point-type-title {
+    width: 100%;
+    margin: 1rem 0 0;
+    text-align: left;
+}
