@@ -5154,7 +5154,9 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "niveles", "name_en": "levels", "type": 1, "is_ptr": false}],
+            "description": "Llamado sobre un altar de sacrificios, sube el nivel de todas las unidades la cantidad indicada. Nótese que este no es exactamente el efecto aplicado cuando se usa <i>viento de la sabiduría</i>, el efecto real está programado en <tt>SUBAI</tt> en el comando <a href='class.htm#Stonehenge.wisdom'>wisdom</a>.",
+            "description_en": "Called on a stonehenge, increases the levels of all the units by the specified amount. Notice this is not exactly the effect applied when using <i>wind of wisdom</i>, the real effect is programmed in <tt>SUBAI</tt> in the command <a href='class.htm#Stonehenge.wisdom'>wisdom</a>."
         }, {
             "id": "Building::Starvation",
             "name": "Starvation",
@@ -5223,7 +5225,10 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "<p>Si el edificio es unas <a href='class.htm?#BaseRuins'>ruinas</a>, devuelve los nombres de los objetos que pueden aparecer en ellas separados por comas.</p><p>Puedes separar este <a href='#str' class='type'>str</a> para obtener cada uno de los objetos usando <a href='#ParseStr:str_ptr.str'>ParseStr</a>.</p>",
+            "description_en": "<p>If the building is of type <a href='class.htm?#BaseRuins'>ruins</a>, returns the names of the objects that can appear in it, separated by commas.</p><p>You can split this <a href='#str' class='type'>str</a> to obtain each of the objects using <a href='#ParseStr:str_ptr.str'>ParseStr</a>.</p>",
+            "related": ["Building::minlevel", "Building::levelperitem"]
         }, {
             "id": "Building::minlevel",
             "name": "minlevel",

@@ -588,7 +588,7 @@ window.onload = function () {
         },
         'KeyU': {
             display: 'U',
-            describe: {es:'Solo no documentados', en: 'Undocumented only'},
+            describe: {es: 'Solo no documentados', en: 'Undocumented only'},
             do: () => {
                 searchInput.value = '';
                 filters.splice(0, filters.length, func => !func[`description${lang ? '_' + lang : ''}`]);
@@ -622,7 +622,7 @@ window.onload = function () {
 
     lang_select.value = lang;
     lang_select.addEventListener('change', () => {
-        window.history.replaceState({}, '',(lang === 'en' ? '?' : '?en') + location.hash);
+        window.history.replaceState({}, '', (lang === 'en' ? '?' : '?en') + location.hash);
         lang = lang_select.value;
         updateSelectText();
         updateDocumented();
