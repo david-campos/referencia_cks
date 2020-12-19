@@ -5227,7 +5227,7 @@ const THE_OBJ = (function () {
             "type": "property",
             "params": [],
             "description": "<p>Si el edificio es unas <a href='class.htm?#BaseRuins'>ruinas</a>, devuelve los nombres de los objetos que pueden aparecer en ellas separados por comas.</p><p>Puedes separar este <a href='#str' class='type'>str</a> para obtener cada uno de los objetos usando <a href='#ParseStr:str_ptr.str'>ParseStr</a>.</p>",
-            "description_en": "<p>If the building is of type <a href='class.htm?#BaseRuins'>ruins</a>, returns the names of the objects that can appear in it, separated by commas.</p><p>You can split this <a href='#str' class='type'>str</a> to obtain each of the objects using <a href='#ParseStr:str_ptr.str'>ParseStr</a>.</p>",
+            "description_en": "<p>If the building is of class <a href='class.htm?#BaseRuins'>ruins</a>, returns the names of the objects that can appear in it, separated by commas.</p><p>You can split this <a href='#str' class='type'>str</a> to obtain each of the objects using <a href='#ParseStr:str_ptr.str'>ParseStr</a>.</p>",
             "related": ["Building::minlevel", "Building::levelperitem"]
         }, {
             "id": "Building::minlevel",
@@ -5237,7 +5237,10 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "<p>Si el edificio es unas <a href='class.htm?#BaseRuins'>ruinas</a>, devuelve el nivel mínimo necesario para obtener el primer <a class='type' href='#Item'>ítem</a> guardado en ellas.</p><p>Nótese que este es el nivel para el primer ítem y no para el ítem actual. El nivel necesario para el ítem actual puede ser obtenido del entorno, usando <tt class='language-cks'>EnvReadInt(ruinas, \"minlevel\")</tt>, donde <tt>ruinas</tt> es el objeto de tipo <a href='#Building'>Building</a> correspondiente a las ruinas de las que queremos obtener el nivel mínimo. Nótese que modificar esta variable de entorno no modificará el nivel requerido (aunque sí modificará qué nivel se muestra en la interfaz al seleccionar las ruinas), dado que el nivel requerido real se guarda en una variable local en <tt>DATA/SUBAI/RUIN_BEHAVIOR.VS</tt>.</p>",
+            "description_en": "<p>If the building is of class <a href='class.htm?#BaseRuins'>ruins</a>, returns the minimum level required to obtain the first <a class='type' href='#Item'>item</a> held.</p><p>Notice this is the level for the first item and not for the current item. The required level for the current item can be obtained from the environment, using <tt class='language-cks'>EnvReadInt(ruins, \"minlevel\")</tt>, where <tt>ruins</tt> is the object of type <a href='#Building'>Building</a> corresponding to the ruins for which we want to obtain the currently required level. Modifying this environment variable will not change the required level (although it will indeed modify the level the interface displays when selecting the ruins), since the real required level is stored in a local variable in <tt>DATA/SUBAI/RUIN_BEHAVIOR.VS</tt>.</p>",
+            "related": ["Building::itemtypes", "Building::levelperitem", "EnvReadInt:Building_str"]
         }, {
             "id": "Building::levelperitem",
             "name": "levelperitem",
@@ -5246,7 +5249,10 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "<p>Si el edificio es unas <a href='class.htm?#BaseRuins'>ruinas</a>, el nivel requerido por cada ítem adquirido en ellas se incrementa por este valor.</p><p>Para información sobre cómo consultar el nivel requerido actualmente por las ruinas, consultar la descripción para <a href='#Building::minlevel'>Building::minlevel</a>.</p>",
+            "description_en": "<p>If the building is of class <a href='class.htm?#BaseRuins'>ruins</a>, the level required by each item on them is increased by this value.</p><p>For information on how to check the current required level, check the description for <a href='#Building::minlevel'>Building::minlevel</a>.</p>",
+            "related": ["Building::itemtypes", "Building::minlevel"]
         }, {
             "id": "Building::ClearDamageTaken",
             "name": "ClearDamageTaken",
