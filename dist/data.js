@@ -5216,7 +5216,7 @@ const THE_OBJ = (function () {
             "params": [],
             "description": "Si es un <a href='class.htm?#Stonehenge'>altar de sacrificios</a>, devuelve el número de unidades mágicas que lo están controlando. Si no, devuelve 0.",
             "description_en": "If it is a <a href='class.htm?#Stonehenge'>stonehenge</a>, returns the number of mage units controlling it. If not, it returns 0.",
-            "related": ["Building::IsStonehengeControlable"]
+            "related": ["Building::IsStonehengeControlable", "Building::CountMages"]
         }, {
             "id": "Building::itemtypes",
             "name": "itemtypes",
@@ -5270,7 +5270,10 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve el número de <a href='class.htm#BaseMage'>unidades mágicas</a> del jugador que controla el altar situadas alrededor del edificio, si éste es un <a href='class.htm?#Stonehenge'>altar de sacrificios</a>. El valor retornado para otros edificios puede ser arbitrario. A diferencia de <a href='#Building::StonehengeNumControllingMages'>Building::StonehengeNumControllingMages</a>, devuelve el número total aunque no controlen el edificio.",
+            "description_en": "Returns the number of <a href='class.htm#BaseMage'>mage units</a> of the owning player around, if the building is a <a href='class.htm?#Stonehenge'>stonehenge</a>. The value returned by other buildings is unspecified. Differently from <a href='#Building::StonehengeNumControllingMages'>Building::StonehengeNumControllingMages</a>, returns the total number despite of them controlling the building or not.",
+            "related": ["Building::StonehengeNumControllingMages", "Building::BestTarget", "Building::Attack:Obj"]
         }, {
             "id": "Building::SetUITarget:Obj",
             "name": "SetUITarget",
@@ -5279,7 +5282,10 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "objetivo", "name_en": "target", "type": 11, "is_ptr": false}],
+            "description": "Fija el objeto como objetivo a atacar por el edificio. Se usa en los edificios que pueden atacar, que son los de tipo <a href='class.htm#FakeTower'>FakeTower</a>.",
+            "description_en": "Sets the target to be attacked by the building. It is used by the buildings that are able to attack, which are the ones of the class <a href='class.htm#FakeTower'>FakeTower</a>.",
+            "related": ["Building::GetUITarget", "Building::BestTarget", "Building::Attack:Obj"]
         }, {
             "id": "Building::GetUITarget",
             "name": "GetUITarget",
@@ -5288,7 +5294,10 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Obtiene el objeto como objetivo a atacar por el edificio. Se usa en los edificios que pueden atacar, que son los de tipo <a href='class.htm#FakeTower'>FakeTower</a>.",
+            "description_en": "Gets the target to be attacked by the building. It is used by the buildings that are able to attack, which are the ones of the class <a href='class.htm#FakeTower'>FakeTower</a>.",
+            "related": ["Building::SetUITarget", "Building::BestTarget", "Building::Attack:Obj"]
         }, {
             "id": "Building::GetNumSentrySlots",
             "name": "GetNumSentrySlots",
