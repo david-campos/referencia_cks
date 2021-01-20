@@ -674,6 +674,10 @@ window.onload = function () {
             .map(f => escapeForRegexAndNameCorrection(f.name)).join('|') + ')\\b')
     });
 
+    Prism.languages.insertBefore('cks', 'string', {
+        'constant': /\b(?:Gaul|RepublicanRome|Carthage|Iberia|ImperialRome|Britain|Egypt|Germany|gsWindOfWisdom|gsStarvation|gsSoothingRain|gsDivineSacrifice|gsBloodlust|gsTribute)\b/
+    });
+
     Prism.languages.insertBefore('cks', 'class-name', {
         'implicit-this': {
             alias: 'punctuation',

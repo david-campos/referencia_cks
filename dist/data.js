@@ -1844,7 +1844,8 @@ const THE_OBJ = (function () {
                 "<tr><td>4</td><td>ImperialRome</td><td>M</td><td>Romanos imperiales</td></tr>" +
                 "<tr><td>5</td><td>Britain</td><td>B</td><td>Britanos</td></tr>" +
                 "<tr><td>6</td><td>Egypt</td><td>E</td><td>Egipcios</td></tr>" +
-                "<tr><td>7</td><td>Germany</td><td>T</td><td>Germanos</td></tr></tbody></table>",
+                "<tr><td>7</td><td>Germany</td><td>T</td><td>Germanos</td></tr></tbody></table>"+
+                "<p>En CKS, existen constantes de tipo <a class='type' href='#int'>int</a> con nombres correspondientes a la <tt>raceStr</tt> de cada raza. De forma que podemos hacer cosas como <tt class='language-cks'>myObj.race == Iberia</tt>.</p>",
             "description_en": "Race of the object (Gaul, German, British, etc). Each race has a name and a prefix associated. These are the available races: <table class='tt c-0 c-1 c-2'><thead><tr><th>race</th><th>raceStr</th><th>raceStrPref (prefix)</th></tr></thead>" +
                 "<tbody><tr><td>-1</td><td colspan='2'>Objects with no associated race return this value.</td></tr>" +
                 "<tr><td>0</td><td>Gaul</td><td>G</td></tr>" +
@@ -1854,7 +1855,8 @@ const THE_OBJ = (function () {
                 "<tr><td>4</td><td>ImperialRome</td><td>M</td></tr>" +
                 "<tr><td>5</td><td>Britain</td><td>B</td></tr>" +
                 "<tr><td>6</td><td>Egypt</td><td>E</td></tr>" +
-                "<tr><td>7</td><td>Germany</td><td>T</td></tr></tbody></table>",
+                "<tr><td>7</td><td>Germany</td><td>T</td></tr></tbody></table>"+
+                "<p>In CKS, there is a constant of type <a class='type' href='#int'>int</a> defined for each <tt>raceStr</tt>. So one can make things like <tt class='language-cks'>myObj.race == Britain</tt>.</p>",
             "related": ["Obj::raceStr", "Obj::raceStrPref", "Obj::raceStrPrefLow", "GetClassRace:str", "GetPlayerRace:int", "GetRaceStr:int", "GetRaceStrPref:int", "GetRaceStrPrefLow:int", "SetPlayerSettRace:int_int", "SetSettRace:str_int"]
         }, {
             "id": "Obj::raceStr",
@@ -5297,7 +5299,7 @@ const THE_OBJ = (function () {
             "params": [],
             "description": "Obtiene el objeto como objetivo a atacar por el edificio. Se usa en los edificios que pueden atacar, que son los de tipo <a href='class.htm#FakeTower'>FakeTower</a>.",
             "description_en": "Gets the target to be attacked by the building. It is used by the buildings that are able to attack, which are the ones of the class <a href='class.htm#FakeTower'>FakeTower</a>.",
-            "related": ["Building::SetUITarget", "Building::BestTarget", "Building::Attack:Obj"]
+            "related": ["Building::SetUITarget:Obj", "Building::BestTarget", "Building::Attack:Obj"]
         }, {
             "id": "Building::GetNumSentrySlots",
             "name": "GetNumSentrySlots",
@@ -5306,7 +5308,10 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Cuando el edificio es un <a href='class.htm#Wall'>muro</a>, devuelve el número máximo de centinelas que pueden patrullarlo.",
+            "description_en": "When the building is a <a href='class.htm?en#Wall'>wall</a>, returns the maximum number of sentries who can patrol it.",
+            "related": ["Building::GetSentryClassName"]
         }, {
             "id": "Building::GetSentryClassName",
             "name": "GetSentryClassName",
@@ -5315,7 +5320,10 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Cuando el edificio es un <a href='class.htm#Wall'>muro</a>, devuelve la clase de los centinelas que han de patrullarlo. Ésta se corresponde con la propiedad <a href='class.htm#Wall.sentry_class_name'>sentry_class_name</a> de la clase.",
+            "description_en": "When the building is a <a href='class.htm?en#Wall'>wall</a>, returns the class of the sentries who should patrol it. This is corresponds to the property  <a href='class.htm?en#Wall.sentry_class_name'>sentry_class_name</a> of the class.",
+            "related": ["Building::GetNumSentrySlots"]
         }, {
             "id": "Building::Research:str",
             "name": "Research",
@@ -5324,7 +5332,10 @@ const THE_OBJ = (function () {
             "of": 14,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "mejora", "name_en": "upgrade", "type": 5, "is_ptr": false}],
+            "description": "<p>Ejecuta la mejora indicada, de forma instantánea y sin coste, para el asentamiento o jugador al que pertenece el edificio. No importa si el edificio dispone de esa mejora concreta o si se han hecho las mejoras previas necesarias.</p>",
+            "description_en": "<p>Researches the specified upgrade, instantaneously and without a cost, for the settlement or player the building belongs to. It does not matter whether the building has this upgrade available or if previous required upgrades have been done.</p>",
+            "related": ["Settlement::Research:str", "Settlement::TSResearch:str"]
         }, {
             "id": "GetResearchHack",
             "name": "GetResearchHack",
@@ -5333,7 +5344,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "<p>Devuelve <tt>true</tt> durante la ejecución de <tt>DATA/SUBAI/ONFINISH_RESEARCH.VS</tt> si la mejora ha sido lanzada mediante <a href='#Building::Research:str'>Building::Research</a>, y <tt>false</tt> en cualquier otro caso. Esta función es usada para evitar que mejoras lanzadas de esta forma causen errores en la cola de mejoras normales por cambiar la variable de entorno <tt>researching</tt> a <tt>no</tt>.</p>",
+            "description_en": "<p>Returns <tt>true</tt> during the execution of <tt>DATA/SUBAI/ONFINISH_RESEARCH.VS</tt> if the upgrade has been launched with <a href='#Building::Research:str'>Building::Research</a>, and <tt>false</tt> otherwise. This function is used to prevent upgrades researched through this method from bugging the queue of the normal researches by changing the environment variable <tt>researching</tt> to <tt>no</tt>.</p>"
         }, {
             "id": "PlaceCatapult:int_int_int_int",
             "name": "PlaceCatapult",
@@ -5342,11 +5355,17 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "x", "type": 1, "is_ptr": false}, {
+                "name": "y",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}, {"name": "raza", "name_en": "race", "type": 1, "is_ptr": false}],
+            "dangerous": {
+              "es": "Este método crashea el juego si la <tt>raza</tt> es inválida.",
+              "en": "This method crashes the game when <tt>race</tt> is invalid."
+            },
+            "description": "<p>Emplaza una catapulta para el jugador indicado, de la civilización (raza) indicada, en la posición dada y la retorna.</p><p>Para más información sobre las razas consulta la ayuda para <a href='#Obj::race'>Obj::race</a>.</p>",
+            "description_en": "<p>Places a catapult for the given player, of the given civilization (race), in the indicated position and returns it.</p><p>For more information on the races check the help for <a href='#Obj::race'>Obj::race</a>.</p>"
         }, {
             "id": "Catapult::IsBuilt",
             "name": "IsBuilt",
@@ -5355,7 +5374,10 @@ const THE_OBJ = (function () {
             "of": 20,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "<p>Devuelve <tt>true</tt> si se ha completado la construcción de la catapulta, o <tt>false</tt> en caso contrario.</p><p>El final de la construcción de la catapulta lo marca la llamada a <a href='#Catapult::SetBuilt'>Catapult::SetBuilt</a>, que es llamado automáticamente en <tt>DATA/SUBAI/CATAPULT_IDLE.VS</tt> cuando la construcción termina.</p>",
+            "description_en": "<p>Returns <tt>true</tt> if the construction of the catapult has finished, or <tt>false</tt> otherwise.</p><p>The end of the construction phase for the catapult is marked by calling <a href='#Catapult::SetBuilt'>Catapult::SetBuilt</a>, which is called in <tt>DATA/SUBAI/CATAPULT_IDLE.VS</tt> when the building finishes.</p>",
+            "related": ["Catapult::SetBuilt"]
         }, {
             "id": "Catapult::SetBuilt",
             "name": "SetBuilt",
@@ -5364,7 +5386,10 @@ const THE_OBJ = (function () {
             "of": 20,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "<p>Marca la construcción de la catapulta como finalizada. A partir de la llamada a este método <a href='#Catapult::IsBuilt'>Catapult::IsBuilt</a> retornará <tt>true</tt>. Es llamado en <tt>DATA/SUBAI/CATAPULT_IDLE.VS</tt> cuando se termina de construír la catapulta.</p>",
+            "description_en": "<p>Marks the building of the catapult as finished. After the call to this method, <a href='#Catapult::IsBuilt'>Catapult::IsBuilt</a> will return <tt>true</tt>. This is called in <tt>DATA/SUBAI/CATAPULT_IDLE.VS</tt> when the catapult building is finished.</p>",
+            "related": ["Catapult::IsBuilt"]
         }, {
             "id": "Catapult::SetBuildFrame:int",
             "name": "SetBuildFrame",
@@ -5373,7 +5398,9 @@ const THE_OBJ = (function () {
             "of": 20,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "porcentaje_restante", "name_en": "percentage_left", "type": 1, "is_ptr": false}],
+            "description": "<p>Cambia la animación de la catapulta al fotograma que corresponde al porcentaje restante por construir indicado (es decir, <tt>0</tt> será la catapulta ya completamente construida, mientras que <tt>100</tt> será la catapulta totalmente sin construir.</p><p>Nota que, durante su construcción, el código en <tt>DATA/SUBAI/CATAPULT_IDLE.VS</tt> llama a este método cada 500 milésimas de segundo revertiendo la animación al fotograma que le corresponde.</p>",
+            "description_en": "<p>Changes the animation of the catapult to the frame corresponding to the given percentage left to build (i.e., <tt>0</tt> will display the catapult completely built, while <tt>100</tt> will display the catapult not built at all).</p><p>Notice that, during building, the code in <tt>DATA/SUBAI/CATAPULT_DIE.VS</tt> calls this method each 500 milliseconds, reverting the animation to the right frame.</p>"
         }, {
             "id": "GetCatapultAttackPoint:point",
             "name": "GetCatapultAttackPoint",
@@ -5382,7 +5409,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "objetivo", "name_en": "target", "type": 6, "is_ptr": false}],
+            "description": "Retorna un punto aleatorio cercano al punto <tt>objetivo</tt> dado. Es usado por las catapultas para que los puntos en los que caen los proyectiles se vean más realistas / imprecisos.",
+            "description_en": "Returns a random point close to the given <tt>target</tt>. It is used by catapults to make the point of impact for their projectiles more realistic / imprecise."
         }, {
             "id": "Catapult::RotateTo:point",
             "name": "RotateTo",
@@ -5391,7 +5420,10 @@ const THE_OBJ = (function () {
             "of": 20,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "objetivo", "name_en": "target", "type": 6, "is_ptr": false}],
+            "description": "Rota la catapulta hacia el punto dado.",
+            "description_en": "Rotates the catapult towards the given point.",
+            "related": ["Catapult::Attack:point"]
         }, {
             "id": "Catapult::Attack:point",
             "name": "Attack",
@@ -5400,7 +5432,10 @@ const THE_OBJ = (function () {
             "of": 20,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "objetivo", "name_en": "target", "type": 6, "is_ptr": false}],
+            "description": "Hace que la catapulta lance un proyectil al punto <tt>objetivo</tt> dado. Esto activa la animación de disparo de la catapulta, pero no la rota. Para que la catapulta esté orientada correctamente llama primero a <a href='#Catapult::RotateTo:point'>Catapult::RotateTo</a>. Esto funciona aunque <a href='#Catapult::AttackWait'>Catapult::AttackWait</a> sea distinto de cero.",
+            "description_en": "The catapult will shoot a projectile to the given <tt>target</tt> point. This activates the shooting animation of the catapult, but does not rotate it. To make sure the catapult is correctly oriented, call first <a href='#Catapult::RotateTo:point'>Catapult::RotateTo</a>. This works even if <a href='#Catapult::AttackWait'>Catapult::AttackWait</a> is not zero.",
+            "related": ["Catapult::RotateTo:point", "Catapult::BestTarget"]
         }, {
             "id": "Catapult::BestTarget",
             "name": "BestTarget",
@@ -5409,7 +5444,9 @@ const THE_OBJ = (function () {
             "of": 20,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Retorna el mejor objetivo para ser atacado a continuación por la catapulta.",
+            "description_en": "Returns the best target to be attacked next by the catapult"
         }, {
             "id": "Catapult::GetPointOnTarget:Obj",
             "name": "GetPointOnTarget",
@@ -5418,7 +5455,10 @@ const THE_OBJ = (function () {
             "of": 20,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "objeto", "name_en": "object", "type": 11, "is_ptr": false}],
+            "description": "Retorna un punto aleatorio en el radio ocupado por el objeto para usar como referencia para atacarlo.",
+            "description_en": "Returns a random point in the radius occupied by the object to be used as a reference to attack it.",
+            "related": ["GetCatapultAttackPoint:point"]
         }, {
             "id": "Catapult::InRange:point",
             "name": "InRange",
@@ -5427,7 +5467,9 @@ const THE_OBJ = (function () {
             "of": 20,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "punto", "name_en": "pt", "type": 6, "is_ptr": false}],
+            "description": "Devuelve <tt>true</tt> si el punto está en el rango de ataque de la catapulta y puede ser atacado.",
+            "description_en": "Returns <tt>true</tt> if the point <tt>pt</tt> is inside the range of attack of the catapult and can be attacked."
         }, {
             "id": "Catapult::AttackWait",
             "name": "AttackWait",
@@ -5436,7 +5478,10 @@ const THE_OBJ = (function () {
             "of": 20,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Tiempo que debería esperar la catapulta antes de disparar el próximo proyectil.",
+            "description_en": "Time that the catapult should wait before shooting the next projectile.",
+            "related": ["Catapult::Attack:point"]
         }, {
             "id": "Catapult::CalcEscapeDirection",
             "name": "CalcEscapeDirection",
@@ -5445,7 +5490,9 @@ const THE_OBJ = (function () {
             "of": 20,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Retorna un vector que sirve de base para la dirección en la que las unidades deben salir cuando se desmonta la catapulta.",
+            "description_en": "Returns a vector used as the basis to calculate the direction in which units must leave the catapult when it is dismantled."
         }, {
             "id": "Catapult::GetCurrentTarget",
             "name": "GetCurrentTarget",
@@ -5454,7 +5501,9 @@ const THE_OBJ = (function () {
             "of": 20,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Obtiene el objeto atacado actualmente por la catapulta. Este objetivo es fijado mediante <a href='#Catapult::SetTarget:Obj'>Catapult::SetTarget</a> en la implementación de algunos comandos de la catapulta.",
+            "description_en": "Gets the current target to be attacked by the catapult. This target is set by <a href='#Catapult::SetTarget:Obj'>Catapult::SetTarget</a> in the implementation of some catapult commands."
         }, {
             "id": "Catapult::SetTarget:Obj",
             "name": "SetTarget",
