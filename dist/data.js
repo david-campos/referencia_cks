@@ -5810,7 +5810,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve <tt>true</tt> si la unidad tiene un destino y se está moviendo hacia ella, o <tt>false</tt> si ha llegado a su destino.",
+            "description_en": "Returns <tt>true</tt> if the unit has a destination and is moving to it, or <tt>false</tt> if the unit has reached the destination.",
+            "related": ["Unit::dest"]
         }, {
             "id": "Unit::dest",
             "name": "dest",
@@ -5819,7 +5822,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Punto de destino de la unidad.",
+            "description_en": "Destination point of the unit.",
+            "related": ["Unit::HasPath"]
         }, {
             "id": "Unit::TimeWithoutWalking",
             "name": "TimeWithoutWalking",
@@ -5828,7 +5834,9 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Milésimas de segundo que la unidad lleva sin moverse.",
+            "description_en": "Time (in milliseconds) since last the time the unit was moving."
         }, {
             "id": "Unit::InHolder",
             "name": "InHolder",
@@ -5837,7 +5845,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve <tt>true</tt> si la unidad se encuentra dentro de un contenedor de unidades, como un <a href='class.htm#BaseTownhall'>foro</a> o un <a href='class.htm#ShipBattle'>barco</a>, por ejemplo.",
+            "description_en": "Returns <tt>true</tt> if the unit is inside a unit holder, like a <a href='class.htm?en#BaseTownhall'>town hall</a> or a <a href='class.htm?en#ShipBattle'>ship</a>, for example.",
+            "related": ["Unit::GetHolderSett", "Unit::EnterHolder:Obj", "Unit::ExitHolder:point", "Unit::GetUnitsInSameHolder"]
         }, {
             "id": "Unit::GetHolderSett",
             "name": "GetHolderSett",
@@ -5846,7 +5857,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Obtiene el asentamiento correspondiente al contenedor de unidades en que se encuentra una unidad. Así, si la unidad se encuentra en un <a href='class.htm#BaseTownhall'>foro</a>, por ejemplo, este método retornará el asentamiento al que pertenece el foro. Nótese que el asentamiento retornado puede ser inválido, por ejemplo si la unidad se encuentra en un barco.",
+            "description_en": "Gets the settlement corresponding to the unit holder in which the unit is held. This way, if the unit is currently inside a <a href='class.htm?en#BaseTownhall'>town hall</a>, for example, this method will return the settlement to which this town hall belongs. Notice that the returned settlement might not be valid, e.g. if the unit is inside a ship.",
+            "related": ["Unit::InHolder", "Unit::EnterHolder:Obj", "Unit::ExitHolder:point", "Unit::GetUnitsInSameHolder"]
         }, {
             "id": "Unit::InShip",
             "name": "InShip",
@@ -5855,7 +5869,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve <tt>true</tt> si la unidad se encuentra dentro de un barco, o <tt>false</tt> si no.",
+            "description_en": "Returns <tt>true</tt> if the unit is inside a ship, or <tt>false</tt> otherwise.",
+            "related": ["Unit::GetShip", "Unit::InHolder", "Unit::GetUnitsInSameHolder"]
         }, {
             "id": "Unit::GetShip",
             "name": "GetShip",
@@ -5864,7 +5881,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve el barco en el que se encuentra la unidad. Puede ser inválido si la unidad no está dentro de un barco.",
+            "description_en": "Returns the ship that holds the unit. It can be invalid if the unit is not inside a ship.",
+            "related": ["Unit::InShip", "Unit:: GetUnitsInSameHolder"]
         }, {
             "id": "Unit::ExitHolder:point",
             "name": "ExitHolder",
@@ -5873,7 +5893,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "destino", "name_en": "destination", "type": 6, "is_ptr": false}],
+            "description": "Saca a la unidad del contenedor en que se encuentre y la coloca en la salida más próxima al punto <tt>destino</tt> dado.",
+            "description_en": "Takes the unit out of the holder and places it in the closest exit to the given <tt>destination</tt> point.",
+            "related": ["Unit::InHolder", "Unit::EnterHolder:Obj"]
         }, {
             "id": "Unit::EnterHolder:Obj",
             "name": "EnterHolder",
@@ -5882,7 +5905,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "contenedor", "name_en": "holder", "type": 11, "is_ptr": false}],
+            "description": "Introduce la unidad en el contenedor instantáneamente. La <a href='#Obj::pos'>posición</a> de la unidad pasará a ser <tt>(-1, -1)</tt>.",
+            "description_en": "Introduces the unit into the holder instantly. The <a href='#Obj::pos'>position</a> of the unit will turn into <tt>(-1, -1)</tt>.",
+            "related": ["Unit::InHolder", "Unit::ExitHolder:point"]
         }, {
             "id": "Unit::GetUnitsInSameHolder",
             "name": "GetUnitsInSameHolder",
@@ -5891,7 +5917,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Retorna las unidades que se encuentren en el mismo contenedor de unidades.",
+            "description_en": "Returns all the units in the same unit holder.",
+            "related": ["Unit::InHolder", "Unit::InShip"]
         }, {
             "id": "Unit::TrainAttack:Obj",
             "name": "TrainAttack",
