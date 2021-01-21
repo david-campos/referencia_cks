@@ -23,9 +23,9 @@ function remark(labels) {
     if (labels) {
         location.replace(`#${getClassFromHash()}.${encodeURIComponent(labels)}`);
         const scrollTo = labels.split(",").map(l => l.trim()).map(label => {
-            document.querySelectorAll(`[data-label=${label}]`)
+            document.querySelectorAll(`[data-label="${label}"]`)
                 .forEach(el => el.classList.add("selected"));
-            return document.querySelectorAll(`div[data-label=${label}]`).item(0);
+            return document.querySelectorAll(`div[data-label="${label}"]`).item(0);
         }).reduce((p, c) => p.offsetTop > c.offsetTop ? c : p);
         if (scrollTo) {
             scrollTo.parentElement.parentElement.setAttribute("open", "1");

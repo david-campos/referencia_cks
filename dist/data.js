@@ -5503,7 +5503,8 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [],
             "description": "Obtiene el objeto atacado actualmente por la catapulta. Este objetivo es fijado mediante <a href='#Catapult::SetTarget:Obj'>Catapult::SetTarget</a> en la implementación de algunos comandos de la catapulta.",
-            "description_en": "Gets the current target to be attacked by the catapult. This target is set by <a href='#Catapult::SetTarget:Obj'>Catapult::SetTarget</a> in the implementation of some catapult commands."
+            "description_en": "Gets the current target to be attacked by the catapult. This target is set by <a href='#Catapult::SetTarget:Obj'>Catapult::SetTarget</a> in the implementation of some catapult commands.",
+            "related": ["Catapult::SetTarget:Obj"]
         }, {
             "id": "Catapult::SetTarget:Obj",
             "name": "SetTarget",
@@ -5512,7 +5513,10 @@ const THE_OBJ = (function () {
             "of": 20,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "objetivo", "name_en": "target", "type": 11, "is_ptr": false}],
+            "description": "Cambia el objeto atacado actualmente por la catapulta. Se usa en la programación interna de los comandos de ataque de las catapultas.",
+            "description_en": "Changes the object currently attacked by the catapult. It is used in the internal implementation of some catapult commands.",
+            "related": ["Catapult::GetCurrentTarget"]
         }, {
             "id": "Catapult::ClearTarget",
             "name": "ClearTarget",
@@ -5521,7 +5525,10 @@ const THE_OBJ = (function () {
             "of": 20,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Limpia el objeto atacado actualmente por la catapulta, de forma que ya no ataca nada. Se usa en la programación interna de los comandos de ataque de las catapultas.",
+            "description_en": "Clears the target object of the catapult, so the catapult will not target anything. It is used in the internal implementation of some catapult commands.",
+            "related": ["Catapult::SetTarget:Obj", "Catapult::GetCurrentTarget"]
         }, {
             "id": "Catapult::ClearTowerTarget",
             "name": "ClearTowerTarget",
@@ -5530,7 +5537,9 @@ const THE_OBJ = (function () {
             "of": 20,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Elimina el objetivo actual de la catapulta sin eliminar la referencia en la parte de C++ del motor de juego. Se usa en la programación interna del comando de parar catapulta para evitar que las <a href='class.htm#FakeTower'>FakeTower</a> borren su objetivo cuando paran.",
+            "description_en": "Clears the target object of the catapult, without removing it from the reference in the C++ part of the game engine. It is used in the internal programming of the command to stop catapults to prevent <a href='class.htm?en#FakeTower'>FakeTower</a>s from deleting their target when stopped."
         }, {
             "id": "Unit::speed",
             "name": "speed",
@@ -5539,7 +5548,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Velocidad de desplazamiento de la unidad. Corresponde al atributo <a href='class.htm#Unit.speed'>speed</a> en la definición de clase y está en píxeles por segundo.",
+            "description_en": "Movement speed of the unit. Corresponds to the attribute <a href='class.htm?en#Unit.speed'>speed</a> in the class definition and its units is pixels per second.",
+            "related": ["Unit::speed_factor"]
         }, {
             "id": "Unit::speed_factor",
             "name": "speed_factor",
@@ -5548,7 +5560,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Factor por el que se multiplica la <a href='#Unit::speed'>velocidad</a> de la unidad. Puede ser modificado con <a href='#Unit::SetSpeedFactor:int'>Unit::SetSpeedFactor</a>.",
+            "description_en": "Factor by which the unit <a href='#Unit::speed'>speed</a> is multiplied. It can be modified with <a href='#Unity::SetSpeedFactor:int'>Unit::SetSpeedFactor</a>.",
+            "related": ["Unit::speed", "Unit::SetSpeedFactor:int"]
         }, {
             "id": "Unit::stamina",
             "name": "stamina",
@@ -5557,7 +5572,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Energía de la unidad, con la que activa habilidades.",
+            "description_en": "Stamina of the unit, used to activate unit specials.",
+            "related": ["Obj::stamina"]
         }, {
             "id": "Unit::user",
             "name": "user",
@@ -5566,7 +5584,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Campo de usuario de la unidad, no confundir con <a href='#Obj::player'>el jugador propietario</a>. Este campo parece ser utilizado únicamente por los scripts de movimiento del <a href='class.htm#Crow'>cuervo</a>, que lo cambia a <tt>1</tt> cuando se dispone a aterrizar.",
+            "description_en": "Field of user of the unit, do not mistake with <a href='#Obj::player'>the owning player</a>. This field seems to be used only by the scripts for the movement of the <a href='class.htm#Crow'>crows</a>, which sets it to <tt>1</tt> when it is landing.",
+            "related": ["Unit::SetUser:int"]
         }, {
             "id": "Unit::food",
             "name": "food",
@@ -5575,7 +5596,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Cantidad de comida de la que dispone actualmente la unidad.",
+            "description_en": "Amount of food currently available to the unit.",
+            "related": ["Unit::maxfood", "Unit::SetFood:int", "Settlement::food", "Squad::food", "SelAvgFood", "SelectionFood"]
         }, {
             "id": "Unit::maxfood",
             "name": "maxfood",
@@ -5584,7 +5608,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Cantidad máxima de comida que puede tener la unidad. Se corresponde con la propiedad <a href='class.htm#Unit.max_food'>max_food</a> de la definición de su clase.",
+            "description_en": "Maximum amount of food the unit can carry. Corresponds to the property <a href='class.htm#Unit.max_food'>max_food</a> of its class definition.",
+            "related": ["Unit::food", "Settlement::max_food"]
         }, {
             "id": "Unit::maxstamina",
             "name": "maxstamina",
@@ -5593,7 +5620,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Cantidad máxima de energía que puede tener la unidad.",
+            "description_en": "Maximum amount of stamina the unit can have.",
+            "related": ["Obj::maxstamina", "Obj::SetMaxStamina:int"]
         }, {
             "id": "Unit::experience",
             "name": "experience",
@@ -5602,7 +5632,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Experiencia de la unidad. Conforme acumulan experiencia en combate, las unidades van subiendo de <a href='#Unit::level'>nivel</a>.",
+            "description_en": "Experience of the unit. As units accumulate experience in combat, they increase their <a href='#Unit::level'>level</a>.",
+            "related": ["Unit::SetExperience:int", "DistributeExperience:Query_int", "GetExperienceModifier:int", "SetExperienceModifier:int_int", "Unit::level", "ExpFromLevel:int"]
         }, {
             "id": "Unit::level",
             "name": "level",
@@ -5611,7 +5644,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Nivel de la unidad, incluyendo el aportado por el <a href='#Unit::hero'>héroe asociado</a>.",
+            "description_en": "Level of the unit, including the level supplied by the <a href='#Unit::hero'>associated hero</a>.",
+            "related": ["Unit::inherentlevel", "Unit::SetLevel:int", "ExpFromLevel:int", "LevelFromExp:int", "SelAvgLevel"]
         }, {
             "id": "Unit::inherentlevel",
             "name": "inherentlevel",
@@ -5620,7 +5656,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Nivel inherente de la unidad, sin incluir aquel que le aporte el <a href='#Unit::hero'>héroe al que esté asociada</a>.",
+            "description_en": "Inherent level of the unit, without taking in account the <a href='#Unit::hero'>hero the unit may be associated to</a>.",
+            "related": ["Unit::SetLevel:int", "Unit::level", "Druid::FindUnitBelowILevel:int", "Druid::FindUnitBelowILevel:int_int", "ExpFromLevel:int", "LevelFromExp:int"]
         }, {
             "id": "Unit::SetSpeedFactor:int",
             "name": "SetSpeedFactor",
@@ -5629,7 +5668,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "factor", "type": 1, "is_ptr": false}],
+            "description": "Modifica el <a href='#Unit::speed_factor'>factor por el que se multiplica la velocidad base de la unidad</a>.",
+            "description_en": "Modifies the <a href='#Unit::speed_factor'>factor by which the unit base speed is multiplied</a>.",
+            "related": ["Unit::speed_factor", "Unit::speed"]
         }, {
             "id": "Unit::SetUser:int",
             "name": "SetUser",
@@ -5638,7 +5680,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "usuario", "name_en": "user", "type": 1, "is_ptr": false}],
+            "description": "Modifica el valor del <a href='#Unit::user'>campo de usuario</a> de la unidad, no confundir con el <a href='#Obj::player'>jugador propietario</a>.",
+            "description_en": "Modifies the value of the <a href='#Unit::user'>user field</a> of the unit, do not mistake with the <a href='#Obj::player'>owner player</a>.",
+            "related": ["Unit::user"]
         }, {
             "id": "Unit::SetFood:int",
             "name": "SetFood",
@@ -5647,7 +5692,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "comida", "name_en": "food", "type": 1, "is_ptr": false}],
+            "description": "Modifica la cantidad de <a href='#Unit::food'>comida portada por la unidad</a>. El parámetro <tt>comida</tt> indica la nueva cantidad, incluso si esta supera el <a href='#Unit::maxfood'>máximo para la unidad</a>.",
+            "description_en": "Modifies amount of <a href='#Unit::food'>food carried by the unit</a>. The parameter <tt>food</tt> indicates the new amount, even if it is over the <a href='#Unit::maxfood'>maximum food</a> of the unit.",
+            "related": ["Unit::food", "Unit::maxfood"]
         }, {
             "id": "Unit::feeds",
             "name": "feeds",
@@ -5656,7 +5704,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Indica si la unidad consume comida o no con el tiempo. El valor será <tt>true</tt> si la unidad consume comida, o <tt>false</tt> si no.",
+            "description_en": "Indicates whether the unit consumes food over time or not. The value is <tt>true</tt> if the unit does, and <tt>false</tt> if not.",
+            "related": ["Unit::SetFeeding:bool", "Query::SetFeeding:bool"]
         }, {
             "id": "Unit::SetFeeding:bool",
             "name": "SetFeeding",
@@ -5665,7 +5716,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 2, "is_ptr": false}]
+            "params": [{"name": "consume_comida", "name_en": "feeds", "type": 2, "is_ptr": false}],
+            "description": "Hace que la unidad consuma / deje de consumir comida con el tiempo. Si <tt>consume_comida</tt> es <tt>true</tt>, la unidad consumirá comida a partir de la llamada al método. Si <tt>consume_comida</tt> es <tt>false</tt>, la unidad dejará de consumir comida.",
+            "description_en": "Makes the unit start / stop consuming food over time. If <tt>feeds</tt> is <tt>true</tt>, the unit will start to consume food, if <tt>feeds</tt> is <tt>false</tt>, the unit will stop consuming food.",
+            "related": ["Unit::feeds", "Query::SetFeeding:bool"]
         }, {
             "id": "Unit::Goto:point_int_int_bool_int",
             "name": "Goto",
