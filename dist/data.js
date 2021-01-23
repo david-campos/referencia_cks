@@ -5938,7 +5938,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve el objeto más adecuado con el que entrenar. Se usa en la implementación interna del comando de entrenamiento de unidades.",
+            "description_en": "Returns the best object to train with. It is used internally in the implementation of the training command for the units.",
+            "related": ["Unit::StartTraining", "Unit::StopTraining", "Unit::IsTraining"]
         }, {
             "id": "Unit::StartTraining",
             "name": "StartTraining",
@@ -5947,7 +5950,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Marca el entrenamiento de la unidad como iniciado. Se usa en la implementación interna del comando de entrenamiento de unidades.",
+            "description_en": "Sets the training of the unit as started. It is used internally in the implementation of the training command for the units.",
+            "related": ["Unit::StopTraining", "Unit::IsTraining"]
         }, {
             "id": "Unit::StopTraining",
             "name": "StopTraining",
@@ -5956,7 +5962,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Marca el entrenamiento de la unidad como terminado. Se usa en la implementación interna del comando de entrenamiento de unidades.",
+            "description_en": "Sets the training of the unit as finished. It is used internally in the implementation of the training command for the units.",
+            "related": ["Unit::StartTraining", "Unit::IsTraining"]
         }, {
             "id": "Unit::IsTraining",
             "name": "IsTraining",
@@ -5965,7 +5974,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve <tt>true</tt> si la unidad se está entrenando, o <tt>false</tt> si no. Se usa en la implementación interna del comando de entrenamiento de unidades.",
+            "description_en": "Returns <tt>true</tt> if the unit is training, or <tt>false</tt> otherwise. It is used internally in the implementation of the training command for the units.",
+            "related": ["Unit::StartTraining", "Unit::StopTraining"]
         }, {
             "id": "Unit::Attack:Obj",
             "name": "Attack",
@@ -5992,7 +6004,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve las milésimas de segundo que la unidad lleva sin atacar a ninguna otra.",
+            "description_en": "Returns the milliseconds that the unit has been without attacking anyone.",
+            "related": ["Unit::SetLastAttackTime"]
         }, {
             "id": "Unit::SetLastAttackTime",
             "name": "SetLastAttackTime",
@@ -6001,7 +6016,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Establece el momento actual como el del último ataque de la unidad.",
+            "description_en": "Sets the current moment as the moment of the last attack for this unit.",
+            "related": ["Unit::TimeWithoutAttack"]
         }, {
             "id": "Unit::BestTargetInSquadSightMisZeroDamage",
             "name": "BestTargetInSquadSightMisZeroDamage",
@@ -6037,7 +6055,7 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}]
         }, {
             "id": "Unit::BestTargetInSquadSightExclusive:str",
             "name": "BestTargetInSquadSightExclusive",
@@ -6046,7 +6064,7 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "clase", "name_en": "class", "type": 5, "is_ptr": false}]
         }, {
             "id": "Unit::BestTargetInSquadSight_PreferUndiseased",
             "name": "BestTargetInSquadSight_PreferUndiseased",
@@ -6109,7 +6127,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Devuelve el héroe al que la unidad se encuentra asociada. Si la unidad no se encuentra asociada a un héroe, devuelve un objeto inválido.",
+            "description_en": "Returns the hero the unit is attached to. If the unit is not attached to a hero, returns an invalid object.",
+            "related": ["Unit::AttachTo:Hero", "Unit::DetachFrom:Hero"]
         }, {
             "id": "Unit::AttachTo:Hero",
             "name": "AttachTo",
@@ -6118,7 +6139,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 15, "is_ptr": false}]
+            "params": [{"name": "heroe", "name_en": "hero", "type": 15, "is_ptr": false}],
+            "description": "Asocia la unidad al héroe indicado. Retorna <tt>true</tt> si se ha asociado con éxito, o <tt>false</tt> si no.",
+            "description_en": "Attaches the unit to the given hero. Returns <tt>true</tt> if the unit has been successfully attached, or <tt>false</tt> otherwise.",
+            "related": ["Unit::hero", "Unit::DetachFrom:Hero"]
         }, {
             "id": "Unit::DetachFrom:Hero",
             "name": "DetachFrom",
@@ -6127,7 +6151,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 15, "is_ptr": false}]
+            "params": [{"name": "heroe", "name_en": "hero", "type": 15, "is_ptr": false}],
+            "description": "Desasocia la unidad del héroe indicado.",
+            "description_en": "Detaches the unit from the given hero.",
+            "related": ["Unit::hero", "Unit::AttachTo:Hero"]
         }, {
             "id": "Unit::Idle:int",
             "name": "Idle",
@@ -6154,7 +6181,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "experiencia", "name_en": "experience", "type": 1, "is_ptr": false}],
+            "description": "Cambia la <a href='#Unit::experience'>experiencia</a> de la unidad a la cantidad dada. El <a href='#Unit::inherentlevel'>nivel</a> cambiará de forma acorde.",
+            "description_en": "Sets the unit <a href='#Unit::experience'>experience</a> to the given amount. The <a href='#Unit::inherentlevel'>level</a> will change accordingly.",
+            "related": ["Unit::experience", "Unit::inherentlevel"]
         }, {
             "id": "Unit::SetLevel:int",
             "name": "SetLevel",
@@ -6163,7 +6193,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "nivel", "name_en": "level", "type": 1, "is_ptr": false}],
+            "description": "Cambia el <a href='#Unit::inherentlevel'>nivel</a> de la unidad al valor dado. La <a href='#Unit::experience'>experiencia</a> cambiará de forma acorde.",
+            "description_en": "Sets the <a href='#Unit::inherentlevel'>level</a> of the unit to the given value. The <a href='#Unit::experience'>experience</a> will change accordingly.",
+            "related": ["Unity::inherentlevel", "Unit::experience"]
         }, {
             "id": "Unit::IncKills:int",
             "name": "IncKills",
@@ -6172,7 +6205,9 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "abatimientos", "name_en": "kills", "type": 1, "is_ptr": false}],
+            "description": "Incrementa el número de enemigos abatidos por la unidad en la cantidad indicada.",
+            "description_en": "Increases the number of kills of the unit by the indicated amount."
         }, {
             "id": "Unit::FormAcceptMove",
             "name": "FormAcceptMove",
@@ -6225,7 +6260,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 2, "is_ptr": false}]
+            "params": [{"name": "viajar", "name_en": "party", "type": 2, "is_ptr": false}],
+            "description": "Introduce o quita la unidad del <a href='#Party'>grupo de viaje</a>. Si <tt>viajar</tt> es <tt>true</tt>, la unidad se introducirá, en caso contrario se retirará del grupo.",
+            "description_en": "Introduces / removes the unit into / from the <a href='#Party'>party group</a>. If <tt>party</tt> is <tt>true</tt>, the unit will be added, otherwise it will be removed from the group.",
+            "related": ["Unit::GetParty", "Party", "PartyQuery", "Query::SetParty:bool"]
         }, {
             "id": "Unit::GetParty",
             "name": "GetParty",
@@ -6234,7 +6272,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve <tt>true</tt> si la unidad se encuentra en el <a href='#Party'>grupo de viaje</a>, o <tt>false</tt> en caso contrario.",
+            "description_en": "Returns <tt>true</tt> if the unit belongs to the <a href='#Party'>party group</a>, or <tt>false</tt> otherwise.",
+            "related": ["Unit::SetParty:bool", "Party", "PartyQuery"]
         }, {
             "id": "Unit::GetSacrifice",
             "name": "GetSacrifice",
@@ -6279,7 +6320,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve <tt>true</tt> si la unidad tiene la habilidad <em>Libertad</em>, o <tt>false</tt> si no la tiene. Es equivalente a <tt class='language-cks'>unidad.HasSpecial(freedom)</tt>.",
+            "description_en": "Returns <tt>true</tt> if the unit has the special <em>Freedom</em>, or <tt>false</tt> otherwise. It is equivalent to <tt class='language-cks'>unit.HasSpecial(freedom)</tt>.",
+            "related": ["Unit::SetFreedom:bool", "Squad::HasFreedom", "Unit::HasSpecial:int"]
         }, {
             "id": "Unit::GetFlags:int",
             "name": "GetFlags",
@@ -6333,7 +6377,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}, {"name": "modificador", "name_en": "modifier", "type": 1, "is_ptr": false}],
+            "description": "Establece el modificador de experiencia del jugador, que es el porcentaje sumado a la cantidad de experiencia base que las unidades adquieren al matar a un enemigo. Por ejemplo, <tt class='language-cks'>SetExperienceModifier(1, 100)</tt> duplicaría la cantidad de experiencia que las unidades del jugador 1 adquieren al derrotar a un enemigo.",
+            "description_en": "Sets the experience modifier of the player, which is the percentage added to the amount of experience the units acquire when defeating an enemy. For example, <tt class='language-cks'>SetExperienceModifier(1, 100)</tt> would duplicate the amount of experience the units of the player 1 receive when they kill an enemy.",
+            "related": ["GetExperienceModifier:int"]
         }, {
             "id": "GetExperienceModifier:int",
             "name": "GetExperienceModifier",
@@ -6342,7 +6389,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}],
+            "description": "Obtiene el modificador de experiencia del jugador, que es el porcentaje sumado a la cantidad de experiencia base que las unidades adquieren al matar a un enemigo. Por ejemplo, un valor de 100 duplicaría la cantidad de experiencia que las unidades del jugador 1 adquieren al derrotar a un enemigo.",
+            "description_en": "Gets the experience modifier of the player, which is the percentage added to the amount of experience the units acquire when defeating an enemy. For example, a value of 100 would duplicate the amount of experience the units of the player 1 receive when they kill an enemy.",
+            "related": ["SetExperienceModifier:int_int"]
         }, {
             "id": "Unit::SetCommanded:bool",
             "name": "SetCommanded",
@@ -13142,7 +13192,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Imprime a la <a href='#pr:str'>consola del juego</a> las coordenadas (en píxeles) del ratón en la pantalla.",
+            "description_en": "Prints to the <a href='#pr:str'>game console</a> the coordinates (in pixels) of the mouse in the screen.",
+            "related": ["MousePos", "MousePtm"]
         }, {
             "id": "RUType:str_int",
             "name": "RUType",
@@ -14381,7 +14434,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Imprime a la <a href='#pr:str'>consola del juego</a> las coordenadas (en píxeles) del ratón en la pantalla.",
+            "description_en": "Prints to the <a href='#pr:str'>game console</a> the coordinates (in pixels) of the mouse in the screen.",
+            "related": ["GetMouseXY", "MousePtm"]
         }, {
             "id": "Conv",
             "name": "Conv",
@@ -15758,7 +15814,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Retorna las coordenadas del ratón en el mapa de juego.",
+            "description_en": "Returns the coordinates of the mouse in the game map.",
+            "related": ["GetMouseXY", "MousePos"]
         }, {
             "id": "point::GetGAIKA",
             "name": "GetGAIKA",
