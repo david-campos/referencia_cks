@@ -1844,7 +1844,7 @@ const THE_OBJ = (function () {
                 "<tr><td>4</td><td>ImperialRome</td><td>M</td><td>Romanos imperiales</td></tr>" +
                 "<tr><td>5</td><td>Britain</td><td>B</td><td>Britanos</td></tr>" +
                 "<tr><td>6</td><td>Egypt</td><td>E</td><td>Egipcios</td></tr>" +
-                "<tr><td>7</td><td>Germany</td><td>T</td><td>Germanos</td></tr></tbody></table>"+
+                "<tr><td>7</td><td>Germany</td><td>T</td><td>Germanos</td></tr></tbody></table>" +
                 "<p>En CKS, existen constantes de tipo <a class='type' href='#int'>int</a> con nombres correspondientes a la <tt>raceStr</tt> de cada raza. De forma que podemos hacer cosas como <tt class='language-cks'>myObj.race == Iberia</tt>.</p>",
             "description_en": "Race of the object (Gaul, German, British, etc). Each race has a name and a prefix associated. These are the available races: <table class='tt c-0 c-1 c-2'><thead><tr><th>race</th><th>raceStr</th><th>raceStrPref (prefix)</th></tr></thead>" +
                 "<tbody><tr><td>-1</td><td colspan='2'>Objects with no associated race return this value.</td></tr>" +
@@ -1855,7 +1855,7 @@ const THE_OBJ = (function () {
                 "<tr><td>4</td><td>ImperialRome</td><td>M</td></tr>" +
                 "<tr><td>5</td><td>Britain</td><td>B</td></tr>" +
                 "<tr><td>6</td><td>Egypt</td><td>E</td></tr>" +
-                "<tr><td>7</td><td>Germany</td><td>T</td></tr></tbody></table>"+
+                "<tr><td>7</td><td>Germany</td><td>T</td></tr></tbody></table>" +
                 "<p>In CKS, there is a constant of type <a class='type' href='#int'>int</a> defined for each <tt>raceStr</tt>. So one can make things like <tt class='language-cks'>myObj.race == Britain</tt>.</p>",
             "related": ["Obj::raceStr", "Obj::raceStrPref", "Obj::raceStrPrefLow", "GetClassRace:str", "GetPlayerRace:int", "GetRaceStr:int", "GetRaceStrPref:int", "GetRaceStrPrefLow:int", "SetPlayerSettRace:int_int", "SetSettRace:str_int"]
         }, {
@@ -5359,10 +5359,15 @@ const THE_OBJ = (function () {
                 "name": "y",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}, {"name": "raza", "name_en": "race", "type": 1, "is_ptr": false}],
+            }, {"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}, {
+                "name": "raza",
+                "name_en": "race",
+                "type": 1,
+                "is_ptr": false
+            }],
             "dangerous": {
-              "es": "Este método crashea el juego si la <tt>raza</tt> es inválida.",
-              "en": "This method crashes the game when <tt>race</tt> is invalid."
+                "es": "Este método crashea el juego si la <tt>raza</tt> es inválida.",
+                "en": "This method crashes the game when <tt>race</tt> is invalid."
             },
             "description": "<p>Emplaza una catapulta para el jugador indicado, de la civilización (raza) indicada, en la posición dada y la retorna.</p><p>Para más información sobre las razas consulta la ayuda para <a href='#Obj::race'>Obj::race</a>.</p>",
             "description_en": "<p>Places a catapult for the given player, of the given civilization (race), in the indicated position and returns it.</p><p>For more information on the races check the help for <a href='#Obj::race'>Obj::race</a>.</p>"
@@ -6377,7 +6382,12 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}, {"name": "modificador", "name_en": "modifier", "type": 1, "is_ptr": false}],
+            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}, {
+                "name": "modificador",
+                "name_en": "modifier",
+                "type": 1,
+                "is_ptr": false
+            }],
             "description": "Establece el modificador de experiencia del jugador, que es el porcentaje sumado a la cantidad de experiencia base que las unidades adquieren al matar a un enemigo. Por ejemplo, <tt class='language-cks'>SetExperienceModifier(1, 100)</tt> duplicaría la cantidad de experiencia que las unidades del jugador 1 adquieren al derrotar a un enemigo.",
             "description_en": "Sets the experience modifier of the player, which is the percentage added to the amount of experience the units acquire when defeating an enemy. For example, <tt class='language-cks'>SetExperienceModifier(1, 100)</tt> would duplicate the amount of experience the units of the player 1 receive when they kill an enemy.",
             "related": ["GetExperienceModifier:int"]
@@ -8995,7 +9005,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Retorna la posición de la cámara en el mapa. La posición de la cámara se corresponde con el punto al centro de la pantalla.",
+            "description_en": "Returns the position of the camera in the map. The position of the camera is the point at the center of the screen.",
+            "related": ["View:point_bool"]
         }, {
             "id": "View:point_bool",
             "name": "View",
@@ -9286,7 +9299,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Bloquea la interacción del jugador con el juego, entrando en un modo similar a una cinemática.",
+            "description_en": "Blocks the input from the user to interact with the game, entering a mode similar to a cinematic.",
+            "related": ["UnblockUserInput"]
         }, {
             "id": "UnblockUserInput",
             "name": "UnblockUserInput",
@@ -9295,7 +9311,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Desbloquea la interacción del jugador con el juego.",
+            "description_en": "Unblocks the input from the user so she / he can interact with the game again.",
+            "related": ["BlockUserInput"]
         }, {
             "id": "ExploreCircle:int_point_int",
             "name": "ExploreCircle",
@@ -14272,7 +14291,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}],
+            "description": "Cambia el número de jugador controlado.",
+            "description_en": "Changes the number of the controlled player.",
+            "related": ["CurPlayer"]
         }, {
             "id": "CurPlayer",
             "name": "CurPlayer",
@@ -14281,7 +14303,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Retorna el número del jugador que controlamos actualmente.",
+            "description_en": "Returns the number of the controlled player.",
+            "related": ["SetPlayer:int"]
         }, {
             "id": "ToggleFog",
             "name": "ToggleFog",
@@ -14290,7 +14315,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Activa / desactiva la niebla de guerra.",
+            "description_en": "Enables / disables the fog of war.",
+            "related": ["SetFog:bool"]
         }, {
             "id": "SetFog:bool",
             "name": "SetFog",
@@ -14308,7 +14336,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Explora todo el mapa.",
+            "description_en": "Explores the whole map."
         }, {
             "id": "Invalidate",
             "name": "Invalidate",
@@ -14755,7 +14785,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Genera en los archivos del juego un archivo <tt>dump_try.xml</tt>, con formato XML, que ofrece una lista de todas las funciones disponibles en CKS con sus tipos correspondientes, pero sin documentar. Esta guía se basa en el archivo generado por este comando.",
+            "description_en": "Generates in the game files a new file called <tt>dump_try.xml</tt>, in XML format, which offers a list of all the functions available in CKS with types, but without descriptions. This guide is based in the file generated by this command."
         }, {
             "id": "USR",
             "name": "USR",
@@ -16295,7 +16327,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 2, "is_ptr": false}]
+            "params": [{"name": "libertad", "name_en": "value", "type": 2, "is_ptr": false}],
+            "description": "Da / retira a la unidad la habilidad <em>Libertad</em>, que previene que pueda ser asociada a un héroe. Por tanto, <tt class='language-cks'>unidad.SetFreedom(libertad)</tt> es equivalente a <tt class='language-cks'>unidad.SetSpecial(freedom, libertad)</tt>.",
+            "description_en": "Sets / unsets the special <em>Freedom</em> to the unit, that prevents it from getting attached to a hero. Therefore, <tt class='language-cks'>unit.SetFreedom(value)</tt> is equivalent to <tt class='language-cks'>unit.SetSpecial(freedom, value)</tt>.",
+            "related": ["Unit::HasFreedom", "Unit::HasSpecial:int"]
         }, {
             "id": "EndGame:int_bool_str",
             "name": "EndGame",
