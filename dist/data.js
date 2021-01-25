@@ -1939,8 +1939,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "property",
             "params": [],
-            "description": "Defensa del objeto frente a ataques oblicuos. En el juego original, solo difiere de <a href='#Obj::armor_pierce'>Obj::armor_pierce</a> para barcos y botes (concretamente, las clases <a href='class.htm#ShipL.armor_pierce,armor_slash'>\"ShipL\"</a>, <a href='class.htm#ShipEgypt.armor_pierce,armor_slash'>\"ShipEgypt\"</a>, <a href='class.htm#ShipRome.armor_pierce,armor_slash'>\"ShipRome\"</a>, <a href='class.htm#ShipS.armor_pierce,armor_slash'>\"ShipS\"</a> y <a href='class.htm#ShipBattle.armor_pierce,armor_slash'>\"ShipBattle\"</a>).",
-            "description_en": "Defense of the object against slash attacks. In the original game, it only differs from <a href='#Obj::armor_pierce'>Obj::armor_pierce</a> for ships, and boats (concretely, the classes <a href='class.htm#ShipL.armor_pierce,armor_slash'>\"ShipL\"</a>, <a href='class.htm#ShipEgypt.armor_pierce,armor_slash'>\"ShipEgypt\"</a>, <a href='class.htm#ShipRome.armor_pierce,armor_slash'>\"ShipRome\"</a>, <a href='class.htm#ShipS.armor_pierce,armor_slash'>\"ShipS\"</a> and <a href='class.htm#ShipBattle.armor_pierce,armor_slash'>\"ShipBattle\"</a>).",
+            "description": "Defensa del objeto frente a ataques cuerpo a cuerpo. En el juego original, solo difiere de <a href='#Obj::armor_pierce'>Obj::armor_pierce</a> para barcos y botes (concretamente, las clases <a href='class.htm#ShipL.armor_pierce,armor_slash'>\"ShipL\"</a>, <a href='class.htm#ShipEgypt.armor_pierce,armor_slash'>\"ShipEgypt\"</a>, <a href='class.htm#ShipRome.armor_pierce,armor_slash'>\"ShipRome\"</a>, <a href='class.htm#ShipS.armor_pierce,armor_slash'>\"ShipS\"</a> y <a href='class.htm#ShipBattle.armor_pierce,armor_slash'>\"ShipBattle\"</a>). Sin embargo, la distinción entre los dos tipos de defensa no parece tener ningún efecto en Imperivm III.",
+            "description_en": "Defense of the object against slash attacks. In the original game, it only differs from <a href='#Obj::armor_pierce'>Obj::armor_pierce</a> for ships, and boats (concretely, the classes <a href='class.htm#ShipL.armor_pierce,armor_slash'>\"ShipL\"</a>, <a href='class.htm#ShipEgypt.armor_pierce,armor_slash'>\"ShipEgypt\"</a>, <a href='class.htm#ShipRome.armor_pierce,armor_slash'>\"ShipRome\"</a>, <a href='class.htm#ShipS.armor_pierce,armor_slash'>\"ShipS\"</a> and <a href='class.htm#ShipBattle.armor_pierce,armor_slash'>\"ShipBattle\"</a>). However, the distinction between both types of armor does not seem to have any effect in Imperivm III.",
             "related": ["Obj::armor_pierce", "SelAvgArmor"]
         }, {
             "id": "Obj::armor_pierce",
@@ -1951,8 +1951,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "property",
             "params": [],
-            "description": "Defensa del objeto frente a ataques de penetración. En el juego original, solo difiere de <a href='#Obj::armor_slash'>Obj::armor_slash</a> para barcos y botes (concretamente, las clases <a href='class.htm#ShipL.armor_pierce,armor_slash'>\"ShipL\"</a>, <a href='class.htm#ShipEgypt.armor_pierce,armor_slash'>\"ShipEgypt\"</a>, <a href='class.htm#ShipRome.armor_pierce,armor_slash'>\"ShipRome\"</a>, <a href='class.htm#ShipS.armor_pierce,armor_slash'>\"ShipS\"</a> y <a href='class.htm#ShipBattle.armor_pierce,armor_slash'>\"ShipBattle\"</a>).",
-            "description_en": "Defense of the object against pierce attacks. In the original game, it only differs from <a href='#Obj::armor_slash'>Obj::armor_slash</a> for ships, and boats (concretely, the classes <a href='class.htm#ShipL.armor_pierce,armor_slash'>\"ShipL\"</a>, <a href='class.htm#ShipEgypt.armor_pierce,armor_slash'>\"ShipEgypt\"</a>, <a href='class.htm#ShipRome.armor_pierce,armor_slash'>\"ShipRome\"</a>, <a href='class.htm#ShipS.armor_pierce,armor_slash'>\"ShipS\"</a> and <a href='class.htm#ShipBattle.armor_pierce,armor_slash'>\"ShipBattle\"</a>).",
+            "description": "Defensa del objeto frente a ataques de penetración. En el juego original, solo difiere de <a href='#Obj::armor_slash'>Obj::armor_slash</a> para barcos y botes (concretamente, las clases <a href='class.htm#ShipL.armor_pierce,armor_slash'>\"ShipL\"</a>, <a href='class.htm#ShipEgypt.armor_pierce,armor_slash'>\"ShipEgypt\"</a>, <a href='class.htm#ShipRome.armor_pierce,armor_slash'>\"ShipRome\"</a>, <a href='class.htm#ShipS.armor_pierce,armor_slash'>\"ShipS\"</a> y <a href='class.htm#ShipBattle.armor_pierce,armor_slash'>\"ShipBattle\"</a>). Sin embargo, la distinción entre los dos tipos de defensa no parece tener ningún efecto en Imperivm III.",
+            "description_en": "Defense of the object against pierce attacks. In the original game, it only differs from <a href='#Obj::armor_slash'>Obj::armor_slash</a> for ships, and boats (concretely, the classes <a href='class.htm#ShipL.armor_pierce,armor_slash'>\"ShipL\"</a>, <a href='class.htm#ShipEgypt.armor_pierce,armor_slash'>\"ShipEgypt\"</a>, <a href='class.htm#ShipRome.armor_pierce,armor_slash'>\"ShipRome\"</a>, <a href='class.htm#ShipS.armor_pierce,armor_slash'>\"ShipS\"</a> and <a href='class.htm#ShipBattle.armor_pierce,armor_slash'>\"ShipBattle\"</a>). However, the distinction between both types of armor does not seem to have any effect in Imperivm III.",
             "related": ["Obj::armor_slash", "SelAvgArmor"]
         }, {
             "id": "Obj::health",
@@ -2265,7 +2265,7 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}],
+            "params": [{"name": "energia", "name_en": "stamina", "type": 1, "is_ptr": false}],
             "description": "Modifica la <a href='#Obj::stamina'>energía</a> del objeto.",
             "description_en": "Modifies the <a href='#Obj::stamina'>stamina</a> of the object.",
             "related": ["Obj::stamina"]
@@ -2277,7 +2277,7 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}],
+            "params": [{"name": "energiamax", "name_en": "maxstamina", "type": 1, "is_ptr": false}],
             "description": "Modifica la <a href='#Obj::maxstamina'>energía máxima</a> del objeto.",
             "description_en": "Modifies the <a href='#Obj::maxstamina'>maximum stamina</a> of the object.",
             "related": ["Obj::maxstamina"]
@@ -2289,9 +2289,9 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}],
-            "description": "Modifica el <a href='#Obj::sight'>radio de visión</a> del objeto.",
-            "description_en": "Modifies the <a href='#Obj::sight'>sight radius</a> of the object.",
+            "params": [{"name": "vision", "name_en": "sight", "type": 1, "is_ptr": false}],
+            "description": "Modifica el <a href='#Obj::sight'>radio de visión</a> del objeto. El radio no puede ser menor que 100 ni mayor que 2048.",
+            "description_en": "Modifies the <a href='#Obj::sight'>sight radius</a> of the object. The radius cannot be neither lower than 100 nor greater than 2048",
             "related": ["Obj::sight"]
         }, {
             "id": "Obj::GetStaminaDecTime",
@@ -10482,15 +10482,16 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "ataque", "name_en": "attack", "type": 1, "is_ptr": false}, {
+                "name": "armor_slash",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {
-                "name": "number",
+            }, {"name": "armor_pierce", "type": 1, "is_ptr": false}, {
+                "name": "vida_max_y_energia",
+                "name_en": "max_health_and_stamina",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "ignorado", "name_en": "ignored", "type": 1, "is_ptr": false}]
         }, {
             "id": "Unit::RemoveBonus:int_int_int_int_int",
             "name": "RemoveBonus",
@@ -15894,7 +15895,10 @@ const THE_OBJ = (function () {
             "of": 6,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve el punto restringido a las dimensiones del mapa. El valor retornado difiere del valor del punto tras <tt class='language-cks'>point::IntoRect(GetMapRect())</tt> en que los puntos más a la derecha (máximo valor en <tt>x</tt>) y los puntos de más abajo (máximo valor en <tt>y</tt>) se limitan a una unidad menos en el caso de <tt>ClampToMap</tt>.",
+            "description_en": "Returns the point clamped to the map dimensions. The returned value differs from the value of the point after <tt class='language-cks'>point::IntoRect(GetMapRect())</tt> in that the points farther to the right (maximum <tt>x</tt> value) and farther to the bottom (maximum <tt>y</tt> value) are clamped to one unit less in the case of <tt>ClampToMap</tt>.",
+            "related": ["ptr.point::IntoRect:rect", "GetMapRect", "Obj::ClipDestToMap:point", "CLAMP:int_int_int"]
         }, {
             "id": "RemakeVis",
             "name": "RemakeVis",
