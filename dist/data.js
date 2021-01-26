@@ -8996,7 +8996,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "secuencia", "name_en": "sequence", "type": 5, "is_ptr": false}],
+            "description": "Devuelve <tt>true</tt> si la secuencia indicada terminó su ejecución, o <tt>false</tt> si no terminó.",
+            "description_en": "Returns <tt>true</tt> if the indicated sequence has finished execution, or <tt>false</tt> otherwise.",
+            "related": ["IsRunning:str", "IsWaiting:str", "RunSequence:str"]
         }, {
             "id": "ViewPos",
             "name": "ViewPos",
