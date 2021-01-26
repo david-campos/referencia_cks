@@ -3,6 +3,12 @@ body {
     color: #333;
     font-family: "Noto Sans", sans-serif;
     font-size: 12pt;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 a {
     color: #303070;
@@ -108,7 +114,6 @@ a:hover .tooltiptext {
 
 .container {
     max-width: 1200px;
-    margin: auto;
     padding: 0 2rem;
 }
 
@@ -444,6 +449,10 @@ footer a {
     }
 }
 
+main {
+    flex: 1 0 auto;
+}
+
 main.one-remarked .property:not(.remark),
 main.one-remarked .method:not(.remark),
 main.one-remarked .operator:not(.token):not(.remark) {
@@ -496,7 +505,7 @@ main.one-remarked .remark::after {
 }
 
 .shortkeys {
-    margin: 0 auto;
+    margin: 0;
     background-color: #efefef;
 }
 

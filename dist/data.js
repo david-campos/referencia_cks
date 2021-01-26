@@ -5889,7 +5889,7 @@ const THE_OBJ = (function () {
             "params": [],
             "description": "Devuelve el barco en el que se encuentra la unidad. Puede ser inválido si la unidad no está dentro de un barco.",
             "description_en": "Returns the ship that holds the unit. It can be invalid if the unit is not inside a ship.",
-            "related": ["Unit::InShip", "Unit:: GetUnitsInSameHolder"]
+            "related": ["Unit::InShip", "Unit::GetUnitsInSameHolder"]
         }, {
             "id": "Unit::ExitHolder:point",
             "name": "ExitHolder",
@@ -6201,7 +6201,7 @@ const THE_OBJ = (function () {
             "params": [{"name": "nivel", "name_en": "level", "type": 1, "is_ptr": false}],
             "description": "Cambia el <a href='#Unit::inherentlevel'>nivel</a> de la unidad al valor dado. La <a href='#Unit::experience'>experiencia</a> cambiará de forma acorde.",
             "description_en": "Sets the <a href='#Unit::inherentlevel'>level</a> of the unit to the given value. The <a href='#Unit::experience'>experience</a> will change accordingly.",
-            "related": ["Unity::inherentlevel", "Unit::experience"]
+            "related": ["Unit::inherentlevel", "Unit::experience"]
         }, {
             "id": "Unit::IncKills:int",
             "name": "IncKills",
@@ -7375,7 +7375,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "nombre", "name_en": "name", "type": 5, "is_ptr": false}],
+            "description": "Devuelve el asentamiento con el nombre dado.",
+            "description_en": "Returns the settlement with the given name.",
+            "related": ["Settlement::name"]
         }, {
             "id": "Settlement::population",
             "name": "population",
@@ -7384,7 +7387,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Población del asentamiento.",
+            "description_en": "Population of the settlement.",
+            "related": ["Settlement::max_population", "Settlement::SetPopulation:int", "Settlement::AddToPopulation:int"]
         }, {
             "id": "Settlement::max_population",
             "name": "max_population",
@@ -7393,7 +7399,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Población máxima del asentamiento.",
+            "description_en": "Maximum population of the settlement.",
+            "related": ["Settlement::population", "Settlement::AddToMaxPopulation:int"]
         }, {
             "id": "Settlement::name",
             "name": "name",
@@ -7402,7 +7411,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Nombre del asentamiento. Este es el nombre usado para obtenerlo mediante <a href='#GetSettlement:str'>GetSettlement</a>.",
+            "description_en": "Name of the settlement. This is the name used to obtain it through <a href='#GetSettlement:str'>GetSettlement</a>.",
+            "related": ["GetSettlement:str"]
         }, {
             "id": "Settlement::ForceAddUnit:Unit",
             "name": "ForceAddUnit",
@@ -7429,7 +7441,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve <tt>true</tt> si <a href='#Settlement::UnitsCount'>la cantidad de unidades en el asentamiento</a> es igual al <a href='#Settlement::max_units'>máximo</a> posible.",
+            "description_en": "Returns <tt>true</tt> if <a href='#Settlement::UnitsCount'>amount of units in the settlement</a> is the same as <a href='#Settlement::max_units'>the maximum number</a>.",
+            "related": ["Settlement::UnitsCount", "Settlement::max_units"]
         }, {
             "id": "Settlement::AddUnits:ObjList",
             "name": "AddUnits",
@@ -7447,7 +7462,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve una lista con todas las unidades que se encuentran dentro de un edificio del asentamiento.",
+            "description_en": "Returns a list of all the units which are inside a building of the settlement.",
+            "related": ["Settlement::UnitsCount", "UnitsInSettlement:Settlement_str", "UnitsInSettlement:str_str", "Unit::GetUnitsInSameHolder"]
         }, {
             "id": "Settlement::UnitsCount",
             "name": "UnitsCount",
@@ -7456,7 +7474,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Number of units inside the settlement.",
+            "description": "Número de unidades en el asentamiento.",
+            "related": ["Settlement::max_units", "Settlement::Units"]
         }, {
             "id": "Settlement::max_units",
             "name": "max_units",
@@ -7465,7 +7486,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Número máximo de unidades que el asentamiento puede albergar.",
+            "description_en": "Maximum number of units the settlement can hold.",
+            "related": ["Settlement::UnitsCount", "Settlement::IsFull"]
         }, {
             "id": "Settlement::health",
             "name": "health",
@@ -7510,7 +7534,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Indica la lealtad del asentamiento a su <a href='#Settlement::player'>dueño</a>. Su valor máximo es 100. Cuando la lealtad llega a cero, el asentamiento es conquistado.",
+            "description_en": "Indicates the loyalty of the settlement to its <a href='#Settlement::player'>owner</a>. The maximum value is 100. When the loyalty reaches zero, the settlement is conquered.",
+            "related": ["Settlement::SetLoyalty:int", "Settlement::DecreaseLoyalty:int", "Wagon::loyalty"]
         }, {
             "id": "Settlement::SetLoyalty:int",
             "name": "SetLoyalty",
@@ -7519,7 +7546,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "lealtad", "name_en": "loyalty", "type": 1, "is_ptr": false}],
+            "description": "Cambia la lealtad del asentamiento a su dueño al valor dado.",
+            "description_en": "Sets the loyalty of the settlement to the given value.",
+            "related": ["Settlement::loyalty", "Settlement::DecreaseLoyalty:int"]
         }, {
             "id": "Settlement::DecreaseLoyalty:int",
             "name": "DecreaseLoyalty",
@@ -7528,7 +7558,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "valor", "name_en": "value", "type": 1, "is_ptr": false}],
+            "description": "Reduce la lealtad del asentamiento en el valor dado.",
+            "description_en": "Reduces the loyalty of the settlement by the given value.",
+            "related": ["Settlement::loyalty", "Settlement::SetLoyalty:int"]
         }, {
             "id": "Settlement::gold",
             "name": "gold",
@@ -7537,7 +7570,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Cantidad de oro del asentamiento.",
+            "description_en": "Amount of gold of the settlement.",
+            "related": ["Settlement::SetGold:int", "Settlement::max_gold", "Settlement::food", "Settlement::population"]
         }, {
             "id": "Settlement::max_gold",
             "name": "max_gold",
@@ -7546,7 +7582,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Máxima cantidad de oro que puede acumular el asentamiento.",
+            "description_en": "Maximum amount of gold the settlement can hold.",
+            "related": ["Settlement::gold", "Settlement::max_food", "Settlement::max_population"]
         }, {
             "id": "Settlement::food",
             "name": "food",
@@ -7555,7 +7594,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Cantidad de comida del asentamiento.",
+            "description_en": "Amount of food of the settlement.",
+            "related": ["Settlement::SetFood:int", "Settlement::max_food", "Settlement::gold", "Settlement::population"]
         }, {
             "id": "Settlement::max_food",
             "name": "max_food",
@@ -7564,7 +7606,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Máxima cantidad de comida que puede acumular el asentamiento.",
+            "description_en": "Maximum amount of food the settlement can hold.",
+            "related": ["Settlement::food", "Settlement::max_gold", "Settlement::max_population"]
         }, {
             "id": "Settlement::SetGold:int",
             "name": "SetGold",
@@ -7573,7 +7618,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "oro", "name_en": "gold", "type": 1, "is_ptr": false}],
+            "description": "Establece la cantidad indicada como la cantidad de oro del asentamiento.",
+            "description_en": "Sets the amount of gold of the settlement to the given amount.",
+            "related": ["Settlement::gold", "Settlement::max_gold"]
         }, {
             "id": "Settlement::SetFood:int",
             "name": "SetFood",
@@ -7582,7 +7630,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "comida", "name_en": "food", "type": 1, "is_ptr": false}],
+            "description": "Establece la cantidad indicada como la cantidad de comida del asentamiento.",
+            "description_en": "Sets the amount of food of the settlement to the given amount.",
+            "related": ["Settlement::food", "Settlement::max_food"]
         }, {
             "id": "Settlement::SetPopulation:int",
             "name": "SetPopulation",
@@ -7591,7 +7642,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "poblacion", "name_en": "population", "type": 1, "is_ptr": false}],
+            "description": "Establece la cantidad indicada como la población del asentamiento.",
+            "description_en": "Sets the population of the settlement to the given value.",
+            "related": ["Settlement::population", "Settlement::max_population", "Settlement::AddToPopulation:int"]
         }, {
             "id": "Settlement::AddToPopulation:int",
             "name": "AddToPopulation",
@@ -7600,7 +7654,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "extra", "type": 1, "is_ptr": false}],
+            "description": "Añade la cantidad <tt>extra</tt> indicada a la población del asentamiento.",
+            "description_en": "Adds the given <tt>extra</tt> amount to the population of the settlement.",
+            "related": ["Settlement::population", "Settlement::max_population", "Settlement::SetPopulation:int"]
         }, {
             "id": "Settlement::AddToMaxPopulation:int",
             "name": "AddToMaxPopulation",
@@ -7609,7 +7666,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "extra", "type": 1, "is_ptr": false}],
+            "description": "Añade la cantidad <tt>extra</tt> indicada a la población máxima del asentamiento.",
+            "description_en": "Adds the given <tt>extra</tt> amount to the maximum population of the settlement.",
+            "related": ["Settlement::max_population", "Settlement::population"]
         }, {
             "id": "Settlement::player",
             "name": "player",
@@ -7618,7 +7678,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Jugador que posee el asentamiento.",
+            "description_en": "Player who owns the settlement.",
+            "related": ["Settlement::SetPlayer:int"]
         }, {
             "id": "Settlement::SetPlayer:int",
             "name": "SetPlayer",
@@ -7627,7 +7690,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}],
+            "description": "Establece el jugador dueño del asentamiento.",
+            "description_en": "Sets the player owning the settlement.",
+            "related": ["Settlement::player"]
         }, {
             "id": "Settlement::IsValid",
             "name": "IsValid",
@@ -7636,7 +7702,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Devuelve <tt>true</tt> si el asentamiento es válido. Un ejemplo de asentamiento inválido es el retornado por <a href='#GetSettlement:str'>GetSettlement</a> cuando no existe un asentamiento con el nombre dado.",
+            "description_en": "Returns <tt>true</tt> if the settlement is valid. An example of invalid settlement is the one returned by <a href='#GetSettlement:str'>GetSettlement</a> when a settlement with the given name does not exist.",
+            "related": ["Obj::IsValid", "Item::IsValid", "Query::IsValid", "Settlement::IsValid", "NamedObj::IsValid", "SquadList::IsValid"]
         }, {
             "id": "Settlement::loan",
             "name": "loan",
@@ -7645,7 +7714,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description": "Deuda de oro del asentamiento, generada por <em>Pedir préstamo</em> en la <a href='class.htm#GTavern.getloan'>taverna gala</a>.",
+            "description_en": "Gold debt of the settlement, generated by <em>Get loan</em> in the <a href='class.htm?en#GTavern.getloan'>gaul tavern</a>.",
+            "related": ["Settlement::SetLoan:int"]
         }, {
             "id": "Settlement::SetLoan:int",
             "name": "SetLoan",
@@ -7654,7 +7726,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "deuda", "name_en": "debt", "type": 1, "is_ptr": false}],
+            "description": "Establece la deuda de oro del asentamiento.",
+            "description_en": "Sets the gold debt of the settlement.",
+            "related": ["Settlement::loan"]
         }, {
             "id": "Settlement::GetCentralBuilding",
             "name": "GetCentralBuilding",
@@ -7663,7 +7738,9 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Retorna el edificio central del asentamiento.",
+            "description_en": "Returns the central building of the settlement."
         }, {
             "id": "Settlement::FoodProduction",
             "name": "FoodProduction",
@@ -7672,7 +7749,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Producción de comida del asentamiento. Este valor se corresponde con el porcentaje de la población que generará 1 de comida cada segundo (si <tt>FoodProduction</tt> es 10 y la población es 70, se generará 7 de comida cada segundo).",
+            "description_en": "Food production of the settlement. This value corresponds to the percentage of the population that will generate 1 of food for each second (if <tt>FoodProduction</tt> is 10 and the population is 70, it will generate 7 food each second).",
+            "related": ["Settlement::SetFoodProduction:int", "Settlement::GoldProduction"]
         }, {
             "id": "Settlement::GoldProduction",
             "name": "GoldProduction",
@@ -7681,7 +7761,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Producción de oro del asentamiento. Este valor se corresponde con el porcentaje de la población que generará 1 de oro cada segundo (si <tt>GoldProduction</tt> es 10 y la población es 70, se generará 7 de oro cada segundo).",
+            "description_en": "Gold production of the settlement. This value corresponds to the percentage of the population that will generate 1 of gold for each second (if <tt>GoldProduction</tt> is 10 and the population is 70, it will generate 7 gold each second).",
+            "related": ["Settlement::SetGoldProduction:int", "Settlement::FoodProduction"]
         }, {
             "id": "Settlement::SetFoodProduction:int",
             "name": "SetFoodProduction",
@@ -7690,7 +7773,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "porcentaje", "name_en": "percentage", "type": 1, "is_ptr": false}],
+            "description": "Establece la producción de comida del asentamiento. Este valor se corresponde con el porcentaje de la población que generará 1 de comida cada segundo (si <tt>FoodProduction</tt> es 10 y la población es 70, se generará 7 de comida cada segundo).",
+            "description_en": "Sets the food production of the settlement. This value corresponds to the percentage of the population that will generate 1 of food for each second (if <tt>FoodProduction</tt> is 10 and the population is 70, it will generate 7 food each second).",
+            "related": ["Settlement::FoodProduction"]
         }, {
             "id": "Settlement::SetGoldProduction:int",
             "name": "SetGoldProduction",
@@ -7699,7 +7785,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "porcentaje", "name_en": "percentage", "type": 1, "is_ptr": false}],
+            "description": "Establece la producción de oro del asentamiento. Este valor se corresponde con el porcentaje de la población que generará 1 de oro cada segundo (si <tt>GoldProduction</tt> es 10 y la población es 70, se generará 7 de oro cada segundo).",
+            "description_en": "Sets the gold production of the settlement. This value corresponds to the percentage of the population that will generate 1 of gold for each second (if <tt>GoldProduction</tt> is 10 and the population is 70, it will generate 7 gold each second).",
+            "related": ["Settlement::GoldProduction"]
         }, {
             "id": "Settlement::Buildings",
             "name": "Buildings",
@@ -7708,7 +7797,10 @@ const THE_OBJ = (function () {
             "of": 28,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Retorna una lista con todos los edificios del asentamiento.",
+            "description_en": "Returns a list of all the buildings in the settlement.",
+            "related": ["BuildingsInSettlement:str_str"]
         }, {
             "id": "Settlement::Find:str",
             "name": "Find",
