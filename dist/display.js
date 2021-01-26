@@ -1,6 +1,9 @@
 let lang = location.search === '?en' ? 'en' : '';
 let groupBy = 'of';
 const filters = [];
+const THANKS = [
+    ["JnxF"], ["CntKillMe"]
+];
 const funcsById = new Map();
 
 window.Prism = window.Prism || {};
@@ -30,7 +33,9 @@ const TRANSLATE_TEXTS = {
     "unknown-param-": "ignoto",
     "unknown-param-en": "unknown",
     "shortkeys-": "Atajos de teclado",
-    "shortkeys-en": "Keyboard shortcuts"
+    "shortkeys-en": "Keyboard shortcuts",
+    "thanks-": "Gracias por la ayuda a: ",
+    "thanks-en": "Thanks for the help to: "
 }
 
 function escapeHtmlAndNameCorrection(unsafe) {
@@ -468,6 +473,7 @@ window.onload = function () {
     /** @type {HTMLInputElement} */
     const searchInput = document.getElementById('search');
     const documented = document.getElementById('documented');
+    const thanks = document.getElementById('thanks');
     const shortkeysSum = document.getElementById('shortkeys-summary');
     const shortkeysCont = document.getElementById('shortkeys-content');
     let searchTimeout; // To debounce search
@@ -484,6 +490,10 @@ window.onload = function () {
             + THE_OBJ.funcs.filter(f => 'description_en' in f).length;
         const nTotal = 2 * THE_OBJ.funcs.length;
         documented.innerHTML = `${TRANSLATE_TEXTS['documented-' + lang]} ${Math.round(nDocumented / nTotal * 100)}% (${Math.floor(nDocumented / 2)})`;
+    }
+
+    function updateThanks() {
+        thanks.innerHTML = `${TRANSLATE_TEXTS['thanks-' + lang]}${THANKS.map(([n,l]) => l ? `<a href="${l}">${n}</a>` : n).join(", ")}.`;
     }
 
     const SHORT_KEYS = {
@@ -627,6 +637,7 @@ window.onload = function () {
         updateSelectText();
         updateDocumented();
         updateShortkeys();
+        updateThanks();
         render();
     });
     groupBySelect.addEventListener('change', () => {
@@ -688,6 +699,7 @@ window.onload = function () {
     updateSelectText();
     updateDocumented();
     updateShortkeys();
+    updateThanks();
     sortFuncs();
     render();
     // For links with hash to work after first render

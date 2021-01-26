@@ -140,6 +140,14 @@ nav a {
     margin: .5rem 0;
 }
 
+.footer-sec p {
+    margin: 0;
+}
+
+.footer-sec p:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
 @media (max-width: 900px) {
     .footer {
         flex-direction: column;
