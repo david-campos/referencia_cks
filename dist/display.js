@@ -379,8 +379,18 @@ function render() {
 }
 
 function nameFilter(text) {
-    const lower = text.toLocaleLowerCase();
-    return func => func.name.toLocaleLowerCase().includes(lower);
+    const start = text.startsWith("^");
+    const end = text.endsWith("$");
+    const lower = text.slice(start ? 1 : 0, end ? text.length - 1 : text.length).toLocaleLowerCase();
+    if (start && end) {
+        return func => func.name.toLocaleLowerCase() === lower;
+    } else if (start) {
+        return func => func.name.toLocaleLowerCase().startsWith(lower);
+    } else if (end) {
+        return func => func.name.toLocaleLowerCase().endsWith(lower)
+    } else {
+        return func => func.name.toLocaleLowerCase().includes(lower);
+    }
 }
 
 function filterToIds() {
@@ -660,18 +670,22 @@ window.onload = function () {
     });
     // search
     if (queryParams.has('s')) {
-        let search = queryParams.get('s');
-        if (search) {
-            searchInput.value = search;
-            filters.splice(0, filters.length, nameFilter(search));
+        let search = queryParams.getAll('s')
+            .map(s => s.trim()).filter(s => s && s !== "^" && s !== "$");
+        if (search && search.length > 0) {
+            searchInput.value = search.join(" ");
+            filters.splice(0, filters.length, ...search.map(s => nameFilter(s)));
         }
     }
     searchInput.addEventListener('input', () => {
         clearTimeout(searchTimeout);
         searchTimeout = setTimeout(() => {
             if (searchInput.value) {
-                queryParams.set('s', searchInput.value);
-                filters.splice(0, filters.length, nameFilter(searchInput.value));
+                const vals = searchInput.value.split(" ")
+                    .map(s => s.trim()).filter(s => s && s !== "^" && s !== "$");
+                queryParams.delete('s');
+                vals.forEach(s => queryParams.append('s', s));
+                filters.splice(0, filters.length, ...vals.map(s => nameFilter(s)));
             } else {
                 queryParams.delete('s');
                 filters.splice(0, filters.length);
