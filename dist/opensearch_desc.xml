@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+    <ShortName>CKS</ShortName>
+    <Description>Referencia CKS, a guide of the programming language of the Imperivm saga.</Description>
+    <Url type="text/html" method="get" template="http://david-campos.com/cks/?s={searchTerms}"/>
+    <Language>en-us</Language>
+    <InputEncoding>UTF-8</InputEncoding>
+</OpenSearchDescription>
