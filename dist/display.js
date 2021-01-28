@@ -1,4 +1,5 @@
-let lang = location.search === '?en' ? 'en' : '';
+const queryParams = new URLSearchParams(location.search);
+let lang = queryParams.has('en') ? 'en' : '';
 let groupBy = 'of';
 const filters = [];
 const THANKS = [
@@ -402,6 +403,13 @@ function getCurrentlyVisibleIdx(elems) {
 }
 
 /**
+ * Replaces the state in the history updating the queryParams
+ */
+function replaceHistoryState() {
+    history.replaceState({}, document.title, `?${queryParams.toString()}${location.hash}`);
+}
+
+/**
  * @param elems
  * @param {'up'|'down'} upOrDown
  * @param {boolean} loop
@@ -493,7 +501,7 @@ window.onload = function () {
     }
 
     function updateThanks() {
-        thanks.innerHTML = `${TRANSLATE_TEXTS['thanks-' + lang]}${THANKS.map(([n,l]) => l ? `<a href="${l}">${n}</a>` : n).join(", ")}.`;
+        thanks.innerHTML = `${TRANSLATE_TEXTS['thanks-' + lang]}${THANKS.map(([n, l]) => l ? `<a href="${l}">${n}</a>` : n).join(", ")}.`;
     }
 
     const SHORT_KEYS = {
@@ -632,7 +640,12 @@ window.onload = function () {
 
     lang_select.value = lang;
     lang_select.addEventListener('change', () => {
-        window.history.replaceState({}, '', (lang === 'en' ? '?' : '?en') + location.hash);
+        if (lang === 'en') {
+            queryParams.delete('en');
+        } else {
+            queryParams.set('en', '1');
+        }
+        replaceHistoryState();
         lang = lang_select.value;
         updateSelectText();
         updateDocumented();
@@ -645,14 +658,25 @@ window.onload = function () {
         sortFuncs();
         render();
     });
+    // search
+    if (queryParams.has('s')) {
+        let search = queryParams.get('s');
+        if (search) {
+            searchInput.value = search;
+            filters.splice(0, filters.length, nameFilter(search));
+        }
+    }
     searchInput.addEventListener('input', () => {
         clearTimeout(searchTimeout);
         searchTimeout = setTimeout(() => {
             if (searchInput.value) {
+                queryParams.set('s', searchInput.value);
                 filters.splice(0, filters.length, nameFilter(searchInput.value));
             } else {
+                queryParams.delete('s');
                 filters.splice(0, filters.length);
             }
+            replaceHistoryState();
             render();
         }, 300);
     });
