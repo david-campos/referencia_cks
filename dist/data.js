@@ -181,6 +181,8 @@ const THE_OBJ = (function () {
     }
 
     const TAB = '&nbsp;&nbsp;&nbsp;&nbsp;';
+    const WAITING_TIME_SPANISH = '<p>El argumento <tt>milisegundos</tt> indica cuantas milésimas de segundo esperar y mantener la ejecución parada, un valor de <tt>-1</tt> indica que se ha de esperar sin límite de tiempo. Si el tiempo se agota sin que se alcance la condición esperada, el método retornará <tt>false</tt>, si la condición se da y la ejecución continúa debido a esto, retornará <tt>true</tt>.</p>';
+    const WAITING_TIME_ENGLISH = '<p>The argument <tt>milliseconds</tt> indicates for how long the code should wait and keep the execution stopped, a value of <tt>-1</tt> means the code should wait forever. If the waiting time ends without the awaited condition being met, the method returns <tt>false</tt>, if the condition is met and the execution continues because of this, the method returns <tt>true</tt>.</p>';
 
     // noinspection HtmlUnknownAnchorTarget
     return {
@@ -15364,7 +15366,13 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "consulta", "name_en": "query", "type": 27, "is_ptr": false},
+                {"name": "milisegundos", "name_en": "milliseconds", "type": 1, "is_ptr": false}],
+            "description": "<p>Detiene la ejecución hasta que todas las unidades en la consulta estén paradas sin acciones que realizar. Nótese que <tt>consulta</tt> es de tipo <a class='type' href='#Query'>Query</a> y por tanto la lista exacta de objetos se actualizará durante la espera.</p>"
+                + WAITING_TIME_SPANISH,
+            "description_en": "<p>Stops the execution until all the units within the query are idle, without anything to do. Notice that <tt>query</tt> is of type <a class='type' href='#Query'>Query</a> and, therefore, the exact list of objects will be updated during the waiting.</p>"
+                + WAITING_TIME_ENGLISH,
+            "related": ["WaitAddNote:str_int", "WaitCommonObjects:Query_Query_int", "WaitConvRequest:Query_Query_int_ptr.Obj_ptr.Obj", "WaitConvRequest:Obj_Obj_int", "WaitEmptyQuery:Query_int", "WaitEnvIntBetween:str_int_int_int", "WaitEnvStringEqual:str_str_int", "WaitForMapChange", "WaitHealthBetween:Query_int_int_int", "WaitIdleUnitsInArea:Query_str_int", "WaitNonEmptyQuery:Query_int", "WaitObjInQuery:Obj_Query_int", "WaitPlayerChat:ptr.int_ptr.str_int", "WaitQueryCountBetween:Query_int_int_int", "WaitRemoveNote:str_int", "WaitSettlementAllied:str_int_int", "WaitSettlementCapture:str_int_int", "WaitUnitsInArea:Query_str_int"]
         }, {
             "id": "WaitObjInQuery:Obj_Query_int",
             "name": "WaitObjInQuery",
@@ -15373,11 +15381,17 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "objeto", "name_en": "object", "type": 11, "is_ptr": false}, {
+                "name": "consulta",
+                "name_en": "query",
                 "type": 27,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "milisegundos", "name_en": "milliseconds", "type": 1, "is_ptr": false}],
+            "description": "<p>Detiene la ejecución hasta que el objeto dado sea seleccionado como parte de la consulta dada.</p>"
+                + WAITING_TIME_SPANISH,
+            "description_en": "<p>Stops the execution until the given object is selected as part of the indicated query.</p>"
+                + WAITING_TIME_ENGLISH,
+            "related": ["WaitAddNote:str_int", "WaitCommonObjects:Query_Query_int", "WaitConvRequest:Query_Query_int_ptr.Obj_ptr.Obj", "WaitConvRequest:Obj_Obj_int", "WaitEmptyQuery:Query_int", "WaitEnvIntBetween:str_int_int_int", "WaitEnvStringEqual:str_str_int", "WaitForMapChange", "WaitHealthBetween:Query_int_int_int", "WaitIdle:Query_int", "WaitIdleUnitsInArea:Query_str_int", "WaitNonEmptyQuery:Query_int", "WaitPlayerChat:ptr.int_ptr.str_int", "WaitQueryCountBetween:Query_int_int_int", "WaitRemoveNote:str_int", "WaitSettlementAllied:str_int_int", "WaitSettlementCapture:str_int_int", "WaitUnitsInArea:Query_str_int"]
         }, {
             "id": "WaitQueryCountBetween:Query_int_int_int",
             "name": "WaitQueryCountBetween",
@@ -15386,11 +15400,21 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "consulta", "name_en": "query", "type": 27, "is_ptr": false}, {
+                "name": "min",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "max", "type": 1, "is_ptr": false}, {
+                "name": "milisegundos",
+                "name_en": "milliseconds",
+                "type": 1,
+                "is_ptr": false
+            }],
+            "description": "<p>Detiene la ejecución hasta que el número de elementos de la consulta se encuentre entre los dos valores dados por <tt>min</tt> y <tt>max</tt>.</p>"
+                + WAITING_TIME_SPANISH,
+            "description_en": "<p>Stops the execution until the number of elements in the query is between the two values given by <tt>min</tt> and <tt>max</tt>.</p>"
+                + WAITING_TIME_ENGLISH,
+            "related": ["WaitAddNote:str_int", "WaitCommonObjects:Query_Query_int", "WaitConvRequest:Query_Query_int_ptr.Obj_ptr.Obj", "WaitConvRequest:Obj_Obj_int", "WaitEmptyQuery:Query_int", "WaitEnvIntBetween:str_int_int_int", "WaitEnvStringEqual:str_str_int", "WaitForMapChange", "WaitHealthBetween:Query_int_int_int", "WaitIdle:Query_int", "WaitIdleUnitsInArea:Query_str_int", "WaitNonEmptyQuery:Query_int", "WaitObjInQuery:Obj_Query_int", "WaitPlayerChat:ptr.int_ptr.str_int", "WaitRemoveNote:str_int", "WaitSettlementAllied:str_int_int", "WaitSettlementCapture:str_int_int", "WaitUnitsInArea:Query_str_int"]
         }, {
             "id": "WaitCommonObjects:Query_Query_int",
             "name": "WaitCommonObjects",
@@ -15399,11 +15423,17 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "consulta1", "name_en": "query1", "type": 27, "is_ptr": false}, {
+                "name": "consulta2",
+                "name_en": "query2",
                 "type": 27,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "milisegundos", "name_en": "milliseconds", "type": 1, "is_ptr": false}],
+            "description": "<p>Detiene la ejecución hasta que ambas consultas devuelvan algún objeto en común.</p>"
+                + WAITING_TIME_SPANISH,
+            "description_en": "<p>Stops the execution until both queries return at least one object in common.</p>"
+                + WAITING_TIME_ENGLISH,
+            "related": ["WaitAddNote:str_int", "WaitConvRequest:Query_Query_int_ptr.Obj_ptr.Obj", "WaitConvRequest:Obj_Obj_int", "WaitEmptyQuery:Query_int", "WaitEnvIntBetween:str_int_int_int", "WaitEnvStringEqual:str_str_int", "WaitForMapChange", "WaitHealthBetween:Query_int_int_int", "WaitIdle:Query_int", "WaitIdleUnitsInArea:Query_str_int", "WaitNonEmptyQuery:Query_int", "WaitObjInQuery:Obj_Query_int", "WaitPlayerChat:ptr.int_ptr.str_int", "WaitQueryCountBetween:Query_int_int_int", "WaitRemoveNote:str_int", "WaitSettlementAllied:str_int_int", "WaitSettlementCapture:str_int_int", "WaitUnitsInArea:Query_str_int"]
         }, {
             "id": "WaitHealthBetween:Query_int_int_int",
             "name": "WaitHealthBetween",
@@ -15412,11 +15442,21 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "consulta", "name_en": "query", "type": 27, "is_ptr": false}, {
+                "name": "min",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "max", "type": 1, "is_ptr": false}, {
+                "name": "milisegundos",
+                "name_en": "milliseconds",
+                "type": 1,
+                "is_ptr": false
+            }],
+            "description": "<p>Detiene la ejecución hasta que el porcentaje de vida de la consulta se encuentre entre los valores dados. Este porcentaje corresponde a la suma de la vida de los objetos, dividida entre la suma de la vida máxima de los mismos y multiplicada por 100.</p>"
+                + WAITING_TIME_SPANISH,
+            "description_en": "<p>Stops the execution until the percentage of health of the query is between the given values. This percentage corresponds to the sum of the life points of the objects, divided by the sum of their maximum health points and multiplied by 100.</p>"
+                + WAITING_TIME_ENGLISH,
+            "related": ["WaitAddNote:str_int", "WaitCommonObjects:Query_Query_int", "WaitConvRequest:Query_Query_int_ptr.Obj_ptr.Obj", "WaitConvRequest:Obj_Obj_int", "WaitEmptyQuery:Query_int", "WaitEnvIntBetween:str_int_int_int", "WaitEnvStringEqual:str_str_int", "WaitForMapChange", "WaitIdle:Query_int", "WaitIdleUnitsInArea:Query_str_int", "WaitNonEmptyQuery:Query_int", "WaitObjInQuery:Obj_Query_int", "WaitPlayerChat:ptr.int_ptr.str_int", "WaitQueryCountBetween:Query_int_int_int", "WaitRemoveNote:str_int", "WaitSettlementAllied:str_int_int", "WaitSettlementCapture:str_int_int", "WaitUnitsInArea:Query_str_int"]
         }, {
             "id": "WaitSettlementCapture:str_int_int",
             "name": "WaitSettlementCapture",
@@ -15425,11 +15465,16 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "asentamiento", "name_en": "settlement", "type": 5, "is_ptr": false}, {
+                "name": "jugador", "name_en": "player",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "milisegundos", "name_en": "milliseconds", "type": 1, "is_ptr": false}],
+            "description": "<p>Detiene la ejecución hasta que el asentamiento indicado pertenezca al jugador dado. El parámetro <tt>asentamiento</tt> ha de contener el nombre de scripts del asentamiento.</p>"
+                + WAITING_TIME_SPANISH + "<p>El método también retorna <tt>false</tt> si el asentamiento no existe.</p>",
+            "description_en": "<p>Stops the execution until the settlement belongs to the given player. The parameter <tt>settlement</tt> must be the scripting name of the settlement.</p>"
+                + WAITING_TIME_ENGLISH + "<p>The method returns <tt>false</tt> as well if the settlement does not exist.</p>",
+            "related": ["WaitAddNote:str_int", "WaitCommonObjects:Query_Query_int", "WaitConvRequest:Query_Query_int_ptr.Obj_ptr.Obj", "WaitConvRequest:Obj_Obj_int", "WaitEmptyQuery:Query_int", "WaitEnvIntBetween:str_int_int_int", "WaitEnvStringEqual:str_str_int", "WaitForMapChange", "WaitHealthBetween:Query_int_int_int", "WaitIdle:Query_int", "WaitIdleUnitsInArea:Query_str_int", "WaitNonEmptyQuery:Query_int", "WaitObjInQuery:Obj_Query_int", "WaitPlayerChat:ptr.int_ptr.str_int", "WaitQueryCountBetween:Query_int_int_int", "WaitRemoveNote:str_int", "WaitSettlementAllied:str_int_int", "WaitUnitsInArea:Query_str_int"]
         }, {
             "id": "WaitSettlementAllied:str_int_int",
             "name": "WaitSettlementAllied",
@@ -15438,11 +15483,16 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "asentamiento", "name_en": "settlement", "type": 5, "is_ptr": false}, {
+                "name": "jugador", "name_en": "player",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "milisegundos", "name_en": "milliseconds", "type": 1, "is_ptr": false}],
+            "description": "<p>Detiene la ejecución hasta que el asentamiento pertenezca a un aliado del jugador dado.</p>"
+                + WAITING_TIME_SPANISH + "<p>El método también retorna <tt>false</tt> si el asentamiento no existe.</p>",
+            "description_en": "<p>Stops the execution until the settlement belongs to an ally of the given player.</p>"
+                + WAITING_TIME_ENGLISH + "<p>The method returns <tt>false</tt> as well if the settlement does not exist.</p>",
+            "related": ["WaitAddNote:str_int", "WaitCommonObjects:Query_Query_int", "WaitConvRequest:Query_Query_int_ptr.Obj_ptr.Obj", "WaitConvRequest:Obj_Obj_int", "WaitEmptyQuery:Query_int", "WaitEnvIntBetween:str_int_int_int", "WaitEnvStringEqual:str_str_int", "WaitForMapChange", "WaitHealthBetween:Query_int_int_int", "WaitIdle:Query_int", "WaitIdleUnitsInArea:Query_str_int", "WaitNonEmptyQuery:Query_int", "WaitObjInQuery:Obj_Query_int", "WaitPlayerChat:ptr.int_ptr.str_int", "WaitQueryCountBetween:Query_int_int_int", "WaitRemoveNote:str_int", "WaitSettlementCapture:str_int_int", "WaitUnitsInArea:Query_str_int"]
         }, {
             "id": "WaitEnvStringEqual:str_str_int",
             "name": "WaitEnvStringEqual",
@@ -15451,11 +15501,16 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "variable", "name_en": "env_var", "type": 5, "is_ptr": false}, {
+                "name": "valor", "name_en": "value",
                 "type": 5,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "milisegundos", "name_en": "milliseconds", "type": 1, "is_ptr": false}],
+            "description": "<p>Detiene la ejecución hasta que la variable del entorno tenga el valor indicado. El parámetro <tt>variable</tt> indica la variable (de tipo <a href='#str' class='type'>str</a>), mientras que <tt>valor</tt> indica el valor exacto que ha de tener para que finalice la espera.</p>"
+                + WAITING_TIME_SPANISH + "<p>Para más información, consultar <a href='#EnvReadString:str'>EnvReadString</a>.</p>",
+            "description_en": "<p>Stops the execution until the environment variable is equal to the given value. The parameter <tt>env_var</tt> indicates the variable (with type <a href='#str' class='type'>str</a>), and <tt>value</tt> indicates the exact value it must have to stop waiting.</p>"
+                + WAITING_TIME_ENGLISH + "<p>For more information, check <a href='#EnvReadString:str'>EnvReadString</a>.</p>",
+            "related": ["EnvReadString:str", "WaitAddNote:str_int", "WaitCommonObjects:Query_Query_int", "WaitConvRequest:Query_Query_int_ptr.Obj_ptr.Obj", "WaitConvRequest:Obj_Obj_int", "WaitEmptyQuery:Query_int", "WaitEnvIntBetween:str_int_int_int", "WaitForMapChange", "WaitHealthBetween:Query_int_int_int", "WaitIdle:Query_int", "WaitIdleUnitsInArea:Query_str_int", "WaitNonEmptyQuery:Query_int", "WaitObjInQuery:Obj_Query_int", "WaitPlayerChat:ptr.int_ptr.str_int", "WaitQueryCountBetween:Query_int_int_int", "WaitRemoveNote:str_int", "WaitSettlementAllied:str_int_int", "WaitSettlementCapture:str_int_int", "WaitUnitsInArea:Query_str_int"]
         }, {
             "id": "WaitEnvIntBetween:str_int_int_int",
             "name": "WaitEnvIntBetween",
@@ -15464,11 +15519,21 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "variable", "name_en": "env_var", "type": 5, "is_ptr": false}, {
+                "name": "min",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "max", "type": 1, "is_ptr": false}, {
+                "name": "milisegundos",
+                "name_en": "milliseconds",
+                "type": 1,
+                "is_ptr": false
+            }],
+            "description": "<p>Detiene la ejecución hasta que el valor de la variable de entorno se encuentre entre los dos valores dados. El parámetro <tt>variable</tt> indica la variable (de tipo <a href='#int' class='type'>int</a>), mientras que <tt>min</tt> y <tt>max</tt> indican los valores mínimo y máximo entre los que se debe encontrar la variable para finalizar la espera.</p>"
+                + WAITING_TIME_SPANISH + "<p>Para más información, consultar <a href='#EnvReadInt:str'>EnvReadInt</a>.</p>",
+            "description_en": "<p>Stops the execution until the environment variable is between two given values. The parameter <tt>env_var</tt> indicates the variable (with type <a href='#int' class='type'>int</a>), while <tt>min</tt> and <tt>max</tt> indicate the minimum and maximum values between which the value of the variable must be to stop waiting.</p>"
+                + WAITING_TIME_ENGLISH + "<p>For more information, check <a href='#EnvReadString:str'>EnvReadString</a>.</p>",
+            "related": ["EnvReadInt:str", "WaitAddNote:str_int", "WaitCommonObjects:Query_Query_int", "WaitConvRequest:Query_Query_int_ptr.Obj_ptr.Obj", "WaitConvRequest:Obj_Obj_int", "WaitEmptyQuery:Query_int", "WaitEnvStringEqual:str_str_int", "WaitForMapChange", "WaitHealthBetween:Query_int_int_int", "WaitIdle:Query_int", "WaitIdleUnitsInArea:Query_str_int", "WaitNonEmptyQuery:Query_int", "WaitObjInQuery:Obj_Query_int", "WaitPlayerChat:ptr.int_ptr.str_int", "WaitQueryCountBetween:Query_int_int_int", "WaitRemoveNote:str_int", "WaitSettlementAllied:str_int_int", "WaitSettlementCapture:str_int_int", "WaitUnitsInArea:Query_str_int"]
         }, {
             "id": "WaitAddNote:str_int",
             "name": "WaitAddNote",
@@ -15477,7 +15542,17 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "objetivo", "name_en": "note", "type": 5, "is_ptr": false}, {
+                "name": "milisegundos",
+                "name_en": "milliseconds",
+                "type": 1,
+                "is_ptr": false
+            }],
+            "description": "<p>Detiene la ejecución hasta que el objetivo indicado sea añadido (esté activo). Nótese que los objetivos que no existen jamás están activos.</p>"
+                + WAITING_TIME_SPANISH,
+            "description_en": "<p>Stops the execution until the given note is added (is active). Notice that non-existent notes are never active.</p>"
+                + WAITING_TIME_ENGLISH,
+            "related": ["GiveNote:str", "IsNoteActive:str", "WaitCommonObjects:Query_Query_int", "WaitConvRequest:Query_Query_int_ptr.Obj_ptr.Obj", "WaitConvRequest:Obj_Obj_int", "WaitEmptyQuery:Query_int", "WaitEnvIntBetween:str_int_int_int", "WaitEnvStringEqual:str_str_int", "WaitForMapChange", "WaitHealthBetween:Query_int_int_int", "WaitIdle:Query_int", "WaitIdleUnitsInArea:Query_str_int", "WaitNonEmptyQuery:Query_int", "WaitObjInQuery:Obj_Query_int", "WaitPlayerChat:ptr.int_ptr.str_int", "WaitQueryCountBetween:Query_int_int_int", "WaitRemoveNote:str_int", "WaitSettlementAllied:str_int_int", "WaitSettlementCapture:str_int_int", "WaitUnitsInArea:Query_str_int"]
         }, {
             "id": "WaitRemoveNote:str_int",
             "name": "WaitRemoveNote",
@@ -15486,7 +15561,17 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "objetivo", "name_en": "note", "type": 5, "is_ptr": false}, {
+                "name": "milisegundos",
+                "name_en": "milliseconds",
+                "type": 1,
+                "is_ptr": false
+            }],
+            "description": "<p>Detiene la ejecución hasta que el objetivo indicado sea eliminado (esté inactivo). Nótese que los objetivos que no existen siempre están inactivos.</p>"
+                + WAITING_TIME_SPANISH,
+            "description_en": "<p>Stops the execution until the given note is removed (is not active). Notice that notes which do not exist are always not-active.</p>"
+                + WAITING_TIME_ENGLISH,
+            "related": ["RemoveNote:str", "IsNoteActive:str", "WaitAddNote:str_int", "WaitCommonObjects:Query_Query_int", "WaitConvRequest:Query_Query_int_ptr.Obj_ptr.Obj", "WaitConvRequest:Obj_Obj_int", "WaitEmptyQuery:Query_int", "WaitEnvIntBetween:str_int_int_int", "WaitEnvStringEqual:str_str_int", "WaitForMapChange", "WaitHealthBetween:Query_int_int_int", "WaitIdle:Query_int", "WaitIdleUnitsInArea:Query_str_int", "WaitNonEmptyQuery:Query_int", "WaitObjInQuery:Obj_Query_int", "WaitPlayerChat:ptr.int_ptr.str_int", "WaitQueryCountBetween:Query_int_int_int", "WaitSettlementAllied:str_int_int", "WaitSettlementCapture:str_int_int", "WaitUnitsInArea:Query_str_int"]
         }, {
             "id": "WaitConvRequest:Query_Query_int_ptr.Obj_ptr.Obj",
             "name": "WaitConvRequest",
@@ -15495,15 +15580,20 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "consulta_a", "name_en": "query_a", "type": 27, "is_ptr": false}, {
+                "name": "consulta_b", "name_en": "query_b",
                 "type": 27,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {
-                "name": "number",
+            }, {"name": "milisegundos", "name_en": "milliseconds", "type": 1, "is_ptr": false}, {
+                "name": "solicitante", "name_en": "petitioner_out",
                 "type": 11,
                 "is_ptr": true
-            }, {"name": "number", "type": 11, "is_ptr": true}]
+            }, {"name": "receptor", "name_en": "receiver_out", "type": 11, "is_ptr": true}],
+            "description": "<p>Detiene la ejecución hasta que algún objeto de la consulta A solicita una conversación a alguien de la consulta B. Una conversación se solicita dando click derecho sobre el objeto correspondiente, que tendrá un icono flotando sobre él si está esperando una solicitud de conversación. Finalizada la espera, <tt>solicitante</tt> contendrá el objeto de <tt>consulta_a</tt> que estaba seleccionado, mientras que <tt>receptor</tt> contendrá el objeto de <tt>consulta_b</tt> sobre el que se hizo click derecho.</p>"
+                + WAITING_TIME_SPANISH,
+            "description_en": "<p>Stops the execution until an object from the query A requires conversation to some object in the query B. A conversation is requested by right-clicking the corresponding object, which will have an icon floating over its head to show that it is waiting a conversation request. Once this happens and the execution continues, the object reference in <tt>petitioner_out</tt> will contain the object who requested the conversation (the one which was selected), while <tt>receiver_out</tt> will contain the object being requested (the one the player right-clicked on).</p>"
+                + WAITING_TIME_ENGLISH,
+            "related": ["WaitAddNote:str_int", "WaitCommonObjects:Query_Query_int", "WaitConvRequest:Obj_Obj_int", "WaitEmptyQuery:Query_int", "WaitEnvIntBetween:str_int_int_int", "WaitEnvStringEqual:str_str_int", "WaitForMapChange", "WaitHealthBetween:Query_int_int_int", "WaitIdle:Query_int", "WaitIdleUnitsInArea:Query_str_int", "WaitNonEmptyQuery:Query_int", "WaitObjInQuery:Obj_Query_int", "WaitPlayerChat:ptr.int_ptr.str_int", "WaitQueryCountBetween:Query_int_int_int", "WaitRemoveNote:str_int", "WaitSettlementAllied:str_int_int", "WaitSettlementCapture:str_int_int", "WaitUnitsInArea:Query_str_int"]
         }, {
             "id": "WaitUnitsInArea:Query_str_int",
             "name": "WaitUnitsInArea",
@@ -15512,11 +15602,16 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "consulta", "name_en": "query", "type": 27, "is_ptr": false}, {
+                "name": "area",
                 "type": 5,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "milisegundos", "name_en": "milliseconds", "type": 1, "is_ptr": false}],
+            "description": "<p>Detiene la ejecución hasta que alguna de las unidades seleccionadas por la consulta se encuentre en el área especificada.</p>"
+                + WAITING_TIME_SPANISH,
+            "description_en": "<p>Stops the execution until any of the units selected by the query is inside the specified area.</p>"
+                + WAITING_TIME_ENGLISH,
+            "related": ["WaitAddNote:str_int", "WaitCommonObjects:Query_Query_int", "WaitConvRequest:Query_Query_int_ptr.Obj_ptr.Obj", "WaitConvRequest:Obj_Obj_int", "WaitEmptyQuery:Query_int", "WaitEnvIntBetween:str_int_int_int", "WaitEnvStringEqual:str_str_int", "WaitForMapChange", "WaitHealthBetween:Query_int_int_int", "WaitIdle:Query_int", "WaitIdleUnitsInArea:Query_str_int", "WaitNonEmptyQuery:Query_int", "WaitObjInQuery:Obj_Query_int", "WaitPlayerChat:ptr.int_ptr.str_int", "WaitQueryCountBetween:Query_int_int_int", "WaitRemoveNote:str_int", "WaitSettlementAllied:str_int_int", "WaitSettlementCapture:str_int_int"]
         }, {
             "id": "WaitIdleUnitsInArea:Query_str_int",
             "name": "WaitIdleUnitsInArea",
@@ -15525,11 +15620,16 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "consulta", "name_en": "query", "type": 27, "is_ptr": false}, {
+                "name": "area",
                 "type": 5,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "milisegundos", "name_en": "milliseconds", "type": 1, "is_ptr": false}],
+            "description": "<p>Detiene la ejecución hasta que alguna de las unidades seleccionadas por la consulta se encuentre parada (sin nada que hacer) en el área especificada.</p>"
+                + WAITING_TIME_SPANISH,
+            "description_en": "<p>Stops the execution until any of the units selected by the query is idle (with nothing to do) inside the specified area.</p>"
+                + WAITING_TIME_ENGLISH,
+            "related": ["WaitAddNote:str_int", "WaitCommonObjects:Query_Query_int", "WaitConvRequest:Query_Query_int_ptr.Obj_ptr.Obj", "WaitConvRequest:Obj_Obj_int", "WaitEmptyQuery:Query_int", "WaitEnvIntBetween:str_int_int_int", "WaitEnvStringEqual:str_str_int", "WaitForMapChange", "WaitHealthBetween:Query_int_int_int", "WaitIdle:Query_int", "WaitNonEmptyQuery:Query_int", "WaitObjInQuery:Obj_Query_int", "WaitPlayerChat:ptr.int_ptr.str_int", "WaitQueryCountBetween:Query_int_int_int", "WaitRemoveNote:str_int", "WaitSettlementAllied:str_int_int", "WaitSettlementCapture:str_int_int", "WaitUnitsInArea:Query_str_int"]
         }, {
             "id": "WaitEmptyQuery:Query_int",
             "name": "WaitEmptyQuery",
@@ -15538,7 +15638,17 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "consulta", "name_en": "query", "type": 27, "is_ptr": false}, {
+                "name": "milisegundos",
+                "name_en": "milliseconds",
+                "type": 1,
+                "is_ptr": false
+            }],
+            "description": "<p>Detiene la ejecución hasta que la consulta dada no retorne ningún objeto (hasta que esté vacía).</p>"
+                + WAITING_TIME_SPANISH,
+            "description_en": "<p>Stops the execution until the given query returns no objects (until it is empty)</p>"
+                + WAITING_TIME_ENGLISH,
+            "related": ["Query::count", "WaitAddNote:str_int", "WaitCommonObjects:Query_Query_int", "WaitConvRequest:Query_Query_int_ptr.Obj_ptr.Obj", "WaitConvRequest:Obj_Obj_int", "WaitEnvIntBetween:str_int_int_int", "WaitEnvStringEqual:str_str_int", "WaitForMapChange", "WaitHealthBetween:Query_int_int_int", "WaitIdle:Query_int", "WaitIdleUnitsInArea:Query_str_int", "WaitNonEmptyQuery:Query_int", "WaitObjInQuery:Obj_Query_int", "WaitPlayerChat:ptr.int_ptr.str_int", "WaitQueryCountBetween:Query_int_int_int", "WaitRemoveNote:str_int", "WaitSettlementAllied:str_int_int", "WaitSettlementCapture:str_int_int", "WaitUnitsInArea:Query_str_int"]
         }, {
             "id": "WaitNonEmptyQuery:Query_int",
             "name": "WaitNonEmptyQuery",
@@ -15547,7 +15657,12 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 27, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "consulta", "name_en": "query", "type": 27, "is_ptr": false}, {"name": "milisegundos", "name_en": "milliseconds", "type": 1, "is_ptr": false}],
+            "description": "<p>Detiene la ejecución hasta que la consulta dada retorne al menos un objeto (hasta que no esté vacía).</p>"
+                + WAITING_TIME_SPANISH,
+            "description_en": "<p>Stops the execution until the query returns at least one object (until it is not empty)</p>"
+                + WAITING_TIME_ENGLISH,
+            "related": ["WaitAddNote:str_int", "WaitCommonObjects:Query_Query_int", "WaitConvRequest:Query_Query_int_ptr.Obj_ptr.Obj", "WaitConvRequest:Obj_Obj_int", "WaitEmptyQuery:Query_int", "WaitEnvIntBetween:str_int_int_int", "WaitEnvStringEqual:str_str_int", "WaitForMapChange", "WaitHealthBetween:Query_int_int_int", "WaitIdle:Query_int", "WaitIdleUnitsInArea:Query_str_int", "WaitObjInQuery:Obj_Query_int", "WaitPlayerChat:ptr.int_ptr.str_int", "WaitQueryCountBetween:Query_int_int_int", "WaitRemoveNote:str_int", "WaitSettlementAllied:str_int_int", "WaitSettlementCapture:str_int_int", "WaitUnitsInArea:Query_str_int"]
         }, {
             "id": "WaitConvRequest:Obj_Obj_int",
             "name": "WaitConvRequest",
@@ -15556,11 +15671,16 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "a", "type": 11, "is_ptr": false}, {
+                "name": "b",
                 "type": 11,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "milisegundos", "name_en": "milliseconds", "type": 1, "is_ptr": false}],
+            "description": "<p>Detiene la ejecución hasta que el objeto <tt>a</tt> solicite conversación al objeto <tt>b</tt>. Una conversación se solicita dando click derecho sobre el objeto <tt>b</tt>, que tendrá un icono flotando sobre él si está esperando una solicitud de conversación, mientras tenemos <tt>a</tt> seleccionado.</p>"
+                + WAITING_TIME_SPANISH,
+            "description_en": "<p>Stops execution until the object <tt>a</tt> requests conversation to the object <tt>b</tt>. A conversation is requested by right-clicking the object <tt>b</tt>, which will have an icon floating over its head to show that it is waiting a conversation request, while we have the object <tt>a</tt> selected.</p>"
+                + WAITING_TIME_ENGLISH,
+            "related": ["WaitAddNote:str_int", "WaitCommonObjects:Query_Query_int", "WaitConvRequest:Query_Query_int_ptr.Obj_ptr.Obj", "WaitEmptyQuery:Query_int", "WaitEnvIntBetween:str_int_int_int", "WaitEnvStringEqual:str_str_int", "WaitForMapChange", "WaitHealthBetween:Query_int_int_int", "WaitIdle:Query_int", "WaitIdleUnitsInArea:Query_str_int", "WaitNonEmptyQuery:Query_int", "WaitObjInQuery:Obj_Query_int", "WaitPlayerChat:ptr.int_ptr.str_int", "WaitQueryCountBetween:Query_int_int_int", "WaitRemoveNote:str_int", "WaitSettlementAllied:str_int_int", "WaitSettlementCapture:str_int_int", "WaitUnitsInArea:Query_str_int"]
         }, {
             "id": "EndConvSetup:Obj_Obj",
             "name": "EndConvSetup",
@@ -15578,11 +15698,16 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": true}, {
-                "name": "number",
+            "params": [{"name": "jugador", "name_en":"player_out", "type": 1, "is_ptr": true}, {
+                "name": "mensaje", "name_en": "msg_out",
                 "type": 5,
                 "is_ptr": true
-            }, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "milisegundos", "name_en": "milliseconds", "type": 1, "is_ptr": false}],
+            "description": "<p>Detiene la ejecución hasta que algún jugador diga algo en el chat. El jugador que ha hablado se guarda en <tt>jugador</tt>, mientras que el mensaje que ha enviado se guarda en <tt>mensaje</tt>.</p>"
+                + WAITING_TIME_SPANISH,
+            "description_en": "<p>Stops the execution until some player says something in the chat. The player who talked is saved in <tt>player_out</tt>, while the message sent is saved in <tt>msg_out</tt>.</p>"
+                + WAITING_TIME_ENGLISH,
+            "related": ["WaitAddNote:str_int", "WaitCommonObjects:Query_Query_int", "WaitConvRequest:Query_Query_int_ptr.Obj_ptr.Obj", "WaitConvRequest:Obj_Obj_int", "WaitEmptyQuery:Query_int", "WaitEnvIntBetween:str_int_int_int", "WaitEnvStringEqual:str_str_int", "WaitForMapChange", "WaitHealthBetween:Query_int_int_int", "WaitIdle:Query_int", "WaitIdleUnitsInArea:Query_str_int", "WaitNonEmptyQuery:Query_int", "WaitObjInQuery:Obj_Query_int", "WaitQueryCountBetween:Query_int_int_int", "WaitRemoveNote:str_int", "WaitSettlementAllied:str_int_int", "WaitSettlementCapture:str_int_int", "WaitUnitsInArea:Query_str_int"]
         }, {
             "id": "ShowLastNotificationPos",
             "name": "ShowLastNotificationPos",
@@ -16514,7 +16639,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "<p>Espera a que se cambie de mapa y se retorne al mapa actual. Sólo puede ser usado en modo aventura. Usarlo en una secuencia de aventura en vez de una de uno de los mapas parece causar un comportamiento arbitrario.</p>",
+            "description_en": "<p>Waits for the player to change map and return to the current map. It can only be used in adventure mode. Using it within a sequence of the adventure instead of using it within a sequence of one of the maps seems to cause random behaviour.</p>",
+            "related": ["WaitAddNote:str_int", "WaitCommonObjects:Query_Query_int", "WaitConvRequest:Query_Query_int_ptr.Obj_ptr.Obj", "WaitConvRequest:Obj_Obj_int", "WaitEmptyQuery:Query_int", "WaitEnvIntBetween:str_int_int_int", "WaitEnvStringEqual:str_str_int", "WaitHealthBetween:Query_int_int_int", "WaitIdle:Query_int", "WaitIdleUnitsInArea:Query_str_int", "WaitNonEmptyQuery:Query_int", "WaitObjInQuery:Obj_Query_int", "WaitPlayerChat:ptr.int_ptr.str_int", "WaitQueryCountBetween:Query_int_int_int", "WaitRemoveNote:str_int", "WaitSettlementAllied:str_int_int", "WaitSettlementCapture:str_int_int", "WaitUnitsInArea:Query_str_int"]
         }]
     }
 })();
