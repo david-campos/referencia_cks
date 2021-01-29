@@ -962,8 +962,7 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "bitfield", "type": 1, "is_ptr": false}, {"name": "flag", "type": 1, "is_ptr": false}],
-            "description": "",
-            "description_en": "Returns <tt>true</tt> if the bitwise or operation of bitfield and flag returns non-zero, or <tt>false</tt> otherwise. Example:<pre class='language-cks'>int a;\r\na = 21; // 10101b\r\nIsFlagSet(a, 5); // true</pre>",
+            "description_en": "Returns <tt>true</tt> if the bitwise and operation of bitfield and flag returns non-zero, or <tt>false</tt> otherwise. Example:<pre class='language-cks'>int a;\r\na = 21; // 10101b\r\nIsFlagSet(a, 4); // true</pre>",
             "related": ["SetFlag:ptr.int_int_bool"]
         }, {
             "id": "SetFlag:ptr.int_int_bool",
@@ -978,7 +977,6 @@ const THE_OBJ = (function () {
                 "type": 1,
                 "is_ptr": false
             }, {"name": "state", "type": 2, "is_ptr": false}],
-            "description": "",
             "description_en": "Updates the bitfield by setting or clearing the flag specified and returns the new value. Example:\r\n<pre class='language-cks'>int a;\r\nSetFlag(a, 5, true);  // a = 101b\r\nIsFlagSet(a, 4);      // true\r\nSetFlag(a, 4, false); // a = 001b\r\nIsFlagSet(a, 4);      // false</pre>",
             "related": ["IsFlagSet:int_int"]
         }, {
@@ -10635,7 +10633,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "count", "type": 1, "is_ptr": false}],
+            "description_en": "Subtracts from the <a href='#GetThis'>current item's</a> use count and removes the item if the use count becomes less than 1. Equivalent to: <pre class='language-cks'>GetThis().SetUseCount(GetThis().use_count - count);\r\nif (GetThis().use_count < 1) owner.RemoveItem(owner.GetItemIndex(GetThis()));</pre>",
+            "related": ["GetUseCount", "SetUseCount:int", "Item::use_count", "Item::SetUseCount:int"]
         }, {
             "id": "GetUseCount",
             "name": "GetUseCount",
@@ -10644,7 +10644,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the <a href='#GetThis'>current item's</a> use count, an example use of this can be seen with the healing water item. This value is always 0 in the item's On Die script. Equivalent to <tt class='language-cks'>GetThis().use_count</tt>.",
+            "related": ["SetUseCount:int", "ItemUsed:int", "Item::use_count", "Item::SetUseCount:int"]
         }, {
             "id": "Item::use_count",
             "name": "use_count",
@@ -10653,7 +10655,9 @@ const THE_OBJ = (function () {
             "of": 12,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description_en": "The item's use count, an example use of this can be seen with the healing water item. This value is always 0 in the item's On Die script.",
+            "related": ["GetUseCount", "SetUseCount:int", "ItemUsed:int", "Item::SetUseCount:int"]
         }, {
             "id": "Item::custom_data",
             "name": "custom_data",
@@ -10662,7 +10666,9 @@ const THE_OBJ = (function () {
             "of": 12,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description_en": "Custom data for an item which can be set with <a href='#Item::SetCustomData:int'>Item::SetCustomData</a> which you can do as you like with. This value is always -1 in the item's On Die script.",
+            "related": ["Item::SetCustomData:int"]
         }, {
             "id": "Item::id",
             "name": "id",
@@ -10733,7 +10739,9 @@ const THE_OBJ = (function () {
             "of": 12,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "data", "type": 1, "is_ptr": false}],
+            "description_en": "Sets the item's custom data, which you can do as you like with.",
+            "related": ["Item::custom_data"]
         }, {
             "id": "GetThis",
             "name": "GetThis",
@@ -10742,7 +10750,8 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the current item. This should only be used in an item script, otherwise an invalid Item is returned."
         }, {
             "id": "Flying::PlayAnim:int_point_int",
             "name": "PlayAnim",
@@ -16642,7 +16651,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "count", "type": 1, "is_ptr": false}],
+            "description_en": "Sets the <a href='#GetThis'>current item's</a> use count. Equivalent to <tt class='language-cks'>GetThis().SetUseCount(count);</tt>.",
+            "related": ["GetUseCount", "ItemUsed:int", "Item::use_count", "Item::SetUseCount:int"]
         }, {
             "id": "Item::SetUseCount:int",
             "name": "SetUseCount",
@@ -16651,7 +16662,9 @@ const THE_OBJ = (function () {
             "of": 12,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}],
+            "description_en": "Sets the item's use count.",
+            "related": ["GetUseCount", "SetUseCount:int", "ItemUsed:int", "Item::use_count"]
         }, {
             "id": "WaitForMapChange",
             "name": "WaitForMapChange",
