@@ -9668,7 +9668,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns a <a href='#rect'>rect</a> encompassing the entire map.",
+            "related": ["GetMapSize"]
         }, {
             "id": "MapName",
             "name": "MapName",
@@ -9677,7 +9679,8 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the current map's name."
         }, {
             "id": "ChangeMap:str_str",
             "name": "ChangeMap",
