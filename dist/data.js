@@ -1557,7 +1557,6 @@ const THE_OBJ = (function () {
             "of_ptr": true,
             "type": "method",
             "params": [{"name": "clave", "name_en": "key", "type": 5, "is_ptr": false}],
-            "description": "TODO",
             "description_en": "Erases the entry with the key <tt>key</tt> if it exists."
         }, {
             "id": "ptr.StrMap::exists:str",
@@ -9132,7 +9131,7 @@ const THE_OBJ = (function () {
             "params": [],
             "description": "Retorna la posición de la cámara en el mapa. La posición de la cámara se corresponde con el punto al centro de la pantalla.",
             "description_en": "Returns the position of the camera in the map. The position of the camera is the point at the center of the screen.",
-            "related": ["View:point_bool"]
+            "related": ["View:point_bool", "ViewSlot"]
         }, {
             "id": "View:point_bool",
             "name": "View",
@@ -9141,7 +9140,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
+            "params": [{"name": "position", "type": 6, "is_ptr": false}, {"name": "lock_view", "type": 2, "is_ptr": false}],
+            "description_en": "Sets the position of the view (in other words, the camera), and locks or unlocks the view.",
+            "related": ["ViewPos", "IsViewLocked", "LockView", "UnlockView"]
         }, {
             "id": "PlayMusic:str",
             "name": "PlayMusic",
@@ -9583,7 +9584,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Locks the view, which prevents the current player from scrolling. The map can still be used.",
+            "related": ["IsViewLocked", "UnlockView", "StartViewFollow:Unit", "StartViewFollow:NamedObj", "StopViewFollow", "BlockMiniMap:bool"]
         }, {
             "id": "UnlockView",
             "name": "UnlockView",
@@ -9592,7 +9595,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Unlocks the view, which allows the current player to scroll again.",
+            "related": ["IsViewLocked", "LockView", "StartViewFollow:Unit", "StartViewFollow:NamedObj", "StopViewFollow"]
         }, {
             "id": "IsViewLocked",
             "name": "IsViewLocked",
@@ -9601,7 +9606,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns <tt>true</tt> if the view is locked, or <tt>false</tt> otherwise. Use <a href='#LockView'>LockView</a> to lock the view.",
+            "related": ["LockView", "UnlockView", "StartViewFollow:Unit", "StartViewFollow:NamedObj", "StopViewFollow"]
         }, {
             "id": "StartViewFollow:Unit",
             "name": "StartViewFollow",
@@ -9610,7 +9617,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "target", "type": 13, "is_ptr": false}],
+            "description_en": "Starts following the <tt>target</tt> (the view is locked in the meantime).",
+            "related": ["IsViewLocked", "LockView", "UnlockView", "StartViewFollow:NamedObj", "StopViewFollow"]
         }, {
             "id": "StopViewFollow",
             "name": "StopViewFollow",
@@ -9619,7 +9628,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Stops following the target.",
+            "related": ["IsViewLocked", "LockView", "UnlockView", "StartViewFollow:Unit", "StartViewFollow:NamedObj"]
         }, {
             "id": "StartViewFollow:NamedObj",
             "name": "StartViewFollow",
@@ -9628,7 +9639,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 29, "is_ptr": false}]
+            "params": [{"name": "target", "type": 29, "is_ptr": false}],
+            "description_en": "Starts following the <tt>target</tt> (the view is locked in the meantime).",
+            "related": ["IsViewLocked", "LockView", "UnlockView", "StartViewFollow:Unit", "StopViewFollow"]
         }, {
             "id": "SetDifficulty:int",
             "name": "SetDifficulty",
@@ -12593,7 +12606,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Similar to <a href='#ViewPos'>ViewPos</a>, but scaled down in some way. More research is needed, the x component is seemed to be divided by 128 but not the y component?",
+            "related": ["ViewPos"]
         }, {
             "id": "Squadize:ObjList_ptr.SquadList_int",
             "name": "Squadize",
