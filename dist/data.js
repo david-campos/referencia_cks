@@ -3636,9 +3636,9 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description": "Obtiene la lista de los objetos seleccionados por el jugador actual.",
-            "description_en": "Gets the list of selected object by the current player.",
-            "related": ["SetPlayer:int", "ClearSelection:int", "SelectionFood", "SelectionGold", "Obj::Deselect:int", "Obj::Deselect", "Obj::Select:int", "SquadList::Select:int"]
+            "description": "Obtiene la lista de los objetos seleccionados por el jugador actual. Igual que <a href='#sel'>sel</a>.",
+            "description_en": "Gets the list of selected object by the current player. Same as <a href='#sel'>sel</a>.",
+            "related": ["sel", "ClearSelection:int", "Obj::Deselect:int", "Obj::Deselect", "Obj::Select:int", "SquadList::Select:int"]
         }, {
             "id": "ClearDebug",
             "name": "ClearDebug",
@@ -5625,7 +5625,7 @@ const THE_OBJ = (function () {
             "params": [],
             "description": "Cantidad de comida de la que dispone actualmente la unidad.",
             "description_en": "Amount of food currently available to the unit.",
-            "related": ["Unit::maxfood", "Unit::SetFood:int", "Settlement::food", "Squad::food", "SelAvgFood", "SelectionFood"]
+            "related": ["Unit::maxfood", "Unit::SetFood:int", "Settlement::food", "Squad::food", "SelAvgFood"]
         }, {
             "id": "Unit::maxfood",
             "name": "maxfood",
@@ -9498,7 +9498,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the average level of all selected objects.",
+            "related": ["SelAvgArmor", "SelAvgDamage", "SelAvgFood", "SelAvgStamina"]
         }, {
             "id": "SelAvgFood",
             "name": "SelAvgFood",
@@ -9507,7 +9509,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the average food of all selected objects.",
+            "related": ["SelAvgArmor", "SelAvgDamage", "SelAvgLevel", "SelAvgStamina"]
         }, {
             "id": "SelAvgStamina",
             "name": "SelAvgStamina",
@@ -9516,7 +9520,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the average stamina of all selected objects.",
+            "related": ["SelAvgArmor", "SelAvgDamage", "SelAvgFood", "SelAvgLevel"]
         }, {
             "id": "SelAvgArmor",
             "name": "SelAvgArmor",
@@ -9525,7 +9531,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the average armor of all selected objects.",
+            "related": ["SelAvgDamage", "SelAvgFood", "SelAvgLevel", "SelAvgStamina"]
         }, {
             "id": "SelAvgDamage",
             "name": "SelAvgDamage",
@@ -9534,7 +9542,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the average damage of all selected objects.",
+            "related": ["SelAvgArmor", "SelAvgFood", "SelAvgLevel", "SelAvgStamina"]
         }, {
             "id": "SelHealth",
             "name": "SelHealth",
@@ -9543,7 +9553,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the total <a href='#Obj::health'>health</a> of all selected objects.",
+            "related": ["SelMaxHealth"]
         }, {
             "id": "SelMaxHealth",
             "name": "SelMaxHealth",
@@ -9552,7 +9564,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the total <a href='#Obj::maxhealth'>max health</a> of all selected objects.",
+            "related": ["SelHealth"]
         }, {
             "id": "LockView",
             "name": "LockView",
@@ -9754,7 +9768,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the total gold carried by all selected wagons.",
+            "related": ["SelectionFood"]
         }, {
             "id": "SelectionFood",
             "name": "SelectionFood",
@@ -9763,7 +9779,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the total food carried by all selected wagons.",
+            "related": ["SelectionGold"]
         }, {
             "id": "NoTents",
             "name": "NoTents",
@@ -13773,7 +13791,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Selects the <a href='#Squad'>Squad</a> the selected object is in.",
+            "related": ["SelSquad:int_int", "SelSquadLeader"]
         }, {
             "id": "SelSquad:int_int",
             "name": "SelSquad",
@@ -13782,7 +13802,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "player", "type": 1, "is_ptr": false}, {"name": "squad", "type": 1, "is_ptr": false}],
+            "description_en": "Selects the specified player's <a href='#Squad'>Squad</a>.",
+            "related": ["SelSquad", "SelSquadLeader"]
         }, {
             "id": "SelSquadLeader",
             "name": "SelSquadLeader",
@@ -13791,7 +13813,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Selects the leader of the <a href='#Squad'>Squad</a> the selected object is in. If the object is attached to a <a href='#Hero'>Hero</a>, that hero is the squad leader, otherwise it is the first object in the squad.",
+            "related": ["SelSquad", "SelSquad:int_int"]
         }, {
             "id": "GAIKA::Dump",
             "name": "Dump",
@@ -14667,7 +14691,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Obtiene la lista de los objetos seleccionados por el jugador actual. Igual que <a href='#_GetSelection'>_GetSelection</a>.",
+            "description_en": "Gets the list of selected object by the current player. Same as <a href='#_GetSelection'>_GetSelection</a>.",
+            "related": ["selo", "selu", "selh", "selb", "sels", "selsq", "selg"]
         }, {
             "id": "selo",
             "name": "selo",
@@ -14676,7 +14703,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the first selected object. Equivalent to <tt class='language-cks'>sel()[0]</tt>.",
+            "related": ["sel", "selu", "selh", "selb", "sels", "selsq", "selg"]
         }, {
             "id": "selu",
             "name": "selu",
@@ -14685,7 +14714,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the first selected object as a <a href='#Unit'>Unit</a>. Equivalent to <tt class='language-cks'>sel()[0].AsUnit()</tt>.",
+            "related": ["sel", "selo", "selh", "selb", "sels", "selsq", "selg"]
         }, {
             "id": "selh",
             "name": "selh",
@@ -14694,7 +14725,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the first selected object as a <a href='#Hero'>Hero</a>. Equivalent to <tt class='language-cks'>sel()[0].AsHero()</tt>.",
+            "related": ["sel", "selo", "selu", "selb", "sels", "selsq", "selg"]
         }, {
             "id": "selb",
             "name": "selb",
@@ -14703,7 +14736,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the first selected object as a <a href='#Building'>Building</a>. Equivalent to <tt class='language-cks'>sel()[0].AsBuilding()</tt>.",
+            "related": ["sel", "selo", "selu", "selh", "sels", "selsq", "selg"]
         }, {
             "id": "sels",
             "name": "sels",
@@ -14712,7 +14747,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the <a href='#Settlement'>Settlement</a> of the first selected object. Equivalent to <tt class='language-cks'>sel()[0].AsBuilding().AsSettlement()</tt>.",
+            "related": ["sel", "selo", "selu", "selh", "selb", "selsq", "selg"]
         }, {
             "id": "selsq",
             "name": "selsq",
@@ -14721,7 +14758,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the <a href='#Squad'>Squad</a> of the first selected object. Equivalent to <tt class='language-cks'>sel()[0].AsUnit().GetSquad()</tt>.",
+            "related": ["sel", "selo", "selu", "selh", "selb", "sels", "selg"]
         }, {
             "id": "selg",
             "name": "selg",
@@ -14730,7 +14769,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the <a href='#GAIKA'>GAIKA</a> of the first selected object. Equivalent to <tt class='language-cks'>GetGAIKA(sel()[0])</tt>.",
+            "related": ["sel", "selo", "selu", "selh", "selb", "sels"]
         }, {
             "id": "Desync",
             "name": "Desync",
