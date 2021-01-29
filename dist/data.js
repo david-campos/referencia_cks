@@ -417,6 +417,7 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [{"name": "number", "type": 1, "is_ptr": false}],
             "research_needed": "En mis tests, esto no ha imprimido a ningún lado. He probado si estaba imprimiendo al shell externo sobre el que esté corriendo el juego pero no, también he probado si algún archivo cambiaba o contenía el texto y nada. No estoy seguro de si esto será <i>legacy code</i> que quedó de alguna versión antigua del motor.",
+            "research_needed_en": "In my tests, this did not printed anywhere. I have tested to see if it was printing to the external shell on which the game is running but no, I have also tested if any file changed or contained the text and nothing. I'm not sure if this is <i>legacy code</i> left over from some old version of the engine",
             "related": ["Write:float", "Write:str", "Write:pstr"]
         }, {
             "id": "MIN:int_int",
@@ -607,6 +608,7 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [{"name": "number", "type": 3, "is_ptr": false}],
             "research_needed": "En mis tests, esto no ha imprimido a ningún lado. He probado si estaba imprimiendo al shell externo sobre el que esté corriendo el juego pero no, también he probado si algún archivo cambiaba o contenía el texto y nada. No estoy seguro de si esto será <i>legacy code</i> que quedó de alguna versión antigua del motor.",
+            "research_needed_en": "In my tests, this did not printed anywhere. I have tested to see if it was printing to the external shell on which the game is running but no, I have also tested if any file changed or contained the text and nothing. I'm not sure if this is <i>legacy code</i> left over from some old version of the engine",
             "related": ["Write:int", "Write:str", "Write:pstr"]
         }, {
             "id": "MIN:float_float",
@@ -720,6 +722,7 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [{"name": "number", "type": 4, "is_ptr": false}],
             "research_needed": "No hay ningún tipo de información que explique qué podrían ser las pstr o qué hacen.",
+            "research_needed_en": "There is no information whatsoever to explain what pstr could be or what it does.",
             "related": ["Write:int", "Write:str", "Write:float"]
         }, {
             "id": "Write:str",
@@ -731,6 +734,7 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [{"name": "number", "type": 5, "is_ptr": false}],
             "research_needed": "En mis tests, esto no ha imprimido a ningún lado. He probado si estaba imprimiendo al shell externo sobre el que esté corriendo el juego pero no, también he probado si algún archivo cambiaba o contenía el texto y nada. No estoy seguro de si esto será <i>legacy code</i> que quedó de alguna versión antigua del motor.",
+            "research_needed_en": "In my tests, this did not printed anywhere. I have tested to see if it was printing to the external shell on which the game is running but no, I have also tested if any file changed or contained the text and nothing. I'm not sure if this is <i>legacy code</i> left over from some old version of the engine",
             "related": ["Write:int", "Write:pstr", "Write:float"]
         }, {
             "id": "ptr.pstr::-e-:ptr.pstr_pstr",
@@ -742,6 +746,7 @@ const THE_OBJ = (function () {
             "type": "operator",
             "params": [{"name": "number", "type": 4, "is_ptr": true}, {"name": "number", "type": 4, "is_ptr": false}],
             "research_needed": "No hay ningún tipo de información que explique qué podrían ser las pstr o qué hacen.",
+            "research_needed_en": "There is no information whatsoever to explain what pstr could be or what it does.",
             "related": ["Write:pstr"]
         }, {
             "id": "ptr.str::-e-:ptr.str_str",
@@ -821,7 +826,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}],
-            "research_needed": "No logro encontrar qué hace esta función, he probado con cosas separadas con comas, por si era similar a <a href='#ParseStr:str_ptr.str'>ParseStr</a> pero nada."
+            "research_needed": "No logro encontrar qué hace esta función, he probado con cosas separadas con comas, por si era similar a <a href='#ParseStr:str_ptr.str'>ParseStr</a> pero nada.",
+            "research_needed_en": "I can't figure out what this function does, I have tried strings separated with commas, in case it was similar to <a href='#ParseStr:str_ptr.str'>ParseStr</a> but nothing."
         }, {
             "id": "GetFromStrToEOL:str_str",
             "name": "GetFromStrToEOL",
@@ -831,7 +837,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}],
-            "research_needed": "No logro encontrar qué hace esta función, he probado con cosas separadas con comas, por si era similar a <a href='#ParseStr:str_ptr.str'>ParseStr</a> pero nada. Es seguro asumir que EOL aquí significa End-Of-Line, es decir hasta <tt>\\n</tt> o <tt>\\r\\n</tt>."
+            "research_needed": "No logro encontrar qué hace esta función, he probado con cosas separadas con comas, por si era similar a <a href='#ParseStr:str_ptr.str'>ParseStr</a> pero nada. Es seguro asumir que EOL aquí significa End-Of-Line, es decir hasta <tt>\\n</tt> o <tt>\\r\\n</tt>.",
+            "research_needed_en": "I can't figure out what this function does, I have tried strings separated with commas, just in case it was similar to <a href='#ParseStr:str_ptr.str'>ParseStr</a> but nothing. It's safe to assume that EOL here means End-Of-Line, that is <tt>\\n</tt> or <tt>\\r\\n</tt>."
         }, {
             "id": "str::-p-:str_str",
             "name": "+",
@@ -954,8 +961,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}],
-            "research_needed": "No se encuentra en los scripts del juego, no estoy seguro de qué flags permite setear concretamente o si es <i>legacy code</i> que quedó de versiones anteriores."
+            "params": [{"name": "bitfield", "type": 1, "is_ptr": false}, {"name": "flag", "type": 1, "is_ptr": false}],
+            "description": "",
+            "description_en": "Returns <tt>true</tt> if the bitwise or operation of bitfield and flag returns non-zero, or <tt>false</tt> otherwise. Example:<pre class='language-cks'>int a;\r\na = 21; // 10101b\r\nIsFlagSet(a, 5); // true</pre>",
+            "related": ["SetFlag:ptr.int_int_bool"]
         }, {
             "id": "SetFlag:ptr.int_int_bool",
             "name": "SetFlag",
@@ -964,12 +973,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": true}, {
-                "name": "number",
+            "params": [{"name": "bitfield", "type": 1, "is_ptr": true}, {
+                "name": "flag",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 2, "is_ptr": false}],
-            "research_needed": "No se encuentra en los scripts del juego, no estoy seguro de qué flags permite setear concretamente o si es <i>legacy code</i> que quedó de versiones anteriores."
+            }, {"name": "state", "type": 2, "is_ptr": false}],
+            "description": "",
+            "description_en": "Updates the bitfield by setting or clearing the flag specified and returns the new value. Example:\r\n<pre class='language-cks'>int a;\r\nSetFlag(a, 5, true);  // a = 101b\r\nIsFlagSet(a, 4);      // true\r\nSetFlag(a, 4, false); // a = 001b\r\nIsFlagSet(a, 4);      // false</pre>",
+            "related": ["IsFlagSet:int_int"]
         }, {
             "id": "Point:int_int",
             "name": "Point",
@@ -1548,9 +1559,8 @@ const THE_OBJ = (function () {
             "of_ptr": true,
             "type": "method",
             "params": [{"name": "clave", "name_en": "key", "type": 5, "is_ptr": false}],
-            "description": "Este método crashea el juego cuando la clave existe en el diccionario.",
-            "description_en": "This method crashes the game when the key exists in the map.",
-            "very_dangerous": true
+            "description": "TODO",
+            "description_en": "Erases the entry with the key <tt>key</tt> if it exists."
         }, {
             "id": "ptr.StrMap::exists:str",
             "name": "exists",
@@ -3475,6 +3485,7 @@ const THE_OBJ = (function () {
             "params": [],
             "notForSequences": true,
             "research_needed": "Claramente se refiere al texto flotante que se muestra al dejar el ratón sobre los comandos en la interfaz, aparece en la validación de muchos comandos. De todas formas, no lo he documentado porque sólo funciona desde los archivos de validación de comandos y no desde el juego en sí (normalmente hago mis tests con secuencias o metiendo códigos en la ventana de chat), y por tanto no he podido desgranar los detalles aún sobre sus parámetros y funcionamiento exacto.",
+            "research_needed_en": "It clearly refers to the floating text that is displayed when hovering the mouse over the commands in the interface, it appears in the validation of many commands. Anyways, I have not documented it because it only works from the command validation files and not from the game itself (I usually do my tests with sequences or by entering codes in the chat window), and therefore I have not been able to reel off the details still on its parameters and exact operation.",
             "related": ["rollover", "rollover:Obj_bool", "rollover:Obj_str_bool", "rollover:Obj_str", "rollover_desc:Obj_str_bool"]
         }, {
             "id": "rollover:Obj_bool",
@@ -3487,6 +3498,7 @@ const THE_OBJ = (function () {
             "params": [{"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}],
             "notForSequences": true,
             "research_needed": "Claramente se refiere al texto flotante que se muestra al dejar el ratón sobre los comandos en la interfaz, aparece en la validación de muchos comandos. De todas formas, no lo he documentado porque sólo funciona desde los archivos de validación de comandos y no desde el juego en sí (normalmente hago mis tests con secuencias o metiendo códigos en la ventana de chat), y por tanto no he podido desgranar los detalles aún sobre sus parámetros y funcionamiento exacto.",
+            "research_needed_en": "It clearly refers to the floating text that is displayed when hovering the mouse over the commands in the interface, it appears in the validation of many commands. Anyways, I have not documented it because it only works from the command validation files and not from the game itself (I usually do my tests with sequences or by entering codes in the chat window), and therefore I have not been able to reel off the details still on its parameters and exact operation.",
             "related": ["rollover", "rollover:Obj_bool", "rollover:Obj_str_bool", "rollover:Obj_str", "rollover_desc:Obj_str_bool"]
         }, {
             "id": "rollover:Obj_str_bool",
@@ -3503,6 +3515,7 @@ const THE_OBJ = (function () {
             }, {"name": "number", "type": 2, "is_ptr": false}],
             "notForSequences": true,
             "research_needed": "Claramente se refiere al texto flotante que se muestra al dejar el ratón sobre los comandos en la interfaz, aparece en la validación de muchos comandos. De todas formas, no lo he documentado porque sólo funciona desde los archivos de validación de comandos y no desde el juego en sí (normalmente hago mis tests con secuencias o metiendo códigos en la ventana de chat), y por tanto no he podido desgranar los detalles aún sobre sus parámetros y funcionamiento exacto.",
+            "research_needed_en": "It clearly refers to the floating text that is displayed when hovering the mouse over the commands in the interface, it appears in the validation of many commands. Anyways, I have not documented it because it only works from the command validation files and not from the game itself (I usually do my tests with sequences or by entering codes in the chat window), and therefore I have not been able to reel off the details still on its parameters and exact operation.",
             "related": ["rollover", "rollover:Obj_bool", "rollover:Obj_str_bool", "rollover:Obj_str", "rollover_desc:Obj_str_bool"]
         }, {
             "id": "rollover:Obj_str",
@@ -3515,6 +3528,7 @@ const THE_OBJ = (function () {
             "params": [{"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}],
             "notForSequences": true,
             "research_needed": "Claramente se refiere al texto flotante que se muestra al dejar el ratón sobre los comandos en la interfaz, aparece en la validación de muchos comandos. De todas formas, no lo he documentado porque sólo funciona desde los archivos de validación de comandos y no desde el juego en sí (normalmente hago mis tests con secuencias o metiendo códigos en la ventana de chat), y por tanto no he podido desgranar los detalles aún sobre sus parámetros y funcionamiento exacto.",
+            "research_needed_en": "It clearly refers to the floating text that is displayed when hovering the mouse over the commands in the interface, it appears in the validation of many commands. Anyways, I have not documented it because it only works from the command validation files and not from the game itself (I usually do my tests with sequences or by entering codes in the chat window), and therefore I have not been able to reel off the details still on its parameters and exact operation.",
             "related": ["rollover", "rollover:Obj_bool", "rollover:Obj_str_bool", "rollover:Obj_str", "rollover_desc:Obj_str_bool"]
         }, {
             "id": "rollover_desc:Obj_str_bool",
@@ -3531,6 +3545,7 @@ const THE_OBJ = (function () {
             }, {"name": "number", "type": 2, "is_ptr": false}],
             "notForSequences": true,
             "research_needed": "Claramente se refiere al texto flotante que se muestra al dejar el ratón sobre los comandos en la interfaz, aparece en la validación de muchos comandos. De todas formas, no lo he documentado porque sólo funciona desde los archivos de validación de comandos y no desde el juego en sí (normalmente hago mis tests con secuencias o metiendo códigos en la ventana de chat), y por tanto no he podido desgranar los detalles aún sobre sus parámetros y funcionamiento exacto.",
+            "research_needed_en": "It clearly refers to the floating text that is displayed when hovering the mouse over the commands in the interface, it appears in the validation of many commands. Anyways, I have not documented it because it only works from the command validation files and not from the game itself (I usually do my tests with sequences or by entering codes in the chat window), and therefore I have not been able to reel off the details still on its parameters and exact operation.",
             "related": ["rollover", "rollover:Obj_bool", "rollover:Obj_str_bool", "rollover:Obj_str", "rollover_desc:Obj_str_bool"]
         }, {
             "id": "cmdcost_gold",
@@ -3823,6 +3838,7 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [],
             "research_needed": "Aparece en el SUBAI para la desaparición de unidades. No parece tener ningún efecto en los tests que he realizado. Mi idea es que podría tener que ver con el manejo de memoria o algo interno similar del juego, pero quién sabe.",
+            "research_needed_en": "It appears in the SUBAI for the disappearance of units. It doesn't seem to have any effect based on the tests I've done. My idea is that it could have to do with memory management or something similar that is internal to the game, but who knows.",
             "related": ["Obj::RemoveFromStoreBin"]
         }, {
             "id": "Obj::RemoveFromStoreBin",
@@ -3834,6 +3850,7 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [],
             "research_needed": "Aparece en el SUBAI para la desaparición de unidades. No parece tener ningún efecto en los tests que he realizado. Mi idea es que podría tener que ver con el manejo de memoria o algo interno similar del juego, pero quién sabe.",
+            "research_needed_en": "It appears in the SUBAI for the disappearance of units. It doesn't seem to have any effect based on the tests I've done. My idea is that it could have to do with memory management or something similar that is internal to the game, but who knows.",
             "related": ["Obj::AddToStoreBin"]
         }, {
             "id": "Obj::IsInState",
@@ -3844,7 +3861,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "research_needed": "Aparece en el SUBAI para el vuelo de águilas y cuervos, al comienzo hay un while que simplemente detiene el script hasta que este método devuelva <tt>true</tt>. He probado a hacerle <tt>pr</tt> en bucle e imprimir ciertos valores como <a href='#Unit::GetAnimState'>Unit::GetAnimState</a> pero no logro relacionarlo con nada."
+            "research_needed": "Aparece en el SUBAI para el vuelo de águilas y cuervos, al comienzo hay un while que simplemente detiene el script hasta que este método devuelva <tt>true</tt>. He probado a hacerle <tt>pr</tt> en bucle e imprimir ciertos valores como <a href='#Unit::GetAnimState'>Unit::GetAnimState</a> pero no logro relacionarlo con nada.",
+            "research_needed_en": "It appears in the SUBAI for the flight of eagles and crows, at the beginning there is a while that simply stops the script until this method returns <tt>true</tt>. I have tried to make it <tt>pr</tt> in a loop and print certain values ​​like <a href='#Unit::GetAnimState'>Unit::GetAnimState</a> but I can't relate it to anything"
         }, {
             "id": "Obj::PlaySound:str",
             "name": "PlaySound",
@@ -3959,6 +3977,7 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "research_needed": "Yo diría que tiene que estar relacionado con la modificación de terreno(?) Deberíamos probarlo en el editor. De todas formas, el parámetro <tt>string</tt> is probablemente un archivo y valores incorrectos parecen crashear el juego en mis tests.",
+            "research_needed_en": "I'd say it has to be related to terrain modification? We should try it in the editor. Anyway, the string parameter is probably a file and wrong values ​​seem to crash the game in my tests.",
             "params": [{"name": "number", "type": 5, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
@@ -4940,6 +4959,7 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [],
             "research_needed": "Estaría bien investigar qué características tiene en cuenta para decidir que un objeto es &quot;mejor&quot; objetivo que otro.",
+            "research_needed_en": "It would be nice to investigate what characteristics it takes into account when deciding that an object is a &quot;better&quot; objective than another",
             "description": "Mejor objetivo para atacar para las <a href='class.htm#FakeTower'>FakeTower</a>s. Los fortines son <a href='#Settlement::IsIndependent'>asentamientos independientes</a>, pero entre los edificios asociados cuentan con varias <a href='class.htm#FakeTower'>FakeTower</a>, de las cuales salen las flechas cuando el fortín ataca unidades a su alrededor. Este método devuelve el &quot;mejor objetivo&quot; para estas torres para atacar, aunque los criterios que definen qué objetivo es mejor no están claros.",
             "description_en": "Best target to attack for <a href='class.htm?en#FakeTower'>FakeTower</a>s. The outposts are <a href='#Settlement::IsIndependent'>independent settlements</a>, but between their associated buildings they count on several  <a href='class.htm?en#FakeTower'>FakeTower</a>, from which the arrows come out when the outpost attacks units around it. This method returns &quot;the best target&quot; for this towers to attack, but the criteria behind this selection is not clear.",
             "related": ["Building::Attack:Obj"]
@@ -5001,6 +5021,7 @@ const THE_OBJ = (function () {
                 "is_ptr": false
             }],
             "research_needed": "Desconozco qué significa el segundo argumento. Cuando es <tt>true</tt> el método parece retornar siempre la <a href='#Obj::pos'>posición</a> del edificio. Quizás tenga una utilidad especial con un tipo de edificio concreto o quizás sea legacy code.",
+            "research_needed_en": "I don't know what the second argument means. When <tt>true</tt> the method seems to always return the <a href='#Obj::pos'>position</a> of the building. Perhaps it has a special utility with a specific type of building or perhaps it is legacy code",
             "description": "Obtiene el punto por el que salir del edificio para ir hacia el destino dado.",
             "description_en": "Obtains the point by which to get out of the building to go towards the given destination.",
             "related": ["Building::GetExitPoint:Obj_point", "Building::GetEnterPoint:Unit"]

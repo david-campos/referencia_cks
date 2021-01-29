@@ -30,7 +30,7 @@ const TRANSLATE_TEXTS = {
     "not-for-seqs-": "Inútil en secuencias del editor de mapas.",
     "not-for-seqs-en": "Useless for sequences in the map editor.",
     "research-notes-": "Investigación requerida, notas:",
-    "research-notes-en": "Research required, research notes (Spanish):",
+    "research-notes-en": "Research required, research notes:",
     "unknown-param-": "ignoto",
     "unknown-param-en": "unknown",
     "shortkeys-": "Atajos de teclado",
@@ -103,7 +103,7 @@ function renderNotForSequences(func) {
 
 function renderResearchNotes(func) {
     if (func.research_needed) {
-        return `<div class='research-notes'><div class='research-notes-title'><span>${TRANSLATE_TEXTS["research-notes-" + lang]}</span><span class="material-icons">biotech</span></div><div class="research-notes-content">${func.research_needed}</div></div>`;
+        return `<div class='research-notes'><div class='research-notes-title'><span>${TRANSLATE_TEXTS["research-notes-" + lang]}</span><span class="material-icons">biotech</span></div><div class="research-notes-content">${func["research_needed_" + lang] || func.research_needed}</div></div>`;
     } else return '';
 }
 
