@@ -8082,7 +8082,10 @@ const THE_OBJ = (function () {
             "of": 21,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "item_name", "type": 5, "is_ptr": false}],
+            "description": "Añade el ítem con el nombre de script dado al inventario del objeto. Si el objeto tiene el inventario lleno o no existe un ítem con el nombre de script dado, no se hará nada. Devuelve <tt>true</tt> si el ítem ha sido añadido al inventario del objeto, o <tt>false</tt> si no.",
+            "description_en": "Adds the item with the given script name to the inventory of the object. If the object has a full inventory or an item with the given script name does not exist, nothing will happen. It returns <tt>true</tt> if the item has been added to the inventory of the object, or <tt>false</tt> otherwise. Overload of <a href='#Obj::AddItem:str'>Obj::AddItem</a>.",
+            "related": ["Obj::AddItem:str"]
         }, {
             "id": "ItemHolder::count",
             "name": "count",
@@ -8100,7 +8103,9 @@ const THE_OBJ = (function () {
             "of": 21,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "item_name", "type": 5, "is_ptr": false}],
+            "description_en": "Returns true if the object has the item with the given script name in its inventory, or false otherwise. Overload of <a href='#Obj::HasItem:str'>Obj::HasItem</a>.",
+            "related": ["Obj::HasItem:str"]
         }, {
             "id": "ItemHolder::RemoveItem:str",
             "name": "RemoveItem",
@@ -8109,7 +8114,10 @@ const THE_OBJ = (function () {
             "of": 21,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "item_name", "type": 5, "is_ptr": false}],
+            "description": "Elimina un ítem con el nombre de scripts dado del inventario del objeto.",
+            "description_en": "Removes one item with the given scripting name from the item slots of the object. Overload of <a href='#Obj::RemoveItem:str'>Obj::RemoveItem</a>.",
+            "related": ["Obj::RemoveItem:str"]
         }, {
             "id": "ItemHolder::RemoveAll",
             "name": "RemoveAll",
@@ -10730,7 +10738,9 @@ const THE_OBJ = (function () {
             "of": 12,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Runs the item's No Target script.",
+            "related": ["Obj::UseItem:str", "Item::Use:Obj", "Item::Use:point"]
         }, {
             "id": "Item::Use:Obj",
             "name": "Use",
@@ -10739,7 +10749,9 @@ const THE_OBJ = (function () {
             "of": 12,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "target", "type": 11, "is_ptr": false}],
+            "description_en": "Runs the item's Target script with the specified target.",
+            "related": ["Item::Use", "Item::Use:point"]
         }, {
             "id": "Item::Use:point",
             "name": "Use",
@@ -10748,7 +10760,9 @@ const THE_OBJ = (function () {
             "of": 12,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "position", "type": 6, "is_ptr": false}],
+            "description_en": "Runs the item's Location script with the specified position.",
+            "related": ["Item::Use", "Item::Use:Obj"]
         }, {
             "id": "Item::SetCustomData:int",
             "name": "SetCustomData",
@@ -13440,7 +13454,8 @@ const THE_OBJ = (function () {
             "of": 33,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "range", "type": 1, "is_ptr": false}],
+            "description_en": "Makes the squad leader pick up the nearest item in the specified range."
         }, {
             "id": "Obj::HasItem:str",
             "name": "HasItem",
@@ -13449,7 +13464,8 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "item_name", "type": 5, "is_ptr": false}],
+            "description_en": "Returns true if the object has the item with the given script name in its inventory, or false otherwise.",
         }, {
             "id": "Obj::UseItem:str",
             "name": "UseItem",
@@ -13458,7 +13474,9 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "item_name", "type": 5, "is_ptr": false}],
+            "description_en": "If the item exists and is in the inventory of the object, runs the item's No Target script and returns true, or returns false otherwise. Equivalent to <tt class='language-cks'>if (obj.HasItem(item_name)) obj.FindItem(item_name).Use();</tt>.",
+            "related": ["Item::Use"]
         }, {
             "id": "FindTeleport:int_point_point",
             "name": "FindTeleport",
@@ -15208,7 +15226,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "item_name", "type": 5, "is_ptr": false}],
+            "description_en": "Gives the selected object an <a href='#Item'>Item</a>. Equivalent to <tt class='language-cks'>selo.AddItem(item_name);</tt>",
+            "related": ["Obj::AddItem:str"]
         }, {
             "id": "_PlayersAlly:int_int",
             "name": "_PlayersAlly",
