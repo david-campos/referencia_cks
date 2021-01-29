@@ -7240,7 +7240,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Toggles the map visibility (shows if hidden, or hides if shown).",
+            "related": ["BlockMiniMap:bool", "ShowZoomMap", "HideZoomMap", "_ZoomMapLastShownTime"]
         }, {
             "id": "ShowZoomMap",
             "name": "ShowZoomMap",
@@ -7249,7 +7251,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Shows the map.",
+            "related": ["BlockMiniMap:bool", "HideZoomMap", "ToggleZoomMap", "_ZoomMapLastShownTime"]
         }, {
             "id": "HideZoomMap",
             "name": "HideZoomMap",
@@ -7258,7 +7262,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Hides the map",
+            "related": ["BlockMiniMap:bool", "ShowZoomMap", "ToggleZoomMap", "_ZoomMapLastShownTime"]
         }, {
             "id": "_ZoomMapLastShownTime",
             "name": "_ZoomMapLastShownTime",
@@ -7267,7 +7273,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the <a href='#GetTime'>time</a> since the map was last shown.",
+            "related": ["GetTime", "ShowZoomMap", "HideZoomMap", "ToggleZoomMap"]
         }, {
             "id": "Wagon::amount",
             "name": "amount",
@@ -9774,7 +9782,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 2, "is_ptr": false}]
+            "params": [{"name": "disabled", "type": 2, "is_ptr": false}],
+            "description_en": "Prevents the map from being shown by the player (with space), but it can still be shown using <a href='#ShowZoomMap'>ShowZoomMap</a>.",
+            "related": ["ShowZoomMap", "HideZoomMap", "ToggleZoomMap"]
         }, {
             "id": "IsExplored:point_int",
             "name": "IsExplored",
