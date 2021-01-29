@@ -10212,11 +10212,13 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "player1", "type": 1, "is_ptr": false}, {
+                "name": "player2",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 2, "is_ptr": false}]
+            }, {"name": "relation", "type": 2, "is_ptr": false}],
+            "description_en": "Prevents <tt>player2</tt> from being attacked by <tt>player1</tt>.",
+            "related": ["ClearDiplomacy", "DiplAreAllied:int_int", "DiplGetCeaseFire:int_int", "DiplShareView:int_int_bool", "DiplGetShareView:int_int", "DiplShareSupport:int_int_bool", "DiplGetShareSupport:int_int", "DiplShareControl:int_int_bool", "DiplGetShareControl:int_int"]
         }, {
             "id": "DiplShareView:int_int_bool",
             "name": "DiplShareView",
@@ -10225,11 +10227,13 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "player1", "type": 1, "is_ptr": false}, {
+                "name": "player2",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 2, "is_ptr": false}]
+            }, {"name": "relation", "type": 2, "is_ptr": false}],
+            "description_en": "Allows <tt>player2</tt> to see what <tt>player1</tt> sees.",
+            "related": ["ClearDiplomacy", "DiplAreAllied:int_int", "DiplCeaseFire:int_int_bool", "DiplGetCeaseFire:int_int", "DiplGetShareView:int_int", "DiplShareSupport:int_int_bool", "DiplGetShareSupport:int_int", "DiplShareControl:int_int_bool", "DiplGetShareControl:int_int"]
         }, {
             "id": "DiplShareControl:int_int_bool",
             "name": "DiplShareControl",
@@ -10238,11 +10242,13 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "player1", "type": 1, "is_ptr": false}, {
+                "name": "player2",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 2, "is_ptr": false}]
+            }, {"name": "relation", "type": 2, "is_ptr": false}],
+            "description_en": "Allows <tt>player2</tt> to control <tt>player1</tt>.",
+            "related": ["ClearDiplomacy", "DiplAreAllied:int_int", "DiplCeaseFire:int_int_bool", "DiplGetCeaseFire:int_int", "DiplShareView:int_int_bool", "DiplGetShareView:int_int", "DiplShareSupport:int_int_bool", "DiplGetShareSupport:int_int", "DiplGetShareControl:int_int"]
         }, {
             "id": "DiplShareSupport:int_int_bool",
             "name": "DiplShareSupport",
@@ -10251,11 +10257,13 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "player1", "type": 1, "is_ptr": false}, {
+                "name": "player2",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 2, "is_ptr": false}]
+            }, {"name": "relation", "type": 2, "is_ptr": false}],
+            "description_en": "Allows <tt>player2</tt> to share their support (like food) with <tt>player1</tt>.",
+            "related": ["ClearDiplomacy", "DiplAreAllied:int_int", "DiplCeaseFire:int_int_bool", "DiplGetCeaseFire:int_int", "DiplShareView:int_int_bool", "DiplGetShareView:int_int", "DiplGetShareSupport:int_int", "DiplShareControl:int_int_bool", "DiplGetShareControl:int_int"]
         }, {
             "id": "DiplGetCeaseFire:int_int",
             "name": "DiplGetCeaseFire",
@@ -10264,7 +10272,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "player1", "type": 1, "is_ptr": false}, {"name": "player2", "type": 1, "is_ptr": false}],
+            "description_en": "Returns the cease-fire relation between <tt>player1</tt> and <tt>player2</tt>.",
+            "related": ["ClearDiplomacy", "DiplAreAllied:int_int", "DiplCeaseFire:int_int_bool", "DiplShareView:int_int_bool", "DiplGetShareView:int_int", "DiplShareSupport:int_int_bool", "DiplGetShareSupport:int_int", "DiplShareControl:int_int_bool", "DiplGetShareControl:int_int"]
         }, {
             "id": "DiplGetShareView:int_int",
             "name": "DiplGetShareView",
@@ -10273,7 +10283,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "player1", "type": 1, "is_ptr": false}, {"name": "player2", "type": 1, "is_ptr": false}],
+            "description_en": "Returns the shared view relation between <tt>player1</tt> and <tt>player2</tt>.",
+            "related": ["ClearDiplomacy", "DiplAreAllied:int_int", "DiplCeaseFire:int_int_bool", "DiplGetCeaseFire:int_int", "DiplShareView:int_int_bool", "DiplShareSupport:int_int_bool", "DiplGetShareSupport:int_int", "DiplShareControl:int_int_bool", "DiplGetShareControl:int_int"]
         }, {
             "id": "DiplGetShareControl:int_int",
             "name": "DiplGetShareControl",
@@ -10282,7 +10294,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}],
+            "description_en": "Returns the shared control relation between <tt>player1</tt> and <tt>player2</tt>.",
+            "related": ["ClearDiplomacy", "DiplAreAllied:int_int", "DiplCeaseFire:int_int_bool", "DiplGetCeaseFire:int_int", "DiplShareView:int_int_bool", "DiplGetShareView:int_int", "DiplShareSupport:int_int_bool", "DiplGetShareSupport:int_int", "DiplShareControl:int_int_bool"]
         }, {
             "id": "DiplGetShareSupport:int_int",
             "name": "DiplGetShareSupport",
@@ -10291,7 +10305,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}],
+            "description_en": "Returns the shared support relation between <tt>player1</tt> and <tt>player2</tt>.",
+            "related": ["ClearDiplomacy", "DiplAreAllied:int_int", "DiplCeaseFire:int_int_bool", "DiplGetCeaseFire:int_int", "DiplShareView:int_int_bool", "DiplGetShareView:int_int", "DiplShareSupport:int_int_bool", "DiplShareControl:int_int_bool", "DiplGetShareControl:int_int"]
         }, {
             "id": "ClearDiplomacy",
             "name": "ClearDiplomacy",
@@ -10300,7 +10316,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Resets diplomacy so nobody is allied in any way.",
+            "related": ["DiplAreAllied:int_int", "DiplCeaseFire:int_int_bool", "DiplGetCeaseFire:int_int", "DiplShareView:int_int_bool", "DiplGetShareView:int_int", "DiplShareSupport:int_int_bool", "DiplGetShareSupport:int_int", "DiplShareControl:int_int_bool", "DiplGetShareControl:int_int"]
         }, {
             "id": "RecreateExploration",
             "name": "RecreateExploration",
@@ -16685,7 +16703,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "player1", "type": 1, "is_ptr": false}, {"name": "player2", "type": 1, "is_ptr": false}],
+            "description_en": "Returns true if <tt>player1</tt> and <tt>player2</tt> cannot attack each other, or false otherwise.",
+            "related": ["ClearDiplomacy", "DiplCeaseFire:int_int_bool", "DiplGetCeaseFire:int_int", "DiplShareView:int_int_bool", "DiplGetShareView:int_int", "DiplShareSupport:int_int_bool", "DiplGetShareSupport:int_int", "DiplShareControl:int_int_bool", "DiplGetShareControl:int_int"]
         }, {
             "id": "Squad::GetLastAttacker",
             "name": "GetLastAttacker",
