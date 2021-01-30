@@ -303,7 +303,7 @@ else
             <em>miConversacion</em>. Si no es así y la unidad tiene 100 o más puntos de vida, le reducimos la vida en 75
             puntos.
         </p>
-        <pre><code class="language-cks">if(GetNamedObj("miUnidad").obj.health > 100) {
+        <pre><code class="language-cks">if(GetNamedObj("miUnidad").obj.health < 100) {
     GetNamedObj("miUnidad").obj.Heal(50);
     RunConv("miConversacion");
 } else {
