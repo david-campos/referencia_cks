@@ -33,7 +33,9 @@ const TRANSLATE_TEXTS = {
     "shortkeys-": "Atajos de teclado",
     "shortkeys-en": "Keyboard shortcuts",
     "thanks-": "Gracias por la ayuda a: ",
-    "thanks-en": "Thanks for the help to: "
+    "thanks-en": "Thanks for the help to: ",
+    "item-only-": "Útil únicamente en programación de ítems.",
+    "item-only-en": "Useful only for item scripting."
 }
 
 function escapeHtmlAndNameCorrection(unsafe) {
@@ -86,7 +88,13 @@ function renderRelated(inFunction, relatedList) {
 
 function renderNotForSequences(func) {
     if (func.notForSequences) {
-        return `<div class="not-for-seqs"><span>${TRANSLATE_TEXTS["not-for-seqs-" + lang]}</span><span class="material-icons">description</span></div>`;
+        return `<div class="context-req"><span>${TRANSLATE_TEXTS["not-for-seqs-" + lang]}</span><span class="material-icons">description</span></div>`;
+    } else return '';
+}
+
+function renderItemOnly(func) {
+    if (func.itemScriptOnly) {
+        return `<div class="context-req"><span>${TRANSLATE_TEXTS["item-only-" + lang]}</span><span class="material-icons">description</span></div>`;
     } else return '';
 }
 
@@ -97,7 +105,7 @@ function renderResearchNotes(func) {
 }
 
 function renderDescription(func) {
-    return `${renderNotForSequences(func)}<div class="description">${renderDangerousWarn(func)}${func['description_' + lang] || func.description
+    return `${renderNotForSequences(func)}${renderItemOnly(func)}<div class="description">${renderDangerousWarn(func)}${func['description_' + lang] || func.description
     || `<span class=\"to-fill\">${TRANSLATE_TEXTS['no-desc-' + lang]}</span>`}${renderResearchNotes(func)}</div>${renderRelated(func, func.related)}`;
 }
 
@@ -128,7 +136,26 @@ function uniqueIdentifierForFunc(func, classes) {
 }
 
 function renderLinkThis(func, classes) {
-    return `<a class="linkThis" href="#${func.id}"><span class="material-icons">link</span></a>`;
+    const params = new URLSearchParams(queryParams);
+    params.delete('s'); // without search
+    let paramsStr = params.toString();
+    if (paramsStr) paramsStr = `?${paramsStr}`;
+    return `<a class="linkThis" href="${paramsStr}#${func.id}"><span class="material-icons">link</span></a>`;
+}
+
+/**
+ * @param {MouseEvent} event
+ */
+function clickedLinkThis(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    /**@var {string} url */
+    const url = event.currentTarget.href;
+    history.replaceState({}, document.title, event.currentTarget.href);
+    const id = url.slice(url.indexOf('#')+1);
+    const element = document.getElementById(id);
+    if (element) element.scrollIntoView({behavior: "smooth"});
+    return false;
 }
 
 function dangerousClass(func) {
@@ -359,6 +386,7 @@ function render() {
     for (const link of main.querySelectorAll('a[href^="#"]:not(.linkThis)')) {
         link.addEventListener('pointerenter', addTooltip);
     }
+    main.querySelectorAll('a.linkThis').forEach(l => l.addEventListener('click', clickedLinkThis));
     main.querySelectorAll('pre')
         .forEach(pre => Prism.highlightElement(pre));
     main.querySelectorAll('tt.language-cks')

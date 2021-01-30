@@ -321,7 +321,7 @@ details {
     padding: 0 2rem;
 }
 
-.description, .related, .not-for-seqs {
+.description, .related, .context-req {
     font-family: "Noto Sans", sans-serif;
     text-indent: 0;
     margin: 1rem 0;
@@ -336,7 +336,7 @@ details {
     color: #505090;
 }
 
-.not-for-seqs {
+.context-req {
     margin: 0;
     text-indent: 0;
     text-align: right;
@@ -438,7 +438,7 @@ details {
 
 .description .material-icons,
 .name .material-icons,
-.not-for-seqs .material-icons,
+.context-req .material-icons,
 .tooltiptext .material-icons {
     position: relative;
     top: .2ex;
@@ -447,7 +447,7 @@ details {
 .name .material-icons {
     margin-right: .2em;
 }
-.not-for-seqs .material-icons {
+.context-req .material-icons {
     margin-left: .2em;
 }
 
@@ -484,14 +484,6 @@ main {
     flex: 1 0 auto;
 }
 
-main.one-remarked .property:not(.remark),
-main.one-remarked .method:not(.remark),
-main.one-remarked .operator:not(.token):not(.remark) {
-    animation-name: show;
-    animation-duration: 4s;
-    animation-timing-function: ease-in-out;
-}
-
 main.one-remarked .remark::after {
     content: '';
     position: absolute;
@@ -512,15 +504,6 @@ main.one-remarked .remark::after {
     -webkit-box-shadow: 0 0 5px 2px #005580;
     -moz-box-shadow: 0 0 5px 2px #005580;
     box-shadow: 0 0 5px 2px #005580;
-}
-
-@keyframes show {
-    from, 50% {
-        filter: opacity(.5) blur(1px);
-    }
-    to {
-        filter: opacity(1) blur(0);
-    }
 }
 
 @keyframes fade {

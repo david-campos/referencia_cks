@@ -15305,7 +15305,7 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "nombre_item", "name_en": "item_name", "type": 5, "is_ptr": false}],
-            "description_en": "Gives the selected object anitem with the given script name. Equivalent to <tt class='language-cks'>selo.AddItem(item_name);</tt>",
+            "description_en": "Gives the selected object an item with the given script name. Equivalent to <tt class='language-cks'>selo.AddItem(item_name);</tt>",
             "related": ["Obj::AddItem:str"]
         }, {
             "id": "_PlayersAlly:int_int",
