@@ -12,9 +12,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
-        code {
+        :not(pre) > code[class*="language-"] {
             background: #ddd;
             padding: 0 5px;
+        }
+
+        pre:not([class*="language-"]) {
+            background: #eee;
+            padding: 10px;
+        }
+
+        section {
+            padding: 1rem;
         }
     </style>
     <link rel="stylesheet" href="style.css">
@@ -234,8 +243,85 @@ View(GetSettlement("asentamiento").GetCentralBuilding().pos, false);</code></pre
             de este tipo de funciones es <a href="/cks/#Sleep:int"><code>Sleep</code></a>, que detiene la ejecución por
             el tiempo indicado (en milésimas de segundo), o todas las funciones cuyo nombre comienza por
             <a href="/cks/?s=%5EWait">Wait</a>, que detienen la ejecución hasta que se cumpla una cierta condición.</p>
-        <h3 class="normal">Estructuras de control (if, while, for)</h3>
-        <p></p>
+        <p>En la siguiente sección veremos algunas directivas que nos permiten controlar el flujo de ejecución, haciendo
+            que ciertos conjuntos de sentencias se ejecuten repetidamente o condicionalmente.</p>
+        <h3 class="normal">Estructuras de control (<code>if</code>, <code>while</code>, <code>for</code>, &hellip;)</h3>
+        <p>De todos los tipos de CKS, hay uno que es, quizás, un poco más especialito que los demás:
+            <a href="/cks/#bool" class="type">bool</a>, que se corresponde a un valor de verdad, es decir, sólo puede
+            contener <code>true</code> (verdadero) o <code>false</code> (falso). Usando este tipo, podemos controlar
+            la ejecución condicional o repetida de ciertos grupos de sentencias mediante el uso de algo que llamamos
+            <em>estructuras de control</em>. Estos grupos de sentencias son los <em>bloques</em>, y se indican en el
+            código rodeando las sentencias con llaves (<code>{</code> y <code>}</code>).
+        </p>
+        <cite><span class="material-icons">info</span>
+            La secuencia, en sí misma, también es un bloque, aunque no haga falta colocar llaves al principio y final.
+        </cite>
+        <p>Aunque generalmente se utilizan valores <a href="/cks/#bool" class="type">bool</a>, los valores de tipo
+            <a href="/cks/#int" class="type">int</a> (números enteros) también pueden ser usados. Si este es el caso,
+            un valor de <code>0</code> evalúa como falso (<code>false</code>), mientras que cualquier otro valor
+            evaluará como cierto (<code>true</code>).</p>
+        <cite><span class="material-icons">note</span>
+            Nota: aunque de ahora en adelante se hablará de cómo las estructuras de control repiten u omiten ciertos
+            bloques, has de saber que las estructuras de control también admiten, en lugar de bloques, sentencias
+            únicas (omitiendo las llaves). En estos casos, puedes imaginar como si hubiese un bloque que contiene
+            únicamente la primera sentencia tras la secuencia de control (hasta la primera <code>;</code>).
+        </cite>
+        <h4>Estructura condicional <code>if</code> / <code>else</code></h4>
+        <p>La estructura condicional <code>if</code> (del inglés: <em>si</em>) nos permite ejecutar un bloque de código
+            únicamente si una expresión dada evalúa como verdadera (<code>true</code>). Esto puede ser muy útil cuando
+            queremos que cierto bloque se ejecute o no dependiendo de ciertas condiciones. La estructura <code>if</code>
+            viene acompañada de una cláusula<code>else</code> (del inglés: <em>en otro caso</em>) opcional, que nos
+            permite
+            especificar otro bloque para ejecutar alternativamente, en caso de que la expresión evalúe a falso
+            (<code>false</code>). La sintaxis de un <code>if</code> es:</p>
+        <pre><code>if ( <em>expresión_a_ser_evaluada</em> ) <em>bloque_si_true</em> </code></pre>
+        <p>
+            donde <em>expresión_a_ser_evaluada</em> puede ser cualquier cadena de funciones que retorne un valor de tipo
+            <code>bool</code> o <code>int</code>, y <em>bloque_si_true</em> es, o bien una sentencia única, o bien
+            cualquier conjunto de sentencias rodeadas por llaves.
+        </p>
+        <cite><span class="material-icons">visibility</span>
+            Presta atención a que no se coloca ningún punto y coma (<code>;</code>) entre el if y el bloque
+            o la sentencia a ejecutar condicionalmente. Si colocas un punto y coma tras el if o cualquier otra
+            estructura de control, estás indicando que tu bloque condicional es simplemente una única sentencia
+            vacía.
+        </cite>
+        <p>La sintaxis de un <code>if</code> con cláusula <code>else</code> tiene este aspecto:</p>
+        <pre><code>if ( <em>expresión_a_ser_evaluada</em> )
+    <em>bloque_si_true</em>
+else
+    <em>bloque_si_false</em></code></pre>
+        <p>donde <em>expresión_a_ser_evaluada</em> y <em>bloque_si_true</em> son los mismos que antes, y
+            <em>bloque_si_false</em> es también un bloque de sentencias o una sentencia única.</p>
+        <cite><span class="material-icons">note</span>
+            Nota: recuerda que los saltos de línea y las tabulaciones son completamente ignoradas por el compilador,
+            simplemente las añadimos para hacer el código más legible. Podrías, si quisieses, escribir toda una
+            secuencia en una única línea.
+        </cite>
+        <p>Por ejemplo, con el siguiente código comprobamos si la unidad con nombre de scripts <em>miUnidad</em> tiene
+            menos de 100 puntos de vida, y si esto sucede, le damos 50 puntos de vida más y lanzamos la conversación
+            <em>miConversacion</em>. Si no es así y la unidad tiene 100 o más puntos de vida, le reducimos la vida en 75
+            puntos.
+        </p>
+        <pre><code class="language-cks">if(GetNamedObj("miUnidad").obj.health > 100) {
+    GetNamedObj("miUnidad").obj.Heal(50);
+    RunConv("miConversacion");
+} else {
+    GetNamedObj("miUnidad").obj.Damage(75);
+}</code></pre>
+        <cite><span class="material-icons">info</span>
+            <a href="/cks/#GetNamedObj:str"><code>GetNamedObj</code></a> retorna un
+            <a href="/cks/#NamedObj" class="type">NamedObj</a>. Dado que
+            <a href="/cks/#Obj::health"><code>health</code></a>,
+            <a href="/cks/#Obj::Heal:int"><code>Heal</code></a> y
+            <a href="/cks/#Obj::Damage:int"><code>Damage</code></a>
+            pertenecen a la clase <a href="/cks/#Obj" class="type">Obj</a>, necesitamos llamar a
+            <a href="/cks/#GetNamedObj::obj"><code>obj</code></a> para obtener el
+            <a href="/cks/#Obj" class="type">Obj</a> sobre el que llamar a estos métodos.
+        </cite>
+        <h4>Estructura condicional <code>while</code></h4>
+        <h4>Estructura condicional <code>for</code></h4>
+        <h4>Directivas <code>break</code> y <code>continue</code></h4>
         <h3 class="normal">Variables y <em>scope</em></h3>
         <h2>Cómo usar esta guía</h2>
         <p></p>
