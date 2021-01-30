@@ -10,6 +10,19 @@ body {
     max-width: 1200px;
     margin: 0 auto;
 }
+cite {
+    display: block;
+    margin: 1rem 2rem;
+    background: #eee;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 2px;
+    font-style: normal;
+}
+cite > span.material-icons {
+    position: relative;
+    top: 5px;
+}
 a {
     color: #303070;
     text-decoration: underline;
@@ -84,6 +97,24 @@ a .tooltiptext.dangerous::after {
 a:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
+}
+
+a.basics {
+    display: block;
+    background-color: #335c33;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    padding: 1rem;
+    border-radius: 5px;
+    max-width: max-content;
+    margin: 0 auto 1rem;
+    font-weight: bold;
+    transition: background-color 200ms ease-in-out;
+}
+
+a.basics:hover {
+    background-color: #446c44;
 }
 
 .method, .operator:not(.token), .property {
@@ -243,8 +274,8 @@ h3 {
     margin-right: .5ex;
 }
 
-h3 {
-    font-weight: 400
+h3:not(.normal) {
+    font-weight: 400;
 }
 
 .property, .method, .operator:not(.token) {

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Referencia CKS - Lo básico</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="author" content="El Jüsticiero Misteryoso">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+          integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+          crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        code {
+            background: #ddd;
+            padding: 0 5px;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+    <link href="prism.css" rel="stylesheet">
+</head>
+<main>
+    <section>
+        <h1>Referencia CKS - Lo básico de CKS</h1>
+        <p>
+            En esta guía explicaré, paso a paso, todo lo que necesitas saber para empezar a programar en CKS y crear tus
+            propios mapas, aventuras, conquistas o mods para Imperivm. Tras una breve explicación de qué es CKS, podrás
+            aprender los conceptos básicos generales que necesitarás para manejarte con el lenguaje. Al final de todo,
+            encontrarás información sobre como se relaciona todo esto con esta guía, y cómo emplearla sacándole el
+            máximo
+            provecho.
+        </p></section>
+    <section><h2>¿Qué es CKS y para qué sirve?</h2>
+        <p>Las siglas CKS provienen de <em>Celtic Kings Script</em> (lenguaje de Celtic Kings), y es el lenguaje interno
+            elaborado por los creadores de la saga de Imperivm (originalmente llamada Celtic Kings) para desarrollar el
+            juego,
+            como parte de la elaboración del motor de juego sobre que el se implementaría la saga.</p>
+        <p>Es un lenguaje de programación con una sintaxis similar a C++, pero simplificado y con características
+            particulares.
+            Puede ser empleado en la elaboración de secuencias en el editor de mapas para realizar todo tipo de
+            acciones:
+            mover
+            unidades, otorgar bonus, crear cinemáticas, lanzar conversaciones, etc. También se usa en la creación de
+            objetos
+            para programar el comportamiento del objeto. Además, es el lenguaje que se utiliza en la propia programación
+            del
+            juego,
+            que encontrarás en los archivos <code>.pak</code>. Con CKS, puedes modificar estos archivos, o crear los
+            tuyos
+            propios
+            para crear mods para el juego.</p>
+        <p>¿Quieres crear tus propios mapas o aventuras? ¿O quizás modificar el comportamiento de alguna parte del
+            juego?
+            Pues
+            prepárate, con unas nociones básicas y la ayuda de esta guía, podrás hacer todo lo que desees.</p></section>
+    <section><h2>Primeros pasos en CKS</h2>
+        <cite><span class="material-icons">note</span>
+            Te recomiendo que abras una nueva aventura en el editor y pruebes los ejemplos y juegues con ellos
+            para irte acostumbrando. Aunque no se explicarán pasos no relacionados directamente a CKS, sí se indicará
+            cuando
+            necesites tener unidades, objetos, etc. con nombres específicos en tu mapa.</cite>
+        <h3 class="normal">Hola mundo</h3>
+        <p>Vamos a empezar con la acción, directamente, así, sin rodeos. Crea una nueva secuencia y activa
+            <em>Permitir autoejecución</em>, dejando <em>Seq. de prerrequisitos</em> en blanco. Esto permitirá
+            que tu secuencia comience a ejecutarse (que lo que escribas empiece a suceder) nada más comience el juego.
+            A continuación haz click en la pestaña <em>Fuente</em> y escribe allí lo siguiente:
+        </p>
+        <pre><code class="language-cks">pr("Hola mundo!");</code></pre>
+        <cite><span class="material-icons">visibility</span>
+            Asegúrate de copiarlo exactamente como está, incluido el <code>;</code>. Pronto notarás que los carácteres
+            que aparecen en el código no suelen ser aleatorios, y cumplen una función muy concreta.</cite>
+        <p>Pulsa <em>Compilar</em>, a la derecha debería aparecer el texto <em>Compilado con éxito</em>. Si guardas
+            y pulsas sobre <em>Probar este mapa</em>, podrás ver <em>Hola mundo!</em> aparecer en el chat, en la parte
+            superior izquierda de la pantalla, nada más comienza la partida.</p>
+        <p>Vuelve al editor y elimina el <code>;</code>, por ejemplo. Ahora al pulsar compilar, a la derecha se leerá:
+            <em>Semicolon not found after expression end.</em>, y más a la derecha <em>1, 18</em>. Esto nos indica
+            que se ha encontrado un error al compilar. El texto de la izquierda indica qué tipo de error se ha
+            encontrado,
+            mientras que los números nos indican, respectivamente, la línea (1) y el carácter aproximado en el que se ha
+            dado el error (18). El cursor de escritura, también se mueve al carácter indicado. En este caso, la
+            descripción
+            del error significa <em>Punto y coma no encontrado tras el final de la expresión</em>, que significa que una
+            expresión ha acabado y no se ha encontrado el punto y coma.
+        </p>
+        <h3 class="normal">El punto y coma, espacios en blanco y comentarios</h3>
+        <p>El código en CKS se ejecuta en orden de lectura y está formado por <em>sentencias</em>, cada una delimitada
+            por un punto y coma (<code>;</code>) final. Observa el siguiente código; como puedes ver, está formado
+            por 4 sentencias:</p>
+        <pre><code class="language-cks">pr("Soy una sentencia");
+pr("Yo soy otra!");
+pr("Yo soy la tercera");
+pr("Y yo la cuarta :(");</code></pre>
+        <p>Estas sentencias serán ejecutadas por el juego en el orden en que están escritas, cada una imprimiendo
+            un mensaje nuevo en el chat.</p>
+        <p>Los espacios en blanco (espacios, tabulaciones,
+            saltos de línea...) son, habitualmente, ignorados por el compilador, y por lo general se pueden omitir
+            (salvo en ciertos casos en que se requieren para diferenciar ciertos elementos). Si cambiamos nuestro
+            ejemplo anterior que imprimía <em>Hola mundo!</em> por un código como el siguiente, veremos que compila
+            perfectamente y el resultado es el mismo:</p>
+        <pre><code class="language-cks">pr
+	(
+		"Hola mundo!"
+			)
+				;</code></pre>
+        <p>Por tanto, es aconsejable utilizar saltos de línea y tabulaciones para facilitar la lectura del código
+            y hacer así más fácil entender qué es lo que está pasando.</p>
+        <p>Por último, existe otra parte del código que es completamente ignorada por el compilador: los
+            comentarios. Los comentarios nos permiten escribir texto en el código, a fin de ayudar al lector
+            a comprender lo que sucede más fácilmente. Existen dos tipos de comentario: comentarios de línea y
+            comentarios de bloque.</p>
+        <p>Los comentarios de línea comienzan con <code>//</code> y continúan hasta el final de la línea, los
+            comentarios
+            de bloque comienzan con <code>/*</code> y continúan hasta el siguiente <code>*/</code>. A continuación se
+            muestra un ejemplo de ambos tipos de comentarios:</p>
+        <pre><code class="language-cks">// Este es un comentario de linea, y por tanto ignorado
+pr("Hola mundo!");
+/*
+    Este, sin embargo, es un comentario de bloque,
+    y dura hasta que se encuentre el final del bloque.
+*/
+pr("Vaya, vaya.."); // Los comentarios pueden aparecer...
+pr( /* ...en cualquier parte */ "Hasta luego, mundo!");</code></pre>
+        <cite><span class="material-icons">warning</span>
+            Si estás indagando en los archivos del juego, notarás que muchos de los archivos comienzan con un comentario
+            de línea como el siguiente:
+            <code class="language-cks">
+                //void, ObjList objs, point pt, Obj obj, bool bReplace, bool bModifier, int player
+            </code>.
+            Este comentario sirve para indicar el tipo de retorno del script, así como los parámetros que recibe del
+            motor de juego y su tipo. En el siguiente capítulo explicaremos qué son los tipos y cómo funcionan.
+        </cite>
+        <h3 class="normal">Funciones y tipos</h3>
+        <p>Vale, ya sabemos cómo comentar nuestro código, pero ¿qué es lo que hace que sucedan cosas? Las funciones.
+            Aunque CKS no nos permite definir nuestras propias funciones, existe una gran cantidad de ellas provistas
+            por el lenguaje. Un ejemplo de función que ya hemos usado sería <code class="language-cks">pr</code>, que
+            nos permite escribir un mensaje a la <em>consola del juego</em>, que es la misma a la que se escribe
+            cuando escribimos en el chat.</p>
+        <cite><span class="material-icons">note</span>
+            Nota: <code>pr</code> proviene de <em>print</em>, que significa <em>imprimir</em> en inglés.
+        </cite>
+        <p>Para ejecutar una función, escribiremos su nombre seguido de paréntesis, entre los cuales indicaremos
+            los argumentos (a veces llamados parámetros) a pasar a la función, separados por comas (<code>,</code>).
+            Por ejemplo, en <code class="language-cks">pr("Hola mundo!");</code> tenemos una única sentencia, que
+            contiene una llamada (ejecutar una función también se denomina llamarla) a la función <code>pr</code>
+            con <code>"Hola mundo!"</code> como argumento.</p>
+        <p>La función <code>pr</code> no retorna nada, pero algunas funciones pueden retornar valores. Cada uno de los
+            valores que manejamos en CKS tiene asociado un tipo, que indica cuándo puede ser usado como argumento en
+            una función. Por ejemplo, la función <code>MapName()</code> devuelve un <code>str</code>, es decir, una
+            cadena de texto, que contiene el nombre del mapa actual. Dado que
+            <a href="/cks/#pr:str"><code class="language-cks">pr</code></a>
+            recibe, como único argumento, un <code>str</code> que escribir a la consola, podemos escribir el siguiente
+            código para imprimir el nombre del mapa a la consola:</p>
+        <pre><code class="language-cks">pr(MapName);</code></pre>
+        <cite><span class="material-icons">note</span>
+            Nota: si la función no recibe argumentos, puedes omitir los paréntesis, el nombre de la función es
+            suficiente para llamarla.
+        </cite>
+        <p>Los tipos también determinan qué operadores se pueden usar sobre ellos. Por ejemplo, el operador de suma
+            de enteros (<a href="/cks/#int::-p-:int_int"><code>+</code></a>) opera
+            sobre dos enteros (<code>int</code>) y retorna la suma de ambos. Si queremos imprimir por consola la
+            suma de 56 y 17, aprovechando que también existe
+            <a href="/cks/#pr:int">una función <code>pr</code> que recibe un
+                argumento de tipo <code>int</code></a>, podemos escribir lo siguiente:</p>
+        <pre><code class="language-cks">pr(56 + 17);</code></pre>
+        <p>Finalmente, algunos tipos disponen de funciones "propias", normalmente llamadas <em>métodos</em>. Puedes
+            pensar en estos métodos como acciones o funciones que sólo ese tipo puede realizar. Para llamar a un método
+            sobre un valor del tipo que lo posee, escribimos un punto (<code>.</code>) y a continuación la llamada al
+            método tal y como lo haríamos con cualquier otra función. Por ejemplo, tenemos la función
+            <a href="/cks/#selo"><code>selo</code></a>, que devuelve el objeto (<a href="/cks/#Obj"><code>Obj</code></a>)
+            seleccionado, y <code>Obj</code> posee el método <a href="/cks/#Obj::health"><code>health</code></a>, que
+            nos devuelve la cantidad de vida del objeto (con tipo <code>int</code>), por lo que para escribir la
+            cantidad de vida de la unidad seleccionada en el chat, pondríamos (nota cómo usamos un punto para llamar
+            a <code>health</code> sobre el retorno de <code>selo</code>):
+        </p>
+        <pre><code class="language-cks">pr(selo.health);</code></pre>
+        <cite><span class="material-icons">warning</span>
+            Si ejecutas el código anterior, la sentencia se ejecutará nada más el juego comience, y al no haber ningún
+            objeto seleccionado, se imprimirá <code>0</code> en el chat. Sin embargo, Imperivm también permite ejecutar
+            comandos desde la ventana de chat: prueba a seleccionar una unidad o edificio, pulsa <em>Intro</em> para
+            abrir la ventana de chat y, a continuación, escribe el comando anterior. Verás que en el chat aparece,
+            justo encima de tu mensaje, la vida del objeto que tienes seleccionado. Esta es una forma fácil de
+            comprobar el resultado de la ejecución de ciertos códigos.
+        </cite>
+        <cite><span class="material-icons">note</span>
+            Nota: en la guía encontrarás que a los métodos que no reciben parámetros y comienzan con minúscula se les
+            llama <em>propiedades</em>. En la práctica, no hay diferencia real entre métodos y propiedades, pero es
+            común distinguirlos, así como es común escribir las propiedades sin paréntesis, mientras que los métodos
+            se suelen llamar con paréntesis incluso si estos no contienen nada.
+        </cite>
+        <p>
+            Algunas funciones tienen el mismo nombre pero reciben diferentes cantidades de argumentos o de distintos
+            tipos. También pueden tener el mismo nombre métodos de diferentes tipos. Por consiguiente, una función
+            se identifica no sólo por su nombre, sino también por los argumentos que recibe y el tipo al que pertenece
+            (en caso de ser un método). A diferentes funciones con el mismo nombre pero diferentes argumentos se les
+            denomina <em>sobrecargas</em>. Un ejemplo serían las diferentes sobrecargas de <code>pr</code>:
+            <a href="/cks/#pr:str"><code>pr(str)</code></a>, <a href="/cks/#pr:int"><code>pr(int)</code></a> y
+            <a href="/cks/#pr:bool"><code>pr(bool)</code></a>.
+        </p>
+        <cite><span class="material-icons">info</span>
+            Las funciones que "no retornan nada", como <code>pr</code>, en realidad retornan el tipo <tt>void</tt>.
+        </cite>
+        <h3 class="normal">Flujo de ejecución</h3>
+        <p>Cada secuencia puede ser ejecutada en paralelo a las demás, de forma que varias secuencias se pueden estar
+            ejecutando a la vez. La ejecución de una secuencia o script se lleva a cabo sentencia por sentencia,
+            una tras otra, de forma secuencial. Dentro de una sentencia, las funciones se ejecutan desde dentro
+            hacia afuera, evaluando primero aquellas cuyo retorno sirve como argumento para la llamada a otra
+            función. Así, por ejemplo, en la siguiente secuencia:
+        </p>
+        <pre><code class="language-cks">pr(GetSettlement("asentamiento").Units[0].raceStr);
+View(GetSettlement("asentamiento").GetCentralBuilding().pos, false);</code></pre>
+        <p>
+            El orden de ejecución sería el siguiente:
+        </p>
+        <ul>
+            <li><code class="language-cks">GetSettlement("asentamiento")</code> obtiene el asentamiento con nombre
+                <code>asentamiento</code>.
+            </li>
+            <li><code class="language-cks">Units</code> obtiene, del asentamiento retornado por
+                <code>GetSettlement</code>, la lista de todas las unidades contenidas en él.
+            </li>
+            <li><code class="language-cks">[0]</code> retorna el primer objeto de la lista.</li>
+            <li><code class="language-cks">raceStr</code> retorna la "raza" de ese objeto y esta es escrita a la
+                consola del juego por <code>pr</code>.
+            </li>
+            <li>A continuación, se procede con la siguiente sentencia.</li>
+            <li><code class="language-cks">GetSettlement("asentamiento").GetCentralBuilding().pos</code>
+                es ejecutado de forma similar al caso anterior, y finalmente <code>View</code> mueve la cámara
+                a la posición retornada por <code>pos</code>, centrando la vista en el edificio central del
+                asentamiento.
+            </li>
+        </ul>
+        <p>Algunas funciones pueden bloquear o detener la ejecución de la secuencia hasta que se completan. Un ejemplo
+            de este tipo de funciones es <a href="/cks/#Sleep:int"><code>Sleep</code></a>, que detiene la ejecución por
+            el tiempo indicado (en milésimas de segundo), o todas las funciones cuyo nombre comienza por
+            <a href="/cks/?s=%5EWait">Wait</a>, que detienen la ejecución hasta que se cumpla una cierta condición.</p>
+        <h3 class="normal">Estructuras de control (if, while, for)</h3>
+        <p></p>
+        <h3 class="normal">Variables y <em>scope</em></h3>
+        <h2>Cómo usar esta guía</h2>
+        <p></p>
+    </section>
+</main>
+<script src="prism.js"></script>
+<script src="data.js"></script>
+<script src="prism-setup.js"></script>
+<script>
+    window.onload = () => {
+        setupPrism();
+        document.querySelectorAll('code.language-cks').forEach(e => Prism.highlightElement(e));
+    };
+</script>
+</body>
+</html>
