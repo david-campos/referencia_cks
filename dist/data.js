@@ -417,6 +417,7 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [{"name": "number", "type": 1, "is_ptr": false}],
             "research_needed": "En mis tests, esto no ha imprimido a ningún lado. He probado si estaba imprimiendo al shell externo sobre el que esté corriendo el juego pero no, también he probado si algún archivo cambiaba o contenía el texto y nada. No estoy seguro de si esto será <i>legacy code</i> que quedó de alguna versión antigua del motor.",
+            "research_needed_en": "In my tests, this did not printed anywhere. I have tested to see if it was printing to the external shell on which the game is running but no, I have also tested if any file changed or contained the text and nothing. I'm not sure if this is <i>legacy code</i> left over from some old version of the engine",
             "related": ["Write:float", "Write:str", "Write:pstr"]
         }, {
             "id": "MIN:int_int",
@@ -607,6 +608,7 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [{"name": "number", "type": 3, "is_ptr": false}],
             "research_needed": "En mis tests, esto no ha imprimido a ningún lado. He probado si estaba imprimiendo al shell externo sobre el que esté corriendo el juego pero no, también he probado si algún archivo cambiaba o contenía el texto y nada. No estoy seguro de si esto será <i>legacy code</i> que quedó de alguna versión antigua del motor.",
+            "research_needed_en": "In my tests, this did not printed anywhere. I have tested to see if it was printing to the external shell on which the game is running but no, I have also tested if any file changed or contained the text and nothing. I'm not sure if this is <i>legacy code</i> left over from some old version of the engine",
             "related": ["Write:int", "Write:str", "Write:pstr"]
         }, {
             "id": "MIN:float_float",
@@ -720,6 +722,7 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [{"name": "number", "type": 4, "is_ptr": false}],
             "research_needed": "No hay ningún tipo de información que explique qué podrían ser las pstr o qué hacen.",
+            "research_needed_en": "There is no information whatsoever to explain what pstr could be or what it does.",
             "related": ["Write:int", "Write:str", "Write:float"]
         }, {
             "id": "Write:str",
@@ -731,6 +734,7 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [{"name": "number", "type": 5, "is_ptr": false}],
             "research_needed": "En mis tests, esto no ha imprimido a ningún lado. He probado si estaba imprimiendo al shell externo sobre el que esté corriendo el juego pero no, también he probado si algún archivo cambiaba o contenía el texto y nada. No estoy seguro de si esto será <i>legacy code</i> que quedó de alguna versión antigua del motor.",
+            "research_needed_en": "In my tests, this did not printed anywhere. I have tested to see if it was printing to the external shell on which the game is running but no, I have also tested if any file changed or contained the text and nothing. I'm not sure if this is <i>legacy code</i> left over from some old version of the engine",
             "related": ["Write:int", "Write:pstr", "Write:float"]
         }, {
             "id": "ptr.pstr::-e-:ptr.pstr_pstr",
@@ -742,6 +746,7 @@ const THE_OBJ = (function () {
             "type": "operator",
             "params": [{"name": "number", "type": 4, "is_ptr": true}, {"name": "number", "type": 4, "is_ptr": false}],
             "research_needed": "No hay ningún tipo de información que explique qué podrían ser las pstr o qué hacen.",
+            "research_needed_en": "There is no information whatsoever to explain what pstr could be or what it does.",
             "related": ["Write:pstr"]
         }, {
             "id": "ptr.str::-e-:ptr.str_str",
@@ -821,7 +826,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}],
-            "research_needed": "No logro encontrar qué hace esta función, he probado con cosas separadas con comas, por si era similar a <a href='#ParseStr:str_ptr.str'>ParseStr</a> pero nada."
+            "research_needed": "No logro encontrar qué hace esta función, he probado con cosas separadas con comas, por si era similar a <a href='#ParseStr:str_ptr.str'>ParseStr</a> pero nada.",
+            "research_needed_en": "I can't figure out what this function does, I have tried strings separated with commas, in case it was similar to <a href='#ParseStr:str_ptr.str'>ParseStr</a> but nothing."
         }, {
             "id": "GetFromStrToEOL:str_str",
             "name": "GetFromStrToEOL",
@@ -831,7 +837,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}],
-            "research_needed": "No logro encontrar qué hace esta función, he probado con cosas separadas con comas, por si era similar a <a href='#ParseStr:str_ptr.str'>ParseStr</a> pero nada. Es seguro asumir que EOL aquí significa End-Of-Line, es decir hasta <tt>\\n</tt> o <tt>\\r\\n</tt>."
+            "research_needed": "No logro encontrar qué hace esta función, he probado con cosas separadas con comas, por si era similar a <a href='#ParseStr:str_ptr.str'>ParseStr</a> pero nada. Es seguro asumir que EOL aquí significa End-Of-Line, es decir hasta <tt>\\n</tt> o <tt>\\r\\n</tt>.",
+            "research_needed_en": "I can't figure out what this function does, I have tried strings separated with commas, just in case it was similar to <a href='#ParseStr:str_ptr.str'>ParseStr</a> but nothing. It's safe to assume that EOL here means End-Of-Line, that is <tt>\\n</tt> or <tt>\\r\\n</tt>."
         }, {
             "id": "str::-p-:str_str",
             "name": "+",
@@ -954,8 +961,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}],
-            "research_needed": "No se encuentra en los scripts del juego, no estoy seguro de qué flags permite setear concretamente o si es <i>legacy code</i> que quedó de versiones anteriores."
+            "params": [{"name": "bitfield", "type": 1, "is_ptr": false}, {"name": "flag", "type": 1, "is_ptr": false}],
+            "description_en": "Returns <tt>true</tt> if the bitwise and operation of bitfield and flag returns non-zero, or <tt>false</tt> otherwise. Example:<pre class='language-cks'>int a;\r\na = 21; // 10101b\r\nIsFlagSet(a, 4); // true</pre>",
+            "related": ["SetFlag:ptr.int_int_bool"]
         }, {
             "id": "SetFlag:ptr.int_int_bool",
             "name": "SetFlag",
@@ -964,12 +972,13 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": true}, {
-                "name": "number",
+            "params": [{"name": "bitfield", "type": 1, "is_ptr": true}, {
+                "name": "flag",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 2, "is_ptr": false}],
-            "research_needed": "No se encuentra en los scripts del juego, no estoy seguro de qué flags permite setear concretamente o si es <i>legacy code</i> que quedó de versiones anteriores."
+            }, {"name": "state", "type": 2, "is_ptr": false}],
+            "description_en": "Updates the bitfield by setting or clearing the flag specified and returns the new value. Example:\r\n<pre class='language-cks'>int a;\r\nSetFlag(a, 5, true);  // a = 101b\r\nIsFlagSet(a, 4);      // true\r\nSetFlag(a, 4, false); // a = 001b\r\nIsFlagSet(a, 4);      // false</pre>",
+            "related": ["IsFlagSet:int_int"]
         }, {
             "id": "Point:int_int",
             "name": "Point",
@@ -1548,9 +1557,7 @@ const THE_OBJ = (function () {
             "of_ptr": true,
             "type": "method",
             "params": [{"name": "clave", "name_en": "key", "type": 5, "is_ptr": false}],
-            "description": "Este método crashea el juego cuando la clave existe en el diccionario.",
-            "description_en": "This method crashes the game when the key exists in the map.",
-            "very_dangerous": true
+            "description_en": "Erases the entry with the key <tt>key</tt> if it exists."
         }, {
             "id": "ptr.StrMap::exists:str",
             "name": "exists",
@@ -3475,6 +3482,7 @@ const THE_OBJ = (function () {
             "params": [],
             "notForSequences": true,
             "research_needed": "Claramente se refiere al texto flotante que se muestra al dejar el ratón sobre los comandos en la interfaz, aparece en la validación de muchos comandos. De todas formas, no lo he documentado porque sólo funciona desde los archivos de validación de comandos y no desde el juego en sí (normalmente hago mis tests con secuencias o metiendo códigos en la ventana de chat), y por tanto no he podido desgranar los detalles aún sobre sus parámetros y funcionamiento exacto.",
+            "research_needed_en": "It clearly refers to the floating text that is displayed when hovering the mouse over the commands in the interface, it appears in the validation of many commands. Anyways, I have not documented it because it only works from the command validation files and not from the game itself (I usually do my tests with sequences or by entering codes in the chat window), and therefore I have not been able to reel off the details still on its parameters and exact operation.",
             "related": ["rollover", "rollover:Obj_bool", "rollover:Obj_str_bool", "rollover:Obj_str", "rollover_desc:Obj_str_bool"]
         }, {
             "id": "rollover:Obj_bool",
@@ -3487,6 +3495,7 @@ const THE_OBJ = (function () {
             "params": [{"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}],
             "notForSequences": true,
             "research_needed": "Claramente se refiere al texto flotante que se muestra al dejar el ratón sobre los comandos en la interfaz, aparece en la validación de muchos comandos. De todas formas, no lo he documentado porque sólo funciona desde los archivos de validación de comandos y no desde el juego en sí (normalmente hago mis tests con secuencias o metiendo códigos en la ventana de chat), y por tanto no he podido desgranar los detalles aún sobre sus parámetros y funcionamiento exacto.",
+            "research_needed_en": "It clearly refers to the floating text that is displayed when hovering the mouse over the commands in the interface, it appears in the validation of many commands. Anyways, I have not documented it because it only works from the command validation files and not from the game itself (I usually do my tests with sequences or by entering codes in the chat window), and therefore I have not been able to reel off the details still on its parameters and exact operation.",
             "related": ["rollover", "rollover:Obj_bool", "rollover:Obj_str_bool", "rollover:Obj_str", "rollover_desc:Obj_str_bool"]
         }, {
             "id": "rollover:Obj_str_bool",
@@ -3503,6 +3512,7 @@ const THE_OBJ = (function () {
             }, {"name": "number", "type": 2, "is_ptr": false}],
             "notForSequences": true,
             "research_needed": "Claramente se refiere al texto flotante que se muestra al dejar el ratón sobre los comandos en la interfaz, aparece en la validación de muchos comandos. De todas formas, no lo he documentado porque sólo funciona desde los archivos de validación de comandos y no desde el juego en sí (normalmente hago mis tests con secuencias o metiendo códigos en la ventana de chat), y por tanto no he podido desgranar los detalles aún sobre sus parámetros y funcionamiento exacto.",
+            "research_needed_en": "It clearly refers to the floating text that is displayed when hovering the mouse over the commands in the interface, it appears in the validation of many commands. Anyways, I have not documented it because it only works from the command validation files and not from the game itself (I usually do my tests with sequences or by entering codes in the chat window), and therefore I have not been able to reel off the details still on its parameters and exact operation.",
             "related": ["rollover", "rollover:Obj_bool", "rollover:Obj_str_bool", "rollover:Obj_str", "rollover_desc:Obj_str_bool"]
         }, {
             "id": "rollover:Obj_str",
@@ -3515,6 +3525,7 @@ const THE_OBJ = (function () {
             "params": [{"name": "number", "type": 11, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}],
             "notForSequences": true,
             "research_needed": "Claramente se refiere al texto flotante que se muestra al dejar el ratón sobre los comandos en la interfaz, aparece en la validación de muchos comandos. De todas formas, no lo he documentado porque sólo funciona desde los archivos de validación de comandos y no desde el juego en sí (normalmente hago mis tests con secuencias o metiendo códigos en la ventana de chat), y por tanto no he podido desgranar los detalles aún sobre sus parámetros y funcionamiento exacto.",
+            "research_needed_en": "It clearly refers to the floating text that is displayed when hovering the mouse over the commands in the interface, it appears in the validation of many commands. Anyways, I have not documented it because it only works from the command validation files and not from the game itself (I usually do my tests with sequences or by entering codes in the chat window), and therefore I have not been able to reel off the details still on its parameters and exact operation.",
             "related": ["rollover", "rollover:Obj_bool", "rollover:Obj_str_bool", "rollover:Obj_str", "rollover_desc:Obj_str_bool"]
         }, {
             "id": "rollover_desc:Obj_str_bool",
@@ -3531,6 +3542,7 @@ const THE_OBJ = (function () {
             }, {"name": "number", "type": 2, "is_ptr": false}],
             "notForSequences": true,
             "research_needed": "Claramente se refiere al texto flotante que se muestra al dejar el ratón sobre los comandos en la interfaz, aparece en la validación de muchos comandos. De todas formas, no lo he documentado porque sólo funciona desde los archivos de validación de comandos y no desde el juego en sí (normalmente hago mis tests con secuencias o metiendo códigos en la ventana de chat), y por tanto no he podido desgranar los detalles aún sobre sus parámetros y funcionamiento exacto.",
+            "research_needed_en": "It clearly refers to the floating text that is displayed when hovering the mouse over the commands in the interface, it appears in the validation of many commands. Anyways, I have not documented it because it only works from the command validation files and not from the game itself (I usually do my tests with sequences or by entering codes in the chat window), and therefore I have not been able to reel off the details still on its parameters and exact operation.",
             "related": ["rollover", "rollover:Obj_bool", "rollover:Obj_str_bool", "rollover:Obj_str", "rollover_desc:Obj_str_bool"]
         }, {
             "id": "cmdcost_gold",
@@ -3623,9 +3635,9 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description": "Obtiene la lista de los objetos seleccionados por el jugador actual.",
-            "description_en": "Gets the list of selected object by the current player.",
-            "related": ["SetPlayer:int", "ClearSelection:int", "SelectionFood", "SelectionGold", "Obj::Deselect:int", "Obj::Deselect", "Obj::Select:int", "SquadList::Select:int"]
+            "description": "Obtiene la lista de los objetos seleccionados por el jugador actual. Igual que <a href='#sel'>sel</a>.",
+            "description_en": "Gets the list of selected object by the current player. Same as <a href='#sel'>sel</a>.",
+            "related": ["sel", "ClearSelection:int", "Obj::Deselect:int", "Obj::Deselect", "Obj::Select:int", "SquadList::Select:int"]
         }, {
             "id": "ClearDebug",
             "name": "ClearDebug",
@@ -3823,6 +3835,7 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [],
             "research_needed": "Aparece en el SUBAI para la desaparición de unidades. No parece tener ningún efecto en los tests que he realizado. Mi idea es que podría tener que ver con el manejo de memoria o algo interno similar del juego, pero quién sabe.",
+            "research_needed_en": "It appears in the SUBAI for the disappearance of units. It doesn't seem to have any effect based on the tests I've done. My idea is that it could have to do with memory management or something similar that is internal to the game, but who knows.",
             "related": ["Obj::RemoveFromStoreBin"]
         }, {
             "id": "Obj::RemoveFromStoreBin",
@@ -3834,6 +3847,7 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [],
             "research_needed": "Aparece en el SUBAI para la desaparición de unidades. No parece tener ningún efecto en los tests que he realizado. Mi idea es que podría tener que ver con el manejo de memoria o algo interno similar del juego, pero quién sabe.",
+            "research_needed_en": "It appears in the SUBAI for the disappearance of units. It doesn't seem to have any effect based on the tests I've done. My idea is that it could have to do with memory management or something similar that is internal to the game, but who knows.",
             "related": ["Obj::AddToStoreBin"]
         }, {
             "id": "Obj::IsInState",
@@ -3844,7 +3858,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "research_needed": "Aparece en el SUBAI para el vuelo de águilas y cuervos, al comienzo hay un while que simplemente detiene el script hasta que este método devuelva <tt>true</tt>. He probado a hacerle <tt>pr</tt> en bucle e imprimir ciertos valores como <a href='#Unit::GetAnimState'>Unit::GetAnimState</a> pero no logro relacionarlo con nada."
+            "research_needed": "Aparece en el SUBAI para el vuelo de águilas y cuervos, al comienzo hay un while que simplemente detiene el script hasta que este método devuelva <tt>true</tt>. He probado a hacerle <tt>pr</tt> en bucle e imprimir ciertos valores como <a href='#Unit::GetAnimState'>Unit::GetAnimState</a> pero no logro relacionarlo con nada.",
+            "research_needed_en": "It appears in the SUBAI for the flight of eagles and crows, at the beginning there is a while that simply stops the script until this method returns <tt>true</tt>. I have tried to make it <tt>pr</tt> in a loop and print certain values ​​like <a href='#Unit::GetAnimState'>Unit::GetAnimState</a> but I can't relate it to anything"
         }, {
             "id": "Obj::PlaySound:str",
             "name": "PlaySound",
@@ -3959,6 +3974,7 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "research_needed": "Yo diría que tiene que estar relacionado con la modificación de terreno(?) Deberíamos probarlo en el editor. De todas formas, el parámetro <tt>string</tt> is probablemente un archivo y valores incorrectos parecen crashear el juego en mis tests.",
+            "research_needed_en": "I'd say it has to be related to terrain modification? We should try it in the editor. Anyway, the string parameter is probably a file and wrong values ​​seem to crash the game in my tests.",
             "params": [{"name": "number", "type": 5, "is_ptr": false}, {
                 "name": "number",
                 "type": 1,
@@ -4940,6 +4956,7 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [],
             "research_needed": "Estaría bien investigar qué características tiene en cuenta para decidir que un objeto es &quot;mejor&quot; objetivo que otro.",
+            "research_needed_en": "It would be nice to investigate what characteristics it takes into account when deciding that an object is a &quot;better&quot; objective than another",
             "description": "Mejor objetivo para atacar para las <a href='class.htm#FakeTower'>FakeTower</a>s. Los fortines son <a href='#Settlement::IsIndependent'>asentamientos independientes</a>, pero entre los edificios asociados cuentan con varias <a href='class.htm#FakeTower'>FakeTower</a>, de las cuales salen las flechas cuando el fortín ataca unidades a su alrededor. Este método devuelve el &quot;mejor objetivo&quot; para estas torres para atacar, aunque los criterios que definen qué objetivo es mejor no están claros.",
             "description_en": "Best target to attack for <a href='class.htm?en#FakeTower'>FakeTower</a>s. The outposts are <a href='#Settlement::IsIndependent'>independent settlements</a>, but between their associated buildings they count on several  <a href='class.htm?en#FakeTower'>FakeTower</a>, from which the arrows come out when the outpost attacks units around it. This method returns &quot;the best target&quot; for this towers to attack, but the criteria behind this selection is not clear.",
             "related": ["Building::Attack:Obj"]
@@ -5001,6 +5018,7 @@ const THE_OBJ = (function () {
                 "is_ptr": false
             }],
             "research_needed": "Desconozco qué significa el segundo argumento. Cuando es <tt>true</tt> el método parece retornar siempre la <a href='#Obj::pos'>posición</a> del edificio. Quizás tenga una utilidad especial con un tipo de edificio concreto o quizás sea legacy code.",
+            "research_needed_en": "I don't know what the second argument means. When <tt>true</tt> the method seems to always return the <a href='#Obj::pos'>position</a> of the building. Perhaps it has a special utility with a specific type of building or perhaps it is legacy code",
             "description": "Obtiene el punto por el que salir del edificio para ir hacia el destino dado.",
             "description_en": "Obtains the point by which to get out of the building to go towards the given destination.",
             "related": ["Building::GetExitPoint:Obj_point", "Building::GetEnterPoint:Unit"]
@@ -5606,7 +5624,7 @@ const THE_OBJ = (function () {
             "params": [],
             "description": "Cantidad de comida de la que dispone actualmente la unidad.",
             "description_en": "Amount of food currently available to the unit.",
-            "related": ["Unit::maxfood", "Unit::SetFood:int", "Settlement::food", "Squad::food", "SelAvgFood", "SelectionFood"]
+            "related": ["Unit::maxfood", "Unit::SetFood:int", "Settlement::food", "Squad::food", "SelAvgFood"]
         }, {
             "id": "Unit::maxfood",
             "name": "maxfood",
@@ -7222,7 +7240,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Toggles the map visibility (shows if hidden, or hides if shown).",
+            "related": ["BlockMiniMap:bool", "ShowZoomMap", "HideZoomMap", "_ZoomMapLastShownTime"]
         }, {
             "id": "ShowZoomMap",
             "name": "ShowZoomMap",
@@ -7231,7 +7251,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Shows the map.",
+            "related": ["BlockMiniMap:bool", "HideZoomMap", "ToggleZoomMap", "_ZoomMapLastShownTime"]
         }, {
             "id": "HideZoomMap",
             "name": "HideZoomMap",
@@ -7240,7 +7262,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Hides the map.",
+            "related": ["BlockMiniMap:bool", "ShowZoomMap", "ToggleZoomMap", "_ZoomMapLastShownTime"]
         }, {
             "id": "_ZoomMapLastShownTime",
             "name": "_ZoomMapLastShownTime",
@@ -7249,7 +7273,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the <a href='#GetTime'>time</a> since the map was last shown.",
+            "related": ["GetTime", "ShowZoomMap", "HideZoomMap", "ToggleZoomMap"]
         }, {
             "id": "Wagon::amount",
             "name": "amount",
@@ -8063,7 +8089,10 @@ const THE_OBJ = (function () {
             "of": 21,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "nombre_item", "name_en": "item_name", "type": 5, "is_ptr": false}],
+            "description": "Añade el ítem con el nombre de script dado al inventario del objeto. Si el objeto tiene el inventario lleno o no existe un ítem con el nombre de script dado, no se hará nada. Devuelve <tt>true</tt> si el ítem ha sido añadido al inventario del objeto, o <tt>false</tt> si no.",
+            "description_en": "Adds the item with the given script name to the inventory of the object. If the object has a full inventory or an item with the given script name does not exist, nothing will happen. It returns <tt>true</tt> if the item has been added to the inventory of the object, or <tt>false</tt> otherwise.",
+            "related": ["Obj::AddItem:str"]
         }, {
             "id": "ItemHolder::count",
             "name": "count",
@@ -8081,7 +8110,9 @@ const THE_OBJ = (function () {
             "of": 21,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "nombre_item", "name_en": "item_name", "type": 5, "is_ptr": false}],
+            "description_en": "Returns true if the object has the item with the given script name in its inventory, or false otherwise.",
+            "related": ["Obj::HasItem:str"]
         }, {
             "id": "ItemHolder::RemoveItem:str",
             "name": "RemoveItem",
@@ -8090,7 +8121,10 @@ const THE_OBJ = (function () {
             "of": 21,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "nombre_item", "name_en": "item_name", "type": 5, "is_ptr": false}],
+            "description": "Elimina un ítem con el nombre de scripts dado del inventario del objeto.",
+            "description_en": "Removes one item with the given scripting name from the item slots of the object.",
+            "related": ["Obj::RemoveItem:str", "ItemHolder::RemoveAll"]
         }, {
             "id": "ItemHolder::RemoveAll",
             "name": "RemoveAll",
@@ -9105,7 +9139,7 @@ const THE_OBJ = (function () {
             "params": [],
             "description": "Retorna la posición de la cámara en el mapa. La posición de la cámara se corresponde con el punto al centro de la pantalla.",
             "description_en": "Returns the position of the camera in the map. The position of the camera is the point at the center of the screen.",
-            "related": ["View:point_bool"]
+            "related": ["View:point_bool", "ViewSlot"]
         }, {
             "id": "View:point_bool",
             "name": "View",
@@ -9114,7 +9148,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
+            "params": [{"name": "posición", "name_en": "position", "type": 6, "is_ptr": false}, {
+                "name": "bloquear",
+                "name_en": "lock",
+                "type": 2,
+                "is_ptr": false
+            }],
+            "description_en": "Sets the position of the view (in other words, the camera), and locks or unlocks the view.",
+            "related": ["ViewPos", "IsViewLocked", "LockView", "UnlockView"]
         }, {
             "id": "PlayMusic:str",
             "name": "PlayMusic",
@@ -9479,7 +9520,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the average level of all selected objects.",
+            "related": ["SelAvgArmor", "SelAvgDamage", "SelAvgFood", "SelAvgStamina"]
         }, {
             "id": "SelAvgFood",
             "name": "SelAvgFood",
@@ -9488,7 +9531,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the average food of all selected objects.",
+            "related": ["SelAvgArmor", "SelAvgDamage", "SelAvgLevel", "SelAvgStamina"]
         }, {
             "id": "SelAvgStamina",
             "name": "SelAvgStamina",
@@ -9497,7 +9542,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the average stamina of all selected objects.",
+            "related": ["SelAvgArmor", "SelAvgDamage", "SelAvgFood", "SelAvgLevel"]
         }, {
             "id": "SelAvgArmor",
             "name": "SelAvgArmor",
@@ -9506,7 +9553,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the average armor of all selected objects.",
+            "related": ["SelAvgDamage", "SelAvgFood", "SelAvgLevel", "SelAvgStamina"]
         }, {
             "id": "SelAvgDamage",
             "name": "SelAvgDamage",
@@ -9515,7 +9564,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the average damage of all selected objects.",
+            "related": ["SelAvgArmor", "SelAvgFood", "SelAvgLevel", "SelAvgStamina"]
         }, {
             "id": "SelHealth",
             "name": "SelHealth",
@@ -9524,7 +9575,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the total <a href='#Obj::health'>health</a> of all selected objects.",
+            "related": ["SelMaxHealth"]
         }, {
             "id": "SelMaxHealth",
             "name": "SelMaxHealth",
@@ -9533,7 +9586,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the total <a href='#Obj::maxhealth'>max health</a> of all selected objects.",
+            "related": ["SelHealth"]
         }, {
             "id": "LockView",
             "name": "LockView",
@@ -9542,7 +9597,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Locks the view, which prevents the current player from scrolling. The map can still be used.",
+            "related": ["IsViewLocked", "UnlockView", "StartViewFollow:Unit", "StartViewFollow:NamedObj", "StopViewFollow", "BlockMiniMap:bool"]
         }, {
             "id": "UnlockView",
             "name": "UnlockView",
@@ -9551,7 +9608,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Unlocks the view, which allows the current player to scroll again.",
+            "related": ["IsViewLocked", "LockView", "StartViewFollow:Unit", "StartViewFollow:NamedObj", "StopViewFollow"]
         }, {
             "id": "IsViewLocked",
             "name": "IsViewLocked",
@@ -9560,7 +9619,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns <tt>true</tt> if the view is locked, or <tt>false</tt> otherwise. Use <a href='#LockView'>LockView</a> to lock the view.",
+            "related": ["LockView", "UnlockView", "StartViewFollow:Unit", "StartViewFollow:NamedObj", "StopViewFollow"]
         }, {
             "id": "StartViewFollow:Unit",
             "name": "StartViewFollow",
@@ -9569,7 +9630,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "destino", "name_en": "target", "type": 13, "is_ptr": false}],
+            "description_en": "Starts following the <tt>target</tt> (the view is locked in the meantime).",
+            "related": ["IsViewLocked", "LockView", "UnlockView", "StartViewFollow:NamedObj", "StopViewFollow"]
         }, {
             "id": "StopViewFollow",
             "name": "StopViewFollow",
@@ -9578,7 +9641,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Stops following the target.",
+            "related": ["IsViewLocked", "LockView", "UnlockView", "StartViewFollow:Unit", "StartViewFollow:NamedObj"]
         }, {
             "id": "StartViewFollow:NamedObj",
             "name": "StartViewFollow",
@@ -9587,7 +9652,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 29, "is_ptr": false}]
+            "params": [{"name": "destino", "name_en": "target", "type": 29, "is_ptr": false}],
+            "description_en": "Starts following the <tt>target</tt> (the view is locked in the meantime).",
+            "related": ["IsViewLocked", "LockView", "UnlockView", "StartViewFollow:Unit", "StopViewFollow"]
         }, {
             "id": "SetDifficulty:int",
             "name": "SetDifficulty",
@@ -9614,7 +9681,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns a <a href='#rect'>rect</a> encompassing the entire map.",
+            "related": ["GetMapSize"]
         }, {
             "id": "MapName",
             "name": "MapName",
@@ -9623,7 +9692,8 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the current map's name."
         }, {
             "id": "ChangeMap:str_str",
             "name": "ChangeMap",
@@ -9717,7 +9787,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 2, "is_ptr": false}]
+            "params": [{"name": "obstruido", "name_en": "blocked", "type": 2, "is_ptr": false}],
+            "description_en": "Prevents the map from being shown by the player (with space), but it can still be shown using <a href='#ShowZoomMap'>ShowZoomMap</a>.",
+            "related": ["ShowZoomMap", "HideZoomMap", "ToggleZoomMap"]
         }, {
             "id": "IsExplored:point_int",
             "name": "IsExplored",
@@ -9735,7 +9807,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the total gold carried by all selected wagons.",
+            "related": ["SelectionFood"]
         }, {
             "id": "SelectionFood",
             "name": "SelectionFood",
@@ -9744,7 +9818,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the total food carried by all selected wagons.",
+            "related": ["SelectionGold"]
         }, {
             "id": "NoTents",
             "name": "NoTents",
@@ -10167,11 +10243,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "jugador1", "name_en": "player1", "type": 1, "is_ptr": false}, {
+                "name": "jugador2",
+                "name_en": "player2",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 2, "is_ptr": false}]
+            }, {"name": "relación", "name_en": "relation", "type": 2, "is_ptr": false}],
+            "description_en": "Prevents <tt>player2</tt> from being attacked by <tt>player1</tt>.",
+            "related": ["ClearDiplomacy", "DiplAreAllied:int_int", "DiplGetCeaseFire:int_int", "DiplShareView:int_int_bool", "DiplGetShareView:int_int", "DiplShareSupport:int_int_bool", "DiplGetShareSupport:int_int", "DiplShareControl:int_int_bool", "DiplGetShareControl:int_int"]
         }, {
             "id": "DiplShareView:int_int_bool",
             "name": "DiplShareView",
@@ -10180,11 +10259,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "jugador1", "name_en": "player1", "type": 1, "is_ptr": false}, {
+                "name": "jugador2",
+                "name_en": "player2",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 2, "is_ptr": false}]
+            }, {"name": "relación", "name_en": "relation", "type": 2, "is_ptr": false}],
+            "description_en": "Allows <tt>player2</tt> to see what <tt>player1</tt> sees.",
+            "related": ["ClearDiplomacy", "DiplAreAllied:int_int", "DiplCeaseFire:int_int_bool", "DiplGetCeaseFire:int_int", "DiplGetShareView:int_int", "DiplShareSupport:int_int_bool", "DiplGetShareSupport:int_int", "DiplShareControl:int_int_bool", "DiplGetShareControl:int_int"]
         }, {
             "id": "DiplShareControl:int_int_bool",
             "name": "DiplShareControl",
@@ -10193,11 +10275,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "jugador1", "name_en": "player1", "type": 1, "is_ptr": false}, {
+                "name": "jugador2",
+                "name_en": "player2",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 2, "is_ptr": false}]
+            }, {"name": "relación", "name_en": "relation", "type": 2, "is_ptr": false}],
+            "description_en": "Allows <tt>player2</tt> to control <tt>player1</tt>.",
+            "related": ["ClearDiplomacy", "DiplAreAllied:int_int", "DiplCeaseFire:int_int_bool", "DiplGetCeaseFire:int_int", "DiplShareView:int_int_bool", "DiplGetShareView:int_int", "DiplShareSupport:int_int_bool", "DiplGetShareSupport:int_int", "DiplGetShareControl:int_int"]
         }, {
             "id": "DiplShareSupport:int_int_bool",
             "name": "DiplShareSupport",
@@ -10206,11 +10291,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "jugador1", "name_en": "player1", "type": 1, "is_ptr": false}, {
+                "name": "jugador2",
+                "name_en": "player2",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 2, "is_ptr": false}]
+            }, {"name": "relación", "name_en": "relation", "type": 2, "is_ptr": false}],
+            "description_en": "Allows <tt>player2</tt> to share their support (like food) with <tt>player1</tt>.",
+            "related": ["ClearDiplomacy", "DiplAreAllied:int_int", "DiplCeaseFire:int_int_bool", "DiplGetCeaseFire:int_int", "DiplShareView:int_int_bool", "DiplGetShareView:int_int", "DiplGetShareSupport:int_int", "DiplShareControl:int_int_bool", "DiplGetShareControl:int_int"]
         }, {
             "id": "DiplGetCeaseFire:int_int",
             "name": "DiplGetCeaseFire",
@@ -10219,7 +10307,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "jugador1", "name_en": "player1", "type": 1, "is_ptr": false}, {
+                "name": "jugador2",
+                "name_en": "player2",
+                "type": 1,
+                "is_ptr": false
+            }],
+            "description_en": "Returns the cease-fire relation between <tt>player1</tt> and <tt>player2</tt>.",
+            "related": ["ClearDiplomacy", "DiplAreAllied:int_int", "DiplCeaseFire:int_int_bool", "DiplShareView:int_int_bool", "DiplGetShareView:int_int", "DiplShareSupport:int_int_bool", "DiplGetShareSupport:int_int", "DiplShareControl:int_int_bool", "DiplGetShareControl:int_int"]
         }, {
             "id": "DiplGetShareView:int_int",
             "name": "DiplGetShareView",
@@ -10228,7 +10323,13 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "jugador1", "name_en": "player1", "type": 1, "is_ptr": false}, {
+                "name": "jugador2",
+                "name_en": "player2",
+                "type": 1,
+                "is_ptr": false
+            }],            "description_en": "Returns the shared view relation between <tt>player1</tt> and <tt>player2</tt>.",
+            "related": ["ClearDiplomacy", "DiplAreAllied:int_int", "DiplCeaseFire:int_int_bool", "DiplGetCeaseFire:int_int", "DiplShareView:int_int_bool", "DiplShareSupport:int_int_bool", "DiplGetShareSupport:int_int", "DiplShareControl:int_int_bool", "DiplGetShareControl:int_int"]
         }, {
             "id": "DiplGetShareControl:int_int",
             "name": "DiplGetShareControl",
@@ -10237,7 +10338,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "jugador1", "name_en": "player1", "type": 1, "is_ptr": false}, {
+                "name": "jugador2",
+                "name_en": "player2",
+                "type": 1,
+                "is_ptr": false
+            }],
+            "description_en": "Returns the shared control relation between <tt>player1</tt> and <tt>player2</tt>.",
+            "related": ["ClearDiplomacy", "DiplAreAllied:int_int", "DiplCeaseFire:int_int_bool", "DiplGetCeaseFire:int_int", "DiplShareView:int_int_bool", "DiplGetShareView:int_int", "DiplShareSupport:int_int_bool", "DiplGetShareSupport:int_int", "DiplShareControl:int_int_bool"]
         }, {
             "id": "DiplGetShareSupport:int_int",
             "name": "DiplGetShareSupport",
@@ -10246,7 +10354,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "jugador1", "name_en": "player1", "type": 1, "is_ptr": false}, {
+                "name": "jugador2",
+                "name_en": "player2",
+                "type": 1,
+                "is_ptr": false
+            }],
+            "description_en": "Returns the shared support relation between <tt>player1</tt> and <tt>player2</tt>.",
+            "related": ["ClearDiplomacy", "DiplAreAllied:int_int", "DiplCeaseFire:int_int_bool", "DiplGetCeaseFire:int_int", "DiplShareView:int_int_bool", "DiplGetShareView:int_int", "DiplShareSupport:int_int_bool", "DiplShareControl:int_int_bool", "DiplGetShareControl:int_int"]
         }, {
             "id": "ClearDiplomacy",
             "name": "ClearDiplomacy",
@@ -10255,7 +10370,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Resets diplomacy so nobody is allied in any way.",
+            "related": ["DiplAreAllied:int_int", "DiplCeaseFire:int_int_bool", "DiplGetCeaseFire:int_int", "DiplShareView:int_int_bool", "DiplGetShareView:int_int", "DiplShareSupport:int_int_bool", "DiplGetShareSupport:int_int", "DiplShareControl:int_int_bool", "DiplGetShareControl:int_int"]
         }, {
             "id": "RecreateExploration",
             "name": "RecreateExploration",
@@ -10614,7 +10731,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "contar", "name_en": "count", "type": 1, "is_ptr": false}],
+            "itemScriptOnly": true,
+            "description_en": "Subtracts <tt>count</tt> from the <a href='#GetThis'>current item's</a> use count and removes the item if the use count becomes less than 1. Equivalent to: <pre class='language-cks'>GetThis().SetUseCount(GetThis().use_count - count);\r\nif (GetThis().use_count < 1) owner.RemoveItem(owner.GetItemIndex(GetThis()));</pre>",
+            "related": ["GetUseCount", "SetUseCount:int", "Item::use_count", "Item::SetUseCount:int"]
         }, {
             "id": "GetUseCount",
             "name": "GetUseCount",
@@ -10623,7 +10743,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "itemScriptOnly": true,
+            "description_en": "Returns the <a href='#GetThis'>current item's</a> use count, an example use of this can be seen with the healing water item. This value is always 0 in the item's On Die script. Equivalent to <tt class='language-cks'>GetThis().use_count</tt>.",
+            "related": ["SetUseCount:int", "ItemUsed:int", "Item::use_count", "Item::SetUseCount:int"]
         }, {
             "id": "Item::use_count",
             "name": "use_count",
@@ -10632,7 +10755,9 @@ const THE_OBJ = (function () {
             "of": 12,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description_en": "The item's use count, an example use of this can be seen with the healing water item. This value is always 0 in the item's On Die script.",
+            "related": ["GetUseCount", "SetUseCount:int", "ItemUsed:int", "Item::SetUseCount:int"]
         }, {
             "id": "Item::custom_data",
             "name": "custom_data",
@@ -10641,7 +10766,9 @@ const THE_OBJ = (function () {
             "of": 12,
             "of_ptr": false,
             "type": "property",
-            "params": []
+            "params": [],
+            "description_en": "Custom data for an item which can be set with <a href='#Item::SetCustomData:int'>Item::SetCustomData</a> which you can do as you like with. This value is always -1 in the item's On Die script.",
+            "related": ["Item::SetCustomData:int"]
         }, {
             "id": "Item::id",
             "name": "id",
@@ -10685,7 +10812,9 @@ const THE_OBJ = (function () {
             "of": 12,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Runs the item's No Target script.",
+            "related": ["Obj::UseItem:str", "Item::Use:Obj", "Item::Use:point"]
         }, {
             "id": "Item::Use:Obj",
             "name": "Use",
@@ -10694,7 +10823,9 @@ const THE_OBJ = (function () {
             "of": 12,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 11, "is_ptr": false}]
+            "params": [{"name": "destino", "name_en": "target", "type": 11, "is_ptr": false}],
+            "description_en": "Runs the item's Target script with the specified target.",
+            "related": ["Item::Use", "Item::Use:point"]
         }, {
             "id": "Item::Use:point",
             "name": "Use",
@@ -10703,7 +10834,9 @@ const THE_OBJ = (function () {
             "of": 12,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "destino", "name_en": "target", "type": 6, "is_ptr": false}],
+            "description_en": "Runs the item's Location script with the specified position.",
+            "related": ["Item::Use", "Item::Use:Obj"]
         }, {
             "id": "Item::SetCustomData:int",
             "name": "SetCustomData",
@@ -10712,7 +10845,9 @@ const THE_OBJ = (function () {
             "of": 12,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "datos", "name_en": "data", "type": 1, "is_ptr": false}],
+            "description_en": "Sets the item's custom data to <tt>data</tt>, which you can do as you like with.",
+            "related": ["Item::custom_data"]
         }, {
             "id": "GetThis",
             "name": "GetThis",
@@ -10721,7 +10856,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "itemScriptOnly": true,
+            "description_en": "Returns the current item. This should only be used in an item script (except the On Die script), otherwise an invalid Item is returned."
         }, {
             "id": "Flying::PlayAnim:int_point_int",
             "name": "PlayAnim",
@@ -12513,7 +12650,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "research_needed_en": "The x coordinate of the returned point seems to be divided by 128, but the scaling of the y coordinate does not seem to make sense.",
+            "description_en": "Similar to <a href='#ViewPos'>ViewPos</a>, but scaled down in some way.",
+            "related": ["ViewPos"]
         }, {
             "id": "Squadize:ObjList_ptr.SquadList_int",
             "name": "Squadize",
@@ -13392,7 +13532,8 @@ const THE_OBJ = (function () {
             "of": 33,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "rango", "name_en": "range", "type": 1, "is_ptr": false}],
+            "description_en": "Makes the squad leader pick up the nearest item in the specified range."
         }, {
             "id": "Obj::HasItem:str",
             "name": "HasItem",
@@ -13401,7 +13542,8 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "nombre_item", "name_en": "item_name", "type": 5, "is_ptr": false}],
+            "description_en": "Returns true if the object has the item with the given script name in its inventory, or false otherwise.",
         }, {
             "id": "Obj::UseItem:str",
             "name": "UseItem",
@@ -13410,7 +13552,9 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "nombre_item", "name_en": "item_name", "type": 5, "is_ptr": false}],
+            "description_en": "If the item with the given script name is in the inventory of the object, runs the item's No Target script and returns true, or returns false otherwise. Equivalent to <tt class='language-cks'>if (obj.HasItem(item_name)) obj.FindItem(item_name).Use();</tt>.",
+            "related": ["Item::Use"]
         }, {
             "id": "FindTeleport:int_point_point",
             "name": "FindTeleport",
@@ -13743,7 +13887,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Selects the <a href='#Squad'>Squad</a> the selected object is in.",
+            "related": ["SelSquad:int_int", "SelSquadLeader"]
         }, {
             "id": "SelSquad:int_int",
             "name": "SelSquad",
@@ -13752,7 +13898,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}, {"name": "squad", "type": 1, "is_ptr": false}],
+            "description_en": "Selects the specified player's <a href='#Squad'>Squad</a>.",
+            "related": ["SelSquad", "SelSquadLeader"]
         }, {
             "id": "SelSquadLeader",
             "name": "SelSquadLeader",
@@ -13761,7 +13909,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Selects the leader of the <a href='#Squad'>Squad</a> the selected object is in. If the object is attached to a <a href='#Hero'>Hero</a>, that hero is the squad leader, otherwise it is the first object in the squad.",
+            "related": ["SelSquad", "SelSquad:int_int"]
         }, {
             "id": "GAIKA::Dump",
             "name": "Dump",
@@ -14637,7 +14787,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Obtiene la lista de los objetos seleccionados por el jugador actual. Igual que <a href='#_GetSelection'>_GetSelection</a>.",
+            "description_en": "Gets the list of selected object by the current player. Same as <a href='#_GetSelection'>_GetSelection</a>.",
+            "related": ["selo", "selu", "selh", "selb", "sels", "selsq", "selg"]
         }, {
             "id": "selo",
             "name": "selo",
@@ -14646,7 +14799,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the first selected object. Equivalent to <tt class='language-cks'>sel()[0]</tt>.",
+            "related": ["sel", "selu", "selh", "selb", "sels", "selsq", "selg"]
         }, {
             "id": "selu",
             "name": "selu",
@@ -14655,7 +14810,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the first selected object as a <a href='#Unit'>Unit</a>. Equivalent to <tt class='language-cks'>sel()[0].AsUnit()</tt>.",
+            "related": ["sel", "selo", "selh", "selb", "sels", "selsq", "selg"]
         }, {
             "id": "selh",
             "name": "selh",
@@ -14664,7 +14821,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the first selected object as a <a href='#Hero'>Hero</a>. Equivalent to <tt class='language-cks'>sel()[0].AsHero()</tt>.",
+            "related": ["sel", "selo", "selu", "selb", "sels", "selsq", "selg"]
         }, {
             "id": "selb",
             "name": "selb",
@@ -14673,7 +14832,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the first selected object as a <a href='#Building'>Building</a>. Equivalent to <tt class='language-cks'>sel()[0].AsBuilding()</tt>.",
+            "related": ["sel", "selo", "selu", "selh", "sels", "selsq", "selg"]
         }, {
             "id": "sels",
             "name": "sels",
@@ -14682,7 +14843,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the <a href='#Settlement'>Settlement</a> of the first selected object. Equivalent to <tt class='language-cks'>sel()[0].AsBuilding().AsSettlement()</tt>.",
+            "related": ["sel", "selo", "selu", "selh", "selb", "selsq", "selg"]
         }, {
             "id": "selsq",
             "name": "selsq",
@@ -14691,7 +14854,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the <a href='#Squad'>Squad</a> of the first selected object. Equivalent to <tt class='language-cks'>sel()[0].AsUnit().GetSquad()</tt>.",
+            "related": ["sel", "selo", "selu", "selh", "selb", "sels", "selg"]
         }, {
             "id": "selg",
             "name": "selg",
@@ -14700,7 +14865,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description_en": "Returns the <a href='#GAIKA'>GAIKA</a> of the first selected object. Equivalent to <tt class='language-cks'>GetGAIKA(sel()[0])</tt>.",
+            "related": ["sel", "selo", "selu", "selh", "selb", "sels"]
         }, {
             "id": "Desync",
             "name": "Desync",
@@ -15137,7 +15304,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "nombre_item", "name_en": "item_name", "type": 5, "is_ptr": false}],
+            "description_en": "Gives the selected object anitem with the given script name. Equivalent to <tt class='language-cks'>selo.AddItem(item_name);</tt>",
+            "related": ["Obj::AddItem:str"]
         }, {
             "id": "_PlayersAlly:int_int",
             "name": "_PlayersAlly",
@@ -16594,7 +16763,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "jugador1", "name_en": "player1", "type": 1, "is_ptr": false}, {
+                "name": "jugador2",
+                "name_en": "player2",
+                "type": 1,
+                "is_ptr": false
+            }],
+            "description_en": "Returns true if <tt>player1</tt> and <tt>player2</tt> have an allied victory and there is a symmetric cease-fire between the two players, or false otherwise.",
+            "related": ["_PlayersAlly:int_int", "_PlayersMakeEnemies:int_int", "ClearDiplomacy", "DiplCeaseFire:int_int_bool", "DiplGetCeaseFire:int_int", "DiplShareView:int_int_bool", "DiplGetShareView:int_int", "DiplShareSupport:int_int_bool", "DiplGetShareSupport:int_int", "DiplShareControl:int_int_bool", "DiplGetShareControl:int_int"]
         }, {
             "id": "Squad::GetLastAttacker",
             "name": "GetLastAttacker",
@@ -16621,7 +16797,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "contar", "name_en": "count", "type": 1, "is_ptr": false}],
+            "itemScriptOnly": true,
+            "description_en": "Sets the <a href='#GetThis'>current item's</a> use count to <tt>count</tt>. Equivalent to <tt class='language-cks'>GetThis().SetUseCount(count);</tt>.",
+            "related": ["GetUseCount", "ItemUsed:int", "Item::use_count", "Item::SetUseCount:int"]
         }, {
             "id": "Item::SetUseCount:int",
             "name": "SetUseCount",
@@ -16630,7 +16809,9 @@ const THE_OBJ = (function () {
             "of": 12,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "contar", "name_en": "count", "type": 1, "is_ptr": false}],
+            "description_en": "Sets the item's use count to <tt>count</tt>.",
+            "related": ["GetUseCount", "SetUseCount:int", "ItemUsed:int", "Item::use_count"]
         }, {
             "id": "WaitForMapChange",
             "name": "WaitForMapChange",
