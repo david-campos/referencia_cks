@@ -12711,11 +12711,12 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "comando", "name_en": "command", "type": 5, "is_ptr": false}, {
+                "name": "oro",
+                "name_en": "gold",
                 "type": 1,
                 "is_ptr": true
-            }, {"name": "number", "type": 1, "is_ptr": true}]
+            }, {"name": "comida", "name_en": "food", "type": 1, "is_ptr": true}]
         }, {
             "id": "GetCmdStaminaCost:str",
             "name": "GetCmdStaminaCost",
@@ -12886,7 +12887,7 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}]
         }, {
             "id": "MilEval:int",
             "name": "MilEval",
@@ -13262,11 +13263,12 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "punto", "name_en": "pt", "type": 6, "is_ptr": false}, {
+                "name": "tipo", "name_en": "type",
                 "type": 5,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false},
+                {"name": "fltPlayer", "type": 1, "is_ptr": false}]
         }, {
             "id": "NearestSet:point_str_int",
             "name": "NearestSet",
@@ -13461,7 +13463,11 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "clase", "name_en": "class", "type": 5, "is_ptr": false},
+                {"name": "raza", "name_en": "race", "type": 1, "is_ptr": false}],
+            "description": "Retorna el índice de la clase de unidad dada dentro de la <a href='#Obj::race'>raza</a> indicada. Si la clase no es una clase de unidad de la raza indicada, retorna -1. Puedes utilizar <a href='#UType:int_int'>UType</a> para realizar la transformación inversa.",
+            "description_en": "Returns the index of the given class of unit inside the given <a href='#Obj::race'>race</a>. If the class is not a class of unit of the given race, it returns -1. You can use <a href='#UType:int_int'>UType</a> to perform the inverse transformation.",
+            "related": ["UType:int_int", "UTech:int_int", "UTrainCmd:int_int", "UEnabled:int_int"]
         }, {
             "id": "UType:int_int",
             "name": "UType",
@@ -13470,7 +13476,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "indice", "name_en": "index", "type": 1, "is_ptr": false}, {"name": "raza", "name_en": "race", "type": 1, "is_ptr": false}],
+            "description": "Retorna la i-ésima clase de unidad de la <a href='#Obj::race'>raza</a> dada. Si el índice no es válido, devuelve una cadena vacía. Puedes utilizar <a href='#RUType:str_int'>RUType</a> para realizar la transformación inversa.",
+            "description_en": "Returns the i-th class of unit for the given <a href='#Obj::race'>race</a>. If the index is not valid, it returns an empty string. You can use <a href='#RUType:str_int'>RUType</a> to perform the inverse transformation.",
+            "related": ["RUType:str_int", "UTech:int_int", "UTrainCmd:int_int", "UEnabled:int_int"]
         }, {
             "id": "UTech:int_int",
             "name": "UTech",
@@ -14921,7 +14930,7 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "sIni", "type": 5, "is_ptr": false}, {"name": "sSection", "type": 5, "is_ptr": false}]
         }, {
             "id": "F5",
             "name": "F5",
@@ -15037,11 +15046,11 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "X", "type": 1, "is_ptr": false}, {
+                "name": "Y",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "Z", "type": 1, "is_ptr": false}, {"name": "ambiente", "name_en": "ambient", "type": 1, "is_ptr": false}]
         }, {
             "id": "DumpFuncToXML",
             "name": "DumpFuncToXML",
@@ -15472,7 +15481,7 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}, {"name": "num", "type": 1, "is_ptr": false}]
         }, {
             "id": "UIShowTab:int",
             "name": "UIShowTab",
