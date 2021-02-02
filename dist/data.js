@@ -962,7 +962,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "bitfield", "type": 1, "is_ptr": false}, {"name": "flag", "type": 1, "is_ptr": false}],
-            "description_en": "Returns <tt>true</tt> if the bitwise and operation of bitfield and flag returns non-zero, or <tt>false</tt> otherwise. Example:<pre class='language-cks'>int a;\r\na = 21; // 10101b\r\nIsFlagSet(a, 4); // true</pre>",
+            "description": "Retorna <tt>true</tt> si la operación AND bit a bit entre <tt>bitfield</tt> y <tt>flag</tt> devuelve un valor no-nulo, o <tt>false</tt> en caso contrario. Por ejemplo: <pre class='language-cks'>int a;\r\na=21; // 10101 en binario\r\nIsFlagSet(a, 4); // true, porque 4 = 100 en binario, por tanto 10101 & 100 = 00100, que es distinto de cero</pre>",
+            "description_en": "Returns <tt>true</tt> if the bitwise and operation of bitfield and flag returns non-zero, or <tt>false</tt> otherwise. Example:<pre class='language-cks'>int a;\r\na = 21; // 10101 in binary\r\nIsFlagSet(a, 4); // true, bc 4 = 100 in binary, so 10101 & 100 = 00100, which is not zero</pre>",
             "related": ["SetFlag:ptr.int_int_bool"]
         }, {
             "id": "SetFlag:ptr.int_int_bool",
@@ -977,7 +978,8 @@ const THE_OBJ = (function () {
                 "type": 1,
                 "is_ptr": false
             }, {"name": "state", "type": 2, "is_ptr": false}],
-            "description_en": "Updates the bitfield by setting or clearing the flag specified and returns the new value. Example:\r\n<pre class='language-cks'>int a;\r\nSetFlag(a, 5, true);  // a = 101b\r\nIsFlagSet(a, 4);      // true\r\nSetFlag(a, 4, false); // a = 001b\r\nIsFlagSet(a, 4);      // false</pre>",
+            "description": "Actualiza el parámetro <tt>bitfield</tt> poniendo o quitando la <em>flag</em> especificada y retorna el nuevo valor. Por ejemplo: <pre class='language-cks'>int a; // a = 0\r\nSetFlag(a, 5, true); // a = 101 en binario\r\nSetFlag(a, 4, false); // a = 001 en binario\r\nIsFlagSet(a, 4);      // false</pre>",
+            "description_en": "Updates the bitfield by setting or clearing the flag specified and returns the new value. Example:<pre class='language-cks'>int a; // a = 0 \r\nSetFlag(a, 5, true);  // a = 101 in binary\r\nIsFlagSet(a, 4);      // true\r\nSetFlag(a, 4, false); // a = 001 in binary \r\nIsFlagSet(a, 4);      // false</pre>",
             "related": ["IsFlagSet:int_int"]
         }, {
             "id": "Point:int_int",
@@ -1557,6 +1559,7 @@ const THE_OBJ = (function () {
             "of_ptr": true,
             "type": "method",
             "params": [{"name": "clave", "name_en": "key", "type": 5, "is_ptr": false}],
+            "description": "Elimina la entrada con la clave <tt>clave</tt> si existe.",
             "description_en": "Erases the entry with the key <tt>key</tt> if it exists."
         }, {
             "id": "ptr.StrMap::exists:str",
@@ -7241,6 +7244,7 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
+            "description": "Alterna la visibilidad del mapa general (lo muestra si está oculto, lo oculta si está visible).",
             "description_en": "Toggles the map visibility (shows if hidden, or hides if shown).",
             "related": ["BlockMiniMap:bool", "ShowZoomMap", "HideZoomMap", "_ZoomMapLastShownTime"]
         }, {
@@ -7252,6 +7256,7 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
+            "description": "Muestra el mapa general.",
             "description_en": "Shows the map.",
             "related": ["BlockMiniMap:bool", "HideZoomMap", "ToggleZoomMap", "_ZoomMapLastShownTime"]
         }, {
@@ -7263,6 +7268,7 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
+            "description": "Oculta el mapa general",
             "description_en": "Hides the map.",
             "related": ["BlockMiniMap:bool", "ShowZoomMap", "ToggleZoomMap", "_ZoomMapLastShownTime"]
         }, {
@@ -7274,7 +7280,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description_en": "Returns the <a href='#GetTime'>time</a> since the map was last shown.",
+            "description": "Devuelve el <a href='#GetTime'>tiempo</a> de la última vez que se mostró el mapa.",
+            "description_en": "Returns the <a href='#GetTime'>time</a> at which the map was last shown.",
             "related": ["GetTime", "ShowZoomMap", "HideZoomMap", "ToggleZoomMap"]
         }, {
             "id": "Wagon::amount",
@@ -8111,7 +8118,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "nombre_item", "name_en": "item_name", "type": 5, "is_ptr": false}],
-            "description_en": "Returns true if the object has the item with the given script name in its inventory, or false otherwise.",
+            "description": "Retorna <tt>true</tt> si el objeto tiene en su inventario un ítem con el nombre de script dado, o <tt>false</tt> si no lo tiene.",
+            "description_en": "Returns <tt>true</tt> if the object has the item with the given script name in its inventory, or <tt>false</tt> otherwise.",
             "related": ["Obj::HasItem:str"]
         }, {
             "id": "ItemHolder::RemoveItem:str",
@@ -9148,12 +9156,13 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "posición", "name_en": "position", "type": 6, "is_ptr": false}, {
+            "params": [{"name": "posicion", "name_en": "position", "type": 6, "is_ptr": false}, {
                 "name": "bloquear",
                 "name_en": "lock",
                 "type": 2,
                 "is_ptr": false
             }],
+            "description": "Establece la posición de la vista (es decir, la cámara), y bloquea o desbloquea la vista.",
             "description_en": "Sets the position of the view (in other words, the camera), and locks or unlocks the view.",
             "related": ["ViewPos", "IsViewLocked", "LockView", "UnlockView"]
         }, {
@@ -9521,7 +9530,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description_en": "Returns the average level of all selected objects.",
+            "description": "Retorna el <a href='#Unit::level'>nivel</a> medio de las unidades seleccionados.",
+            "description_en": "Returns the average <a href='#Unit::level'>level</a> of all selected units.",
             "related": ["SelAvgArmor", "SelAvgDamage", "SelAvgFood", "SelAvgStamina"]
         }, {
             "id": "SelAvgFood",
@@ -9532,7 +9542,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description_en": "Returns the average food of all selected objects.",
+            "description": "Retorna la <a href='#Unit::food'>comida</a> media de las unidades seleccionados.",
+            "description_en": "Returns the average <a href='#Unit::food'>food</a> of all selected units.",
             "related": ["SelAvgArmor", "SelAvgDamage", "SelAvgLevel", "SelAvgStamina"]
         }, {
             "id": "SelAvgStamina",
@@ -9543,7 +9554,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description_en": "Returns the average stamina of all selected objects.",
+            "description": "Retorna la <a href='#Unit::stamina'>energía</a> media de las unidades seleccionadas.",
+            "description_en": "Returns the average <a href='#Unit::stamina'>stamina</a> of all selected units.",
             "related": ["SelAvgArmor", "SelAvgDamage", "SelAvgFood", "SelAvgLevel"]
         }, {
             "id": "SelAvgArmor",
@@ -9554,7 +9566,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description_en": "Returns the average armor of all selected objects.",
+            "description": "Devuelve la <a href='#Unit::slash_armor'>defensa</a> media de las unidades seleccionadas.",
+            "description_en": "Returns the average <a href='#Unit::slash_armor'>armor</a> of all selected units.",
             "related": ["SelAvgDamage", "SelAvgFood", "SelAvgLevel", "SelAvgStamina"]
         }, {
             "id": "SelAvgDamage",
@@ -9565,7 +9578,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description_en": "Returns the average damage of all selected objects.",
+            "description": "Devuelve el <a href='#Unit::damage'>ataque</a> medio de las unidades seleccionadas.",
+            "description_en": "Returns the average <a href='#Unit::damage'>damage</a> of all selected units.",
             "related": ["SelAvgArmor", "SelAvgFood", "SelAvgLevel", "SelAvgStamina"]
         }, {
             "id": "SelHealth",
@@ -9576,6 +9590,7 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
+            "description": "Retorna la <a href='#Obj::health'>vida</a> total de todos los objetos seleccionados.",
             "description_en": "Returns the total <a href='#Obj::health'>health</a> of all selected objects.",
             "related": ["SelMaxHealth"]
         }, {
@@ -9587,6 +9602,7 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
+            "description": "Retorna la <a href='#Obj::maxhealth'>vida máxima</a> total de todos los objetos seleccionados.",
             "description_en": "Returns the total <a href='#Obj::maxhealth'>max health</a> of all selected objects.",
             "related": ["SelHealth"]
         }, {
@@ -9598,7 +9614,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description_en": "Locks the view, which prevents the current player from scrolling. The map can still be used.",
+            "description": "Bloquea la vista, que evita que el jugador pueda moverla llevando el cursor a los extremos de la pantalla. El mapa general, comandos como <a href='#View:point_bool'>View</a>, o ver objetos concretos (como poner la visión sobre los héroes al girar la rueda del ratón) todavía pueden ser usados.",
+            "description_en": "Locks the view, which prevents the current player from scrolling. The map, commands like <a href='#View:point_bool'>View</a>, or watching concrete objects (like when using the mouse scroll to watch heroes) can still be used.",
             "related": ["IsViewLocked", "UnlockView", "StartViewFollow:Unit", "StartViewFollow:NamedObj", "StopViewFollow", "BlockMiniMap:bool"]
         }, {
             "id": "UnlockView",
@@ -9609,6 +9626,7 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
+            "description": "Desbloquea la vista, permitiendo al jugador moverla llevando el cursor a los límites de la pantalla.",
             "description_en": "Unlocks the view, which allows the current player to scroll again.",
             "related": ["IsViewLocked", "LockView", "StartViewFollow:Unit", "StartViewFollow:NamedObj", "StopViewFollow"]
         }, {
@@ -9620,7 +9638,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description_en": "Returns <tt>true</tt> if the view is locked, or <tt>false</tt> otherwise. Use <a href='#LockView'>LockView</a> to lock the view.",
+            "description": "Retorna <tt>true</tt> si la vista está bloqueada, o <tt>false</tt> en caso contrario. Utiliza <a href='#LockView'>LockView</a> para bloquear la vista, y <a href='#UnlockView'>UnlockView</a> para desbloquearla.",
+            "description_en": "Returns <tt>true</tt> if the view is locked, or <tt>false</tt> otherwise. Use <a href='#LockView'>LockView</a> to lock the view, and <a href='#UnlockView'>UnlockView</a> to unlock it.",
             "related": ["LockView", "UnlockView", "StartViewFollow:Unit", "StartViewFollow:NamedObj", "StopViewFollow"]
         }, {
             "id": "StartViewFollow:Unit",
@@ -9630,7 +9649,8 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "destino", "name_en": "target", "type": 13, "is_ptr": false}],
+            "params": [{"name": "objetivo", "name_en": "target", "type": 13, "is_ptr": false}],
+            "description": "Comienza a seguir al objetivo (la vista se bloquea mientras esto ocurre).",
             "description_en": "Starts following the <tt>target</tt> (the view is locked in the meantime).",
             "related": ["IsViewLocked", "LockView", "UnlockView", "StartViewFollow:NamedObj", "StopViewFollow"]
         }, {
@@ -9642,6 +9662,7 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
+            "description": "Detiene el seguimiento del objetivo actual (si hay alguno).",
             "description_en": "Stops following the target.",
             "related": ["IsViewLocked", "LockView", "UnlockView", "StartViewFollow:Unit", "StartViewFollow:NamedObj"]
         }, {
@@ -9653,6 +9674,7 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "destino", "name_en": "target", "type": 29, "is_ptr": false}],
+            "description": "Comienza a seguir al objetivo (la vista se bloquea mientras esto ocurre).",
             "description_en": "Starts following the <tt>target</tt> (the view is locked in the meantime).",
             "related": ["IsViewLocked", "LockView", "UnlockView", "StartViewFollow:Unit", "StopViewFollow"]
         }, {
@@ -9682,6 +9704,7 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
+            "description": "Devuelve un <a href='#rect'>rect</a> que abarca el mapa completo.",
             "description_en": "Returns a <a href='#rect'>rect</a> encompassing the entire map.",
             "related": ["GetMapSize"]
         }, {
@@ -9693,6 +9716,7 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
+            "description": "Devuelve el nombre del mapa actual.",
             "description_en": "Returns the current map's name."
         }, {
             "id": "ChangeMap:str_str",
@@ -9787,8 +9811,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "obstruido", "name_en": "blocked", "type": 2, "is_ptr": false}],
-            "description_en": "Prevents the map from being shown by the player (with space), but it can still be shown using <a href='#ShowZoomMap'>ShowZoomMap</a>.",
+            "params": [{"name": "bloquear", "name_en": "blocked", "type": 2, "is_ptr": false}],
+            "description": "Evita / permite que el mapa pueda ser mostrado por el jugador (pulsando la barra espaciadora o en la barra de comandos), pero todavía permite mostrarlo usando <a href='#ShowZoomMap'>ShowZoomMap</a>. El parámetro <tt>bloquear</tt> debe ser <tt>true</tt> para evitarlo o <tt>false</tt> para permitirlo.",
+            "description_en": "Prevents the map from being shown by the player (pressing the space bar or in the command bar), but it can still be shown using <a href='#ShowZoomMap'>ShowZoomMap</a>. The parameter <tt>blocked</tt> indicates whether this behaviour should be prevented (if it is <tt>true</tt>) or allowed (if it is <tt>false</tt>).",
             "related": ["ShowZoomMap", "HideZoomMap", "ToggleZoomMap"]
         }, {
             "id": "IsExplored:point_int",
@@ -9808,6 +9833,7 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
+            "description": "Retorna la suma total de oro portado por todas las mulas seleccionadas.",
             "description_en": "Returns the total gold carried by all selected wagons.",
             "related": ["SelectionFood"]
         }, {
@@ -9819,6 +9845,7 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
+            "description": "Retorna la suma total de comida portada por las mulas seleccionadas.",
             "description_en": "Returns the total food carried by all selected wagons.",
             "related": ["SelectionGold"]
         }, {
@@ -10243,13 +10270,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "jugador1", "name_en": "player1", "type": 1, "is_ptr": false}, {
-                "name": "jugador2",
-                "name_en": "player2",
+            "params": [{"name": "jugador_a", "name_en": "player_a", "type": 1, "is_ptr": false}, {
+                "name": "jugador_b",
+                "name_en": "player_b",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "relación", "name_en": "relation", "type": 2, "is_ptr": false}],
-            "description_en": "Prevents <tt>player2</tt> from being attacked by <tt>player1</tt>.",
+            }, {"name": "relacion", "name_en": "relation", "type": 2, "is_ptr": false}],
+            "description": "Previene que <tt>jugador_a</tt> sea atacado por <tt>jugador_b</tt> si <tt>relacion</tt> es <tt>true</tt>, o lo permite en caso contrario.",
+            "description_en": "Prevents <tt>player_a</tt> from being attacked by <tt>player_b</tt> if <tt>relation</tt> is <tt>true</tt>, or allows it otherwise.",
             "related": ["ClearDiplomacy", "DiplAreAllied:int_int", "DiplGetCeaseFire:int_int", "DiplShareView:int_int_bool", "DiplGetShareView:int_int", "DiplShareSupport:int_int_bool", "DiplGetShareSupport:int_int", "DiplShareControl:int_int_bool", "DiplGetShareControl:int_int"]
         }, {
             "id": "DiplShareView:int_int_bool",
@@ -10259,13 +10287,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "jugador1", "name_en": "player1", "type": 1, "is_ptr": false}, {
-                "name": "jugador2",
-                "name_en": "player2",
+            "params": [{"name": "jugador_a", "name_en": "player_a", "type": 1, "is_ptr": false}, {
+                "name": "jugador_b",
+                "name_en": "player_b",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "relación", "name_en": "relation", "type": 2, "is_ptr": false}],
-            "description_en": "Allows <tt>player2</tt> to see what <tt>player1</tt> sees.",
+            }, {"name": "relacion", "name_en": "relation", "type": 2, "is_ptr": false}],
+            "description": "Permite que <tt>jugador_b</tt> vea lo que ve <tt>jugador_a</tt> si <tt>relacion</tt> es <tt>true</tt>, o lo evita si es <tt>false</tt>.",
+            "description_en": "Allows <tt>player_b</tt> to see what <tt>player_a</tt> sees if <tt>relation</tt> is <tt>true</tt>, or it prevents it otherwise.",
             "related": ["ClearDiplomacy", "DiplAreAllied:int_int", "DiplCeaseFire:int_int_bool", "DiplGetCeaseFire:int_int", "DiplGetShareView:int_int", "DiplShareSupport:int_int_bool", "DiplGetShareSupport:int_int", "DiplShareControl:int_int_bool", "DiplGetShareControl:int_int"]
         }, {
             "id": "DiplShareControl:int_int_bool",
@@ -10275,13 +10304,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "jugador1", "name_en": "player1", "type": 1, "is_ptr": false}, {
-                "name": "jugador2",
-                "name_en": "player2",
+            "params": [{"name": "jugador_a", "name_en": "player_a", "type": 1, "is_ptr": false}, {
+                "name": "jugador_b",
+                "name_en": "player_b",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "relación", "name_en": "relation", "type": 2, "is_ptr": false}],
-            "description_en": "Allows <tt>player2</tt> to control <tt>player1</tt>.",
+            }, {"name": "relacion", "name_en": "relation", "type": 2, "is_ptr": false}],
+            "description": "Permite a <tt>jugador_b</tt> controlar los objetos de <tt>jugador_a</tt> si <tt>relacion</tt> es <tt>true</tt>, o no lo permite si es <tt>false</tt>.",
+            "description_en": "Allows <tt>player_b</tt> to control the objects of <tt>player_a</tt> if <tt>relation</tt> is <tt>true</tt>, or it does not allow it if <tt>relation</tt> is <tt>false</tt>.",
             "related": ["ClearDiplomacy", "DiplAreAllied:int_int", "DiplCeaseFire:int_int_bool", "DiplGetCeaseFire:int_int", "DiplShareView:int_int_bool", "DiplGetShareView:int_int", "DiplShareSupport:int_int_bool", "DiplGetShareSupport:int_int", "DiplGetShareControl:int_int"]
         }, {
             "id": "DiplShareSupport:int_int_bool",
@@ -10291,13 +10321,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "jugador1", "name_en": "player1", "type": 1, "is_ptr": false}, {
-                "name": "jugador2",
-                "name_en": "player2",
+            "params": [{"name": "jugador_a", "name_en": "player_a", "type": 1, "is_ptr": false}, {
+                "name": "jugador_b",
+                "name_en": "player_b",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "relación", "name_en": "relation", "type": 2, "is_ptr": false}],
-            "description_en": "Allows <tt>player2</tt> to share their support (like food) with <tt>player1</tt>.",
+            }, {"name": "relacion", "name_en": "relation", "type": 2, "is_ptr": false}],
+            "description": "Permite que las unidades de <tt>jugador_a</tt> se alimenten de la comida de <tt>jugador_b</tt> si <tt>relacion</tt> es <tt>true</tt>, o lo evita si <tt>relacion</tt> es <tt>false</tt>.",
+            "description_en": "Allows <tt>player_b</tt> to share their support (like food) with <tt>player_a</tt> if <tt>relation</tt> is <tt>true</tt>, or prevents it if it is <tt>false</tt>.",
             "related": ["ClearDiplomacy", "DiplAreAllied:int_int", "DiplCeaseFire:int_int_bool", "DiplGetCeaseFire:int_int", "DiplShareView:int_int_bool", "DiplGetShareView:int_int", "DiplGetShareSupport:int_int", "DiplShareControl:int_int_bool", "DiplGetShareControl:int_int"]
         }, {
             "id": "DiplGetCeaseFire:int_int",
@@ -10307,13 +10338,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "jugador1", "name_en": "player1", "type": 1, "is_ptr": false}, {
-                "name": "jugador2",
-                "name_en": "player2",
+            "params": [{"name": "jugador_a", "name_en": "player_a", "type": 1, "is_ptr": false}, {
+                "name": "jugador_b",
+                "name_en": "player_b",
                 "type": 1,
                 "is_ptr": false
             }],
-            "description_en": "Returns the cease-fire relation between <tt>player1</tt> and <tt>player2</tt>.",
+            "description": "Retorna la relación de alto al fuego entre <tt>jugador_a</tt> y <tt>jugador_b</tt>. Nótese que esta relación no tiene por qué ser simétrica. Un valor de <tt>true</tt> indica que <tt>jugador_a</tt> no puede ser atacado por <tt>jugador_b</tt>, mientras que <tt>false</tt> indica que sí puede.",
+            "description_en": "Returns the cease-fire relation between <tt>player_a</tt> and <tt>player_b</tt>. Notice that this relation does not need to be symmetric. A value of <tt>true</tt> indicates that <tt>player_a</tt> cannot be attacked by <tt>player_b</tt>, while <tt>false</tt> indicates it can.",
             "related": ["ClearDiplomacy", "DiplAreAllied:int_int", "DiplCeaseFire:int_int_bool", "DiplShareView:int_int_bool", "DiplGetShareView:int_int", "DiplShareSupport:int_int_bool", "DiplGetShareSupport:int_int", "DiplShareControl:int_int_bool", "DiplGetShareControl:int_int"]
         }, {
             "id": "DiplGetShareView:int_int",
@@ -10323,12 +10355,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "jugador1", "name_en": "player1", "type": 1, "is_ptr": false}, {
-                "name": "jugador2",
-                "name_en": "player2",
+            "params": [{"name": "jugador_a", "name_en": "player_b", "type": 1, "is_ptr": false}, {
+                "name": "jugador_a",
+                "name_en": "player_b",
                 "type": 1,
                 "is_ptr": false
-            }],            "description_en": "Returns the shared view relation between <tt>player1</tt> and <tt>player2</tt>.",
+            }],
+            "description": "Devuelve la relación de vista compartida entre <tt>jugador_a</tt> y <tt>jugador_b</tt>. Nótese que esta relación no tiene por qué ser simétrica. Un valor de <tt>true</tt> indica que el jugador <tt>jugador_b</tt> puede ver lo que ve el jugador <tt>jugador_a</tt>, mientras que <tt>false</tt> indica que no puede.",
+            "description_en": "Returns the shared view relation between <tt>player_a</tt> and <tt>player_b</tt>. Notice that the relation does not need to be symmetric. A value of <tt>true</tt> indicates <tt>player_b</tt> can see what <tt>player_a</tt> sees, while <tt>false</tt> indicates otherwise.",
             "related": ["ClearDiplomacy", "DiplAreAllied:int_int", "DiplCeaseFire:int_int_bool", "DiplGetCeaseFire:int_int", "DiplShareView:int_int_bool", "DiplShareSupport:int_int_bool", "DiplGetShareSupport:int_int", "DiplShareControl:int_int_bool", "DiplGetShareControl:int_int"]
         }, {
             "id": "DiplGetShareControl:int_int",
@@ -10338,13 +10372,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "jugador1", "name_en": "player1", "type": 1, "is_ptr": false}, {
-                "name": "jugador2",
-                "name_en": "player2",
+            "params": [{"name": "jugador_a", "name_en": "player_a", "type": 1, "is_ptr": false}, {
+                "name": "jugador_b",
+                "name_en": "player_b",
                 "type": 1,
                 "is_ptr": false
             }],
-            "description_en": "Returns the shared control relation between <tt>player1</tt> and <tt>player2</tt>.",
+            "description": "Devuelve la relación de control entre <tt>jugador_a</tt> y <tt>jugador_b</tt>. Nótese que esta relación no tiene por qué ser simétrica. Un valor de <tt>true</tt> indica que los objetos de <tt>jugador_a</tt> pueden ser controlados por <tt>jugador_b</tt>, mientras que <tt>false</tt> indica que no pueden.",
+            "description_en": "Returns the shared control relation between <tt>player_a</tt> and <tt>player_b</tt>. Notice that this relation does not need to be symmetric. A value of <tt>true</tt> indicates that the objects of <tt>player_a</tt> can be controlled by <tt>player_b</tt>, while <tt>false</tt> indicates they cannot.",
             "related": ["ClearDiplomacy", "DiplAreAllied:int_int", "DiplCeaseFire:int_int_bool", "DiplGetCeaseFire:int_int", "DiplShareView:int_int_bool", "DiplGetShareView:int_int", "DiplShareSupport:int_int_bool", "DiplGetShareSupport:int_int", "DiplShareControl:int_int_bool"]
         }, {
             "id": "DiplGetShareSupport:int_int",
@@ -10354,13 +10389,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "jugador1", "name_en": "player1", "type": 1, "is_ptr": false}, {
-                "name": "jugador2",
-                "name_en": "player2",
+            "params": [{"name": "jugador_a", "name_en": "player_a", "type": 1, "is_ptr": false}, {
+                "name": "jugador_b",
+                "name_en": "player_b",
                 "type": 1,
                 "is_ptr": false
             }],
-            "description_en": "Returns the shared support relation between <tt>player1</tt> and <tt>player2</tt>.",
+            "description": "Retorna la relación de comida compartida entre <tt>jugador_a</tt> y <tt>jugador_b</tt>. Nótese que la relación no tiene por qué ser simétrica. Un valor de <tt>true</tt> indica que las unidades de <tt>jugador_a</tt> pueden alimentarse de la comida de <tt>jugador_b</tt>, mientras <tt>false</tt> indica que no pueden.",
+            "description_en": "Returns the shared support relation between <tt>player_a</tt> and <tt>player_b</tt>. Notice the relation does not need to be symmetric. A value of <tt>true</tt> indicates the units from player <tt>player_a</tt> can receive food from <tt>player_b</tt>, while <tt>false</tt> indicates they cannot.",
             "related": ["ClearDiplomacy", "DiplAreAllied:int_int", "DiplCeaseFire:int_int_bool", "DiplGetCeaseFire:int_int", "DiplShareView:int_int_bool", "DiplGetShareView:int_int", "DiplShareSupport:int_int_bool", "DiplShareControl:int_int_bool", "DiplGetShareControl:int_int"]
         }, {
             "id": "ClearDiplomacy",
@@ -10371,6 +10407,7 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
+            "description": "Devuelve la diplomacia a los valores por defecto, en los que ningún jugador está aliado con otro de ninguna forma.",
             "description_en": "Resets diplomacy so nobody is allied in any way.",
             "related": ["DiplAreAllied:int_int", "DiplCeaseFire:int_int_bool", "DiplGetCeaseFire:int_int", "DiplShareView:int_int_bool", "DiplGetShareView:int_int", "DiplShareSupport:int_int_bool", "DiplGetShareSupport:int_int", "DiplShareControl:int_int_bool", "DiplGetShareControl:int_int"]
         }, {
@@ -10731,9 +10768,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "contar", "name_en": "count", "type": 1, "is_ptr": false}],
+            "params": [{"name": "cantidad", "name_en": "count", "type": 1, "is_ptr": false}],
             "itemScriptOnly": true,
-            "description_en": "Subtracts <tt>count</tt> from the <a href='#GetThis'>current item's</a> use count and removes the item if the use count becomes less than 1. Equivalent to: <pre class='language-cks'>GetThis().SetUseCount(GetThis().use_count - count);\r\nif (GetThis().use_count < 1) owner.RemoveItem(owner.GetItemIndex(GetThis()));</pre>",
+            "description": "Substrae <tt>cantidad</tt> a la <a href='#Item::use_count'>cuenta de usos</a> del <a href='#GetThis'>ítem actual</a> y elimina el ítem si la cuenta cae por debajo de 0. Equivalente a: <pre class='language-cks'>GetThis().SetUseCount(GetThis().use_count - cantidad);\r\nif (GetThis().use_count < 1)\r\n&nbsp;&nbsp;&nbsp;&nbsp;owner.RemoveItem(owner.GetItemIndex(GetThis()));</pre>",
+            "description_en": "Subtracts <tt>count</tt> from the <a href='#GetThis'>current item's</a> use count and removes the item if the use count becomes less than 1. Equivalent to: <pre class='language-cks'>GetThis().SetUseCount(GetThis().use_count - count);\r\nif (GetThis().use_count < 1)\r\n&nbsp;&nbsp;&nbsp;&nbsp;owner.RemoveItem(owner.GetItemIndex(GetThis()));</pre>",
             "related": ["GetUseCount", "SetUseCount:int", "Item::use_count", "Item::SetUseCount:int"]
         }, {
             "id": "GetUseCount",
@@ -10745,7 +10783,8 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [],
             "itemScriptOnly": true,
-            "description_en": "Returns the <a href='#GetThis'>current item's</a> use count, an example use of this can be seen with the healing water item. This value is always 0 in the item's On Die script. Equivalent to <tt class='language-cks'>GetThis().use_count</tt>.",
+            "description": "Retorna la <a href='#Item::use_count'>cuenta de usos</a> del <a href='#GetThis'>ítem actual</a>, un ejemplo de esto puede verse en el <em>Agua Curativa</em>. Este valor es siempre 0 si el objeto actual es inválido (es decir, en el script <em>Al ser derrotado</em>). Equivalente a: <tt class='language-cks'>GetThis().use_count</tt>.",
+            "description_en": "Returns the <a href='#GetThis'>current item's</a> use count, an example use of this can be seen with the <em>Healing Water</em> item. This value is always 0 if the current item is invalid (i.e. in the item's <em>On Die</em> script). Equivalent to <tt class='language-cks'>GetThis().use_count</tt>.",
             "related": ["SetUseCount:int", "ItemUsed:int", "Item::use_count", "Item::SetUseCount:int"]
         }, {
             "id": "Item::use_count",
@@ -10756,7 +10795,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "property",
             "params": [],
-            "description_en": "The item's use count, an example use of this can be seen with the healing water item. This value is always 0 in the item's On Die script.",
+            "description": "La cuenta de usos del objeto, un ejemplo de esto puede observarse en el objeto <em>Agua Curativa</em>. Este valor es siempre 0 en el script <em>Al Ser Derrotado</em> del objeto.",
+            "description_en": "The item's use count. An example use of this can be seen with the <em>Healing Water</em> item. This value is always 0 in the item's <em>On Die</em> script.",
             "related": ["GetUseCount", "SetUseCount:int", "ItemUsed:int", "Item::SetUseCount:int"]
         }, {
             "id": "Item::custom_data",
@@ -10767,7 +10807,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "property",
             "params": [],
-            "description_en": "Custom data for an item which can be set with <a href='#Item::SetCustomData:int'>Item::SetCustomData</a> which you can do as you like with. This value is always -1 in the item's On Die script.",
+            "description": "Información personalizada para un ítem, que puede ser modificada con <a href='#Item::SetCustomData:int'>Item::SetCustomData</a> para ser usada como prefieras. Su valor por defecto es 0. Este valor es siempre -1 en el script <em>Al Ser Derrotado</em> del ítem.",
+            "description_en": "Custom data for an item which can be set with <a href='#Item::SetCustomData:int'>Item::SetCustomData</a> and which you can do as you like with. The default value is 0. This value is always -1 in the item's <em>On Die</em> script.",
             "related": ["Item::SetCustomData:int"]
         }, {
             "id": "Item::id",
@@ -10813,7 +10854,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description_en": "Runs the item's No Target script.",
+            "description": "Ejecuta el script <em>Sin Objetivo</em> del ítem.",
+            "description_en": "Runs the item's <em>No Target</em> script.",
             "related": ["Obj::UseItem:str", "Item::Use:Obj", "Item::Use:point"]
         }, {
             "id": "Item::Use:Obj",
@@ -10823,8 +10865,9 @@ const THE_OBJ = (function () {
             "of": 12,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "destino", "name_en": "target", "type": 11, "is_ptr": false}],
-            "description_en": "Runs the item's Target script with the specified target.",
+            "params": [{"name": "objetivo", "name_en": "target", "type": 11, "is_ptr": false}],
+            "description": "Ejecuta el script <em>Objeto</em> del ítem con el objetivo (<tt>target</tt>) dado.",
+            "description_en": "Runs the item's <em>Target</em> script with the specified target.",
             "related": ["Item::Use", "Item::Use:point"]
         }, {
             "id": "Item::Use:point",
@@ -10834,8 +10877,9 @@ const THE_OBJ = (function () {
             "of": 12,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "destino", "name_en": "target", "type": 6, "is_ptr": false}],
-            "description_en": "Runs the item's Location script with the specified position.",
+            "params": [{"name": "objetivo", "name_en": "target", "type": 6, "is_ptr": false}],
+            "description": "Ejecuta el script <em>Situación</em> del ítem con el punto objetivo (<tt>target</tt>) dado.",
+            "description_en": "Runs the item's <em>Location</em> script with the specified target position.",
             "related": ["Item::Use", "Item::Use:Obj"]
         }, {
             "id": "Item::SetCustomData:int",
@@ -10846,6 +10890,7 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "datos", "name_en": "data", "type": 1, "is_ptr": false}],
+            "description": "Establece los datos personalizados del objeto. Puedes usar esta propiedad para lo que tú quieras.",
             "description_en": "Sets the item's custom data to <tt>data</tt>, which you can do as you like with.",
             "related": ["Item::custom_data"]
         }, {
@@ -10858,7 +10903,8 @@ const THE_OBJ = (function () {
             "type": "method",
             "params": [],
             "itemScriptOnly": true,
-            "description_en": "Returns the current item. This should only be used in an item script (except the On Die script), otherwise an invalid Item is returned."
+            "description": "Retorna el ítem actual. El ítem retornado será inválido si se usa en el script <em>Al ser derrotado</em> del ítem.",
+            "description_en": "Returns the current item. This should only be used in an item script (except the <em>On Die</em> script), otherwise an invalid Item is returned."
         }, {
             "id": "Flying::PlayAnim:int_point_int",
             "name": "PlayAnim",
@@ -12651,7 +12697,9 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
+            "research_needed": "La coordenada x del punto retornado parece estar dividida por 128, pero el escalado para la coordenada y parece no tener sentido.",
             "research_needed_en": "The x coordinate of the returned point seems to be divided by 128, but the scaling of the y coordinate does not seem to make sense.",
+            "description": "Similar a <a href='#ViewPos'>ViewPos</a>, pero escalado a un valor inferior de alguna forma.",
             "description_en": "Similar to <a href='#ViewPos'>ViewPos</a>, but scaled down in some way.",
             "related": ["ViewPos"]
         }, {
@@ -13542,6 +13590,7 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "rango", "name_en": "range", "type": 1, "is_ptr": false}],
+            "description": "Hace que el líder del escuadrón recoja el ítem más cercano que se encuentre en el rango especificado.",
             "description_en": "Makes the squad leader pick up the nearest item in the specified range."
         }, {
             "id": "Obj::HasItem:str",
@@ -13552,7 +13601,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "nombre_item", "name_en": "item_name", "type": 5, "is_ptr": false}],
-            "description_en": "Returns true if the object has the item with the given script name in its inventory, or false otherwise.",
+            "description": "Devuelve <tt>true</tt> si el objeto porta un ítem con el nombre de scripts dado en su inventario, o <tt>false</tt> en caso contrario.",
+            "description_en": "Returns <tt>true</tt> if the object has the item with the given script name in its inventory, or <tt>false</tt> otherwise.",
         }, {
             "id": "Obj::UseItem:str",
             "name": "UseItem",
@@ -13562,7 +13612,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "nombre_item", "name_en": "item_name", "type": 5, "is_ptr": false}],
-            "description_en": "If the item with the given script name is in the inventory of the object, runs the item's No Target script and returns true, or returns false otherwise. Equivalent to <tt class='language-cks'>if (obj.HasItem(item_name)) obj.FindItem(item_name).Use();</tt>.",
+            "description": "Ejecuta el script <em>Sin Objetivo</em> del ítem si un ítem con el nombre de scripts dado está en el inventario del objeto. Devuelve <tt>true</tt> si el ítem ha sido encontrado en el inventario del objeto, o <tt>false</tt> si no. Equivalente a <tt class='language-cks'>if (obj.HasItem(nombre_item)) obj.FindItem(nombre_item).Use();</tt>.",
+            "description_en": "Runs the item's <em>No Target</em> script if the item with the given script name is in the inventory of the object. Returns <tt>true</tt> if the item was found, or <tt>false</tt> otherwise. Equivalent to <tt class='language-cks'>if (obj.HasItem(item_name)) obj.FindItem(item_name).Use();</tt>.",
             "related": ["Item::Use"]
         }, {
             "id": "FindTeleport:int_point_point",
@@ -13897,7 +13948,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description_en": "Selects the <a href='#Squad'>Squad</a> the selected object is in.",
+            "description": "Selecciona el <a href='#Squad'>escuadrón</a> en el que está el primer objeto en la selección actual.",
+            "description_en": "Selects the <a href='#Squad'>Squad</a> the first selected object is in.",
             "related": ["SelSquad:int_int", "SelSquadLeader"]
         }, {
             "id": "SelSquad:int_int",
@@ -13908,6 +13960,7 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}, {"name": "squad", "type": 1, "is_ptr": false}],
+            "description": "Selecciona el <a href='#Squad'>Squad</a> especificado del jugador indicado.",
             "description_en": "Selects the specified player's <a href='#Squad'>Squad</a>.",
             "related": ["SelSquad", "SelSquadLeader"]
         }, {
@@ -13919,7 +13972,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description_en": "Selects the leader of the <a href='#Squad'>Squad</a> the selected object is in. If the object is attached to a <a href='#Hero'>Hero</a>, that hero is the squad leader, otherwise it is the first object in the squad.",
+            "description": "Selecciona al líder del <a href='#Squad'>escuadrón</a> en que se encuentra el primer objeto en la selección actual. Si el objeto está asociado a un <a href='#Unit::hero'>héroe</a>, el héroe es el líder del escuadrón, en caso contrario el líder es el primer objeto en la lista del escuadrón.",
+            "description_en": "Selects the leader of the <a href='#Squad'>Squad</a> the selected object is in. If the object is attached to a <a href='#Unit::hero'>hero</a>, that hero is the squad leader, otherwise it is the first object in the squad.",
             "related": ["SelSquad", "SelSquad:int_int"]
         }, {
             "id": "GAIKA::Dump",
@@ -14809,7 +14863,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description_en": "Returns the first selected object. Equivalent to <tt class='language-cks'>sel()[0]</tt>.",
+            "description": "Retorna el primer objeto de la selección. Equivalente a <tt class='language-cks'>sel[0]</tt>.",
+            "description_en": "Returns the first selected object. Equivalent to <tt class='language-cks'>sel[0]</tt>.",
             "related": ["sel", "selu", "selh", "selb", "sels", "selsq", "selg"]
         }, {
             "id": "selu",
@@ -14820,7 +14875,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description_en": "Returns the first selected object as a <a href='#Unit'>Unit</a>. Equivalent to <tt class='language-cks'>sel()[0].AsUnit()</tt>.",
+            "description": "Retorna el primer objeto en la selección como <a href='#Unit'>unidad</a>. Equivalente a <tt class='language-cks'>sel[0].AsUnit()</tt>.",
+            "description_en": "Returns the first selected object as a <a href='#Unit'>Unit</a>. Equivalent to <tt class='language-cks'>sel[0].AsUnit()</tt>.",
             "related": ["sel", "selo", "selh", "selb", "sels", "selsq", "selg"]
         }, {
             "id": "selh",
@@ -14831,7 +14887,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description_en": "Returns the first selected object as a <a href='#Hero'>Hero</a>. Equivalent to <tt class='language-cks'>sel()[0].AsHero()</tt>.",
+            "description": "Retorna el primer objeto de la selección como <a href='#Hero'>Hero</a>. Equivalente a <tt class='language-cks'>sel[0].AsHero()</tt>.",
+            "description_en": "Returns the first selected object as a <a href='#Hero'>Hero</a>. Equivalent to <tt class='language-cks'>sel[0].AsHero()</tt>.",
             "related": ["sel", "selo", "selu", "selb", "sels", "selsq", "selg"]
         }, {
             "id": "selb",
@@ -14842,7 +14899,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description_en": "Returns the first selected object as a <a href='#Building'>Building</a>. Equivalent to <tt class='language-cks'>sel()[0].AsBuilding()</tt>.",
+            "description": "Devuelve el primer objeto seleccionado como <a href='#Building'>edificio</a>. Equivalente a <tt class='language-cks'>sel[0].AsBuilding()</tt>.",
+            "description_en": "Returns the first selected object as a <a href='#Building'>Building</a>. Equivalent to <tt class='language-cks'>sel[0].AsBuilding()</tt>.",
             "related": ["sel", "selo", "selu", "selh", "sels", "selsq", "selg"]
         }, {
             "id": "sels",
@@ -14853,7 +14911,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description_en": "Returns the <a href='#Settlement'>Settlement</a> of the first selected object. Equivalent to <tt class='language-cks'>sel()[0].AsBuilding().AsSettlement()</tt>.",
+            "description": "Devuelve el <a href='#Settlement'>asentamiento</a> del primer objeto en la selección. Equivalente a <tt. class='language-cks'>sel[0].AsBuilding().settlement</tt>.",
+            "description_en": "Returns the <a href='#Settlement'>Settlement</a> of the first selected object. Equivalent to <tt class='language-cks'>sel[0].AsBuilding().settlement</tt>.",
             "related": ["sel", "selo", "selu", "selh", "selb", "selsq", "selg"]
         }, {
             "id": "selsq",
@@ -14864,7 +14923,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description_en": "Returns the <a href='#Squad'>Squad</a> of the first selected object. Equivalent to <tt class='language-cks'>sel()[0].AsUnit().GetSquad()</tt>.",
+            "description": "Devuelve el <a href='#Squad'>escuadrón</a> del primer objeto en la selección. Equivalente a <tt class='language-cks'>sel[0].AsUnit().GetSquad()</tt>.",
+            "description_en": "Returns the <a href='#Squad'>Squad</a> of the first selected object. Equivalent to <tt class='language-cks'>sel[0].AsUnit().GetSquad()</tt>.",
             "related": ["sel", "selo", "selu", "selh", "selb", "sels", "selg"]
         }, {
             "id": "selg",
@@ -14875,7 +14935,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description_en": "Returns the <a href='#GAIKA'>GAIKA</a> of the first selected object. Equivalent to <tt class='language-cks'>GetGAIKA(sel()[0])</tt>.",
+            "description": "Devuelve la <a href='#GAIKA'>GAIKA</a> del primer objeto seleccionado. Equivalente a <tt class='language-cks'>GetGAIKA(sel[0])</tt>.",
+            "description_en": "Returns the <a href='#GAIKA'>GAIKA</a> of the first selected object. Equivalent to <tt class='language-cks'>GetGAIKA(sel[0])</tt>.",
             "related": ["sel", "selo", "selu", "selh", "selb", "sels"]
         }, {
             "id": "Desync",
@@ -15314,7 +15375,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "nombre_item", "name_en": "item_name", "type": 5, "is_ptr": false}],
-            "description_en": "Gives the selected object an item with the given script name. Equivalent to <tt class='language-cks'>selo.AddItem(item_name);</tt>",
+            "description": "Da al <a href='#selo'>objeto seleccionado</a> un ítem con el nombre de script dado. Equivalente a <tt0 class='language-cks'>selo.AddItem(nombre_item);</tt>.",
+            "description_en": "Gives the <a href='#selo'>selected object</a> an item with the given script name. Equivalent to <tt class='language-cks'>selo.AddItem(item_name);</tt>",
             "related": ["Obj::AddItem:str"]
         }, {
             "id": "_PlayersAlly:int_int",
@@ -16772,13 +16834,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "jugador1", "name_en": "player1", "type": 1, "is_ptr": false}, {
-                "name": "jugador2",
-                "name_en": "player2",
+            "params": [{"name": "jugador_a", "name_en": "player_a", "type": 1, "is_ptr": false}, {
+                "name": "jugador_b",
+                "name_en": "player_b",
                 "type": 1,
                 "is_ptr": false
             }],
-            "description_en": "Returns true if <tt>player1</tt> and <tt>player2</tt> have an allied victory and there is a symmetric cease-fire between the two players, or false otherwise.",
+            "description": "Devuelve <tt>true</tt> si ambos jugadores tienen victoria aliada y hay una relación de alto al fuego mutua entre ellos.",
+            "description_en": "Returns <tt>true</tt> if both players have an allied victory and there is a symmetric cease-fire between the them, or <tt>false</tt> otherwise.",
             "related": ["_PlayersAlly:int_int", "_PlayersMakeEnemies:int_int", "ClearDiplomacy", "DiplCeaseFire:int_int_bool", "DiplGetCeaseFire:int_int", "DiplShareView:int_int_bool", "DiplGetShareView:int_int", "DiplShareSupport:int_int_bool", "DiplGetShareSupport:int_int", "DiplShareControl:int_int_bool", "DiplGetShareControl:int_int"]
         }, {
             "id": "Squad::GetLastAttacker",
@@ -16806,9 +16869,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "contar", "name_en": "count", "type": 1, "is_ptr": false}],
+            "params": [{"name": "cuenta", "name_en": "count", "type": 1, "is_ptr": false}],
             "itemScriptOnly": true,
-            "description_en": "Sets the <a href='#GetThis'>current item's</a> use count to <tt>count</tt>. Equivalent to <tt class='language-cks'>GetThis().SetUseCount(count);</tt>.",
+            "description": "Establece la <a href='#Item::use_count'>cuenta de usos</a> del <a href='#GetThis'>ítem actual</a>. Equivalente a <tt class='language-cks'>GetThis().SetUseCount(cuenta);</tt>",
+            "description_en": "Sets the <a href='#GetThis'>current item's</a> <a href='#Item::use_count'>use count</a> to <tt>count</tt>. Equivalent to <tt class='language-cks'>GetThis().SetUseCount(count);</tt>.",
             "related": ["GetUseCount", "ItemUsed:int", "Item::use_count", "Item::SetUseCount:int"]
         }, {
             "id": "Item::SetUseCount:int",
@@ -16819,7 +16883,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "contar", "name_en": "count", "type": 1, "is_ptr": false}],
-            "description_en": "Sets the item's use count to <tt>count</tt>.",
+            "description": "Establece la <a href='#Item::use_count'>cuenta de usos</a> del ítem.",
+            "description_en": "Sets the item's <a href='#Item::use_count'>use count</a> to <tt>count</tt>.",
             "related": ["GetUseCount", "SetUseCount:int", "ItemUsed:int", "Item::use_count"]
         }, {
             "id": "WaitForMapChange",

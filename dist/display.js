@@ -94,7 +94,7 @@ function renderNotForSequences(func) {
 
 function renderItemOnly(func) {
     if (func.itemScriptOnly) {
-        return `<div class="context-req"><span>${TRANSLATE_TEXTS["item-only-" + lang]}</span><span class="material-icons">description</span></div>`;
+        return `<div class="context-req"><span>${TRANSLATE_TEXTS["item-only-" + lang]}</span><span class="material-icons">catching_pokemon</span></div>`;
     } else return '';
 }
 
