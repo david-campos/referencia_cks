@@ -25,6 +25,12 @@
         section {
             padding: 1rem;
         }
+
+        img.text-img {
+            display: block;
+            max-width: 100%;
+            margin: 0 auto;
+        }
     </style>
     <link rel="stylesheet" href="style.css">
     <link href="prism.css" rel="stylesheet">
@@ -319,10 +325,65 @@ else
             <a href="/cks/#GetNamedObj::obj"><code>obj</code></a> para obtener el
             <a href="/cks/#Obj" class="type">Obj</a> sobre el que llamar a estos métodos.
         </cite>
-        <h4>Estructura condicional <code>while</code></h4>
-        <h4>Estructura condicional <code>for</code></h4>
+        <h4>Estructura <code>while</code></h4>
+        <p>A veces queremos que la ejecución de una serie de sentencias se repita varias veces mientras una condición se
+            cumpla. Por ejemplo, podríamos querer imprimir por consola <em>Estoy vivo!</em> cada segundo mientras una
+            unidad con nombre <em>Eufrasio</em> siga viva. La estructura <code>while</code> nos permite hacer
+            exactamente eso, su sintaxis es la siguiente:</p>
+        <pre><code>while ( <em>expresión_a_ser_evaluada</em> )
+    <em>bloque_mientras_true</em></code></pre>
+        <cite><span class="material-icons">visibility</span>
+            Presta atención a que no se coloca ningún punto y coma (<code>;</code>) entre el while y el bloque
+            o la sentencia a ejecutar en bucle. Si colocas un punto y coma tras el while o cualquier otra
+            estructura de control, estás indicando que tu bloque es simplemente una única sentencia vacía.
+        </cite>
+        <p>
+            donde <em>expresión_a_ser_evaluada</em> es una expresión que retorna un valor de tipo
+            <a href="/cks/#bool" class="type">bool</a>
+            o <a href="/cks/#int" class="type">int</a>, y <em>bloque_mientras_true</em> es un bloque de sentencias (o
+            una sentencia única, si no se utilizan llaves) que ha de ejecutarse si la condición es cierta, para luego
+            volver a comprobar la condición de nuevo.
+        </p>
+        <p>
+            Cuando la ejecución llega a una sentencia <code>while</code>, primero se evalúa la <em>expresión_a_ser_evaluada</em>.
+            Si esta evalúa como cierta (<code>true</code>), entonces se ejecuta el <em>bloque_mientras_true</em> para, a
+            continuación, volver a evaluar la expresión y ejecutar el bloque (hasta el momento en que deje de evaluar
+            como cierta). Si al evaluar la expresión, ésta evalúa a <code>false</code>, la ejecución se salta el <code>bloque_si_true</code>
+            y continúa directamente después del <code>while</code>.
+        </p>
+        <p>
+            El siguiente ejemplo muestra cómo escribir a consola <em>Estoy vivo!</em> cada segundo mientras una unidad
+            con nombre <em>Eufrasio</em> esté viva, para finalmente escribir <em>He muerto D:</em> una única vez cuando
+            la unidad haya muerto:
+        </p>
+        <pre><code class="language-cks">while ( GetNamedObj("Eufrasio").obj.IsAlive() ) {
+    pr("Estoy vivo!");
+    Sleep(1000); // 1000 milisegundos = 1 segundo
+}
+pr("He muerto D:");</code></pre>
+        <p>La ejecución del ejemplo anterior puede ser descrita por el siguiente diagrama:</p>
+        <img class="text-img" src="img/while_diagram.png" width="351" height="483"
+             alt="diagrama de la ejecución del ejemplo, tal como se describe en el texto">
+        <h4>Estructura <code>for</code></h4>
+        <p>Entre los diferentes usos de repetir bloques de sentencias, uno común es el de hacerlo una cantidad
+            determinada de veces. Para ello, lo normal es emplear un contador que almacene cuántas veces hemos repetido
+            el bloque e incrementarlo en cada iteración. Como contador, podemos usar una variable de tipo
+            <a href="/cks/#int" class="type">int</a>. Aunque las variables serán descritas más adelante, en el apartado
+            <a href="#variables_y_scope">Variables y <em>scope</em></a>, por ahora basta con saber que pueden
+            almacenar valores. Si utilizásemos una estructura <code>while</code>, el código sería parecido al siguiente:
+        </p>
+        <pre><code class="language-cks">contador = 1; // iniciamos contador al valor inicial que queramos (en este caso 1)
+while ( contador <= 10 ) { // mientras el contador sea 10 o menos
+    pr( "Ejecutado " + contador + " veces"); // Aquí podríamos poner cualquier otro código
+    contador += 1; // Incrementamos el contador en 1
+}</code></pre>
+        <cite><span class="material-icons">info</span>
+            La declaración de la variable <em>contador</em> ha sido omitida del ejemplo, para más información
+            sobre cómo declarar variables consulta <a href="#variables_y_scope">Variables y <em>scope</em></a>.
+        </cite>
+        <p>Sin embargo, existe una forma más concisa de escribir este código.</p>
         <h4>Directivas <code>break</code> y <code>continue</code></h4>
-        <h3 class="normal">Variables y <em>scope</em></h3>
+        <h3 class="normal" id="variables_y_scope">Variables y <em>scope</em></h3>
         <h2>Cómo usar esta guía</h2>
         <p></p>
     </section>
