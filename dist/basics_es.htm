@@ -12,9 +12,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
+        pre {
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
         :not(pre) > code[class*="language-"] {
             background: #ddd;
             padding: 0 5px;
+            word-break: break-all;
         }
 
         pre:not([class*="language-"]) {
@@ -22,8 +28,16 @@
             padding: 10px;
         }
 
+        code:not([class*="language-"]) {
+            background: #eee;
+        }
+
         section {
             padding: 1rem;
+        }
+
+        code > em {
+            color: #800000;
         }
 
         img.text-img {
@@ -275,11 +289,8 @@ View(GetSettlement("asentamiento").GetCentralBuilding().pos, false);</code></pre
         <h4>Estructura condicional <code>if</code> / <code>else</code></h4>
         <p>La estructura condicional <code>if</code> (del inglés: <em>si</em>) nos permite ejecutar un bloque de código
             únicamente si una expresión dada evalúa como verdadera (<code>true</code>). Esto puede ser muy útil cuando
-            queremos que cierto bloque se ejecute o no dependiendo de ciertas condiciones. La estructura <code>if</code>
-            viene acompañada de una cláusula<code>else</code> (del inglés: <em>en otro caso</em>) opcional, que nos
-            permite
-            especificar otro bloque para ejecutar alternativamente, en caso de que la expresión evalúe a falso
-            (<code>false</code>). La sintaxis de un <code>if</code> es:</p>
+            queremos que cierto bloque se ejecute o no dependiendo de ciertas condiciones. La sintaxis de un
+            <code>if</code> es:</p>
         <pre><code>if ( <em>expresión_a_ser_evaluada</em> ) <em>bloque_si_true</em> </code></pre>
         <p>
             donde <em>expresión_a_ser_evaluada</em> puede ser cualquier cadena de funciones que retorne un valor de tipo
@@ -292,7 +303,11 @@ View(GetSettlement("asentamiento").GetCentralBuilding().pos, false);</code></pre
             estructura de control, estás indicando que tu bloque condicional es simplemente una única sentencia
             vacía.
         </cite>
-        <p>La sintaxis de un <code>if</code> con cláusula <code>else</code> tiene este aspecto:</p>
+        <p> La estructura <code>if</code> viene acompañada de una cláusula <code>else</code> (del inglés: <em>en otro
+            caso</em>) opcional, que nos permite especificar otro bloque para ejecutar alternativamente, en caso de que
+            la expresión evalúe a falso (<code>false</code>).La sintaxis de un <code>if</code> con cláusula
+            <code>else</code> tiene este aspecto:
+        </p>
         <pre><code>if ( <em>expresión_a_ser_evaluada</em> )
     <em>bloque_si_true</em>
 else
@@ -304,6 +319,10 @@ else
             simplemente las añadimos para hacer el código más legible. Podrías, si quisieses, escribir toda una
             secuencia en una única línea.
         </cite>
+        <p>La ejecución de un if puede ser explicada con el siguiente diagrama (a la izquierda, sin bloque
+            <code>else</code>, a la derecha, con ambos bloques):</p>
+        <img class="text-img" src="img/if_diagram.png" width="577" height="292"
+             alt="diagrama de la ejecución del if, tal como se describe en el texto">
         <p>Por ejemplo, con el siguiente código comprobamos si la unidad con nombre de scripts <em>miUnidad</em> tiene
             menos de 100 puntos de vida, y si esto sucede, le damos 50 puntos de vida más y lanzamos la conversación
             <em>miConversacion</em>. Si no es así y la unidad tiene 100 o más puntos de vida, le reducimos la vida en 75
@@ -328,15 +347,10 @@ else
         <h4>Estructura <code>while</code></h4>
         <p>A veces queremos que la ejecución de una serie de sentencias se repita varias veces mientras una condición se
             cumpla. Por ejemplo, podríamos querer imprimir por consola <em>Estoy vivo!</em> cada segundo mientras una
-            unidad con nombre <em>Eufrasio</em> siga viva. La estructura <code>while</code> nos permite hacer
-            exactamente eso, su sintaxis es la siguiente:</p>
+            unidad con nombre <em>Eufrasio</em> siga viva. La estructura <code>while</code> (del inglés:
+            <em>mientras</em>) nos permite hacer exactamente eso, su sintaxis es la siguiente:</p>
         <pre><code>while ( <em>expresión_a_ser_evaluada</em> )
     <em>bloque_mientras_true</em></code></pre>
-        <cite><span class="material-icons">visibility</span>
-            Presta atención a que no se coloca ningún punto y coma (<code>;</code>) entre el while y el bloque
-            o la sentencia a ejecutar en bucle. Si colocas un punto y coma tras el while o cualquier otra
-            estructura de control, estás indicando que tu bloque es simplemente una única sentencia vacía.
-        </cite>
         <p>
             donde <em>expresión_a_ser_evaluada</em> es una expresión que retorna un valor de tipo
             <a href="/cks/#bool" class="type">bool</a>
@@ -344,6 +358,11 @@ else
             una sentencia única, si no se utilizan llaves) que ha de ejecutarse si la condición es cierta, para luego
             volver a comprobar la condición de nuevo.
         </p>
+        <cite><span class="material-icons">visibility</span>
+            Presta atención a que no se coloca ningún punto y coma (<code>;</code>) entre el while y el bloque
+            o la sentencia a ejecutar en bucle. Si colocas un punto y coma tras el while o cualquier otra
+            estructura de control, estás indicando que tu bloque es simplemente una única sentencia vacía.
+        </cite>
         <p>
             Cuando la ejecución llega a una sentencia <code>while</code>, primero se evalúa la <em>expresión_a_ser_evaluada</em>.
             Si esta evalúa como cierta (<code>true</code>), entonces se ejecuta el <em>bloque_mientras_true</em> para, a
@@ -351,41 +370,281 @@ else
             como cierta). Si al evaluar la expresión, ésta evalúa a <code>false</code>, la ejecución se salta el <code>bloque_si_true</code>
             y continúa directamente después del <code>while</code>.
         </p>
+        <p>La ejecución de un <code>while</code> puede entenderse mejor con el siguiente diagrama:</p>
+        <img class="text-img" src="img/while_diagram.png" width="279" height="302"
+             alt="diagrama de la ejecución de un while, tal como se describe en el texto">
         <p>
             El siguiente ejemplo muestra cómo escribir a consola <em>Estoy vivo!</em> cada segundo mientras una unidad
             con nombre <em>Eufrasio</em> esté viva, para finalmente escribir <em>He muerto D:</em> una única vez cuando
             la unidad haya muerto:
         </p>
-        <pre><code class="language-cks">while ( GetNamedObj("Eufrasio").obj.IsAlive() ) {
+        <pre><code class="language-cks">while (GetNamedObj("Eufrasio").obj.IsAlive()) {
     pr("Estoy vivo!");
     Sleep(1000); // 1000 milisegundos = 1 segundo
 }
 pr("He muerto D:");</code></pre>
         <p>La ejecución del ejemplo anterior puede ser descrita por el siguiente diagrama:</p>
-        <img class="text-img" src="img/while_diagram.png" width="351" height="483"
+        <img class="text-img" src="img/while_example_diagram.png" width="351" height="483"
              alt="diagrama de la ejecución del ejemplo, tal como se describe en el texto">
         <h4>Estructura <code>for</code></h4>
-        <p>Entre los diferentes usos de repetir bloques de sentencias, uno común es el de hacerlo una cantidad
-            determinada de veces. Para ello, lo normal es emplear un contador que almacene cuántas veces hemos repetido
-            el bloque e incrementarlo en cada iteración. Como contador, podemos usar una variable de tipo
-            <a href="/cks/#int" class="type">int</a>. Aunque las variables serán descritas más adelante, en el apartado
-            <a href="#variables_y_scope">Variables y <em>scope</em></a>, por ahora basta con saber que pueden
-            almacenar valores. Si utilizásemos una estructura <code>while</code>, el código sería parecido al siguiente:
+        <p>Entre los diferentes usos de repetir bloques de sentencias, uno común es el de hacerlo usando algún tipo
+            de contador. Imaginemos que queremos que la vida de una unidad llamada Anacleto varíe desde 100 hasta 1000,
+            incrementándola 10 unidades cada segundo tras imprimir el valor de vida actual.
+            Si utilizásemos una estructura <code>while</code>, el código sería parecido al siguiente:
         </p>
-        <pre><code class="language-cks">contador = 1; // iniciamos contador al valor inicial que queramos (en este caso 1)
-while ( contador <= 10 ) { // mientras el contador sea 10 o menos
-    pr( "Ejecutado " + contador + " veces"); // Aquí podríamos poner cualquier otro código
-    contador += 1; // Incrementamos el contador en 1
+        <pre><code class="language-cks">GetNamedObj("Anacleto").obj.SetHealth(100); // Iniciar la vida a 100
+while (GetNamedObj("Anacleto").obj.health < 1000) { // si aún no hemos llegado a 1000
+    // Hacemos algo, en este caso escribir cuanta vida tiene
+    pr("Vida actual de Anacleto: " + GetNamedObj("Anacleto").obj.health);
+    GetNamedObj("Anacleto").obj.Heal(10); // Incrementamos la vida en 10
 }</code></pre>
-        <cite><span class="material-icons">info</span>
-            La declaración de la variable <em>contador</em> ha sido omitida del ejemplo, para más información
-            sobre cómo declarar variables consulta <a href="#variables_y_scope">Variables y <em>scope</em></a>.
+        <p>Sin embargo, existe una forma más concisa de escribir este código: la estructura <code>for</code> (del
+            inglés: <em>para</em>).
+            Esta estructura nos permite, de manera compacta, indicar un bucle con una inicialización y un paso
+            entre iteraciones. Su sintaxis en la siguiente:</p>
+        <pre><code>for ( <em>expr_inicializacion</em> ; <em>expr_a_evaluar</em> ; <em>expr_de_paso</em> )
+    <em>bloque_mientras_true</em></code></pre>
+        <p>donde <em>expr_inicializacion</em> es una expresión ejecutada justo antes de comenzar el bucle, usada
+            generalmente para inicializar algún tipo de contador; <em>expr_a_evaluar</em> es la expresión que se
+            evaluará antes de cada iteración del bucle para decir si continuar ejecutando el bloque o acabar el bucle y
+            continuar con las sentencias siguientes; <em>expr_de_paso</em> es una expresión que se evaluará tras cada
+            iteración del bucle, antes de comprobar de evaluar de nuevo <em>expr_a_evaluar</em>; y
+            <em>bloque_mientras_true</em> es, al igual que en <code>while</code>, o bien una única sentencia o un grupo
+            de sentencias rodeadas por llaves (un bloque).</p>
+        <p>La ejecución de un <code>for</code> puede entenderse mejor con el siguiente diagrama:</p>
+        <img class="text-img" src="img/for_diagram.png" width="279" height="412"
+             alt="diagrama de la ejecución de un for, tal como se describe en el texto">
+        <p>De esta forma, el ejemplo que acabamos de exponer sobre nuestro amigo Anacleto, puede ser escrito con un
+            <code>for</code> de la siguiente forma (con exactamente la misma funcionalidad):</p>
+        <pre><code class="language-cks">for (
+    GetNamedObj("Anacleto").obj.SetHealth(100);
+    GetNamedObj("Anacleto").obj.health < 1000;
+    GetNamedObj("Anacleto").obj.Heal(10)
+) {
+    pr("Vida actual de Anacleto: " + GetNamedObj("Anacleto").obj.health);
+}</code></pre>
+        <cite><span class="material-icons">note</span>
+            Nota: recuerda que los saltos de línea y las tabulaciones son completamente ignoradas por el compilador,
+            simplemente las añadimos para hacer el código más legible. Podrías, si quisieses, escribir toda una
+            secuencia en una única línea.
         </cite>
-        <p>Sin embargo, existe una forma más concisa de escribir este código.</p>
+        <p>Más adelante explicaremos la declaración y uso de variables, que permiten uno de los usos más comunes de
+            la estructura <code>for</code>: iterar una lista indexada numéricamente. Para más información sobre las
+            variables, consulta la sección <a href="#variables_y_scope">Variables y <em>scope</em></a>. Por ahora,
+            simplemente asume que tenemos un <a href="./#int" class="type">int</a> con nombre <code>i</code> y, por
+            ejemplo, una <a href="./#ObjList" class="type">ObjList</a> con nombre <code>miObjList</code>. Con un
+            bucle <code>for</code> podríamos iterar la lista con:</p>
+        <pre><code class="language-cks">for(i = 0; i < miObjList.count; i += 1) {
+    // Aquí podemos hacer lo que queramos con el objeto i-ésimo de miObjList (miObjList[i])
+    miObjList[i].SetHealth(miObjList[i].maxhealth);
+}</code></pre>
+        <cite><span class="material-icons">visibility</span>
+            Debemos iterar con un menor estricto porque los índices de una <a href="./#ObjList" class="type">ObjList</a>
+            están indexados en base <code>0</code>, es decir, el primer elemento es el número <code>0</code> y el último
+            elemento es uno menos que el tamaño de la lista.<br>
+            Nótese también que el uso de llaves aquí es opcional, pues el bloque contiene una única sentencia.
+        </cite>
         <h4>Directivas <code>break</code> y <code>continue</code></h4>
+        <p>Cuando tratamos con bucles, ya sean <code>while</code> o <code>for</code>, en ocasiones puede interesarnos
+            omitir ciertas iteraciones (o la parte final de ellas), o salir prematuramente del bucle (antes de que la
+            expresión a evaluar del bucle retorne <code>false</code>). Aunque podríamos lograr cualquier comportamiento
+            deseado modificando la expresión a evaluar y colocando estructuras <code>if</code> que condicionen la
+            ejecución
+            del bloque, a veces puede ser simplemente más cómodo o legible utilizar dos directivas especiales ideadas
+            exactamente para esto: <code>continue</code> y <code>break</code>.</p>
+        <cite><span class="material-icons">warning</span>
+            Tanto <code>continue</code> como <code>break</code> producen saltos en el flujo de ejecución que, si las
+            directivas pasan desapercibidas al lector, podrían confundirlo y dificultar la lectura del código.
+            En caso de usarlas, asegúrate siempre de que su uso está facilitando la lectura del código y no
+            entorpeciéndola. Es posible realizar la misma funcionalidad que estas directivas logran mediante la
+            modificación de la expresión a evaluar del bucle o la introducción de estructuras <code>if</code> dentro
+            del bloque.
+        </cite>
+        <p>La directiva <code>continue</code> nos permite saltarnos lo que queda del bloque de sentencias y volver
+            directamente al comienzo del bucle (justo antes de evaluar la expresión que lo condiciona). Si estamos en un
+            bucle <code>for</code>, esta directiva hará que la ejecución pase directamente a la expresión de paso. Por
+            ejemplo, imaginemos que tenemos el siguiente bucle que utiliza una variable <code>i</code> de tipo
+            <a href="./#int" class="type">int</a> para iterar sobre una <a href="./#ObjList" class="type">ObjList</a>
+            llamada <code>miObjList</code> curando a todos sus miembros:
+        </p>
+        <pre><code class="language-cks">for(i = 0; i < miObjList.count; i += 1)
+    miObjList[i].SetHealth(miObjList[i].maxhealth);
+</code></pre>
+        <cite><span class="material-icons">note</span>
+            Nota: Para más información sobre las variables, consulta la sección <a href="#variables_y_scope">Variables y
+                <em>scope</em></a>.
+        </cite>
+        <p>Imaginemos ahora que deseamos saltarnos todos aquellos objetos cuya energía sea inferior a 5. Si quisiéramos
+            hacerlo utilizando la directiva <code>continue</code>, podríamos hacerlo de la siguiente forma:</p>
+        <pre><code class="language-cks">for(i = 0; i < miObjList.count; i += 1) {
+    if(miObjList[i].stamina < 5)
+        continue;
+    miObjList[i].SetHealth(miObjList[i].maxhealth);
+}</code></pre>
+        <p>De esta forma, en cada iteración del bucle (para cada objeto en la lista) se comprobará si la energía del
+            objeto es menor que 5, y si es así se pasará directamente a <code>i += 1</code>, saltándonos todo el resto
+            del bucle.</p>
+        <cite><span class="material-icons">warning</span>
+            Aunque aquí hemos forzado el uso de <code>continue</code> para mostrar un ejemplo de uso, para este código
+            sería probablemente más adecuado utilizar solamente la estructura <code>if</code> con la condición inversa,
+            rodeando la curación del objeto, así:</cite>
+        <pre><code class="language-cks">for(i = 0; i < miObjList.count; i += 1) {
+    if(miObjList[i].stamina >= 5)
+        miObjList[i].SetHealth(miObjList[i].maxhealth);
+}</code></pre>
+        <p>La directiva <code>break</code> nos permite, en cambio, salir del bucle inmediatamente y continuar con la
+            ejecución posterior. Imaginemos ahora que nuestro bucle cura al objeto y a continuación lo vuelve invisible,
+            el aspecto de un código haciendo tal cosa sería el siguiente:</p>
+        <pre><code class="language-cks">for(i = 0; i < miObjList.count; i += 1) {
+    miObjList[i].SetHealth(miObjList[i].maxhealth);
+    miObjList[i].SetVisible(false);
+}</code></pre>
+        <p>Si quisiésemos que, tras curar la primera unidad con energía menor 5, la ejecución saliese del bucle
+            inmediatamente sin continuar con el resto de unidades y antes incluso de hacer invisible a esta última,
+            pondríamos lo siguiente:
+        </p>
+        <pre><code class="language-cks">for(i = 0; i < miObjList.count; i += 1) {
+    miObjList[i].SetHealth(miObjList[i].maxhealth);
+    if (miObjList[i].stamina < 5)
+        break;
+    miObjList[i].SetVisible(false);
+}</code></pre>
+        <p>Cuando tenemos varios bucles anidados, debemos tener cuidado, pues estas directivas sólo afectarán al bucle
+            más interno. De esta forma, podríamos tener un bucle que repite nuestro último código mientras el objeto
+            llamado <code>Casimiro</code> está vivo, de esta forma:</p>
+        <pre><code class="language-cks">while(GetNamedObj("Casimiro").obj.IsAlive()) {
+    for(i = 0; i < miObjList.count; i += 1) {
+        miObjList[i].SetHealth(miObjList[i].maxhealth);
+        if (miObjList[i].stamina < 5)
+            break;
+        miObjList[i].SetVisible(false);
+    }
+    Sleep(1000); // Esperamos 1 segundo antes de volver a curarlos
+}</code></pre>
+        <p>En este caso, cuando el bucle interno encontrase el primer objeto con energía inferior a 5 y llegase a
+            la directiva <code>break</code>, la ejecución saltaría a <code>Sleep(1000)</code>, saliendo del bucle
+            interno <code>for</code> pero permaneciendo todavía dentro del bucle más externo <code>while</code>.</p>
+        <h4>Bucles infinitos</h4>
+        <p>En ocasiones, puede ser útil que un código se repita eternamente mientras la partida continúe, en ese
+            caso puedes utilizar un <em>bucle infinito</em>. Para crear un bucle infinito basta con utilizar una
+            expresión a evaluar que evalúe siempre como <code>true</code>, las formas más comunes son utilizar el
+            propio <code>true</code> o su equivalente entero, <code>1</code>. En el siguiente ejemplo creamos un bucle
+            infinito que nos permitirá comprobar cada segundo que pasa si <code>Agapito</code> tiene al menos 5 de
+            energía,
+            y si los tiene le curaremos 100 de vida:</p>
+        <pre><code class="language-cks">while(1) {
+    if (GetNamedObj("Agapito").obj.stamina >= 5)
+        GetNamedObj("Agapito").obj.Heal(100);
+    Sleep(1000); // Esperamos 1 segundo antes de volver a curarlos
+}</code></pre>
         <h3 class="normal" id="variables_y_scope">Variables y <em>scope</em></h3>
+        <p>
+            En ocasiones, puede ser interesante guardar ciertos valores bajo un nombre concreto para utilizarlos más
+            adelante. Por ejemplo, podemos querer guardar la cantidad de objetos que había en el grupo
+            <em>G_MiGrupo</em> cuando comenzó la secuencia, para luego comprobar si ha cambiado diez segundos después.
+            Para realizar esto podemos utilizar las <strong>variables</strong>.
+        </p>
+        <p>Para utilizar una variable primero debemos <em>declararla</em>, es decir, debemos indicar al juego el nombre
+            y tipo de nuestra variable. Por ejemplo, si vamos a utilizar una variable llamada <code>miVariable</code>
+            para guardar valores de tipo <a href="./#Obj" class="type">Obj</a>, necesitamos decirle al compilador: oye,
+            cuando escriba <code>miVariable</code>, me refiero a un valor de tipo <code>Obj</code>. A esto llamamos
+            <em>declarar</em> la variable, y se hace indicando su tipo, seguido de un espacio y el nombre de la
+            variable, por ejemplo: <code class="language-cks">Obj miVariable;</code>.
+        </p>
+        <p>Si deseamos declarar varias variables del mismo tipo, tenemos la opción de declararlas todas juntas,
+            separando sus valores por comas, así:</p>
+        <pre><code class="language-cks">Obj miVariable1, miVariable2, miVariable3;</code></pre>
+        <p>Los nombres de variables deben comenzar siempre por una letra o guión bajo (<code>_</code>), y sólo pueden
+            contener letras, números y guiones bajos.
+        </p>
+        <p>Si lo deseamos, también podemos darles un valor inicial a nuestra variable a la vez que la declaramos,
+            introduciendo un signo igual (<code>=</code>). Sin embargo, el valor que le asignemos debe ser un valor
+            constante, y no una expresión. El caso más típico de inicialización es usar un valor <em>literal</em>. La
+            forma de escribir valores literales varía según el tipo. Por ejemplo, un literal de tipo
+            <a class="type" href="./#int">int</a> consiste simplemente en una secuencia de dígitos numéricos (0, 1, 2,
+            3, 4, 5, 6, 7, 8 o 9), opcionalmente precedidos por un signo menos (<code>-</code>). Ejemplos de literales
+            enteros válidos son: <code>68</code>, <code>-73</code> o <code>482</code>. En el caso de los
+            <a class="type" href="./#str">str</a>, se pueden escribir de forma literal rodeándolos con dobles o simples
+            comillas (<code>"</code> o <code>'</code>), por ejemplo: <code class="language-cks">"Yo soy un str!"</code>,
+            <code class="language-cks">'y yo otro'</code>,
+            <code class="language-cks">"puedes escapar \" comillas con la barra inclinada"</code>. En estos literales
+            puedes usar también <code>\n</code> para introducir saltos de línea o <code>\t</code> para introducir
+            tabulaciones.</p>
+        <cite><span class="material-icons">info</span>
+            Las variables no inicializadas explícitamente se inicializan a un valor por defecto que depende del tipo
+            de variable. Por ejemplo, los <code>int</code> se inicializan a 0, mientras que los <code>str</code> se
+            inicializan como cadenas vacías (<code>""</code>). Los <code>Obj</code> se inicializan como objetos
+            <a href="./#Obj::IsValid">inválidos</a>, los <code>ObjList</code> como listas vacías, etc&hellip;
+        </cite>
+        <p>En el siguiente ejemplo inicializamos una serie de variables a distintos valores:</p>
+        <pre><code class="language-cks">int a = 6, b = 7;
+float f = 1.5;
+ObjList ol; // no inicializada
+str miHeroe = "Anobolondio";</code></pre>
+        <p>¿Recuerdas los bloques? Esos grupos de sentencias rodeados por llaves (<code>{</code> y <code>}</code>). Pues
+            las declaraciones de variables deben ir <strong>siempre</strong> al principio de un bloque. Cualquier
+            declaración de variables realizada tras la primera sentencia de un bloque resultará en un error de
+            compilación. Por ejemplo:</p>
+        <pre><code class="language-cks">int a; // Esta declaración es correcta
+str b; // Esta también
+a = Group("G_MiGrupo").count; // Ojo: primera sentencia no declarativa
+int c; // Esta declaración dará un error de compilación
+while (Group("G_MiGrupo").count == a) {
+    ObjList ol; // aquí podemos declarar de nuevo
+    ol = Group("G_MiGrupo").GetObjList();
+    // La secuencia continuaría con más cosas...
+}</code></pre>
+        <cite><span class="material-icons">visibility</span>
+            Recuerda que la secuencia, como tal, también constituye un bloque, aunque no se escriban las llaves
+            explícitamente.
+        </cite>
+        <p>Cada variable tiene asociado un <em>scope</em>, es decir, un <em>ámbito</em> en el cual la variable
+            existe, y este ámbito se corresponde con el bloque en el que se declara y todos los bloques contenidos
+            en él. Si un nombre de variable ya está en uso en el <em>scope</em> actual, dará un error de compilación,
+            mientras que si está en uso en un <em>scope</em> más exterior la nueva variable reemplazará a la antigua
+            hasta que el <em>scope</em> finalice.</p>
+        <pre><code class="language-cks">int a = 3;
+a += 5;               // Aquí existe a
+if (a > 5) {
+    int b;            // b existe sólo en este bloque
+    b = a * 8;        // a continúa existiendo en los scopes anidados
+    pr("b: " + b);
+}
+b -= 1;               // ERROR! b ya no existe pues estamos fuera de su scope (eliminar esta línea)
+if (a > 7) {
+    str a = "Manolo"; // la nueva variable "oculta" la más exterior
+    GetNamedObj(a).obj.Heal(100); // a es ahora un str
+}
+a = 10;               // la a interna desaparece, aquí a vuelve a ser un int</code></pre>
+        <h4>Constantes y nombres disponibles en secuencias</h4>
+        <p>Hay una serie de "variables" que CKS declara por nosotros y cuyo valor no podemos modificar, las constantes.
+            Estas constantes aparecen documentadas a lo largo de la guía, algunos ejemplos serían las diferentes
+            constantes para los enteros de cada <a href="./#Obj::race">raza</a> (<code>Britain</code>,
+            <code>Iberia</code>, &hellip;) o las constantes para las habilidades de los héroes (<code>hsHealing</code>,
+            <code>hsCeasefire</code>, &hellip;) entre otras.</p>
+        <p>Cuando trabajamos en secuencias del editor de mapas, además, el compilador declarará como constantes de tipo
+        <a href="./#NamedObj">NamedObj</a> aquellos objetos que tengan nombre de scripts, usando el nombre de scripts
+        como nombre de la variable. De esta forma, si estamos en una secuencia de un mapa en la que existe un edificio
+        con nombre de scripts <em>MiEdificio</em>, escribir en una secuencia
+            <code class="language-cks">MiEdificio.obj.SetPlayer(1);</code> compilará sin problema, pues el compilador
+        declara la constante <em>MiEdificio</em> para nosotros.</p>
+        <cite><span class="material-icons">warning</span>
+            Esto sólo ocurre en la edición de secuencias del mismo mapa en que se encuentran los objetos, si estamos
+            en un mapa distinto (por ejemplo porque el objeto vino como parte del <a href="./#Party">grupo de viaje</a>
+            desde otro mapa de la misma aventura) la constante no existirá pues el objeto no se encuentra en el mapa a
+            la hora de compilar.
+        </cite>
+        <p>Finalmente, cuando especificamos un método sin indicar nada sobre lo que invocarlo (comenzando la expresión
+        con un punto), el compilador entiende que estamos utilizando la variable especial <code>this</code>. Por eso,
+        podemos encontrarnos secuencias como la siguiente:</p>
+        <pre><code class="language-cks">Unit this; // declaramos la variable this
+this = Ataulfo.obj.AsUnit(); // asignamos la unidad a this
+while (1) {
+    .SetLevel(.level + 1); // equivalente a this.SetLevel(this.level + 1);
+    Sleep(10000);
+}</code></pre>
         <h2>Cómo usar esta guía</h2>
-        <p></p>
+        <p>Pendiente de redacción.</p>
     </section>
 </main>
 <script src="prism.js"></script>
