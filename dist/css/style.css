@@ -1,5 +1,5 @@
 body {
-    padding-top: 2rem;
+    padding: 2rem 0 0;
     color: #333;
     font-family: "Noto Sans", sans-serif;
     font-size: 12pt;
@@ -7,19 +7,19 @@ body {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    max-width: 1200px;
+    /*max-width: 1200px;*/
     margin: 0 auto;
 }
-cite {
+div.box {
     display: block;
     margin: 1rem 2rem;
-    background: #eee;
-    border: 1px solid #ddd;
+    background: #ddd;
+    border: 1px solid #ccc;
     padding: 1rem;
     border-radius: 2px;
     font-style: normal;
 }
-cite > span.material-icons {
+div.box > span.material-icons {
     position: relative;
     top: 5px;
 }
@@ -144,7 +144,6 @@ a.basics:hover {
 }
 
 .container {
-    max-width: 1200px;
     padding: 0 2rem;
 }
 
@@ -158,11 +157,12 @@ nav {
     justify-content: center;
 }
 
-nav a {
+a.btn, nav a {
     text-decoration: none;
     border: 1px solid #333;
     padding: .5rem;
     margin: .5rem;
+    max-width: max-content;
     border-radius: 5px;
 }
 
@@ -482,6 +482,12 @@ footer a {
 
 main {
     flex: 1 0 auto;
+}
+
+main > details.class {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 main.one-remarked .remark::after {
