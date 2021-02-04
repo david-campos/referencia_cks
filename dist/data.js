@@ -1951,8 +1951,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "property",
             "params": [],
-            "description": "Defensa del objeto frente a ataques cuerpo a cuerpo. En el juego original, solo difiere de <a href='#Obj::armor_pierce'>Obj::armor_pierce</a> para barcos y botes (concretamente, las clases <a href='class.htm#ShipL.armor_pierce,armor_slash'>\"ShipL\"</a>, <a href='class.htm#ShipEgypt.armor_pierce,armor_slash'>\"ShipEgypt\"</a>, <a href='class.htm#ShipRome.armor_pierce,armor_slash'>\"ShipRome\"</a>, <a href='class.htm#ShipS.armor_pierce,armor_slash'>\"ShipS\"</a> y <a href='class.htm#ShipBattle.armor_pierce,armor_slash'>\"ShipBattle\"</a>). Sin embargo, la distinción entre los dos tipos de defensa no parece tener ningún efecto en Imperivm III.",
-            "description_en": "Defense of the object against slash attacks. In the original game, it only differs from <a href='#Obj::armor_pierce'>Obj::armor_pierce</a> for ships, and boats (concretely, the classes <a href='class.htm#ShipL.armor_pierce,armor_slash'>\"ShipL\"</a>, <a href='class.htm#ShipEgypt.armor_pierce,armor_slash'>\"ShipEgypt\"</a>, <a href='class.htm#ShipRome.armor_pierce,armor_slash'>\"ShipRome\"</a>, <a href='class.htm#ShipS.armor_pierce,armor_slash'>\"ShipS\"</a> and <a href='class.htm#ShipBattle.armor_pierce,armor_slash'>\"ShipBattle\"</a>). However, the distinction between both types of armor does not seem to have any effect in Imperivm III.",
+            "description": "Defensa del objeto. En el juego original, solo difiere de <a href='#Obj::armor_pierce'>Obj::armor_pierce</a> para barcos y botes (concretamente, las clases <a href='class.htm#ShipL.armor_pierce,armor_slash'>\"ShipL\"</a>, <a href='class.htm#ShipEgypt.armor_pierce,armor_slash'>\"ShipEgypt\"</a>, <a href='class.htm#ShipRome.armor_pierce,armor_slash'>\"ShipRome\"</a>, <a href='class.htm#ShipS.armor_pierce,armor_slash'>\"ShipS\"</a> y <a href='class.htm#ShipBattle.armor_pierce,armor_slash'>\"ShipBattle\"</a>). Sin embargo, la distinción entre los dos tipos de defensa no parece tener ningún efecto en Imperivm III y sólo este valor es utilizado.",
+            "description_en": "Armor of the object. In the original game, it only differs from <a href='#Obj::armor_pierce'>Obj::armor_pierce</a> for ships, and boats (concretely, the classes <a href='class.htm#ShipL.armor_pierce,armor_slash'>\"ShipL\"</a>, <a href='class.htm#ShipEgypt.armor_pierce,armor_slash'>\"ShipEgypt\"</a>, <a href='class.htm#ShipRome.armor_pierce,armor_slash'>\"ShipRome\"</a>, <a href='class.htm#ShipS.armor_pierce,armor_slash'>\"ShipS\"</a> and <a href='class.htm#ShipBattle.armor_pierce,armor_slash'>\"ShipBattle\"</a>). However, the distinction between both types of armor does not seem to have any effect in Imperivm III and only this value is used.",
             "related": ["Obj::armor_pierce", "SelAvgArmor"]
         }, {
             "id": "Obj::armor_pierce",
@@ -1963,8 +1963,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "property",
             "params": [],
-            "description": "Defensa del objeto frente a ataques de penetración. En el juego original, solo difiere de <a href='#Obj::armor_slash'>Obj::armor_slash</a> para barcos y botes (concretamente, las clases <a href='class.htm#ShipL.armor_pierce,armor_slash'>\"ShipL\"</a>, <a href='class.htm#ShipEgypt.armor_pierce,armor_slash'>\"ShipEgypt\"</a>, <a href='class.htm#ShipRome.armor_pierce,armor_slash'>\"ShipRome\"</a>, <a href='class.htm#ShipS.armor_pierce,armor_slash'>\"ShipS\"</a> y <a href='class.htm#ShipBattle.armor_pierce,armor_slash'>\"ShipBattle\"</a>). Sin embargo, la distinción entre los dos tipos de defensa no parece tener ningún efecto en Imperivm III.",
-            "description_en": "Defense of the object against pierce attacks. In the original game, it only differs from <a href='#Obj::armor_slash'>Obj::armor_slash</a> for ships, and boats (concretely, the classes <a href='class.htm#ShipL.armor_pierce,armor_slash'>\"ShipL\"</a>, <a href='class.htm#ShipEgypt.armor_pierce,armor_slash'>\"ShipEgypt\"</a>, <a href='class.htm#ShipRome.armor_pierce,armor_slash'>\"ShipRome\"</a>, <a href='class.htm#ShipS.armor_pierce,armor_slash'>\"ShipS\"</a> and <a href='class.htm#ShipBattle.armor_pierce,armor_slash'>\"ShipBattle\"</a>). However, the distinction between both types of armor does not seem to have any effect in Imperivm III.",
+            "description": "Defensa del objeto frente a ataques de penetración (no usada). En el juego original, solo difiere de <a href='#Obj::armor_slash'>Obj::armor_slash</a> para barcos y botes (concretamente, las clases <a href='class.htm#ShipL.armor_pierce,armor_slash'>\"ShipL\"</a>, <a href='class.htm#ShipEgypt.armor_pierce,armor_slash'>\"ShipEgypt\"</a>, <a href='class.htm#ShipRome.armor_pierce,armor_slash'>\"ShipRome\"</a>, <a href='class.htm#ShipS.armor_pierce,armor_slash'>\"ShipS\"</a> y <a href='class.htm#ShipBattle.armor_pierce,armor_slash'>\"ShipBattle\"</a>). Sin embargo, la distinción entre los dos tipos de defensa no parece tener ningún efecto en Imperivm III y este tipo no parece ser usado.",
+            "description_en": "Armor of the object against pierce attacks (not used). In the original game, it only differs from <a href='#Obj::armor_slash'>Obj::armor_slash</a> for ships, and boats (concretely, the classes <a href='class.htm#ShipL.armor_pierce,armor_slash'>\"ShipL\"</a>, <a href='class.htm#ShipEgypt.armor_pierce,armor_slash'>\"ShipEgypt\"</a>, <a href='class.htm#ShipRome.armor_pierce,armor_slash'>\"ShipRome\"</a>, <a href='class.htm#ShipS.armor_pierce,armor_slash'>\"ShipS\"</a> and <a href='class.htm#ShipBattle.armor_pierce,armor_slash'>\"ShipBattle\"</a>). However, the distinction between both types of armor does not seem to have any effect in Imperivm III and this type of armor seems to be unused.",
             "related": ["Obj::armor_slash", "SelAvgArmor"]
         }, {
             "id": "Obj::health",
@@ -2806,8 +2806,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [{"name": "posicion", "name_en": "position", "type": 6, "is_ptr": false}],
-            "description": "<p.>Cambia la <a href='#Obj::pos'>posición</a> del objeto; sin limpiar su cola de <a href='#Obj::command'>comandos</a>, sin detener la <a href='#Obj::GetAnim'>animación actual</a> ni modificar ningún otro parámetro interno del juego. A consecuencia de esto, la posición de la animación y los comandos en cola y posteriores parecen fallar.</p><p>Este comando se corresponde con mover un objeto en el editor, no en el juego. Si deseas cambiar la posición del objeto durante el juego, se recomienda usar en su lugar <a href='#Obj::SetPos:point'>Obj::SetPos</a>.</p>",
-            "description_en": "<p.>Sets the <a href='#Obj::pos'>position</a> of the object; without neither clearing its command queue, nor stopping its animation nor changing any other internal parameter of the game. In consequence, the position of the animation and the commands of the object seem to fail.</p><p>This command corresponds to moving the object in the editor, not the game. If you wish to change the position of the object during game play, it is recommended to make use of <a href='#Obj::SetPos:point'>Obj::SetPos</a> instead.</p>",
+            "description": "<p>Cambia la <a href='#Obj::pos'>posición</a> del objeto; sin limpiar su cola de <a href='#Obj::command'>comandos</a>, sin detener la <a href='#Obj::GetAnim'>animación actual</a> ni modificar ningún otro parámetro interno del juego. A consecuencia de esto, la posición de la animación y los comandos en cola y posteriores parecen fallar.</p><p>Este comando se corresponde con mover un objeto en el editor, no en el juego. Si deseas cambiar la posición del objeto durante el juego, se recomienda usar en su lugar <a href='#Obj::SetPos:point'>Obj::SetPos</a>.</p>",
+            "description_en": "<p>Sets the <a href='#Obj::pos'>position</a> of the object; without neither clearing its command queue, nor stopping its animation nor changing any other internal parameter of the game. In consequence, the position of the animation and the commands of the object seem to fail.</p><p>This command corresponds to moving the object in the editor, not the game. If you wish to change the position of the object during game play, it is recommended to make use of <a href='#Obj::SetPos:point'>Obj::SetPos</a> instead.</p>",
             "related": ["Obj::pos", "Obj::posRH", "Obj::SetPosSimple:point"]
         }, {
             "id": "Obj::SetBlind:bool",
@@ -2817,7 +2817,10 @@ const THE_OBJ = (function () {
             "of": 11,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 2, "is_ptr": false}]
+            "params": [{"name": "cegar", "name_en": "blind", "type": 2, "is_ptr": false}],
+            "description": "Hace que el objeto no explore el mapa ni elimine la niebla de guerra al moverse o que vuelva a hacerlo. Si <tt>cegar</tt> es <tt>true</tt>, el objeto será cegado (dejará de explorar y eliminar la niebla de guerra), si es <tt>false</tt> volverá a comportarse de forma normal.",
+            "description_en": "Prevents the object from exploring the map or removing the fog of war around it, or allows it. If <tt>blind</tt> is <tt>true</tt>, the object will be blind (will stop exploring and removing the fog of war), if it is <tt>false</tt> it will explore and remove the fog of war again.",
+            "related": ["Obj::sight"]
         }, {
             "id": "Obj::Face:point",
             "name": "Face",
@@ -6578,7 +6581,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Retorna <tt>true</tt> si la unidad está maldita y fallará su próximo ataque, o <tt>false</tt> en caso contrario.",
+            "description_en": "Returns <tt>true</tt> if the unit is cursed and will fail the next attack, or <tt>false</tt> otherwise.",
+            "related": ["Unit::Curse"]
         }, {
             "id": "Unit::IsDiseased",
             "name": "IsDiseased",
@@ -6587,7 +6593,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Retorna <tt>true</tt> si la unidad está infectada, o <tt>false</tt> en caso contrario.",
+            "description_en": "Returns <tt>true</tt> if the unit is diseased, or <tt>false</tt> otherwise.",
+            "related": ["Unit::Disease"]
         }, {
             "id": "Unit::GetBestCurseTarget",
             "name": "GetBestCurseTarget",
@@ -6668,7 +6677,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Maldice a la unidad para que falle su próximo ataque.",
+            "description_en": "Curses the unit so it will fail the next attack.",
+            "related": ["Unit::IsCursed", "Unit::Disease"]
         }, {
             "id": "Unit::Bless",
             "name": "Bless",
@@ -6686,7 +6698,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Infecta a la unidad con una enfermedad, tal y como lo hace la habilidad especial <em>Ataque venenoso</em>.",
+            "description_en": "Infects the unit with a disease, just like the <em>Disease attack</em> special ability does.",
+            "related": ["Unit::IsDiseased", "Unit::Curse"]
         }, {
             "id": "Unit::RamBestTarget",
             "name": "RamBestTarget",
@@ -10742,7 +10757,10 @@ const THE_OBJ = (function () {
                 "name_en": "max_health_and_stamina",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "ignorado", "name_en": "ignored", "type": 1, "is_ptr": false}]
+            }, {"name": "ignorado", "name_en": "ignored", "type": 1, "is_ptr": false}],
+            "description": "Añade los bonus de ataque, defensa, vida máxima y energía a la unidad indicada. Nótese que Imperivm III usa únicamente <a href='#Obj::armor_slash'>armor slash</a>, que el parámetro <tt>vida_max_y_energia</tt> bonifica a la vez la <a href='#Unit::maxhealth'>vida máxima</a> y la <a href='#Unit::stamina'>energía</a>, y que el último parámetro es ignorado.",
+            "description_en": "Adds the given bonus in attack, armor, max health and energy to the unit. Notice that Imperivm III uses only <a href='#Obj::armor_slash'>armor slash</a>, that the parameter <tt>max_health_and_stamina</tt> bonuses at the same time the <a href='#Unit::maxhealth'>maximum health</a> and the <a href='#Unit::stamina'>stamina</a>, and that the last parameter is ignored.",
+            "related": ["Unit::RemoveBonus:int_int_int_int_int"]
         }, {
             "id": "Unit::RemoveBonus:int_int_int_int_int",
             "name": "RemoveBonus",
