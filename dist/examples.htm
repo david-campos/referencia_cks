@@ -2,25 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CKS Reference - Classes</title>
+    <title>Examples</title>
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta name="author" content="El Jüsticiero Misteryoso">
+    <script src="js/examples.js" type="application/javascript" async></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
           integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
           crossorigin="anonymous"/>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="css/prism.css" rel="stylesheet">
+    <script src="js/prism.js"></script>
+    <script src="data.js"></script>
+    <script src="js/prism-setup.js"></script>
+    <style> #example-select {width: 40em; max-width: 100%; margin-right: 1em;} </style>
 </head>
 <body>
 <a href="./" class="btn" id="back"></a>
-<div id="class-select-container">
-    <label for="class-select" id="class-select-label"></label>
-    <select id="class-select"></select>
+<div>
+    <label for="example-select" id="select-label"></label>
+    <select id="example-select"></select>
+    <input id="only-lang" type="checkbox"><label for="only-lang" id="only-lang-label"></label>
 </div>
-<main id="class"></main>
-<script src="classes_complete.js"></script>
-<script src="js/class_display.js"></script>
+<pre class="language-cks"><code id="code-holder"></code></pre>
 </body>
 </html>

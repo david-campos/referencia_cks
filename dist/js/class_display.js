@@ -46,6 +46,9 @@ window.onload = function () {
         return;
     }
 
+    const back = document.getElementById('back');
+    back.innerText = ["Click here to go back to the main page", "Haz click aquí para volver a la página principal"][lang];
+
     // Class select
     const classSelect = document.getElementById('class-select');
     const classSelectLabel = document.getElementById('class-select-label');

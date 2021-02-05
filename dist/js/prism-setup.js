@@ -18,27 +18,26 @@ function setupPrism() {
             THE_OBJ.classes.map(cl => cl.name).join("|")
         })\\b`),
         'function': null,
-        // 'function': /\w+(?=\()|(?<=\.)\w+\b/
-        'cks-method': new RegExp('\\b(?:' + THE_OBJ.funcs.filter(f => f.type === 'method')
-            .map(f => escapeForRegexAndNameCorrection(f.name)).join('|') + ')\\b'),
         'operator': new RegExp(operatorsSortedByLen
             .map(f => escapeForRegexAndNameCorrection(f.name)).join('|'))
     });
 
-    Prism.languages.insertBefore('cks', 'punctuation', {
-        'cks-property': new RegExp('(?<=\\.)(?:' + THE_OBJ.funcs.filter(f => f.type === 'property')
-            .map(f => escapeForRegexAndNameCorrection(f.name)).join('|') + ')\\b')
+    Prism.languages.insertBefore('cks', 'operator', {
+        'cks-property': {
+            pattern: new RegExp('(\\.)(?:' + THE_OBJ.funcs.filter(f => f.type === 'property')
+                .map(f => escapeForRegexAndNameCorrection(f.name)).join('|') + ')\\b'),
+            lookbehind: true
+        },
+        'cks-method': new RegExp('\\b(?:' + THE_OBJ.funcs.filter(f => f.type === 'method')
+            .map(f => escapeForRegexAndNameCorrection(f.name)).join('|') + ')\\b'),
+        'implicit-this': {
+            alias: 'punctuation',
+            pattern: /([^\])a-z0-9]\s*)\./i,
+            lookbehind: true
+        }
     });
 
     Prism.languages.insertBefore('cks', 'string', {
         'constant': /\b(?:Gaul|RepublicanRome|Carthage|Iberia|ImperialRome|Britain|Egypt|Germany|gsWindOfWisdom|gsStarvation|gsSoothingRain|gsDivineSacrifice|gsBloodlust|gsTribute)\b/
     });
-
-    Prism.languages.insertBefore('cks', 'class-name', {
-        'implicit-this': {
-            alias: 'punctuation',
-            pattern: /(?<!\w|[\])])\./
-        }
-    });
-
 }
