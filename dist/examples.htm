@@ -5,7 +5,6 @@
     <title>Examples</title>
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta name="author" content="El Jüsticiero Misteryoso">
-    <script src="js/examples.js" type="application/javascript" async></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
           integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
           crossorigin="anonymous"/>
@@ -14,10 +13,12 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link href="css/prism.css" rel="stylesheet">
+    <link href="css/examples.css" rel="stylesheet">
     <script src="js/prism.js"></script>
     <script src="data.js"></script>
     <script src="js/prism-setup.js"></script>
-    <style> #example-select {width: 40em; max-width: 100%; margin-right: 1em;} </style>
+    <script src="js/util.js"></script>
+    <script src="js/examples.js" type="application/javascript" async></script>
 </head>
 <body>
 <a href="./" class="btn" id="back"></a>
@@ -26,6 +27,9 @@
     <select id="example-select"></select>
     <input id="only-lang" type="checkbox"><label for="only-lang" id="only-lang-label"></label>
 </div>
-<pre class="language-cks"><code id="code-holder"></code></pre>
+<div class="two-panels">
+    <pre class="language-cks"><code id="code-holder"></code></pre>
+    <div id="method-info" class="hidden"></div>
+</div>
 </body>
 </html>

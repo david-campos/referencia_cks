@@ -432,7 +432,24 @@ details {
     text-align: center;
 }
 
+.description table.sep-3 td:nth-child(4) {
+    width: 4px;
+    padding: 0;
+    background-color: #ccc;
+}
+.description table.sep-3 th:nth-child(4) {
+    width: 4px;
+    padding: 0;
+}
+
 .description table.tt tbody {
+    font-family: "Roboto Mono", monospace;
+}
+
+.description table.tt-2 td:nth-child(3) {
+    font-family: "Roboto Mono", monospace;
+}
+.description table.tt-6 td:nth-child(7) {
     font-family: "Roboto Mono", monospace;
 }
 

@@ -14,9 +14,14 @@ function setupPrism() {
     operatorsSortedByLen.sort((a, b) => b.name.length - a.name.length);
 
     Prism.languages.cks = Prism.languages.extend('clike', {
-        'keyword': new RegExp(`\\b(?:if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue|${
-            THE_OBJ.classes.map(cl => cl.name).join("|")
-        })\\b`),
+        'directive': {
+            pattern: new RegExp(`\\b(?:if|else|while|do|for|return|break|continue)\\b`),
+            alias: 'keyword'
+        },
+        'type': {
+            pattern: new RegExp(`\\b(?:${THE_OBJ.classes.map(cl => cl.name).join("|")})\\b`),
+            alias: 'keyword'
+        },
         'function': null,
         'operator': new RegExp(operatorsSortedByLen
             .map(f => escapeForRegexAndNameCorrection(f.name)).join('|'))

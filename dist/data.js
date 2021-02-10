@@ -4697,7 +4697,7 @@ const THE_OBJ = (function () {
                 "type": 5,
                 "is_ptr": false
             }],
-            "description": "Mueve los objetos dados al área. Para cada objeto en la consulta, lanza el comando <tt>move</tt> con un <a href='#GetRandomPointInArea:str'>punto aleatorio del área</a> <tt>area</tt> como objetivo, provocando que los objetos &quot;ataquen&quot; el área.",
+            "description": "Mueve los objetos dados al área. Para cada objeto en la consulta, lanza el comando <tt>move</tt> con un <a href='#GetRandomPointInArea:str'>punto aleatorio del área</a> <tt>area</tt> como objetivo, provocando que los objetos se desplacen hasta el área.",
             "description_en": "Moves the given objects to the area. For each object within the query, sets the command <tt>move</tt> to a <a href='#GetRandomPointInArea:str'>random point within the area</a> <tt>area</tt>, causing the objects to move somewhere within the area.",
             "related": ["AttackArea:Query_str"]
         }, {
@@ -6632,7 +6632,48 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "numero_habilidad", "name_en": "special_number",  "type": 1, "is_ptr": false}],
+            "description": `<p>Retorna <tt>true</tt> si la unidad tiene la habilidad especificada, o <tt>false</tt> en caso contrario.</p><p>Para cada habilidad, hay una constante <a class="type" href="#int">int</a> declarada en CKS. La siguiente tabla muestra las habilidades del juego original con su número <tt>int</tt> y su constante asociada.</p>
+<table class="sep-3 tt-2 tt-6"><thead><tr><th>#</th><th>Nombre</th><th>Constante</th><th></th><th>#</th><th>Nombre</th><th>Constante</th></tr></thead>
+    <tbody><tr><td>0</td><td>Contención</td><td>parry</td><td></td><td>1</td><td>Extenuación</td><td>drain</td></tr>
+    <tr><td>2</td><td>Ferocidad</td><td>ferocity</td><td></td><td>3</td><td>Golpe triple</td><td>triple_strike</td></tr>
+    <tr><td>4</td><td>Inmunidad</td><td>deflection</td><td></td><td>5</td><td>Vitalidad</td><td>active</td></tr>
+    <tr><td>6</td><td>Absorción</td><td>life_steal</td><td></td><td>7</td><td>Determinación</td><td>determination</td></tr>
+    <tr><td>8</td><td>Reanimación</td><td>combat_skill</td><td></td><td>9</td><td>Resistencia</td><td>toughness</td></tr>
+    <tr><td>10</td><td>Ataque experto</td><td>offensive_tactics</td><td></td><td>11</td><td>Técnicas defensivas</td><td>defensive_tactics</td></tr>
+    <tr><td>12</td><td>Penetración</td><td>penetration</td><td></td><td>13</td><td>Daño reflejado</td><td>spike_armor</td></tr>
+    <tr><td>14</td><td>Obstinación</td><td>bleeding_attack</td><td></td><td>15</td><td>Ataque especial</td><td>attack_skill</td></tr>
+    <tr><td>16</td><td>Defensa especial</td><td>defense_skill</td><td></td><td>17</td><td>Golpe mortal</td><td>death_blow</td></tr>
+    <tr><td>18</td><td>Ataque letal</td><td>power_strike</td><td></td><td>19</td><td>Golpe experto</td><td>expertise</td></tr>
+    <tr><td>20</td><td>Carga</td><td>charge</td><td></td><td>21</td><td>Regeneración</td><td>regeneration</td></tr>
+    <tr><td>22</td><td>Furia</td><td>rage</td><td></td><td>23</td><td>Venganza</td><td>revenge</td></tr>
+    <tr><td>24</td><td>Triunfo</td><td>triumph</td><td></td><td>25</td><td>Ataque venenoso</td><td>disease_attack</td></tr>
+    <tr><td>26</td><td>Ocultación</td><td>sneak</td><td></td><td>27</td><td>Encubrimiento</td><td>invisibility</td></tr>
+    <tr><td>28</td><td>Aprendizaje</td><td>learning</td><td></td><td>29</td><td>Iniciación</td><td>teaching</td></tr>
+    <tr><td>30</td><td>Libertad</td><td>freedom</td><td></td><td>31</td><td>Desvanecimiento</td><td>cripple</td></tr>
+    <tr><td>32</td><td>Curación</td><td>healing</td><td></td><td>33</td><td>Vista de lince</td><td>keen_sight</td></tr>
+    <tr><td>34</td><td>Daño expansivo</td><td>trample</td><td></td><td>35</td><td>Maldición</td><td>curse</td></tr></tbody></table>`,
+            "description_en": `<p>Returns <tt>true</tt> if the unit has the given special, or <tt>false</tt> otherwise.</p><p>For each special there is an <a class="type" href="#int">int</a> constant declared by CKS. The following table shows all the specials in the original game with their <tt>int</tt> number and their associated constant.</p>
+<table class="sep-3 tt-2 tt-6"><thead><tr><th>#</th><th>Name</th><th>Constant</th><th></th><th>#</th><th>Name</th><th>Constant</th></tr></thead>
+    <tbody><tr><td>0</td><td>Parry</td><td>parry</td><td></td><td>1</td><td>Drain</td><td>drain</td></tr>
+    <tr><td>2</td><td>Ferocity</td><td>ferocity</td><td></td><td>3</td><td>Triple strike</td><td>triple_strike</td></tr>
+    <tr><td>4</td><td>Deflection</td><td>deflection</td><td></td><td>5</td><td>Active</td><td>active</td></tr>
+    <tr><td>6</td><td>Life steal</td><td>life_steal</td><td></td><td>7</td><td>Determination</td><td>determination</td></tr>
+    <tr><td>8</td><td>Combat skill</td><td>combat_skill</td><td></td><td>9</td><td>Toughness</td><td>toughness</td></tr>
+    <tr><td>10</td><td>Offensive tactics</td><td>offensive_tactics</td><td></td><td>11</td><td>Defensive tactics</td><td>defensive_tactics</td></tr>
+    <tr><td>12</td><td>Penetration</td><td>penetration</td><td></td><td>13</td><td>Spike armor</td><td>spike_armor</td></tr>
+    <tr><td>14</td><td>Bleeding attack</td><td>bleeding_attack</td><td></td><td>15</td><td>Attack skill</td><td>attack_skill</td></tr>
+    <tr><td>16</td><td>Defense skill</td><td>defense_skill</td><td></td><td>17</td><td>Death blow</td><td>death_blow</td></tr>
+    <tr><td>18</td><td>Power strike</td><td>power_strike</td><td></td><td>19</td><td>Expertise</td><td>expertise</td></tr>
+    <tr><td>20</td><td>Charge</td><td>charge</td><td></td><td>21</td><td>Regeneration</td><td>regeneration</td></tr>
+    <tr><td>22</td><td>Rage</td><td>rage</td><td></td><td>23</td><td>Revenge</td><td>revenge</td></tr>
+    <tr><td>24</td><td>Triumph</td><td>triumph</td><td></td><td>25</td><td>Disease attack</td><td>disease_attack</td></tr>
+    <tr><td>26</td><td>Sneak</td><td>sneak</td><td></td><td>27</td><td>Invisibility</td><td>invisibility</td></tr>
+    <tr><td>28</td><td>Learning</td><td>learning</td><td></td><td>29</td><td>Teaching</td><td>teaching</td></tr>
+    <tr><td>30</td><td>Freedom</td><td>freedom</td><td></td><td>31</td><td>Cripple</td><td>cripple</td></tr>
+    <tr><td>32</td><td>Healing</td><td>healing</td><td></td><td>33</td><td>Keen sight</td><td>keen_sight</td></tr>
+    <tr><td>34</td><td>Trample</td><td>trample</td><td></td><td>35</td><td>Curse</td><td>curse</td></tr></tbody></table>`,
+            "related": ["Unit::SetSpecial:int_bool", "Unit::SpecialName:int", "ObjList::ObjSpecial:int"]
         }, {
             "id": "Unit::SetSpecial:int_bool",
             "name": "SetSpecial",
@@ -6641,7 +6682,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
+            "params": [{"name": "numero_habilidad", "name_en": "special_number", "type": 1, "is_ptr": false}, {"name": "habilitada", "name_en": "enabled", "type": 2, "is_ptr": false}],
+            "description": "<p>Establece si la unidad tiene la habilidad indicada o no.</p><p>Un valor de <tt>true</tt> en <tt>habilitada</tt> hace que la unidad tenga la habilidad, mientras que <tt>false</tt> hace que no la tenga.</p><p>Para una lista de las habilidades y sus números asociados consultar <a href='#Unit::HasSpecial:int'>Unit::HasSpecial</a>.</p>",
+            "description_en": "<p>Sets whether the unit has an special or not.</p><p>If <tt>enabled</tt> is <tt>true</tt>, the unit will have the special and if it is <tt>false</tt>, the unit will not have the special.</p><p>Please check <a href='#Unit::HasSpecial:int'>Unit::HasSpecial</a> for a list of the specials and their associated numbers.</p>",
+            "related": ["Unit::HasSpecial:int", "Unit::SpecialName:int", "ObjList::ObjSpecial:int"]
         }, {
             "id": "Unit::SpecialName:int",
             "name": "SpecialName",
@@ -6650,7 +6694,10 @@ const THE_OBJ = (function () {
             "of": 13,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "numero_habilidad", "name_en": "special_number", "type": 1, "is_ptr": false}],
+            "description": "<p>Retorna el nombre de la habilidad con el número dado.</p><p>Para una lista de las habilidades y sus números asociados consultar <a href='#Unit::HasSpecial:int'>Unit::HasSpecial</a>.</p>",
+            "description_en": "<p>Returns the name of the especial with the given number.</p><p>Please check <a href='#Unit::HasSpecial:int'>Unit::HasSpecial</a> for a list of specials and their associated numbers.</p>",
+            "related": ["Unit::HasSpecial:int", "Unit::SetSpecial:int_bool", "ObjList::ObjSpecial:int"]
         }, {
             "id": "Unit::GetParryMode",
             "name": "GetParryMode",
@@ -7231,7 +7278,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Muestra / oculta el minimapa que se ve en el editor. Funciona también durante la partida.",
+            "description_en": "Muestra / oculta el minimapa que se ve en el editor. Funciona también durante la partida.",
+            "related": ["Unit::SetMinimapFlag:bool", "BlockMiniMap:bool", "SetMiniMapRect:rect"]
         }, {
             "id": "SetMiniMapRect:rect",
             "name": "SetMiniMapRect",
@@ -8715,7 +8765,10 @@ const THE_OBJ = (function () {
             "of": 30,
             "of_ptr": true,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "nombre_conversacion", "name_en": "conversation_name", "type": 5, "is_ptr": false}],
+            "description": "Inicia esta referencia a <a href='#Conversation' class='type'>conversación</a> con la conversación de nombre dado del mapa actual.",
+            "description_en": "Initiates this <a href='#Conversation' class='type'>Conversation</a> reference with the conversation with the given name from the current map.",
+            "related": ["Conversation::SetActor:str_Unit", "Conversation::SetDefActor:str_str", "ptr.Conversation::Run"]
         }, {
             "id": "Conversation::SetActor:str_Unit",
             "name": "SetActor",
@@ -8724,7 +8777,12 @@ const THE_OBJ = (function () {
             "of": 30,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 13, "is_ptr": false}]
+            "params": [
+                {"name": "rol", "name_en": "role", "type": 5, "is_ptr": false},
+                {"name": "unidad", "name_en": "unit", "type": 13, "is_ptr": false}],
+            "description": "Asigna en la conversación la unidad indicada como actor / actriz del rol dado.",
+            "description_en": "Assigns in the conversation the given unit as the actor / actress for the specified role.",
+            "related": ["Conversation::SetDefActor:str_str"]
         }, {
             "id": "Conversation::SetDefActor:str_str",
             "name": "SetDefActor",
@@ -8769,7 +8827,10 @@ const THE_OBJ = (function () {
             "of": 30,
             "of_ptr": true,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Lanza la conversación. Nótese que no retorna el resultado de la misma.",
+            "description_en": "Launches the conversation. Notice it does not return the result of the conversation.",
+            "related": ["RunConv:str"]
         }, {
             "id": "RunConv:str",
             "name": "RunConv",
@@ -8778,7 +8839,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "nombre_conversacion", "name_en": "conversation_name", "type": 5, "is_ptr": false}],
+            "description": "Lanza la conversación, bloqueando la ejecución hasta que la conversación termina y retornando el resultado de la misma.",
+            "description_en": "Launches the conversation, blocking the execution until the conversation ends and returning the result."
         }, {
             "id": "_ListConvs",
             "name": "_ListConvs",
@@ -9485,11 +9548,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}, {
+                "name": "centro", "name_en": "center",
                 "type": 6,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "radio", "name_en": "radius", "type": 1, "is_ptr": false}],
+            "description": "<p>Explora en el mapa el círculo dado para un jugador concreto.</p><p>El parámetro <tt>jugador</tt> indica el jugador que explorará el círculo, <tt>centro</tt> es el centro del círculo a explorar y <tt>radio</tt> su radio.</p>",
+            "description_en": "<p>Explores a circle in the map for a given player.</p><p>The parameter <tt>player</tt> indicates the player for which the circle will be explored, <tt>center</tt> is the center of the circle and <tt>radius</tt> its radius.</p>",
+            "related": ["ExploreArea:int_str", "ExploreAll", "IsExplored:point_int"]
         }, {
             "id": "ExploreArea:int_str",
             "name": "ExploreArea",
@@ -9498,7 +9564,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}, {
+                "name": "area",
+                "type": 5,
+                "is_ptr": false
+            }],
+            "description": "<p>Explora un área determinada para el jugador dado.</p><p>El parámetro <tt>area</tt> indica el nombre del área a explorar, mientras que <tt>jugador</tt> indica el jugador para el cual el área aparecerá explorada.</p>",
+            "description_en": "<p>Explores a given area for the indicated player.</p><p>The parameter <tt>area</tt> indicates the name of the area to explore, while <tt>player</tt> indicates the player for which the area will be explored.</p>",
+            "related": ["ExploreCircle:int_point_int", "ExploreAll", "IsExplored:point_int"]
         }, {
             "id": "Party",
             "name": "Party",
@@ -9526,7 +9599,11 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 2, "is_ptr": false}]
+            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false},
+                {"name": "perdedor", "name_en": "loser", "type": 2, "is_ptr": false}],
+            "description": "<p>Termina la partida para el jugador indicado dándolo por perdedor / ganador.</p><p>Si el parámetro <tt>perdedor</tt> es <tt>true</tt>, el jugador <tt>jugador</tt> será el perdedor, en caso contrario será el ganador de la partida.</p>",
+            "description_en": "<p>Ends the game for the given player as the loser / winner.</p><p>If the parameter <tt>loser</tt> is <tt>true</tt>, the player <tt>player</tt> will be the loser, otherwise the player will be the winner of the match.</p>",
+            "related": ["EndGame:int_bool_str"]
         }, {
             "id": "IsMultiplayer",
             "name": "IsMultiplayer",
@@ -9838,7 +9915,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 6, "is_ptr": false}, {"name": "number", "type": 1, "is_ptr": false}]
+            "params": [{"name": "punto", "name_en": "pt", "type": 6, "is_ptr": false}, {
+                "name": "jugador",
+                "name_en": "player",
+                "type": 1,
+                "is_ptr": false
+            }],
+            "description": "Retorna <tt>true</tt> si el punto ha sido explorado por el jugador, o <tt>false</tt> en caso contrario.",
+            "description_en": "Returns <tt>true</tt> if the given point has been explored by the player, or <tt>false</tt> otherwise."
         }, {
             "id": "SelectionGold",
             "name": "SelectionGold",
@@ -10036,7 +10120,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "very_dangerous": true,
+            "description": "Crashea el juego, es decir, lo hace fallar y cerrarse.",
+            "description_en": "Crashes the game, i.e. makes the game fail and close."
         }, {
             "id": "AreaCenter:str",
             "name": "AreaCenter",
@@ -10045,7 +10132,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "area", "type": 5, "is_ptr": false}],
+            "description": "Retorna el punto central del área con el nombre dado. Si no existe un área con el nombre dado retorna el punto <tt>(-1, -1)</tt>.",
+            "description_en": "Returns the central point of the area with the given name. If no area with the given name exists, returns the point <tt>(-1, -1)</tt>.",
+            "related": ["GetRandomPointInArea:str"]
         }, {
             "id": "DisableArea:str",
             "name": "DisableArea",
@@ -10072,7 +10162,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "area", "type": 5, "is_ptr": false}],
+            "description": "Retorna un punto aleatorio dentro del área con el nombre dado.  Si no existe un área con el nombre dado retorna el punto <tt>(1000, 1000)</tt>.",
+            "description_en": "Returns a random point within the area with the given name. If no area with the given name exists, returns the point <tt>(1000, 1000)</tt>.",
+            "related": ["AreaCenter:str"]
         }, {
             "id": "AreaDistTo:point_str",
             "name": "AreaDistTo",
@@ -10196,7 +10289,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "nombre_objetivo", "name_en": "note_name", "type": 5, "is_ptr": false}],
+            "description": "Añade el objetivo con el nombre dado a la lista de objetivos.",
+            "description_en": "Adds the note with the given name to the list of notes.",
+            "related": ["RemoveNote:str", "IsNoteActive:str", "ClearNotes", "WaitAddNote:str_int"]
         }, {
             "id": "RemoveNote:str",
             "name": "RemoveNote",
@@ -10205,7 +10301,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "nombre_objetivo", "name_en": "note_name", "type": 5, "is_ptr": false}],
+            "description": "Elimina el objetivo con el nombre dado de la lista de objetivos.",
+            "description_en": "Removes the note with the given name from the list of notes.",
+            "related": ["GiveNote:str", "IsNoteActive:str", "ClearNotes", "WaitRemoveNote:str_int"]
         }, {
             "id": "ShowNotes",
             "name": "ShowNotes",
@@ -10214,7 +10313,9 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Muestra la ventana de objetivos.",
+            "description_en": "Shows the notes window."
         }, {
             "id": "ClearNotes",
             "name": "ClearNotes",
@@ -10223,7 +10324,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "description": "Elimina todos los objetivos.",
+            "description_en": "Removes all the notes.",
+            "related": ["RemoveNote:str"]
         }, {
             "id": "IsNoteActive:str",
             "name": "IsNoteActive",
@@ -10232,7 +10336,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "nombre_objetivo", "name_en": "note_name", "type": 5, "is_ptr": false}],
+            "description": "Retorna <tt>true</tt> si un objetivo con el nombre dado está activo, o <tt>false</tt> si no.",
+            "description_en": "Returns <tt>true</tt> if a note with the given name is active, or <tt>false</tt> otherwise.",
+            "related": ["GiveNote:str", "RemoveNote:str", "ClearNotes"]
         }, {
             "id": "CreateFeedback:str_Unit",
             "name": "CreateFeedback",
@@ -10241,7 +10348,15 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 13, "is_ptr": false}]
+            "params": [{"name": "feedback", "type": 5, "is_ptr": false}, {
+                "name": "unidad",
+                "name_en": "unit",
+                "type": 13,
+                "is_ptr": false
+            }],
+            "description": "<p>Hace aparecer el efecto indicado sobre la unidad dada.</p><p>Los valores posibles para <tt>feedback</tt> en el juego original son: <tt>StaminaBoost</tt>, <tt>Ceasefire2</tt>, <tt>Frenzy2</tt>, <tt>Disease2</tt>, <tt>DefensiveStand</tt>, <tt>TripleStrike</tt>, <tt>Death_Magic</tt>, <tt>Damage2</tt>, <tt>BattleCry2</tt>, <tt>Lightning2</tt>, <tt>AdditionalDefense</tt>, <tt>Death</tt>, <tt>Assault</tt>, <tt>Lightning3</tt>, <tt>Gule_fire</tt>, <tt>BleedingAttack</tt>, <tt>Experience</tt>, <tt>Rage</tt>, <tt>Deflection</tt>, <tt>Exclamation_Mark</tt>, <tt>CGule_explosion</tt>, <tt>Curse</tt>, <tt>Frenzy</tt>, <tt>Ceasefire</tt>, <tt>Gule_explosion</tt>, <tt>Charge</tt>, <tt>Penetration</tt>, <tt>Revenge</tt>, <tt>Death_Magic2</tt>, <tt>DefensiveCry</tt>, <tt>Parry</tt>, <tt>Assault2</tt>, <tt>Lightning</tt>, <tt>BattleCry</tt>, <tt>OffensiveTactics</tt>, <tt>DefensiveCry2</tt>, <tt>StaminaLoss</tt>, <tt>Watersteps</tt>, <tt>IGule_fire</tt>, <tt>SpikedArmor</tt>, <tt>Heal</tt>, <tt>Invisibility</tt>, <tt>GetItem</tt>, <tt>Damage1</tt>, <tt>IGule_explosion</tt>, <tt>Disease</tt> o <tt>CGule_fire</tt>.</p>",
+            "description_en": "<p>Makes an effect show up over the given unit.</p><p>The possible values for <tt>feedback</tt> in the original game are: <tt>StaminaBoost</tt>, <tt>Ceasefire2</tt>, <tt>Frenzy2</tt>, <tt>Disease2</tt>, <tt>DefensiveStand</tt>, <tt>TripleStrike</tt>, <tt>Death_Magic</tt>, <tt>Damage2</tt>, <tt>BattleCry2</tt>, <tt>Lightning2</tt>, <tt>AdditionalDefense</tt>, <tt>Death</tt>, <tt>Assault</tt>, <tt>Lightning3</tt>, <tt>Gule_fire</tt>, <tt>BleedingAttack</tt>, <tt>Experience</tt>, <tt>Rage</tt>, <tt>Deflection</tt>, <tt>Exclamation_Mark</tt>, <tt>CGule_explosion</tt>, <tt>Curse</tt>, <tt>Frenzy</tt>, <tt>Ceasefire</tt>, <tt>Gule_explosion</tt>, <tt>Charge</tt>, <tt>Penetration</tt>, <tt>Revenge</tt>, <tt>Death_Magic2</tt>, <tt>DefensiveCry</tt>, <tt>Parry</tt>, <tt>Assault2</tt>, <tt>Lightning</tt>, <tt>BattleCry</tt>, <tt>OffensiveTactics</tt>, <tt>DefensiveCry2</tt>, <tt>StaminaLoss</tt>, <tt>Watersteps</tt>, <tt>IGule_fire</tt>, <tt>SpikedArmor</tt>, <tt>Heal</tt>, <tt>Invisibility</tt>, <tt>GetItem</tt>, <tt>Damage1</tt>, <tt>IGule_explosion</tt>, <tt>Disease</tt> or <tt>CGule_fire</tt>.</p>",
+            "related": ["CreateFeedback:str_Unit_int", "CreateFeedback:str_point", "CreateFeedback:str_point_int"]
         }, {
             "id": "CreateFeedback:str_Unit_int",
             "name": "CreateFeedback",
@@ -10250,11 +10365,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "feedback", "type": 5, "is_ptr": false}, {
+                "name": "unidad", "name_en": "unit",
                 "type": 13,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "milisegundos", "name_en": "milliseconds", "type": 1, "is_ptr": false}],
+            "description": "Hace aparecer un efecto de feedback sobre la unidad indicada por el tiempo marcado. Los valores posibles para <tt>feedback</tt> son los mismos que en <a href='#CreateFeedback:str_Unit'>CreateFeedback(str, Unit)</a>.",
+            "description_en": "Shows a feedback effect over the given unit for the specified time. Possible values for <tt>feedback</tt> are the same as for <a href='#CreateFeedback:str_Unit'>CreateFeedback(str, Unit)</a>.",
+            "related": ["CreateFeedback:str_Unit", "CreateFeedback:str_point", "CreateFeedback:str_point_int"]
         }, {
             "id": "CreateFeedback:str_point",
             "name": "CreateFeedback",
@@ -10263,7 +10381,15 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 6, "is_ptr": false}]
+            "params": [{"name": "feedback", "type": 5, "is_ptr": false}, {
+                "name": "punto",
+                "name_en": "pt",
+                "type": 6,
+                "is_ptr": false
+            }],
+            "description": "Hace aparecer un efecto de feedback en el punto indicado. Los valores posibles para <tt>feedback</tt> son los mismos que en <a href='#CreateFeedback:str_Unit'>CreateFeedback(str, Unit)</a>.",
+            "description_en": "Shows a feedback effect at the given point. Possible values for <tt>feedback</tt> are the same as for <a href='#CreateFeedback:str_Unit'>CreateFeedback(str, Unit)</a>.",
+            "related": ["CreateFeedback:str_Unit", "CreateFeedback:str_Unit_int", "CreateFeedback:str_point_int"]
         }, {
             "id": "CreateFeedback:str_point_int",
             "name": "CreateFeedback",
@@ -10272,11 +10398,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "feedback", "type": 5, "is_ptr": false}, {
+                "name": "punto", "name_en": "pt",
                 "type": 6,
                 "is_ptr": false
-            }, {"name": "number", "type": 1, "is_ptr": false}]
+            }, {"name": "milisegundos", "name_en": "milliseconds", "type": 1, "is_ptr": false}],
+            "description": "Hace aparecer un efecto de feedback en un punto por el tiempo marcado. Los valores posibles para <tt>feedback</tt> son los mismos que en <a href='#CreateFeedback:str_Unit'>CreateFeedback(str, Unit)</a>.",
+            "description_en": "Shows a feedback effect at a point for the given time. Possible values for <tt>feedback</tt> are the same as for <a href='#CreateFeedback:str_Unit'>CreateFeedback(str, Unit)</a>.",
+            "related": ["CreateFeedback:str_point", "CreateFeedback:str_Unit", "CreateFeedback:str_Unit_int"]
         }, {
             "id": "DiplCeaseFire:int_int_bool",
             "name": "DiplCeaseFire",
@@ -13542,7 +13671,12 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "indice", "name_en": "index", "type": 1, "is_ptr": false}, {"name": "raza", "name_en": "race", "type": 1, "is_ptr": false}],
+            "params": [{"name": "indice", "name_en": "index", "type": 1, "is_ptr": false}, {
+                "name": "raza",
+                "name_en": "race",
+                "type": 1,
+                "is_ptr": false
+            }],
             "description": "Retorna la i-ésima clase de unidad de la <a href='#Obj::race'>raza</a> dada. Si el índice no es válido, devuelve una cadena vacía. Puedes utilizar <a href='#RUType:str_int'>RUType</a> para realizar la transformación inversa.",
             "description_en": "Returns the i-th class of unit for the given <a href='#Obj::race'>race</a>. If the index is not valid, it returns an empty string. You can use <a href='#RUType:str_int'>RUType</a> to perform the inverse transformation.",
             "related": ["RUType:str_int", "UTech:int_int", "UTrainCmd:int_int", "UEnabled:int_int"]
@@ -13977,7 +14111,11 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}, {"name": "squad", "type": 1, "is_ptr": false}],
+            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}, {
+                "name": "squad",
+                "type": 1,
+                "is_ptr": false
+            }],
             "description": "Selecciona el <a href='#Squad'>Squad</a> especificado del jugador indicado.",
             "description_en": "Selects the specified player's <a href='#Squad'>Squad</a>.",
             "related": ["SelSquad", "SelSquadLeader"]
@@ -14666,8 +14804,8 @@ const THE_OBJ = (function () {
             "of_ptr": false,
             "type": "method",
             "params": [],
-            "description": "Explora todo el mapa.",
-            "description_en": "Explores the whole map."
+            "description": "Explora todo el mapa para todos los jugadores.",
+            "description_en": "Explores the whole map for every player."
         }, {
             "id": "Invalidate",
             "name": "Invalidate",
@@ -14841,7 +14979,11 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "onlyInEditor": true,
+            "description": "Muestra / oculta la paleta de herramientas.",
+            "description_en": "Shows / hides the toolbox.",
+            "related": ["AdvExplorer", "MiniMap"]
         }, {
             "id": "Dlg:str",
             "name": "Dlg",
@@ -15129,7 +15271,12 @@ const THE_OBJ = (function () {
                 "name": "Y",
                 "type": 1,
                 "is_ptr": false
-            }, {"name": "Z", "type": 1, "is_ptr": false}, {"name": "ambiente", "name_en": "ambient", "type": 1, "is_ptr": false}]
+            }, {"name": "Z", "type": 1, "is_ptr": false}, {
+                "name": "ambiente",
+                "name_en": "ambient",
+                "type": 1,
+                "is_ptr": false
+            }]
         }, {
             "id": "DumpFuncToXML",
             "name": "DumpFuncToXML",
@@ -15185,7 +15332,11 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "params": [],
+            "onlyInEditor": true,
+            "description": "Abre una nueva ventana de edición de aventura / mapa.",
+            "description_en": "Opens a new window for map / adventure edition.",
+            "related": ["ae", "Explorer", "MiniMap"]
         }, {
             "id": "ae",
             "name": "ae",
@@ -15194,7 +15345,11 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": []
+            "onlyInEditor": true,
+            "description": "Abre una nueva ventana de edición de aventura / mapa.",
+            "description_en": "Opens a new window for map / adventure edition.",
+            "params": [],
+            "related": ["AdvExplorer", "Explorer", "MiniMap"]
         }, {
             "id": "TTest:str",
             "name": "TTest",
@@ -15561,7 +15716,11 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}, {"name": "num", "type": 1, "is_ptr": false}]
+            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}, {
+                "name": "num",
+                "type": 1,
+                "is_ptr": false
+            }]
         }, {
             "id": "UIShowTab:int",
             "name": "UIShowTab",
@@ -15915,7 +16074,12 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "consulta", "name_en": "query", "type": 27, "is_ptr": false}, {"name": "milisegundos", "name_en": "milliseconds", "type": 1, "is_ptr": false}],
+            "params": [{"name": "consulta", "name_en": "query", "type": 27, "is_ptr": false}, {
+                "name": "milisegundos",
+                "name_en": "milliseconds",
+                "type": 1,
+                "is_ptr": false
+            }],
             "description": "<p>Detiene la ejecución hasta que la consulta dada retorne al menos un objeto (hasta que no esté vacía).</p>"
                 + WAITING_TIME_SPANISH,
             "description_en": "<p>Stops the execution until the query returns at least one object (until it is not empty)</p>"
@@ -15956,7 +16120,7 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "jugador", "name_en":"player_out", "type": 1, "is_ptr": true}, {
+            "params": [{"name": "jugador", "name_en": "player_out", "type": 1, "is_ptr": true}, {
                 "name": "mensaje", "name_en": "msg_out",
                 "type": 5,
                 "is_ptr": true
@@ -16484,7 +16648,15 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{
+                "name": "id_anuncio",
+                "name_en": "id_announcement",
+                "type": 5,
+                "is_ptr": false
+            }, {"name": "texto", "name_en": "text", "type": 5, "is_ptr": false}],
+            "description": "Muestra un anuncio en la parte superior-derecha de la pantalla. El parámetro <tt>id_anuncio</tt> será empleado para ocultar el anuncio cuando se desee. Si el <tt>id_anuncio</tt> dado ya está en uso, el texto reemplaza al contenido previo del anuncio.",
+            "description_en": "Shows an announcement in the top-right corner of the screen. The parameter <tt>id_announcement</tt> can be used to hide the text later. If the <tt>id_announcement</tt> is already in use, the text replaces the previous content of the announcement.",
+            "related": ["HideAnnouncement:str", "ShowAnnouncement:int_str_str"]
         }, {
             "id": "HideAnnouncement:str",
             "name": "HideAnnouncement",
@@ -16493,7 +16665,10 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "id_anuncio", "name_en": "id_announcement", "type": 5, "is_ptr": false}],
+            "description": "Oculta el anuncio con el id indicado. Los anuncios son textos que se muestran en la esquina superior derecha de la pantalla.",
+            "description_en": "Hides the announcement with the given id. The announcements are texts shown in the top-right corner of the screen.",
+            "related": ["ShowAnnouncement:str_str"]
         }, {
             "id": "ShowAnnouncement:int_str_str",
             "name": "ShowAnnouncement",
@@ -16502,11 +16677,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}, {
+                "name": "id_anuncio", "name_en": "id_announcement",
                 "type": 5,
                 "is_ptr": false
-            }, {"name": "number", "type": 5, "is_ptr": false}]
+            }, {"name": "texto", "name_en": "text", "type": 5, "is_ptr": false}],
+            "description": "Muestra un anuncio en la parte superior-derecha de la pantalla sólo al jugador dado. El parámetro <tt>id_anuncio</tt> será empleado para ocultar el texto cuando se desee. Si el <tt>id_anuncio</tt> dado ya está en uso, el texto reemplaza al contenido previo del anuncio.",
+            "description_en": "Shows an announcement in the top-right corner of the screen only to the given player. The parameter <tt>id_announcement</tt> can be used to hide the text later. If the <tt>id_announcement</tt> is already in use, the text replaces the previous content of the announcement.",
+            "related": ["HideAnnouncement:int_str", "ShowAnnouncement:str_str"]
         }, {
             "id": "HideAnnouncement:int_str",
             "name": "HideAnnouncement",
@@ -16515,7 +16693,15 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}, {
+                "name": "id_anuncio",
+                "name_en": "id_announcement",
+                "type": 5,
+                "is_ptr": false
+            }],
+            "description": "Oculta el anuncio del jugador dado con el id indicado. Los anuncios son textos que se muestran en la esquina superior derecha de la pantalla.",
+            "description_en": "Hides the announcement of the indicated player with the given id. The announcements are texts shown in the top-right corner of the screen.",
+            "related": ["ShowAnnouncement:int_str_str"]
         }, {
             "id": "SetPlayerStatus:int_int_str_bool",
             "name": "SetPlayerStatus",
@@ -16728,7 +16914,15 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {"name": "number", "type": 5, "is_ptr": false}]
+            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}, {
+                "name": "mensaje",
+                "name_en": "message",
+                "type": 5,
+                "is_ptr": false
+            }],
+            "description": "Imprime en consola el mensaje indicado solamente para el jugador dado.",
+            "description_en": "Prints to console the given message only for the indicated player.",
+            "related": ["pr:str"]
         }, {
             "id": "_cr",
             "name": "_cr",
@@ -16821,11 +17015,14 @@ const THE_OBJ = (function () {
             "of": null,
             "of_ptr": false,
             "type": "method",
-            "params": [{"name": "number", "type": 1, "is_ptr": false}, {
-                "name": "number",
+            "params": [{"name": "jugador", "name_en": "player", "type": 1, "is_ptr": false}, {
+                "name": "perdedor", "name_en": "loser",
                 "type": 2,
                 "is_ptr": false
-            }, {"name": "number", "type": 5, "is_ptr": false}]
+            }, {"name": "mensaje", "name_en": "message", "type": 5, "is_ptr": false}],
+            "description": "<p>Termina la partida para el jugador indicado dándolo por perdedor / ganador y pone el mensaje dado en la pantalla de fin del juego.</p><p>Si el parámetro <tt>perdedor</tt> es <tt>true</tt>, el jugador <tt>jugador</tt> será el perdedor, en caso contrario será el ganador de la partida.</p>",
+            "description_en": "<p>Ends the game for the given player as the loser / winner, and shows the given message in the end-game screen.</p><p>If the parameter <tt>loser</tt> is <tt>true</tt>, the player <tt>player</tt> will be the loser, otherwise the player will be the winner of the match.</p>",
+            "related": ["EndGame:int_bool"]
         }, {
             "id": "Hero::IsArmyOutside",
             "name": "IsArmyOutside",

@@ -1,5 +1,5 @@
 // Example: Conversación al entrar en un área
-// Description: Ejecutar una conversación cuándo la primera unidad del jugador 1 entra en un área
+// Description: Ejecutar una conversación cuándo una unidad del jugador 1 entra en un área
 // Lang: es
 // Tags: Conversación, Área, Actor, Query
 // Author: David Campos R.

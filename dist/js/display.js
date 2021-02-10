@@ -38,15 +38,6 @@ const TRANSLATE_TEXTS = {
     "item-only-en": "Useful only for item scripting."
 }
 
-function escapeHtmlAndNameCorrection(unsafe) {
-    return unsafe
-        .replace(/&|\\a/g, "&amp;")
-        .replace(/<|\\l/g, "&lt;")
-        .replace(/>|\\g/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
-
 function renderType(type, isPtr, classes) {
     return `<a href="#${classes[type].name}" class="type ${classes[type].name}">${classes[type].name}${isPtr ? '<span class="ptr">*</span>' : ''}</a>`;
 }
@@ -152,7 +143,7 @@ function clickedLinkThis(event) {
     /**@var {string} url */
     const url = event.currentTarget.href;
     history.replaceState({}, document.title, event.currentTarget.href);
-    const id = url.slice(url.indexOf('#')+1);
+    const id = url.slice(url.indexOf('#') + 1);
     const element = document.getElementById(id);
     if (element) element.scrollIntoView({behavior: "smooth"});
     return false;
@@ -520,6 +511,24 @@ window.onload = function () {
         searchInput.setAttribute('placeholder', TRANSLATE_TEXTS['search-' + lang]);
     }
 
+    function updateTranslatable() {
+        document.querySelectorAll('.translate')
+            .forEach(elem => {
+                const text = elem.getAttribute(`data-${lang !== '' ? lang : 'es'}`);
+                if (text) elem.innerText = text;
+            });
+        document.querySelectorAll('.link-translate')
+            .forEach(elem => {
+                if (!elem.href) return;
+                let originalLink = elem.getAttribute('data-href');
+                if (!originalLink) {
+                    originalLink = elem.href;
+                    elem.setAttribute('data-href', originalLink);
+                }
+                elem.href = `${originalLink}${lang !== '' ? `?${lang}` : ""}`;
+            });
+    }
+
     function updateDocumented() {
         const nDocumented = THE_OBJ.funcs.filter(f => 'description' in f).length
             + THE_OBJ.funcs.filter(f => 'description_en' in f).length;
@@ -676,6 +685,7 @@ window.onload = function () {
         lang = lang_select.value;
         updateSelectText();
         updateDocumented();
+        updateTranslatable();
         updateShortkeys();
         updateThanks();
         render();
@@ -724,6 +734,7 @@ window.onload = function () {
 
     updateSelectText();
     updateDocumented();
+    updateTranslatable();
     updateShortkeys();
     updateThanks();
     sortFuncs();
