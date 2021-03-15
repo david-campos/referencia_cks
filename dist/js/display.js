@@ -329,51 +329,54 @@ function addTooltip(event) {
     link.removeEventListener('pointerenter', addTooltip);
 }
 
-function render() {
+function renderDetails([type, functions]) {
+    return `<details class="class" ${type !== null ? `id="${type.name}"` : ""} open>
+    <summary><h2>${type?.name || TRANSLATE_TEXTS['no-class-' + lang]}</h2></summary>
+    <p>${
+        type?.['description_' + lang] || type?.description
+        || `<span class="to-fill">${TRANSLATE_TEXTS['no-desc-' + lang]}</span>`
+    }</p>
+    ${['property', 'operator', 'method']
+        .map(funcType => [funcType, functions.filter(f => f.type === funcType)])
+        .filter(([_, typeFs]) => typeFs.length > 0)
+        .map(([type, typeFs]) =>
+            `<h3>${TRANSLATE_TYPES[type + '-' + lang]}</h3>${
+                typeFs.map(f => renderFunction(f, THE_OBJ.classes)).join("")}`)
+    }
+</details>`;
+}
+
+async function render() {
     const t0 = performance.now();
-    let html = "";
-    let last_group = null;
-    let last_type;
-    let copy_classes = THE_OBJ.classes.slice();
-    for (const func of THE_OBJ.funcs) {
-        if (!filters.reduce((p, c) => p && c(func), true)) continue;
-        if (func[groupBy] !== last_group) {
-            if (html !== "") {
-                html += '</details>';
-            }
-            html += `<details class="class" ${
-                func[groupBy] != null ? `id="${THE_OBJ.classes[func[groupBy]].name}"` : ""
-            } open><summary><h2>${
-                func[groupBy] != null ? THE_OBJ.classes[func[groupBy]].name : TRANSLATE_TEXTS['no-class-' + lang]
-            }</h2></summary>`;
-            if (func[groupBy] != null) {
-                const theClass = THE_OBJ.classes[func[groupBy]];
-                copy_classes.splice(copy_classes.indexOf(theClass), 1);
-                html += `<p>${theClass['description_' + lang] || theClass.description
-                || `<span class=\"to-fill\">${TRANSLATE_TEXTS['no-desc-' + lang]}</span>`}</p>`;
-            }
-            last_group = func[groupBy];
-            last_type = null;
-        }
-        if (func.type !== last_type) {
-            html += `<h3>${TRANSLATE_TYPES[func.type + '-' + lang]}</h3>`
-            last_type = func.type;
-        }
-        html += renderFunction(func, THE_OBJ.classes);
-    }
-    // Avoid printing remaining classes if there is any filtering
-    if (filters.length === 0) {
-        for (const missing of copy_classes) {
-            html += `</details><details class="class" id="${missing.name}" open><summary><h2>${
-                missing.name
-            }</h2></summary>`;
-            html += `<p>${missing['description_' + lang] || missing.description
-            || `<span class=\"to-fill\">${TRANSLATE_TEXTS['no-desc-' + lang]}</span>`}</p>`;
-        }
-    }
-    html += "</details>";
+
+    const filterEmpty =
+        filters.length > 0
+            ? ([_, list]) => list.length > 0
+            : () => true;
+    // We add "null" at the end so non-methods are not missing
+    const functionArrays = THE_OBJ.classes
+        .concat([null])
+        .map((type, typeIdx) => [
+            type,
+            THE_OBJ.funcs.filter(func =>
+                func[groupBy] === type || func[groupBy] === typeIdx  // group by each type (and null)
+                && filters.reduce((p, c) => p && c(func), true)      // apply filters
+            )
+        ]).filter(filterEmpty); // Do not print empty groups when there are filters
+    if (filters.length === 0)
+        functionArrays.sort((a, b) =>
+            a[1].length === 0 ? 1 : (b[1].length === 0 ? -1 : 0)
+        ); // move empty ones to the end
+
+    const details = functionArrays.map(renderDetails);
     const main = document.getElementById('main');
-    main.innerHTML = html;
+    main.innerHTML = "";
+    for (let i = 0; i < details.length; ++i) {
+        main.insertAdjacentHTML('beforeend', details[i]);
+        if (i === 3 || i % 15 === 14)
+            await new Promise(r => setTimeout(r, 10));
+    }
+
     for (const link of main.querySelectorAll('a[href^="#"]:not(.linkThis)')) {
         link.addEventListener('pointerenter', addTooltip);
     }
@@ -738,19 +741,20 @@ window.onload = function () {
     updateShortkeys();
     updateThanks();
     sortFuncs();
-    render();
-    // For links with hash to work after first render
-    if (location.hash) {
-        const elem = document.getElementById(location.hash.slice(1));
-        if (elem) {
-            setTimeout(elem.scrollIntoView.bind(elem));
-            const main = document.getElementById('main');
-            main.classList.add("one-remarked");
-            elem.classList.add("remark");
-            setTimeout(() => {
-                main.classList.remove("one-remarked");
-                elem.classList.remove("remark");
-            }, 4100);
+    render().then(() => {
+        // For links with hash to work after first render
+        if (location.hash) {
+            const elem = document.getElementById(location.hash.slice(1));
+            if (elem) {
+                setTimeout(elem.scrollIntoView.bind(elem));
+                const main = document.getElementById('main');
+                main.classList.add("one-remarked");
+                elem.classList.add("remark");
+                setTimeout(() => {
+                    main.classList.remove("one-remarked");
+                    elem.classList.remove("remark");
+                }, 4100);
+            }
         }
-    }
+    });
 }
