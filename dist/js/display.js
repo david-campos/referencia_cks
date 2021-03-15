@@ -339,7 +339,7 @@ function render() {
         if (!filters.reduce((p, c) => p && c(func), true)) continue;
         if (func[groupBy] !== last_group) {
             if (html !== "") {
-                html += '</details>';
+                html += '</details>(&&)';
             }
             html += `<details class="class" ${
                 func[groupBy] != null ? `id="${THE_OBJ.classes[func[groupBy]].name}"` : ""
@@ -364,7 +364,7 @@ function render() {
     // Avoid printing remaining classes if there is any filtering
     if (filters.length === 0) {
         for (const missing of copy_classes) {
-            html += `</details><details class="class" id="${missing.name}" open><summary><h2>${
+            html += `</details>(&&)<details class="class" id="${missing.name}" open><summary><h2>${
                 missing.name
             }</h2></summary>`;
             html += `<p>${missing['description_' + lang] || missing.description
@@ -372,8 +372,23 @@ function render() {
         }
     }
     html += "</details>";
+	// Split details in array for append
+	let lowData=html.split("(&&)");
     const main = document.getElementById('main');
-    main.innerHTML = html;
+	// When change language need clear content. Need setTimeout for don't blink text
+	setTimeout(function(){
+		main.innerHTML = "";
+	},100);
+	let multiplicate=1;
+	// Append to main separate <details>. Renderer in 26 ms
+	for(const details of lowData){
+		setTimeout(function(){
+			main.insertAdjacentHTML('beforeend',details);
+		},multiplicate*100);
+		multiplicate++;
+	}
+	// Renderer in 126 ms
+    //main.innerHTML = html;
     for (const link of main.querySelectorAll('a[href^="#"]:not(.linkThis)')) {
         link.addEventListener('pointerenter', addTooltip);
     }
