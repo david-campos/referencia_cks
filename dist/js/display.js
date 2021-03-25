@@ -359,7 +359,7 @@ async function render() {
         .map((type, typeIdx) => [
             type,
             THE_OBJ.funcs.filter(func =>
-                func[groupBy] === type || func[groupBy] === typeIdx  // group by each type (and null)
+                (func[groupBy] === type || func[groupBy] === typeIdx)  // group by each type (and null)
                 && filters.reduce((p, c) => p && c(func), true)      // apply filters
             )
         ]).filter(filterEmpty); // Do not print empty groups when there are filters
